@@ -423,6 +423,20 @@ html[data-theme=light] .cb.todo{color:#B45309}html[data-theme=light] .cb.done{co
 #mPhoto img{max-width:94vw;max-height:88vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
 #mPhoto .ico{position:absolute;top:16px;right:16px;color:#fff}
 #mContact{z-index:60}#mHist{z-index:70}
+.card>.bgph{position:absolute!important;inset:0;z-index:0;pointer-events:none;background-size:cover;background-position:center;opacity:.2;-webkit-mask-image:linear-gradient(to left,#000 0%,transparent 80%);mask-image:linear-gradient(to left,#000 0%,transparent 80%)}
+html[data-theme=light] .card>.bgph{opacity:.3}
+.cb.stop.no{color:#ff8d8d;border-color:rgba(255,92,92,.5);background:rgba(255,92,92,.1)}
+html[data-theme=light] .cb.stop.no{color:#C62828}
+.cbox.no .ci{background:rgba(255,92,92,.16);color:#ff6b6b}.cbox.no .ct b{color:#ff8d8d}
+html[data-theme=light] .cbox.no .ct b{color:#C62828}
+.ctl{display:grid;gap:2px;padding:9px 2px;border-top:1px solid var(--line);font-size:14.5px}.ctl small{color:var(--mut);font-size:13px}
+.ctl:first-of-type{border-top:0}
+.ph .st{position:absolute;top:5px;left:5px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;display:grid;place-items:center;opacity:0;transition:opacity .15s}
+.ph:hover .st,.ph .st.on{opacity:1}.ph .st.on{color:#ffc94d}.ph .st.on svg{fill:currentColor}.ph .st svg,.ph .x svg{width:14px;height:14px}
+.frow{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid var(--line)}.frow:first-child{border-top:0}
+.frow .fi{flex:1;min-width:0;word-break:break-word}.frow .fi small{display:block;color:var(--mut);font-size:13px}
+.frow.sync{opacity:.5}
+.hset{display:inline-flex;gap:14px;flex-wrap:wrap;vertical-align:middle}.hrow td{padding-top:0!important;border-top:0!important}.hset label{display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer}.hset input{width:16px;height:16px;accent-color:var(--blue);padding:0}
 .xh{display:flex;align-items:baseline;gap:8px;margin:18px 0 2px;font:700 16px var(--disp)}.xh small{color:var(--mut);font:500 13.5px var(--sans,inherit)}
 </style>
 </head>
@@ -482,6 +496,7 @@ const IC = {
   alert: ic('<path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>'),
   SECURITY: ic('<path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5Z"/><path d="M12 8v4"/><path d="M12 16h.01"/>'),
   DOCUMENTS: ic('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/>'),
+  star: ic('<path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1Z"/>'),
   stop: ic('<path d="M7.9 2h8.2L22 7.9v8.2L16.1 22H7.9L2 16.1V7.9Z"/><path d="M8 12h8"/>'),
   phone: ic('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>'),
   camera: ic('<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="4"/>'),
@@ -511,6 +526,7 @@ const IC = {
 };
 const SHERLOC = 'https://sherloc.dhl.com/#/hwb/';
 const isoD = v => { if (!v) return ''; const t = String(v); if (/^\d{4}-\d\d-\d\d$/.test(t.slice(0, 10)) && t.length <= 10) return t; const d = new Date(v); return isNaN(d) ? t.slice(0, 10) : d.toLocaleDateString('sv-SE', {timeZone:'Europe/Paris'}); };
+const canHist = m => !!ME && (ME.rights[m] === 'admin' || ME.rights['HIST_' + m] === 'lecture');
 const fdateD = v => isoD(v).split('-').reverse().join('/');
 const todayISO = () => new Date().toLocaleDateString('sv-SE', {timeZone:'Europe/Paris'});
 const MOYENS = ['Téléphone', 'E-mail', 'SMS', 'Message vocal'];
@@ -553,7 +569,7 @@ MODS.SECURITY = { label: 'SCMS', name: r => '', show: [], title: r => r.waybill 
     {k:'waybill',l:'Waybill',t:'scan'},
     {k:'date_decouverte',l:'Date de découverte',t:'date',req:1},
     {k:'motif_cb',l:'Motif',t:'motif'},
-    {k:'contacter_client',l:'Contacter le client',t:'bool'},
+    {k:'contacter_client',l:'Client',t:'ctc'},
     {k:'visibilite',l:'Visibilité',t:'vis'},
     {k:'_photos',l:'Photos',t:'photos'}] };
 MODS.DOCUMENTS = { label: 'Documents', noSteps: true, name: r => r.titre, show: [], fields: [
@@ -713,17 +729,18 @@ const stLabel = (code, m = cur) => { const s = ME.etapes.find(e => e.module === 
 function cardSec(r){
   const kind = kindOf(r), tmp = r._tmp === true, w = canWrite();
   const mt = [r.motif_cb === true ? 'CB active' : '', r.motif_cash === true ? 'Argent liquide' : ''].filter(Boolean).map(x => `<span class="tag">${x}</span>`).join('') + (r.motif_libre ? `<span class="m" style="margin:0">${esc(r.motif_libre)}</span>` : '');
-  const cbub = r.contacter_client !== true ? `<span class="cb stop" title="Pas de contact client">${IC.stop}Pas de contact client</span>`
+  const cbub = r.contacter_client !== true ? `<span class="cb stop no" title="Ne surtout pas contacter le client">${IC.stop}Ne pas contacter le client</span>`
     : r.contact_fait_le ? `<span class="cb done" title="Client contacté">${IC.phone}Client contacté</span>` : `<span class="cb todo" title="Client à contacter">${IC.phone}Client à contacter</span>`;
   const acts = w && !showArch ? `<div class="act"><button class="s go" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}">Étape</button></div>` : '<div class="act" style="padding:0"></div>';
-  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}" data-id="${r.id}"><div class="r1">${r.waybill ? `<div class="refs solo">${link(r.waybill)}</div>` : '<div class="name">Sans bordereau</div>'}<span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div>
+  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}" data-id="${r.id}">${r.thumb ? `<div class="bgph" style="background-image:url(data:image/jpeg;base64,${r.thumb})"></div>` : ''}<div class="r1">${r.waybill ? `<div class="refs solo">${link(r.waybill)}</div>` : '<div class="name">Sans bordereau</div>'}<span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div>
     <div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="mtags" style="margin:4px 0">${mt}</div><div class="rowb">${cbub}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 function cardDoc(r){
   const tmp = r._tmp === true;
-  return `<div class="card ${r._sync || tmp ? 'sync' : ''}" data-id="${r.id}"><div class="dcard"><span class="dic">${IC.DOCUMENTS}</span><div class="dm"><div class="name" title="${esc(r.titre)}">${esc(r.titre)}</div><div class="fn">${r.fichier_nom ? esc(r.fichier_nom) + ' · ' + fsize(r.fichier_taille) : 'Envoi du fichier…'}</div></div>
+  const fl = r.fichiers || [], fn = fl.length === 0 ? 'Aucun fichier' : fl.length === 1 ? esc(fl[0].nom) + ' · ' + fsize(fl[0].taille) : fl.length + ' fichiers';
+  return `<div class="card ${r._sync || tmp ? 'sync' : ''}" data-id="${r.id}"><div class="dcard"><span class="dic">${IC.DOCUMENTS}</span><div class="dm"><div class="name" title="${esc(r.titre)}">${esc(r.titre)}</div><div class="fn">${fn}</div></div>
     <span class="bb ${r.visibilite === 'prive' ? '' : 'sh'}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</span></div>
-    <div class="act">${r.fichier_id ? `<button class="s go" data-a="dl" data-fid="${r.fichier_id}">${IC.download}Télécharger</button>` : ''}</div>${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+    <div class="act">${fl.length === 1 && fl[0].id !== 'tmp' ? `<button class="s go" data-a="dl" data-fid="${fl[0].id}" title="Télécharger" aria-label="Télécharger">${IC.download}</button>` : ''}</div>${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 function card(r){
   if (cur === 'SECURITY') return cardSec(r);
@@ -744,13 +761,13 @@ function card(r){
 }
 
 // ------------------------------------------------------------ Recherche globale (suggestions)
-const HLAB = {suppression:'Supprimé définitivement', creation:'Création', etape:"Changement d'étape", modification:'Modification', archivage:'Archivage', desarchivage:'Désarchivage'};
+const HLAB = {telechargement:'Téléchargement', suppression:'Supprimé définitivement', creation:'Création', etape:"Changement d'étape", modification:'Modification', archivage:'Archivage', desarchivage:'Désarchivage'};
 const IC_HIST = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>');
 let sTimer = 0, sSeq = 0, sItems = [], sHl = -1;
 function localHits(q){
   const out = [];
   Object.keys(MODS).forEach(m => (cache[m] || []).forEach(r => {
-    const hay = [r.waybill, r.pid, r.nom_client, r.nom_dest, r.titre, r.motif_libre, r.fichier_nom, r.remarque, r.location, r.commentaire].join(' ').toLowerCase();
+    const hay = [r.waybill, r.pid, r.nom_client, r.nom_dest, r.titre, r.motif_libre, (r.fichiers || []).map(f => f.nom).join(' '), r.remarque, r.location, r.commentaire].join(' ').toLowerCase();
     if (hay.includes(q)) out.push({kind:'row', module:m, id:r.id, title:String(r.nom_client || r.nom_dest || r.titre || r.waybill || r.pid || MODS[m].label).toUpperCase(), sub:[r.waybill, r.pid].filter(Boolean).join(' · '), archive:false});
   }));
   return out.slice(0, 15);
@@ -843,7 +860,7 @@ function ask(title, text, okLabel){
 // ------------------------------------------------------------ Menu « Étape » : bandeau au milieu de la page
 let bandR = null;
 function closePop(){ bandR = null; $('#mBand').classList.remove('on'); }
-function showStepMenu(btn, r){ bandR = r; drawBand(); $('#mBand').classList.add('on'); if (H[r.id] === undefined && !String(r.id).startsWith('tmp_')) loadHist(r, true); }
+function showStepMenu(btn, r){ bandR = r; drawBand(); $('#mBand').classList.add('on'); if (H[r.id] === undefined && !String(r.id).startsWith('tmp_') && canHist(cur)) loadHist(r, true); }
 function lastBy(r, code){
   if (r.etape === code && r.etape_par) return {u: r.etape_par, d: r.etape_le};
   const h = (H[r.id] || []).find(x => x.action === 'etape' && x.nouvelle_valeur === code);
@@ -888,8 +905,8 @@ async function loadHist(r, band, force){
 const who = e => { e = String(e || '').toLowerCase(); return (ME.annuaire && ME.annuaire[e]) || (e === ME.email ? ME.prenom : e.split('@')[0]); };
 const SYS = e => String(e).toLowerCase() === 'auto' ? 'Automatique' : who(e);
 function histHtml(h, m){
-  const M = MODS[m], lab = k => ({photos:'Photos', fichier:'Fichier', contact:'Contact client', motif_cb:'CB active', motif_cash:'Argent liquide', motif_libre:'Autre motif'})[k] || (M.fields.find(f => f.k === k) || {}).l || k;
-  const fv = (k, v) => { if (v === '' || v == null) return '—'; if (v === true || v === 'TRUE') return 'Oui'; if (v === false || v === 'FALSE') return 'Non';
+  const M = MODS[m], lab = k => ({contacter_client:'Client', photos:'Photos', fichier:'Fichier', contact:'Contact client', motif_cb:'CB active', motif_cash:'Argent liquide', motif_libre:'Autre motif'})[k] || (M.fields.find(f => f.k === k) || {}).l || k;
+  const fv = (k, v) => { if (k === 'contacter_client') return (v === true || v === 'TRUE') ? 'Contacter le client' : 'Ne pas contacter le client'; if (v === '' || v == null) return '—'; if (v === true || v === 'TRUE') return 'Oui'; if (v === false || v === 'FALSE') return 'Non';
     if (k === 'categorie_id') { const c = ME.categories_awb.find(c => c.id === v); return c ? c.libelle : v; }
     if (k === 'visibilite') return v === 'prive' ? 'Privé' : 'Partagé'; const t = String(v); return t.length > 80 ? t.slice(0, 77) + '…' : t; };
   const ftime = v => new Date(v).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit', second:'2-digit', ...((ME.prefs && ME.prefs.tz) ? {timeZone: ME.prefs.tz} : {})});
@@ -899,6 +916,7 @@ function histHtml(h, m){
       case 'etape': act = "a changé l'étape"; det2 = `${x.ancienne_valeur ? esc(stLabel(x.ancienne_valeur, m)) : '—'}<span class="arr">→</span><b>${esc(stLabel(x.nouvelle_valeur, m))}</b>`; break;
       case 'creation': act = "a créé l'élément"; det2 = x.commentaire ? esc(x.commentaire) : ''; break;
       case 'modification': act = `a modifié « ${esc(lab(x.champ))} »`; det2 = `${esc(fv(x.champ, x.ancienne_valeur))}<span class="arr">→</span><b>${esc(fv(x.champ, x.nouvelle_valeur))}</b>`; break;
+      case 'telechargement': act = `a téléchargé « ${esc(x.nouvelle_valeur)} »`; break;
       case 'archivage': act = String(x.utilisateur).toLowerCase() === 'auto' ? 'archivage automatique' : 'a archivé l\'élément'; det2 = x.commentaire && x.commentaire !== 'automatique' ? esc(x.commentaire) : ''; break;
       case 'desarchivage': case 'unarchive': act = "a désarchivé l'élément"; break;
       case 'suppression': act = 'suppression définitive (automatique)'; det2 = x.commentaire ? esc(x.commentaire) : ''; break;
@@ -936,6 +954,7 @@ function viewCell(x, r){
 function editCell(x, v){
   const val = v[x.k] ?? '', id = 'f_' + x.k;
   if (x.t === 'bool') return `<input type="checkbox" id="${id}" ${val === true ? 'checked' : ''}>`;
+  if (x.t === 'ctc') return `<select id="${id}"><option value="oui" ${v.contacter_client !== false ? 'selected' : ''}>Contacter le client</option><option value="non" ${v.contacter_client === false ? 'selected' : ''}>Ne surtout pas contacter le client !</option></select>`;
   if (x.t === 'date') return `<input type="date" id="${id}" value="${esc(isoD(val))}">`;
   if (x.t === 'motif') return `<div style="flex:1"><label class="chk" style="margin:2px 0"><input type="checkbox" id="f_motif_cb" ${v.motif_cb === true ? 'checked' : ''}> CB active</label><label class="chk" style="margin:2px 0"><input type="checkbox" id="f_motif_cash" ${v.motif_cash === true ? 'checked' : ''}> Argent liquide</label><textarea id="f_motif_libre" rows="1" placeholder="Autre motif (facultatif)" style="margin-top:6px">${esc(v.motif_libre || '')}</textarea></div>`;
   if (x.t === 'vis') return `<select id="${id}"><option value="agence" ${val === 'agence' ? 'selected' : ''}>Partagé dans l'agence</option><option value="prive" ${val === 'prive' ? 'selected' : ''}>Privé (moi seul)</option></select>`;
@@ -950,19 +969,20 @@ function editCell(x, v){
 function renderDet(){
   if (!det) return;
   const M = MODS[cur], r = det.r, ed = det.editing, el = $('#sDet'), w = canWrite();
-  const v = r || {visibilite:'agence', date_decouverte: todayISO()};
+  const v = r || {visibilite:'agence', date_decouverte: todayISO(), contacter_client: true};
   const kind = r && !M.noSteps ? kindOf(r) : '';
+  const canDelDoc = cur === 'DOCUMENTS' && r && !showArch && (String(r.cree_par).toLowerCase() === ME.email || ME.rights.DOCUMENTS === 'admin');
   const name = r ? (M.noSteps ? String(M.name(r) || '') : String(M.name(r) || '').toUpperCase()) : '';
   const title = r ? (name || (M.title ? M.title(r) : '') || r.waybill || r.pid || M.label) : (cur === 'DOCUMENTS' ? 'Nouveau document' : 'Nouveau ' + M.label);
   const btns = ed
     ? `<button class="ico sm ok" id="dSave" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button><button class="ico sm" id="dX" title="${r ? 'Annuler la modification' : 'Fermer'}" aria-label="Annuler">${IC.close}</button>`
-    : `${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
+    : `${canDelDoc ? `<button class="ico sm warn" id="dDocDel" title="Supprimer le document" aria-label="Supprimer le document">${IC.trash}</button>` : ''}${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
   const hlc = det && det.hl && det.hl.champs || [], canTg = r && w && !showArch && !ed, hasU = r && M.fields.some(f => f.k === 'urgent');
   const bubs = r && !ed ? `<div class="bbs">${hasU ? `<button class="bb tg ${r.urgent === true ? 'u' : 'off'} ${hlc.includes('urgent') ? 'hl' : ''}" data-tg="urgent" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.alert}${r.urgent === true ? 'Urgent' : 'Pas urgent'}</button>` : ''}<button class="bb tg ${r.visibilite === 'prive' ? '' : 'sh'} ${hlc.includes('visibilite') ? 'hl' : ''}" data-tg="visibilite" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</button></div>` : '';
   const stat = r && !M.noSteps ? `<div class="dstat ${ed ? 'lock' : ''}"><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabel(r.etape))}</span><span class="sp"></span>
     ${w && !showArch ? `<button class="s go" data-a="stepmenu">Étape</button><button class="ico warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button>` : ''}
     ${w && showArch ? `<button class="ico" id="dUn" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>` : ''}</div>` : '';
-  const sub = r && !M.noSteps ? M.label : (r ? 'Document' : M.label);
+  const sub = M.noSteps ? '' : M.label;
   const hideView = k => k === 'urgent' || k === 'visibilite';
   const fields = M.fields.map(x => {
     if (x.t === 'photos' || x.t === 'file') return '';
@@ -974,8 +994,6 @@ function renderDet(){
   }).join('');
   const meta = [];
   if (r) {
-    meta.push(['Créé par', r.cree_par ? esc(who(r.cree_par)) + ' · ' + fdate(r.cree_le, true) : '']);
-    if (!M.noSteps) meta.push(['Dernière étape', r.etape_par ? esc(who(r.etape_par)) + ' · ' + fdate(r.etape_le, true) : '']);
     if (cur === 'SECURITY' && r.scms_le) meta.push(['SCMS créé', fdate(r.scms_le, true)]);
     if (r.archive === true) meta.push(['Archivé', esc(who(r.archive_par)) + ' · ' + fdate(r.archive_le, true)]);
   }
@@ -984,14 +1002,15 @@ function renderDet(){
     const cls = l === 'J1' ? '' : diff < 0 ? 'late' : diff <= 1 ? 'soon' : 'now';
     const sub = l === 'J1' ? '' : diff < 0 ? `dépassé de ${-diff} j` : diff === 0 ? "aujourd'hui" : `dans ${diff} j`;
     return `<div class="dt3 ${cls}"><small>${l}</small><b>${dd.toLocaleDateString('fr-FR', {weekday:'short', day:'numeric', month:'short'})}</b><span>${sub || '&nbsp;'}</span></div>`; }).join('')}</div>` : '';
-  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3><div class="sub">${sub}</div>${bubs}</div>${btns}</div>${stat}${dates}
+  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3>${sub ? `<div class="sub">${sub}</div>` : ''}${bubs}</div>${btns}</div>${stat}${dates}
     <dl class="det">${fields}${meta.filter(m => m[1]).map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>
     <div id="xBlocks">${extraBlocks(r, ed)}</div>
-    ${r && !ed ? `<div class="hbar"><button class="s" id="dHist">${IC.clock}Afficher l'historique</button></div>` : ''}`;
+    ${r && !ed && canHist(cur) ? `<div class="hbar"><button class="s" id="dHist">${IC.clock}Afficher l'historique</button></div>` : ''}`;
   afterExtra(r, ed);
   if ($('#dHist')) $('#dHist').onclick = () => openHist(r);
   $('#dX').onclick = () => (ed && r) ? (det.editing = false, renderDet()) : closeDet();
   if ($('#dPen')) $('#dPen').onclick = () => { det.editing = true; renderDet(); };
+  if ($('#dDocDel')) $('#dDocDel').onclick = () => delDoc(r);
   if (ed) {
     el.querySelectorAll('input.up').forEach(i => i.addEventListener('input', () => { const p = i.selectionStart; i.value = i.value.toUpperCase(); i.setSelectionRange(p, p); }));
     const grow = t => { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; };
@@ -1006,12 +1025,13 @@ function renderDet(){
           continue;
         }
         const e2 = $('#f_' + x.k);
+        if (x.t === 'ctc') { data[x.k] = e2.value === 'oui'; continue; }
         if (x.t === 'bool') data[x.k] = e2.checked;
         else if (x.t === 'multi') data[x.k] = [...e2.querySelectorAll('input:checked')].map(i => i.value).join(' ; ');
         else data[x.k] = x.up ? e2.value.trim().toUpperCase() : e2.value.trim();
         if (x.req && !data[x.k]) return toast(x.l + ' obligatoire');
       }
-      if (cur === 'DOCUMENTS' && !r && !(det.staged && det.staged.file)) return toast('Choisis un fichier');
+      if (cur === 'DOCUMENTS' && !r && !(det.staged && det.staged.files && det.staged.files.length)) return toast('Ajoute au moins un fichier');
       const extra = det.staged; det.staged = null;
       saveLocal(r, data, extra);
       if (r) { det.editing = false; renderDet(); } else closeDet();
@@ -1032,7 +1052,7 @@ function saveLocal(r, data, extra){
   const m = cur, k = key(), now = new Date().toISOString();
   if (r) { if (H[r.id]) Object.keys(data).forEach(f => { if (String(r[f] ?? '') !== String(data[f] ?? '')) H[r.id].unshift({date_heure:now, utilisateur:ME.email, action:'modification', champ:f, ancienne_valeur:r[f] ?? '', nouvelle_valeur:data[f]}); }); Object.assign(r, data, {modifie_le: now}); r._sync = true; }
   else {
-    const row = Object.assign({id:'tmp_' + Date.now(), cree_par:ME.email, cree_le:now, etape:(stepsOf(m)[0] || {}).code || '', etape_par:ME.email, etape_le:now, archive:false, _tmp:true}, data, extra && extra.file ? {fichier_nom: extra.file.name, fichier_taille: extra.file.size} : {});
+    const row = Object.assign({id:'tmp_' + Date.now(), cree_par:ME.email, cree_le:now, etape:(stepsOf(m)[0] || {}).code || '', etape_par:ME.email, etape_le:now, archive:false, _tmp:true}, data, extra && extra.files ? {fichiers: extra.files.map(f => ({id:'tmp', nom:f.name, taille:f.size}))} : {}, extra && extra.photos && extra.photos[0] ? {thumb: extra.photos[0].thumb} : {});
     rows.unshift(row); cache[k] = rows;
   }
   drawCards();
@@ -1040,8 +1060,8 @@ function saveLocal(r, data, extra){
   enqueue(async () => {
     const newId = await api('save', {module:m, id: r ? r.id : null, data});
     if (!r && extra && newId) {
-      if (extra.file) await api('file_add', {module:m, ref_id:newId, name:extra.file.name, mime:extra.file.mime, b64:extra.file.b64});
-      for (const ph of (extra.photos || [])) await api('file_add', {module:m, ref_id:newId, name:ph.name, mime:ph.mime, b64:ph.b64});
+      for (const f of (extra.files || [])) await api('file_add', {module:m, ref_id:newId, name:f.name, mime:f.mime, b64:f.b64});
+      for (const ph of (extra.photos || [])) await api('file_add', {module:m, ref_id:newId, name:ph.name, mime:ph.mime, b64:ph.b64, thumb_b64:ph.thumb});
     }
     if (r) { delete H[r.id]; r._sync = false; }
     if (pending === 1) await refresh(); else if (key() === k) drawCards();
@@ -1051,39 +1071,46 @@ function saveLocal(r, data, extra){
 
 
 // ------------------------------------------------------------ SCMS / Documents : photos, contact client, fichier
-const FILES = {}, FLOAD = {};
+const FILES = {}, FLOAD = {}, CT = {}, CLOAD = {};
 const readB64 = f => new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(',')[1] || ''); fr.onerror = () => rej(new Error('Lecture du fichier impossible')); fr.readAsDataURL(f); });
+function scaled(src, w, h, max, q){
+  const sc = Math.min(1, max / Math.max(w, h)), c = document.createElement('canvas');
+  c.width = Math.max(1, Math.round(w * sc)); c.height = Math.max(1, Math.round(h * sc));
+  c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
+  return c.toDataURL('image/jpeg', q).split(',')[1];
+}
 async function compressImg(file){
   let bmp; try { bmp = await createImageBitmap(file, {imageOrientation:'from-image'}); } catch (e) { throw new Error('Image non lisible : ' + file.name); }
-  const sc = Math.min(1, 1280 / Math.max(bmp.width, bmp.height)), c = document.createElement('canvas');
-  c.width = Math.round(bmp.width * sc); c.height = Math.round(bmp.height * sc);
-  c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
-  const b64 = c.toDataURL('image/jpeg', 0.82).split(',')[1];
-  return {name: (file.name || 'photo').replace(/\.[^.]+$/, '') + '.jpg', mime:'image/jpeg', b64};
+  return {name: (file.name || 'photo').replace(/\.[^.]+$/, '') + '.jpg', mime:'image/jpeg', b64: scaled(bmp, bmp.width, bmp.height, 1280, 0.82), thumb: scaled(bmp, bmp.width, bmp.height, 240, 0.6)};
 }
+const thumbFromB64 = b64 => new Promise(res => { const im = new Image(); im.onload = () => res(scaled(im, im.width, im.height, 240, 0.6)); im.onerror = () => res(''); im.src = 'data:image/jpeg;base64,' + b64; });
+const mainOf = r => r.photo_id || (FILES[r.id] && FILES[r.id][0] && FILES[r.id][0].id);
 function photosBlock(r){
   const list = r ? FILES[r.id] : ((det.staged && det.staged.photos) || []);
-  const w = !r || (canWrite() && !showArch);
+  const w = !r || (canWrite() && !showArch), main = r ? mainOf(r) : null;
   const items = list === undefined ? '' : list.map((f, i) => f.err ? `<div class="ph" title="Photo indisponible"><span class="m" style="margin:auto">Indisponible</span></div>`
-    : `<div class="ph ${f._sync ? 'sync' : ''}" ${r ? `data-pid="${f.id}"` : `data-sidx="${i}"`}><img alt="Photo" src="data:${f.mime || 'image/jpeg'};base64,${f.b64}">${w && !f._sync ? `<button class="x" data-pdel="${r ? f.id : i}" aria-label="Supprimer la photo" title="Supprimer">${IC.close}</button>` : ''}</div>`).join('');
+    : `<div class="ph ${f._sync ? 'sync' : ''}" ${r ? `data-pid="${f.id}"` : `data-sidx="${i}"`}><img alt="Photo" src="data:${f.mime || 'image/jpeg'};base64,${f.b64}">${r && w && !f._sync ? `<button class="st ${f.id === main ? 'on' : ''}" data-pmain="${f.id}" aria-label="Photo principale" title="${f.id === main ? 'Photo principale (affichée sur la carte)' : 'Définir comme photo principale'}">${IC.star}</button>` : ''}${w && !f._sync ? `<button class="x" data-pdel="${r ? f.id : i}" aria-label="Supprimer la photo" title="Supprimer">${IC.close}</button>` : ''}</div>`).join('');
   const add = w ? `<label class="ph add" title="Ajouter des photos">${IC.camera}Ajouter<input type="file" id="phIn" accept="image/*" multiple hidden></label>` : '';
   const n = list ? list.length : 0;
   return `<div class="xh">Photos${n ? ` <small>${n}</small>` : ''}</div>` + (list === undefined ? '<div class="m">Chargement des photos…</div>' : (items || add) ? `<div class="pgrid">${items}${add}</div>` : '<div class="m">Aucune photo.</div>');
 }
 function contactBox(r){
-  const w = canWrite() && !showArch, btn = (l) => w ? `<button class="s go" id="bContact">${IC.phone}${l}</button>` : '';
-  if (r.contacter_client !== true) return `<div class="cbox"><span class="ci">${IC.stop}</span><div class="ct"><b>Pas de contact client</b><small>Ce dossier ne demande pas de contacter le client.</small></div></div>`;
-  if (!r.contact_fait_le) return `<div class="cbox todo"><span class="ci">${IC.phone}</span><div class="ct"><b>Client à contacter</b><small>Aucun contact enregistré.</small></div>${btn("J'ai contacté le client")}</div>`;
-  return `<div class="cbox done"><span class="ci">${IC.phone}</span><div class="ct"><b>Client contacté · ${esc(r.contact_moyen || '')}</b><small>${esc(who(r.contact_fait_par))} · ${fdate(r.contact_fait_le, true)}${r.contact_commentaire ? '<br>' + esc(r.contact_commentaire) : ''}</small></div>${btn('Nouveau contact')}</div>`;
+  const w = canWrite() && !showArch;
+  if (r.contacter_client !== true) return `<div class="cbox no"><span class="ci">${IC.stop}</span><div class="ct"><b>Ne surtout pas contacter le client !</b><small>Aucun contact ne doit être pris avec le client.</small></div></div>`;
+  let l = CT[r.id]; if (l && !l.length && r.contact_fait_le) l = [{par:r.contact_fait_par, le:r.contact_fait_le, moyen:r.contact_moyen, commentaire:r.contact_commentaire}];
+  const done = l ? l.length > 0 : !!r.contact_fait_le, n = l ? l.length : (r.contact_fait_le ? 1 : 0);
+  const btn = w ? `<button class="s go" id="bContact">${IC.phone}${done ? 'Nouveau contact' : "J'ai contacté le client"}</button>` : '';
+  const list = l && l.length ? `<div style="margin:2px 2px 8px">${l.map(c => `<div class="ctl"><span><b>${esc(c.moyen || '')}</b> · ${esc(who(c.par))}</span><small>${fdate(c.le, true)}</small>${c.commentaire ? `<span>${esc(c.commentaire)}</span>` : ''}</div>`).join('')}</div>` : '';
+  return `<div class="cbox ${done ? 'done' : 'todo'}"><span class="ci">${IC.phone}</span><div class="ct"><b>${done ? 'Client contacté' + (n > 1 ? ' · ' + n + ' fois' : '') : 'Client à contacter'}</b><small>${done ? 'Dernier contact : ' + fdate(l ? l[0].le : r.contact_fait_le, true) : 'Aucun contact enregistré.'}</small></div>${btn}</div>${list}`;
 }
 function fileBox(r){
-  const st = det.staged && det.staged.file, w = !r || (canWrite() && !showArch);
+  const staged = (det.staged && det.staged.files) || [], w = !r || (canWrite() && !showArch);
   const canDel = r && !showArch && (String(r.cree_par).toLowerCase() === ME.email || ME.rights.DOCUMENTS === 'admin');
-  const pick = (l) => `<label class="s" style="cursor:pointer">${IC.plus}${l}<input type="file" id="docIn" hidden></label>`;
-  if (!r) return `<div class="xh">Fichier</div><div class="fbox"><span class="fic">${IC.DOCUMENTS}</span><div class="fi">${st ? esc(st.name) + `<small>${fsize(st.size)}</small>` : '<span class="m" style="margin:0">Aucun fichier choisi (PDF ou autre, 8 Mo maximum).</span>'}</div>${pick(st ? 'Changer' : 'Choisir un fichier')}</div>`;
-  return `<div class="xh">Fichier</div><div class="fbox"><span class="fic">${IC.DOCUMENTS}</span><div class="fi">${r.fichier_nom ? esc(r.fichier_nom) + `<small>${fsize(r.fichier_taille)}</small>` : '<span class="m" style="margin:0">Aucun fichier.</span>'}</div>
-    ${r.fichier_id ? `<button class="s go" id="bDl">${IC.download}Télécharger</button>` : ''}${canDel && w ? pick('Remplacer') : ''}</div>
-    ${canDel ? `<div class="hbar" style="margin-top:12px"><button class="s danger" id="bDocDel">${IC.trash}Supprimer le document</button></div>` : ''}`;
+  const add = (canDel || !r) ? `<label class="s" style="cursor:pointer;margin-top:10px">${IC.plus}Ajouter des fichiers<input type="file" id="docIn" multiple hidden></label>` : '';
+  const rows = r ? (r.fichiers || []).map(f => `<div class="frow ${f._sync ? 'sync' : ''}"><span class="fic" style="width:38px;height:38px;font-size:17px">${IC.DOCUMENTS}</span><div class="fi">${esc(f.nom)}<small>${fsize(f.taille)}</small></div>
+      ${f._sync ? '' : `<button class="ico sm" data-fdl="${f.id}" title="Télécharger" aria-label="Télécharger">${IC.download}</button>${canDel ? `<button class="ico sm warn" data-fdel="${f.id}" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}`}</div>`).join('')
+    : staged.map((f, i) => `<div class="frow"><span class="fic" style="width:38px;height:38px;font-size:17px">${IC.DOCUMENTS}</span><div class="fi">${esc(f.name)}<small>${fsize(f.size)}</small></div><button class="ico sm warn" data-sdel="${i}" title="Retirer" aria-label="Retirer">${IC.close}</button></div>`).join('');
+  return `<div class="xh">Fichiers${rows ? ` <small>${r ? (r.fichiers || []).length : staged.length}</small>` : ''}</div><div class="fbox" style="display:block;padding:4px 14px 12px">${rows || '<div class="m" style="margin:10px 0 0">Aucun fichier (8 Mo maximum par fichier).</div>'}${add}</div>`;
 }
 function extraBlocks(r, ed){
   if (cur === 'SECURITY') return (r && !ed ? contactBox(r) : '') + photosBlock(r) + (r && !ed ? `<div class="dph">${IC.DOCUMENTS}<div>Document « Découverte de contenu interdit »<small style="display:block">Bientôt disponible.</small></div></div>` : '');
@@ -1093,34 +1120,49 @@ function extraBlocks(r, ed){
 function drawX(){ if (!det || !$('#xBlocks')) return; $('#xBlocks').innerHTML = extraBlocks(det.r, det.editing); bindX(); }
 function afterExtra(r, ed){
   bindX();
-  if (cur === 'SECURITY' && r && !String(r.id).startsWith('tmp_') && FILES[r.id] === undefined && !FLOAD[r.id]) {
-    FLOAD[r.id] = true; const id = r.id;
-    api('files_list', {module:'SECURITY', ref_id:id, inline:true}).then(l => { FILES[id] = l.filter(f => f.kind === 'photo'); }).catch(() => { FILES[id] = []; }).finally(() => { delete FLOAD[id]; if (det && det.r && det.r.id === id) drawX(); });
+  if (cur === 'SECURITY' && r && !String(r.id).startsWith('tmp_')) {
+    const id = r.id;
+    if (FILES[id] === undefined && !FLOAD[id]) {
+      FLOAD[id] = true;
+      api('files_list', {module:'SECURITY', ref_id:id, inline:true}).then(l => { FILES[id] = l.filter(f => f.kind === 'photo'); }).catch(() => { FILES[id] = []; }).finally(() => { delete FLOAD[id]; if (det && det.r && det.r.id === id) drawX(); });
+    }
+    if (CT[id] === undefined && !CLOAD[id] && r.contacter_client === true) {
+      CLOAD[id] = true;
+      api('sec_contacts', {id}).then(l => { CT[id] = l; }).catch(() => { CT[id] = []; }).finally(() => { delete CLOAD[id]; if (det && det.r && det.r.id === id) drawX(); });
+    }
   }
 }
 function bindX(){
   const b = $('#xBlocks'); if (!b) return; const r = det && det.r;
   b.onclick = e => {
     const d = e.target.closest('[data-pdel]'); if (d) { e.stopPropagation(); return delPhoto(d.dataset.pdel); }
+    const pm = e.target.closest('[data-pmain]'); if (pm) { e.stopPropagation(); return setMain(pm.dataset.pmain); }
     const im = e.target.closest('.ph:not(.add) img'); if (im) { $('#phImg').src = im.src; return $('#mPhoto').classList.add('on'); }
     if (e.target.closest('#bContact')) return openContact(r);
-    if (e.target.closest('#bDl')) return downloadFile(r.fichier_id, r.fichier_nom);
-    if (e.target.closest('#bDocDel')) return delDoc(r);
+    const dl = e.target.closest('[data-fdl]'); if (dl) return downloadFile(dl.dataset.fdl);
+    const fd = e.target.closest('[data-fdel]'); if (fd) return delFile(fd.dataset.fdel);
+    const sd = e.target.closest('[data-sdel]'); if (sd) { det.staged.files.splice(Number(sd.dataset.sdel), 1); return drawX(); }
   };
   b.onchange = e => {
     if (e.target.id === 'phIn') { const fs = [...e.target.files]; e.target.value = ''; return addPhotos(fs); }
-    if (e.target.id === 'docIn') { const f = e.target.files[0]; e.target.value = ''; if (f) return pickDoc(f); }
+    if (e.target.id === 'docIn') { const fs = [...e.target.files]; e.target.value = ''; if (fs.length) return pickDocs(fs); }
   };
+}
+async function reloadCur(){
+  const m = cur, k = key(), fresh = await api('list', {module:m, archives:showArch});
+  cache[k] = fresh; if (key() === k) { rows = fresh; if (det && det.r) det.r = rows.find(x => x.id === det.r.id) || det.r; drawCards(); }
 }
 async function addPhotos(files){
   if (!files.length) return;
   const r = det && det.r, m = cur; let ph = [];
   try { ph = await wait(async () => { const o = []; for (const f of files) o.push(await compressImg(f)); return o; }); } catch (e) { return toast(e.message); }
   if (!det) return;
-  if (!r) { det.staged = det.staged || {photos:[]}; det.staged.photos = (det.staged.photos || []).concat(ph); return drawX(); }
+  if (!r) { det.staged = det.staged || {}; det.staged.photos = (det.staged.photos || []).concat(ph); return drawX(); }
   FILES[r.id] = FILES[r.id] || [];
   ph.forEach(p => { const tmp = {id:'tmp_' + Math.random().toString(36).slice(2), nom:p.name, mime:p.mime, b64:p.b64, kind:'photo', _sync:true}; FILES[r.id].push(tmp);
-    enqueue(async () => { const o = await api('file_add', {module:m, ref_id:r.id, name:p.name, mime:p.mime, b64:p.b64}); tmp.id = o.id; tmp._sync = false; delete H[r.id]; if (det && det.r === r) drawX(); },
+    enqueue(async () => { const o = await api('file_add', {module:m, ref_id:r.id, name:p.name, mime:p.mime, b64:p.b64, thumb_b64:p.thumb}); tmp.id = o.id; tmp._sync = false; delete H[r.id];
+        if (!r.photo_id) { r.photo_id = o.id; r.thumb = p.thumb; if (key() === m) drawCards(); }
+        if (det && det.r === r) drawX(); },
       () => { FILES[r.id] = FILES[r.id].filter(x => x !== tmp); if (det && det.r === r) drawX(); }); });
   drawX();
 }
@@ -1129,16 +1171,33 @@ async function delPhoto(id){
   if (!r) { det.staged.photos.splice(Number(id), 1); return drawX(); }
   if (!(await ask('Supprimer cette photo ?', 'Elle sera définitivement supprimée.', 'Supprimer'))) return;
   const before = FILES[r.id], f = before.find(x => x.id === id); if (!f) return;
+  const wasMain = mainOf(r) === id;
   FILES[r.id] = before.filter(x => x !== f); drawX();
-  enqueue(async () => { await api('file_delete', {id}); delete H[r.id]; }, () => { FILES[r.id] = before; if (det && det.r === r) drawX(); });
+  enqueue(async () => { await api('file_delete', {id}); delete H[r.id]; if (wasMain) { r.photo_id = ''; await reloadCur(); if (det && det.r) drawX(); } }, () => { FILES[r.id] = before; if (det && det.r === r) drawX(); });
 }
-async function pickDoc(f){
-  if (f.size > 8 * 1024 * 1024) return toast('Fichier trop volumineux (8 Mo maximum)');
-  let b64; try { b64 = await wait(() => readB64(f)); } catch (e) { return toast(e.message); }
-  const file = {name:f.name, mime:f.type || 'application/octet-stream', b64, size:f.size}, r = det && det.r;
-  if (!r) { det.staged = Object.assign(det.staged || {}, {file}); return drawX(); }
-  try { const o = await wait(() => api('file_add', {module:'DOCUMENTS', ref_id:r.id, name:file.name, mime:file.mime, b64})); Object.assign(r, {fichier_id:o.id, fichier_nom:o.nom, fichier_taille:o.taille}); delete H[r.id]; toast('Fichier remplacé'); drawCards(); if (det && det.r === r) renderDet(); }
-  catch (e) { toast(e.message); }
+async function setMain(id){
+  const r = det && det.r; if (!r || mainOf(r) === id) return;
+  const f = (FILES[r.id] || []).find(x => x.id === id); if (!f) return;
+  const th = await thumbFromB64(f.b64), old = {photo_id:r.photo_id, thumb:r.thumb};
+  r.photo_id = id; r.thumb = th; drawCards(); drawX();
+  enqueue(() => api('sec_main', {id:r.id, file_id:id, thumb_b64:th}), () => { Object.assign(r, old); drawCards(); if (det && det.r === r) drawX(); });
+}
+async function pickDocs(files){
+  const big = files.find(f => f.size > 8 * 1024 * 1024); if (big) return toast('« ' + big.name + ' » dépasse 8 Mo');
+  let list; try { list = await wait(async () => { const o = []; for (const f of files) o.push({name:f.name, mime:f.type || 'application/octet-stream', b64:await readB64(f), size:f.size}); return o; }); } catch (e) { return toast(e.message); }
+  const r = det && det.r;
+  if (!r) { det.staged = det.staged || {}; det.staged.files = (det.staged.files || []).concat(list); return drawX(); }
+  r.fichiers = r.fichiers || [];
+  list.forEach(f => { const tmp = {id:'tmp_' + Math.random().toString(36).slice(2), nom:f.name, taille:f.size, _sync:true}; r.fichiers.push(tmp);
+    enqueue(async () => { const o = await api('file_add', {module:'DOCUMENTS', ref_id:r.id, name:f.name, mime:f.mime, b64:f.b64}); tmp.id = o.id; tmp.nom = o.nom; tmp._sync = false; delete H[r.id]; drawCards(); if (det && det.r === r) drawX(); },
+      () => { r.fichiers = r.fichiers.filter(x => x !== tmp); drawCards(); if (det && det.r === r) drawX(); }); });
+  drawCards(); drawX();
+}
+async function delFile(fid){
+  const r = det && det.r; if (!r) return; const f = (r.fichiers || []).find(x => x.id === fid); if (!f) return;
+  if (!(await ask('Supprimer ce fichier ?', '« ' + f.nom + ' » sera définitivement supprimé.', 'Supprimer'))) return;
+  const before = r.fichiers; r.fichiers = before.filter(x => x !== f); drawCards(); drawX();
+  enqueue(async () => { await api('file_delete', {id:fid}); delete H[r.id]; }, () => { r.fichiers = before; drawCards(); if (det && det.r === r) drawX(); });
 }
 async function downloadFile(fid, nom){
   try {
@@ -1146,10 +1205,11 @@ async function downloadFile(fid, nom){
     const bin = atob(o.b64), u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([u], {type:o.mime || 'application/octet-stream'})); a.download = o.nom || nom || 'document'; document.body.appendChild(a); a.click();
     setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+    Object.keys(H).forEach(k => delete H[k]);
   } catch (e) { toast(e.message); }
 }
 async function delDoc(r){
-  if (!(await ask('Supprimer ce document ?', 'Le document et son fichier seront définitivement supprimés.', 'Supprimer'))) return;
+  if (!(await ask('Supprimer ce document ?', 'Le document et ses fichiers seront définitivement supprimés.', 'Supprimer'))) return;
   const k = key(), before = rows; rows = rows.filter(x => x !== r); cache[k] = rows; drawCards(); closeDet();
   enqueue(() => api('doc_delete', {id:r.id}), () => { cache[k] = before; if (key() === k) { rows = before; drawCards(); } });
 }
@@ -1158,10 +1218,12 @@ function openContact(r){
   $('#mContact').classList.add('on'); setTimeout(() => $('#cMoyen').focus(), 50);
   $('#cOk').onclick = () => {
     const moyen = $('#cMoyen').value, com = $('#cCom').value.trim(), old = {contact_fait_par:r.contact_fait_par, contact_fait_le:r.contact_fait_le, contact_moyen:r.contact_moyen, contact_commentaire:r.contact_commentaire};
+    const entry = {par:ME.email, le:new Date().toISOString(), moyen, commentaire:com}, prev = CT[r.id];
     $('#mContact').classList.remove('on');
-    Object.assign(r, {contact_fait_par:ME.email, contact_fait_le:new Date().toISOString(), contact_moyen:moyen, contact_commentaire:com}); r._sync = true; drawCards(); if (det && det.r === r) drawX();
+    CT[r.id] = [entry].concat(prev && prev.length ? prev : (r.contact_fait_le ? [{par:r.contact_fait_par, le:r.contact_fait_le, moyen:r.contact_moyen, commentaire:r.contact_commentaire}] : []));
+    Object.assign(r, {contact_fait_par:ME.email, contact_fait_le:entry.le, contact_moyen:moyen, contact_commentaire:com}); r._sync = true; drawCards(); if (det && det.r === r) drawX();
     enqueue(async () => { await api('sec_contact', {id:r.id, moyen, commentaire:com}); r._sync = false; delete H[r.id]; if (key() === 'SECURITY') drawCards(); if (det && det.r === r) drawX(); },
-      () => { r._sync = false; Object.assign(r, old); if (key() === 'SECURITY') drawCards(); if (det && det.r === r) drawX(); });
+      () => { r._sync = false; Object.assign(r, old); CT[r.id] = prev; if (key() === 'SECURITY') drawCards(); if (det && det.r === r) drawX(); });
   };
 }
 $('#hX').innerHTML = IC.close; $('#hX').onclick = closeHist; $('#mHist').addEventListener('mousedown', e => { if (e.target.id === 'mHist') closeHist(); });
@@ -1396,11 +1458,12 @@ async function renderUsers(el){
       <td>${u.last ? fdate(u.last.date, true) + `<div class="m" style="margin:0">${u.last.appareil}</div>` : '<span class="m">Jamais</span>'}</td>
       <td>${sw('a_' + u.email, u.actif, `data-act="${esc(u.email)}"`)}</td>
       <td>${lv(u, 'AWB')}</td><td>${lv(u, 'SPARK')}</td><td>${lv(u, 'DOM')}</td><td>${lv(u, 'SECURITY')}</td><td>${lv(u, 'DOCUMENTS')}</td><td>${lv(u, 'PARAMETRES')}</td>
-      <td><button class="s" data-conn="${esc(u.email)}" data-nm="${esc(u.prenom)}">Connexions</button></td></tr>`).join('')}</table>`;
+      <td><button class="s" data-conn="${esc(u.email)}" data-nm="${esc(u.prenom)}">Connexions</button></td></tr><tr class="hrow"><td colspan="9"><span class="m" style="margin:0 12px 0 0">Peut voir l'historique :</span><div class="hset">${[['AWB','AWB'],['SPARK','SPARK'],['DOM','DOM'],['SECURITY','SCMS'],['DOCUMENTS','Docs']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}>${l}</label>`; }).join('')}</div></td></tr>`).join('')}</table>`;
   el.onchange = async e => {
     const t = e.target;
     try {
-      if (t.dataset.act) await wait(() => api('users_set', {email:t.dataset.act, actif:t.checked}));
+      if (t.dataset.hm) await wait(() => api('users_set', {email:t.dataset.hu, rights:{['HIST_' + t.dataset.hm]: t.checked ? 'lecture' : ''}}));
+      else if (t.dataset.act) await wait(() => api('users_set', {email:t.dataset.act, actif:t.checked}));
       else if (t.dataset.u) await wait(() => api('users_set', {email:t.dataset.u, rights:{[t.dataset.m]: t.value}}));
       else return;
       US = null; api('users_list').then(x => US = x).catch(() => {}); toast('Enregistré');
