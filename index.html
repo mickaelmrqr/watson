@@ -606,7 +606,7 @@ html[data-theme=light] .dt3.warn b{color:#B45309}
 html[data-theme=light] #tip{background:rgba(255,255,255,.98);color:#1b2233;border-color:rgba(20,30,50,.16);box-shadow:0 10px 28px rgba(20,30,50,.18)}
 @media(prefers-reduced-motion:reduce){#tip{transition:none}}
 
-/* v4.23 */
+/* v4.24 */
 .ref{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:currentColor}
 .ref:hover{text-decoration-color:var(--orange)}
 .rc{display:inline-flex;align-items:center;gap:2px;max-width:100%}
@@ -622,7 +622,7 @@ html[data-theme=light] #tip{background:rgba(255,255,255,.98);color:#1b2233;borde
 .cbox.no{border:2px solid #ff4d4d;background:linear-gradient(135deg,rgba(255,70,70,.13),var(--bg) 70%);box-shadow:0 0 0 4px rgba(255,77,77,.15),0 0 26px rgba(255,60,60,.4)}
 html[data-theme=light] .cbox.no{background:linear-gradient(135deg,rgba(255,70,70,.10),#fff 70%);box-shadow:0 0 0 4px rgba(255,77,77,.14),0 0 22px rgba(255,60,60,.28)}
 
-/* v4.23 */
+/* v4.24 */
 .ref{text-decoration:none}
 .ref:hover{color:#9cc3ff;border-color:transparent;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:currentColor}
 html[data-theme=light] .ref:hover{color:#1F5FC9}
@@ -681,7 +681,7 @@ html[data-theme=light] .llk a{color:#1F5FC9}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.23</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.24</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -691,7 +691,7 @@ html[data-theme=light] .llk a{color:#1F5FC9}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.23</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.24</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1368,7 +1368,7 @@ function editCell(x, v){
 function renderDet(){
   if (!det) return;
   const M = MODS[cur], r = det.r, ed = det.editing, el = $('#sDet'), w = canWrite();
-  const v = r || {visibilite:'agence', date_decouverte: todayISO(), contacter_client: true};
+  const v = r || {visibilite: cur === 'AWB' ? 'prive' : 'agence', date_decouverte: todayISO(), contacter_client: true};
   const kind = r && !M.noSteps ? kindOf(r) : '';
   const canDelDoc = cur === 'DOCUMENTS' && r && !showArch && (String(r.cree_par).toLowerCase() === ME.email || ME.rights.DOCUMENTS === 'admin');
   const name = r ? (M.noSteps ? String(M.name(r) || '') : String(M.name(r) || '').toUpperCase()) : '';
@@ -2096,7 +2096,7 @@ async function renderUsers(el){
 
 // ------------------------------------------------------------ Bibliothèque (fichiers, textes, liens, photos + mots-clés)
 MODS.LIBRARY = {label: 'Bibliothèque', noSteps: true, name: r => r.titre, show: [], fields: []};
-IC.LIBRARY = ic('<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/><path d="M9 7h7"/><path d="M9 11h5"/>');
+IC.LIBRARY = ic('<rect x="3" y="4" width="4" height="16" rx="1"/><path d="M3 8h4"/><rect x="9" y="3" width="4" height="17" rx="1"/><path d="M9 7h4"/><path d="m15.3 5.6 3.1-.8 3.4 13.1-3.1.8z"/>');
 IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
 IC.tag = ic('<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8Z"/><circle cx="7" cy="7" r="1.2"/>');
 const LIB = {q: '', tags: [], edit: null, view: null}, LIBF = {};
