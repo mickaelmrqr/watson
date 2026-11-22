@@ -3,60 +3,153 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#FFCC00">
+<meta name="theme-color" content="#15181F">
+<meta name="color-scheme" content="dark">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg">
 <link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@500;700&display=swap" rel="stylesheet">
 <title>Watson</title>
 <style>
-:root{--y:#FFCC00;--r:#D40511;--ink:#1d1d1f;--mut:#6b6b70;--bg:#f4f4f6;--card:#fff;--line:#e3e3e8}
-*{box-sizing:border-box}
-body{margin:0;font:15px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
-header{background:var(--y);display:flex;align-items:center;gap:12px;padding:10px 14px;position:sticky;top:0;z-index:5}
-header h1{font-size:20px;margin:0;color:var(--r);flex:1}
-header button{background:transparent;border:0;font-size:14px;font-weight:600;color:var(--ink)}
-nav{display:flex;gap:6px;padding:8px 10px;background:#fff;border-bottom:1px solid var(--line);overflow-x:auto}
-nav button{border:1px solid var(--line);background:#fff;border-radius:18px;padding:6px 14px;font-weight:600;white-space:nowrap}
-nav button.on{background:var(--r);color:#fff;border-color:var(--r)}
-main{padding:12px;max-width:1200px;margin:0 auto}
-.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-input,select,textarea{font:inherit;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%}
-.bar input,.bar select{width:auto;flex:1;min-width:130px}
-button.p{background:var(--r);color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:700}
-button.s{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-weight:600}
-.grid{display:grid;gap:10px;grid-template-columns:1fr}
+:root{
+  --bg:#15181F; --panel:#1D222C; --raised:#272E3B; --line:#343C4C;
+  --ink:#E9EDF5; --mut:#93A0B5;
+  --blue:#3D8BFF; --blue-d:#2A6FDB; --orange:#FF8A1F; --green:#3ECF8E; --red:#FF5C5C;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --body:'DM Sans',system-ui,sans-serif; --disp:'Sora','DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+body{margin:0;font:15px/1.45 var(--body);color:var(--ink);background:
+  radial-gradient(900px 420px at 85% -10%,rgba(61,139,255,.14),transparent 60%),
+  radial-gradient(700px 380px at -10% 110%,rgba(255,138,31,.08),transparent 60%),var(--bg);
+  min-height:100vh;background-attachment:fixed}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* ---------- En-tête et navigation */
+header{display:flex;align-items:center;gap:12px;padding:12px 16px;position:sticky;top:0;z-index:5;
+  background:rgba(21,24,31,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:10px;flex:1;font:700 21px var(--disp);letter-spacing:.2px}
+.logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--orange));display:grid;place-items:center}
+.logo i:after{content:"";width:12px;height:12px;border:3px solid #15181F;border-radius:50%;box-shadow:5px 5px 0 -1.5px #15181F;transform:translate(-2px,-2px)}
+#who{color:var(--mut);font-weight:500}
+#sync{font-size:12px;font-weight:500;color:var(--mut);display:flex;align-items:center;gap:6px;min-width:96px;justify-content:flex-end}
+#sync .dot{width:8px;height:8px;border-radius:50%;background:var(--green);transition:background .3s}
+#sync.work .dot{background:var(--orange);animation:pulse 1s infinite}
+#sync.err .dot{background:var(--red)}
+@keyframes pulse{50%{transform:scale(1.7);opacity:.5}}
+.hb{background:transparent;border:1px solid transparent;color:var(--ink);font:500 14px var(--body);padding:8px 12px;border-radius:10px;cursor:pointer;transition:background .18s,border-color .18s,transform .18s var(--ease)}
+.hb:hover{background:var(--raised);border-color:var(--line);transform:translateY(-1px)}
+nav{display:flex;gap:8px;padding:12px 14px 4px;overflow-x:auto;max-width:1200px;margin:0 auto}
+nav button{font:700 14px var(--disp);color:var(--mut);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 18px;cursor:pointer;white-space:nowrap;transition:color .18s,border-color .18s,background .18s,transform .18s var(--ease),box-shadow .18s}
+nav button:hover{color:var(--ink);border-color:var(--blue);transform:translateY(-2px);box-shadow:0 6px 18px rgba(61,139,255,.18)}
+nav button.on{color:#fff;background:var(--blue);border-color:var(--blue);box-shadow:0 6px 20px rgba(61,139,255,.35)}
+main{padding:12px 14px 40px;max-width:1200px;margin:0 auto}
+
+/* ---------- Champs et boutons */
+input,select,textarea{font:inherit;color:var(--ink);padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);width:100%;transition:border-color .18s,box-shadow .18s,background .18s}
+input:hover,select:hover,textarea:hover{border-color:#4a5468}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 3px rgba(61,139,255,.25)}
+select option{background:var(--panel)}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}
+.bar input,.bar select{width:auto;flex:1;min-width:140px}
+button{font-family:inherit;cursor:pointer}
+.p{background:var(--orange);color:#1a1206;border:0;border-radius:10px;padding:11px 18px;font:700 14px var(--disp);transition:transform .18s var(--ease),box-shadow .18s,filter .18s}
+.p:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(255,138,31,.38);filter:brightness(1.06)}
+.p:active{transform:translateY(0) scale(.97)}
+.s{background:var(--raised);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 13px;font:500 13.5px var(--body);transition:border-color .18s,background .18s,transform .18s var(--ease),color .18s}
+.s:hover{border-color:var(--blue);color:#fff;background:#2f3949;transform:translateY(-1px)}
+.s:active{transform:scale(.96)}
+.s.go{border-color:rgba(61,139,255,.55);color:#cfe1ff}
+.s[disabled],.p[disabled]{opacity:.45;pointer-events:none}
+
+/* ---------- Cartes */
+.grid{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:760px){.grid{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;border-left:5px solid var(--line)}
-.card.urg{border-left-color:var(--r)}
-.card .t{font-weight:700;font-size:16px;word-break:break-all}
-.card .m{color:var(--mut);font-size:13px;margin:2px 0}
-.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:10px;padding:2px 8px;background:#eee;margin-right:4px}
-.tag.e{background:#fff3c4}.tag.pr{background:#e8e8ff}
-.act{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center;z-index:20}
-.modal.on{display:flex}
-.sheet{background:#fff;width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:16px 16px 0 0;padding:16px}
-@media(min-width:760px){.modal{align-items:center}.sheet{border-radius:16px}}
-label{display:block;font-weight:600;margin:10px 0 4px}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 14px 12px 18px;overflow:hidden;
+  transition:transform .22s var(--ease),border-color .22s,box-shadow .22s,background .22s}
+.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--rail,var(--line));transition:width .22s var(--ease)}
+.card:hover{transform:translateY(-3px);border-color:#4a5468;background:#212733;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.card:hover:before{width:8px}
+.card.urg{--rail:var(--orange);box-shadow:0 0 0 1px rgba(255,138,31,.25)}
+.card.st-go{--rail:var(--blue)} .card.st-ok{--rail:var(--green)} .card.urg:before{background:var(--orange)}
+.card.new{animation:pop .35s var(--ease)}
+.card.tmp{opacity:.72}
+@keyframes pop{from{transform:scale(.96);opacity:0}}
+.t{font:700 17px var(--disp);word-break:break-all;letter-spacing:.3px}
+.m{color:var(--mut);font-size:13px;margin:3px 0}
+.tags{margin:6px 0 4px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:700;border-radius:8px;padding:3px 9px;background:var(--raised);color:var(--mut)}
+.tag.go{background:rgba(61,139,255,.18);color:#9cc3ff}
+.tag.ok{background:rgba(62,207,142,.16);color:#7be0b1}
+.tag.u{background:rgba(255,138,31,.2);color:#ffb25f}
+.tag.pr{background:rgba(255,255,255,.08);color:var(--ink)}
+.act{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.empty{color:var(--mut);padding:30px 0;text-align:center}
+
+/* ---------- Fenêtres */
+.modal{position:fixed;inset:0;background:rgba(10,12,16,.55);backdrop-filter:blur(5px);display:flex;align-items:flex-end;justify-content:center;z-index:20;opacity:0;pointer-events:none;transition:opacity .22s}
+.modal.on{opacity:1;pointer-events:auto}
+.sheet{background:var(--panel);border:1px solid var(--line);width:100%;max-width:580px;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:18px;transform:translateY(40px);transition:transform .3s var(--ease)}
+.modal.on .sheet{transform:none}
+@media(min-width:760px){.modal{align-items:center}.sheet{border-radius:20px;transform:translateY(18px) scale(.96)}.modal.on .sheet{transform:none}}
+.sheet h3{font:700 19px var(--disp);margin:0 0 6px}
+label{display:block;font-weight:500;color:var(--mut);margin:12px 0 5px;font-size:13.5px}
 .row{display:flex;gap:6px}.row>button{white-space:nowrap}
-.chk{display:flex;align-items:center;gap:8px;font-weight:600;margin:10px 0}.chk input{width:auto}
-#login{text-align:center;padding:60px 20px}
-#scan video{width:100%;border-radius:12px;background:#000}
-.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 16px;border-radius:20px;z-index:50;display:none}
-table{width:100%;border-collapse:collapse;background:#fff}td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left}
+.chk{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:500;margin:9px 0;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--blue);padding:0}
+.multi{display:grid;gap:2px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:4px 10px}
+#scan video{width:100%;border-radius:14px;background:#000;aspect-ratio:4/3;object-fit:cover}
+.frame{position:relative}
+.frame:after{content:"";position:absolute;left:12%;right:12%;top:40%;height:20%;border:2px solid var(--orange);border-radius:10px;box-shadow:0 0 0 999px rgba(0,0,0,.35);pointer-events:none}
+.ids{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.idc{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+.idc b{display:block;font:700 14px var(--disp);margin-bottom:8px}
+.qrt{background:#fff;border-radius:10px;padding:8px;display:inline-block;line-height:0}
+.idc .s{margin-top:10px;width:100%}
+
+/* ---------- Attente (flou + blocage) */
+#busy{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(15,18,24,.45);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;pointer-events:none;transition:opacity .2s;cursor:wait}
+#busy.on{opacity:1;pointer-events:auto}
+#busy div{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 28px;font:700 16px var(--disp);display:flex;align-items:center;gap:14px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.spin{width:22px;height:22px;border-radius:50%;border:3px solid var(--raised);border-top-color:var(--orange);animation:rot .8s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+/* ---------- Divers */
+#login{text-align:center;padding:90px 20px}
+#login h2{font:700 30px var(--disp);margin:14px 0 6px}
+#login p{color:var(--mut)}
+#lerr{color:var(--red)}
+.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);background:var(--raised);border:1px solid var(--line);color:var(--ink);padding:11px 18px;border-radius:12px;z-index:120;opacity:0;pointer-events:none;transition:opacity .25s,transform .3s var(--ease)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:14px;overflow:hidden}
+td,th{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left}
+tr:hover td{background:#212733}
 .hide{display:none!important}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header><h1>Watson</h1><span id="who"></span><button id="bQR" class="hide">Mon QR</button><button id="bOut" class="hide">Quitter</button></header>
-<div id="login"><h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block"></div><p id="lerr" style="color:var(--r)"></p></div>
-<div id="app" class="hide">
-  <nav id="nav"></nav>
-  <main id="main"></main>
-</div>
+<header>
+  <div class="logo"><i></i>Watson</div>
+  <span id="sync" class="hide"><span class="dot"></span><span id="syncT">Synchronisé</span></span>
+  <span id="who"></span>
+  <button id="bQR" class="hb hide">Mes identifiants</button>
+  <button id="bOut" class="hb hide">Quitter</button>
+</header>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:34px"><i style="width:46px;height:46px;border-radius:13px"></i>Watson</div>
+  <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
+<div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
+
 <div class="modal" id="mForm"><div class="sheet" id="sForm"></div></div>
-<div class="modal" id="mScan"><div class="sheet" id="scan"><video id="vid" playsinline muted></video><p id="scanMsg" class="m">Vise le code-barres…</p><button class="s" id="scanX">Fermer</button></div></div>
-<div class="modal" id="mQR"><div class="sheet" style="text-align:center"><h3>Mon QR code</h3><div id="qr" style="display:inline-block"></div><p class="m" id="qrTxt" style="word-break:break-all"></p><button class="s" id="qrCopy">Copier</button> <button class="s" id="qrX">Fermer</button></div></div>
+<div class="modal" id="mScan"><div class="sheet" id="scan"><h3>Scanner</h3><div class="frame"><video id="vid" playsinline muted></video></div><p id="scanMsg" class="m">Place le code-barres dans le cadre.</p><button class="s" id="scanX">Fermer</button></div></div>
+<div class="modal" id="mQR"><div class="sheet"><h3>Mes identifiants</h3><div class="ids">
+  <div class="idc"><b>Identifiant</b><div class="qrt" id="qrId"></div><button class="s" id="cpId">Copier</button></div>
+  <div class="idc"><b>Mot de passe</b><div class="qrt" id="qrPw"></div><button class="s" id="cpPw">Copier</button></div></div>
+  <button class="s" id="qrX">Fermer</button></div></div>
+<div id="busy"><div><span class="spin"></span><span>Patienter…</span></div></div>
 <div class="toast" id="toast"></div>
 
 <script src="config.js"></script>
@@ -64,7 +157,7 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{padding:8px;bord
 <script src="https://unpkg.com/@zxing/library@0.21.3/umd/index.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
-// ------------------------------------------------------------ Définition des modules
+// ------------------------------------------------------------ Modules
 const MODS = {
   AWB: { label: 'AWB', title: r => r.waybill, fields: [
     {k:'waybill',l:'Waybill',t:'scan',req:1},
@@ -97,14 +190,22 @@ const MODS = {
     {k:'commentaire',l:'Commentaire',t:'area'}],
     show:['nom_dest','remarque','j4','j10','commentaire'] }
 };
+const STEP_KIND = {EN_COURS:'go',ATTENTE_CLIENT:'go',ATTENTE_COMMERCIAL:'go',TERMINE:'ok',A_ARCHIVER:'ok',RTO_FAIT:'ok',INSTRUCTION_APPLIQUEE:'ok'};
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let token = sessionStorage.getItem('wtk'), ME = null, cur = null, rows = [], showArch = false;
+const cache = {};                       // module(+_a) -> lignes déjà chargées
+const key = () => cur + (showArch ? '_a' : '');
 
-function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2600)}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),2600)}
 function fdate(v,time){if(!v)return '';const d=new Date(v);return d.toLocaleDateString('fr-FR')+(time?' '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}):'')}
 
-// ------------------------------------------------------------ API
+// ------------------------------------------------------------ Attente bloquante (flou + « Patienter… »)
+let busyN = 0;
+function busy(on){ busyN = Math.max(0, busyN + (on ? 1 : -1)); $('#busy').classList.toggle('on', busyN > 0); }
+async function wait(fn){ busy(true); try { return await fn(); } finally { busy(false); } }
+
+// ------------------------------------------------------------ API + synchronisation en arrière-plan
 async function api(action, p = {}) {
   const r = await fetch(WATSON.API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
     body: JSON.stringify({token, action, ...p})});
@@ -112,109 +213,143 @@ async function api(action, p = {}) {
   if (!j.ok) { if (j.error === 'AUTH') { logout(); throw new Error('Session expirée'); } throw new Error(j.error); }
   return j.data;
 }
+let chain = Promise.resolve(), pending = 0, failed = false;
+function setSync(){
+  const s = $('#sync'); s.classList.remove('hide'); s.classList.toggle('work', pending > 0); s.classList.toggle('err', failed && pending === 0);
+  $('#syncT').textContent = pending > 0 ? 'Synchronisation…' : failed ? 'Erreur de synchro' : 'Synchronisé';
+}
+// Les actions sont envoyées une par une, dans l'ordre, sans bloquer l'écran
+function enqueue(task, onFail){
+  pending++; failed = false; setSync();
+  chain = chain.then(task).catch(e => { failed = true; toast(e.message); if (onFail) return onFail(); })
+    .finally(() => { pending--; setSync(); });
+  return chain;
+}
 
 // ------------------------------------------------------------ Connexion Google
 window.onload = () => {
-  const wait = setInterval(() => { if (window.google && google.accounts) { clearInterval(wait); initGoogle(); } }, 100);
+  const w = setInterval(() => { if (window.google && google.accounts) { clearInterval(w); initGoogle(); } }, 100);
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 };
 function initGoogle(){
   google.accounts.id.initialize({client_id: WATSON.CLIENT_ID, callback: r => { token = r.credential; sessionStorage.setItem('wtk', token); start(); }, auto_select: true});
-  if (token) start(); else google.accounts.id.renderButton($('#gbtn'), {theme:'filled_blue', size:'large', text:'signin_with', locale:'fr'});
+  if (token) start(); else google.accounts.id.renderButton($('#gbtn'), {theme:'filled_black', size:'large', text:'signin_with', locale:'fr'});
 }
-function logout(){ sessionStorage.removeItem('wtk'); token=null; location.reload(); }
+function logout(){ sessionStorage.removeItem('wtk'); token = null; location.reload(); }
 $('#bOut').onclick = logout;
 
 async function start(){
   try {
-    ME = await api('me');
+    ME = await wait(() => api('me'));
     $('#login').classList.add('hide'); $('#app').classList.remove('hide');
     $('#bOut').classList.remove('hide'); $('#bQR').classList.remove('hide');
     $('#who').textContent = ME.prenom;
     const mods = Object.keys(MODS).filter(m => ME.rights[m]);
-    let html = mods.map(m => `<button data-m="${m}">${MODS[m].label}</button>`).join('');
-    if (ME.role === 'admin') html += '<button data-m="_admin">Paramètres</button>';
-    $('#nav').innerHTML = html;
-    $('#nav').onclick = e => { const m = e.target.dataset.m; if (m) openMod(m); };
-    openMod(mods[0] || '_admin');
+    $('#nav').innerHTML = mods.map(m => `<button data-m="${m}">${MODS[m].label}</button>`).join('') +
+      (ME.role === 'admin' ? '<button data-m="_admin">Paramètres</button>' : '');
+    $('#nav').onclick = e => { const m = e.target.dataset.m; if (m) { showArch = false; openMod(m); } };
+    setSync(); openMod(mods[0] || '_admin');
   } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; }
 }
+document.addEventListener('visibilitychange', () => { if (!document.hidden && ME && cur && cur !== '_admin' && pending === 0) refresh(); });
 
-// ------------------------------------------------------------ Liste d'un module
+// ------------------------------------------------------------ Liste
 async function openMod(m){
   cur = m;
   document.querySelectorAll('#nav button').forEach(b => b.classList.toggle('on', b.dataset.m === m));
   if (m === '_admin') return renderAdmin();
-  $('#main').innerHTML = '<p>Chargement…</p>';
-  try { rows = await api('list', {module: m, archives: showArch}); } catch (e) { return toast(e.message); }
+  if (cache[key()]) { rows = cache[key()]; renderList(); refresh(); return; }   // affichage immédiat, mise à jour ensuite
+  try { rows = await wait(() => api('list', {module: m, archives: showArch})); cache[key()] = rows; }
+  catch (e) { return toast(e.message); }
   renderList();
 }
-function stepsOf(m){ return ME.etapes.filter(e => e.module === m).sort((a,b)=>a.ordre-b.ordre); }
-function renderList(){
-  const M = MODS[cur], steps = stepsOf(cur);
-  const canW = ['ecriture','admin'].includes(ME.rights[cur]);
-  $('#main').innerHTML = `<div class="bar">
-    <input id="q" placeholder="Rechercher…">
-    <select id="fe"><option value="">Toutes étapes</option>${steps.map(s=>`<option value="${s.code}">${esc(s.libelle_etat)}</option>`).join('')}</select>
-    <button class="s" id="bArch">${showArch?'Voir actifs':'Voir archives'}</button>
-    ${canW?'<button class="p" id="bNew">+ Nouveau</button>':''}</div><div class="grid" id="list"></div>`;
-  const draw = () => {
-    const q = $('#q').value.toLowerCase(), fe = $('#fe').value;
-    const out = rows.filter(r => (!fe || r.etape === fe) && (!q || JSON.stringify(r).toLowerCase().includes(q)))
-      .sort((a,b)=> (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
-    $('#list').innerHTML = out.map(r => card(r, steps, canW)).join('') || '<p class="m">Aucun enregistrement.</p>';
-  };
-  $('#q').oninput = draw; $('#fe').onchange = draw; draw();
-  $('#bArch').onclick = () => { showArch = !showArch; openMod(cur); };
-  if (canW) $('#bNew').onclick = () => openForm(null);
-  $('#list').onclick = onListClick;
+async function refresh(){
+  const m = cur, k = key();
+  try {
+    const fresh = await api('list', {module: m, archives: showArch});
+    if (pending > 0) return;                       // une action est en cours : on ne l'écrase pas
+    cache[k] = fresh;
+    if (key() === k) { rows = fresh; drawCards(); }
+  } catch (e) {}
 }
-function card(r, steps, canW){
-  const M = MODS[cur], st = steps.find(s => s.code === r.etape);
-  const cat = cur==='AWB' ? ME.categories_awb.find(c => c.id === r.categorie_id) : null;
+const stepsOf = m => ME.etapes.filter(e => e.module === m).sort((a,b) => a.ordre - b.ordre);
+const canWrite = () => ['ecriture','admin'].includes(ME.rights[cur]);
+
+function renderList(){
+  const steps = stepsOf(cur);
+  $('#main').innerHTML = `<div class="bar">
+    <input id="q" placeholder="Rechercher…" aria-label="Rechercher">
+    <select id="fe" aria-label="Étape"><option value="">Toutes les étapes</option>${steps.map(s=>`<option value="${s.code}">${esc(s.libelle_etat)}</option>`).join('')}</select>
+    <button class="s" id="bArch">${showArch?'Voir les actifs':'Voir les archives'}</button>
+    ${canWrite()&&!showArch?'<button class="p" id="bNew">Nouveau</button>':''}</div><div class="grid" id="list"></div>`;
+  $('#q').oninput = drawCards; $('#fe').onchange = drawCards;
+  $('#bArch').onclick = () => { showArch = !showArch; openMod(cur); };
+  if ($('#bNew')) $('#bNew').onclick = () => openForm(null);
+  $('#list').onclick = onListClick;
+  drawCards();
+}
+function drawCards(){
+  const list = $('#list'); if (!list) return;
+  const steps = stepsOf(cur), q = $('#q').value.toLowerCase(), fe = $('#fe').value;
+  const out = rows.filter(r => (!fe || r.etape === fe) && (!q || JSON.stringify(r).toLowerCase().includes(q)))
+    .sort((a,b) => (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
+  list.innerHTML = out.map(r => card(r, steps)).join('') || '<div class="empty">Rien ici pour le moment.</div>';
+}
+function card(r, steps){
+  const M = MODS[cur], st = steps.find(s => s.code === r.etape), kind = STEP_KIND[r.etape] || '';
+  const cat = cur === 'AWB' ? ME.categories_awb.find(c => c.id === r.categorie_id) : null;
   const lines = M.show.map(k => {
-    let v = r[k]; if (k==='categorie_id') v = cat ? cat.libelle : ''; if (k==='j4'||k==='j10') v = v ? k.toUpperCase()+' : '+fdate(v) : '';
+    let v = r[k]; if (k === 'categorie_id') v = cat ? cat.libelle : ''; if (k === 'j4' || k === 'j10') v = v ? k.toUpperCase() + ' : ' + fdate(v) : '';
     return v ? `<div class="m">${esc(v)}</div>` : '';
   }).join('');
-  const btns = canW && !showArch ? steps.filter(s => s.code !== 'A_FAIRE' && s.code !== r.etape).map(s => `<button class="s" data-a="step" data-id="${r.id}" data-e="${s.code}">${esc(s.libelle_bouton)}</button>`).join('') +
-    `<button class="s" data-a="edit" data-id="${r.id}">Modifier</button><button class="s" data-a="arch" data-id="${r.id}">Archiver</button>` :
-    (canW ? `<button class="s" data-a="unarch" data-id="${r.id}">Désarchiver</button>` : '');
-  return `<div class="card ${r.urgent===true?'urg':''}"><div class="t">${esc(M.title(r))}</div>
-    <div><span class="tag e">${esc(st ? st.libelle_etat : r.etape)}</span>${r.visibilite==='prive'?'<span class="tag pr">Privé</span>':''}${r.urgent===true?'<span class="tag" style="background:#fcd">Urgent</span>':''}</div>
+  const tmp = r._tmp === true, w = canWrite();
+  const dis = tmp ? 'disabled' : '';
+  const btns = !w ? '' : showArch
+    ? `<button class="s" ${dis} data-a="unarch" data-id="${r.id}">Désarchiver</button>`
+    : steps.filter(s => s.code !== 'A_FAIRE' && s.code !== r.etape).map(s => `<button class="s go" ${dis} data-a="step" data-id="${r.id}" data-e="${s.code}">${esc(s.libelle_bouton)}</button>`).join('') +
+      `<button class="s" ${dis} data-a="edit" data-id="${r.id}">Modifier</button><button class="s" ${dis} data-a="arch" data-id="${r.id}">Archiver</button>`;
+  return `<div class="card st-${kind} ${r.urgent===true?'urg':''} ${tmp?'tmp new':''}"><div class="t">${esc(M.title(r))}</div>
+    <div class="tags"><span class="tag ${kind}">${esc(st ? st.libelle_etat : r.etape)}</span>${r.urgent===true?'<span class="tag u">Urgent</span>':''}${r.visibilite==='prive'?'<span class="tag pr">Privé</span>':''}${tmp?'<span class="tag">Envoi…</span>':''}</div>
     ${lines}<div class="m">${esc(r.cree_par)} · ${fdate(r.cree_le,true)}</div><div class="act">${btns}</div></div>`;
 }
-async function onListClick(e){
-  const b = e.target.closest('button'); if (!b) return;
-  const id = b.dataset.id, a = b.dataset.a;
-  try {
-    if (a === 'edit') return openForm(rows.find(r => r.id === id));
-    if (a === 'step') await api('step', {module:cur, id, etape:b.dataset.e});
-    if (a === 'arch') { if (!confirm('Archiver cet élément ?')) return; await api('archive', {module:cur, id}); }
-    if (a === 'unarch') await api('unarchive', {module:cur, id});
-    toast('OK'); openMod(cur);
-  } catch (err) { toast(err.message); }
+
+// ------------------------------------------------------------ Actions (affichées tout de suite, envoyées ensuite)
+function onListClick(e){
+  const b = e.target.closest('button'); if (!b || b.disabled) return;
+  const id = b.dataset.id, a = b.dataset.a, m = cur, arch = showArch, k = key();
+  const r = rows.find(x => x.id === id); if (!r) return;
+  if (a === 'edit') return openForm(r);
+  if (a === 'step') {
+    const old = {etape:r.etape, etape_par:r.etape_par, etape_le:r.etape_le};
+    Object.assign(r, {etape:b.dataset.e, etape_par:ME.email, etape_le:new Date().toISOString()}); drawCards();
+    enqueue(() => api('step', {module:m, id, etape:b.dataset.e}), () => { Object.assign(r, old); if (key() === k) drawCards(); });
+  }
+  if (a === 'arch' || a === 'unarch') {
+    if (a === 'arch' && !confirm('Archiver cet élément ?')) return;
+    const before = rows; rows = rows.filter(x => x.id !== id); cache[k] = rows; drawCards();
+    enqueue(() => api(a === 'arch' ? 'archive' : 'unarchive', {module:m, id}), () => { cache[k] = before; if (key() === k) { rows = before; drawCards(); } });
+  }
 }
 
 // ------------------------------------------------------------ Formulaire
 function openForm(r){
   const M = MODS[cur], v = r || {visibilite:'agence'};
   const f = M.fields.map(x => {
-    const val = v[x.k] ?? '';
-    const id = 'f_' + x.k;
+    const val = v[x.k] ?? '', id = 'f_' + x.k;
     if (x.t === 'bool') return `<label class="chk"><input type="checkbox" id="${id}" ${val===true?'checked':''}> ${x.l}</label>`;
-    if (x.t === 'vis') return `<label>${x.l}</label><select id="${id}"><option value="agence" ${val==='agence'?'selected':''}>Partagé dans l'agence</option><option value="prive" ${val==='prive'?'selected':''}>Privé (moi seul)</option></select>`;
-    if (x.t === 'cat') return `<label>${x.l}</label><select id="${id}"><option value=""></option>${ME.categories_awb.map(c=>`<option value="${c.id}" ${val===c.id?'selected':''}>${esc(c.libelle)}${c.visibilite==='prive'?' (perso)':''}</option>`).join('')}</select>`;
+    if (x.t === 'vis') return `<label for="${id}">${x.l}</label><select id="${id}"><option value="agence" ${val==='agence'?'selected':''}>Partagé dans l'agence</option><option value="prive" ${val==='prive'?'selected':''}>Privé (moi seul)</option></select>`;
+    if (x.t === 'cat') return `<label for="${id}">${x.l}</label><select id="${id}"><option value=""></option>${ME.categories_awb.map(c=>`<option value="${c.id}" ${val===c.id?'selected':''}>${esc(c.libelle)}${c.visibilite==='prive'?' (perso)':''}</option>`).join('')}</select>`;
     if (x.t === 'multi') { const sel = String(val).split(';').map(s=>s.trim()).filter(Boolean);
-      return `<label>${x.l}</label><div id="${id}">${ME.problemes_spark.map(p=>`<label class="chk"><input type="checkbox" value="${esc(p)}" ${sel.includes(p)?'checked':''}> ${esc(p)}</label>`).join('')}</div>`; }
-    if (x.t === 'area') return `<label>${x.l}</label><textarea id="${id}" rows="2">${esc(val)}</textarea>`;
-    if (x.t === 'scan') return `<label>${x.l}</label><div class="row"><input id="${id}" value="${esc(val)}" autocomplete="off"><button type="button" class="s" data-scan="${id}">Scanner</button></div>`;
-    return `<label>${x.l}</label><input id="${id}" value="${esc(val)}">`;
+      return `<label>${x.l}</label><div class="multi" id="${id}">${ME.problemes_spark.map(p=>`<label class="chk"><input type="checkbox" value="${esc(p)}" ${sel.includes(p)?'checked':''}> ${esc(p)}</label>`).join('')}</div>`; }
+    if (x.t === 'area') return `<label for="${id}">${x.l}</label><textarea id="${id}" rows="2">${esc(val)}</textarea>`;
+    if (x.t === 'scan') return `<label for="${id}">${x.l}</label><div class="row"><input id="${id}" value="${esc(val)}" autocomplete="off" inputmode="text"><button type="button" class="s go" data-scan="${id}">Scanner</button></div>`;
+    return `<label for="${id}">${x.l}</label><input id="${id}" value="${esc(val)}">`;
   }).join('');
-  $('#sForm').innerHTML = `<h3>${r?'Modifier':'Nouveau'} ${M.label}</h3>${f}<div class="row" style="margin-top:14px"><button class="p" id="fOk" style="flex:1">Enregistrer</button><button class="s" id="fX">Annuler</button></div>`;
+  $('#sForm').innerHTML = `<h3>${r?'Modifier':'Nouveau'} ${M.label}</h3>${f}<div class="row" style="margin-top:18px"><button class="p" id="fOk" style="flex:1">Enregistrer</button><button class="s" id="fX">Annuler</button></div>`;
   $('#mForm').classList.add('on');
   $('#fX').onclick = () => $('#mForm').classList.remove('on');
   $('#sForm').onclick = e => { const s = e.target.dataset.scan; if (s) scanInto(s); };
-  $('#fOk').onclick = async () => {
+  $('#fOk').onclick = () => {
     const data = {};
     for (const x of M.fields) {
       const el = $('#f_' + x.k);
@@ -223,18 +358,32 @@ function openForm(r){
       else data[x.k] = el.value.trim();
       if (x.req && !data[x.k]) return toast(x.l + ' obligatoire');
     }
-    try { await api('save', {module:cur, id:r?r.id:null, data}); $('#mForm').classList.remove('on'); toast('Enregistré'); openMod(cur); }
-    catch (e) { toast(e.message); }
+    $('#mForm').classList.remove('on');
+    saveLocal(r, data);
   };
 }
+function saveLocal(r, data){
+  const m = cur, k = key(), now = new Date().toISOString();
+  let row = r;
+  if (r) Object.assign(r, data, {modifie_le: now});
+  else {
+    row = Object.assign({id:'tmp_' + Date.now(), cree_par:ME.email, cree_le:now, etape:'A_FAIRE', etape_par:ME.email, etape_le:now, archive:false, _tmp:true}, data);
+    rows.unshift(row); cache[k] = rows;
+  }
+  drawCards();
+  enqueue(async () => {
+    await api('save', {module:m, id: r ? r.id : null, data});
+    if (pending === 1) { const fresh = await api('list', {module:m, archives:false}); cache[m] = fresh; if (key() === m) { rows = fresh; drawCards(); } }
+  }, async () => { try { const fresh = await api('list', {module:m, archives:false}); cache[m] = fresh; if (key() === m) { rows = fresh; drawCards(); } } catch (e) {} });
+}
 
-// ------------------------------------------------------------ Scan code-barres (caméra)
+// ------------------------------------------------------------ Scan code-barres
 let reader = null;
 async function scanInto(inputId){
-  $('#mScan').classList.add('on');
+  $('#mScan').classList.add('on'); $('#scanMsg').textContent = 'Place le code-barres dans le cadre.';
   try {
     reader = new ZXing.BrowserMultiFormatReader();
-    await reader.decodeFromConstraints({video:{facingMode:'environment'}}, 'vid', (res) => {
+    await reader.decodeFromConstraints({video:{facingMode:'environment'}}, 'vid', res => {
       if (res) { $('#' + inputId).value = res.getText(); stopScan(); toast('Scanné : ' + res.getText()); }
     });
   } catch (e) { $('#scanMsg').textContent = 'Caméra indisponible : ' + e.message; }
@@ -242,27 +391,28 @@ async function scanInto(inputId){
 function stopScan(){ if (reader) { reader.reset(); reader = null; } $('#mScan').classList.remove('on'); }
 $('#scanX').onclick = stopScan;
 
-// ------------------------------------------------------------ Mon QR
+// ------------------------------------------------------------ Mes identifiants (QR codes, sans texte en clair)
+function qr(el, text){ el.innerHTML = ''; new QRCode(el, {text, width:150, height:150, colorDark:'#000', colorLight:'#fff', correctLevel: QRCode.CorrectLevel.M}); }
 $('#bQR').onclick = async () => {
   try {
-    const pw = await api('my_qr');
-    if (!pw) return toast('Aucun mot de passe enregistré');
-    $('#qr').innerHTML = ''; new QRCode($('#qr'), {text: pw, width: 220, height: 220});
-    $('#qrTxt').textContent = pw; $('#mQR').classList.add('on');
-    $('#qrCopy').onclick = () => navigator.clipboard.writeText(pw).then(() => toast('Copié'));
+    const c = await wait(() => api('my_creds'));
+    if (!c.identifiant && !c.mot_de_passe) return toast('Aucun identifiant enregistré');
+    qr($('#qrId'), c.identifiant || ' '); qr($('#qrPw'), c.mot_de_passe || ' ');
+    $('#cpId').onclick = () => navigator.clipboard.writeText(c.identifiant).then(() => toast('Identifiant copié'));
+    $('#cpPw').onclick = () => navigator.clipboard.writeText(c.mot_de_passe).then(() => toast('Mot de passe copié'));
+    $('#mQR').classList.add('on');
   } catch (e) { toast(e.message); }
 };
-$('#qrX').onclick = () => { $('#mQR').classList.remove('on'); $('#qr').innerHTML = ''; $('#qrTxt').textContent = ''; };
+$('#qrX').onclick = () => { $('#mQR').classList.remove('on'); $('#qrId').innerHTML = ''; $('#qrPw').innerHTML = ''; };
 
 // ------------------------------------------------------------ Paramètres (admin)
 async function renderAdmin(){
-  const ps = await api('params_get');
-  $('#main').innerHTML = `<h3>Paramètres</h3><table>${ps.map(p => `<tr><td><b>${esc(p.cle)}</b><div class="m">${esc(p.description)}</div></td>
-    <td style="width:170px">${typeof p.valeur==='boolean'?`<input type="checkbox" data-k="${p.cle}" ${p.valeur?'checked':''}>`:`<input data-k="${p.cle}" value="${esc(p.valeur)}">`} ${esc(p.unite)}</td></tr>`).join('')}</table>
-    <p class="m">Chaque modification est enregistrée immédiatement.</p>`;
+  let ps; try { ps = await wait(() => api('params_get')); } catch (e) { return toast(e.message); }
+  $('#main').innerHTML = `<h3 style="font:700 20px var(--disp)">Paramètres</h3><table>${ps.map(p => `<tr><td><b>${esc(p.cle)}</b><div class="m">${esc(p.description)}</div></td>
+    <td style="width:190px">${typeof p.valeur==='boolean'?`<input type="checkbox" style="width:20px;height:20px;accent-color:var(--blue)" data-k="${p.cle}" ${p.valeur?'checked':''}>`:`<input data-k="${p.cle}" value="${esc(p.valeur)}">`}<div class="m">${esc(p.unite)}</div></td></tr>`).join('')}</table>`;
   $('#main').onchange = async e => {
     const el = e.target; if (!el.dataset.k) return;
-    try { await api('params_set', {cle: el.dataset.k, valeur: el.type==='checkbox' ? el.checked : el.value}); toast('Enregistré'); }
+    try { await wait(() => api('params_set', {cle: el.dataset.k, valeur: el.type === 'checkbox' ? el.checked : el.value})); toast('Enregistré'); }
     catch (err) { toast(err.message); renderAdmin(); }
   };
 }

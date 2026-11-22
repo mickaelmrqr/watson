@@ -3,8 +3,8 @@
   "short_name": "Watson",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#FFCC00",
-  "theme_color": "#FFCC00",
+  "background_color": "#15181F",
+  "theme_color": "#15181F",
   "lang": "fr",
   "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
 }
