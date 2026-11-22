@@ -606,7 +606,7 @@ html[data-theme=light] .dt3.warn b{color:#B45309}
 html[data-theme=light] #tip{background:rgba(255,255,255,.98);color:#1b2233;border-color:rgba(20,30,50,.16);box-shadow:0 10px 28px rgba(20,30,50,.18)}
 @media(prefers-reduced-motion:reduce){#tip{transition:none}}
 
-/* v4.22 */
+/* v4.23 */
 .ref{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:currentColor}
 .ref:hover{text-decoration-color:var(--orange)}
 .rc{display:inline-flex;align-items:center;gap:2px;max-width:100%}
@@ -621,24 +621,82 @@ html[data-theme=light] #tip{background:rgba(255,255,255,.98);color:#1b2233;borde
 .card.ec-me{background:color-mix(in srgb,var(--panel) 90%,var(--blue));border-color:rgba(58,140,255,.4)}
 .cbox.no{border:2px solid #ff4d4d;background:linear-gradient(135deg,rgba(255,70,70,.13),var(--bg) 70%);box-shadow:0 0 0 4px rgba(255,77,77,.15),0 0 26px rgba(255,60,60,.4)}
 html[data-theme=light] .cbox.no{background:linear-gradient(135deg,rgba(255,70,70,.10),#fff 70%);box-shadow:0 0 0 4px rgba(255,77,77,.14),0 0 22px rgba(255,60,60,.28)}
+
+/* v4.23 */
+.ref{text-decoration:none}
+.ref:hover{color:#9cc3ff;border-color:transparent;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:currentColor}
+html[data-theme=light] .ref:hover{color:#1F5FC9}
+.card.sync>*:not(.dots){filter:none;opacity:1}.card.sync.tmpc{opacity:.78}.card .dots,.trow .dots,#sDet>.dots{display:none!important}
+.trow.sync>*:not(.dots){filter:none;opacity:1}
+#sDet.syncing>*:not(.dots):not(.sh){filter:none;opacity:1;pointer-events:auto}
+.cmr.sync{opacity:.75;filter:none}
+.badge.tdb{background:var(--blue);right:21px}
+.mod[data-m=DOCUMENTS],.mod[data-m=LIBRARY]{--mc:150,104,240}
+.card.dcc{--rail:#9b6cff}
+.sheet.xl{max-width:1100px}
+.snav{top:0}
+.set.inmodal{margin-top:10px}
+/* Bibliothèque */
+.lbar{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.lsearch{position:relative;flex:1 1 260px;max-width:460px}.lsearch svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--mut)}.lsearch input{padding-left:38px}
+.ltags{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
+.tgc{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 11px;border-radius:999px;background:var(--raised);border:1px solid var(--line);color:var(--mut);font:600 var(--fs) var(--body);cursor:pointer;transition:border-color .15s,color .15s,background .15s}
+.tgc small{opacity:.7;font-size:var(--fs)}
+.tgc:hover{color:var(--hi);border-color:var(--bd2)}
+.tgc.on{background:rgba(150,104,240,.22);border-color:#9b6cff;color:#e3d4ff}
+html[data-theme=light] .tgc.on{color:#5a2fb3}
+.tgc.sm{height:22px;padding:0 9px;cursor:default;font-size:var(--fs)}
+.lgrid{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:800px){.lgrid{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}}
+.card.lib{--rail:#9b6cff;gap:6px}
+.card.lib .lth{margin:-12px -16px 4px -22px;height:120px;overflow:hidden;background:var(--bg)}.card.lib .lth img{width:100%;height:100%;object-fit:cover;display:block}
+.card.lib .ltt{font:700 var(--fs-ct) var(--disp);color:var(--hi);word-break:break-word}
+.card.lib .lex{color:var(--mut);font-size:var(--fs);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card.lib .ltg{display:flex;flex-wrap:wrap;gap:5px}
+.card.lib .lic{display:flex;gap:12px;color:var(--mut);font-size:var(--fs)}.card.lib .lic span{display:inline-flex;align-items:center;gap:4px}.card.lib .lic svg{width:15px;height:15px}
+.card.lib .lby{margin-top:auto;color:var(--mut);font-size:var(--fs);padding-top:4px}
+.lbt{display:flex;gap:8px;align-items:center}
+.rich{line-height:1.55;word-break:break-word;font-size:var(--fs-b)}
+.rich h3{font:700 var(--fs-t) var(--disp);margin:12px 0 4px}.rich p,.rich div{margin:0 0 6px}.rich ul,.rich ol{margin:4px 0 8px;padding-left:24px}.rich blockquote{margin:6px 0;padding:2px 12px;border-left:3px solid #9b6cff;color:var(--mut)}
+.rich a{color:#9cc3ff;text-decoration:none}.rich a:hover{text-decoration:underline;text-underline-offset:3px}
+html[data-theme=light] .rich a{color:#1F5FC9}
+.rte{min-height:150px;max-height:340px;overflow:auto;padding:12px 13px;border:1px solid var(--line);border-radius:0 0 10px 10px;background:var(--panel);outline:none}
+.rte:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(58,140,255,.18)}
+.rtb{display:flex;flex-wrap:wrap;gap:4px;padding:6px;border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;background:var(--raised)}
+.rtb button{min-width:34px;height:32px;padding:0 9px;border-radius:8px;background:transparent;border:1px solid transparent;color:var(--ink);font:600 var(--fs-b) var(--body);cursor:pointer}
+.rtb button:hover{background:var(--panel);border-color:var(--line)}
+.rtl{display:none;gap:8px;padding:8px 6px 0}.rtl.on{display:flex}.rtl input{padding:6px 10px}
+.tgin{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:7px 9px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.tgin input{flex:1;min-width:140px;border:0;background:transparent;padding:5px 4px;box-shadow:none}
+.tgin .tgc{cursor:default}.tgin .tgc b{cursor:pointer;font-weight:700;opacity:.7}.tgin .tgc b:hover{opacity:1}
+.lln{display:grid;grid-template-columns:1fr 1.4fr auto;gap:8px;margin-bottom:8px;align-items:center}
+.llk{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line)}.llk:first-child{border-top:0}.llk svg{width:17px;height:17px;color:var(--mut);flex:none}.llk small{display:block;color:var(--mut)}
+.llk a{color:#9cc3ff;text-decoration:none;font-weight:600;word-break:break-all}.llk a:hover{text-decoration:underline;text-underline-offset:3px}
+html[data-theme=light] .llk a{color:#1F5FC9}
+.lph{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:8px}
+.vis2{display:flex;gap:8px;margin-top:6px}.vis2 button{flex:1}
+.vis2 button.on{border-color:#9b6cff;background:rgba(150,104,240,.2);color:var(--hi)}
+@media(max-width:700px){.lln{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.22</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.23</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
-  <button id="bMsg" class="ico hide" title="Messages" aria-label="Messages"></button>
-  <button id="bBell" class="ico hide" title="Notifications" aria-label="Notifications"></button>
+  <button id="bMsg" class="ico hide" title="Messagerie (conversations non lues)" aria-label="Messagerie"></button>
+  <button id="bBell" class="ico hide" title="Notifications (orange : non lues · bleu : todo du jour)" aria-label="Notifications"></button>
   <button id="bQR" class="ico hide" title="Mes identifiants" aria-label="Mes identifiants"></button>
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.22</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.23</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
+<div class="modal" id="mSet"><div class="sheet xl" id="sSet"></div></div>
+<div class="modal" id="mLib"><div class="sheet wide" id="sLib"></div></div>
 <div class="modal" id="mDet"><div class="sheet wide" id="sDet"></div></div>
 <div class="modal" id="mScan"><div class="sheet" id="scan"><h3 style="font:700 22px var(--disp);margin:0 0 12px">Scanner</h3><div class="frame"><video id="vid" playsinline muted></video></div><p id="scanMsg" class="m">Place le code-barres dans le cadre.</p><button class="s" id="scanX">Fermer</button></div></div>
 <div class="modal" id="mQR"><div class="sheet"><div class="sh"><div class="tt"><h3>Mes identifiants</h3></div><button class="ico sm" id="qrX" aria-label="Fermer" title="Fermer"></button></div><div class="ids">
@@ -793,6 +851,7 @@ let token = sessionStorage.getItem('wtk'), cur = null, rows = [], showArch = fal
 let ME = null; window.ME = null;
 const cache = {};
 const key = () => cur + (showArch ? '_a' : '');
+const fetchList = (m, arch) => m === 'LIBRARY' ? api('lib_list') : api('list', {module: m, archives: arch});
 
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),2600)}
 function fdate(v,time){if(!v)return '';const d=new Date(v);const tz=(window.ME&&ME.prefs&&ME.prefs.tz)||undefined;const o=tz?{timeZone:tz}:{};return d.toLocaleDateString('fr-FR',o)+(time?' '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',...o}):'')}
@@ -854,7 +913,9 @@ function initGoogle(){
 }
 function logout(){ sessionStorage.removeItem('wtk'); token = null; location.reload(); }
 $('#bOut').onclick = logout;
-$('#bSet').onclick = () => { showArch = false; setSec = 'profil'; openMod('_admin'); };
+$('#bSet').onclick = () => { setSec = 'profil'; $('#mSet').classList.add('on'); renderAdmin(); };
+const closeSet = () => $('#mSet').classList.remove('on');
+$('#mSet').addEventListener('mousedown', e => { if (e.target.id === 'mSet') closeSet(); });
 
 async function start(){
   try {
@@ -866,11 +927,12 @@ async function start(){
     applyDisplay(); setSync(); openMod('_home'); preload(mods); startPoll(); warm();
   } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; }
 }
-document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur && cur !== '_admin' && pending === 0) refresh(); } });
+document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur === 'LIBRARY') { if (pending === 0) reloadLib(); } else if (cur && pending === 0) refresh(); } });
 function buildNav(){
   const mods = Object.keys(MODS).filter(m => ME.rights[m]);
   const io = (m, label, icon) => `<button class="mod io" data-m="${m}" title="${label}" aria-label="${label}"><span class="mi">${icon}</span></button>`;
-  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${mods.includes('DOCUMENTS') ? io('DOCUMENTS', 'Documents', IC.DOCUMENTS) : ''}${mods.filter(m => m !== 'DOCUMENTS').map(m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m].label}</b><small id="cnt_${m}"><span class="d3s"><i></i><i></i><i></i></span></small></span></button>`).join('')}</div>`;
+  const tile = m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m].label}</b><small id="cnt_${m}"><span class="d3s"><i></i><i></i><i></i></span></small></span></button>`;
+  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${mods.filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY').map(tile).join('')}${mods.includes('DOCUMENTS') ? io('DOCUMENTS', 'Documents', IC.DOCUMENTS) : ''}${mods.includes('LIBRARY') ? io('LIBRARY', 'Bibliothèque', IC.LIBRARY) : ''}</div>`;
   $('#seg').onclick = e => { const b = e.target.closest('button'); if (b) { showArch = false; openMod(b.dataset.m); } };
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === cur));
 }
@@ -883,10 +945,11 @@ function drawTiles(){
     if (m === 'DOCUMENTS') { t.innerHTML = `${r.length} document${r.length > 1 ? 's' : ''}`; return; }
     if (m === 'DOM') {
       const al = r.map(domAlert), lt = al.filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late')).length, wn = al.filter(a => !['J1', 'J4', 'J10'].some(k => a[k] === 'late') && ['J1', 'J4', 'J10'].some(k => a[k] === 'warn')).length;
-      t.innerHTML = `${r.length} en cours` + (lt ? ` · <i>${lt} en retard</i>` : '') + (wn ? ` · <i class="o">${wn} à faire aujourd'hui</i>` : ''); return;
+      t.innerHTML = `${r.filter(x => kindOfM(m, x) !== 'ok').length} en cours` + (lt ? ` · <i>${lt} en retard</i>` : '') + (wn ? ` · <i class="o">${wn} à faire aujourd'hui</i>` : ''); return;
     }
     const act = r.filter(x => kindOfM(m, x) !== 'ok'), u = act.filter(x => x.urgent === true).length;
-    t.innerHTML = `${act.length} en cours` + (u ? ` · <i>${u} urgent${u > 1 ? 's' : ''}</i>` : '');
+    const af = m === 'SPARK' ? act.filter(x => x.etape === 'A_FAIRE').length : 0;
+    t.innerHTML = `${act.length} en cours` + (af ? ` · <i class="o">${af} à faire</i>` : '') + (u ? ` · <i>${u} urgent${u > 1 ? 's' : ''}</i>` : '');
   });
 }
 async function warm(now){
@@ -895,7 +958,7 @@ async function warm(now){
   try { const r = await Promise.all([api('profile_get'), api('my_creds')]); PRO = r[0]; CREDS = r[1]; prepQR(); } catch (e) {}
 }
 async function preload(mods){
-  await Promise.all(mods.filter(m => !cache[m]).map(async m => { try { cache[m] = await api('list', {module:m, archives:false}); } catch (e) {} drawTiles(); }));
+  await Promise.all(mods.filter(m => !cache[m]).map(async m => { try { cache[m] = await fetchList(m, false); } catch (e) {} drawTiles(); }));
 }
 
 // ------------------------------------------------------------ Accueil
@@ -919,9 +982,9 @@ function homeTile(m){
   };
   let shown = new Set();
   const ref = x => m === 'SECURITY' ? (x.waybill || '') : (x.waybill || x.pid || '');
-  const big = r.length, sub = 'en cours';
+  const big = r.filter(x => kindOfM(m, x) !== 'ok').length, sub = 'en cours';
   const k = {'': 0, go: 0, ok: 0}; r.forEach(x => k[kindOfM(m, x)]++);
-  stepsOf(m).forEach(st => { const n = r.filter(x => x.etape === st.code).length; add(n, esc(st.libelle_etat), kindOfM(m, {etape: st.code}) === 'ok' ? 'ok' : ''); });
+  stepsOf(m).forEach(st => { const n = r.filter(x => x.etape === st.code).length; add(n, esc(st.libelle_etat), kindOfM(m, {etape: st.code}) === 'ok' ? 'ok' : (m === 'SPARK' && st.code === 'A_FAIRE' ? 'w' : '')); });
   add(r.filter(x => x.cree_le && isoD(x.cree_le) === today).length, "créé" + (r.filter(x => x.cree_le && isoD(x.cree_le) === today).length > 1 ? 's' : '') + " aujourd'hui");
   if (m === 'DOM') {
     const late = k => r.filter(x => domAlert(x)[k] === 'late'), since = k => x => 'dépassé de ' + (-domAlert(x).d[k]) + ' j';
@@ -950,7 +1013,7 @@ function renderHome(){
   cur = '_home'; closePop(); closeDet();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === '_home'));
   $('#bSet').classList.remove('on');
-  const mods = Object.keys(MODS).filter(m => ME.rights[m] && m !== 'DOCUMENTS');
+  const mods = Object.keys(MODS).filter(m => ME.rights[m] && m !== 'DOCUMENTS' && m !== 'LIBRARY');
   $('#main').innerHTML = `<div class="home"><h2>Bonjour ${esc(ME.prenom || '')}</h2><div class="hg">${mods.map(homeTile).join('')}
   </div></div>`;
   const hm = $('#main').querySelector('.home');
@@ -975,9 +1038,9 @@ async function reloadAll(){
     const mods = Object.keys(MODS).filter(m => ME.rights[m]);
     if (JSON.stringify(ME.rights) !== old) buildNav();
     const keys = Object.keys(cache); keys.forEach(k => delete cache[k]);
-    await Promise.all([...mods.map(async m => { try { cache[m] = await api('list', {module:m, archives:false}); } catch (e) {} }), pollNotifs(), loadTodo(true), warm(true)]);
+    await Promise.all([...mods.map(async m => { try { cache[m] = await fetchList(m, false); } catch (e) {} }), pollNotifs(), loadTodo(true), warm(true)]);
     if (cur === '_home') renderHome();
-    else if (cur === '_admin') renderAdmin();
+    else if (cur === 'LIBRARY') renderLib();
     else if (cur && MODS[cur]) { if (showArch) { try { cache[key()] = await api('list', {module:cur, archives:true}); } catch (e) {} } rows = cache[key()] || rows; relinkDet(); renderList(); }
     drawTiles(); toast('Données rechargées');
   } catch (e) { toast(e.message || 'Rechargement impossible'); }
@@ -989,9 +1052,9 @@ $('#bRef').onclick = reloadAll;
 async function openMod(m){
   cur = m; closePop();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === m));
-  $('#bSet').classList.toggle('on', m === '_admin'); moveInd();
-  if (m === '_admin') return renderAdmin();
+  moveInd();
   if (m === '_home') return renderHome();
+  if (m === 'LIBRARY') return renderLib();
   if (cache[key()]) { rows = cache[key()]; renderList(); refresh(); return; }
   try { rows = await wait(() => api('list', {module: m, archives: showArch})); cache[key()] = rows; }
   catch (e) { return toast(e.message); }
@@ -1098,7 +1161,7 @@ let sTimer = 0, sSeq = 0, sItems = [], sHl = -1;
 function localHits(q){
   const out = [];
   Object.keys(MODS).forEach(m => (cache[m] || []).forEach(r => {
-    const hay = [r.waybill, r.pid, r.nom_client, r.nom_dest, r.titre, r.motif_libre, (r.fichiers || []).map(f => f.nom).join(' '), r.remarque, r.location, r.commentaire].join(' ').toLowerCase();
+    const hay = [r.waybill, r.pid, r.nom_client, r.nom_dest, r.titre, r.motif_libre, (r.fichiers || []).map(f => f.nom).join(' '), r.remarque, r.location, r.commentaire, r.mots_cles, r.texte ? htmlText(r.texte) : ''].join(' ').toLowerCase();
     if (hay.includes(q)) out.push({kind:'row', module:m, id:r.id, title:String(r.nom_client || r.nom_dest || r.titre || r.waybill || r.pid || MODS[m].label).toUpperCase(), sub:[r.waybill, r.pid].filter(Boolean).join(' · '), archive:false});
   }));
   return out.slice(0, 15);
@@ -1136,6 +1199,7 @@ async function pickSug(it){
   if (!it) return; closeSearch();
   if (it.kind === 'hist' && !it.alive) return openGhost(it);
   showArch = it.archive === true; await openMod(it.module);
+  if (it.module === 'LIBRARY') return openLib(it.id);
   const r = rows.find(x => x.id === it.id); if (r) openDetail(r, false); else toast('Élément introuvable');
 }
 async function openGhost(it){
@@ -1215,6 +1279,8 @@ $('#mBand').addEventListener('mousedown', e => { if (e.target.id === 'mBand') cl
 document.addEventListener('keydown', e => { if (e.key === 'Escape') {
   if ($('#mAsk').classList.contains('on') && ask.cancel) return ask.cancel();
   if ($('#mMsg').classList.contains('on')) return closeMsg();
+  if ($('#mLib').classList.contains('on')) return LIB.edit ? null : closeLib();
+  if ($('#mSet').classList.contains('on') && !$('#mDet').classList.contains('on')) return closeSet();
   if ($('#mHist').classList.contains('on')) return closeHist();
   if ($('#mPhoto').classList.contains('on')) return $('#mPhoto').classList.remove('on');
   if ($('#mContact').classList.contains('on')) return $('#mContact').classList.remove('on');
@@ -1661,8 +1727,8 @@ function startPoll(){ pollNotifs(); clearInterval(pollT); pollT = setInterval(po
 async function pollNotifs(){
   try { NOT = await api('notifs_list'); drawBadges(); showToasts(); if (drawerOpen) renderDrawer(); checkPC(); if ($('#mMsg').classList.contains('on')) { loadThreads(); if (MSG.view === 'thread') loadThread(); } if (cur === '_home') renderHome(); } catch (e) {}
 }
-function setBadge(btn, n){ let b = btn.querySelector('.badge'); if (!n) { if (b) b.remove(); return; } if (!b) { b = document.createElement('span'); b.className = 'badge'; btn.appendChild(b); } b.textContent = n > 99 ? '99+' : n; }
-function drawBadges(){ setBadge($('#bBell'), NOT.unread); setBadge($('#bMsg'), NOT.msgs || 0); }
+function setBadge(btn, n, cls){ const sel = '.badge' + (cls ? '.' + cls : ':not(.tdb)'); let b = btn.querySelector(sel); if (!n) { if (b) b.remove(); return; } if (!b) { b = document.createElement('span'); b.className = 'badge' + (cls ? ' ' + cls : ''); btn.appendChild(b); } b.textContent = n > 99 ? '99+' : n; }
+function drawBadges(){ setBadge($('#bBell'), NOT.unread); setBadge($('#bBell'), NOT.todo || 0, 'tdb'); setBadge($('#bMsg'), NOT.msgs || 0); }
 function showToasts(){
   const box = $('#ntoasts'), want = NOT.items.filter(n => n.lu !== 'oui' && !dismissed.has(n.id)).slice(0, 5);
   [...box.children].forEach(el => { if (!want.some(n => n.id === el.dataset.id)) el.remove(); });
@@ -1929,11 +1995,11 @@ let setSec = 'profil', PARAMS = null;
 const sw = (id, on, extra = '') => `<label class="sw"><input type="checkbox" id="${id}" ${on ? 'checked' : ''} ${extra}><i></i></label>`;
 
 async function renderAdmin(){
-  closeDet();
   if (isAdmin() && !PARAMS) { try { PARAMS = await wait(() => api('params_get')); } catch (e) { return toast(e.message); } }
   const secs = SECTIONS.filter(x => !x.adm || isAdmin());
   const nav = secs.map((x, i) => `${x.adm && !secs[i - 1].adm ? '<hr class="sep">' : ''}<button data-s="${x.id}" class="${x.id === setSec ? 'on' : ''}">${x.l}</button>`).join('');
-  $('#main').innerHTML = `<div class="set"><div class="snav">${nav}</div><div class="spane" id="spane"></div></div>`;
+  $('#sSet').innerHTML = `<div class="sh"><div class="tt"><h3>Paramètres</h3></div><button class="ico sm" id="sX" aria-label="Fermer" title="Fermer">${IC.close}</button></div><div class="set inmodal"><div class="snav">${nav}</div><div class="spane" id="spane"></div></div>`;
+  $('#sX').onclick = closeSet;
   $('.snav').onclick = e => { const b = e.target.closest('button'); if (b) { setSec = b.dataset.s; renderAdmin(); } };
   renderSec();
 }
@@ -2026,6 +2092,209 @@ async function renderUsers(el){
       ${c.length ? `<ul class="hist">${c.map(x => `<li><div class="hd">${fdate(x.date, true)}</div><div>${x.appareil === 'Smartphone' ? 'Smartphone' : 'Navigateur'}</div></li>`).join('')}</ul>` : '<div class="m" style="margin-top:12px">Aucune connexion enregistrée.</div>'}`;
     $('#dX').onclick = closeDet; $('#mDet').classList.add('on');
   };
+}
+
+// ------------------------------------------------------------ Bibliothèque (fichiers, textes, liens, photos + mots-clés)
+MODS.LIBRARY = {label: 'Bibliothèque', noSteps: true, name: r => r.titre, show: [], fields: []};
+IC.LIBRARY = ic('<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/><path d="M9 7h7"/><path d="M9 11h5"/>');
+IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
+IC.tag = ic('<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8Z"/><circle cx="7" cy="7" r="1.2"/>');
+const LIB = {q: '', tags: [], edit: null, view: null}, LIBF = {};
+const libItems = () => cache.LIBRARY || [];
+const libTags = it => String(it.mots_cles || '').split(',').map(x => x.trim()).filter(Boolean);
+const libLinks = it => { try { const l = JSON.parse(it.liens || '[]'); return Array.isArray(l) ? l : []; } catch (e) { return []; } };
+const OKT = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'UL', 'OL', 'LI', 'BR', 'P', 'H3', 'A', 'DIV', 'BLOCKQUOTE', 'S', 'STRIKE']);
+function cleanHtml(h){
+  const doc = new DOMParser().parseFromString('<body>' + String(h || '') + '</body>', 'text/html');
+  const walk = n => { [...n.childNodes].forEach(c => {
+    if (c.nodeType === 3) return;
+    if (c.nodeType !== 1) { c.remove(); return; }
+    if (['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'EMBED'].includes(c.tagName)) { c.remove(); return; }
+    walk(c);
+    if (!OKT.has(c.tagName)) { c.replaceWith(...c.childNodes); return; }
+    const href = c.tagName === 'A' ? c.getAttribute('href') : null;
+    [...c.attributes].forEach(a => c.removeAttribute(a.name));
+    if (c.tagName === 'A' && /^https?:\/\//i.test(href || '')) { c.setAttribute('href', href); c.setAttribute('target', '_blank'); c.setAttribute('rel', 'noopener'); }
+  }); };
+  walk(doc.body); return doc.body.innerHTML;
+}
+const htmlText = h => { const d = document.createElement('div'); d.innerHTML = cleanHtml(h).replace(/<\/(p|li|div|h3|blockquote|ul|ol)>|<br\s*\/?>/gi, m => m + ' '); return (d.textContent || '').replace(/\s+/g, ' ').trim(); };
+const libCan = it => canWrite() && (ME.rights.LIBRARY === 'admin' || String(it.cree_par).toLowerCase() === ME.email);
+function libFiltered(){
+  const q = LIB.q.trim().toLowerCase();
+  return libItems().slice().filter(it => {
+    const tg = libTags(it).map(x => x.toLowerCase());
+    if (!LIB.tags.every(t => tg.includes(t))) return false;
+    if (!q) return true;
+    return [it.titre, htmlText(it.texte), it.mots_cles, libLinks(it).map(l => l.titre + ' ' + l.url).join(' '), (it.fichiers || []).map(f => f.nom).join(' ')].join(' ').toLowerCase().includes(q);
+  }).sort((a, b) => String(b.modifie_le).localeCompare(String(a.modifie_le)));
+}
+function renderLib(){
+  cur = 'LIBRARY'; closePop(); closeDet();
+  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === 'LIBRARY'));
+  $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="lq" placeholder="Rechercher un titre, un texte, un mot-clé, un fichier…" autocomplete="off" value="${esc(LIB.q)}" aria-label="Rechercher dans la bibliothèque"></div><span style="flex:1"></span>${canWrite() ? `<button class="p" id="lNew">${IC.plus}Nouveau</button>` : ''}</div>
+    <div class="ltags" id="ltags"></div><div class="lgrid" id="lgrid"></div>`;
+  $('#lq').oninput = e => { LIB.q = e.target.value; libDraw(); };
+  if ($('#lNew')) $('#lNew').onclick = () => openLibEdit(null);
+  $('#ltags').onclick = e => { const b = e.target.closest('[data-t]'); if (!b) return; const t = b.dataset.t; LIB.tags = LIB.tags.includes(t) ? LIB.tags.filter(x => x !== t) : LIB.tags.concat(t); libDraw(); };
+  $('#lgrid').onclick = e => { const c = e.target.closest('.card'); if (c && !c.classList.contains('tmpc')) openLib(c.dataset.id); };
+  libDraw();
+}
+function libDraw(){
+  if (cur !== 'LIBRARY' || !$('#lgrid')) return;
+  const all = {}; libItems().forEach(it => libTags(it).forEach(t => { const k = t.toLowerCase(); all[k] = all[k] || {l: t, n: 0}; all[k].n++; }));
+  LIB.tags = LIB.tags.filter(t => all[t]);
+  $('#ltags').innerHTML = Object.keys(all).sort((a, b) => all[b].n - all[a].n || a.localeCompare(b, 'fr')).map(k => `<button class="tgc ${LIB.tags.includes(k) ? 'on' : ''}" data-t="${esc(k)}">${IC.tag.replace('class="i"', 'class="i" width="13" height="13"')}${esc(all[k].l)}<small>${all[k].n}</small></button>`).join('');
+  const l = libFiltered();
+  $('#lgrid').innerHTML = l.map(libCard).join('') || `<div class="empty">${libItems().length ? 'Aucun résultat.' : 'La bibliothèque est vide pour le moment.'}</div>`;
+}
+function libCard(it){
+  const f = it.fichiers || [], nd = f.filter(x => x.kind !== 'photo').length, np = f.filter(x => x.kind === 'photo').length, nl = libLinks(it).length, tg = libTags(it);
+  const ex = htmlText(it.texte);
+  return `<div class="card lib ${String(it.id).startsWith('tmp_') ? 'tmpc' : ''}" data-id="${esc(it.id)}">${it.thumb ? `<div class="lth"><img alt="" src="data:image/jpeg;base64,${it.thumb}"></div>` : ''}
+    <div class="ltt">${esc(it.titre)}${it.visibilite === 'prive' ? ` <span class="bb" style="margin-left:6px">${IC.lock}Privé</span>` : ''}</div>
+    ${ex ? `<div class="lex">${esc(ex)}</div>` : ''}
+    ${tg.length ? `<div class="ltg">${tg.slice(0, 5).map(t => `<span class="tgc sm">${esc(t)}</span>`).join('')}${tg.length > 5 ? `<span class="tgc sm">+${tg.length - 5}</span>` : ''}</div>` : ''}
+    <div class="lic">${nl ? `<span>${IC.link}${nl}</span>` : ''}${nd ? `<span>${IC.DOCUMENTS}${nd}</span>` : ''}${np ? `<span>${IC.camera}${np}</span>` : ''}</div>
+    <div class="lby">${esc(it.par || who(it.cree_par))} · mis à jour le ${fdate(it.modifie_le || it.cree_le)}</div></div>`;
+}
+async function reloadLib(){
+  try { cache.LIBRARY = await api('lib_list'); } catch (e) { return; }
+  if (cur === 'LIBRARY') libDraw();
+  if (LIB.view && $('#mLib').classList.contains('on') && !LIB.edit) { const it = libItems().find(x => x.id === LIB.view); if (it) drawLibView(it); else closeLib(); }
+}
+function closeLib(){ LIB.edit = null; LIB.view = null; $('#mLib').classList.remove('on'); }
+$('#mLib').addEventListener('mousedown', e => { if (e.target.id === 'mLib' && !LIB.edit) closeLib(); });
+async function libPhotos(it){
+  if (LIBF[it.id]) return LIBF[it.id];
+  if (!(it.fichiers || []).some(f => f.kind === 'photo')) return LIBF[it.id] = [];
+  try { LIBF[it.id] = (await api('files_list', {module: 'LIBRARY', ref_id: it.id, inline: true})).filter(f => f.kind === 'photo'); } catch (e) { LIBF[it.id] = []; }
+  return LIBF[it.id];
+}
+function openLib(id){
+  const it = libItems().find(x => x.id === id); if (!it || String(id).startsWith('tmp_')) return;
+  LIB.view = id; LIB.edit = null; drawLibView(it); $('#mLib').classList.add('on');
+}
+function drawLibView(it){
+  const el = $('#sLib'), can = libCan(it), tg = libTags(it), links = libLinks(it), docs = (it.fichiers || []).filter(f => f.kind !== 'photo'), np = (it.fichiers || []).filter(f => f.kind === 'photo').length;
+  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(it.titre)}</h3><div class="sub">Créé par ${esc(it.par || who(it.cree_par))} le ${fdate(it.cree_le, true)} · mis à jour le ${fdate(it.modifie_le || it.cree_le, true)}</div></div>
+    <div class="lbt">${can ? `<button class="ico sm" id="lEd" title="Modifier" aria-label="Modifier">${IC.pencil}</button><button class="ico sm warn" id="lDel" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}<button class="ico sm" id="lX" title="Fermer" aria-label="Fermer">${IC.close}</button></div></div>
+    <div class="ltg" style="display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px">${it.visibilite === 'prive' ? `<span class="bb">${IC.lock}Privé</span>` : `<span class="bb sh">${IC.users}Partagé</span>`}${tg.map(t => `<span class="tgc sm">${esc(t)}</span>`).join('')}</div>
+    ${it.texte ? `<div class="rich" style="margin-top:12px">${cleanHtml(it.texte)}</div>` : ''}
+    ${links.length ? `<div class="xh">Liens <small>${links.length}</small></div>${links.map(l => `<div class="llk">${IC.link}<div><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.titre || l.url)}</a>${l.titre ? `<small>${esc(l.url)}</small>` : ''}</div></div>`).join('')}` : ''}
+    ${docs.length ? `<div class="xh">Documents <small>${docs.length}</small></div>${docs.map(f => `<div class="frow"><span class="fic" style="width:38px;height:38px;font-size:17px">${IC.DOCUMENTS}</span><div class="fi">${esc(f.nom)}<small>${fsize(f.taille)}</small></div><button class="ico sm" data-dl="${esc(f.id)}" data-nm="${esc(f.nom)}" title="Télécharger ${esc(f.nom)}" aria-label="Télécharger ${esc(f.nom)}">${IC.download}</button></div>`).join('')}` : ''}
+    ${np ? `<div class="xh">Photos <small>${np}</small></div><div class="lph" id="lPh"><span class="m">Chargement…</span></div>` : ''}`;
+  $('#lX').onclick = closeLib;
+  if ($('#lEd')) $('#lEd').onclick = () => openLibEdit(it);
+  if ($('#lDel')) $('#lDel').onclick = () => delLib(it);
+  el.onclick = e => {
+    const d = e.target.closest('[data-dl]'); if (d) return downloadFile(d.dataset.dl, d.dataset.nm);
+    const im = e.target.closest('.ph img'); if (im) { $('#phImg').src = im.src; $('#mPhoto').classList.add('on'); }
+  };
+  if (np) libPhotos(it).then(l => { const b = $('#lPh'); if (b && LIB.view === it.id && !LIB.edit) b.innerHTML = l.map(f => `<div class="ph"><img alt="${esc(f.nom)}" src="data:${esc(f.mime || 'image/jpeg')};base64,${f.b64 || ''}"></div>`).join('') || '<span class="m">Photos indisponibles.</span>'; });
+}
+async function delLib(it){
+  if (!(await ask('Supprimer cet élément ?', '« ' + it.titre + ' » et ses fichiers seront définitivement supprimés.', 'Supprimer'))) return;
+  closeLib(); cache.LIBRARY = libItems().filter(x => x.id !== it.id); libDraw();
+  enqueue(() => api('lib_delete', {id: it.id}), () => reloadLib());
+}
+// ---- édition
+async function openLibEdit(it){
+  const L = LIB.edit = {id: it ? it.id : '', titre: it ? it.titre : '', tags: it ? libTags(it) : [], texte: it ? cleanHtml(it.texte) : '', liens: it ? libLinks(it).map(l => ({titre: l.titre || '', url: l.url})) : [],
+    vis: it ? it.visibilite : 'agence', docs: it ? (it.fichiers || []).filter(f => f.kind !== 'photo').map(f => ({id: f.id, nom: f.nom, taille: f.taille})) : [], photos: [], rm: []};
+  LIB.view = it ? it.id : null;
+  drawLibEdit(); $('#mLib').classList.add('on'); setTimeout(() => { const t = $('#lTitre'); if (t && !L.titre) t.focus(); }, 80);
+  if (it && (it.fichiers || []).some(f => f.kind === 'photo')) { const l = await libPhotos(it); if (LIB.edit !== L) return; libSyncForm(); l.forEach(f => L.photos.push({id: f.id, nom: f.nom, src: 'data:' + (f.mime || 'image/jpeg') + ';base64,' + f.b64})); drawLibEdit(); }
+}
+function libSyncForm(){
+  const L = LIB.edit; if (!L || !$('#lTitre')) return;
+  L.titre = $('#lTitre').value; L.texte = $('#lTxt').innerHTML;
+  L.liens = [...document.querySelectorAll('#lLinks .lln')].map(r => ({titre: r.querySelector('.lt').value, url: r.querySelector('.lu').value}));
+}
+function drawLibEdit(){
+  const L = LIB.edit, el = $('#sLib'), all = {}; libItems().forEach(it => libTags(it).forEach(t => all[t.toLowerCase()] = t));
+  el.innerHTML = `<div class="sh"><div class="tt"><h3>${L.id ? 'Modifier' : 'Nouvel élément'}</h3></div><div class="lbt"><button class="ico sm ok" id="lOk" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button><button class="ico sm" id="lNo" title="Annuler" aria-label="Annuler">${IC.close}</button></div></div>
+    <label for="lTitre">Titre</label><input id="lTitre" maxlength="150" autocomplete="off" value="${esc(L.titre)}">
+    <label for="lTgIn">Mots-clés <small style="font-weight:400">(Entrée ou virgule pour valider)</small></label>
+    <div class="tgin" id="lTg">${L.tags.map((t, i) => `<span class="tgc">${esc(t)} <b data-rt="${i}" title="Retirer">×</b></span>`).join('')}<input id="lTgIn" list="lTagList" placeholder="Ajouter un mot-clé…" autocomplete="off"></div>
+    <datalist id="lTagList">${Object.values(all).filter(t => !L.tags.some(x => x.toLowerCase() === t.toLowerCase())).map(t => `<option value="${esc(t)}">`).join('')}</datalist>
+    <label>Texte</label>
+    <div class="rtb" id="lTb"><button data-c="bold" title="Gras" aria-label="Gras"><b>G</b></button><button data-c="italic" title="Italique" aria-label="Italique"><i>I</i></button><button data-c="underline" title="Souligné" aria-label="Souligné"><u>S</u></button><button data-c="insertUnorderedList" title="Liste à puces" aria-label="Liste à puces">• Liste</button><button data-c="insertOrderedList" title="Liste numérotée" aria-label="Liste numérotée">1. Liste</button><button data-c="h3" title="Titre de section" aria-label="Titre de section">Titre</button><button data-c="quote" title="Citation" aria-label="Citation">❝</button><button data-c="link" title="Insérer un lien" aria-label="Insérer un lien">${IC.link}</button><button data-c="removeFormat" title="Effacer la mise en forme" aria-label="Effacer la mise en forme">Tx</button></div>
+    <div class="rtl" id="lTl"><input id="lTlU" placeholder="https://…" autocomplete="off"><button class="s" id="lTlOk">Insérer</button></div>
+    <div class="rte" id="lTxt" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Texte">${L.texte}</div>
+    <div class="xh">Liens <small>titre + adresse</small></div><div id="lLinks">${L.liens.map((l, i) => `<div class="lln"><input class="lt" placeholder="Titre du lien" maxlength="120" value="${esc(l.titre)}"><input class="lu" placeholder="https://…" value="${esc(l.url)}"><button class="ico sm" data-rl="${i}" title="Retirer ce lien" aria-label="Retirer ce lien">${IC.trash}</button></div>`).join('')}</div>
+    <button class="s" id="lAddL">${IC.plus}Ajouter un lien</button>
+    <div class="xh">Documents <small>${L.docs.length || ''}</small></div>
+    <div>${L.docs.map((f, i) => `<div class="frow"><span class="fic" style="width:38px;height:38px;font-size:17px">${IC.DOCUMENTS}</span><div class="fi">${esc(f.nom)}<small>${fsize(f.taille)}${f._new ? ' · à envoyer' : ''}</small></div><button class="ico sm" data-rd="${i}" title="Retirer" aria-label="Retirer">${IC.trash}</button></div>`).join('')}</div>
+    <label class="s" style="cursor:pointer;margin-top:6px;display:inline-flex">${IC.plus}Ajouter des documents<input type="file" id="lDocIn" multiple hidden></label>
+    <div class="xh">Photos <small>${L.photos.length || ''}</small></div>
+    <div class="lph">${L.photos.map((p, i) => `<div class="ph"><img alt="${esc(p.nom)}" src="${p.src}"><button class="x" data-rp="${i}" title="Retirer la photo" aria-label="Retirer la photo">${IC.close}</button></div>`).join('')}<label class="ph add">${IC.camera}Ajouter<input type="file" id="lPhIn" accept="image/*" multiple hidden></label></div>
+    <div class="xh">Visibilité</div>
+    <div class="vis2"><button class="s ${L.vis === 'prive' ? '' : 'on'}" data-v="agence">${IC.users}Partagé dans l'agence</button><button class="s ${L.vis === 'prive' ? 'on' : ''}" data-v="prive">${IC.lock}Privé (moi seul)</button></div>
+    <div class="foot"><button class="p" id="lOk2" style="flex:1">Enregistrer</button><button class="s" id="lNo2">Annuler</button></div>`;
+  const txt = $('#lTxt'); let sel = null;
+  const saveSel = () => { const s = getSelection(); if (s.rangeCount && txt.contains(s.anchorNode)) sel = s.getRangeAt(0).cloneRange(); };
+  txt.addEventListener('keyup', saveSel); txt.addEventListener('mouseup', saveSel); txt.addEventListener('blur', saveSel);
+  txt.addEventListener('paste', e => { e.preventDefault(); const h = e.clipboardData.getData('text/html'), t = e.clipboardData.getData('text/plain'); document.execCommand('insertHTML', false, h ? cleanHtml(h) : esc(t).replace(/\n/g, '<br>')); });
+  $('#lTb').onmousedown = e => { if (e.target.closest('button')) e.preventDefault(); };
+  $('#lTb').onclick = e => {
+    const b = e.target.closest('button'); if (!b) return; const c = b.dataset.c; txt.focus();
+    if (sel) { const s = getSelection(); s.removeAllRanges(); s.addRange(sel); }
+    if (c === 'h3') document.execCommand('formatBlock', false, document.queryCommandValue('formatBlock').toLowerCase() === 'h3' ? 'div' : 'h3');
+    else if (c === 'quote') document.execCommand('formatBlock', false, document.queryCommandValue('formatBlock').toLowerCase() === 'blockquote' ? 'div' : 'blockquote');
+    else if (c === 'link') { saveSel(); $('#lTl').classList.toggle('on'); if ($('#lTl').classList.contains('on')) setTimeout(() => $('#lTlU').focus(), 30); }
+    else document.execCommand(c, false, null);
+    if (c !== 'link') saveSel();
+  };
+  const addLink = () => { let u = $('#lTlU').value.trim(); if (!u) return; if (!/^https?:\/\//i.test(u)) u = 'https://' + u; txt.focus(); if (sel) { const s = getSelection(); s.removeAllRanges(); s.addRange(sel); }
+    if (getSelection().isCollapsed) document.execCommand('insertHTML', false, `<a href="${esc(u)}">${esc(u)}</a>`); else document.execCommand('createLink', false, u); $('#lTlU').value = ''; $('#lTl').classList.remove('on'); };
+  $('#lTlOk').onclick = addLink; $('#lTlU').onkeydown = e => { if (e.key === 'Enter') { e.preventDefault(); addLink(); } };
+  const tg = $('#lTgIn'), addTag = v => { v = String(v || '').replace(/[,;]/g, ' ').trim().replace(/\s+/g, ' ').slice(0, 30); if (v && !L.tags.some(x => x.toLowerCase() === v.toLowerCase()) && L.tags.length < 20) { libSyncForm(); L.tags.push(v); drawLibEdit(); setTimeout(() => $('#lTgIn') && $('#lTgIn').focus(), 20); } else tg.value = ''; };
+  tg.onkeydown = e => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addTag(tg.value); } else if (e.key === 'Backspace' && !tg.value && L.tags.length) { libSyncForm(); L.tags.pop(); drawLibEdit(); setTimeout(() => $('#lTgIn') && $('#lTgIn').focus(), 20); } };
+  tg.onchange = () => { if (tg.value.trim()) addTag(tg.value); };
+  el.onclick = async e => {
+    const rt = e.target.closest('[data-rt]'); if (rt) { libSyncForm(); L.tags.splice(+rt.dataset.rt, 1); return drawLibEdit(); }
+    const rl = e.target.closest('[data-rl]'); if (rl) { libSyncForm(); L.liens.splice(+rl.dataset.rl, 1); return drawLibEdit(); }
+    const rd = e.target.closest('[data-rd]'); if (rd) { libSyncForm(); const f = L.docs.splice(+rd.dataset.rd, 1)[0]; if (f.id) L.rm.push(f.id); return drawLibEdit(); }
+    const rp = e.target.closest('[data-rp]'); if (rp) { e.preventDefault(); libSyncForm(); const p = L.photos.splice(+rp.dataset.rp, 1)[0]; if (p.id) L.rm.push(p.id); return drawLibEdit(); }
+    const v = e.target.closest('[data-v]'); if (v) { libSyncForm(); L.vis = v.dataset.v; return drawLibEdit(); }
+    if (e.target.closest('#lAddL')) { libSyncForm(); L.liens.push({titre: '', url: ''}); drawLibEdit(); const r = document.querySelectorAll('#lLinks .lln .lt'); if (r.length) r[r.length - 1].focus(); return; }
+    if (e.target.closest('#lOk') || e.target.closest('#lOk2')) return libSave();
+    if (e.target.closest('#lNo') || e.target.closest('#lNo2')) { const it = L.id ? libItems().find(x => x.id === L.id) : null; LIB.edit = null; if (it) { drawLibView(it); } else closeLib(); return; }
+  };
+  el.onchange = async e => {
+    if (e.target.id === 'lDocIn') { const fs = [...e.target.files]; e.target.value = ''; const big = fs.find(f => f.size > 8 * 1024 * 1024); if (big) return toast('« ' + big.name + ' » dépasse 8 Mo');
+      let list; try { list = await wait(async () => { const o = []; for (const f of fs) o.push({nom: f.name, mime: f.type || 'application/octet-stream', b64: await readB64(f), taille: f.size, _new: true}); return o; }); } catch (err) { return toast(err.message); }
+      libSyncForm(); L.docs = L.docs.concat(list); drawLibEdit(); }
+    if (e.target.id === 'lPhIn') { const fs = [...e.target.files]; e.target.value = '';
+      let list; try { list = await wait(async () => { const o = []; for (const f of fs) { const p = await compressImg(f); o.push({nom: p.name, mime: p.mime, b64: p.b64, thumb: p.thumb, src: 'data:image/jpeg;base64,' + p.thumb, _new: true}); } return o; }); } catch (err) { return toast(err.message); }
+      libSyncForm(); L.photos = L.photos.concat(list); drawLibEdit(); }
+  };
+}
+function libSave(){
+  libSyncForm(); const L = LIB.edit; if (!L) return;
+  const titre = L.titre.trim(); if (!titre) return toast('Le titre est obligatoire');
+  const liens = L.liens.map(l => ({titre: l.titre.trim(), url: l.url.trim()})).filter(l => l.url);
+  const bad = liens.find(l => !/^(https?:\/\/)?[^\s/]+\.[^\s]+$/i.test(l.url)); if (bad) return toast('Lien invalide : ' + bad.url);
+  let txt = cleanHtml(L.texte); if (!htmlText(txt)) txt = '';
+  const data = {titre, texte: txt, liens, mots_cles: L.tags.join(', '), visibilite: L.vis};
+  const now = new Date().toISOString(), newDocs = L.docs.filter(d => d._new), newPh = L.photos.filter(p => p._new), rm = L.rm.slice();
+  const keepF = (L.id ? (libItems().find(x => x.id === L.id).fichiers || []) : []).filter(f => !rm.includes(f.id));
+  let it = L.id ? libItems().find(x => x.id === L.id) : null;
+  if (!it) { it = {id: 'tmp_' + Math.random().toString(36).slice(2), cree_par: ME.email, par: ME.prenom, cree_le: now, fichiers: []}; cache.LIBRARY = [it].concat(libItems()); }
+  const first = L.photos[0];
+  Object.assign(it, {titre, texte: txt, liens: JSON.stringify(liens), mots_cles: data.mots_cles, visibilite: L.vis, modifie_le: now,
+    fichiers: keepF.concat(newDocs.map(d => ({id: 'tmp_' + Math.random().toString(36).slice(2), nom: d.nom, taille: d.taille, mime: d.mime, kind: 'doc'})), newPh.map(p => ({id: 'tmp_' + Math.random().toString(36).slice(2), nom: p.nom, mime: p.mime, kind: 'photo'})))});
+  if (first && first.thumb) it.thumb = first.thumb; else if (!L.photos.length) delete it.thumb;
+  const realId = L.id; delete LIBF[realId];
+  LIB.edit = null; closeLib(); libDraw();
+  enqueue(async () => {
+    const id = await api('lib_save', {id: realId || undefined, data});
+    for (const f of rm) await api('file_delete', {id: f});
+    for (const d of newDocs) await api('file_add', {module: 'LIBRARY', ref_id: id, name: d.nom, mime: d.mime, b64: d.b64});
+    for (const p of newPh) await api('file_add', {module: 'LIBRARY', ref_id: id, name: p.nom, mime: p.mime, b64: p.b64, thumb_b64: p.thumb});
+    delete LIBF[id]; await reloadLib();
+  }, () => reloadLib());
 }
 
 // ------------------------------------------------------------ Infobulles design (remplacent les bulles natives)
