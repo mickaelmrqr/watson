@@ -606,7 +606,7 @@ html[data-theme=light] .dt3.warn b{color:#B45309}
 html[data-theme=light] #tip{background:rgba(255,255,255,.98);color:#1b2233;border-color:rgba(20,30,50,.16);box-shadow:0 10px 28px rgba(20,30,50,.18)}
 @media(prefers-reduced-motion:reduce){#tip{transition:none}}
 
-/* v4.27 */
+/* v4.28 */
 .ref{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:currentColor}
 .ref:hover{text-decoration-color:var(--orange)}
 .rc{display:inline-flex;align-items:center;gap:2px;max-width:100%}
@@ -622,7 +622,7 @@ html[data-theme=light] #tip{background:rgba(255,255,255,.98);color:#1b2233;borde
 .cbox.no{border:2px solid #ff4d4d;background:linear-gradient(135deg,rgba(255,70,70,.13),var(--bg) 70%);box-shadow:0 0 0 4px rgba(255,77,77,.15),0 0 26px rgba(255,60,60,.4)}
 html[data-theme=light] .cbox.no{background:linear-gradient(135deg,rgba(255,70,70,.10),#fff 70%);box-shadow:0 0 0 4px rgba(255,77,77,.14),0 0 22px rgba(255,60,60,.28)}
 
-/* v4.27 */
+/* v4.28 */
 .ref{text-decoration:none}
 .ref:hover{color:#9cc3ff;border-color:transparent;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:currentColor}
 html[data-theme=light] .ref:hover{color:#1F5FC9}
@@ -677,15 +677,22 @@ html[data-theme=light] .llk a{color:#1F5FC9}
 .vis2{display:flex;gap:8px;margin-top:6px}.vis2 button{flex:1}
 .vis2 button.on{border-color:#9b6cff;background:rgba(150,104,240,.2);color:var(--hi)}
 @media(max-width:700px){.lln{grid-template-columns:1fr}}
-/* v4.27 : bandeau supérieur toujours sombre, même en mode jour */
+/* v4.28 : bandeau supérieur toujours sombre, même en mode jour */
 html[data-theme=light] header{--bg:#15181F;--panel:#1D222C;--raised:#272E3B;--line:#343C4C;--ink:#F1F4FA;--mut:#A3AEC2;--hi:#fff;--hov:#232a39;--hov2:#2a3242;--bd2:#4a5468;--bd3:#3d4658;--hdr:rgba(21,24,31,.96);color:var(--ink)}
 html[data-theme=light] header .ico.warn:hover{color:#FF5A2B}
 html[data-theme=light] header .ver{color:#ff7a50}
+/* v4.28 : extrait de recherche */
+#mSearch .sheet{max-width:920px}
+.sug .sn{flex:1.25;min-width:0;color:var(--mut);font-size:calc(var(--fs)*.92);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:1px solid var(--line);padding-left:12px}
+.sug .sn em{font-style:normal;font-weight:700;margin-right:6px;opacity:.75}
+.sug .sn mark{background:transparent;color:var(--orange);font-weight:700}
+html[data-theme=light] .sug .sn mark{color:#D2431B}
+@media (max-width:760px){.sug button{flex-wrap:wrap}.sug .sn{flex-basis:100%;border-left:0;padding-left:46px;flex:none}}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.27</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.28</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -695,7 +702,7 @@ html[data-theme=light] header .ver{color:#ff7a50}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.27</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.28</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1161,7 +1168,7 @@ function card(r){
 const HLAB = {telechargement:'Téléchargement', suppression:'Supprimé définitivement', creation:'Création', etape:"Changement d'étape", modification:'Modification', archivage:'Archivage', desarchivage:'Désarchivage'};
 IC.step = ic('<path d="M10 20.777a8.942 8.942 0 0 1-2.48-.969"/><path d="M14 3.223a9.003 9.003 0 0 1 0 17.554"/><path d="M4.579 17.093a8.961 8.961 0 0 1-1.227-2.592"/><path d="M3.124 10.5c.16-.95.468-1.85.9-2.675l.169-.305"/><path d="M6.907 4.579a8.954 8.954 0 0 1 3.093-1.356"/><path d="M9 12l2 2l4-4"/>');
 const IC_HIST = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>');
-let sTimer = 0, sSeq = 0, sItems = [], sHl = -1;
+let sTimer = 0, sSeq = 0, sItems = [], sHl = -1, sQ = '';
 function localHits(q){
   const out = [];
   Object.keys(MODS).forEach(m => (cache[m] || []).forEach(r => {
@@ -1175,7 +1182,7 @@ function closeSearch(){ $('#mSearch').classList.remove('on'); }
 function initSearch(){
   const q = $('#sq'), box = $('#sug');
   q.oninput = () => {
-    clearTimeout(sTimer); const v = q.value.trim().toLowerCase();
+    clearTimeout(sTimer); const v = q.value.trim().toLowerCase(); sQ = v;
     if (v.length < 2) { drawSug([], false, true); return; }
     drawSug(localHits(v), true);
     const n = ++sSeq;
@@ -1194,9 +1201,25 @@ function initSearch(){
   $('#bSearch').onclick = openSearch;
   document.addEventListener('keydown', e => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k' && ME) { e.preventDefault(); openSearch(); } });
 }
+// Extrait autour du mot recherché (affiché à droite du résultat, mot en orange)
+const SNIP_F = [['remarque','Remarque'],['motif_libre','Motif'],['commentaire','Commentaire'],['location','Location'],['ctc_details','Contact'],['ctc_commercial','Commercial'],['texte','Texte'],['mots_cles','Mots-clés']];
+function localSnip(x, q){
+  const r = (cache[x.module] || []).find(y => y.id === x.id); if (!r) return null;
+  for (const [k, l] of SNIP_F) { const t = k === 'texte' ? htmlText(r.texte || '') : String(r[k] || ''); if (t.toLowerCase().includes(q)) return {l, t}; }
+  const f = (r.fichiers || []).find(f => String(f.nom).toLowerCase().includes(q)); return f ? {l:'Fichier', t:String(f.nom)} : null;
+}
+function snipHtml(sn, q){
+  if (!sn || !sn.t || !q) return '';
+  const t = String(sn.t).replace(/\s+/g, ' ').trim(), low = t.toLowerCase(), i = low.indexOf(q); if (i < 0) return '';
+  const a = Math.max(0, i - 32), b = Math.min(t.length, i + q.length + 48), seg = t.slice(a, b), sl = seg.toLowerCase();
+  let out = '', p = 0, j;
+  while ((j = sl.indexOf(q, p)) >= 0) { out += esc(seg.slice(p, j)) + '<mark>' + esc(seg.slice(j, j + q.length)) + '</mark>'; p = j + q.length; }
+  out += esc(seg.slice(p));
+  return `<span class="sn"><em>${esc(sn.l || '')}</em>${a > 0 ? '…' : ''}${out}${b < t.length ? '…' : ''}</span>`;
+}
 function drawSug(items, loading, hint){
   sItems = items; sHl = -1; const box = $('#sug');
-  box.innerHTML = items.length ? items.map((x, i) => `<button data-i="${i}"><span class="si">${IC[x.module]}</span><span class="st"><b>${esc(x.title || '—')}</b><small>${(MODS[x.module] || {}).label || x.module}${x.sub ? ' · ' + esc(x.kind === 'hist' ? (HLAB[x.sub] || x.sub) : x.sub) : ''}${x.archive ? ' · archivé' : ''}</small></span>${x.kind === 'hist' ? `<span class="hs" title="Trouvé dans l'historique">${IC_HIST}${x.alive ? 'Historique' : 'Supprimé'}</span>` : ''}</button>`).join('')
+  box.innerHTML = items.length ? items.map((x, i) => `<button data-i="${i}"><span class="si">${IC[x.module]}</span><span class="st"><b>${esc(x.title || '—')}</b><small>${(MODS[x.module] || {}).label || x.module}${x.sub ? ' · ' + esc(x.kind === 'hist' ? (HLAB[x.sub] || x.sub) : x.sub) : ''}${x.archive ? ' · archivé' : ''}</small></span>${snipHtml(x.snip || (x.kind === 'hist' ? null : localSnip(x, sQ)), sQ)}${x.kind === 'hist' ? `<span class="hs" title="Trouvé dans l'historique">${IC_HIST}${x.alive ? 'Historique' : 'Supprimé'}</span>` : ''}</button>`).join('')
     : `<div class="none">${hint ? 'Écris au moins 2 lettres : nom, bordereau, PID, remarque…' : loading ? 'Recherche…' : 'Aucun résultat'}</div>`;
 }
 async function pickSug(it){
