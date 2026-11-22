@@ -105,7 +105,7 @@ button{font-family:inherit;cursor:pointer}
 .card>*{transition:filter .25s,opacity .25s}
 .card.sync.tmpc{pointer-events:none}
 .card.sync>*:not(.dots){filter:blur(3.5px);opacity:.55}
-.dots{pointer-events:none;position:absolute!important;inset:0;z-index:3!important;display:flex;align-items:center;justify-content:center;gap:9px}
+.dots{pointer-events:none;position:absolute!important;inset:0;z-index:3!important;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:inherit;background:radial-gradient(ellipse at 50% 50%,rgba(6,8,12,.72) 0,rgba(6,8,12,.5) 35%,rgba(6,8,12,.16) 75%,transparent 100%)}
 .dots i{width:11px;height:11px;border-radius:50%;background:#fff;opacity:.9;animation:dj 1s ease-in-out infinite}
 .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
 @keyframes dj2{0%,70%,100%{transform:translateY(0);opacity:.55}35%{transform:translateY(-5px);opacity:1}}
@@ -172,6 +172,8 @@ label{display:block;font-weight:500;color:var(--mut);margin:14px 0 6px;font-size
 .chk input{width:20px;height:20px;accent-color:var(--blue);padding:0}
 .multi{display:grid;gap:2px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:4px 12px}
 .det{display:grid;grid-template-columns:150px 1fr;gap:4px 16px;margin-top:10px}
+.det .pr{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:7px 0;border-bottom:1px solid var(--hair)}
+.det .pr small{display:block;color:var(--mut);font-size:13px;margin-bottom:2px}
 .det dt{color:var(--mut);font-size:14.5px;padding:7px 0;border-bottom:1px solid var(--hair)}
 .det dd{margin:0;padding:7px 0;border-bottom:1px solid var(--hair);word-break:break-word;min-height:2.2em}
 .det dd.none{color:#5f6a7e}
@@ -187,6 +189,8 @@ label{display:block;font-weight:500;color:var(--mut);margin:14px 0 6px;font-size
 .bb{display:inline-flex;align-items:center;gap:6px;font:700 13.5px var(--disp);border-radius:999px;padding:4px 12px 4px 9px;background:var(--raised);color:var(--ink);border:1px solid var(--line)}
 .bb svg{width:1.05em;height:1.05em}
 .bb.u{background:rgba(255,70,70,calc(.1 + var(--pw) * .14));border-color:rgba(255,84,84,.55);color:#ff9d9d}
+.bb.wk{color:#86e5b8;border-color:rgba(62,207,142,.45);background:rgba(62,207,142,.13)}
+html[data-theme=light] .bb.wk{color:#127A4D}
 .bb.sh{color:#a9cbff;border-color:rgba(58,140,255,.45);background:rgba(58,140,255,.14)}
 .dates{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 6px}
 .dt3{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:10px 14px 11px;overflow:hidden}
@@ -221,15 +225,15 @@ label{display:block;font-weight:500;color:var(--mut);margin:14px 0 6px;font-size
 .idc .s{margin-top:12px;width:100%}
 
 /* ---------- Attente (flou + blocage) */
-#busy{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(15,18,24,.45);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;pointer-events:none;transition:opacity .2s;cursor:wait}
+#busy{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 50%,rgba(6,8,12,.86) 0,rgba(6,8,12,.66) 24%,rgba(10,13,18,.34) 52%,rgba(15,18,24,.1) 80%);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .2s;cursor:wait}
 #busy.on{opacity:1;pointer-events:auto}
-#busy .boxes{display:flex;flex-direction:column;gap:12px;align-items:center}
-#busy .bx{width:46px;height:46px;fill:none;stroke:var(--orange);stroke-width:2.3;stroke-linejoin:round;stroke-linecap:round;transform-origin:50% 100%;animation:bxh 1.3s ease-in-out infinite;filter:drop-shadow(0 6px 10px rgba(255,90,43,.35))}
-#busy .ld{display:flex;gap:7px;height:8px}
-#busy .ld i{width:7px;height:7px;border-radius:50%;background:var(--orange);opacity:0;animation:ldf 1.3s ease-in-out infinite}
+#busy .boxes{display:flex;flex-direction:column;gap:26px;align-items:center}
+#busy .bx{width:128px;height:128px;fill:none;stroke:var(--orange);stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round;animation:bxg 2.4s ease-in-out infinite}
+@keyframes bxg{0%,100%{filter:drop-shadow(0 0 6px rgba(255,90,43,.25))}50%{filter:drop-shadow(0 0 20px rgba(255,90,43,.6))}}
+#busy .ld{display:flex;gap:30px;height:16px;align-items:center;justify-content:center;width:190px}
+#busy .ld i{width:15px;height:15px;border-radius:50%;background:var(--orange);opacity:0;animation:ldf 1.3s ease-in-out infinite}
 #busy .ld i:nth-child(2){animation-delay:.25s}#busy .ld i:nth-child(3){animation-delay:.5s}
 @keyframes ldf{0%{opacity:0}25%,60%{opacity:1}85%,100%{opacity:0}}
-@keyframes bxh{0%,70%,100%{transform:translateY(0) scale(1,1)}25%{transform:translateY(-8px) scale(.97,1.04)}45%{transform:translateY(0) scale(1.04,.96)}}
 
 /* ---------- Divers */
 #login{text-align:center;padding:90px 20px}
@@ -724,8 +728,9 @@ function renderList(){
 function drawCards(){
   const list = $('#list'); if (!list) return;
   const ord = {}; stepsOf(cur).forEach((x, i) => ord[x.code] = i);
+  const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
   const out = rows.slice()
-    .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
+    .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (cur === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
   list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>'; drawTiles();
 }
 function val(r, k){
@@ -992,18 +997,22 @@ function renderDet(){
   const title = r ? (name || (M.title ? M.title(r) : '') || r.waybill || r.pid || M.label) : (cur === 'DOCUMENTS' ? 'Nouveau document' : 'Nouveau ' + M.label);
   const btns = ed
     ? `<button class="ico sm ok" id="dSave" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button><button class="ico sm" id="dX" title="${r ? 'Annuler la modification' : 'Fermer'}" aria-label="Annuler">${IC.close}</button>`
-    : `${canDelDoc ? `<button class="ico sm warn" id="dDocDel" title="Supprimer le document" aria-label="Supprimer le document">${IC.trash}</button>` : ''}${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
-  const hlc = det && det.hl && det.hl.champs || [], canTg = r && w && !showArch && !ed, hasU = r && M.fields.some(f => f.k === 'urgent');
-  const bubs = r && !ed ? `<div class="bbs">${hasU ? `<button class="bb tg ${r.urgent === true ? 'u' : 'off'} ${hlc.includes('urgent') ? 'hl' : ''}" data-tg="urgent" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.alert}${r.urgent === true ? 'Urgent' : 'Pas urgent'}</button>` : ''}<button class="bb tg ${r.visibilite === 'prive' ? '' : 'sh'} ${hlc.includes('visibilite') ? 'hl' : ''}" data-tg="visibilite" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</button></div>` : '';
-  const stat = r && !M.noSteps ? `<div class="dstat ${ed ? 'lock' : ''}"><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabel(r.etape))}</span><span class="sp"></span>
-    ${w && !showArch ? `<button class="s go" data-a="stepmenu">Étape</button><button class="ico warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button>` : ''}
-    ${w && showArch ? `<button class="ico" id="dUn" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>` : ''}</div>` : '';
+    : `${canDelDoc ? `<button class="ico sm warn" id="dDocDel" title="Supprimer le document" aria-label="Supprimer le document">${IC.trash}</button>` : ''}${r && !M.noSteps && w && !showArch ? `<button class="ico sm warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button>` : ''}${r && !M.noSteps && w && showArch ? `<button class="ico sm" id="dUn" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>` : ''}${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
+  const hlc = det && det.hl && det.hl.champs || [], canTg = r && w && !showArch && !ed, hasU = r && M.fields.some(f => f.k === 'urgent'), hasW = r && M.fields.some(f => f.k === 'wrong_ok');
+  const bubs = r && !ed ? `<div class="bbs">${hasU ? `<button class="bb tg ${r.urgent === true ? 'u' : 'off'} ${hlc.includes('urgent') ? 'hl' : ''}" data-tg="urgent" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.alert}${r.urgent === true ? 'Urgent' : 'Pas urgent'}</button>` : ''}${hasW ? `<button class="bb tg ${r.wrong_ok === true ? 'wk' : 'off'} ${hlc.includes('wrong_ok') ? 'hl' : ''}" data-tg="wrong_ok" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.check}${r.wrong_ok === true ? 'Wrong OK' : 'Pas wrong OK'}</button>` : ''}<button class="bb tg ${r.visibilite === 'prive' ? '' : 'sh'} ${hlc.includes('visibilite') ? 'hl' : ''}" data-tg="visibilite" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</button></div>` : '';
+  const stat = r && !M.noSteps ? `<div class="dstat ${ed ? 'lock' : ''}"><span class="sp"></span><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabel(r.etape))}</span>
+    ${w && !showArch ? `<button class="s go" data-a="stepmenu">Étape</button>` : ''}</div>` : '';
   const sub = M.noSteps ? '' : M.label;
-  const hideView = k => k === 'urgent' || k === 'visibilite';
+  const hideView = k => k === 'urgent' || k === 'visibilite' || k === 'wrong_ok';
   const fields = M.fields.map(x => {
     if (x.t === 'photos' || x.t === 'file') return '';
     if (ed) return `<dt>${x.l}</dt><dd class="ed">${editCell(x, v)}</dd>`;
     if (hideView(x.k)) return '';
+    if (x.k === 'pid' && M.fields.some(f => f.k === 'waybill')) return '';
+    if (x.k === 'waybill' && M.fields.some(f => f.k === 'pid')) {
+      const a = viewCell(x, r), b = viewCell(M.fields.find(f => f.k === 'pid'), r);
+      return a || b ? `<div class="pr">${a ? `<div><small>Waybill</small>${a}</div>` : ''}${b ? `<div><small>PID</small>${b}</div>` : ''}</div>` : '';
+    }
     const h = x.k === 'contacter_client' ? '' : x.t === 'bool' ? (r[x.k] === true ? 'Oui' : '') : viewCell(x, r);
     const hl = det && det.hl && det.hl.champs && det.hl.champs.includes(x.k) ? ' hl' : '';
     return h ? `<dt class="${hl}">${x.l}</dt><dd class="${hl}">${h}</dd>` : '';
@@ -1057,7 +1066,11 @@ function renderDet(){
   el.onclick = e => {
     const sc = e.target.closest('[data-scan]'); if (sc) return scanInto(sc.dataset.scan);
     const cp = e.target.closest('[data-copy]'); if (cp) return navigator.clipboard.writeText(cp.dataset.copy).then(() => toast('Copié : ' + cp.dataset.copy));
-    const tg = e.target.closest('[data-tg]'); if (tg && !tg.disabled) { const k = tg.dataset.tg; saveLocal(r, {[k]: k === 'urgent' ? !(r.urgent === true) : (r.visibilite === 'prive' ? 'agence' : 'prive')}); det.hl = null; return renderDet(); }
+    const tg = e.target.closest('[data-tg]'); if (tg && !tg.disabled) { const k = tg.dataset.tg; const nv = k === 'visibilite' ? (r.visibilite === 'prive' ? 'agence' : 'prive') : !(r[k] === true);
+      const Q = k === 'urgent' ? (nv ? ['Marquer comme urgent ?', 'Les autres utilisateurs seront prévenus.', 'Marquer urgent'] : ["Retirer l'urgence ?", "Cet élément ne sera plus marqué comme urgent.", "Retirer l'urgence"])
+        : k === 'wrong_ok' ? (nv ? ['Passer en Wrong OK ?', 'Cet élément sera marqué Wrong OK.', 'Confirmer'] : ['Retirer le Wrong OK ?', 'Cet élément ne sera plus marqué Wrong OK.', 'Confirmer'])
+        : (nv === 'prive' ? ['Passer en privé ?', 'Seul toi pourras voir cet élément.', 'Passer en privé'] : ["Partager avec l'agence ?", "Tous les utilisateurs de l'agence verront cet élément.", 'Partager']);
+      ask(Q[0], Q[1], Q[2]).then(ok => { if (!ok) return; saveLocal(r, {[k]: nv}); det.hl = null; renderDet(); }); return; }
     const sm = e.target.closest('[data-a="stepmenu"]'); if (sm) return showStepMenu(sm, r);
     if (e.target.closest('#dArch')) return doArchive(r, true);
     if (e.target.closest('#dUn')) return doArchive(r, false);
