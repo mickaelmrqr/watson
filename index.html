@@ -188,7 +188,7 @@ const MODS = {
     {k:'ctc_commercial',l:'Contact commercial',t:'area'},
     {k:'visibilite',l:'Visibilité',t:'vis'},
     {k:'commentaire',l:'Commentaire',t:'area'}],
-    show:['nom_dest','remarque','j4','j10','commentaire'] }
+    show:['nom_dest','remarque','commentaire'] }
 };
 const STEP_KIND = {EN_COURS:'go',ATTENTE_CLIENT:'go',ATTENTE_COMMERCIAL:'go',TERMINE:'ok',A_ARCHIVER:'ok',RTO_FAIT:'ok',INSTRUCTION_APPLIQUEE:'ok'};
 const $ = s => document.querySelector(s);
@@ -310,7 +310,7 @@ function card(r, steps){
       `<button class="s" ${dis} data-a="edit" data-id="${r.id}">Modifier</button><button class="s" ${dis} data-a="arch" data-id="${r.id}">Archiver</button>`;
   return `<div class="card st-${kind} ${r.urgent===true?'urg':''} ${tmp?'tmp new':''}"><div class="t">${esc(M.title(r))}</div>
     <div class="tags"><span class="tag ${kind}">${esc(st ? st.libelle_etat : r.etape)}</span>${r.urgent===true?'<span class="tag u">Urgent</span>':''}${r.visibilite==='prive'?'<span class="tag pr">Privé</span>':''}${tmp?'<span class="tag">Envoi…</span>':''}</div>
-    ${lines}<div class="m">${esc(r.cree_par)} · ${fdate(r.cree_le,true)}</div><div class="act">${btns}</div></div>`;
+    ${lines}<div class="act">${btns}</div></div>`;
 }
 
 // ------------------------------------------------------------ Actions (affichées tout de suite, envoyées ensuite)
