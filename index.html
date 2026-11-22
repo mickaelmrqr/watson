@@ -39,9 +39,9 @@ header{display:flex;align-items:center;gap:10px;padding:10px 20px;position:stick
 #who{color:var(--mut);font-weight:500}
 #sync{font-size:13px;font-weight:500;color:var(--mut);display:flex;align-items:center;gap:7px}
 #sync .d3{display:flex;gap:4px;align-items:center;height:14px}
-#sync .d3 i{width:8px;height:8px;border-radius:50%;background:var(--green);transition:background .3s}
+#sync .d3 i{width:11px;height:11px;border-radius:50%;background:var(--green);transition:background .3s,width .2s,height .2s}
 #sync .d3 i:nth-child(n+2){display:none}
-#sync.work .d3 i{display:block;background:var(--orange);animation:dj .9s ease-in-out infinite}
+#sync.work .d3 i{display:block;width:5px;height:5px;background:var(--orange);animation:dj2 .9s ease-in-out infinite}
 #sync.work .d3 i:nth-child(2){animation-delay:.15s}#sync.work .d3 i:nth-child(3){animation-delay:.3s}
 #sync.err .d3 i{background:var(--red)}
 .ico{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:12px;background:transparent;border:1px solid transparent;color:var(--ink);cursor:pointer;font-size:17px;transition:background .18s,border-color .18s,transform .18s var(--ease),color .18s}
@@ -108,6 +108,8 @@ button{font-family:inherit;cursor:pointer}
 .dots{position:absolute!important;inset:0;z-index:3!important;display:flex;align-items:center;justify-content:center;gap:9px}
 .dots i{width:11px;height:11px;border-radius:50%;background:#fff;opacity:.9;animation:dj 1s ease-in-out infinite}
 .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dj2{0%,70%,100%{transform:translateY(0);opacity:.55}35%{transform:translateY(-5px);opacity:1}}
+.d3s{display:inline-flex;gap:3px;align-items:center;height:13px;vertical-align:middle}.d3s i{width:4px;height:4px;border-radius:50%;background:var(--mut);animation:dj2 .9s ease-in-out infinite}.d3s i:nth-child(2){animation-delay:.15s}.d3s i:nth-child(3){animation-delay:.3s}
 @keyframes dj{0%,70%,100%{transform:translateY(0);opacity:.55}35%{transform:translateY(-9px);opacity:1}}
 .card.wave:after{content:"";position:absolute;left:50%;top:50%;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;z-index:4;pointer-events:none;
   background:radial-gradient(circle,rgba(62,207,142,0) 38%,rgba(62,207,142,.5) 60%,rgba(62,207,142,0) 72%);animation:wv 1.1s ease-out forwards}
@@ -385,7 +387,7 @@ html[data-theme=light] .ver{color:#D2431B}
 html[data-theme=light] .s.go{color:#1D5FC4;border-color:rgba(47,120,230,.55)}
 html[data-theme=light] .nit .na button,html[data-theme=light] .st3 button{color:var(--ink)}
 html[data-theme=light] .flow .stp .wh b{color:var(--ink)}
-/* Security Cases / Documents */
+/* SCMS / Documents */
 .cb{height:26px;display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:0 11px 0 8px;font:700 13px var(--disp);border:1px solid var(--line);background:var(--raised);color:var(--mut);white-space:nowrap}
 .cb svg{width:1.05em;height:1.05em}
 .cb.todo{color:#ffb27a;border-color:rgba(255,150,60,.5);background:rgba(255,150,60,.12)}
@@ -420,7 +422,7 @@ html[data-theme=light] .cb.todo{color:#B45309}html[data-theme=light] .cb.done{co
 #mPhoto{z-index:95;background:rgba(0,0,0,.82)}
 #mPhoto img{max-width:94vw;max-height:88vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
 #mPhoto .ico{position:absolute;top:16px;right:16px;color:#fff}
-#mContact{z-index:60}
+#mContact{z-index:60}#mHist{z-index:70}
 .xh{display:flex;align-items:baseline;gap:8px;margin:18px 0 2px;font:700 16px var(--disp)}.xh small{color:var(--mut);font:500 13.5px var(--sans,inherit)}
 </style>
 </head>
@@ -455,6 +457,7 @@ html[data-theme=light] .cb.todo{color:#B45309}html[data-theme=light] .cb.done{co
   <label for="cCom">Commentaire</label><textarea id="cCom" rows="3" maxlength="500" placeholder="Ex. : message laissé, rappel prévu…"></textarea>
   <div class="foot"><button class="p" id="cOk" style="flex:1">Enregistrer</button><button class="s" id="cNo">Annuler</button></div></div></div>
 <div class="modal" id="mPhoto"><button class="ico sm" id="phX" aria-label="Fermer" title="Fermer"></button><img id="phImg" alt="Photo"></div>
+<div class="modal" id="mHist"><div class="sheet wide"><div class="sh"><div class="tt"><h3 id="hTitle"></h3><div class="sub">Historique</div></div><button class="ico sm" id="hX" aria-label="Fermer" title="Fermer"></button></div><div id="histBox" style="margin-top:6px"></div></div></div>
 <div id="ntoasts"></div>
 <div class="modal" id="mBand"><div class="sheet" id="band"></div></div>
 <div class="modal" id="mAsk"><div class="sheet"><div class="sh"><div class="tt"><h3 id="askT"></h3></div></div><p id="askP"></p>
@@ -546,7 +549,7 @@ const MODS = {
     {k:'commentaire',l:'Commentaire',t:'area'}],
     show:['remarque','commentaire'] }
 };
-MODS.SECURITY = { label: 'Security Cases', name: r => '', show: [], title: r => r.waybill || ('Security case du ' + fdateD(r.date_decouverte)), fields: [
+MODS.SECURITY = { label: 'SCMS', name: r => '', show: [], title: r => r.waybill || ('SCMS du ' + fdateD(r.date_decouverte)), fields: [
     {k:'waybill',l:'Waybill',t:'scan'},
     {k:'date_decouverte',l:'Date de découverte',t:'date',req:1},
     {k:'motif_cb',l:'Motif',t:'motif'},
@@ -629,7 +632,7 @@ async function start(){
     ['#bOut', '#bQR', '#bSearch', '#bBell'].forEach(s => $(s).classList.remove('hide'));
     $('#bSet').classList.remove('hide');
     const mods = Object.keys(MODS).filter(m => ME.rights[m]);
-    $('#nav').innerHTML = `<div class="mods" id="seg">${mods.map(m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m].label}</b><small id="cnt_${m}">…</small></span></button>`).join('')}</div>`;
+    $('#nav').innerHTML = `<div class="mods" id="seg">${mods.map(m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m].label}</b><small id="cnt_${m}"><span class="d3s"><i></i><i></i><i></i></span></small></span></button>`).join('')}</div>`;
     $('#seg').onclick = e => { const b = e.target.closest('button'); if (b) { showArch = false; openMod(b.dataset.m); } };
     applyDisplay(); setSync(); openMod(mods[0] || '_admin'); preload(mods); startPoll(); warm();
   } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; }
@@ -639,7 +642,7 @@ const moveInd = () => {};
 function drawTiles(){
   document.querySelectorAll('.mod').forEach(b => {
     const m = b.dataset.m, r = cache[m]; const t = $('#cnt_' + m); if (!t) return;
-    if (!r) { t.textContent = '…'; return; }
+    if (!r) { if (!t.querySelector('.d3s')) t.innerHTML = '<span class="d3s"><i></i><i></i><i></i></span>'; return; }
     const u = r.filter(x => x.urgent === true).length;
     t.innerHTML = m === 'DOCUMENTS' ? `${r.length} document${r.length > 1 ? 's' : ''}` : `${r.length} en cours` + (u ? ` · <i>${u} urgent${u > 1 ? 's' : ''}</i>` : '');
   });
@@ -862,6 +865,7 @@ function drawBand(){
 $('#mBand').addEventListener('mousedown', e => { if (e.target.id === 'mBand') closePop(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') {
   if ($('#mAsk').classList.contains('on') && ask.cancel) return ask.cancel();
+  if ($('#mHist').classList.contains('on')) return closeHist();
   if ($('#mPhoto').classList.contains('on')) return $('#mPhoto').classList.remove('on');
   if ($('#mContact').classList.contains('on')) return $('#mContact').classList.remove('on');
   if ($('#mTask').classList.contains('on')) return closeTask();
@@ -872,7 +876,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') {
 
 // ------------------------------------------------------------ Fenêtre de détails (lecture / modification sur place)
 function openDetail(r, editing, hl){ det = {r, editing: !!editing || !r, hl: hl || null, showHist: false}; renderDet(); $('#mDet').classList.add('on'); }
-function closeDet(){ det = null; closePop(); $('#mDet').classList.remove('on'); }
+function closeDet(){ closeHist(); det = null; closePop(); $('#mDet').classList.remove('on'); }
 $('#mDet').addEventListener('mousedown', e => { if (e.target.id === 'mDet' && det && !det.editing) closeDet(); });
 
 async function loadHist(r, band, force){
@@ -905,6 +909,11 @@ function histHtml(h, m){
   }).filter(Boolean);
   return items.length ? `<ul class="hist">${items.join('')}</ul>` : '<div class="m">Aucun historique.</div>';
 }
+function openHist(r){
+  $('#hTitle').textContent = (MODS[cur].noSteps ? String(MODS[cur].name(r) || '') : (String(MODS[cur].name(r) || '').toUpperCase() || (MODS[cur].title ? MODS[cur].title(r) : '') || r.waybill || r.pid || MODS[cur].label));
+  $('#histBox').innerHTML = '<div class="m">Chargement…</div>'; $('#mHist').classList.add('on'); loadHist(r, false, true);
+}
+function closeHist(){ $('#mHist').classList.remove('on'); }
 function drawHist(r, m = cur){
   const box = $('#histBox'); if (!box || !det || det.r !== r) return;
   const h = H[r.id];
@@ -978,10 +987,9 @@ function renderDet(){
   el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3><div class="sub">${sub}</div>${bubs}</div>${btns}</div>${stat}${dates}
     <dl class="det">${fields}${meta.filter(m => m[1]).map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>
     <div id="xBlocks">${extraBlocks(r, ed)}</div>
-    ${r && !ed ? `<div class="hbar"><button class="s" id="dHist">${IC.clock}${det.showHist ? "Masquer l'historique" : "Afficher l'historique"}</button></div>${det.showHist ? '<div id="histBox" style="margin-top:6px"></div>' : ''}` : ''}`;
-  if (r && det.showHist && !ed) drawHist(r);
+    ${r && !ed ? `<div class="hbar"><button class="s" id="dHist">${IC.clock}Afficher l'historique</button></div>` : ''}`;
   afterExtra(r, ed);
-  if ($('#dHist')) $('#dHist').onclick = () => { det.showHist = !det.showHist; renderDet(); if (det.showHist) { loadHist(r, false, true); const bx = $('#histBox'); if (bx) bx.scrollIntoView({behavior:'smooth', block:'nearest'}); } };
+  if ($('#dHist')) $('#dHist').onclick = () => openHist(r);
   $('#dX').onclick = () => (ed && r) ? (det.editing = false, renderDet()) : closeDet();
   if ($('#dPen')) $('#dPen').onclick = () => { det.editing = true; renderDet(); };
   if (ed) {
@@ -1042,7 +1050,7 @@ function saveLocal(r, data, extra){
 }
 
 
-// ------------------------------------------------------------ Security Cases / Documents : photos, contact client, fichier
+// ------------------------------------------------------------ SCMS / Documents : photos, contact client, fichier
 const FILES = {}, FLOAD = {};
 const readB64 = f => new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(',')[1] || ''); fr.onerror = () => rej(new Error('Lecture du fichier impossible')); fr.readAsDataURL(f); });
 async function compressImg(file){
@@ -1156,6 +1164,7 @@ function openContact(r){
       () => { r._sync = false; Object.assign(r, old); if (key() === 'SECURITY') drawCards(); if (det && det.r === r) drawX(); });
   };
 }
+$('#hX').innerHTML = IC.close; $('#hX').onclick = closeHist; $('#mHist').addEventListener('mousedown', e => { if (e.target.id === 'mHist') closeHist(); });
 $('#cX').innerHTML = IC.close; $('#phX').innerHTML = IC.close;
 $('#cX').onclick = $('#cNo').onclick = () => $('#mContact').classList.remove('on');
 $('#mPhoto').onclick = () => $('#mPhoto').classList.remove('on');
@@ -1309,12 +1318,12 @@ $('#tAdd').onclick = () => {
 const isAdmin = () => ME.rights.PARAMETRES === 'admin';
 const SECTIONS = [
   {id:'profil', l:'Mon profil', ic:'users'}, {id:'aff', l:'Affichage', ic:'gear'}, {id:'notif', l:'Notifications', ic:'bell'}, {id:'region', l:'Région', ic:'globe'}, {id:'rapports', l:'Rapports automatiques', ic:'chart'},
-  {id:'archi', l:'Archivage et suppression', ic:'archive', adm:1}, {id:'sec', l:'Security Cases', ic:'SECURITY', adm:1}, {id:'dom', l:'Délais DOM', ic:'DOM', adm:1}, {id:'trait', l:'Traitement quotidien', ic:'clock', adm:1},
+  {id:'archi', l:'Archivage et suppression', ic:'archive', adm:1}, {id:'sec', l:'SCMS', ic:'SECURITY', adm:1}, {id:'dom', l:'Délais DOM', ic:'DOM', adm:1}, {id:'trait', l:'Traitement quotidien', ic:'clock', adm:1},
   {id:'histo', l:'Historique', ic:'clock', adm:1}, {id:'users', l:'Utilisateurs', ic:'users', adm:1}];
 const PLAB = {archivage_auto_dom_jours:'DOM — archivage automatique', archivage_auto_awb_jours:'AWB — archivage automatique', archivage_auto_spark_jours:'SPARK — archivage automatique',
   suppression_apres_archive_awb_jours:'AWB — suppression après archivage', suppression_apres_archive_spark_jours:'SPARK — suppression après archivage', suppression_apres_archive_dom_jours:'DOM — suppression après archivage',
   dom_delai_j4_jours:'Délai J4', dom_delai_j10_jours:'Délai J10', dom_jours_ouvres:'Compter en jours ouvrés', heure_traitement_quotidien:'Heure du traitement', historique_retention_mois:"Conservation de l'historique",
-  archivage_auto_security_jours:'Security Cases — archivage automatique', suppression_apres_archive_security_jours:'Security Cases — suppression après archivage',
+  archivage_auto_security_jours:'SCMS — archivage automatique', suppression_apres_archive_security_jours:'SCMS — suppression après archivage',
   security_rappel_contact_jours:'Rappel après contact du client', security_rappel_scms_jours:'Rappel après création du SCMS'};
 const PGROUP = {archi:['archivage_auto_dom_jours','archivage_auto_awb_jours','archivage_auto_spark_jours','suppression_apres_archive_dom_jours','suppression_apres_archive_awb_jours','suppression_apres_archive_spark_jours','archivage_auto_security_jours','suppression_apres_archive_security_jours'],
   sec:['security_rappel_contact_jours','security_rappel_scms_jours'],
@@ -1382,7 +1391,7 @@ async function renderUsers(el){
   const lv = (u, m) => { const cur = u.rights[m] || '', opts = m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<select data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<option value="${v}" ${v === cur ? 'selected' : ''}>${l}</option>`).join('')}</select>`; };
   el.innerHTML = `<h3>Utilisateurs</h3><p class="lead">Accès aux pages et connexions.</p>
-    <table class="utab"><tr><th>Utilisateur</th><th>Dernière connexion</th><th>Actif</th><th>AWB</th><th>SPARK</th><th>DOM</th><th>Security</th><th>Documents</th><th>Paramètres</th><th></th></tr>
+    <table class="utab"><tr><th>Utilisateur</th><th>Dernière connexion</th><th>Actif</th><th>AWB</th><th>SPARK</th><th>DOM</th><th>SCMS</th><th>Documents</th><th>Paramètres</th><th></th></tr>
     ${us.map(u => `<tr><td><b>${esc(u.prenom)} ${esc(u.nom)}</b><div class="m" style="margin:0">${esc(u.email)}</div></td>
       <td>${u.last ? fdate(u.last.date, true) + `<div class="m" style="margin:0">${u.last.appareil}</div>` : '<span class="m">Jamais</span>'}</td>
       <td>${sw('a_' + u.email, u.actif, `data-act="${esc(u.email)}"`)}</td>
