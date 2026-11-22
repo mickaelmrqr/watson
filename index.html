@@ -218,7 +218,7 @@ html[data-theme=light] .bb.wk{color:#127A4D}
 #scan video{width:100%;border-radius:14px;background:#000;aspect-ratio:4/3;object-fit:cover}
 .frame{position:relative}
 .frame:after{content:"";position:absolute;left:12%;right:12%;top:40%;height:20%;border:2px solid var(--orange);border-radius:10px;box-shadow:0 0 0 999px rgba(0,0,0,.35);pointer-events:none}
-.ids{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.ids{display:grid;grid-template-columns:1fr;gap:18px;margin:16px 0;justify-items:center}
 .idc{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
 .idc b{display:block;font:700 15px var(--disp);margin-bottom:10px}
 .qrt{background:#fff;border-radius:10px;padding:8px;display:inline-block;line-height:0}
@@ -360,11 +360,13 @@ button.bb.off{opacity:.65;background:transparent;border-style:dashed}
 .dsep{border:0;border-top:2px solid var(--line);margin:8px 0;flex:none}
 .drawer h4 .s{margin-left:auto;padding:5px 11px;font-size:13px}
 .subh{font:700 12px var(--disp);letter-spacing:.4px;color:var(--mut);margin:14px 0 6px}
-.trow{position:relative;display:block;overflow:hidden;padding:9px 10px 9px 17px}
+.trow{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;overflow:hidden;padding:8px 10px 8px 17px}
 .trow:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--rail,var(--line))}
-.trow .tl1{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.trow .tl1 b{word-break:break-word}
+.trow .tl1 b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word;line-height:1.3;font-size:15px}
+.trow .tr{display:flex;flex-direction:column;align-items:flex-end;gap:1px;min-width:0}.trow .tg{display:flex;align-items:center;gap:5px;min-height:20px}.trow .tw{color:var(--mut);font-size:12.5px;white-space:nowrap}
+.trow .rc{display:inline-grid;place-items:center;color:var(--mut)}.trow .rc svg{width:15px;height:15px}
 .trow .tl2{color:var(--mut);font-size:12.5px;margin-top:1px}
-.trow .tl3{display:flex;align-items:center;gap:6px;margin-top:7px}
+.trow .tl3{grid-column:1/-1;display:flex;align-items:center;gap:6px;margin-top:5px}
 .trow .sp{flex:1}
 .st3{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
 .st3 button{background:transparent;border:0;color:var(--mut);font:600 12px var(--body);padding:5px 9px;transition:background .15s,color .15s}
@@ -406,7 +408,8 @@ html[data-theme=light] .flow .stp .wh b{color:var(--ink)}
 html[data-theme=light] .cb.todo{color:#B45309}html[data-theme=light] .cb.done{color:#127A4D}
 .rowb{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 2px}
 .mtags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.cbox{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:11px 14px;margin:12px 0 4px}
+.cbox{display:block;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:11px 14px;margin:12px 0 4px}
+.cbh{display:flex;align-items:center;gap:12px}
 .cbox .ci{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--raised);flex:none;font-size:18px}
 .cbox.todo .ci{background:rgba(255,150,60,.18);color:#ffa65a}.cbox.done .ci{background:rgba(62,207,142,.18);color:var(--green)}
 .cbox .ct{flex:1;min-width:0}.cbox .ct b{display:block}.cbox .ct small{color:var(--mut);font-size:13.5px;word-break:break-word}
@@ -433,9 +436,9 @@ html[data-theme=light] .cb.todo{color:#B45309}html[data-theme=light] .cb.done{co
 #mPhoto img{max-width:94vw;max-height:88vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
 #mPhoto .ico{position:absolute;top:16px;right:16px;color:#fff}
 #mContact{z-index:60}#mHist{z-index:70}
-.dfls{margin-top:8px;display:flex;flex-direction:column;gap:4px}
+.dfls{margin-top:8px;display:flex;flex-direction:row;flex-wrap:wrap;gap:6px}
 .dfl{display:flex;align-items:center;gap:8px;min-height:30px;padding:2px 4px 2px 10px;border-radius:10px;background:var(--raised);border:1px solid var(--line)}
-.dfl .dn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
+.dfl .dn{min-width:0;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
 .dfl .dn em{font-style:normal;color:var(--mut);font-size:12.5px}
 .dfl .ico{flex:none}
 .card>.bgph{position:absolute!important;top:0;right:0;bottom:0;max-width:70%;z-index:0;pointer-events:none;display:flex;justify-content:flex-end;opacity:.3}
@@ -445,8 +448,10 @@ html[data-theme=light] .card>.bgph{opacity:.3}
 html[data-theme=light] .cb.stop.no{color:#C62828}
 .cbox.no .ci{background:rgba(255,92,92,.16);color:#ff6b6b}.cbox.no .ct b{color:#ff8d8d}
 html[data-theme=light] .cbox.no .ct b{color:#C62828}
-.ctl{display:grid;gap:2px;padding:9px 2px;border-top:1px solid var(--line);font-size:14.5px}.ctl small{color:var(--mut);font-size:13px}
-.ctl:first-of-type{border-top:0}
+.ctls{margin-top:9px;border-top:1px solid var(--line)}
+.ctl{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;padding:6px 2px;border-top:1px solid var(--hair);font-size:14.5px}.ctl:first-child{border-top:0}
+.ctl small{color:var(--mut);font-size:13px}.ctl em{font-style:normal;color:var(--mut);flex-basis:100%;font-size:13.5px}
+.ctl span:before{content:"·";margin-right:8px;color:var(--mut)}
 .ph .st{position:absolute;top:5px;left:5px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;display:grid;place-items:center;opacity:0;transition:opacity .15s}
 .ph:hover .st,.ph .st.on{opacity:1}.ph .st.on{color:#ffc94d}.ph .st.on svg{fill:currentColor}.ph .st svg,.ph .x svg{width:14px;height:14px}
 .frow{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid var(--line)}.frow:first-child{border-top:0}
@@ -454,6 +459,35 @@ html[data-theme=light] .cbox.no .ct b{color:#C62828}
 .frow.sync{opacity:.5}
 .hset{display:inline-flex;gap:14px;flex-wrap:wrap;vertical-align:middle}.hrow td{padding-top:0!important;border-top:0!important}.hset label{display:flex;align-items:center;gap:5px;font-size:13px;cursor:pointer}.hset input{width:16px;height:16px;accent-color:var(--blue);padding:0}
 .xh{display:flex;align-items:baseline;gap:8px;margin:18px 0 2px;font:700 16px var(--disp)}.xh small{color:var(--mut);font:500 13.5px var(--sans,inherit)}
+
+/* Commentaires */
+.cmt{margin:14px 0 4px;border:1px solid var(--line);border-radius:14px;background:var(--bg);padding:2px 14px}
+.cmt summary{cursor:pointer;padding:10px 0;font:700 15px var(--disp);list-style:none;display:flex;align-items:center;gap:8px}
+.cmt summary::-webkit-details-marker{display:none}.cmt summary:before{content:"▸";transition:transform .2s;color:var(--mut)}.cmt[open] summary:before{transform:rotate(90deg)}
+.cmi{display:flex;gap:8px;align-items:flex-end;margin-bottom:8px}.cmi textarea{flex:1;min-width:0;resize:none;padding:7px 10px;border-radius:10px;font-size:15px}
+.cml{max-height:280px;overflow:auto;margin-bottom:8px}
+.cmr{padding:8px 2px;border-top:1px solid var(--hair);position:relative}.cmr:first-child{border-top:0}
+.cmr.sync{opacity:.55;filter:blur(1.5px)}
+.cmh{display:flex;gap:8px;align-items:baseline}.cmh small{color:var(--mut);font-size:12.5px}.cmx{white-space:pre-wrap;word-break:break-word;font-size:15px;margin-top:1px}
+/* Affichage condensé */
+html[data-dense="1"] body{font-size:15px}
+html[data-dense="1"] header{padding:5px 14px}
+html[data-dense="1"] main{padding:8px 14px 30px}
+html[data-dense="1"] .mod{padding:8px 12px;gap:10px;border-radius:12px}
+html[data-dense="1"] .mod .mi{width:34px;height:34px;border-radius:10px;font-size:16px}
+html[data-dense="1"] .mod b{font-size:16px}html[data-dense="1"] .mod small{font-size:12.5px}
+html[data-dense="1"] .bar{margin:6px 0 10px;gap:8px}
+html[data-dense="1"] .grid{gap:8px}
+html[data-dense="1"] .card{padding:8px 12px 8px 18px;border-radius:12px}
+html[data-dense="1"] .m{font-size:14px;margin:1px 0}
+html[data-dense="1"] .act{padding-top:6px}
+html[data-dense="1"] .sheet{padding:14px}
+html[data-dense="1"] .det dt{padding:4px 0;font-size:14px}html[data-dense="1"] .det dd{padding:4px 0;min-height:1.9em}
+html[data-dense="1"] .cbox{margin:8px 0 2px;padding:8px 10px}
+html[data-dense="1"] .cmt{margin:8px 0 2px}html[data-dense="1"] .cmt summary{padding:6px 0}
+html[data-dense="1"] .trow{padding:6px 8px 6px 15px;margin-bottom:5px}
+html[data-dense="1"] .nit{padding:8px 10px}
+html[data-dense="1"] .prow{padding:8px 0}
 </style>
 </head>
 <body>
@@ -526,6 +560,7 @@ const IC = {
   globe: ic('<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"/>'),
   chart: ic('<path d="M3 3v18h18"/><path d="M7 15v-4"/><path d="M12 15V7"/><path d="M17 15v-6"/>'),
   clock: ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+  repeat: ic('<path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>'),
   users: ic('<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/>'),
   lock: ic('<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'),
   pin: ic('<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>'),
@@ -639,6 +674,8 @@ function applyDisplay(){
   try { t = t || localStorage.getItem('wtheme') || 'dark'; z = z || Number(localStorage.getItem('wzoom')) || 1; } catch (e) {}
   document.documentElement.dataset.theme = t === 'light' ? 'light' : 'dark';
   document.documentElement.style.zoom = z === 1 ? '' : z;
+  let dn = P.dense; try { if (dn === undefined) dn = localStorage.getItem('wdense') === '1'; localStorage.setItem('wdense', dn ? '1' : '0'); } catch (e) {}
+  document.documentElement.dataset.dense = dn ? '1' : '';
   $('meta[name=theme-color]').content = t === 'light' ? '#F2F4F8' : '#15181F';
   try { localStorage.setItem('wtheme', t); localStorage.setItem('wzoom', z); } catch (e) {}
 }
@@ -758,7 +795,7 @@ function cardSec(r){
 function cardDoc(r){
   const tmp = r._tmp === true;
   const fl = r.fichiers || [];
-  const files = fl.length ? fl.map(f => `<div class="dfl"><span class="dn" title="${esc(f.nom)}">${esc(f.nom)}<em>${f.taille ? ' · ' + fsize(f.taille) : ''}</em></span>${f.id !== 'tmp' && !f._sync ? `<button class="ico sm" data-a="dl" data-fid="${f.id}" title="Télécharger" aria-label="Télécharger ${esc(f.nom)}">${IC.download}</button>` : '<span class="dd3"><i></i><i></i><i></i></span>'}</div>`).join('') : '<div class="fn">Aucun fichier</div>';
+  const files = fl.length ? fl.map(f => `<div class="dfl"><span class="dn" title="${esc(f.nom)}">${esc(f.nom)}</span>${f.id !== 'tmp' && !f._sync && !String(f.id).startsWith('tmp_') ? `<button class="ico sm" data-a="dl" data-fid="${f.id}" title="Télécharger ${esc(f.nom)}" aria-label="Télécharger ${esc(f.nom)}">${IC.download}</button>` : '<span class="d3s"><i></i><i></i><i></i></span>'}</div>`).join('') : '<div class="fn">Aucun fichier</div>';
   return `<div class="card ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${r.id}"><div class="dcard"><span class="dic">${IC.DOCUMENTS}</span><div class="dm"><div class="name" title="${esc(r.titre)}">${esc(r.titre)}</div></div>
     <span class="bb ${r.visibilite === 'prive' ? '' : 'sh'}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</span></div>
     <div class="dfls">${files}</div>${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
@@ -1100,7 +1137,7 @@ function saveLocal(r, data, extra){
 
 
 // ------------------------------------------------------------ SCMS / Documents : photos, contact client, fichier
-const FILES = {}, FLOAD = {}, CT = {}, CLOAD = {};
+const FILES = {}, FLOAD = {}, CT = {}, CLOAD = {}, CMT = {}, CMLOAD = {};
 const readB64 = f => new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(',')[1] || ''); fr.onerror = () => rej(new Error('Lecture du fichier impossible')); fr.readAsDataURL(f); });
 function scaled(src, w, h, max, q){
   const sc = Math.min(1, max / Math.max(w, h)), c = document.createElement('canvas');
@@ -1125,12 +1162,12 @@ function photosBlock(r){
 }
 function contactBox(r){
   const w = canWrite() && !showArch;
-  if (r.contacter_client !== true) return `<div class="cbox no"><span class="ci">${IC.stop}</span><div class="ct"><b>Ne surtout pas contacter le client !</b><small>Aucun contact ne doit être pris avec le client.</small></div></div>`;
+  if (r.contacter_client !== true) return `<div class="cbox no"><div class="cbh"><span class="ci">${IC.stop}</span><div class="ct"><b>Ne surtout pas contacter le client !</b><small>Aucun contact ne doit être pris avec le client.</small></div></div></div>`;
   let l = CT[r.id]; if (l && !l.length && r.contact_fait_le) l = [{par:r.contact_fait_par, le:r.contact_fait_le, moyen:r.contact_moyen, commentaire:r.contact_commentaire}];
   const done = l ? l.length > 0 : !!r.contact_fait_le, n = l ? l.length : (r.contact_fait_le ? 1 : 0);
   const btn = w ? `<button class="s go" id="bContact">${IC.phone}${done ? 'Nouveau contact' : "J'ai contacté le client"}</button>` : '';
-  const list = l && l.length ? `<div style="margin:2px 2px 8px">${l.map(c => `<div class="ctl"><span><b>${esc(c.moyen || '')}</b> · ${esc(who(c.par))}</span><small>${fdate(c.le, true)}</small>${c.commentaire ? `<span>${esc(c.commentaire)}</span>` : ''}</div>`).join('')}</div>` : '';
-  return `<div class="cbox ${done ? 'done' : 'todo'}"><span class="ci">${IC.phone}</span><div class="ct"><b>${done ? 'Client contacté' + (n > 1 ? ' · ' + n + ' fois' : '') : 'Client à contacter'}</b><small>${done ? 'Dernier contact : ' + fdate(l ? l[0].le : r.contact_fait_le, true) : 'Aucun contact enregistré.'}</small></div>${btn}</div>${list}`;
+  const list = l && l.length ? `<div class="ctls">${l.map(c => `<div class="ctl"><b>${esc(c.moyen || '')}</b><span>${esc(who(c.par))}</span><small>${fdate(c.le, true)}</small>${c.commentaire ? `<em>${esc(c.commentaire)}</em>` : ''}</div>`).join('')}</div>` : '';
+  return `<div class="cbox ${done ? 'done' : 'todo'}"><div class="cbh"><span class="ci">${IC.phone}</span><div class="ct"><b>${done ? 'Client contacté' + (n > 1 ? ' · ' + n + ' fois' : '') : 'Client à contacter'}</b><small>${done ? 'Dernier contact : ' + fdate(l ? l[0].le : r.contact_fait_le, true) : 'Aucun contact enregistré.'}</small></div>${btn}</div>${list}</div>`;
 }
 function fileBox(r){
   const staged = (det.staged && det.staged.files) || [], w = !r || (canWrite() && !showArch);
@@ -1141,14 +1178,33 @@ function fileBox(r){
     : staged.map((f, i) => `<div class="frow"><span class="fic" style="width:38px;height:38px;font-size:17px">${IC.DOCUMENTS}</span><div class="fi">${esc(f.name)}<small>${fsize(f.size)}</small></div><button class="ico sm warn" data-sdel="${i}" title="Retirer" aria-label="Retirer">${IC.close}</button></div>`).join('');
   return `<div class="xh">Fichiers${rows ? ` <small>${r ? (r.fichiers || []).length : staged.length}</small>` : ''}</div><div class="fbox" style="display:block;padding:4px 14px 12px">${rows || '<div class="m" style="margin:10px 0 0">Aucun fichier (8 Mo maximum par fichier).</div>'}${add}</div>`;
 }
+function cmtBlock(r){
+  const l = CMT[r.id], w = canWrite() && !showArch;
+  return `<details class="cmt" id="cmtD" ${det && det.cmtOpen ? 'open' : ''}><summary>Commentaires${l ? ' · ' + l.length : ''}</summary>
+    ${w ? `<div class="cmi"><textarea id="cmIn" rows="2" maxlength="1000" placeholder="Ajouter un commentaire…">${esc((det && det.cmtDraft) || '')}</textarea><button class="s go" id="cmAdd">Ajouter</button></div>` : ''}
+    <div class="cml">${l === undefined ? '<div class="m">Chargement…</div>' : l.length ? l.map(c => `<div class="cmr ${c._sync ? 'sync' : ''}"><div class="cmh"><b>${esc(who(c.par))}</b><small>${fdate(c.le, true)}</small></div><div class="cmx">${esc(c.texte)}</div></div>`).join('') : '<div class="m">Aucun commentaire.</div>'}</div></details>`;
+}
+function addComment(r){
+  const ta = $('#cmIn'); const texte = ta ? ta.value.trim() : ''; if (!texte) return;
+  const m = cur; det.cmtDraft = '';
+  const tmp = {id:'tmp_' + Date.now(), par:ME.email, le:new Date().toISOString(), texte, _sync:true};
+  (CMT[r.id] = CMT[r.id] || []).unshift(tmp); drawX();
+  enqueue(async () => { const id = await api('comment_add', {module:m, ref_id:r.id, texte}); tmp.id = id; tmp._sync = false; if (det && det.r === r) drawX(); },
+    () => { CMT[r.id] = (CMT[r.id] || []).filter(x => x !== tmp); if (det && det.r === r) drawX(); });
+}
 function extraBlocks(r, ed){
-  if (cur === 'SECURITY') return (r && !ed ? contactBox(r) : '') + photosBlock(r) + (r && !ed ? `<div class="dph">${IC.DOCUMENTS}<div>Document « Découverte de contenu interdit »<small style="display:block">Bientôt disponible.</small></div></div>` : '');
+  const cm = r && !ed && cur !== 'DOCUMENTS' && !String(r.id).startsWith('tmp_') ? cmtBlock(r) : '';
+  if (cur === 'SECURITY') return (r && !ed ? contactBox(r) : '') + photosBlock(r) + (r && !ed ? `<div class="dph">${IC.DOCUMENTS}<div>Document « Découverte de contenu interdit »<small style="display:block">Bientôt disponible.</small></div></div>` : '') + cm;
   if (cur === 'DOCUMENTS') return fileBox(r);
-  return '';
+  return cm;
 }
 function drawX(){ if (!det || !$('#xBlocks')) return; $('#xBlocks').innerHTML = extraBlocks(det.r, det.editing); bindX(); }
 function afterExtra(r, ed){
   bindX();
+  if (r && !ed && cur !== 'DOCUMENTS' && !String(r.id).startsWith('tmp_') && CMT[r.id] === undefined && !CMLOAD[r.id]) {
+    const id = r.id, m = cur; CMLOAD[id] = true;
+    api('comments_list', {module:m, ref_id:id}).then(l => { CMT[id] = l; }).catch(() => { CMT[id] = []; }).finally(() => { delete CMLOAD[id]; if (det && det.r && det.r.id === id) drawX(); });
+  }
   if (cur === 'SECURITY' && r && !String(r.id).startsWith('tmp_')) {
     const id = r.id;
     if (FILES[id] === undefined && !FLOAD[id]) {
@@ -1163,7 +1219,10 @@ function afterExtra(r, ed){
 }
 function bindX(){
   const b = $('#xBlocks'); if (!b) return; const r = det && det.r;
+  const cd = $('#cmtD'); if (cd) cd.ontoggle = () => { if (det) det.cmtOpen = cd.open; };
+  const ci = $('#cmIn'); if (ci) ci.oninput = () => { if (det) det.cmtDraft = ci.value; };
   b.onclick = e => {
+    if (e.target.closest('#cmAdd')) return addComment(r);
     const d = e.target.closest('[data-pdel]'); if (d) { e.stopPropagation(); return delPhoto(d.dataset.pdel); }
     const pm = e.target.closest('[data-pmain]'); if (pm) { e.stopPropagation(); return setMain(pm.dataset.pmain); }
     const im = e.target.closest('.ph:not(.add) img'); if (im) { $('#phImg').src = im.src; return $('#mPhoto').classList.add('on'); }
@@ -1341,13 +1400,14 @@ function ntItem(n){
 const ST_LAB = {a_faire:'À faire', en_cours:'En cours', termine:'Terminé'};
 function todoRow(t){
   const today = todayIso(), st = t.statut || 'a_faire', late = !t.date_prog || t.date_prog <= today;
+  const tpl = t.recurrence === 'jours_ouvres' && !t.modele_id, recur = tpl || !!t.modele_id;
   const rail = st === 'termine' ? 'var(--green)' : st === 'en_cours' ? 'var(--blue)' : late ? 'var(--red)' : '#6b7488';
-  const when = t.rappel_le ? 'Rappel ' + fdate(t.rappel_le, true) : t.date_prog ? (t.date_prog < today && st !== 'termine' ? 'En retard · ' : '') + 'Prévu le ' + fdate(t.date_prog + 'T12:00:00') : '';
+  const when = tpl ? 'Chaque jour travaillé' + (t.heure ? ' · ' + t.heure : '') : t.rappel_le ? 'Rappel ' + fdate(t.rappel_le, true) : t.date_prog ? (t.date_prog < today && st !== 'termine' ? 'En retard · ' : '') + fdate(t.date_prog + 'T12:00:00') : '';
   const tmp = t._tmp === true;
   return `<div class="trow nit ${st === 'termine' ? 'done' : ''} ${tmp || t._sync ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${t.id}" style="--rail:${rail};cursor:default">
-    <div class="tl1"><b>${esc(t.titre)}</b>${t.auto === 'oui' ? '<span class="tag au">Auto</span>' : ''}${remIds.has(t.id) ? '<span class="tag au">Rappel</span>' : ''}</div>
-    ${when ? `<div class="tl2">${esc(when)}</div>` : ''}
-    <div class="tl3">${t.recurrence === 'jours_ouvres' && !t.modele_id ? `<span class="tl2" style="margin:0">Chaque jour travaillé${t.heure ? ' · ' + esc(t.heure) : ''}</span>` : `<div class="st3">${['a_faire', 'en_cours', 'termine'].map(k => `<button data-s="${k}" class="${st === k ? 'on' : ''}">${ST_LAB[k]}</button>`).join('')}</div>`}
+    <div class="tl1"><b title="${esc(t.titre)}">${esc(t.titre)}</b></div>
+    <div class="tr"><div class="tg">${recur ? `<span class="rc" title="Récurrente">${IC.repeat}</span>` : ''}${t.auto === 'oui' ? '<span class="tag au">Auto</span>' : ''}${remIds.has(t.id) ? '<span class="tag au">Rappel</span>' : ''}</div>${when ? `<div class="tw">${esc(when)}</div>` : ''}</div>
+    <div class="tl3">${tpl ? '' : `<div class="st3">${['a_faire', 'en_cours', 'termine'].map(k => `<button data-s="${k}" class="${st === k ? 'on' : ''}">${ST_LAB[k]}</button>`).join('')}</div>`}
       <span class="sp"></span>${t.ref_module && t.ref_id ? `<button class="ico sm" data-a="open" title="Ouvrir le dossier" aria-label="Ouvrir le dossier">${IC.open}</button>` : ''}<button class="ico sm" data-a="edit" title="Modifier" aria-label="Modifier">${IC.pencil}</button><button class="ico sm" data-a="del" title="Supprimer" aria-label="Supprimer">${IC.trash}</button></div>
     ${tmp || t._sync ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
@@ -1361,9 +1421,9 @@ function renderDrawer(){
     <div class="dpart"><h4>ÉVÈNEMENTS <span>${ev.length}</span></h4>${ev.map(ntItem).join('') || '<div class="m">Rien pour le moment.</div>'}</div>
     <hr class="dsep">
     <div class="dpart"><h4>TODO <span>${open}</span><button class="s" id="tNew">${IC.plus}Nouvelle tâche</button></h4>
-      ${!TD ? '<div class="m">Chargement…</div>' : (T.items.map(todoRow).join('') || '<div class="m">Rien à faire aujourd\'hui.</div>')}
+      ${!TD ? '<div class="m">Chargement…</div>' : (T.items.concat(T.templates).map(todoRow).join('') || '<div class="m">Rien à faire aujourd\'hui.</div>')}
       ${T.upcoming.length ? `<div class="subh">À VENIR · ${T.upcoming.length}</div>${T.upcoming.map(todoRow).join('')}` : ''}
-      ${T.templates.length ? `<div class="subh">CHAQUE JOUR TRAVAILLÉ · ${T.templates.length}</div>${T.templates.map(todoRow).join('')}` : ''}</div>`;
+</div>`;
   [...el.querySelectorAll('.dpart')].forEach((x, i) => x.scrollTop = sc[i] || 0);
   $('#dwX').onclick = closeDrawer; $('#tNew').onclick = openTask;
   if ($('#nAll')) $('#nAll').onclick = () => { NOT.items.forEach(n => n.lu = 'oui'); NOT.unread = 0; drawBadges(); showToasts(); renderDrawer(); enqueue(() => api('notif_set', {all:true})); };
@@ -1470,7 +1530,9 @@ async function renderSec(){
     const th = P.theme || document.documentElement.dataset.theme || 'dark', zi = Math.max(0, ZOOMS.indexOf(P.zoom || Number(localStorage.getItem('wzoom')) || 1));
     el.innerHTML = `<h3>Affichage</h3><p class="lead">Apparence de l'application.</p>
       <div class="prow"><div><b>Mode</b><div class="m">Nuit (fond sombre) ou jour (fond clair).</div></div><div class="seg2" id="aMode"><button data-v="dark" class="${th === 'dark' ? 'on' : ''}">Nuit</button><button data-v="light" class="${th === 'light' ? 'on' : ''}">Jour</button></div></div>
-      <div class="prow"><div><b>Taille du texte</b><div class="m">Agrandit ou réduit tout l'affichage.</div></div><div class="seg2"><button id="zMin" aria-label="Réduire">A−</button><span id="zVal">${Math.round(ZOOMS[zi] * 100)} %</span><button id="zPlus" aria-label="Agrandir">A+</button></div></div>`;
+      <div class="prow"><div><b>Taille du texte</b><div class="m">Agrandit ou réduit tout l'affichage.</div></div><div class="seg2"><button id="zMin" aria-label="Réduire">A−</button><span id="zVal">${Math.round(ZOOMS[zi] * 100)} %</span><button id="zPlus" aria-label="Agrandir">A+</button></div></div>
+      <div class="prow"><div><b>Affichage condensé</b><div class="m">Réduit les marges et les espaces vides pour voir plus de choses à l'écran.</div></div><div>${sw('aDense', document.documentElement.dataset.dense === '1')}</div></div>`;
+    $('#aDense').onchange = e => setDisplay({dense: e.target.checked});
     $('#aMode').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#aMode').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); setDisplay({theme: b.dataset.v}); };
     let z = zi; const bump = d => { z = Math.min(ZOOMS.length - 1, Math.max(0, z + d)); $('#zVal').textContent = Math.round(ZOOMS[z] * 100) + ' %'; setDisplay({zoom: ZOOMS[z]}); };
     $('#zMin').onclick = () => bump(-1); $('#zPlus').onclick = () => bump(1);
