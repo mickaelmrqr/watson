@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFCC00">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>Watson</title>
+<style>
+:root{--y:#FFCC00;--r:#D40511;--ink:#1d1d1f;--mut:#6b6b70;--bg:#f4f4f6;--card:#fff;--line:#e3e3e8}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+header{background:var(--y);display:flex;align-items:center;gap:12px;padding:10px 14px;position:sticky;top:0;z-index:5}
+header h1{font-size:20px;margin:0;color:var(--r);flex:1}
+header button{background:transparent;border:0;font-size:14px;font-weight:600;color:var(--ink)}
+nav{display:flex;gap:6px;padding:8px 10px;background:#fff;border-bottom:1px solid var(--line);overflow-x:auto}
+nav button{border:1px solid var(--line);background:#fff;border-radius:18px;padding:6px 14px;font-weight:600;white-space:nowrap}
+nav button.on{background:var(--r);color:#fff;border-color:var(--r)}
+main{padding:12px;max-width:1200px;margin:0 auto}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+input,select,textarea{font:inherit;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%}
+.bar input,.bar select{width:auto;flex:1;min-width:130px}
+button.p{background:var(--r);color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:700}
+button.s{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-weight:600}
+.grid{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:760px){.grid{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;border-left:5px solid var(--line)}
+.card.urg{border-left-color:var(--r)}
+.card .t{font-weight:700;font-size:16px;word-break:break-all}
+.card .m{color:var(--mut);font-size:13px;margin:2px 0}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:10px;padding:2px 8px;background:#eee;margin-right:4px}
+.tag.e{background:#fff3c4}.tag.pr{background:#e8e8ff}
+.act{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center;z-index:20}
+.modal.on{display:flex}
+.sheet{background:#fff;width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:16px 16px 0 0;padding:16px}
+@media(min-width:760px){.modal{align-items:center}.sheet{border-radius:16px}}
+label{display:block;font-weight:600;margin:10px 0 4px}
+.row{display:flex;gap:6px}.row>button{white-space:nowrap}
+.chk{display:flex;align-items:center;gap:8px;font-weight:600;margin:10px 0}.chk input{width:auto}
+#login{text-align:center;padding:60px 20px}
+#scan video{width:100%;border-radius:12px;background:#000}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 16px;border-radius:20px;z-index:50;display:none}
+table{width:100%;border-collapse:collapse;background:#fff}td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<header><h1>Watson</h1><span id="who"></span><button id="bQR" class="hide">Mon QR</button><button id="bOut" class="hide">Quitter</button></header>
+<div id="login"><h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block"></div><p id="lerr" style="color:var(--r)"></p></div>
+<div id="app" class="hide">
+  <nav id="nav"></nav>
+  <main id="main"></main>
+</div>
+<div class="modal" id="mForm"><div class="sheet" id="sForm"></div></div>
+<div class="modal" id="mScan"><div class="sheet" id="scan"><video id="vid" playsinline muted></video><p id="scanMsg" class="m">Vise le code-barres…</p><button class="s" id="scanX">Fermer</button></div></div>
+<div class="modal" id="mQR"><div class="sheet" style="text-align:center"><h3>Mon QR code</h3><div id="qr" style="display:inline-block"></div><p class="m" id="qrTxt" style="word-break:break-all"></p><button class="s" id="qrCopy">Copier</button> <button class="s" id="qrX">Fermer</button></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://unpkg.com/@zxing/library@0.21.3/umd/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+// ------------------------------------------------------------ Définition des modules
+const MODS = {
+  AWB: { label: 'AWB', title: r => r.waybill, fields: [
+    {k:'waybill',l:'Waybill',t:'scan',req:1},
+    {k:'categorie_id',l:'Catégorie',t:'cat'},
+    {k:'remarque',l:'Remarque',t:'area'},
+    {k:'nom_client',l:'Nom du client',t:'text'},
+    {k:'location',l:'Location (étagère)',t:'scan'},
+    {k:'urgent',l:'Urgent',t:'bool'},
+    {k:'visibilite',l:'Visibilité',t:'vis'},
+    {k:'commentaire',l:'Commentaire',t:'area'}],
+    show:['categorie_id','remarque','nom_client','location','commentaire'] },
+  SPARK: { label: 'SPARK', title: r => r.waybill || r.pid, fields: [
+    {k:'waybill',l:'Waybill',t:'scan'},
+    {k:'pid',l:'PID',t:'scan'},
+    {k:'problemes',l:'Problèmes',t:'multi'},
+    {k:'remarque',l:'Remarque',t:'area'},
+    {k:'dom',l:'DOM',t:'bool'},
+    {k:'wrong_ok',l:'Wrong OK',t:'bool'},
+    {k:'visibilite',l:'Visibilité',t:'vis'}],
+    show:['pid','problemes','remarque'] },
+  DOM: { label: 'DOM', title: r => r.waybill, fields: [
+    {k:'waybill',l:'Waybill',t:'scan',req:1},
+    {k:'pid',l:'PID',t:'scan'},
+    {k:'nom_dest',l:'Nom du destinataire',t:'text'},
+    {k:'remarque',l:'Remarque',t:'area'},
+    {k:'urgent',l:'Urgent',t:'bool'},
+    {k:'ctc_details',l:'Contact (détails)',t:'area'},
+    {k:'ctc_commercial',l:'Contact commercial',t:'area'},
+    {k:'visibilite',l:'Visibilité',t:'vis'},
+    {k:'commentaire',l:'Commentaire',t:'area'}],
+    show:['nom_dest','remarque','j4','j10','commentaire'] }
+};
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let token = sessionStorage.getItem('wtk'), ME = null, cur = null, rows = [], showArch = false;
+
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2600)}
+function fdate(v,time){if(!v)return '';const d=new Date(v);return d.toLocaleDateString('fr-FR')+(time?' '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}):'')}
+
+// ------------------------------------------------------------ API
+async function api(action, p = {}) {
+  const r = await fetch(WATSON.API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify({token, action, ...p})});
+  const j = await r.json();
+  if (!j.ok) { if (j.error === 'AUTH') { logout(); throw new Error('Session expirée'); } throw new Error(j.error); }
+  return j.data;
+}
+
+// ------------------------------------------------------------ Connexion Google
+window.onload = () => {
+  const wait = setInterval(() => { if (window.google && google.accounts) { clearInterval(wait); initGoogle(); } }, 100);
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+};
+function initGoogle(){
+  google.accounts.id.initialize({client_id: WATSON.CLIENT_ID, callback: r => { token = r.credential; sessionStorage.setItem('wtk', token); start(); }, auto_select: true});
+  if (token) start(); else google.accounts.id.renderButton($('#gbtn'), {theme:'filled_blue', size:'large', text:'signin_with', locale:'fr'});
+}
+function logout(){ sessionStorage.removeItem('wtk'); token=null; location.reload(); }
+$('#bOut').onclick = logout;
+
+async function start(){
+  try {
+    ME = await api('me');
+    $('#login').classList.add('hide'); $('#app').classList.remove('hide');
+    $('#bOut').classList.remove('hide'); $('#bQR').classList.remove('hide');
+    $('#who').textContent = ME.prenom;
+    const mods = Object.keys(MODS).filter(m => ME.rights[m]);
+    let html = mods.map(m => `<button data-m="${m}">${MODS[m].label}</button>`).join('');
+    if (ME.role === 'admin') html += '<button data-m="_admin">Paramètres</button>';
+    $('#nav').innerHTML = html;
+    $('#nav').onclick = e => { const m = e.target.dataset.m; if (m) openMod(m); };
+    openMod(mods[0] || '_admin');
+  } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; }
+}
+
+// ------------------------------------------------------------ Liste d'un module
+async function openMod(m){
+  cur = m;
+  document.querySelectorAll('#nav button').forEach(b => b.classList.toggle('on', b.dataset.m === m));
+  if (m === '_admin') return renderAdmin();
+  $('#main').innerHTML = '<p>Chargement…</p>';
+  try { rows = await api('list', {module: m, archives: showArch}); } catch (e) { return toast(e.message); }
+  renderList();
+}
+function stepsOf(m){ return ME.etapes.filter(e => e.module === m).sort((a,b)=>a.ordre-b.ordre); }
+function renderList(){
+  const M = MODS[cur], steps = stepsOf(cur);
+  const canW = ['ecriture','admin'].includes(ME.rights[cur]);
+  $('#main').innerHTML = `<div class="bar">
+    <input id="q" placeholder="Rechercher…">
+    <select id="fe"><option value="">Toutes étapes</option>${steps.map(s=>`<option value="${s.code}">${esc(s.libelle_etat)}</option>`).join('')}</select>
+    <button class="s" id="bArch">${showArch?'Voir actifs':'Voir archives'}</button>
+    ${canW?'<button class="p" id="bNew">+ Nouveau</button>':''}</div><div class="grid" id="list"></div>`;
+  const draw = () => {
+    const q = $('#q').value.toLowerCase(), fe = $('#fe').value;
+    const out = rows.filter(r => (!fe || r.etape === fe) && (!q || JSON.stringify(r).toLowerCase().includes(q)))
+      .sort((a,b)=> (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
+    $('#list').innerHTML = out.map(r => card(r, steps, canW)).join('') || '<p class="m">Aucun enregistrement.</p>';
+  };
+  $('#q').oninput = draw; $('#fe').onchange = draw; draw();
+  $('#bArch').onclick = () => { showArch = !showArch; openMod(cur); };
+  if (canW) $('#bNew').onclick = () => openForm(null);
+  $('#list').onclick = onListClick;
+}
+function card(r, steps, canW){
+  const M = MODS[cur], st = steps.find(s => s.code === r.etape);
+  const cat = cur==='AWB' ? ME.categories_awb.find(c => c.id === r.categorie_id) : null;
+  const lines = M.show.map(k => {
+    let v = r[k]; if (k==='categorie_id') v = cat ? cat.libelle : ''; if (k==='j4'||k==='j10') v = v ? k.toUpperCase()+' : '+fdate(v) : '';
+    return v ? `<div class="m">${esc(v)}</div>` : '';
+  }).join('');
+  const btns = canW && !showArch ? steps.filter(s => s.code !== 'A_FAIRE' && s.code !== r.etape).map(s => `<button class="s" data-a="step" data-id="${r.id}" data-e="${s.code}">${esc(s.libelle_bouton)}</button>`).join('') +
+    `<button class="s" data-a="edit" data-id="${r.id}">Modifier</button><button class="s" data-a="arch" data-id="${r.id}">Archiver</button>` :
+    (canW ? `<button class="s" data-a="unarch" data-id="${r.id}">Désarchiver</button>` : '');
+  return `<div class="card ${r.urgent===true?'urg':''}"><div class="t">${esc(M.title(r))}</div>
+    <div><span class="tag e">${esc(st ? st.libelle_etat : r.etape)}</span>${r.visibilite==='prive'?'<span class="tag pr">Privé</span>':''}${r.urgent===true?'<span class="tag" style="background:#fcd">Urgent</span>':''}</div>
+    ${lines}<div class="m">${esc(r.cree_par)} · ${fdate(r.cree_le,true)}</div><div class="act">${btns}</div></div>`;
+}
+async function onListClick(e){
+  const b = e.target.closest('button'); if (!b) return;
+  const id = b.dataset.id, a = b.dataset.a;
+  try {
+    if (a === 'edit') return openForm(rows.find(r => r.id === id));
+    if (a === 'step') await api('step', {module:cur, id, etape:b.dataset.e});
+    if (a === 'arch') { if (!confirm('Archiver cet élément ?')) return; await api('archive', {module:cur, id}); }
+    if (a === 'unarch') await api('unarchive', {module:cur, id});
+    toast('OK'); openMod(cur);
+  } catch (err) { toast(err.message); }
+}
+
+// ------------------------------------------------------------ Formulaire
+function openForm(r){
+  const M = MODS[cur], v = r || {visibilite:'agence'};
+  const f = M.fields.map(x => {
+    const val = v[x.k] ?? '';
+    const id = 'f_' + x.k;
+    if (x.t === 'bool') return `<label class="chk"><input type="checkbox" id="${id}" ${val===true?'checked':''}> ${x.l}</label>`;
+    if (x.t === 'vis') return `<label>${x.l}</label><select id="${id}"><option value="agence" ${val==='agence'?'selected':''}>Partagé dans l'agence</option><option value="prive" ${val==='prive'?'selected':''}>Privé (moi seul)</option></select>`;
+    if (x.t === 'cat') return `<label>${x.l}</label><select id="${id}"><option value=""></option>${ME.categories_awb.map(c=>`<option value="${c.id}" ${val===c.id?'selected':''}>${esc(c.libelle)}${c.visibilite==='prive'?' (perso)':''}</option>`).join('')}</select>`;
+    if (x.t === 'multi') { const sel = String(val).split(';').map(s=>s.trim()).filter(Boolean);
+      return `<label>${x.l}</label><div id="${id}">${ME.problemes_spark.map(p=>`<label class="chk"><input type="checkbox" value="${esc(p)}" ${sel.includes(p)?'checked':''}> ${esc(p)}</label>`).join('')}</div>`; }
+    if (x.t === 'area') return `<label>${x.l}</label><textarea id="${id}" rows="2">${esc(val)}</textarea>`;
+    if (x.t === 'scan') return `<label>${x.l}</label><div class="row"><input id="${id}" value="${esc(val)}" autocomplete="off"><button type="button" class="s" data-scan="${id}">Scanner</button></div>`;
+    return `<label>${x.l}</label><input id="${id}" value="${esc(val)}">`;
+  }).join('');
+  $('#sForm').innerHTML = `<h3>${r?'Modifier':'Nouveau'} ${M.label}</h3>${f}<div class="row" style="margin-top:14px"><button class="p" id="fOk" style="flex:1">Enregistrer</button><button class="s" id="fX">Annuler</button></div>`;
+  $('#mForm').classList.add('on');
+  $('#fX').onclick = () => $('#mForm').classList.remove('on');
+  $('#sForm').onclick = e => { const s = e.target.dataset.scan; if (s) scanInto(s); };
+  $('#fOk').onclick = async () => {
+    const data = {};
+    for (const x of M.fields) {
+      const el = $('#f_' + x.k);
+      if (x.t === 'bool') data[x.k] = el.checked;
+      else if (x.t === 'multi') data[x.k] = [...el.querySelectorAll('input:checked')].map(i => i.value).join(' ; ');
+      else data[x.k] = el.value.trim();
+      if (x.req && !data[x.k]) return toast(x.l + ' obligatoire');
+    }
+    try { await api('save', {module:cur, id:r?r.id:null, data}); $('#mForm').classList.remove('on'); toast('Enregistré'); openMod(cur); }
+    catch (e) { toast(e.message); }
+  };
+}
+
+// ------------------------------------------------------------ Scan code-barres (caméra)
+let reader = null;
+async function scanInto(inputId){
+  $('#mScan').classList.add('on');
+  try {
+    reader = new ZXing.BrowserMultiFormatReader();
+    await reader.decodeFromConstraints({video:{facingMode:'environment'}}, 'vid', (res) => {
+      if (res) { $('#' + inputId).value = res.getText(); stopScan(); toast('Scanné : ' + res.getText()); }
+    });
+  } catch (e) { $('#scanMsg').textContent = 'Caméra indisponible : ' + e.message; }
+}
+function stopScan(){ if (reader) { reader.reset(); reader = null; } $('#mScan').classList.remove('on'); }
+$('#scanX').onclick = stopScan;
+
+// ------------------------------------------------------------ Mon QR
+$('#bQR').onclick = async () => {
+  try {
+    const pw = await api('my_qr');
+    if (!pw) return toast('Aucun mot de passe enregistré');
+    $('#qr').innerHTML = ''; new QRCode($('#qr'), {text: pw, width: 220, height: 220});
+    $('#qrTxt').textContent = pw; $('#mQR').classList.add('on');
+    $('#qrCopy').onclick = () => navigator.clipboard.writeText(pw).then(() => toast('Copié'));
+  } catch (e) { toast(e.message); }
+};
+$('#qrX').onclick = () => { $('#mQR').classList.remove('on'); $('#qr').innerHTML = ''; $('#qrTxt').textContent = ''; };
+
+// ------------------------------------------------------------ Paramètres (admin)
+async function renderAdmin(){
+  const ps = await api('params_get');
+  $('#main').innerHTML = `<h3>Paramètres</h3><table>${ps.map(p => `<tr><td><b>${esc(p.cle)}</b><div class="m">${esc(p.description)}</div></td>
+    <td style="width:170px">${typeof p.valeur==='boolean'?`<input type="checkbox" data-k="${p.cle}" ${p.valeur?'checked':''}>`:`<input data-k="${p.cle}" value="${esc(p.valeur)}">`} ${esc(p.unite)}</td></tr>`).join('')}</table>
+    <p class="m">Chaque modification est enregistrée immédiatement.</p>`;
+  $('#main').onchange = async e => {
+    const el = e.target; if (!el.dataset.k) return;
+    try { await api('params_set', {cle: el.dataset.k, valeur: el.type==='checkbox' ? el.checked : el.value}); toast('Enregistré'); }
+    catch (err) { toast(err.message); renderAdmin(); }
+  };
+}
+</script>
+</body>
+</html>
