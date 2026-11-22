@@ -191,8 +191,8 @@ label{display:block;font-weight:500;color:var(--mut);margin:14px 0 6px;font-size
 .bb{display:inline-flex;align-items:center;gap:6px;font:700 var(--fs) var(--disp);border-radius:999px;padding:4px 12px 4px 9px;background:var(--raised);color:var(--ink);border:1px solid var(--line)}
 .bb svg{width:1.05em;height:1.05em}
 .bb.u{background:rgba(255,70,70,calc(.1 + var(--pw) * .14));border-color:rgba(255,84,84,.55);color:#ff9d9d}
-.bb.wk{color:#86e5b8;border-color:rgba(62,207,142,.45);background:rgba(62,207,142,.13)}
-html[data-theme=light] .bb.wk{color:#127A4D}
+.bb.wk{color:#ff9d9d;border-color:rgba(255,84,84,.55);background:rgba(255,70,70,.14)}
+html[data-theme=light] .bb.wk{color:#C22B31}
 .bb.sh{color:#a9cbff;border-color:rgba(58,140,255,.45);background:rgba(58,140,255,.14)}
 .dates{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 6px}
 .dt3{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:10px 14px 11px;overflow:hidden}
@@ -605,11 +605,27 @@ html[data-theme=light] .dt3.warn b{color:#B45309}
 #tip.below:after{bottom:auto;top:-5px;border-width:1px 0 0 1px}
 html[data-theme=light] #tip{background:rgba(255,255,255,.98);color:#1b2233;border-color:rgba(20,30,50,.16);box-shadow:0 10px 28px rgba(20,30,50,.18)}
 @media(prefers-reduced-motion:reduce){#tip{transition:none}}
+
+/* v4.22 */
+.ref{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:currentColor}
+.ref:hover{text-decoration-color:var(--orange)}
+.rc{display:inline-flex;align-items:center;gap:2px;max-width:100%}
+.cp.sm{width:24px;height:24px;border-radius:7px}.cp.sm svg{width:15px;height:15px}
+.cgs{display:flex;flex-direction:column;gap:18px}
+.cg{border:1px solid var(--bd2);border-radius:18px;padding:10px 14px 14px;background:rgba(127,140,170,.06)}
+.cgt{font:700 var(--fs-ct) var(--disp);color:var(--hi);margin:0 4px 10px;display:flex;align-items:center;gap:8px}
+.cgt small{font:600 var(--fs) var(--body);color:var(--mut)}
+.card.ec-ot{background:color-mix(in srgb,var(--panel) 90%,#8a8f9a)}
+.card.ec-ot .name,.card.ec-ot .m,.card.ec-ot .ref,.card.ec-ot .refs small,.card.ec-ot .bub,.card.ec-ot .cp{color:var(--mut)!important}
+.card.ec-ot .tag{background:var(--raised);color:var(--mut)}
+.card.ec-me{background:color-mix(in srgb,var(--panel) 90%,var(--blue));border-color:rgba(58,140,255,.4)}
+.cbox.no{border:2px solid #ff4d4d;background:linear-gradient(135deg,rgba(255,70,70,.13),var(--bg) 70%);box-shadow:0 0 0 4px rgba(255,77,77,.15),0 0 26px rgba(255,60,60,.4)}
+html[data-theme=light] .cbox.no{background:linear-gradient(135deg,rgba(255,70,70,.10),#fff 70%);box-shadow:0 0 0 4px rgba(255,77,77,.14),0 0 22px rgba(255,60,60,.28)}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.21</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.22</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -619,7 +635,7 @@ html[data-theme=light] #tip{background:rgba(255,255,255,.98);color:#1b2233;borde
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.21</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.22</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -901,6 +917,7 @@ function homeTile(m){
     const shown = items.slice(0, 6);
     lists.push(`<div class="hls ${cls}"><div class="hlt">${title}<span>· ${items.length}</span></div>${shown.map(x => `<button class="hli" data-m="${m}" data-id="${esc(x.id)}"><span class="hn">${esc(dossName(m, x))}</span><span class="hx">${esc(extra ? extra(x) : '')}</span></button>`).join('')}${items.length > shown.length ? `<button class="hli more" data-m="${m}">+ ${items.length - shown.length} autre${items.length - shown.length > 1 ? 's' : ''}</button>` : ''}</div>`);
   };
+  let shown = new Set();
   const ref = x => m === 'SECURITY' ? (x.waybill || '') : (x.waybill || x.pid || '');
   const big = r.length, sub = 'en cours';
   const k = {'': 0, go: 0, ok: 0}; r.forEach(x => k[kindOfM(m, x)]++);
@@ -911,10 +928,21 @@ function homeTile(m){
     list('Contact client en retard', 'u', late('J1'), since('J1'));
     list('Contact commercial en retard', 'u', late('J4'), since('J4'));
     list('RTO en retard', 'u', late('J10'), since('J10'));
+    const wn = r.filter(x => { const a = domAlert(x); return !['J1', 'J4', 'J10'].some(k => a[k] === 'late') && ['J1', 'J4', 'J10'].some(k => a[k] === 'warn'); });
+    list("À faire aujourd'hui", 'w', wn, () => '');
+    shown = new Set([...r.filter(x => ['J1', 'J4', 'J10'].some(k => domAlert(x)[k] === 'late')), ...wn].map(x => x.id));
+  } else if (m === 'SECURITY') {
+    const nc = r.filter(scmsMissing), cc = r.filter(x => x.contacter_client === true && !x.contact_fait_le && kindOfM(m, x) !== 'ok');
+    add(nc.length, 'SCMS à créer', 'u');
+    list('SCMS non créés', 'u', nc, x => x.waybill || '');
+    list('Client à contacter', 'w', cc, x => x.waybill || '');
+    shown = new Set([...nc, ...cc].map(x => x.id));
   } else list('Urgents', 'u', r.filter(x => x.urgent === true), ref);
-  if (m === 'SECURITY') { const nc = r.filter(scmsMissing); add(nc.length, nc.length > 1 ? 'SCMS à créer' : 'SCMS à créer', 'u'); list('SCMS non créés', 'u', nc, x => x.waybill || ''); }
-  if (m === 'SECURITY') list('Client à contacter', 'w', r.filter(x => x.contacter_client === true && !x.contact_fait_le), x => x.waybill || '');
-  if (m === 'SPARK') add(r.filter(x => x.wrong_ok === true).length, 'wrong OK', 'ok');
+  if (m === 'DOM' || m === 'SECURITY') {
+    const old = r.filter(x => !shown.has(x.id) && kindOfM(m, x) !== 'ok' && x.cree_le && (Date.now() - new Date(x.cree_le).getTime()) > 30 * 864e5);
+    list("Plus d'un mois", 'w', old, x => 'depuis ' + Math.floor((Date.now() - new Date(x.cree_le).getTime()) / 864e5) + ' j');
+  }
+  if (m === 'SPARK') add(r.filter(x => x.wrong_ok === true).length, 'wrong OK', 'u');
   add(r.filter(x => x.suppr_par).length, 'suppression en attente', 'w');
   return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${big}<small>${sub}</small></div><div class="hcs">${ch.join('') || '<span class="m">Rien à signaler</span>'}</div>${lists.join('')}</div>`;
 }
@@ -998,7 +1026,16 @@ function drawCards(){
   const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
   const out = rows.slice()
     .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (cur === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
-  list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>'; drawTiles();
+  if (cur === 'AWB' && out.length) {
+    const groups = [], idx = {};
+    out.forEach(r => { const c = (ME.categories_awb || []).find(c => c.id === r.categorie_id), key = c ? c.id : ''; if (!(key in idx)) { idx[key] = groups.length; groups.push({key, lab: c ? c.libelle : '', items: []}); } groups[idx[key]].items.push(r); });
+    list.className = 'cgs';
+    list.innerHTML = groups.map(g => g.key ? `<section class="cg"><h3 class="cgt">${esc(g.lab)}<small>${g.items.length}</small></h3><div class="grid">${g.items.map(card).join('')}</div></section>` : `<div class="grid">${g.items.map(card).join('')}</div>`).join('');
+  } else {
+    list.className = 'grid';
+    list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>';
+  }
+  drawTiles();
 }
 function val(r, k){
   let v = r[k];
@@ -1020,8 +1057,11 @@ function cardSec(r){
     : r.contact_fait_le ? `<span class="cb done" title="Client contacté">${IC.phone}Client contacté</span>` : `<span class="cb todo" title="Client à contacter">${IC.phone}Client à contacter</span>`;
   const acts = w && !showArch ? `<div class="act"><button class="s go stp" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}Étape</button></div>` : '<div class="act" style="padding:0"></div>';
   return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${gcl(r)}" ${gst(r)} data-id="${r.id}">${r.thumb ? `<div class="bgph"><img alt="" src="data:image/jpeg;base64,${r.thumb}"></div>` : ''}<div class="r1"><div class="name" title="${esc(mt)}">${esc(mt) || 'SCMS'}</div><span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div>
-    ${r.waybill ? `<div class="r2"><div class="refs">${link(r.waybill)}</div></div>` : ''}<div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="rowb">${cbub}${waitB(r)}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+    ${r.waybill ? `<div class="r2"><div class="refs">${lnkc(r.waybill)}</div></div>` : ''}<div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="rowb">${cbub}${waitB(r)}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
+const lnkc = (v, label) => v ? `<span class="rc">${link(v, label)}<button class="cp sm" data-copy="${esc(v)}" title="Copier" aria-label="Copier">${IC.copy}</button></span>` : '';
+const stLabR = r => (cur === 'AWB' || cur === 'SPARK') && r.etape === 'EN_COURS' && r.etape_par ? 'En cours par ' + who(r.etape_par) : stLabel(r.etape);
+const ecCls = r => (cur === 'AWB' || cur === 'SPARK') && r.etape === 'EN_COURS' && r.etape_par ? (String(r.etape_par).toLowerCase() === ME.email ? ' ec-me' : ' ec-ot') : '';
 const waitB = r => r.suppr_par ? `<span class="bb wait" title="Le créateur doit valider la suppression">${IC.trash}En attente de suppression</span>` : '';
 function cardDoc(r){
   const tmp = r._tmp === true;
@@ -1035,18 +1075,19 @@ function card(r){
   if (cur === 'DOCUMENTS') return cardDoc(r);
   const M = MODS[cur], kind = kindOf(r), name = String(M.name(r) || '').toUpperCase();
   const tmp = r._tmp === true, w = canWrite();
-  const tag = `<span class="tag ${kind}">${esc(stLabel(r.etape))}</span>`;
+  const tag = `<span class="tag ${kind}">${esc(stLabR(r))}</span>`;
   const refs = r.waybill || r.pid
-    ? `<div class="refs ${name ? '' : 'solo'}">${link(r.waybill, r.pid && r.waybill ? 'AWB' : '')}${link(r.pid, r.waybill ? 'PID' : '')}</div>` : '';
+    ? `<div class="refs ${name ? '' : 'solo'}">${lnkc(r.waybill, r.pid && r.waybill ? 'AWB' : '')}${lnkc(r.pid, r.waybill ? 'PID' : '')}</div>` : '';
   const bub = r.location ? `<span class="bub" title="Étagère">${IC.pin}${esc(r.location)}</span>` : '';
   const urg = r.urgent === true ? `<span class="urgb" title="Urgent">${IC.alert}</span>` : '';
   const head = name
     ? `<div class="r1">${urg}<div class="name" title="${esc(name)}">${esc(name)}</div>${bub}</div><div class="r2">${refs || '<div class="refs"></div>'}${tag}</div>`
     : `<div class="r1">${urg}${refs || '<div class="name">—</div>'}${tag}</div>`;
-  const lines = M.show.map(k => { const v = val(r, k); return v ? `<div class="m ${k === 'categorie_id' ? 'cat' : ''}">${esc(v)}</div>` : ''; }).join('');
+  const wk = cur === 'SPARK' && r.wrong_ok === true ? `<div class="rowb"><span class="bb wk">${IC.check}Wrong OK</span></div>` : '';
+  const lines = M.show.filter(k => !(cur === 'AWB' && k === 'categorie_id')).map(k => { const v = val(r, k); return v ? `<div class="m ${k === 'categorie_id' ? 'cat' : ''}">${esc(v)}</div>` : ''; }).join('');
   const acts = w && !showArch ? `<div class="act"><button class="s go stp" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}Étape</button></div>` : '<div class="act" style="padding:0"></div>';
   const al = cur === 'DOM' ? domAlert(r) : null, alc = al ? (['J1', 'J4', 'J10'].some(k => al[k] === 'late') ? ' al-late' : ['J1', 'J4', 'J10'].some(k => al[k] === 'warn') ? ' al-warn' : '') : '';
-  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${alc}${gcl(r)}" ${gst(r)} data-id="${r.id}">${head}${lines}${r.suppr_par ? `<div class="rowb">${waitB(r)}</div>` : ''}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${alc}${ecCls(r)}${gcl(r)}" ${gst(r)} data-id="${r.id}">${head}${wk}${lines}${r.suppr_par ? `<div class="rowb">${waitB(r)}</div>` : ''}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 
 // ------------------------------------------------------------ Recherche globale (suggestions)
@@ -1106,6 +1147,7 @@ async function openGhost(it){
 
 // ------------------------------------------------------------ Actions instantanées (envoi en arrière-plan)
 function onListClick(e){
+  const cpb = e.target.closest('[data-copy]'); if (cpb) { navigator.clipboard.writeText(cpb.dataset.copy).then(() => toast('Copié : ' + cpb.dataset.copy)); return; }
   if (e.target.closest('a')) return;                       // lien Sherloc : on laisse le navigateur agir
   const b = e.target.closest('button');
   const c = e.target.closest('.card'); if (!c) return;
@@ -1270,7 +1312,7 @@ function renderDet(){
     : `${canDelDoc ? `<button class="ico sm warn" id="dDocDel" title="Supprimer le document" aria-label="Supprimer le document">${IC.trash}</button>` : ''}${r && !M.noSteps && w && !r.suppr_par && !String(r.id).startsWith('tmp_') ? `<button class="ico sm warn" id="dDel" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}${r && !M.noSteps && w && !showArch ? `<button class="ico sm warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button>` : ''}${r && !M.noSteps && w && showArch ? `<button class="ico sm" id="dUn" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>` : ''}${r && !M.noSteps && !String(r.id).startsWith('tmp_') ? `<button class="ico sm" id="dMsg" title="Envoyer ce dossier par message" aria-label="Envoyer ce dossier par message">${IC.mail}</button>` : ''}${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
   const hlc = det && det.hl && det.hl.champs || [], canTg = r && w && !showArch && !ed, hasU = r && M.fields.some(f => f.k === 'urgent'), hasW = r && M.fields.some(f => f.k === 'wrong_ok');
   const bubs = r && !ed ? `<div class="bbs">${hasU ? `<button class="bb tg ${r.urgent === true ? 'u' : 'off'} ${hlc.includes('urgent') ? 'hl' : ''}" data-tg="urgent" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.alert}${r.urgent === true ? 'Urgent' : 'Pas urgent'}</button>` : ''}${hasW ? `<button class="bb tg ${r.wrong_ok === true ? 'wk' : 'off'} ${hlc.includes('wrong_ok') ? 'hl' : ''}" data-tg="wrong_ok" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.check}${r.wrong_ok === true ? 'Wrong OK' : 'Pas wrong OK'}</button>` : ''}<button class="bb tg ${r.visibilite === 'prive' ? '' : 'sh'} ${hlc.includes('visibilite') ? 'hl' : ''}" data-tg="visibilite" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</button>${waitB(r)}</div>` : '';
-  const stat = r && !M.noSteps ? `<div class="dstat ${ed ? 'lock' : ''}"><div class="dl">${bubs}</div><div class="dr"><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabel(r.etape))}</span>${w && !showArch ? `<button class="s go stp" data-a="stepmenu" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}</button>` : ''}</div></div>` : '';
+  const stat = r && !M.noSteps ? `<div class="dstat ${ed ? 'lock' : ''}"><div class="dl">${bubs}</div><div class="dr"><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabR(r))}</span>${w && !showArch ? `<button class="s go stp" data-a="stepmenu" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}</button>` : ''}</div></div>` : '';
   const hideView = k => k === 'urgent' || k === 'visibilite' || k === 'wrong_ok';
   const fields = M.fields.map(x => {
     if (x.t === 'photos' || x.t === 'file') return '';
