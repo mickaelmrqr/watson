@@ -586,11 +586,12 @@ html[data-theme=light] .dt3.warn b{color:#B45309}
 .dcc .dfls{justify-content:flex-start}
 .dcc .dfl{flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;padding:8px 12px 4px;min-width:120px;max-width:100%}
 .dcc .dfl .dn{max-width:200px;text-align:center}
+.s.go.stp{padding:9px 13px}.s.go.stp .i{width:22px;height:22px}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.18</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.19</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -600,7 +601,7 @@ html[data-theme=light] .dt3.warn b{color:#B45309}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.18</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.19</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1031,6 +1032,7 @@ function card(r){
 
 // ------------------------------------------------------------ Recherche globale (suggestions)
 const HLAB = {telechargement:'Téléchargement', suppression:'Supprimé définitivement', creation:'Création', etape:"Changement d'étape", modification:'Modification', archivage:'Archivage', desarchivage:'Désarchivage'};
+IC.step = ic('<path d="M10 20.777a8.942 8.942 0 0 1-2.48-.969"/><path d="M14 3.223a9.003 9.003 0 0 1 0 17.554"/><path d="M4.579 17.093a8.961 8.961 0 0 1-1.227-2.592"/><path d="M3.124 10.5c.16-.95.468-1.85.9-2.675l.169-.305"/><path d="M6.907 4.579a8.954 8.954 0 0 1 3.093-1.356"/><path d="M9 12l2 2l4-4"/>');
 const IC_HIST = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>');
 let sTimer = 0, sSeq = 0, sItems = [], sHl = -1;
 function localHits(q){
@@ -1249,7 +1251,7 @@ function renderDet(){
     : `${canDelDoc ? `<button class="ico sm warn" id="dDocDel" title="Supprimer le document" aria-label="Supprimer le document">${IC.trash}</button>` : ''}${r && !M.noSteps && w && !r.suppr_par && !String(r.id).startsWith('tmp_') ? `<button class="ico sm warn" id="dDel" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}${r && !M.noSteps && w && !showArch ? `<button class="ico sm warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button>` : ''}${r && !M.noSteps && w && showArch ? `<button class="ico sm" id="dUn" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>` : ''}${r && !M.noSteps && !String(r.id).startsWith('tmp_') ? `<button class="ico sm" id="dMsg" title="Envoyer ce dossier par message" aria-label="Envoyer ce dossier par message">${IC.mail}</button>` : ''}${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
   const hlc = det && det.hl && det.hl.champs || [], canTg = r && w && !showArch && !ed, hasU = r && M.fields.some(f => f.k === 'urgent'), hasW = r && M.fields.some(f => f.k === 'wrong_ok');
   const bubs = r && !ed ? `<div class="bbs">${hasU ? `<button class="bb tg ${r.urgent === true ? 'u' : 'off'} ${hlc.includes('urgent') ? 'hl' : ''}" data-tg="urgent" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.alert}${r.urgent === true ? 'Urgent' : 'Pas urgent'}</button>` : ''}${hasW ? `<button class="bb tg ${r.wrong_ok === true ? 'wk' : 'off'} ${hlc.includes('wrong_ok') ? 'hl' : ''}" data-tg="wrong_ok" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.check}${r.wrong_ok === true ? 'Wrong OK' : 'Pas wrong OK'}</button>` : ''}<button class="bb tg ${r.visibilite === 'prive' ? '' : 'sh'} ${hlc.includes('visibilite') ? 'hl' : ''}" data-tg="visibilite" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</button>${waitB(r)}</div>` : '';
-  const stat = r && !M.noSteps ? `<div class="dstat ${ed ? 'lock' : ''}"><div class="dl">${bubs}</div><div class="dr"><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabel(r.etape))}</span>${w && !showArch ? `<button class="s go" data-a="stepmenu">Étape</button>` : ''}</div></div>` : '';
+  const stat = r && !M.noSteps ? `<div class="dstat ${ed ? 'lock' : ''}"><div class="dl">${bubs}</div><div class="dr"><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabel(r.etape))}</span>${w && !showArch ? `<button class="s go stp" data-a="stepmenu" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}</button>` : ''}</div></div>` : '';
   const hideView = k => k === 'urgent' || k === 'visibilite' || k === 'wrong_ok';
   const fields = M.fields.map(x => {
     if (x.t === 'photos' || x.t === 'file') return '';
