@@ -51,8 +51,8 @@ header{display:flex;align-items:center;gap:10px;padding:10px 20px;position:stick
 .ico.sm{width:38px;height:38px}
 /* ---------- Tuiles de modules */
 nav{display:flex;justify-content:center;padding:20px 16px 4px}
-.mods{display:grid;grid-template-columns:repeat(3,minmax(150px,230px));gap:14px;width:100%;justify-content:center}
-.mod{position:relative;display:flex;align-items:center;gap:14px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px;color:var(--mut);overflow:hidden;
+.mods{display:flex;flex-wrap:wrap;gap:14px;width:100%;justify-content:center}
+.mod{flex:1 1 170px;max-width:232px;position:relative;display:flex;align-items:center;gap:14px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 18px;color:var(--mut);overflow:hidden;
   transition:transform .22s var(--ease),border-color .22s,box-shadow .22s,background .22s,color .22s}
 .mod:hover{transform:translateY(-3px);border-color:var(--bd2);color:var(--hi);background:var(--hov)}
 .mod .mi{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;background:var(--raised);font-size:19px;transition:background .22s,color .22s}
@@ -324,7 +324,7 @@ body:has(#mDrawer.on) #ntoasts{display:none}
 .nt .ico{position:absolute;right:6px;top:6px;width:30px;height:30px}
 @keyframes ntin{from{opacity:0;transform:translateX(40px)}}
 .hide{display:none!important}
-@media(max-width:700px){.mods{grid-template-columns:repeat(3,1fr);gap:8px}.mod{flex-direction:column;text-align:center;padding:10px 6px;gap:6px}.mod small{font-size:11.5px}.mod b{font-size:15px}.det,.hist li{grid-template-columns:1fr}.flow .stp{min-width:96px;font-size:13px}}
+@media(max-width:700px){.mods{gap:8px}.mod{flex:1 1 30%;max-width:none;flex-direction:column;text-align:center;padding:10px 6px;gap:6px}.mod small{font-size:11.5px}.mod b{font-size:15px}.det,.hist li{grid-template-columns:1fr}.flow .stp{min-width:96px;font-size:13px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 /* hauteur commune des bulles */
 .tag,.bub,.bb{height:26px;display:inline-flex;align-items:center;gap:5px;line-height:1;font-size:13px}
@@ -385,6 +385,43 @@ html[data-theme=light] .ver{color:#D2431B}
 html[data-theme=light] .s.go{color:#1D5FC4;border-color:rgba(47,120,230,.55)}
 html[data-theme=light] .nit .na button,html[data-theme=light] .st3 button{color:var(--ink)}
 html[data-theme=light] .flow .stp .wh b{color:var(--ink)}
+/* Security Cases / Documents */
+.cb{height:26px;display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:0 11px 0 8px;font:700 13px var(--disp);border:1px solid var(--line);background:var(--raised);color:var(--mut);white-space:nowrap}
+.cb svg{width:1.05em;height:1.05em}
+.cb.todo{color:#ffb27a;border-color:rgba(255,150,60,.5);background:rgba(255,150,60,.12)}
+.cb.done{color:#86e5b8;border-color:rgba(62,207,142,.45);background:rgba(62,207,142,.13)}
+.cb.stop{color:var(--mut)}
+html[data-theme=light] .cb.todo{color:#B45309}html[data-theme=light] .cb.done{color:#127A4D}
+.rowb{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 2px}
+.mtags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.cbox{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:11px 14px;margin:12px 0 4px}
+.cbox .ci{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--raised);flex:none;font-size:18px}
+.cbox.todo .ci{background:rgba(255,150,60,.18);color:#ffa65a}.cbox.done .ci{background:rgba(62,207,142,.18);color:var(--green)}
+.cbox .ct{flex:1;min-width:0}.cbox .ct b{display:block}.cbox .ct small{color:var(--mut);font-size:13.5px;word-break:break-word}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px;margin-top:8px}
+.ph{position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;background:var(--bg);border:1px solid var(--line);cursor:zoom-in}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .x{position:absolute;top:5px;right:5px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;display:grid;place-items:center;font-size:12px;opacity:0;transition:opacity .15s}
+.ph:hover .x{opacity:1}
+.ph.add{display:grid;place-items:center;cursor:pointer;border-style:dashed;color:var(--mut);font-size:13.5px;text-align:center;transition:border-color .15s,color .15s}
+.ph.add:hover{border-color:var(--blue);color:var(--hi)}
+.ph.add svg{width:1.6em;height:1.6em;display:block;margin:0 auto 4px}
+.ph.sync img{filter:blur(4px)}
+.dph,.fbox{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px dashed var(--line);border-radius:14px;padding:11px 14px;margin-top:8px;color:var(--mut)}
+.fbox{border-style:solid;color:var(--ink);flex-wrap:wrap}
+.fbox .fi{flex:1;min-width:140px;word-break:break-word}.fbox .fi small{display:block;color:var(--mut);font-size:13px}
+.fbox .fic,.dcard .dic{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(58,140,255,.16);color:var(--blue);flex:none;font-size:20px}
+.s.danger{color:#ff8d8d;border-color:rgba(255,92,92,.45)}.s.danger:hover{background:rgba(255,92,92,.15);border-color:var(--red)}
+.dcard{display:flex;gap:12px;align-items:center}
+.dcard .dm{flex:1;min-width:0}
+.dcard .name{font-size:19px}
+.dcard .fn{color:var(--mut);font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.filein{display:block;width:100%}
+#mPhoto{z-index:95;background:rgba(0,0,0,.82)}
+#mPhoto img{max-width:94vw;max-height:88vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#mPhoto .ico{position:absolute;top:16px;right:16px;color:#fff}
+#mContact{z-index:60}
+.xh{display:flex;align-items:baseline;gap:8px;margin:18px 0 2px;font:700 16px var(--disp)}.xh small{color:var(--mut);font:500 13.5px var(--sans,inherit)}
 </style>
 </head>
 <body>
@@ -413,6 +450,11 @@ html[data-theme=light] .flow .stp .wh b{color:var(--ink)}
   <div class="r2c" id="tWhen"><div><label for="tDate">Date prévue</label><input id="tDate" type="date"></div><div><label for="tHeure">Heure du rappel (facultatif)</label><input id="tHeure" type="time"></div></div>
   <label class="chk"><input type="checkbox" id="tRec"> Chaque jour travaillé (ajoutée automatiquement)</label>
   <div class="foot"><button class="p" id="tAdd" style="flex:1">Ajouter</button><button class="s" id="tkNo">Annuler</button></div></div></div>
+<div class="modal" id="mContact"><div class="sheet"><div class="sh"><div class="tt"><h3>Client contacté</h3><div class="sub" id="cSub"></div></div><button class="ico sm" id="cX" aria-label="Fermer" title="Fermer"></button></div>
+  <label for="cMoyen">Moyen de contact</label><select id="cMoyen"></select>
+  <label for="cCom">Commentaire</label><textarea id="cCom" rows="3" maxlength="500" placeholder="Ex. : message laissé, rappel prévu…"></textarea>
+  <div class="foot"><button class="p" id="cOk" style="flex:1">Enregistrer</button><button class="s" id="cNo">Annuler</button></div></div></div>
+<div class="modal" id="mPhoto"><button class="ico sm" id="phX" aria-label="Fermer" title="Fermer"></button><img id="phImg" alt="Photo"></div>
 <div id="ntoasts"></div>
 <div class="modal" id="mBand"><div class="sheet" id="band"></div></div>
 <div class="modal" id="mAsk"><div class="sheet"><div class="sh"><div class="tt"><h3 id="askT"></h3></div></div><p id="askP"></p>
@@ -435,6 +477,12 @@ const IC = {
   out: ic('<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>'),
   qr: ic('<rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><path d="M15 15h2v2"/><path d="M21 15v.01"/><path d="M15 21h2"/><path d="M21 19v2"/><path d="M12 3v6"/><path d="M12 13v2"/><path d="M3 12h2"/><path d="M9 12h6"/>'),
   alert: ic('<path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>'),
+  SECURITY: ic('<path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5Z"/><path d="M12 8v4"/><path d="M12 16h.01"/>'),
+  DOCUMENTS: ic('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/>'),
+  stop: ic('<path d="M7.9 2h8.2L22 7.9v8.2L16.1 22H7.9L2 16.1V7.9Z"/><path d="M8 12h8"/>'),
+  phone: ic('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>'),
+  camera: ic('<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="4"/>'),
+  download: ic('<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/>'),
   open: ic('<path d="M7 17 17 7"/><path d="M8 7h9v9"/>'),
   copy: ic('<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>'),
   search: ic('<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>'),
@@ -459,6 +507,11 @@ const IC = {
   DOM: ic('<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 21v-7h6v7"/>')
 };
 const SHERLOC = 'https://sherloc.dhl.com/#/hwb/';
+const isoD = v => { if (!v) return ''; const t = String(v); if (/^\d{4}-\d\d-\d\d$/.test(t.slice(0, 10)) && t.length <= 10) return t; const d = new Date(v); return isNaN(d) ? t.slice(0, 10) : d.toLocaleDateString('sv-SE', {timeZone:'Europe/Paris'}); };
+const fdateD = v => isoD(v).split('-').reverse().join('/');
+const todayISO = () => new Date().toLocaleDateString('sv-SE', {timeZone:'Europe/Paris'});
+const MOYENS = ['Téléphone', 'E-mail', 'SMS', 'Message vocal'];
+const fsize = n => { n = Number(n) || 0; return n > 1048576 ? (n / 1048576).toFixed(1).replace('.', ',') + ' Mo' : Math.max(1, Math.round(n / 1024)) + ' Ko'; };
 
 // ------------------------------------------------------------ Modules
 const MODS = {
@@ -493,7 +546,18 @@ const MODS = {
     {k:'commentaire',l:'Commentaire',t:'area'}],
     show:['remarque','commentaire'] }
 };
-const STEP_KIND = {EN_COURS:'go',ATTENTE_CLIENT:'go',ATTENTE_COMMERCIAL:'go',TERMINE:'ok',A_ARCHIVER:'ok',RTO_FAIT:'ok',INSTRUCTION_APPLIQUEE:'ok'};
+MODS.SECURITY = { label: 'Security Cases', name: r => '', show: [], title: r => r.waybill || ('Security case du ' + fdateD(r.date_decouverte)), fields: [
+    {k:'waybill',l:'Waybill',t:'scan'},
+    {k:'date_decouverte',l:'Date de découverte',t:'date',req:1},
+    {k:'motif_cb',l:'Motif',t:'motif'},
+    {k:'contacter_client',l:'Contacter le client',t:'bool'},
+    {k:'visibilite',l:'Visibilité',t:'vis'},
+    {k:'_photos',l:'Photos',t:'photos'}] };
+MODS.DOCUMENTS = { label: 'Documents', noSteps: true, name: r => r.titre, show: [], fields: [
+    {k:'titre',l:'Titre',t:'text',req:1},
+    {k:'visibilite',l:'Visibilité',t:'vis'},
+    {k:'_file',l:'Fichier',t:'file'}] };
+const STEP_KIND = {EN_COURS:'go',ATTENTE_CLIENT:'go',ATTENTE_COMMERCIAL:'go',SCMS_CREE:'go',TERMINE:'ok',A_ARCHIVER:'ok',RTO_FAIT:'ok',INSTRUCTION_APPLIQUEE:'ok',RESOLU:'ok'};
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let token = sessionStorage.getItem('wtk'), cur = null, rows = [], showArch = false, det = null;
@@ -577,7 +641,7 @@ function drawTiles(){
     const m = b.dataset.m, r = cache[m]; const t = $('#cnt_' + m); if (!t) return;
     if (!r) { t.textContent = '…'; return; }
     const u = r.filter(x => x.urgent === true).length;
-    t.innerHTML = `${r.length} en cours` + (u ? ` · <i>${u} urgent${u > 1 ? 's' : ''}</i>` : '');
+    t.innerHTML = m === 'DOCUMENTS' ? `${r.length} document${r.length > 1 ? 's' : ''}` : `${r.length} en cours` + (u ? ` · <i>${u} urgent${u > 1 ? 's' : ''}</i>` : '');
   });
 }
 async function warm(){
@@ -616,9 +680,9 @@ function renderList(){
   const steps = stepsOf(cur);
   $('#main').innerHTML = `<div class="bar">
     <span style="flex:1"></span>
-    <button class="s" id="bArch">${showArch ? IC.unarchive + 'Voir les actifs' : IC.archive + 'Voir les archives'}</button>
+    ${cur === 'DOCUMENTS' ? '' : `<button class="s" id="bArch">${showArch ? IC.unarchive + 'Voir les actifs' : IC.archive + 'Voir les archives'}</button>`}
     ${canWrite() && !showArch ? `<button class="p" id="bNew">${IC.plus}Nouveau</button>` : ''}</div><div class="grid" id="list"></div>`;
-  $('#bArch').onclick = () => { showArch = !showArch; openMod(cur); };
+  if ($('#bArch')) $('#bArch').onclick = () => { showArch = !showArch; openMod(cur); };
   if ($('#bNew')) $('#bNew').onclick = () => openDetail(null, true);
   $('#list').onclick = onListClick;
   drawCards();
@@ -627,7 +691,7 @@ function drawCards(){
   const list = $('#list'); if (!list) return;
   const ord = {}; stepsOf(cur).forEach((x, i) => ord[x.code] = i);
   const out = rows.slice()
-    .sort((a,b) => (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
+    .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
   list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>'; drawTiles();
 }
 function val(r, k){
@@ -643,7 +707,24 @@ const kindOf = r => {
   return (n >= 4 && i >= n - 2) || (n < 4 && i === n - 1) ? 'ok' : 'go';
 };
 const stLabel = (code, m = cur) => { const s = ME.etapes.find(e => e.module === m && e.code === code); return s ? s.libelle_etat : code; };
+function cardSec(r){
+  const kind = kindOf(r), tmp = r._tmp === true, w = canWrite();
+  const mt = [r.motif_cb === true ? 'CB active' : '', r.motif_cash === true ? 'Argent liquide' : ''].filter(Boolean).map(x => `<span class="tag">${x}</span>`).join('') + (r.motif_libre ? `<span class="m" style="margin:0">${esc(r.motif_libre)}</span>` : '');
+  const cbub = r.contacter_client !== true ? `<span class="cb stop" title="Pas de contact client">${IC.stop}Pas de contact client</span>`
+    : r.contact_fait_le ? `<span class="cb done" title="Client contacté">${IC.phone}Client contacté</span>` : `<span class="cb todo" title="Client à contacter">${IC.phone}Client à contacter</span>`;
+  const acts = w && !showArch ? `<div class="act"><button class="s go" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}">Étape</button></div>` : '<div class="act" style="padding:0"></div>';
+  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}" data-id="${r.id}"><div class="r1">${r.waybill ? `<div class="refs solo">${link(r.waybill)}</div>` : '<div class="name">Sans bordereau</div>'}<span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div>
+    <div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="mtags" style="margin:4px 0">${mt}</div><div class="rowb">${cbub}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+}
+function cardDoc(r){
+  const tmp = r._tmp === true;
+  return `<div class="card ${r._sync || tmp ? 'sync' : ''}" data-id="${r.id}"><div class="dcard"><span class="dic">${IC.DOCUMENTS}</span><div class="dm"><div class="name" title="${esc(r.titre)}">${esc(r.titre)}</div><div class="fn">${r.fichier_nom ? esc(r.fichier_nom) + ' · ' + fsize(r.fichier_taille) : 'Envoi du fichier…'}</div></div>
+    <span class="bb ${r.visibilite === 'prive' ? '' : 'sh'}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</span></div>
+    <div class="act">${r.fichier_id ? `<button class="s go" data-a="dl" data-fid="${r.fichier_id}">${IC.download}Télécharger</button>` : ''}</div>${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+}
 function card(r){
+  if (cur === 'SECURITY') return cardSec(r);
+  if (cur === 'DOCUMENTS') return cardDoc(r);
   const M = MODS[cur], kind = kindOf(r), name = String(M.name(r) || '').toUpperCase();
   const tmp = r._tmp === true, w = canWrite();
   const tag = `<span class="tag ${kind}">${esc(stLabel(r.etape))}</span>`;
@@ -666,8 +747,8 @@ let sTimer = 0, sSeq = 0, sItems = [], sHl = -1;
 function localHits(q){
   const out = [];
   Object.keys(MODS).forEach(m => (cache[m] || []).forEach(r => {
-    const hay = [r.waybill, r.pid, r.nom_client, r.nom_dest, r.remarque, r.location, r.commentaire].join(' ').toLowerCase();
-    if (hay.includes(q)) out.push({kind:'row', module:m, id:r.id, title:String(r.nom_client || r.nom_dest || r.waybill || r.pid || '').toUpperCase(), sub:[r.waybill, r.pid].filter(Boolean).join(' · '), archive:false});
+    const hay = [r.waybill, r.pid, r.nom_client, r.nom_dest, r.titre, r.motif_libre, r.fichier_nom, r.remarque, r.location, r.commentaire].join(' ').toLowerCase();
+    if (hay.includes(q)) out.push({kind:'row', module:m, id:r.id, title:String(r.nom_client || r.nom_dest || r.titre || r.waybill || r.pid || MODS[m].label).toUpperCase(), sub:[r.waybill, r.pid].filter(Boolean).join(' · '), archive:false});
   }));
   return out.slice(0, 15);
 }
@@ -697,7 +778,7 @@ function initSearch(){
 }
 function drawSug(items, loading, hint){
   sItems = items; sHl = -1; const box = $('#sug');
-  box.innerHTML = items.length ? items.map((x, i) => `<button data-i="${i}"><span class="si">${IC[x.module]}</span><span class="st"><b>${esc(x.title || '—')}</b><small>${x.module}${x.sub ? ' · ' + esc(x.kind === 'hist' ? (HLAB[x.sub] || x.sub) : x.sub) : ''}${x.archive ? ' · archivé' : ''}</small></span>${x.kind === 'hist' ? `<span class="hs" title="Trouvé dans l'historique">${IC_HIST}${x.alive ? 'Historique' : 'Supprimé'}</span>` : ''}</button>`).join('')
+  box.innerHTML = items.length ? items.map((x, i) => `<button data-i="${i}"><span class="si">${IC[x.module]}</span><span class="st"><b>${esc(x.title || '—')}</b><small>${(MODS[x.module] || {}).label || x.module}${x.sub ? ' · ' + esc(x.kind === 'hist' ? (HLAB[x.sub] || x.sub) : x.sub) : ''}${x.archive ? ' · archivé' : ''}</small></span>${x.kind === 'hist' ? `<span class="hs" title="Trouvé dans l'historique">${IC_HIST}${x.alive ? 'Historique' : 'Supprimé'}</span>` : ''}</button>`).join('')
     : `<div class="none">${hint ? 'Écris au moins 2 lettres : nom, bordereau, PID, remarque…' : loading ? 'Recherche…' : 'Aucun résultat'}</div>`;
 }
 async function pickSug(it){
@@ -722,6 +803,7 @@ function onListClick(e){
   if (!b) { if (!r._tmp) openDetail(r, false); return; }
   if (b.disabled) return;
   if (b.dataset.a === 'stepmenu') showStepMenu(b, r);
+  else if (b.dataset.a === 'dl') downloadFile(b.dataset.fid);
 }
 const H = {};                                              // historique par élément
 function waveCard(id){ const el = document.querySelector('.card[data-id="' + id + '"]'); if (el) { el.classList.add('wave'); setTimeout(() => el.classList.remove('wave'), 1200); } }
@@ -780,6 +862,8 @@ function drawBand(){
 $('#mBand').addEventListener('mousedown', e => { if (e.target.id === 'mBand') closePop(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') {
   if ($('#mAsk').classList.contains('on') && ask.cancel) return ask.cancel();
+  if ($('#mPhoto').classList.contains('on')) return $('#mPhoto').classList.remove('on');
+  if ($('#mContact').classList.contains('on')) return $('#mContact').classList.remove('on');
   if ($('#mTask').classList.contains('on')) return closeTask();
   if (bandR) return closePop();
   if ($('#mSearch').classList.contains('on')) return closeSearch();
@@ -800,7 +884,7 @@ async function loadHist(r, band, force){
 const who = e => { e = String(e || '').toLowerCase(); return (ME.annuaire && ME.annuaire[e]) || (e === ME.email ? ME.prenom : e.split('@')[0]); };
 const SYS = e => String(e).toLowerCase() === 'auto' ? 'Automatique' : who(e);
 function histHtml(h, m){
-  const M = MODS[m], lab = k => (M.fields.find(f => f.k === k) || {}).l || k;
+  const M = MODS[m], lab = k => ({photos:'Photos', fichier:'Fichier', contact:'Contact client', motif_cb:'CB active', motif_cash:'Argent liquide', motif_libre:'Autre motif'})[k] || (M.fields.find(f => f.k === k) || {}).l || k;
   const fv = (k, v) => { if (v === '' || v == null) return '—'; if (v === true || v === 'TRUE') return 'Oui'; if (v === false || v === 'FALSE') return 'Non';
     if (k === 'categorie_id') { const c = ME.categories_awb.find(c => c.id === v); return c ? c.libelle : v; }
     if (k === 'visibilite') return v === 'prive' ? 'Privé' : 'Partagé'; const t = String(v); return t.length > 80 ? t.slice(0, 77) + '…' : t; };
@@ -833,6 +917,8 @@ function viewCell(x, r){
   const v = r[x.k];
   if (x.k === 'waybill' || x.k === 'pid') return v ? link(v) + `<button class="cp" data-copy="${esc(v)}" title="Copier" aria-label="Copier">${IC.copy}</button>` : '';
   if (x.t === 'bool') return v === true ? 'Oui' : 'Non';
+  if (x.t === 'date') return fdateD(v);
+  if (x.t === 'motif') return [r.motif_cb === true ? 'CB active' : '', r.motif_cash === true ? 'Argent liquide' : ''].filter(Boolean).map(s => `<span class="tag" style="margin:2px 5px 2px 0">${s}</span>`).join('') + (r.motif_libre ? `<div style="margin-top:4px">${esc(r.motif_libre)}</div>` : '');
   if (x.t === 'vis') return v === 'prive' ? 'Privé (moi seul)' : "Partagé dans l'agence";
   if (x.t === 'cat') return esc(val(r, x.k));
   if (x.t === 'multi') return String(v ?? '').split(';').map(s => s.trim()).filter(Boolean).map(s => `<span class="tag" style="margin:2px 5px 2px 0">${esc(s)}</span>`).join('');
@@ -841,6 +927,8 @@ function viewCell(x, r){
 function editCell(x, v){
   const val = v[x.k] ?? '', id = 'f_' + x.k;
   if (x.t === 'bool') return `<input type="checkbox" id="${id}" ${val === true ? 'checked' : ''}>`;
+  if (x.t === 'date') return `<input type="date" id="${id}" value="${esc(isoD(val))}">`;
+  if (x.t === 'motif') return `<div style="flex:1"><label class="chk" style="margin:2px 0"><input type="checkbox" id="f_motif_cb" ${v.motif_cb === true ? 'checked' : ''}> CB active</label><label class="chk" style="margin:2px 0"><input type="checkbox" id="f_motif_cash" ${v.motif_cash === true ? 'checked' : ''}> Argent liquide</label><textarea id="f_motif_libre" rows="1" placeholder="Autre motif (facultatif)" style="margin-top:6px">${esc(v.motif_libre || '')}</textarea></div>`;
   if (x.t === 'vis') return `<select id="${id}"><option value="agence" ${val === 'agence' ? 'selected' : ''}>Partagé dans l'agence</option><option value="prive" ${val === 'prive' ? 'selected' : ''}>Privé (moi seul)</option></select>`;
   if (x.t === 'cat') return `<select id="${id}"><option value=""></option>${ME.categories_awb.map(c => `<option value="${c.id}" ${val === c.id ? 'selected' : ''}>${esc(c.libelle)}${c.visibilite === 'prive' ? ' (perso)' : ''}</option>`).join('')}</select>`;
   if (x.t === 'multi') { const sel = String(val).split(';').map(s => s.trim()).filter(Boolean);
@@ -853,29 +941,33 @@ function editCell(x, v){
 function renderDet(){
   if (!det) return;
   const M = MODS[cur], r = det.r, ed = det.editing, el = $('#sDet'), w = canWrite();
-  const v = r || {visibilite:'agence'};
-  const kind = r ? kindOf(r) : '';
-  const name = r ? String(M.name(r) || '').toUpperCase() : '';
-  const title = r ? (name || r.waybill || r.pid || M.label) : 'Nouveau ' + M.label;
+  const v = r || {visibilite:'agence', date_decouverte: todayISO()};
+  const kind = r && !M.noSteps ? kindOf(r) : '';
+  const name = r ? (M.noSteps ? String(M.name(r) || '') : String(M.name(r) || '').toUpperCase()) : '';
+  const title = r ? (name || (M.title ? M.title(r) : '') || r.waybill || r.pid || M.label) : (cur === 'DOCUMENTS' ? 'Nouveau document' : 'Nouveau ' + M.label);
   const btns = ed
     ? `<button class="ico sm ok" id="dSave" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button><button class="ico sm" id="dX" title="${r ? 'Annuler la modification' : 'Fermer'}" aria-label="Annuler">${IC.close}</button>`
     : `${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
   const hlc = det && det.hl && det.hl.champs || [], canTg = r && w && !showArch && !ed, hasU = r && M.fields.some(f => f.k === 'urgent');
   const bubs = r && !ed ? `<div class="bbs">${hasU ? `<button class="bb tg ${r.urgent === true ? 'u' : 'off'} ${hlc.includes('urgent') ? 'hl' : ''}" data-tg="urgent" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.alert}${r.urgent === true ? 'Urgent' : 'Pas urgent'}</button>` : ''}<button class="bb tg ${r.visibilite === 'prive' ? '' : 'sh'} ${hlc.includes('visibilite') ? 'hl' : ''}" data-tg="visibilite" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</button></div>` : '';
-  const stat = r ? `<div class="dstat ${ed ? 'lock' : ''}"><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabel(r.etape))}</span><span class="sp"></span>
+  const stat = r && !M.noSteps ? `<div class="dstat ${ed ? 'lock' : ''}"><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabel(r.etape))}</span><span class="sp"></span>
     ${w && !showArch ? `<button class="s go" data-a="stepmenu">Étape</button><button class="ico warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button>` : ''}
     ${w && showArch ? `<button class="ico" id="dUn" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>` : ''}</div>` : '';
+  const sub = r && !M.noSteps ? M.label : (r ? 'Document' : M.label);
   const hideView = k => k === 'urgent' || k === 'visibilite';
   const fields = M.fields.map(x => {
+    if (x.t === 'photos' || x.t === 'file') return '';
     if (ed) return `<dt>${x.l}</dt><dd class="ed">${editCell(x, v)}</dd>`;
     if (hideView(x.k)) return '';
-    const h = x.t === 'bool' ? (r[x.k] === true ? 'Oui' : '') : viewCell(x, r);
+    const h = x.k === 'contacter_client' ? '' : x.t === 'bool' ? (r[x.k] === true ? 'Oui' : '') : viewCell(x, r);
     const hl = det && det.hl && det.hl.champs && det.hl.champs.includes(x.k) ? ' hl' : '';
     return h ? `<dt class="${hl}">${x.l}</dt><dd class="${hl}">${h}</dd>` : '';
   }).join('');
   const meta = [];
   if (r) {
-    meta.push(['Créé par', r.cree_par ? esc(who(r.cree_par)) + ' · ' + fdate(r.cree_le, true) : ''], ['Dernière étape', r.etape_par ? esc(who(r.etape_par)) + ' · ' + fdate(r.etape_le, true) : '']);
+    meta.push(['Créé par', r.cree_par ? esc(who(r.cree_par)) + ' · ' + fdate(r.cree_le, true) : '']);
+    if (!M.noSteps) meta.push(['Dernière étape', r.etape_par ? esc(who(r.etape_par)) + ' · ' + fdate(r.etape_le, true) : '']);
+    if (cur === 'SECURITY' && r.scms_le) meta.push(['SCMS créé', fdate(r.scms_le, true)]);
     if (r.archive === true) meta.push(['Archivé', esc(who(r.archive_par)) + ' · ' + fdate(r.archive_le, true)]);
   }
   const dates = r && cur === 'DOM' && r.j1 ? `<div class="dates">${[['J1', r.j1], ['J4', r.j4], ['J10', r.j10]].map(([l, d]) => {
@@ -883,10 +975,12 @@ function renderDet(){
     const cls = l === 'J1' ? '' : diff < 0 ? 'late' : diff <= 1 ? 'soon' : 'now';
     const sub = l === 'J1' ? '' : diff < 0 ? `dépassé de ${-diff} j` : diff === 0 ? "aujourd'hui" : `dans ${diff} j`;
     return `<div class="dt3 ${cls}"><small>${l}</small><b>${dd.toLocaleDateString('fr-FR', {weekday:'short', day:'numeric', month:'short'})}</b><span>${sub || '&nbsp;'}</span></div>`; }).join('')}</div>` : '';
-  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3><div class="sub">${M.label}</div>${bubs}</div>${btns}</div>${stat}${dates}
+  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3><div class="sub">${sub}</div>${bubs}</div>${btns}</div>${stat}${dates}
     <dl class="det">${fields}${meta.filter(m => m[1]).map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>
+    <div id="xBlocks">${extraBlocks(r, ed)}</div>
     ${r && !ed ? `<div class="hbar"><button class="s" id="dHist">${IC.clock}${det.showHist ? "Masquer l'historique" : "Afficher l'historique"}</button></div>${det.showHist ? '<div id="histBox" style="margin-top:6px"></div>' : ''}` : ''}`;
   if (r && det.showHist && !ed) drawHist(r);
+  afterExtra(r, ed);
   if ($('#dHist')) $('#dHist').onclick = () => { det.showHist = !det.showHist; renderDet(); if (det.showHist) { loadHist(r, false, true); const bx = $('#histBox'); if (bx) bx.scrollIntoView({behavior:'smooth', block:'nearest'}); } };
   $('#dX').onclick = () => (ed && r) ? (det.editing = false, renderDet()) : closeDet();
   if ($('#dPen')) $('#dPen').onclick = () => { det.editing = true; renderDet(); };
@@ -897,13 +991,21 @@ function renderDet(){
     $('#dSave').onclick = () => {
       const data = {};
       for (const x of M.fields) {
+        if (x.t === 'photos' || x.t === 'file') continue;
+        if (x.t === 'motif') {
+          data.motif_cb = $('#f_motif_cb').checked; data.motif_cash = $('#f_motif_cash').checked; data.motif_libre = $('#f_motif_libre').value.trim();
+          if (!data.motif_cb && !data.motif_cash && !data.motif_libre) return toast('Choisis au moins un motif');
+          continue;
+        }
         const e2 = $('#f_' + x.k);
         if (x.t === 'bool') data[x.k] = e2.checked;
         else if (x.t === 'multi') data[x.k] = [...e2.querySelectorAll('input:checked')].map(i => i.value).join(' ; ');
         else data[x.k] = x.up ? e2.value.trim().toUpperCase() : e2.value.trim();
         if (x.req && !data[x.k]) return toast(x.l + ' obligatoire');
       }
-      saveLocal(r, data);
+      if (cur === 'DOCUMENTS' && !r && !(det.staged && det.staged.file)) return toast('Choisis un fichier');
+      const extra = det.staged; det.staged = null;
+      saveLocal(r, data, extra);
       if (r) { det.editing = false; renderDet(); } else closeDet();
     };
     const f0 = el.querySelector('dd input:not([type=checkbox]),dd textarea'); if (f0 && !r) setTimeout(() => f0.focus(), 80);
@@ -918,22 +1020,145 @@ function renderDet(){
   };
 }
 
-function saveLocal(r, data){
+function saveLocal(r, data, extra){
   const m = cur, k = key(), now = new Date().toISOString();
   if (r) { if (H[r.id]) Object.keys(data).forEach(f => { if (String(r[f] ?? '') !== String(data[f] ?? '')) H[r.id].unshift({date_heure:now, utilisateur:ME.email, action:'modification', champ:f, ancienne_valeur:r[f] ?? '', nouvelle_valeur:data[f]}); }); Object.assign(r, data, {modifie_le: now}); r._sync = true; }
   else {
-    const row = Object.assign({id:'tmp_' + Date.now(), cree_par:ME.email, cree_le:now, etape:'A_FAIRE', etape_par:ME.email, etape_le:now, archive:false, _tmp:true}, data);
+    const row = Object.assign({id:'tmp_' + Date.now(), cree_par:ME.email, cree_le:now, etape:(stepsOf(m)[0] || {}).code || '', etape_par:ME.email, etape_le:now, archive:false, _tmp:true}, data, extra && extra.file ? {fichier_nom: extra.file.name, fichier_taille: extra.file.size} : {});
     rows.unshift(row); cache[k] = rows;
   }
   drawCards();
   const refresh = async () => { const fresh = await api('list', {module:m, archives:false}); cache[m] = fresh; if (key() === m) { rows = fresh; drawCards(); } };
   enqueue(async () => {
-    await api('save', {module:m, id: r ? r.id : null, data});
+    const newId = await api('save', {module:m, id: r ? r.id : null, data});
+    if (!r && extra && newId) {
+      if (extra.file) await api('file_add', {module:m, ref_id:newId, name:extra.file.name, mime:extra.file.mime, b64:extra.file.b64});
+      for (const ph of (extra.photos || [])) await api('file_add', {module:m, ref_id:newId, name:ph.name, mime:ph.mime, b64:ph.b64});
+    }
     if (r) { delete H[r.id]; r._sync = false; }
     if (pending === 1) await refresh(); else if (key() === k) drawCards();
     if (key() === k) { let id = r && r.id; if (!id) { const f = rows.filter(x => x.cree_par === ME.email && (!data.waybill || x.waybill === data.waybill)).sort((a, b) => String(b.cree_le).localeCompare(String(a.cree_le)))[0]; id = f && f.id; } if (id) waveCard(id); }
   }, async () => { if (r) r._sync = false; try { await refresh(); } catch (e) {} });
 }
+
+
+// ------------------------------------------------------------ Security Cases / Documents : photos, contact client, fichier
+const FILES = {}, FLOAD = {};
+const readB64 = f => new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(',')[1] || ''); fr.onerror = () => rej(new Error('Lecture du fichier impossible')); fr.readAsDataURL(f); });
+async function compressImg(file){
+  let bmp; try { bmp = await createImageBitmap(file, {imageOrientation:'from-image'}); } catch (e) { throw new Error('Image non lisible : ' + file.name); }
+  const sc = Math.min(1, 1280 / Math.max(bmp.width, bmp.height)), c = document.createElement('canvas');
+  c.width = Math.round(bmp.width * sc); c.height = Math.round(bmp.height * sc);
+  c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+  const b64 = c.toDataURL('image/jpeg', 0.82).split(',')[1];
+  return {name: (file.name || 'photo').replace(/\.[^.]+$/, '') + '.jpg', mime:'image/jpeg', b64};
+}
+function photosBlock(r){
+  const list = r ? FILES[r.id] : ((det.staged && det.staged.photos) || []);
+  const w = !r || (canWrite() && !showArch);
+  const items = list === undefined ? '' : list.map((f, i) => f.err ? `<div class="ph" title="Photo indisponible"><span class="m" style="margin:auto">Indisponible</span></div>`
+    : `<div class="ph ${f._sync ? 'sync' : ''}" ${r ? `data-pid="${f.id}"` : `data-sidx="${i}"`}><img alt="Photo" src="data:${f.mime || 'image/jpeg'};base64,${f.b64}">${w && !f._sync ? `<button class="x" data-pdel="${r ? f.id : i}" aria-label="Supprimer la photo" title="Supprimer">${IC.close}</button>` : ''}</div>`).join('');
+  const add = w ? `<label class="ph add" title="Ajouter des photos">${IC.camera}Ajouter<input type="file" id="phIn" accept="image/*" multiple hidden></label>` : '';
+  const n = list ? list.length : 0;
+  return `<div class="xh">Photos${n ? ` <small>${n}</small>` : ''}</div>` + (list === undefined ? '<div class="m">Chargement des photos…</div>' : (items || add) ? `<div class="pgrid">${items}${add}</div>` : '<div class="m">Aucune photo.</div>');
+}
+function contactBox(r){
+  const w = canWrite() && !showArch, btn = (l) => w ? `<button class="s go" id="bContact">${IC.phone}${l}</button>` : '';
+  if (r.contacter_client !== true) return `<div class="cbox"><span class="ci">${IC.stop}</span><div class="ct"><b>Pas de contact client</b><small>Ce dossier ne demande pas de contacter le client.</small></div></div>`;
+  if (!r.contact_fait_le) return `<div class="cbox todo"><span class="ci">${IC.phone}</span><div class="ct"><b>Client à contacter</b><small>Aucun contact enregistré.</small></div>${btn("J'ai contacté le client")}</div>`;
+  return `<div class="cbox done"><span class="ci">${IC.phone}</span><div class="ct"><b>Client contacté · ${esc(r.contact_moyen || '')}</b><small>${esc(who(r.contact_fait_par))} · ${fdate(r.contact_fait_le, true)}${r.contact_commentaire ? '<br>' + esc(r.contact_commentaire) : ''}</small></div>${btn('Nouveau contact')}</div>`;
+}
+function fileBox(r){
+  const st = det.staged && det.staged.file, w = !r || (canWrite() && !showArch);
+  const canDel = r && !showArch && (String(r.cree_par).toLowerCase() === ME.email || ME.rights.DOCUMENTS === 'admin');
+  const pick = (l) => `<label class="s" style="cursor:pointer">${IC.plus}${l}<input type="file" id="docIn" hidden></label>`;
+  if (!r) return `<div class="xh">Fichier</div><div class="fbox"><span class="fic">${IC.DOCUMENTS}</span><div class="fi">${st ? esc(st.name) + `<small>${fsize(st.size)}</small>` : '<span class="m" style="margin:0">Aucun fichier choisi (PDF ou autre, 8 Mo maximum).</span>'}</div>${pick(st ? 'Changer' : 'Choisir un fichier')}</div>`;
+  return `<div class="xh">Fichier</div><div class="fbox"><span class="fic">${IC.DOCUMENTS}</span><div class="fi">${r.fichier_nom ? esc(r.fichier_nom) + `<small>${fsize(r.fichier_taille)}</small>` : '<span class="m" style="margin:0">Aucun fichier.</span>'}</div>
+    ${r.fichier_id ? `<button class="s go" id="bDl">${IC.download}Télécharger</button>` : ''}${canDel && w ? pick('Remplacer') : ''}</div>
+    ${canDel ? `<div class="hbar" style="margin-top:12px"><button class="s danger" id="bDocDel">${IC.trash}Supprimer le document</button></div>` : ''}`;
+}
+function extraBlocks(r, ed){
+  if (cur === 'SECURITY') return (r && !ed ? contactBox(r) : '') + photosBlock(r) + (r && !ed ? `<div class="dph">${IC.DOCUMENTS}<div>Document « Découverte de contenu interdit »<small style="display:block">Bientôt disponible.</small></div></div>` : '');
+  if (cur === 'DOCUMENTS') return fileBox(r);
+  return '';
+}
+function drawX(){ if (!det || !$('#xBlocks')) return; $('#xBlocks').innerHTML = extraBlocks(det.r, det.editing); bindX(); }
+function afterExtra(r, ed){
+  bindX();
+  if (cur === 'SECURITY' && r && !String(r.id).startsWith('tmp_') && FILES[r.id] === undefined && !FLOAD[r.id]) {
+    FLOAD[r.id] = true; const id = r.id;
+    api('files_list', {module:'SECURITY', ref_id:id, inline:true}).then(l => { FILES[id] = l.filter(f => f.kind === 'photo'); }).catch(() => { FILES[id] = []; }).finally(() => { delete FLOAD[id]; if (det && det.r && det.r.id === id) drawX(); });
+  }
+}
+function bindX(){
+  const b = $('#xBlocks'); if (!b) return; const r = det && det.r;
+  b.onclick = e => {
+    const d = e.target.closest('[data-pdel]'); if (d) { e.stopPropagation(); return delPhoto(d.dataset.pdel); }
+    const im = e.target.closest('.ph:not(.add) img'); if (im) { $('#phImg').src = im.src; return $('#mPhoto').classList.add('on'); }
+    if (e.target.closest('#bContact')) return openContact(r);
+    if (e.target.closest('#bDl')) return downloadFile(r.fichier_id, r.fichier_nom);
+    if (e.target.closest('#bDocDel')) return delDoc(r);
+  };
+  b.onchange = e => {
+    if (e.target.id === 'phIn') { const fs = [...e.target.files]; e.target.value = ''; return addPhotos(fs); }
+    if (e.target.id === 'docIn') { const f = e.target.files[0]; e.target.value = ''; if (f) return pickDoc(f); }
+  };
+}
+async function addPhotos(files){
+  if (!files.length) return;
+  const r = det && det.r, m = cur; let ph = [];
+  try { ph = await wait(async () => { const o = []; for (const f of files) o.push(await compressImg(f)); return o; }); } catch (e) { return toast(e.message); }
+  if (!det) return;
+  if (!r) { det.staged = det.staged || {photos:[]}; det.staged.photos = (det.staged.photos || []).concat(ph); return drawX(); }
+  FILES[r.id] = FILES[r.id] || [];
+  ph.forEach(p => { const tmp = {id:'tmp_' + Math.random().toString(36).slice(2), nom:p.name, mime:p.mime, b64:p.b64, kind:'photo', _sync:true}; FILES[r.id].push(tmp);
+    enqueue(async () => { const o = await api('file_add', {module:m, ref_id:r.id, name:p.name, mime:p.mime, b64:p.b64}); tmp.id = o.id; tmp._sync = false; delete H[r.id]; if (det && det.r === r) drawX(); },
+      () => { FILES[r.id] = FILES[r.id].filter(x => x !== tmp); if (det && det.r === r) drawX(); }); });
+  drawX();
+}
+async function delPhoto(id){
+  const r = det && det.r;
+  if (!r) { det.staged.photos.splice(Number(id), 1); return drawX(); }
+  if (!(await ask('Supprimer cette photo ?', 'Elle sera définitivement supprimée.', 'Supprimer'))) return;
+  const before = FILES[r.id], f = before.find(x => x.id === id); if (!f) return;
+  FILES[r.id] = before.filter(x => x !== f); drawX();
+  enqueue(async () => { await api('file_delete', {id}); delete H[r.id]; }, () => { FILES[r.id] = before; if (det && det.r === r) drawX(); });
+}
+async function pickDoc(f){
+  if (f.size > 8 * 1024 * 1024) return toast('Fichier trop volumineux (8 Mo maximum)');
+  let b64; try { b64 = await wait(() => readB64(f)); } catch (e) { return toast(e.message); }
+  const file = {name:f.name, mime:f.type || 'application/octet-stream', b64, size:f.size}, r = det && det.r;
+  if (!r) { det.staged = Object.assign(det.staged || {}, {file}); return drawX(); }
+  try { const o = await wait(() => api('file_add', {module:'DOCUMENTS', ref_id:r.id, name:file.name, mime:file.mime, b64})); Object.assign(r, {fichier_id:o.id, fichier_nom:o.nom, fichier_taille:o.taille}); delete H[r.id]; toast('Fichier remplacé'); drawCards(); if (det && det.r === r) renderDet(); }
+  catch (e) { toast(e.message); }
+}
+async function downloadFile(fid, nom){
+  try {
+    const o = await wait(() => api('file_get', {id:fid}));
+    const bin = atob(o.b64), u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([u], {type:o.mime || 'application/octet-stream'})); a.download = o.nom || nom || 'document'; document.body.appendChild(a); a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+  } catch (e) { toast(e.message); }
+}
+async function delDoc(r){
+  if (!(await ask('Supprimer ce document ?', 'Le document et son fichier seront définitivement supprimés.', 'Supprimer'))) return;
+  const k = key(), before = rows; rows = rows.filter(x => x !== r); cache[k] = rows; drawCards(); closeDet();
+  enqueue(() => api('doc_delete', {id:r.id}), () => { cache[k] = before; if (key() === k) { rows = before; drawCards(); } });
+}
+function openContact(r){
+  $('#cSub').textContent = MODS.SECURITY.title(r); $('#cMoyen').innerHTML = MOYENS.map(x => `<option>${x}</option>`).join(''); $('#cCom').value = '';
+  $('#mContact').classList.add('on'); setTimeout(() => $('#cMoyen').focus(), 50);
+  $('#cOk').onclick = () => {
+    const moyen = $('#cMoyen').value, com = $('#cCom').value.trim(), old = {contact_fait_par:r.contact_fait_par, contact_fait_le:r.contact_fait_le, contact_moyen:r.contact_moyen, contact_commentaire:r.contact_commentaire};
+    $('#mContact').classList.remove('on');
+    Object.assign(r, {contact_fait_par:ME.email, contact_fait_le:new Date().toISOString(), contact_moyen:moyen, contact_commentaire:com}); r._sync = true; drawCards(); if (det && det.r === r) drawX();
+    enqueue(async () => { await api('sec_contact', {id:r.id, moyen, commentaire:com}); r._sync = false; delete H[r.id]; if (key() === 'SECURITY') drawCards(); if (det && det.r === r) drawX(); },
+      () => { r._sync = false; Object.assign(r, old); if (key() === 'SECURITY') drawCards(); if (det && det.r === r) drawX(); });
+  };
+}
+$('#cX').innerHTML = IC.close; $('#phX').innerHTML = IC.close;
+$('#cX').onclick = $('#cNo').onclick = () => $('#mContact').classList.remove('on');
+$('#mPhoto').onclick = () => $('#mPhoto').classList.remove('on');
 
 // ------------------------------------------------------------ Scan code-barres
 let reader = null;
@@ -1084,12 +1309,15 @@ $('#tAdd').onclick = () => {
 const isAdmin = () => ME.rights.PARAMETRES === 'admin';
 const SECTIONS = [
   {id:'profil', l:'Mon profil', ic:'users'}, {id:'aff', l:'Affichage', ic:'gear'}, {id:'notif', l:'Notifications', ic:'bell'}, {id:'region', l:'Région', ic:'globe'}, {id:'rapports', l:'Rapports automatiques', ic:'chart'},
-  {id:'archi', l:'Archivage et suppression', ic:'archive', adm:1}, {id:'dom', l:'Délais DOM', ic:'DOM', adm:1}, {id:'trait', l:'Traitement quotidien', ic:'clock', adm:1},
+  {id:'archi', l:'Archivage et suppression', ic:'archive', adm:1}, {id:'sec', l:'Security Cases', ic:'SECURITY', adm:1}, {id:'dom', l:'Délais DOM', ic:'DOM', adm:1}, {id:'trait', l:'Traitement quotidien', ic:'clock', adm:1},
   {id:'histo', l:'Historique', ic:'clock', adm:1}, {id:'users', l:'Utilisateurs', ic:'users', adm:1}];
 const PLAB = {archivage_auto_dom_jours:'DOM — archivage automatique', archivage_auto_awb_jours:'AWB — archivage automatique', archivage_auto_spark_jours:'SPARK — archivage automatique',
   suppression_apres_archive_awb_jours:'AWB — suppression après archivage', suppression_apres_archive_spark_jours:'SPARK — suppression après archivage', suppression_apres_archive_dom_jours:'DOM — suppression après archivage',
-  dom_delai_j4_jours:'Délai J4', dom_delai_j10_jours:'Délai J10', dom_jours_ouvres:'Compter en jours ouvrés', heure_traitement_quotidien:'Heure du traitement', historique_retention_mois:"Conservation de l'historique"};
-const PGROUP = {archi:['archivage_auto_dom_jours','archivage_auto_awb_jours','archivage_auto_spark_jours','suppression_apres_archive_dom_jours','suppression_apres_archive_awb_jours','suppression_apres_archive_spark_jours'],
+  dom_delai_j4_jours:'Délai J4', dom_delai_j10_jours:'Délai J10', dom_jours_ouvres:'Compter en jours ouvrés', heure_traitement_quotidien:'Heure du traitement', historique_retention_mois:"Conservation de l'historique",
+  archivage_auto_security_jours:'Security Cases — archivage automatique', suppression_apres_archive_security_jours:'Security Cases — suppression après archivage',
+  security_rappel_contact_jours:'Rappel après contact du client', security_rappel_scms_jours:'Rappel après création du SCMS'};
+const PGROUP = {archi:['archivage_auto_dom_jours','archivage_auto_awb_jours','archivage_auto_spark_jours','suppression_apres_archive_dom_jours','suppression_apres_archive_awb_jours','suppression_apres_archive_spark_jours','archivage_auto_security_jours','suppression_apres_archive_security_jours'],
+  sec:['security_rappel_contact_jours','security_rappel_scms_jours'],
   dom:['dom_delai_j4_jours','dom_delai_j10_jours','dom_jours_ouvres'], trait:['heure_traitement_quotidien'], histo:['historique_retention_mois']};
 const NOTIFS = [['nouveau','Nouvel élément partagé'], ['modification',"Modification d'un élément"], ['etape',"Changement d'étape"], ['urgent','Élément urgent'], ['archive','Archivage'], ['echeance','Échéance DOM (J4 / J10)']];
 const TZS = ['Europe/Paris','Europe/London','Europe/Berlin','Europe/Brussels','Europe/Zurich','Indian/Reunion','America/Martinique','America/New_York','Asia/Dubai'];
@@ -1154,11 +1382,11 @@ async function renderUsers(el){
   const lv = (u, m) => { const cur = u.rights[m] || '', opts = m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<select data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<option value="${v}" ${v === cur ? 'selected' : ''}>${l}</option>`).join('')}</select>`; };
   el.innerHTML = `<h3>Utilisateurs</h3><p class="lead">Accès aux pages et connexions.</p>
-    <table class="utab"><tr><th>Utilisateur</th><th>Dernière connexion</th><th>Actif</th><th>AWB</th><th>SPARK</th><th>DOM</th><th>Paramètres</th><th></th></tr>
+    <table class="utab"><tr><th>Utilisateur</th><th>Dernière connexion</th><th>Actif</th><th>AWB</th><th>SPARK</th><th>DOM</th><th>Security</th><th>Documents</th><th>Paramètres</th><th></th></tr>
     ${us.map(u => `<tr><td><b>${esc(u.prenom)} ${esc(u.nom)}</b><div class="m" style="margin:0">${esc(u.email)}</div></td>
       <td>${u.last ? fdate(u.last.date, true) + `<div class="m" style="margin:0">${u.last.appareil}</div>` : '<span class="m">Jamais</span>'}</td>
       <td>${sw('a_' + u.email, u.actif, `data-act="${esc(u.email)}"`)}</td>
-      <td>${lv(u, 'AWB')}</td><td>${lv(u, 'SPARK')}</td><td>${lv(u, 'DOM')}</td><td>${lv(u, 'PARAMETRES')}</td>
+      <td>${lv(u, 'AWB')}</td><td>${lv(u, 'SPARK')}</td><td>${lv(u, 'DOM')}</td><td>${lv(u, 'SECURITY')}</td><td>${lv(u, 'DOCUMENTS')}</td><td>${lv(u, 'PARAMETRES')}</td>
       <td><button class="s" data-conn="${esc(u.email)}" data-nm="${esc(u.prenom)}">Connexions</button></td></tr>`).join('')}</table>`;
   el.onchange = async e => {
     const t = e.target;
