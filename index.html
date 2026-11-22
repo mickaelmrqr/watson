@@ -16,7 +16,7 @@
 :root{
   --bg:#15181F; --panel:#1D222C; --raised:#272E3B; --line:#343C4C;
   --ink:#F1F4FA; --mut:#A3AEC2;
-  --blue:#4A94FF; --orange:#FF8A1F; --green:#3ECF8E; --red:#FF5C5C;
+  --blue:#3A8CFF; --orange:#FF9628; --green:#3ECF8E; --red:#FF5C5C;
   --ease:cubic-bezier(.2,.8,.2,1);
   --body:'DM Sans',system-ui,sans-serif; --disp:'Sora','DM Sans',system-ui,sans-serif;
 }
@@ -33,7 +33,8 @@ svg.i{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:2;st
 header{display:flex;align-items:center;gap:10px;padding:10px 20px;position:sticky;top:0;z-index:5;
   background:rgba(21,24,31,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);min-height:62px}
 .logo{display:flex;align-items:center;gap:12px;flex:1;font:700 22px var(--disp);letter-spacing:.2px}
-.logo img{width:38px;height:38px;border-radius:10px;display:block}
+.logo img{height:40px;width:auto;aspect-ratio:1/1;object-fit:contain;display:block}
+.ver{font:700 12px var(--disp);letter-spacing:.4px;color:var(--orange);border:1px solid rgba(255,150,40,.55);background:rgba(255,150,40,.12);border-radius:8px;padding:2px 8px;margin-left:-2px;align-self:center}
 #who{color:var(--mut);font-weight:500}
 #sync{font-size:13px;font-weight:500;color:var(--mut);display:flex;align-items:center;gap:7px}
 #sync .dot{width:9px;height:9px;border-radius:50%;background:var(--green);transition:background .3s}
@@ -56,7 +57,7 @@ header{display:flex;align-items:center;gap:10px;padding:10px 20px;position:stick
 /* ---------- Onglets des modules */
 nav{display:flex;justify-content:center;padding:22px 16px 6px}
 .seg{position:relative;display:inline-flex;gap:4px;padding:5px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
-.seg .ind{position:absolute;top:5px;bottom:5px;left:0;width:0;border-radius:12px;background:linear-gradient(135deg,#3f86f0,#2a6fdb);box-shadow:0 6px 18px rgba(74,148,255,.35);transition:transform .35s var(--ease),width .35s var(--ease)}
+.seg .ind{position:absolute;top:5px;bottom:5px;left:0;width:0;border-radius:12px;background:linear-gradient(135deg,#4695ff,#2b6fe0);box-shadow:0 6px 18px rgba(58,140,255,.35);transition:transform .35s var(--ease),width .35s var(--ease)}
 .seg button{position:relative;z-index:1;display:flex;align-items:center;gap:9px;font:700 16px var(--disp);color:var(--mut);background:transparent;border:0;border-radius:12px;padding:11px 26px;cursor:pointer;transition:color .2s,transform .2s var(--ease)}
 .seg button:hover{color:#fff;transform:translateY(-1px)}
 .seg button.on{color:#fff}
@@ -81,41 +82,62 @@ button{font-family:inherit;cursor:pointer}
 .s[disabled],.p[disabled],.ico[disabled]{opacity:.45;pointer-events:none}
 
 /* ---------- Cartes */
-.grid{display:grid;gap:16px;grid-template-columns:1fr}
-@media(min-width:800px){.grid{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}}
-.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px 24px;overflow:hidden;cursor:pointer;
+.grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:800px){.grid{grid-template-columns:repeat(auto-fill,minmax(400px,1fr))}}
+.card{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:12px 16px 11px 22px;overflow:hidden;cursor:pointer;
   transition:transform .22s var(--ease),border-color .22s,box-shadow .22s,background .22s}
+.card>*{position:relative;z-index:1}
 .card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--rail,var(--line));transition:width .22s var(--ease)}
 .card:hover{transform:translateY(-3px);border-color:#55607a;background:#212733;box-shadow:0 14px 34px rgba(0,0,0,.38)}
 .card:hover:before{width:9px}
-.card.urg{--rail:var(--orange);box-shadow:0 0 0 1px rgba(255,138,31,.28)}
-.card.st-go{--rail:var(--blue)} .card.st-ok{--rail:var(--green)} .card.urg:before{background:var(--orange)}
+.card.st-go{--rail:var(--blue)} .card.st-ok{--rail:var(--green)}
 .card.tmp{opacity:.72;animation:pop .35s var(--ease)}
 @keyframes pop{from{transform:scale(.96);opacity:0}}
+.warnbg{position:absolute!important;z-index:0!important;right:-8px;top:50%;transform:translateY(-50%) rotate(-8deg);width:128px;height:128px;color:var(--red);opacity:.3;filter:blur(2.2px);pointer-events:none}
+.warnbg svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.r1,.r2{display:flex;align-items:center;gap:10px;min-width:0}
+.r1 .name,.r1 .refs{flex:1;min-width:0}
 .name{font:700 22px/1.2 var(--disp);color:#fff;letter-spacing:.2px;word-break:break-word}
-.refs{display:flex;gap:6px 16px;flex-wrap:wrap;margin:5px 0 2px}
+.refs{display:flex;gap:4px 16px;flex-wrap:wrap;margin:3px 0 1px;flex:1}
 .ref{font:700 17px var(--disp);letter-spacing:.3px;color:#9cc3ff;text-decoration:none;border-bottom:1px solid transparent;transition:color .15s,border-color .15s;word-break:break-all}
 .ref:hover{color:#fff;border-color:var(--orange)}
-.refs.solo .ref{font-size:23px}
+.refs.solo{margin:0}.refs.solo .ref{font-size:22px}
 .ref small{font:500 12.5px var(--body);color:var(--mut);margin-right:5px}
-.m{color:var(--mut);font-size:15px;margin:3px 0}
-.tags{margin:9px 0 6px;display:flex;gap:7px;flex-wrap:wrap}
-.tag{font-size:13.5px;font-weight:700;border-radius:9px;padding:4px 11px;background:var(--raised);color:var(--mut)}
-.tag.go{background:rgba(74,148,255,.2);color:#a9cbff}
+.bub{display:inline-flex;align-items:center;gap:5px;flex:none;font:700 13.5px var(--disp);color:#ffcf9a;background:rgba(255,150,40,.16);border:1px solid rgba(255,150,40,.4);border-radius:999px;padding:3px 11px 3px 8px}
+.bub svg{width:1em;height:1em}
+.m{color:var(--mut);font-size:15px;margin:2px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.m.cat{color:#ffbf7a;font-weight:700;font-size:14.5px}
+.tag{font-size:13px;font-weight:700;border-radius:9px;padding:3px 10px;background:var(--raised);color:var(--mut);white-space:nowrap;flex:none}
+.tag.go{background:rgba(58,140,255,.2);color:#a9cbff}
 .tag.ok{background:rgba(62,207,142,.17);color:#86e5b8}
-.tag.u{background:rgba(255,138,31,.22);color:#ffb766}
+.tag.u{background:rgba(255,92,92,.18);color:#ff9d9d}
 .tag.pr{background:rgba(255,255,255,.09);color:var(--ink)}
-.act{display:flex;gap:8px;align-items:center;margin-top:12px}
-.act .sp{flex:1}
+.act{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:9px}
+.act .s{padding:8px 22px}
 .empty{color:var(--mut);padding:40px 0;text-align:center}
 
-/* ---------- Menu des étapes */
+/* ---------- Menu des étapes : « glissant » (près du bouton) */
 #pop{position:fixed;z-index:60;min-width:270px;background:var(--raised);border:1px solid #4a5468;border-radius:14px;padding:6px;box-shadow:0 18px 44px rgba(0,0,0,.55);opacity:0;transform:translateY(-6px) scale(.97);transform-origin:top left;pointer-events:none;transition:opacity .16s,transform .2s var(--ease)}
 #pop.on{opacity:1;transform:none;pointer-events:auto}
 #pop button{display:flex;width:100%;align-items:center;justify-content:space-between;gap:12px;background:transparent;border:0;color:var(--ink);text-align:left;font:500 15.5px var(--body);padding:11px 13px;border-radius:9px;transition:background .15s,padding .15s var(--ease)}
-#pop button:hover{background:rgba(74,148,255,.2);padding-left:17px}
+#pop button:hover{background:rgba(58,140,255,.2);padding-left:17px}
 #pop button.cur{color:var(--mut);cursor:default;pointer-events:none}
 #pop button.cur svg{color:var(--green)}
+/* ---------- Menu des étapes : « bandeau » (en bas de l'écran, étapes dans l'ordre) */
+#band{position:fixed;left:0;right:0;bottom:0;z-index:70;background:linear-gradient(180deg,#2a3242,#222938);border-top:1px solid #4a5468;box-shadow:0 -18px 44px rgba(0,0,0,.5);padding:14px 22px 20px;transform:translateY(105%);transition:transform .3s var(--ease)}
+#band.on{transform:none}
+#band .bt{display:flex;align-items:center;gap:10px;margin:0 auto 12px;max-width:1100px;font:700 15px var(--disp);color:var(--mut)}
+#band .bt b{color:#fff;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flow{display:flex;align-items:stretch;gap:0;max-width:1100px;margin:0 auto;overflow-x:auto;padding-bottom:2px}
+.flow .stp{flex:1 1 0;min-width:130px;display:flex;flex-direction:column;align-items:center;gap:7px;background:transparent;border:0;color:var(--mut);font:500 14.5px/1.25 var(--body);padding:4px 8px;text-align:center;position:relative;transition:color .15s,transform .18s var(--ease)}
+.flow .stp:hover{color:#fff;transform:translateY(-2px)}
+.flow .stp .dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:700 14px var(--disp);background:var(--bg);border:2px solid var(--line);color:var(--mut);z-index:1;transition:background .15s,border-color .15s}
+.flow .stp:hover .dot{border-color:var(--blue)}
+.flow .stp:not(:last-child):after{content:"";position:absolute;top:21px;left:calc(50% + 22px);right:calc(-50% + 22px);height:2px;background:var(--line)}
+.flow .stp.done .dot{background:rgba(62,207,142,.2);border-color:var(--green);color:var(--green)}
+.flow .stp.done:not(:last-child):after{background:var(--green)}
+.flow .stp.cur{color:#fff;cursor:default}
+.flow .stp.cur .dot{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 0 0 5px rgba(58,140,255,.25)}
 
 /* ---------- Fenêtres */
 .modal{position:fixed;inset:0;background:rgba(10,12,16,.58);backdrop-filter:blur(5px);display:flex;align-items:flex-end;justify-content:center;z-index:20;opacity:0;pointer-events:none;transition:opacity .22s}
@@ -137,6 +159,28 @@ label{display:block;font-weight:500;color:var(--mut);margin:14px 0 6px;font-size
 .det dt{color:var(--mut);font-size:14.5px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .det dd{margin:0;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);word-break:break-word;min-height:2.2em}
 .det dd.none{color:#5f6a7e}
+.det dd{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.det dd>input:not([type=checkbox]),.det dd>select,.det dd>textarea,.det dd .row{flex:1;min-width:0}
+.det dd input:not([type=checkbox]),.det dd select,.det dd textarea{padding:4px 10px;font-size:16px;border-radius:8px;line-height:1.4}
+.det dd textarea{resize:none;overflow:hidden;display:block}
+.det dd .row input{flex:1;min-width:0}
+.det dd .chk{margin:2px 0}
+.det dd input[type=checkbox]{width:20px;height:20px;accent-color:var(--blue);padding:0}
+.det dd.ed{padding:3px 0}
+.dstat{display:flex;align-items:center;gap:10px;margin:10px 0 4px;transition:opacity .2s}
+.dstat .sp{flex:1}
+.dstat.lock{opacity:.4;pointer-events:none}
+.ico.ok{color:var(--green);border-color:rgba(62,207,142,.5)}
+.ico.ok:hover{background:rgba(62,207,142,.18);color:#fff}
+.sec{font:700 16px var(--disp);margin:22px 0 4px;color:var(--ink)}
+.hist{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.hist li{display:grid;grid-template-columns:150px 1fr;gap:4px 16px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:15px}
+.hist .hd{color:var(--mut);font-size:14px}
+.hist .hw{color:var(--mut);font-size:13px}
+.hist .arr{color:var(--orange);margin:0 4px}
+#mAsk{z-index:90}
+#mAsk .sheet{max-width:420px}
+#mAsk p{color:var(--mut);margin:8px 0 0}
 .foot{display:flex;gap:10px;margin-top:20px}
 #scan video{width:100%;border-radius:14px;background:#000;aspect-ratio:4/3;object-fit:cover}
 .frame{position:relative}
@@ -165,20 +209,21 @@ table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:
 td,th{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
 tr:hover td{background:#212733}
 .hide{display:none!important}
-@media(max-width:700px){#bQR{font-size:13px;padding:8px 14px 10px}.det{grid-template-columns:1fr}.seg button{padding:10px 16px}#who{display:none}}
+@media(max-width:700px){#bQR{font-size:13px;padding:8px 14px 10px}.det,.hist li{grid-template-columns:1fr}.flow .stp{min-width:96px;font-size:13px}.seg button{padding:10px 16px}#who{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="">Watson</div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4</span></div>
   <span id="sync" class="hide"><span class="dot"></span><span id="syncT">Synchronisé</span></span>
   <span id="who"></span>
+  <button id="bMenu" class="ico hide" title="Style du menu Étape" aria-label="Style du menu Étape"></button>
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
 <button id="bQR" class="hide"></button>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" style="width:54px;height:54px;border-radius:14px">Watson</div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -188,6 +233,9 @@ tr:hover td{background:#212733}
   <div class="idc"><b>Identifiant</b><div class="qrt" id="qrId"></div><button class="s" id="cpId">Copier</button></div>
   <div class="idc"><b>Mot de passe</b><div class="qrt" id="qrPw"></div><button class="s" id="cpPw">Copier</button></div></div></div></div>
 <div id="pop"></div>
+<div id="band"></div>
+<div class="modal" id="mAsk"><div class="sheet"><div class="sh"><div class="tt"><h3 id="askT"></h3></div></div><p id="askP"></p>
+  <div class="foot"><button class="p" id="askOk" style="flex:1"></button><button class="s" id="askNo">Annuler</button></div></div></div>
 <div id="busy"><div><span class="spin"></span><span>Patienter…</span></div></div>
 <div class="toast" id="toast"></div>
 
@@ -204,7 +252,11 @@ const IC = {
   unarchive: ic('<rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"/><path d="M12 18v-6"/><path d="m9.5 14.5 2.5-2.5 2.5 2.5"/>'),
   gear: ic('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/>'),
   out: ic('<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>'),
-  key: ic('<circle cx="8" cy="15" r="4"/><path d="m10.85 12.15 8.9-8.9"/><path d="m18 5 3 3"/><path d="m15 8 2 2"/>'),
+  qr: ic('<rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><path d="M15 15h2v2"/><path d="M21 15v.01"/><path d="M15 21h2"/><path d="M21 19v2"/><path d="M12 3v6"/><path d="M12 13v2"/><path d="M3 12h2"/><path d="M9 12h6"/>'),
+  alert: '<svg viewBox="0 0 24 24"><path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>',
+  pin: ic('<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>'),
+  band: ic('<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15h18"/><path d="M8 19h.01"/><path d="M12 19h.01"/><path d="M16 19h.01"/>'),
+  glide: ic('<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M13 8h4"/><path d="M13 12h4"/><path d="M13 16h4"/>'),
   close: ic('<path d="M18 6 6 18"/><path d="m6 6 12 12"/>'),
   chev: ic('<path d="m6 9 6 6 6-6"/>'),
   check: ic('<path d="M20 6 9 17l-5-5"/>'),
@@ -227,7 +279,7 @@ const MODS = {
     {k:'urgent',l:'Urgent',t:'bool'},
     {k:'visibilite',l:'Visibilité',t:'vis'},
     {k:'commentaire',l:'Commentaire',t:'area'}],
-    show:['categorie_id','remarque','location','commentaire'] },
+    show:['categorie_id','remarque'] },
   SPARK: { label: 'SPARK', name: r => '', fields: [
     {k:'waybill',l:'Waybill',t:'scan'},
     {k:'pid',l:'PID',t:'scan'},
@@ -290,7 +342,7 @@ window.onload = () => {
   const w = setInterval(() => { if (window.google && google.accounts) { clearInterval(w); initGoogle(); } }, 100);
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
   $('#bSet').innerHTML = IC.gear; $('#bOut').innerHTML = IC.out; $('#qrX').innerHTML = IC.close;
-  $('#bQR').innerHTML = IC.key + 'Mes identifiants';
+  $('#bQR').innerHTML = IC.qr + 'Mes identifiants'; setMenuIcon();
 };
 function initGoogle(){
   google.accounts.id.initialize({client_id: WATSON.CLIENT_ID, callback: r => { token = r.credential; sessionStorage.setItem('wtk', token); start(); }, auto_select: true});
@@ -304,7 +356,7 @@ async function start(){
   try {
     ME = await wait(() => api('me'));
     $('#login').classList.add('hide'); $('#app').classList.remove('hide');
-    ['#bOut', '#bQR'].forEach(s => $(s).classList.remove('hide'));
+    ['#bOut', '#bQR', '#bMenu'].forEach(s => $(s).classList.remove('hide'));
     if (ME.role === 'admin') $('#bSet').classList.remove('hide');
     $('#who').textContent = ME.prenom;
     const mods = Object.keys(MODS).filter(m => ME.rights[m]);
@@ -370,21 +422,28 @@ function val(r, k){
   if (k === 'location') return v ? 'Étagère : ' + v : '';
   return v;
 }
+const kindOf = r => {
+  if (STEP_KIND[r.etape]) return STEP_KIND[r.etape];
+  const st = stepsOf(cur), i = st.findIndex(x => x.code === r.etape), n = st.length;
+  if (i <= 0) return '';
+  return (n >= 4 && i >= n - 2) || (n < 4 && i === n - 1) ? 'ok' : 'go';
+};
+const stLabel = (code, m = cur) => { const s = ME.etapes.find(e => e.module === m && e.code === code); return s ? s.libelle_etat : code; };
 function card(r){
-  const M = MODS[cur], steps = stepsOf(cur), st = steps.find(s => s.code === r.etape), kind = STEP_KIND[r.etape] || '';
-  const name = String(M.name(r) || '').toUpperCase();
+  const M = MODS[cur], kind = kindOf(r), name = String(M.name(r) || '').toUpperCase();
+  const tmp = r._tmp === true, w = canWrite();
+  const tag = `<span class="tag ${tmp ? '' : kind}">${tmp ? 'Envoi…' : esc(stLabel(r.etape))}</span>`;
   const refs = r.waybill || r.pid
     ? `<div class="refs ${name ? '' : 'solo'}">${link(r.waybill, r.pid && r.waybill ? 'AWB' : '')}${link(r.pid, r.waybill ? 'PID' : '')}</div>` : '';
-  const lines = M.show.map(k => { const v = val(r, k); return v ? `<div class="m">${esc(v)}</div>` : ''; }).join('');
-  const tmp = r._tmp === true, w = canWrite(), dis = tmp ? 'disabled' : '';
-  const acts = !w ? '' : showArch
-    ? `<span class="sp"></span><button class="ico" ${dis} data-a="unarch" data-id="${r.id}" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>`
-    : `<button class="s go" ${dis} data-a="stepmenu" data-id="${r.id}">Étape${IC.chev}</button><span class="sp"></span>
-       <button class="ico warn" ${dis} data-a="arch" data-id="${r.id}" title="Archiver" aria-label="Archiver">${IC.archive}</button>`;
-  return `<div class="card st-${kind} ${r.urgent===true?'urg':''} ${tmp?'tmp':''}" data-id="${r.id}">
-    ${name ? `<div class="name">${esc(name)}</div>` : ''}${refs || (name ? '' : '<div class="name">—</div>')}
-    <div class="tags"><span class="tag ${kind}">${esc(st ? st.libelle_etat : r.etape)}</span>${r.urgent===true?'<span class="tag u">Urgent</span>':''}${r.visibilite==='prive'?'<span class="tag pr">Privé</span>':''}${tmp?'<span class="tag">Envoi…</span>':''}</div>
-    ${lines}<div class="act">${acts}</div></div>`;
+  const bub = r.location ? `<span class="bub" title="Étagère">${IC.pin}${esc(r.location)}</span>` : '';
+  const head = name
+    ? `<div class="r1"><div class="name">${esc(name)}</div>${tag}</div><div class="r2">${refs || '<div class="refs"></div>'}${bub}</div>`
+    : `<div class="r1">${refs || '<div class="name">—</div>'}${tag}</div>`;
+  const lines = M.show.map(k => { const v = val(r, k); return v ? `<div class="m ${k === 'categorie_id' ? 'cat' : ''}">${esc(v)}</div>` : ''; }).join('');
+  const acts = w && !showArch ? `<div class="act"><button class="s go" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}">Étape${IC.chev}</button></div>` : '';
+  return `<div class="card st-${kind} ${tmp ? 'tmp' : ''}" data-id="${r.id}">
+    ${r.urgent === true ? `<div class="warnbg" aria-label="Urgent" title="Urgent">${IC.alert}</div>` : ''}
+    ${head}${lines}${acts}</div>`;
 }
 
 // ------------------------------------------------------------ Actions instantanées (envoi en arrière-plan)
@@ -395,71 +454,156 @@ function onListClick(e){
   const id = c.dataset.id, r = rows.find(x => x.id === id); if (!r) return;
   if (!b) { if (!r._tmp) openDetail(r, false); return; }
   if (b.disabled) return;
-  const a = b.dataset.a;
-  if (a === 'stepmenu') return showStepMenu(b, r);
-  if (a === 'arch' || a === 'unarch') doArchive(r, a === 'arch');
+  if (b.dataset.a === 'stepmenu') showStepMenu(b, r);
 }
+const H = {};                                              // historique par élément
 function doStep(r, code){
   const m = cur, k = key();
   const old = {etape:r.etape, etape_par:r.etape_par, etape_le:r.etape_le};
-  Object.assign(r, {etape:code, etape_par:ME.email, etape_le:new Date().toISOString()});
-  drawCards(); if (det && det.r === r) renderDet();
-  enqueue(() => api('step', {module:m, id:r.id, etape:code}), () => { Object.assign(r, old); if (key() === k) drawCards(); if (det && det.r === r) renderDet(); });
+  const ev = {date_heure:new Date().toISOString(), utilisateur:ME.email, action:'etape', ancienne_valeur:old.etape, nouvelle_valeur:code};
+  Object.assign(r, {etape:code, etape_par:ME.email, etape_le:ev.date_heure});
+  if (H[r.id]) H[r.id].unshift(ev);
+  drawCards(); if (det && det.r === r) { renderDet(); }
+  enqueue(() => api('step', {module:m, id:r.id, etape:code}), () => { Object.assign(r, old); if (H[r.id]) H[r.id] = H[r.id].filter(x => x !== ev); if (key() === k) drawCards(); if (det && det.r === r) renderDet(); });
 }
-function doArchive(r, archive){
-  if (archive && !confirm('Archiver cet élément ?')) return;
+async function doArchive(r, archive){
+  if (archive && !(await ask('Archiver cet élément ?', 'Il quittera la liste active. Tu pourras le retrouver dans « Voir les archives ».', 'Archiver'))) return;
   const m = cur, k = key(), before = rows;
   rows = rows.filter(x => x.id !== r.id); cache[k] = rows; drawCards();
   if (det && det.r === r) closeDet();
   enqueue(() => api(archive ? 'archive' : 'unarchive', {module:m, id:r.id}), () => { cache[k] = before; if (key() === k) { rows = before; drawCards(); } });
 }
+// Fenêtre de confirmation
+function ask(title, text, okLabel){
+  return new Promise(res => {
+    $('#askT').textContent = title; $('#askP').textContent = text; $('#askOk').textContent = okLabel || 'Confirmer';
+    const end = v => { $('#mAsk').classList.remove('on'); ask.cancel = null; res(v); };
+    ask.cancel = () => end(false);
+    $('#askOk').onclick = () => end(true); $('#askNo').onclick = () => end(false);
+    $('#mAsk').onmousedown = e => { if (e.target.id === 'mAsk') end(false); };
+    $('#mAsk').classList.add('on'); setTimeout(() => $('#askOk').focus(), 50);
+  });
+}
 
-// ------------------------------------------------------------ Menu « Étape »
-function closePop(){ $('#pop').classList.remove('on'); }
-function showStepMenu(btn, r){
+// ------------------------------------------------------------ Menu « Étape » : deux styles (glissant / bandeau)
+let menuStyle = localStorage.getItem('wmenu') === 'bandeau' ? 'bandeau' : 'glissant';
+function setMenuIcon(){
+  const b = $('#bMenu'); b.innerHTML = menuStyle === 'bandeau' ? IC.band : IC.glide;
+  b.title = 'Menu Étape : ' + menuStyle + ' (cliquer pour changer)';
+}
+$('#bMenu').onclick = () => {
+  menuStyle = menuStyle === 'glissant' ? 'bandeau' : 'glissant';
+  try { localStorage.setItem('wmenu', menuStyle); } catch (e) {}
+  setMenuIcon(); toast('Menu Étape : ' + menuStyle);
+};
+function closePop(){ $('#pop').classList.remove('on'); $('#band').classList.remove('on'); }
+function showStepMenu(btn, r){ return menuStyle === 'bandeau' ? showBand(r) : showPop(btn, r); }
+function showPop(btn, r){
   const pop = $('#pop');
   pop.innerHTML = stepsOf(cur).map(s => `<button data-e="${s.code}" class="${s.code === r.etape ? 'cur' : ''}">${esc(s.libelle_bouton || s.libelle_etat)}${s.code === r.etape ? IC.check : ''}</button>`).join('');
   const rc = btn.getBoundingClientRect();
-  pop.style.left = Math.min(rc.left, window.innerWidth - 300) + 'px'; pop.style.top = (rc.bottom + 6) + 'px';
+  pop.style.left = Math.max(8, Math.min(rc.left, window.innerWidth - 300)) + 'px'; pop.style.top = Math.min(rc.bottom + 6, window.innerHeight - pop.offsetHeight - 10) + 'px';
   pop.classList.add('on');
   pop.onclick = e => { const o = e.target.closest('button'); if (!o || o.classList.contains('cur')) return; closePop(); doStep(r, o.dataset.e); };
 }
-document.addEventListener('mousedown', e => { if (!e.target.closest('#pop') && !e.target.closest('[data-a="stepmenu"]')) closePop(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePop(); if ($('#mScan').classList.contains('on')) stopScan(); else if ($('#mQR').classList.contains('on')) closeQR(); else if (det && !det.editing) closeDet(); } });
-window.addEventListener('scroll', closePop, true);
+function showBand(r){
+  const st = stepsOf(cur), ci = st.findIndex(s => s.code === r.etape), M = MODS[cur];
+  const title = String(M.name(r) || '').toUpperCase() || r.waybill || r.pid || M.label;
+  $('#band').innerHTML = `<div class="bt"><b>${esc(title)}</b><span>Choisis l'étape</span><button class="ico sm" id="bandX" aria-label="Fermer" title="Fermer">${IC.close}</button></div>
+    <div class="flow">${st.map((s, i) => `<button class="stp ${i < ci ? 'done' : ''} ${i === ci ? 'cur' : ''}" data-e="${s.code}"><span class="dot">${i < ci ? IC.check : i + 1}</span>${esc(s.libelle_bouton || s.libelle_etat)}</button>`).join('')}</div>`;
+  $('#bandX').onclick = closePop;
+  $('#band').onclick = e => { const o = e.target.closest('.stp'); if (!o || o.classList.contains('cur')) return; closePop(); doStep(r, o.dataset.e); };
+  requestAnimationFrame(() => $('#band').classList.add('on'));
+}
+document.addEventListener('mousedown', e => { if (!e.target.closest('#pop') && !e.target.closest('#band') && !e.target.closest('[data-a="stepmenu"]')) closePop(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') {
+  if ($('#mAsk').classList.contains('on') && ask.cancel) return ask.cancel();
+  if ($('#band').classList.contains('on') || $('#pop').classList.contains('on')) return closePop();
+  if ($('#mScan').classList.contains('on')) stopScan(); else if ($('#mQR').classList.contains('on')) closeQR(); else if (det && !det.editing) closeDet(); } });
+window.addEventListener('scroll', () => $('#pop').classList.remove('on'), true);
 
-// ------------------------------------------------------------ Fenêtre de détails (lecture / modification)
-function openDetail(r, editing){ det = {r, editing: !!editing || !r}; renderDet(); $('#mDet').classList.add('on'); }
-function closeDet(){ det = null; $('#mDet').classList.remove('on'); }
+// ------------------------------------------------------------ Fenêtre de détails (lecture / modification sur place)
+function openDetail(r, editing){ det = {r, editing: !!editing || !r}; renderDet(); $('#mDet').classList.add('on'); if (r) loadHist(r); }
+function closeDet(){ det = null; closePop(); $('#mDet').classList.remove('on'); }
 $('#mDet').addEventListener('mousedown', e => { if (e.target.id === 'mDet' && det && !det.editing) closeDet(); });
+
+async function loadHist(r){
+  if (String(r.id).startsWith('tmp_')) return;
+  const m = cur;
+  if (!H[r.id]) { try { H[r.id] = (await api('history', {module:m, id:r.id})).sort((a, b) => String(b.date_heure).localeCompare(String(a.date_heure))); } catch (e) { H[r.id] = null; } }
+  drawHist(r, m);
+}
+const who = e => { e = String(e || ''); return e.toLowerCase() === ME.email ? ME.prenom : e.split('@')[0]; };
+function drawHist(r, m = cur){
+  const box = $('#histBox'); if (!box || !det || det.r !== r) return;
+  const h = H[r.id];
+  if (h === undefined) { box.innerHTML = '<div class="m">Chargement…</div>'; return; }
+  if (h === null) { box.innerHTML = '<div class="m">Historique indisponible.</div>'; return; }
+  const items = h.filter(x => ['creation', 'etape', 'archivage', 'desarchivage', 'unarchive'].includes(x.action)).map(x => {
+    let t;
+    if (x.action === 'etape') t = `${x.ancienne_valeur ? esc(stLabel(x.ancienne_valeur, m)) + '<span class="arr">→</span>' : ''}<b>${esc(stLabel(x.nouvelle_valeur, m))}</b>`;
+    else t = x.action === 'creation' ? 'Création' : x.action === 'archivage' ? 'Archivé' : 'Désarchivé';
+    return `<li><div class="hd">${fdate(x.date_heure, true)}</div><div>${t}<div class="hw">${esc(who(x.utilisateur))}</div></div></li>`;
+  });
+  box.innerHTML = items.length ? `<ul class="hist">${items.join('')}</ul>` : '<div class="m">Aucun historique.</div>';
+}
+
+function viewCell(x, r){
+  const v = r[x.k];
+  if (x.k === 'waybill' || x.k === 'pid') return link(v);
+  if (x.t === 'bool') return v === true ? 'Oui' : 'Non';
+  if (x.t === 'vis') return v === 'prive' ? 'Privé (moi seul)' : "Partagé dans l'agence";
+  if (x.t === 'cat') return esc(val(r, x.k));
+  if (x.t === 'multi') return String(v ?? '').split(';').map(s => s.trim()).filter(Boolean).map(s => `<span class="tag" style="margin:2px 5px 2px 0">${esc(s)}</span>`).join('');
+  return esc(x.up ? String(v || '').toUpperCase() : v).replace(/\n/g, '<br>');
+}
+function editCell(x, v){
+  const val = v[x.k] ?? '', id = 'f_' + x.k;
+  if (x.t === 'bool') return `<input type="checkbox" id="${id}" ${val === true ? 'checked' : ''}>`;
+  if (x.t === 'vis') return `<select id="${id}"><option value="agence" ${val === 'agence' ? 'selected' : ''}>Partagé dans l'agence</option><option value="prive" ${val === 'prive' ? 'selected' : ''}>Privé (moi seul)</option></select>`;
+  if (x.t === 'cat') return `<select id="${id}"><option value=""></option>${ME.categories_awb.map(c => `<option value="${c.id}" ${val === c.id ? 'selected' : ''}>${esc(c.libelle)}${c.visibilite === 'prive' ? ' (perso)' : ''}</option>`).join('')}</select>`;
+  if (x.t === 'multi') { const sel = String(val).split(';').map(s => s.trim()).filter(Boolean);
+    return `<div id="${id}" style="flex:1">${ME.problemes_spark.map(p => `<label class="chk" style="margin:2px 0"><input type="checkbox" value="${esc(p)}" ${sel.includes(p) ? 'checked' : ''}> ${esc(p)}</label>`).join('')}</div>`; }
+  if (x.t === 'area') return `<textarea id="${id}" rows="1">${esc(val)}</textarea>`;
+  if (x.t === 'scan') return `<div class="row"><input id="${id}" value="${esc(val)}" autocomplete="off"><button type="button" class="ico sm" data-scan="${id}" title="Scanner" aria-label="Scanner">${IC.scan}</button></div>`;
+  return `<input id="${id}" class="${x.up ? 'up' : ''}" value="${esc(val)}" autocomplete="off">`;
+}
 
 function renderDet(){
   if (!det) return;
-  const M = MODS[det.r ? cur : cur], r = det.r;
-  const el = $('#sDet');
-  if (det.editing) {
-    const v = r || {visibilite:'agence'};
-    const f = M.fields.map(x => {
-      const val = v[x.k] ?? '', id = 'f_' + x.k;
-      if (x.t === 'bool') return `<label class="chk"><input type="checkbox" id="${id}" ${val===true?'checked':''}> ${x.l}</label>`;
-      if (x.t === 'vis') return `<label for="${id}">${x.l}</label><select id="${id}"><option value="agence" ${val==='agence'?'selected':''}>Partagé dans l'agence</option><option value="prive" ${val==='prive'?'selected':''}>Privé (moi seul)</option></select>`;
-      if (x.t === 'cat') return `<label for="${id}">${x.l}</label><select id="${id}"><option value=""></option>${ME.categories_awb.map(c=>`<option value="${c.id}" ${val===c.id?'selected':''}>${esc(c.libelle)}${c.visibilite==='prive'?' (perso)':''}</option>`).join('')}</select>`;
-      if (x.t === 'multi') { const sel = String(val).split(';').map(s=>s.trim()).filter(Boolean);
-        return `<label>${x.l}</label><div class="multi" id="${id}">${ME.problemes_spark.map(p=>`<label class="chk"><input type="checkbox" value="${esc(p)}" ${sel.includes(p)?'checked':''}> ${esc(p)}</label>`).join('')}</div>`; }
-      if (x.t === 'area') return `<label for="${id}">${x.l}</label><textarea id="${id}" rows="2">${esc(val)}</textarea>`;
-      if (x.t === 'scan') return `<label for="${id}">${x.l}</label><div class="row"><input id="${id}" value="${esc(val)}" autocomplete="off"><button type="button" class="s go" data-scan="${id}">${IC.scan}Scanner</button></div>`;
-      return `<label for="${id}">${x.l}</label><input id="${id}" class="${x.up ? 'up' : ''}" value="${esc(val)}" autocomplete="off">`;
-    }).join('');
-    el.innerHTML = `<div class="sh"><div class="tt"><h3>${r ? 'Modifier' : 'Nouveau'} ${M.label}</h3></div>
-      ${r ? `<button class="ico sm on" id="dPen" title="Annuler la modification" aria-label="Annuler la modification">${IC.pencil}</button>` : ''}
-      <button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>${f}
-      <div class="foot"><button class="p" id="fOk" style="flex:1">Enregistrer</button><button class="s" id="fX">Annuler</button></div>`;
-    $('#fX').onclick = () => r ? (det.editing = false, renderDet()) : closeDet();
-    if (r) $('#dPen').onclick = $('#fX').onclick;
-    $('#dX').onclick = closeDet;
-    el.onclick = e => { const s = e.target.closest('[data-scan]'); if (s) scanInto(s.dataset.scan); };
+  const M = MODS[cur], r = det.r, ed = det.editing, el = $('#sDet'), w = canWrite();
+  const v = r || {visibilite:'agence'};
+  const kind = r ? kindOf(r) : '';
+  const name = r ? String(M.name(r) || '').toUpperCase() : '';
+  const title = r ? (name || r.waybill || r.pid || M.label) : 'Nouveau ' + M.label;
+  const btns = ed
+    ? `<button class="ico sm ok" id="dSave" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button><button class="ico sm" id="dX" title="${r ? 'Annuler la modification' : 'Fermer'}" aria-label="Annuler">${IC.close}</button>`
+    : `${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
+  const stat = r ? `<div class="dstat ${ed ? 'lock' : ''}"><span class="tag ${kind}">${esc(stLabel(r.etape))}</span>${r.urgent === true ? `<span class="tag u">Urgent</span>` : ''}${r.visibilite === 'prive' ? '<span class="tag pr">Privé</span>' : ''}<span class="sp"></span>
+    ${w && !showArch ? `<button class="s go" data-a="stepmenu">Étape${IC.chev}</button><button class="ico warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button>` : ''}
+    ${w && showArch ? `<button class="ico" id="dUn" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>` : ''}</div>` : '';
+  const fields = M.fields.map(x => {
+    if (ed) return `<dt>${x.l}</dt><dd class="ed">${editCell(x, v)}</dd>`;
+    const h = viewCell(x, r);
+    return `<dt>${x.l}</dt><dd class="${h ? '' : 'none'}">${h || '—'}</dd>`;
+  }).join('');
+  const meta = [];
+  if (r) {
+    if (cur === 'DOM') meta.push(['J1', fdate(r.j1)], ['J4', fdate(r.j4)], ['J10', fdate(r.j10)]);
+    meta.push(['Créé par', r.cree_par ? esc(r.cree_par) + ' · ' + fdate(r.cree_le, true) : ''], ['Dernière étape', r.etape_par ? esc(r.etape_par) + ' · ' + fdate(r.etape_le, true) : '']);
+    if (r.archive === true) meta.push(['Archivé', esc(r.archive_par) + ' · ' + fdate(r.archive_le, true)]);
+  }
+  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3><div class="sub">${M.label}</div></div>${btns}</div>${stat}
+    <dl class="det">${fields}${meta.map(([a, b]) => `<dt>${a}</dt><dd class="${b ? '' : 'none'}">${b || '—'}</dd>`).join('')}</dl>
+    ${r ? `<div class="sec">Historique</div><div id="histBox"></div>` : ''}`;
+  if (r) drawHist(r);
+  $('#dX').onclick = () => (ed && r) ? (det.editing = false, renderDet()) : closeDet();
+  if ($('#dPen')) $('#dPen').onclick = () => { det.editing = true; renderDet(); };
+  if (ed) {
     el.querySelectorAll('input.up').forEach(i => i.addEventListener('input', () => { const p = i.selectionStart; i.value = i.value.toUpperCase(); i.setSelectionRange(p, p); }));
-    $('#fOk').onclick = () => {
+    const grow = t => { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; };
+    el.querySelectorAll('textarea').forEach(t => { grow(t); t.addEventListener('input', () => grow(t)); });
+    $('#dSave').onclick = () => {
       const data = {};
       for (const x of M.fields) {
         const e2 = $('#f_' + x.k);
@@ -471,37 +615,14 @@ function renderDet(){
       saveLocal(r, data);
       if (r) { det.editing = false; renderDet(); } else closeDet();
     };
-    return;
+    const f0 = el.querySelector('dd input:not([type=checkbox]),dd textarea'); if (f0 && !r) setTimeout(() => f0.focus(), 80);
   }
-  // --- lecture
-  const steps = stepsOf(cur), st = steps.find(s => s.code === r.etape), kind = STEP_KIND[r.etape] || '';
-  const name = String(M.name(r) || '').toUpperCase();
-  const rows2 = M.fields.map(x => {
-    let v = r[x.k], h;
-    if (x.k === 'waybill' || x.k === 'pid') h = link(v);
-    else if (x.t === 'bool') h = v === true ? 'Oui' : 'Non';
-    else if (x.t === 'vis') h = v === 'prive' ? 'Privé (moi seul)' : "Partagé dans l'agence";
-    else if (x.t === 'cat') h = esc(val(r, x.k));
-    else if (x.t === 'multi') h = esc(v).split(';').map(s => s.trim()).filter(Boolean).map(s => `<span class="tag" style="margin:0 5px 5px 0;display:inline-block">${s}</span>`).join('');
-    else h = esc(x.up ? String(v || '').toUpperCase() : v).replace(/\n/g, '<br>');
-    return `<dt>${x.l}</dt><dd class="${h ? '' : 'none'}">${h || '—'}</dd>`;
-  }).join('');
-  const meta = [];
-  if (cur === 'DOM') meta.push(['J1', fdate(r.j1)], ['J4', fdate(r.j4)], ['J10', fdate(r.j10)]);
-  meta.push(['Créé par', r.cree_par ? esc(r.cree_par) + ' · ' + fdate(r.cree_le, true) : ''], ['Dernière étape', r.etape_par ? esc(r.etape_par) + ' · ' + fdate(r.etape_le, true) : '']);
-  if (r.archive === true) meta.push(['Archivé', esc(r.archive_par) + ' · ' + fdate(r.archive_le, true)]);
-  const w = canWrite();
-  el.innerHTML = `<div class="sh"><div class="tt"><h3>${name ? esc(name) : esc(r.waybill || r.pid || MODS[cur].label)}</h3>
-      <div class="sub">${MODS[cur].label}</div></div>
-      ${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}
-      <button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
-    <div class="tags"><span class="tag ${kind}">${esc(st ? st.libelle_etat : r.etape)}</span>${r.urgent===true?'<span class="tag u">Urgent</span>':''}${r.visibilite==='prive'?'<span class="tag pr">Privé</span>':''}</div>
-    ${w && !showArch ? `<div class="act"><button class="s go" data-a="stepmenu" data-id="${r.id}">Étape${IC.chev}</button><span class="sp"></span><button class="ico warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button></div>` : ''}
-    <dl class="det">${rows2}${meta.map(([a, b]) => `<dt>${a}</dt><dd class="${b ? '' : 'none'}">${b || '—'}</dd>`).join('')}</dl>`;
-  $('#dX').onclick = closeDet;
-  if ($('#dPen')) $('#dPen').onclick = () => { det.editing = true; renderDet(); };
-  if ($('#dArch')) $('#dArch').onclick = () => doArchive(r, true);
-  el.onclick = e => { const b = e.target.closest('[data-a="stepmenu"]'); if (b) showStepMenu(b, r); };
+  el.onclick = e => {
+    const sc = e.target.closest('[data-scan]'); if (sc) return scanInto(sc.dataset.scan);
+    const sm = e.target.closest('[data-a="stepmenu"]'); if (sm) return showStepMenu(sm, r);
+    if (e.target.closest('#dArch')) return doArchive(r, true);
+    if (e.target.closest('#dUn')) return doArchive(r, false);
+  };
 }
 
 function saveLocal(r, data){
