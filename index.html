@@ -127,9 +127,9 @@ button{font-family:inherit;cursor:pointer}
 .m{color:var(--mut);font-size:15px;margin:2px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .m.cat{color:#ff9d80;font-weight:700;font-size:14.5px}
 .tag{font-size:13px;font-weight:700;border-radius:9px;padding:3px 10px;background:var(--raised);color:var(--mut);white-space:nowrap;flex:none}
-.tag.go{background:rgba(58,140,255,.2);color:#a9cbff}
-.tag.ok{background:rgba(62,207,142,.17);color:#86e5b8}
-.tag.u{background:rgba(255,92,92,.18);color:#ff9d9d}
+.tag.go{background:#27497e;color:#d3e4ff}
+.tag.ok{background:#1d5a45;color:#bff3d9}
+.tag.u{background:#6a2b30;color:#ffc9c9}
 .tag.pr{background:rgba(255,255,255,.09);color:var(--ink)}
 .act{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:auto;padding-top:10px}
 .act .s{padding:8px 22px}
@@ -317,6 +317,7 @@ html[data-theme=light] input[type=checkbox]:not(.sw input):checked:after{content
 .nit .na button{display:inline-flex;align-items:center;gap:6px;background:var(--raised);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:5px 10px;font:500 13px var(--body);transition:border-color .15s,background .15s}
 .nit .na button:hover{border-color:var(--blue);background:var(--hov2)}
 .nit .na button[disabled]{opacity:.45;pointer-events:none}
+.nit .na button.dng{border-color:rgba(255,92,92,.55);color:#ff9d9d}html[data-theme=light] .nit .na button.dng{color:#C22B31}
 .nit .ck{position:absolute;right:12px;top:12px;width:22px;height:22px;accent-color:var(--green)}
 .nit.todo{padding-right:44px}
 .tadd{display:grid;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
@@ -384,8 +385,8 @@ html[data-theme=light]{--bg:#F2F4F8;--panel:#FFFFFF;--raised:#E8ECF3;--line:#D3D
 html[data-theme=light] body{background:radial-gradient(900px 420px at 85% -10%,rgba(74,148,255,.10),transparent 60%),radial-gradient(700px 380px at -10% 110%,rgba(255,90,42,.07),transparent 60%),var(--bg)}
 html[data-theme=light] .ref{color:#1F5FC9}
 html[data-theme=light] .m.cat{color:#C2410C}
-html[data-theme=light] .tag.go{background:rgba(47,120,230,.14);color:#1D5FC4}
-html[data-theme=light] .tag.ok{background:rgba(31,165,111,.15);color:#127A4D}
+html[data-theme=light] .tag.go{background:#cfe0fa;color:#154f9f}
+html[data-theme=light] .tag.ok{background:#c5ecd8;color:#0f6a42}
 html[data-theme=light] .tag.u{background:rgba(229,72,77,.13);color:#C22B31}
 html[data-theme=light] .bub{color:#C2410C;background:rgba(255,90,42,.12);border-color:rgba(255,90,42,.4)}
 html[data-theme=light] .bb.u{color:#C22B31}html[data-theme=light] .bb.sh{color:#1D5FC4}
@@ -488,6 +489,47 @@ html[data-dense="1"] .cmt{margin:8px 0 2px}html[data-dense="1"] .cmt summary{pad
 html[data-dense="1"] .trow{padding:6px 8px 6px 15px;margin-bottom:5px}
 html[data-dense="1"] .nit{padding:8px 10px}
 html[data-dense="1"] .prow{padding:8px 0}
+
+/* Carte document */
+.card.dcc{align-items:center;text-align:center;padding:12px 14px 12px 20px}
+.dcc .dtl{font:700 17px var(--disp);line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word;padding:0 76px;min-height:1.25em}
+.dcc .dfls{justify-content:center;margin-top:10px}
+.dcc .dvis{position:absolute;top:10px;right:10px;height:24px;font-size:12px;padding:0 9px 0 7px}
+/* Suppression en attente */
+.bb.wait{color:#ffb27a;border-color:rgba(255,150,60,.55);background:rgba(255,150,60,.14)}
+html[data-theme=light] .bb.wait{color:#B45309}
+/* Accueil */
+.home h2{font:700 24px var(--disp);margin:6px 0 14px}
+.hg{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.ht{text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:transform .2s var(--ease),border-color .2s,background .2s}
+.ht:hover{transform:translateY(-3px);border-color:var(--bd2);background:var(--hov)}
+.hth{display:flex;align-items:center;gap:10px}.hth b{font:700 18px var(--disp)}
+.hth .mi{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:var(--raised);font-size:17px}
+.htn{font:700 40px/1.05 var(--disp);display:flex;align-items:baseline;gap:8px}.htn small{font:500 14px var(--body);color:var(--mut)}
+.hcs{display:flex;flex-wrap:wrap;gap:6px;min-height:26px}
+.hc{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:999px;background:var(--raised);font-size:13px;color:var(--mut)}.hc b{color:var(--ink)}
+.hc.u{background:#6a2b30;color:#ffc9c9}.hc.u b{color:#fff}.hc.ok{background:#1d5a45;color:#bff3d9}.hc.ok b{color:#fff}.hc.w{background:#6b4217;color:#ffdcb8}.hc.w b{color:#fff}
+html[data-theme=light] .hc.u{background:#fcd9db;color:#9d1f26}html[data-theme=light] .hc.u b{color:#9d1f26}
+html[data-theme=light] .hc.ok{background:#c5ecd8;color:#0f6a42}html[data-theme=light] .hc.ok b{color:#0f6a42}
+html[data-theme=light] .hc.w{background:#ffe3c4;color:#8a4a07}html[data-theme=light] .hc.w b{color:#8a4a07}
+html[data-theme=light] .hc b{color:var(--ink)}
+/* Messagerie */
+#msgp{display:flex;flex-direction:column;overflow:hidden}
+#msgp .dh .back{flex:none}
+.mt{display:flex;align-items:center;gap:12px;padding:10px 6px;border-top:1px solid var(--hair);cursor:pointer;border-radius:10px;width:100%;text-align:left;background:transparent;color:var(--ink)}.mt:hover{background:var(--raised)}
+.mt .av{width:38px;height:38px;border-radius:50%;background:var(--raised);display:grid;place-items:center;font:700 16px var(--disp);flex:none}
+.mt .mx{flex:1;min-width:0}.mt .mx b{display:block}.mt .mx span{display:block;color:var(--mut);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mt small{color:var(--mut);font-size:12.5px;flex:none}.mt .un{min-width:20px;height:20px;border-radius:10px;background:var(--orange);color:#fff;font:700 11.5px/20px var(--disp);text-align:center;padding:0 6px}
+.mmsgs{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:6px;padding:6px 2px}
+.mb{max-width:82%;padding:8px 12px;border-radius:14px;background:var(--raised);align-self:flex-start;word-break:break-word;white-space:pre-wrap}
+.mb.me{align-self:flex-end;background:#6b3a22;color:#fff}html[data-theme=light] .mb.me{background:#ffe0cf;color:var(--ink)}
+.mb small{display:block;color:var(--mut);font-size:11.5px;margin-top:2px}.mb.me small{color:rgba(255,255,255,.7)}html[data-theme=light] .mb.me small{color:var(--mut)}
+.mb.sy{opacity:.55;filter:blur(1px)}
+.mlk{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:7px 10px;margin:4px 0 2px;cursor:pointer;color:var(--ink);text-align:left;width:100%}
+.mlk svg{width:16px;height:16px;flex:none}.mlk:hover{border-color:var(--bd2)}
+.mcomp{display:flex;flex-direction:column;gap:6px;padding-top:8px;border-top:1px solid var(--hair)}
+.mcomp .row{display:flex;gap:8px;align-items:flex-end}.mcomp textarea{flex:1;min-width:0;resize:none;padding:8px 10px;border-radius:12px;font-size:15px}
+.mto{display:flex;gap:8px;align-items:center;margin:6px 0}.mto select{flex:1}
 </style>
 </head>
 <body>
@@ -495,6 +537,7 @@ html[data-dense="1"] .prow{padding:8px 0}
   <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
+  <button id="bMsg" class="ico hide" title="Messages" aria-label="Messages"></button>
   <button id="bBell" class="ico hide" title="Notifications" aria-label="Notifications"></button>
   <button id="bQR" class="ico hide" title="Mes identifiants" aria-label="Mes identifiants"></button>
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
@@ -510,6 +553,7 @@ html[data-dense="1"] .prow{padding:8px 0}
   <div class="idc"><b>Identifiant</b><div class="qrt" id="qrId"></div></div>
   <div class="idc"><b>Mot de passe</b><div class="qrt" id="qrPw"></div></div></div></div></div>
 <div class="modal top" id="mSearch"><div class="sheet"><input id="sq" placeholder="Rechercher un nom, un bordereau, un PID…" aria-label="Rechercher" autocomplete="off"><div class="sug static" id="sug"></div></div></div>
+<div class="modal right" id="mMsg"><aside class="drawer" id="msgp"></aside></div>
 <div class="modal right" id="mDrawer"><aside class="drawer" id="drawer"></aside></div>
 <div class="modal" id="mTask"><div class="sheet"><div class="sh"><div class="tt"><h3>Nouvelle tâche</h3></div><button class="ico sm" id="tkX" aria-label="Fermer" title="Fermer"></button></div>
   <label for="tTitre">Titre</label><input id="tTitre" maxlength="200" autocomplete="off">
@@ -560,6 +604,10 @@ const IC = {
   globe: ic('<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"/>'),
   chart: ic('<path d="M3 3v18h18"/><path d="M7 15v-4"/><path d="M12 15V7"/><path d="M17 15v-6"/>'),
   clock: ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+  mail: ic('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),
+  send: ic('<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>'),
+  back: ic('<path d="m15 18-6-6 6-6"/>'),
+  home: ic('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>'),
   repeat: ic('<path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>'),
   users: ic('<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/>'),
   lock: ic('<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'),
@@ -616,7 +664,7 @@ const MODS = {
     {k:'commentaire',l:'Commentaire',t:'area'}],
     show:['remarque','commentaire'] }
 };
-MODS.SECURITY = { label: 'SCMS', name: r => '', show: [], title: r => r.waybill || ('SCMS du ' + fdateD(r.date_decouverte)), fields: [
+MODS.SECURITY = { label: 'SCMS', name: r => '', show: [], title: r => motifTxt(r) || r.waybill || ('SCMS du ' + fdateD(r.date_decouverte)), fields: [
     {k:'waybill',l:'Waybill',t:'scan'},
     {k:'date_decouverte',l:'Date de découverte',t:'date',req:1},
     {k:'motif_cb',l:'Motif',t:'motif'},
@@ -687,7 +735,7 @@ window.onload = () => {
   const w = setInterval(() => { if (window.google && google.accounts) { clearInterval(w); initGoogle(); } }, 100);
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
   $('#bSet').innerHTML = IC.gear; $('#bOut').innerHTML = IC.out; $('#qrX').innerHTML = IC.close;
-  $('#bQR').innerHTML = IC.qr; $('#bSearch').innerHTML = IC.search; $('#bBell').innerHTML = IC.bell;
+  $('#bQR').innerHTML = IC.qr; $('#bMsg').innerHTML = IC.mail; $('#bSearch').innerHTML = IC.search; $('#bBell').innerHTML = IC.bell;
 };
 function initGoogle(){
   google.accounts.id.initialize({client_id: WATSON.CLIENT_ID, callback: r => { token = r.credential; sessionStorage.setItem('wtk', token); start(); }, auto_select: true});
@@ -701,21 +749,22 @@ async function start(){
   try {
     ME = await wait(() => api('me', {device: /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) ? 'Smartphone' : 'Navigateur', ua: navigator.userAgent})); window.ME = ME;
     $('#login').classList.add('hide'); $('#app').classList.remove('hide');
-    ['#bOut', '#bQR', '#bSearch', '#bBell'].forEach(s => $(s).classList.remove('hide'));
+    ['#bOut', '#bQR', '#bSearch', '#bBell', '#bMsg'].forEach(s => $(s).classList.remove('hide'));
     $('#bSet').classList.remove('hide');
     const mods = Object.keys(MODS).filter(m => ME.rights[m]);
-    $('#nav').innerHTML = `<div class="mods" id="seg">${mods.map(m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m].label}</b><small id="cnt_${m}"><span class="d3s"><i></i><i></i><i></i></span></small></span></button>`).join('')}</div>`;
+    $('#nav').innerHTML = `<div class="mods" id="seg"><button class="mod" data-m="_home"><span class="mi">${IC.home}</span><span><b>Accueil</b><small>Vue d'ensemble</small></span></button>${mods.map(m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m].label}</b><small id="cnt_${m}"><span class="d3s"><i></i><i></i><i></i></span></small></span></button>`).join('')}</div>`;
     $('#seg').onclick = e => { const b = e.target.closest('button'); if (b) { showArch = false; openMod(b.dataset.m); } };
-    applyDisplay(); setSync(); openMod(mods[0] || '_admin'); preload(mods); startPoll(); warm();
+    applyDisplay(); setSync(); openMod('_home'); preload(mods); startPoll(); warm();
   } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; }
 }
-document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur && cur !== '_admin' && pending === 0) refresh(); } });
+document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur && cur !== '_admin' && pending === 0) refresh(); } });
 const moveInd = () => {};
 function drawTiles(){
   document.querySelectorAll('.mod').forEach(b => {
     const m = b.dataset.m, r = cache[m]; const t = $('#cnt_' + m); if (!t) return;
     if (!r) { if (!t.querySelector('.d3s')) t.innerHTML = '<span class="d3s"><i></i><i></i><i></i></span>'; return; }
     const u = r.filter(x => x.urgent === true).length;
+    if (cur === '_home' && !drawTiles.h) { drawTiles.h = 1; renderHome(); drawTiles.h = 0; }
     t.innerHTML = m === 'DOCUMENTS' ? `${r.length} document${r.length > 1 ? 's' : ''}` : `${r.length} en cours` + (u ? ` · <i>${u} urgent${u > 1 ? 's' : ''}</i>` : '');
   });
 }
@@ -728,12 +777,52 @@ async function preload(mods){
   for (const m of mods) { if (cache[m]) continue; try { cache[m] = await api('list', {module:m, archives:false}); } catch (e) {} drawTiles(); }
 }
 
+// ------------------------------------------------------------ Accueil
+function kindOfM(m, r){
+  if (STEP_KIND[r.etape]) return STEP_KIND[r.etape];
+  const st = stepsOf(m), i = st.findIndex(x => x.code === r.etape), n = st.length;
+  if (i <= 0) return '';
+  return (n >= 4 && i >= n - 2) || (n < 4 && i === n - 1) ? 'ok' : 'go';
+}
+function homeTile(m){
+  const r = cache[m], ic = IC[m];
+  if (!r) return `<button class="ht" data-m="${m}"><div class="hth"><span class="mi">${ic}</span><b>${MODS[m].label}</b></div><div class="htn"><span class="d3s"><i></i><i></i><i></i></span></div></button>`;
+  const today = todayIso(), ch = [];
+  const add = (n, label, cls = '') => { if (n) ch.push(`<span class="hc ${cls}"><b>${n}</b>${label}</span>`); };
+  let big, sub;
+  if (m === 'DOCUMENTS') { big = r.length; sub = r.length > 1 ? 'documents' : 'document'; add(r.reduce((a, x) => a + (x.fichiers || []).length, 0), 'fichiers'); }
+  else {
+    big = r.length; sub = 'en cours';
+    const k = {'': 0, go: 0, ok: 0}; r.forEach(x => k[kindOfM(m, x)]++);
+    add(k[''], 'à faire'); add(k.go, 'en cours'); add(k.ok, 'à archiver', 'ok');
+    add(r.filter(x => x.urgent === true).length, 'urgent' + (r.filter(x => x.urgent === true).length > 1 ? 's' : ''), 'u');
+    if (m === 'DOM') add(r.filter(x => (x.etape === 'ATTENTE_CLIENT' && x.j4 && isoD(x.j4) <= today) || (x.etape === 'ATTENTE_COMMERCIAL' && x.j10 && isoD(x.j10) <= today)).length, 'échéance dépassée', 'u');
+    if (m === 'SECURITY') add(r.filter(x => x.contacter_client === true && !x.contact_fait_le).length, 'client à contacter', 'w');
+    if (m === 'SPARK') add(r.filter(x => x.wrong_ok === true).length, 'wrong OK', 'ok');
+  }
+  add(r.filter(x => x.suppr_par).length, 'suppression en attente', 'w');
+  return `<button class="ht" data-m="${m}"><div class="hth"><span class="mi">${ic}</span><b>${MODS[m].label}</b></div><div class="htn">${big}<small>${sub}</small></div><div class="hcs">${ch.join('') || '<span class="m">Rien à signaler</span>'}</div></button>`;
+}
+function renderHome(){
+  cur = '_home'; closePop(); closeDet();
+  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === '_home'));
+  $('#bSet').classList.remove('on');
+  const mods = Object.keys(MODS).filter(m => ME.rights[m]);
+  const T = TD || {items:[]}, today = todayIso();
+  const open = T.items.filter(t => t.statut !== 'termine'), late = open.filter(t => t.date_prog && t.date_prog < today).length;
+  $('#main').innerHTML = `<div class="home"><h2>Bonjour ${esc(ME.prenom || '')}</h2><div class="hg">${mods.map(homeTile).join('')}
+    <button class="ht" data-go="todo"><div class="hth"><span class="mi">${IC.todo}</span><b>Ma todo</b></div><div class="htn">${open.length}<small>à faire</small></div><div class="hcs">${late ? `<span class="hc u"><b>${late}</b>en retard</span>` : '<span class="m">Rien en retard</span>'}</div></button>
+    <button class="ht" data-go="msg"><div class="hth"><span class="mi">${IC.mail}</span><b>Messages</b></div><div class="htn">${NOT.msgs || 0}<small>non lu${(NOT.msgs || 0) > 1 ? 's' : ''}</small></div><div class="hcs"><span class="m">Messagerie 1 à 1</span></div></button></div></div>`;
+  $('#main').querySelector('.home').onclick = e => { const b = e.target.closest('.ht'); if (!b) return; if (b.dataset.go === 'todo') openDrawer(); else if (b.dataset.go === 'msg') openMsg(); else { showArch = false; openMod(b.dataset.m); } };
+}
+
 // ------------------------------------------------------------ Liste
 async function openMod(m){
   cur = m; closePop();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === m));
   $('#bSet').classList.toggle('on', m === '_admin'); moveInd();
   if (m === '_admin') return renderAdmin();
+  if (m === '_home') return renderHome();
   if (cache[key()]) { rows = cache[key()]; renderList(); refresh(); return; }
   try { rows = await wait(() => api('list', {module: m, archives: showArch})); cache[key()] = rows; }
   catch (e) { return toast(e.message); }
@@ -783,21 +872,21 @@ const kindOf = r => {
   return (n >= 4 && i >= n - 2) || (n < 4 && i === n - 1) ? 'ok' : 'go';
 };
 const stLabel = (code, m = cur) => { const s = ME.etapes.find(e => e.module === m && e.code === code); return s ? s.libelle_etat : code; };
+const motifTxt = r => [r.motif_cb === true ? 'CB active' : '', r.motif_cash === true ? 'Argent liquide' : '', r.motif_libre ? String(r.motif_libre) : ''].filter(Boolean).join(' · ');
 function cardSec(r){
-  const kind = kindOf(r), tmp = r._tmp === true, w = canWrite();
-  const mt = [r.motif_cb === true ? 'CB active' : '', r.motif_cash === true ? 'Argent liquide' : '', r.motif_libre ? esc(r.motif_libre) : ''].filter(Boolean).join(' · ');
+  const kind = kindOf(r), tmp = r._tmp === true, w = canWrite(), mt = motifTxt(r);
   const cbub = r.contacter_client !== true ? `<span class="cb stop no" title="Ne surtout pas contacter le client">${IC.stop}Ne pas contacter le client</span>`
     : r.contact_fait_le ? `<span class="cb done" title="Client contacté">${IC.phone}Client contacté</span>` : `<span class="cb todo" title="Client à contacter">${IC.phone}Client à contacter</span>`;
   const acts = w && !showArch ? `<div class="act"><button class="s go" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}">Étape</button></div>` : '<div class="act" style="padding:0"></div>';
-  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${r.id}">${r.thumb ? `<div class="bgph"><img alt="" src="data:image/jpeg;base64,${r.thumb}"></div>` : ''}<div class="r1">${r.waybill ? `<div class="refs solo">${link(r.waybill)}</div>` : '<div class="name">Sans bordereau</div>'}<span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div>
-    <div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="m" style="margin:4px 0">${mt}</div><div class="rowb">${cbub}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${r.id}">${r.thumb ? `<div class="bgph"><img alt="" src="data:image/jpeg;base64,${r.thumb}"></div>` : ''}<div class="r1"><div class="name" title="${esc(mt)}">${esc(mt) || 'SCMS'}</div><span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div>
+    ${r.waybill ? `<div class="r2"><div class="refs">${link(r.waybill)}</div></div>` : ''}<div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="rowb">${cbub}${waitB(r)}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
+const waitB = r => r.suppr_par ? `<span class="bb wait" title="Le créateur doit valider la suppression">${IC.trash}En attente de suppression</span>` : '';
 function cardDoc(r){
   const tmp = r._tmp === true;
   const fl = r.fichiers || [];
   const files = fl.length ? fl.map(f => `<div class="dfl"><span class="dn" title="${esc(f.nom)}">${esc(f.nom)}</span>${f.id !== 'tmp' && !f._sync && !String(f.id).startsWith('tmp_') ? `<button class="ico sm" data-a="dl" data-fid="${f.id}" title="Télécharger ${esc(f.nom)}" aria-label="Télécharger ${esc(f.nom)}">${IC.download}</button>` : '<span class="d3s"><i></i><i></i><i></i></span>'}</div>`).join('') : '<div class="fn">Aucun fichier</div>';
-  return `<div class="card ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${r.id}"><div class="dcard"><span class="dic">${IC.DOCUMENTS}</span><div class="dm"><div class="name" title="${esc(r.titre)}">${esc(r.titre)}</div></div>
-    <span class="bb ${r.visibilite === 'prive' ? '' : 'sh'}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</span></div>
+  return `<div class="card dcc ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${r.id}"><span class="bb dvis ${r.visibilite === 'prive' ? '' : 'sh'}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</span><div class="dtl" title="${esc(r.titre)}">${esc(r.titre)}</div>
     <div class="dfls">${files}</div>${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 function card(r){
@@ -815,7 +904,7 @@ function card(r){
     : `<div class="r1">${urg}${refs || '<div class="name">—</div>'}${tag}</div>`;
   const lines = M.show.map(k => { const v = val(r, k); return v ? `<div class="m ${k === 'categorie_id' ? 'cat' : ''}">${esc(v)}</div>` : ''; }).join('');
   const acts = w && !showArch ? `<div class="act"><button class="s go" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}">Étape</button></div>` : '<div class="act" style="padding:0"></div>';
-  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${r.id}">${head}${lines}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${r.id}">${head}${lines}${r.suppr_par ? `<div class="rowb">${waitB(r)}</div>` : ''}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 
 // ------------------------------------------------------------ Recherche globale (suggestions)
@@ -940,6 +1029,7 @@ function drawBand(){
 $('#mBand').addEventListener('mousedown', e => { if (e.target.id === 'mBand') closePop(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') {
   if ($('#mAsk').classList.contains('on') && ask.cancel) return ask.cancel();
+  if ($('#mMsg').classList.contains('on')) return closeMsg();
   if ($('#mHist').classList.contains('on')) return closeHist();
   if ($('#mPhoto').classList.contains('on')) return $('#mPhoto').classList.remove('on');
   if ($('#mContact').classList.contains('on')) return $('#mContact').classList.remove('on');
@@ -1034,9 +1124,9 @@ function renderDet(){
   const title = r ? (name || (M.title ? M.title(r) : '') || r.waybill || r.pid || M.label) : (cur === 'DOCUMENTS' ? 'Nouveau document' : 'Nouveau ' + M.label);
   const btns = ed
     ? `<button class="ico sm ok" id="dSave" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button><button class="ico sm" id="dX" title="${r ? 'Annuler la modification' : 'Fermer'}" aria-label="Annuler">${IC.close}</button>`
-    : `${canDelDoc ? `<button class="ico sm warn" id="dDocDel" title="Supprimer le document" aria-label="Supprimer le document">${IC.trash}</button>` : ''}${r && !M.noSteps && w && !showArch ? `<button class="ico sm warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button>` : ''}${r && !M.noSteps && w && showArch ? `<button class="ico sm" id="dUn" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>` : ''}${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
+    : `${canDelDoc ? `<button class="ico sm warn" id="dDocDel" title="Supprimer le document" aria-label="Supprimer le document">${IC.trash}</button>` : ''}${r && !M.noSteps && w && !r.suppr_par && !String(r.id).startsWith('tmp_') ? `<button class="ico sm warn" id="dDel" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}${r && !M.noSteps && !String(r.id).startsWith('tmp_') ? `<button class="ico sm" id="dMsg" title="Envoyer ce dossier par message" aria-label="Envoyer ce dossier par message">${IC.mail}</button>` : ''}${r && !M.noSteps && w && !showArch ? `<button class="ico sm warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button>` : ''}${r && !M.noSteps && w && showArch ? `<button class="ico sm" id="dUn" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>` : ''}${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
   const hlc = det && det.hl && det.hl.champs || [], canTg = r && w && !showArch && !ed, hasU = r && M.fields.some(f => f.k === 'urgent'), hasW = r && M.fields.some(f => f.k === 'wrong_ok');
-  const bubs = r && !ed ? `<div class="bbs">${hasU ? `<button class="bb tg ${r.urgent === true ? 'u' : 'off'} ${hlc.includes('urgent') ? 'hl' : ''}" data-tg="urgent" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.alert}${r.urgent === true ? 'Urgent' : 'Pas urgent'}</button>` : ''}${hasW ? `<button class="bb tg ${r.wrong_ok === true ? 'wk' : 'off'} ${hlc.includes('wrong_ok') ? 'hl' : ''}" data-tg="wrong_ok" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.check}${r.wrong_ok === true ? 'Wrong OK' : 'Pas wrong OK'}</button>` : ''}<button class="bb tg ${r.visibilite === 'prive' ? '' : 'sh'} ${hlc.includes('visibilite') ? 'hl' : ''}" data-tg="visibilite" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</button></div>` : '';
+  const bubs = r && !ed ? `<div class="bbs">${hasU ? `<button class="bb tg ${r.urgent === true ? 'u' : 'off'} ${hlc.includes('urgent') ? 'hl' : ''}" data-tg="urgent" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.alert}${r.urgent === true ? 'Urgent' : 'Pas urgent'}</button>` : ''}${hasW ? `<button class="bb tg ${r.wrong_ok === true ? 'wk' : 'off'} ${hlc.includes('wrong_ok') ? 'hl' : ''}" data-tg="wrong_ok" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.check}${r.wrong_ok === true ? 'Wrong OK' : 'Pas wrong OK'}</button>` : ''}<button class="bb tg ${r.visibilite === 'prive' ? '' : 'sh'} ${hlc.includes('visibilite') ? 'hl' : ''}" data-tg="visibilite" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</button>${waitB(r)}</div>` : '';
   const stat = r && !M.noSteps ? `<div class="dstat ${ed ? 'lock' : ''}"><span class="sp"></span><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabel(r.etape))}</span>
     ${w && !showArch ? `<button class="s go" data-a="stepmenu">Étape</button>` : ''}</div>` : '';
   const sub = M.noSteps ? '' : M.label;
@@ -1073,6 +1163,8 @@ function renderDet(){
   $('#dX').onclick = () => (ed && r) ? (det.editing = false, renderDet()) : closeDet();
   if ($('#dPen')) $('#dPen').onclick = () => { det.editing = true; renderDet(); };
   if ($('#dDocDel')) $('#dDocDel').onclick = () => delDoc(r);
+  if ($('#dDel')) $('#dDel').onclick = () => delRec(r);
+  if ($('#dMsg')) $('#dMsg').onclick = () => openMsg({ref:{module:cur, id:r.id}});
   if (ed) {
     el.querySelectorAll('input.up').forEach(i => i.addEventListener('input', () => { const p = i.selectionStart; i.value = i.value.toUpperCase(); i.setSelectionRange(p, p); }));
     const grow = t => { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; };
@@ -1114,6 +1206,19 @@ function renderDet(){
   };
 }
 
+async function delRec(r){
+  const m = cur, direct = ME.rights[m] === 'admin' || String(r.cree_par).toLowerCase() === ME.email;
+  const ok = await ask(direct ? 'Supprimer ce dossier ?' : 'Demander la suppression ?', direct ? 'Le dossier, ses commentaires et ses fichiers seront supprimés définitivement.' : 'Le créateur devra valider la suppression. En attendant, le dossier reste visible avec la mention « En attente de suppression ».', direct ? 'Supprimer' : 'Demander');
+  if (!ok) return;
+  if (direct) {
+    const k = key(), before = rows; rows = rows.filter(x => x !== r); cache[k] = rows; drawCards(); closeDet();
+    enqueue(() => api('delete_request', {module:m, id:r.id}), () => { cache[k] = before; if (key() === k) { rows = before; drawCards(); } });
+  } else {
+    r.suppr_par = ME.email; syncOn(r); drawCards(); if (det && det.r === r) renderDet();
+    enqueue(async () => { await api('delete_request', {module:m, id:r.id}); syncOff(r); if (key() === m || key() === m + '_a') drawCards(); if (det && det.r === r) renderDet(); },
+      () => { syncOff(r); r.suppr_par = ''; if (cur === m) drawCards(); if (det && det.r === r) renderDet(); });
+  }
+}
 function saveLocal(r, data, extra){
   const m = cur, k = key(), now = new Date().toISOString();
   if (r) { if (H[r.id]) Object.keys(data).forEach(f => { if (String(r[f] ?? '') !== String(data[f] ?? '')) H[r.id].unshift({date_heure:now, utilisateur:ME.email, action:'modification', champ:f, ancienne_valeur:r[f] ?? '', nouvelle_valeur:data[f]}); }); Object.assign(r, data, {modifie_le: now}); syncOn(r); }
@@ -1354,12 +1459,12 @@ const dismissed = new Set(JSON.parse(sessionStorage.getItem('wdis') || '[]'));
 const saveDis = () => sessionStorage.setItem('wdis', JSON.stringify([...dismissed]));
 const ftime = v => new Date(v).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit', ...((ME.prefs && ME.prefs.tz) ? {timeZone: ME.prefs.tz} : {})});
 const todayIso = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
-function startPoll(){ pollNotifs(); clearInterval(pollT); pollT = setInterval(() => { if (!document.hidden) pollNotifs(); }, 45000); }
+function startPoll(){ pollNotifs(); clearInterval(pollT); pollT = setInterval(pollNotifs, 45000); }
 async function pollNotifs(){
-  try { NOT = await api('notifs_list'); drawBadges(); showToasts(); if (drawerOpen) renderDrawer(); } catch (e) {}
+  try { NOT = await api('notifs_list'); drawBadges(); showToasts(); if (drawerOpen) renderDrawer(); checkPC(); if ($('#mMsg').classList.contains('on')) { loadThreads(); if (MSG.view === 'thread') loadThread(); } if (cur === '_home') renderHome(); } catch (e) {}
 }
 function setBadge(btn, n){ let b = btn.querySelector('.badge'); if (!n) { if (b) b.remove(); return; } if (!b) { b = document.createElement('span'); b.className = 'badge'; btn.appendChild(b); } b.textContent = n > 99 ? '99+' : n; }
-function drawBadges(){ setBadge($('#bBell'), NOT.unread); }
+function drawBadges(){ setBadge($('#bBell'), NOT.unread); setBadge($('#bMsg'), NOT.msgs || 0); }
 function showToasts(){
   const box = $('#ntoasts'), want = NOT.items.filter(n => n.lu !== 'oui' && !dismissed.has(n.id)).slice(0, 5);
   [...box.children].forEach(el => { if (!want.some(n => n.id === el.dataset.id)) el.remove(); });
@@ -1392,8 +1497,10 @@ function openDrawer(){
 function closeDrawer(){ drawerOpen = false; remIds = new Set(); $('#mDrawer').classList.remove('on'); }
 $('#mDrawer').addEventListener('mousedown', e => { if (e.target.id === 'mDrawer') closeDrawer(); });
 $('#bBell').onclick = () => openDrawer();
-async function loadTodo(silent){ try { TD = await api('todo_list'); if (drawerOpen) renderDrawer(); } catch (e) { if (!silent) toast(e.message); } }
+async function loadTodo(silent){ try { TD = await api('todo_list'); if (drawerOpen) renderDrawer(); if (cur === '_home') renderHome(); } catch (e) { if (!silent) toast(e.message); } }
 function ntItem(n){
+  if (n.type === 'suppression' && n.fait !== 'oui') return `<div class="nit unread" data-id="${n.id}"><b>${esc(n.titre)}</b><div class="tx">${esc(n.texte)}</div><div class="tm">${ftime(n.cree_le)}</div>
+    <div class="na"><button data-a="dv" class="dng">${IC.trash}Valider la suppression</button><button data-a="dn">${IC.close}Ne pas supprimer</button></div></div>`;
   return `<div class="nit ${n.lu !== 'oui' ? 'unread' : ''}" data-id="${n.id}"><b>${esc(n.titre)}</b><div class="tx">${esc(n.texte)}</div><div class="tm">${ftime(n.cree_le)}</div>
     <div class="na"><button data-a="lu" ${n.lu === 'oui' ? 'disabled' : ''}>${IC.check}Lu</button><button data-a="todo" ${n.todo_ajoute === 'oui' ? 'disabled' : ''}>${IC.plus}${n.todo_ajoute === 'oui' ? 'Dans ma todo' : 'Ajouter à ma todo'}</button></div></div>`;
 }
@@ -1441,10 +1548,110 @@ function renderDrawer(){
     const c = e.target.closest('.nit'); if (!c) return; const n = NOT.items.find(x => x.id === c.dataset.id); if (!n) return;
     const a = e.target.closest('[data-a]');
     if (!a) return openNotif(n);
+    if (a.dataset.a === 'dv' || a.dataset.a === 'dn') {
+      const val = a.dataset.a === 'dv';
+      NOT.items = NOT.items.filter(x => x.id !== n.id); NOT.unread = NOT.items.filter(x => x.lu !== 'oui').length; drawBadges(); showToasts(); renderDrawer();
+      Object.keys(cache).filter(k => k === n.module || k === n.module + '_a').forEach(k => { cache[k] = val ? cache[k].filter(x => x.id !== n.ref_id) : cache[k].map(x => x.id === n.ref_id ? Object.assign(x, {suppr_par:''}) : x); if (cur + (showArch ? '_a' : '') === k) { rows = cache[k]; drawCards(); } });
+      return enqueue(() => api('delete_resolve', {id:n.id, decision: val ? 'valider' : 'refuser'}).then(() => pollNotifs()), () => pollNotifs());
+    }
     if (a.dataset.a === 'lu') { setRead(n); renderDrawer(); }
     else if (a.dataset.a === 'todo') { n.todo_ajoute = 'oui'; setRead(n); renderDrawer(); enqueue(async () => { await api('notif_todo', {id:n.id}); await loadTodo(true); }); }
   };
 }
+// ------------------------------------------------------------ Notifications sur le PC (navigateur)
+const PCN = () => (ME && ME.prefs && ME.prefs.pc) || {};
+let seenN = null, lastMsgs = 0;
+function pcNotify(title, body, onclick){
+  try { const n = new Notification(title, {body, icon:'icon-192.png'}); n.onclick = () => { window.focus(); n.close(); if (onclick) onclick(); }; } catch (e) {}
+}
+function checkPC(){
+  const items = NOT.items || [];
+  if (seenN === null) { seenN = new Set(items.map(n => n.id)); lastMsgs = NOT.msgs || 0; return; }
+  const fresh = items.filter(n => !seenN.has(n.id)); fresh.forEach(n => seenN.add(n.id));
+  const msgsUp = (NOT.msgs || 0) > lastMsgs; lastMsgs = NOT.msgs || 0;
+  const p = PCN();
+  if (!p.on || typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
+  if (!document.hidden && document.hasFocus()) return;
+  fresh.forEach(n => {
+    if (n.lu === 'oui') return;
+    let d = {}; try { d = JSON.parse(n.detail || '{}'); } catch (e) {}
+    const mine = String(d.creator || '').toLowerCase() === ME.email;
+    if ((p.scms && n.module === 'SECURITY' && n.type === 'nouveau') || (p.mine && mine && n.type !== 'nouveau' && n.categorie !== 'todo')) pcNotify(n.titre, n.texte, () => openNotif(n));
+  });
+  if (msgsUp && p.msg) pcNotify('Nouveau message', 'Tu as reçu un message sur Watson.', () => openMsg());
+}
+function setPc(o){ ME.prefs = Object.assign({}, ME.prefs, {pc: Object.assign({}, PCN(), o)}); enqueue(() => api('profile_set', {data:{prefs: ME.prefs}})); }
+
+// ------------------------------------------------------------ Messagerie 1 à 1
+let MSG = {threads:null, w:null, list:[], ref:null, view:'list', draft:''};
+function refLbl(m, id){
+  const M = MODS[m]; if (!M) return 'Dossier';
+  const row = (cache[m] || []).concat(cache[m + '_a'] || []).find(x => x.id === id);
+  const t = row ? (m === 'SECURITY' ? motifTxt(row) : String(M.name(row) || '')) || row.waybill || row.pid || '' : '';
+  return M.label + (t ? ' · ' + t : ' · dossier');
+}
+function openMsg(o){
+  MSG.view = o && o.ref ? 'new' : 'list'; MSG.ref = o && o.ref || null; MSG.w = null; MSG.list = []; MSG.draft = '';
+  closeDrawer(); $('#mMsg').classList.add('on'); drawMsg(); loadThreads();
+}
+function closeMsg(){ $('#mMsg').classList.remove('on'); MSG.view = 'list'; MSG.w = null; }
+async function loadThreads(){
+  try { MSG.threads = await api('msg_threads'); NOT.msgs = MSG.threads.reduce((a, t) => a + (MSG.view === 'thread' && t.with === MSG.w ? 0 : t.unread), 0); drawBadges(); if (MSG.view === 'list') drawMsg(); } catch (e) { MSG.threads = MSG.threads || []; }
+}
+async function openThread(w){ MSG.view = 'thread'; MSG.w = w; MSG.list = []; drawMsg(); await loadThread(); const t = (MSG.threads || []).find(x => x.with === w); if (t) t.unread = 0; NOT.msgs = (MSG.threads || []).reduce((a, x) => a + x.unread, 0); drawBadges(); }
+async function loadThread(){
+  const w = MSG.w; if (!w) return;
+  try { const l = await api('msg_thread', {with:w}); if (MSG.w === w && MSG.view === 'thread') { MSG.list = l.concat(MSG.list.filter(x => x._sync)); drawMsg(true); } } catch (e) {}
+}
+function msgBody(m){
+  const link = m.ref_module ? `<button class="mlk" data-mref="${m.ref_module}" data-mid="${esc(m.ref_id)}">${IC.open}<span>${esc(refLbl(m.ref_module, m.ref_id))}</span></button>` : '';
+  return `<div class="mb ${m.de === ME.email ? 'me' : ''} ${m._sync ? 'sy' : ''}">${m.texte ? esc(m.texte) : ''}${link}<small>${ftime(m.le)}</small></div>`;
+}
+function drawMsg(bottom){
+  const el = $('#msgp'); if (!el) return;
+  const keep = $('#mText') ? $('#mText').value : null; if (keep !== null) MSG.draft = keep;
+  const prev = $('#mTo') ? $('#mTo').value : '';
+  const people = Object.keys(ME.annuaire || {}).filter(e => e !== ME.email);
+  const comp = `<div class="mcomp">${MSG.ref ? `<div class="mlk" id="mRef">${IC.open}<span style="flex:1">${esc(refLbl(MSG.ref.module, MSG.ref.id))}</span><button class="ico sm" id="mRefX" aria-label="Retirer le lien" title="Retirer le lien">${IC.close}</button></div>` : ''}
+    <div class="row"><textarea id="mText" rows="2" maxlength="2000" placeholder="Écrire un message…">${esc(MSG.draft)}</textarea><button class="s go" id="mSend" aria-label="Envoyer" title="Envoyer">${IC.send}</button></div></div>`;
+  if (MSG.view === 'list') {
+    const th = MSG.threads;
+    el.innerHTML = `<div class="dh"><h3>Messages</h3><button class="s" id="mNew">${IC.plus}Nouveau</button><button class="ico sm" id="mX" aria-label="Fermer">${IC.close}</button></div>
+      <div class="mmsgs" style="gap:0">${th === null ? '<div class="m">Chargement…</div>' : th.length ? th.map(t => `<button class="mt" data-w="${esc(t.with)}"><span class="av">${esc((who(t.with) || '?')[0].toUpperCase())}</span><span class="mx"><b>${esc(who(t.with))}</b><span>${t.de === ME.email ? 'Toi : ' : ''}${esc(t.texte)}</span></span><small>${ftime(t.le)}</small>${t.unread ? `<span class="un">${t.unread}</span>` : ''}</button>`).join('') : '<div class="m">Aucune conversation. Clique sur « Nouveau » pour écrire à quelqu\'un.</div>'}</div>`;
+  } else if (MSG.view === 'new') {
+    el.innerHTML = `<div class="dh"><button class="ico sm back" id="mBack" aria-label="Retour">${IC.back}</button><h3>Nouveau message</h3><button class="ico sm" id="mX" aria-label="Fermer">${IC.close}</button></div>
+      <div class="mto"><label for="mTo" style="margin:0">À</label><select id="mTo">${people.length ? people.map(e => `<option value="${esc(e)}" ${e === prev ? 'selected' : ''}>${esc(who(e))}</option>`).join('') : '<option value="">Aucun autre utilisateur</option>'}</select></div><div class="mmsgs"></div>${comp}`;
+  } else {
+    el.innerHTML = `<div class="dh"><button class="ico sm back" id="mBack" aria-label="Retour">${IC.back}</button><h3>${esc(who(MSG.w))}</h3><button class="ico sm" id="mX" aria-label="Fermer">${IC.close}</button></div>
+      <div class="mmsgs" id="mList">${MSG.list.length ? MSG.list.map(msgBody).join('') : '<div class="m">Aucun message.</div>'}</div>${comp}`;
+  }
+  const ml = $('#mList'); if (ml && bottom !== false) ml.scrollTop = ml.scrollHeight;
+  $('#mX').onclick = closeMsg;
+  if ($('#mNew')) $('#mNew').onclick = () => { MSG.view = 'new'; MSG.ref = null; MSG.draft = ''; drawMsg(); };
+  if ($('#mBack')) $('#mBack').onclick = () => { MSG.view = 'list'; MSG.w = null; MSG.ref = null; drawMsg(); loadThreads(); };
+  if ($('#mSend')) $('#mSend').onclick = sendMsg;
+  if ($('#mRefX')) $('#mRefX').onclick = () => { MSG.ref = null; drawMsg(false); };
+  const ta = $('#mText'); if (ta) { ta.oninput = () => { MSG.draft = ta.value; }; ta.onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } }; if (MSG.view !== 'list' && bottom !== false) setTimeout(() => ta.focus(), 50); }
+  el.onclick = e => {
+    const t = e.target.closest('.mt'); if (t) return openThread(t.dataset.w);
+    const l = e.target.closest('.mlk[data-mref]'); if (l) { closeMsg(); openNotif({module:l.dataset.mref, ref_id:l.dataset.mid, id:'', detail:'{}', lu:'oui'}); }
+  };
+}
+function sendMsg(){
+  const ta = $('#mText'); if (ta) MSG.draft = ta.value;
+  const texte = MSG.draft.trim(), ref = MSG.ref; let to = MSG.w;
+  if (MSG.view === 'new') to = $('#mTo') && $('#mTo').value;
+  if (!to) return toast('Choisis un destinataire');
+  if (!texte && !ref) return;
+  const tmp = {id:'tmp_' + Date.now(), de:ME.email, a:to, le:new Date().toISOString(), texte, ref_module: ref ? ref.module : '', ref_id: ref ? ref.id : '', _sync:true};
+  const fromNew = MSG.view === 'new';
+  MSG.w = to; MSG.view = 'thread'; MSG.list = (fromNew ? [] : MSG.list).concat(tmp); MSG.draft = ''; MSG.ref = null; drawMsg(true);
+  enqueue(async () => { await api('msg_send', {to, texte, ref_module:tmp.ref_module, ref_id:tmp.ref_id}); tmp._sync = false; if (MSG.w === to) await loadThread(); loadThreads(); },
+    () => { MSG.list = MSG.list.filter(x => x !== tmp); if (MSG.view === 'thread') drawMsg(); });
+}
+$('#bMsg').onclick = () => openMsg();
+$('#mMsg').addEventListener('mousedown', e => { if (e.target.id === 'mMsg') closeMsg(); });
+
 // Création d'une tâche (fenêtre)
 let editT = null;
 function hhmm(iso){ if (!iso) return ''; const d = new Date(iso); return isNaN(d) ? '' : String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
@@ -1537,8 +1744,22 @@ async function renderSec(){
     let z = zi; const bump = d => { z = Math.min(ZOOMS.length - 1, Math.max(0, z + d)); $('#zVal').textContent = Math.round(ZOOMS[z] * 100) + ' %'; setDisplay({zoom: ZOOMS[z]}); };
     $('#zMin').onclick = () => bump(-1); $('#zPlus').onclick = () => bump(1);
   } else if (setSec === 'notif') {
-    el.innerHTML = `<h3>Notifications</h3><p class="lead">Un seul e-mail par jour récapitule la journée.</p>
-      <p class="m" style="margin-top:12px;-webkit-line-clamp:unset">Dans l'appli, les notifications s'affichent en haut à droite de l'écran et dans la cloche.</p>`;
+    const pc = PCN(), supp = typeof Notification !== 'undefined', perm = supp ? Notification.permission : 'denied';
+    el.innerHTML = `<h3>Notifications</h3><p class="lead">Dans l'appli, les notifications s'affichent en haut à droite de l'écran et dans la cloche.</p>
+      <h4 style="font:700 13px var(--disp);letter-spacing:.5px;color:var(--mut);margin:18px 0 6px">SUR CE PC (NAVIGATEUR)</h4>
+      <div class="prow"><div><b>Activer les notifications du navigateur</b><div class="m">${!supp ? "Ce navigateur ne gère pas les notifications." : perm === 'denied' ? "Bloquées dans le navigateur : autorise-les dans les réglages du site (cadenas à côté de l'adresse)." : "S'affichent quand l'appli est ouverte dans un onglet mais que tu es sur une autre fenêtre ou un autre onglet."}</div></div><div>${sw('pcOn', pc.on === true && perm === 'granted', supp && perm !== 'denied' ? '' : 'disabled')}</div></div>
+      <div class="prow"><div><b>Création d'un SCMS</b></div><div>${sw('pcScms', pc.scms === true)}</div></div>
+      <div class="prow"><div><b>Modification d'un dossier que j'ai créé</b></div><div>${sw('pcMine', pc.mine === true)}</div></div>
+      <div class="prow"><div><b>Nouveau message</b></div><div>${sw('pcMsg', pc.msg === true)}</div></div>
+      <h4 style="font:700 13px var(--disp);letter-spacing:.5px;color:var(--mut);margin:22px 0 6px">PAR E-MAIL</h4>
+      <div class="soon">Bientôt disponible.</div>`;
+    $('#pcOn').onchange = async e => {
+      if (!e.target.checked) return setPc({on:false});
+      const r = await Notification.requestPermission();
+      if (r !== 'granted') { e.target.checked = false; setPc({on:false}); return toast('Autorisation refusée par le navigateur'); }
+      setPc({on:true}); pcNotify('Notifications activées', 'Tu recevras les alertes choisies ici.');
+    };
+    $('#pcScms').onchange = e => setPc({scms: e.target.checked}); $('#pcMine').onchange = e => setPc({mine: e.target.checked}); $('#pcMsg').onchange = e => setPc({msg: e.target.checked});
   } else if (setSec === 'region') {
     const tz = P.tz || 'Europe/Paris';
     el.innerHTML = `<h3>Région</h3><p class="lead">Jours fériés et fuseau horaire.</p>
