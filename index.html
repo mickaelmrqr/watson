@@ -134,7 +134,7 @@ button{font-family:inherit;cursor:pointer}
 .tag.u{background:#6a2b30;color:#ffc9c9}
 .tag.pr{background:rgba(255,255,255,.09);color:var(--ink)}
 .act{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:auto;padding-top:10px}
-.act .s{padding:8px 22px}
+.act .s{padding:8px 22px}.act .s.stp{padding:8px 18px}
 .empty{color:var(--mut);padding:40px 0;text-align:center}
 
 /* ---------- Menu des étapes : bandeau au milieu de la page */
@@ -145,8 +145,8 @@ button{font-family:inherit;cursor:pointer}
 .bt span{color:var(--mut);font-size:var(--fs)}
 .flow{display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding:4px 0 2px}
 .flow .stp{flex:1 1 0;min-width:140px;display:flex;flex-direction:column;align-items:center;gap:8px;background:transparent;border:0;color:var(--mut);font:500 var(--fs)/1.25 var(--body);padding:4px 8px;text-align:center;position:relative;transition:color .15s,transform .18s var(--ease)}
-.flow .stp:hover{color:var(--hi);transform:translateY(-3px)}
-.flow .stp .dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:700 var(--fs) var(--disp);background:var(--bg);border:2px solid var(--line);color:var(--mut);z-index:1;transition:background .15s,border-color .15s}
+.flow .stp:hover{color:var(--hi)}.flow .stp:hover .dot{transform:scale(1.18)}.flow .stp.cur:hover .dot{transform:none}
+.flow .stp .dot{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:700 var(--fs) var(--disp);background:var(--bg);border:2px solid var(--line);color:var(--mut);z-index:1;transition:transform .18s var(--ease),background .15s,border-color .15s}
 .flow .stp:hover .dot{border-color:var(--blue)}
 .flow .stp:not(:last-child):after{content:"";position:absolute;top:24px;left:calc(50% + 26px);right:calc(-50% + 26px);height:2px;background:var(--line)}
 .flow .stp.done .dot{background:rgba(62,207,142,.2);border-color:var(--green);color:var(--green)}
@@ -587,11 +587,29 @@ html[data-theme=light] .dt3.warn b{color:#B45309}
 .dcc .dfl{flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;padding:8px 12px 4px;min-width:120px;max-width:100%}
 .dcc .dfl .dn{max-width:200px;text-align:center}
 .s.go.stp{padding:9px 13px}.s.go.stp .i{width:22px;height:22px}
+.mt .who{color:var(--hi)!important;font-size:var(--fs);opacity:.75}.mt .sinc{color:#ff9d6c!important;font-size:var(--fs);font-weight:600}
+.dh h3 .ms{display:block;font:500 var(--fs) var(--body);color:var(--mut)}
+#mDel[data-off]{opacity:.4}
+.sheet.xw{max-width:920px}
+.scg{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px;margin-top:14px;align-items:start}
+.scl,.scr{min-width:0;display:flex;flex-direction:column;gap:12px}
+.scw small{display:block;color:var(--mut);font-size:var(--fs);margin-bottom:2px}
+.sc2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.scr .cbh{flex-wrap:wrap}.scr .cbh .ct{flex:1 1 150px}.scr .cbh .s{flex:1 1 100%;justify-content:center}.scr .cbox{margin:0}.scr .hbar{margin:0}.scr .dph{margin:0}.scl .xh{margin-top:0}
+@media(max-width:760px){.scg{grid-template-columns:1fr}}
+#sDet{position:relative}
+#sDet.syncing>*:not(.dots):not(.sh){filter:blur(3.5px);opacity:.55;pointer-events:none}
+#tip{position:fixed;z-index:9999;pointer-events:none;max-width:280px;padding:7px 12px;border-radius:10px;background:rgba(18,22,32,.97);color:#eef1f7;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 28px rgba(0,0,0,.45);font:600 var(--fs)/1.35 var(--body);opacity:0;transform:translateY(4px) scale(.97);transition:opacity .14s ease,transform .14s ease}
+#tip.on{opacity:1;transform:none}
+#tip:after{content:"";position:absolute;left:var(--ax,50%);width:9px;height:9px;background:inherit;border:inherit;border-width:0 1px 1px 0;transform:translateX(-50%) rotate(45deg);bottom:-5px}
+#tip.below:after{bottom:auto;top:-5px;border-width:1px 0 0 1px}
+html[data-theme=light] #tip{background:rgba(255,255,255,.98);color:#1b2233;border-color:rgba(20,30,50,.16);box-shadow:0 10px 28px rgba(20,30,50,.18)}
+@media(prefers-reduced-motion:reduce){#tip{transition:none}}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.19</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.20</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -601,7 +619,7 @@ html[data-theme=light] .dt3.warn b{color:#B45309}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.19</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.20</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -999,7 +1017,7 @@ function cardSec(r){
   const kind = kindOf(r), tmp = r._tmp === true, w = canWrite(), mt = motifTxt(r);
   const cbub = r.contacter_client !== true ? `<span class="cb stop no" title="Ne surtout pas contacter le client">${IC.stop}Ne pas contacter le client</span>`
     : r.contact_fait_le ? `<span class="cb done" title="Client contacté">${IC.phone}Client contacté</span>` : `<span class="cb todo" title="Client à contacter">${IC.phone}Client à contacter</span>`;
-  const acts = w && !showArch ? `<div class="act"><button class="s go" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}">Étape</button></div>` : '<div class="act" style="padding:0"></div>';
+  const acts = w && !showArch ? `<div class="act"><button class="s go stp" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}</button></div>` : '<div class="act" style="padding:0"></div>';
   return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${gcl(r)}" ${gst(r)} data-id="${r.id}">${r.thumb ? `<div class="bgph"><img alt="" src="data:image/jpeg;base64,${r.thumb}"></div>` : ''}<div class="r1"><div class="name" title="${esc(mt)}">${esc(mt) || 'SCMS'}</div><span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div>
     ${r.waybill ? `<div class="r2"><div class="refs">${link(r.waybill)}</div></div>` : ''}<div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="rowb">${cbub}${waitB(r)}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
@@ -1025,7 +1043,7 @@ function card(r){
     ? `<div class="r1">${urg}<div class="name" title="${esc(name)}">${esc(name)}</div>${bub}</div><div class="r2">${refs || '<div class="refs"></div>'}${tag}</div>`
     : `<div class="r1">${urg}${refs || '<div class="name">—</div>'}${tag}</div>`;
   const lines = M.show.map(k => { const v = val(r, k); return v ? `<div class="m ${k === 'categorie_id' ? 'cat' : ''}">${esc(v)}</div>` : ''; }).join('');
-  const acts = w && !showArch ? `<div class="act"><button class="s go" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}">Étape</button></div>` : '<div class="act" style="padding:0"></div>';
+  const acts = w && !showArch ? `<div class="act"><button class="s go stp" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}</button></div>` : '<div class="act" style="padding:0"></div>';
   const al = cur === 'DOM' ? domAlert(r) : null, alc = al ? (['J1', 'J4', 'J10'].some(k => al[k] === 'late') ? ' al-late' : ['J1', 'J4', 'J10'].some(k => al[k] === 'warn') ? ' al-warn' : '') : '';
   return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${alc}${gcl(r)}" ${gst(r)} data-id="${r.id}">${head}${lines}${r.suppr_par ? `<div class="rowb">${waitB(r)}</div>` : ''}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
@@ -1277,9 +1295,12 @@ function renderDet(){
     const sub = al[l] === 'late' ? `dépassé de ${-df} j` : '';
     return `<div class="dt3 ${cls}"><small>${l}</small><b>${dd.toLocaleDateString('fr-FR', {weekday:'short', day:'numeric', month:'short'})}</b><span>${sub || '&nbsp;'}</span></div>`; }).join('')}</div>` : '';
   el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3>${stat ? '' : bubs}</div>${btns}</div>${stat}${dates}
-    <dl class="det">${fields}${meta.filter(m => m[1]).map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>
+    ${cur === 'SECURITY' && r && !ed ? '' : `<dl class="det">${fields}${meta.filter(m => m[1]).map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>`}
     <div id="xBlocks">${extraBlocks(r, ed)}</div>
-    ${r && !ed && canHist(cur) ? `<div class="hbar"><button class="s" id="dHist">${IC.clock}Afficher l'historique</button></div>` : ''}`;
+    ${r && !ed && canHist(cur) && cur !== 'SECURITY' ? `<div class="hbar"><button class="s" id="dHist">${IC.clock}Afficher l'historique</button></div>` : ''}`;
+  el.classList.toggle('xw', cur === 'SECURITY' && !!r && !ed);
+  el.classList.toggle('syncing', !!(r && r._sync));
+  if (r && r._sync) el.insertAdjacentHTML('beforeend', '<div class="dots"><i></i><i></i><i></i></div>');
   afterExtra(r, ed);
   if ($('#dHist')) $('#dHist').onclick = () => openHist(r);
   $('#dX').onclick = () => (ed && r) ? (det.editing = false, renderDet()) : closeDet();
@@ -1358,10 +1379,10 @@ function saveLocal(r, data, extra){
       for (const f of (extra.files || [])) await api('file_add', {module:m, ref_id:newId, name:f.name, mime:f.mime, b64:f.b64});
       for (const ph of (extra.photos || [])) await api('file_add', {module:m, ref_id:newId, name:ph.name, mime:ph.mime, b64:ph.b64, thumb_b64:ph.thumb});
     }
-    if (r) { delete H[r.id]; syncOff(r); }
+    if (r) { delete H[r.id]; syncOff(r); if (det && det.r === r && !det.editing) renderDet(); }
     if (pending === 1) await refresh(); else if (key() === k) drawCards();
     if (key() === k) { let id = r && r.id; if (!id) { const f = rows.filter(x => x.cree_par === ME.email && (!data.waybill || x.waybill === data.waybill)).sort((a, b) => String(b.cree_le).localeCompare(String(a.cree_le)))[0]; id = f && f.id; } if (id) waveCard(id); }
-  }, async () => { if (r) syncOff(r); try { await refresh(); } catch (e) {} });
+  }, async () => { if (r) { syncOff(r); if (det && det.r === r && !det.editing) renderDet(); } try { await refresh(); } catch (e) {} });
 }
 
 
@@ -1421,8 +1442,18 @@ function addComment(r){
   enqueue(async () => { const id = await api('comment_add', {module:m, ref_id:r.id, texte}); tmp.id = id; tmp._sync = false; if (det && det.r === r) drawX(); },
     () => { CMT[r.id] = (CMT[r.id] || []).filter(x => x !== tmp); if (det && det.r === r) drawX(); });
 }
+function scmsLayout(r){
+  const wf = MODS.SECURITY.fields.find(f => f.k === 'waybill'), wb = r.waybill ? viewCell(wf, r) : '';
+  const arch = r.archive === true ? `<div class="m" style="margin-top:4px">Archivé par ${esc(who(r.archive_par))} · ${fdate(r.archive_le, true)}</div>` : '';
+  const hist = canHist(cur) ? `<div class="hbar"><button class="s" id="dHist">${IC.clock}Afficher l'historique</button></div>` : '';
+  return `<div class="scg"><div class="scl">${wb ? `<div class="scw"><small>Waybill</small>${wb}</div>` : ''}
+    <div class="sc2"><div class="dt3"><small>Découverte</small><b>${fdateD(r.date_decouverte)}</b></div><div class="dt3"><small>SCMS créé</small><b>${r.scms_le ? fdate(r.scms_le) : '—'}</b></div></div>${arch}
+    <div>${photosBlock(r)}</div></div>
+    <div class="scr">${contactBox(r)}${hist}<div class="dph">${IC.DOCUMENTS}<div>Document « Découverte de contenu interdit »<small style="display:block">Bientôt disponible.</small></div></div></div></div>`;
+}
 function extraBlocks(r, ed){
   const cm = '';
+  if (cur === 'SECURITY' && r && !ed) return scmsLayout(r);
   if (cur === 'SECURITY') return (r && !ed ? contactBox(r) : '') + photosBlock(r) + (r && !ed ? `<div class="dph">${IC.DOCUMENTS}<div>Document « Découverte de contenu interdit »<small style="display:block">Bientôt disponible.</small></div></div>` : '') + cm;
   if (cur === 'DOCUMENTS') return fileBox(r);
   return cm;
@@ -1444,6 +1475,7 @@ function afterExtra(r, ed){
 }
 function bindX(){
   const b = $('#xBlocks'); if (!b) return; const r = det && det.r;
+  if ($('#xBlocks #dHist')) $('#xBlocks #dHist').onclick = () => openHist(r);
   const cd = $('#cmtD'); if (cd) cd.ontoggle = () => { if (det) det.cmtOpen = cd.open; };
   const ci = $('#cmIn'); if (ci) ci.oninput = () => { if (det) det.cmtDraft = ci.value; };
   b.onclick = e => {
@@ -1710,7 +1742,10 @@ function checkPC(){
 function setPc(o){ ME.prefs = Object.assign({}, ME.prefs, {pc: Object.assign({}, PCN(), o)}); enqueue(() => api('profile_set', {data:{prefs: ME.prefs}})); }
 
 // ------------------------------------------------------------ Messagerie 1 à 1
-let MSG = {threads:null, w:null, list:[], ref:null, view:'list', draft:''};
+let MSG = {threads:null, w:null, conv:'', titre:'', list:[], ref:null, view:'list', draft:'', subj:''};
+const newConvId = () => 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+function ago(iso){ if (!iso || isNaN(new Date(iso))) return ''; const m = Math.max(0, Math.round((Date.now() - new Date(iso)) / 60000)); if (m < 1) return "à l'instant"; if (m < 60) return m + ' min'; const h = Math.round(m / 60); if (h < 24) return h + ' h'; const d = Math.round(h / 24); return d + ' j'; }
+const mTitle = t => t.titre || who(t.with);
 function refLbl(m, id){
   const M = MODS[m]; if (!M) return 'Dossier';
   const row = (cache[m] || []).concat(cache[m + '_a'] || []).find(x => x.id === id);
@@ -1718,21 +1753,21 @@ function refLbl(m, id){
   return M.label + (t ? ' · ' + t : ' · dossier');
 }
 function openMsg(o){
-  MSG.view = o && o.ref ? 'new' : 'list'; MSG.ref = o && o.ref || null; MSG.w = null; MSG.list = []; MSG.draft = '';
+  MSG.view = o && o.ref ? 'new' : 'list'; MSG.ref = o && o.ref || null; MSG.w = null; MSG.conv = ''; MSG.titre = ''; MSG.list = []; MSG.draft = ''; MSG.subj = '';
   closeDrawer(); $('#mMsg').classList.add('on'); drawMsg(); loadThreads();
 }
-function closeMsg(){ $('#mMsg').classList.remove('on'); MSG.view = 'list'; MSG.w = null; }
+function closeMsg(){ $('#mMsg').classList.remove('on'); MSG.view = 'list'; MSG.w = null; MSG.conv = ''; }
 async function loadThreads(){
-  try { MSG.threads = await api('msg_threads'); NOT.msgs = MSG.threads.reduce((a, t) => a + (MSG.view === 'thread' && t.with === MSG.w ? 0 : t.unread), 0); drawBadges(); if (MSG.view === 'list') drawMsg(); } catch (e) { MSG.threads = MSG.threads || []; }
+  try { MSG.threads = await api('msg_threads'); NOT.msgs = MSG.threads.reduce((a, t) => a + (MSG.view === 'thread' && t.with === MSG.w && (t.conv || '') === MSG.conv ? 0 : t.unread), 0); drawBadges(); if (MSG.view === 'list') drawMsg(); } catch (e) { MSG.threads = MSG.threads || []; }
 }
-async function openThread(w){ MSG.view = 'thread'; MSG.w = w; MSG.list = []; drawMsg(); await loadThread(); const t = (MSG.threads || []).find(x => x.with === w); if (t) t.unread = 0; NOT.msgs = (MSG.threads || []).reduce((a, x) => a + x.unread, 0); drawBadges(); }
+async function openThread(w, c){ c = c || ''; MSG.view = 'thread'; MSG.w = w; MSG.conv = c; const th = (MSG.threads || []).find(x => x.with === w && (x.conv || '') === c); MSG.titre = th ? th.titre || '' : MSG.titre; MSG.list = []; drawMsg(); await loadThread(); const t = (MSG.threads || []).find(x => x.with === w && (x.conv || '') === c); if (t) t.unread = 0; NOT.msgs = (MSG.threads || []).reduce((a, x) => a + x.unread, 0); drawBadges(); }
 async function loadThread(){
-  const w = MSG.w; if (!w) return;
-  try { const l = await api('msg_thread', {with:w}); if (MSG.w === w && MSG.view === 'thread') { MSG.list = l.concat(MSG.list.filter(x => x._sync)); drawMsg(true); } } catch (e) {}
+  const w = MSG.w, c = MSG.conv; if (!w) return;
+  try { const l = await api('msg_thread', {with:w, conv:c}); if (MSG.w === w && MSG.conv === c && MSG.view === 'thread') { MSG.list = l.concat(MSG.list.filter(x => x._sync)); drawMsg(true); } } catch (e) {}
 }
 function msgBody(m){
   const link = m.ref_module ? `<button class="mlk" data-mref="${m.ref_module}" data-mid="${esc(m.ref_id)}">${IC.open}<span>${esc(refLbl(m.ref_module, m.ref_id))}</span></button>` : '';
-  return `<div class="mb ${m.de === ME.email ? 'me' : ''} ${m._sync ? 'sy' : ''}">${m.texte ? esc(m.texte) : ''}${link}<small>${ftime(m.le)}</small></div>`;
+  return `<div class="mb ${m.de === ME.email ? 'me' : ''} ${m._sync ? 'sy' : ''}">${m.texte ? esc(m.texte) : ''}${link}<small>${ftime(m.le)}${m.de === ME.email && m.a !== ME.email ? (m._sync ? ' · envoi…' : m.lu === 'oui' ? ' · Lu' : ' · Non lu depuis ' + (ago(m.le) || '…')) : ''}</small></div>`;
 }
 function drawMsg(bottom){
   const el = $('#msgp'); if (!el) return;
@@ -1744,36 +1779,45 @@ function drawMsg(bottom){
   if (MSG.view === 'list') {
     const th = MSG.threads;
     el.innerHTML = `<div class="dh"><h3>Messages</h3><button class="s" id="mNew">${IC.plus}Nouveau</button><button class="ico sm" id="mX" aria-label="Fermer">${IC.close}</button></div>
-      <div class="mmsgs" style="gap:0">${th === null ? '<div class="m">Chargement…</div>' : th.length ? th.map(t => `<button class="mt" data-w="${esc(t.with)}"><span class="av">${esc((who(t.with) || '?')[0].toUpperCase())}</span><span class="mx"><b>${esc(who(t.with))}</b><span>${t.de === ME.email ? 'Toi : ' : ''}${esc(t.texte)}</span></span><small>${ftime(t.le)}</small>${t.unread ? `<span class="un">${t.unread}</span>` : ''}</button>`).join('') : '<div class="m">Aucune conversation. Clique sur « Nouveau » pour écrire à quelqu\'un.</div>'}</div>`;
+      <div class="mmsgs" style="gap:0">${th === null ? '<div class="m">Chargement…</div>' : th.length ? th.map(t => `<button class="mt" data-w="${esc(t.with)}" data-c="${esc(t.conv || '')}"><span class="av">${esc((who(t.with) || '?')[0].toUpperCase())}</span><span class="mx"><b>${esc(mTitle(t))}</b>${t.titre ? `<span class="who">${esc(t.with === ME.email ? 'Moi' : who(t.with))}</span>` : ''}<span>${t.de === ME.email ? 'Toi : ' : ''}${esc(t.texte)}</span>${t.unread ? `<span class="sinc">Non lu${ago(t.since) ? ' depuis ' + ago(t.since) : ''}</span>` : ''}</span><small>${fdate(t.le, true)}</small>${t.unread ? `<span class="un">${t.unread}</span>` : ''}</button>`).join('') : '<div class="m">Aucune conversation. Clique sur « Nouveau » pour écrire à quelqu\'un.</div>'}</div>`;
   } else if (MSG.view === 'new') {
     el.innerHTML = `<div class="dh"><button class="ico sm back" id="mBack" aria-label="Retour">${IC.back}</button><h3>Nouveau message</h3><button class="ico sm" id="mX" aria-label="Fermer">${IC.close}</button></div>
-      <div class="mto"><label for="mTo" style="margin:0">À</label><select id="mTo">${people.length ? people.map(e => `<option value="${esc(e)}" ${e === prev ? 'selected' : ''}>${e === ME.email ? 'Moi (' + esc(who(e)) + ')' : esc(who(e))}</option>`).join('') : '<option value="">Aucun utilisateur</option>'}</select></div><div class="mmsgs"></div>${comp}`;
+      <div class="mto"><label for="mTo" style="margin:0">À</label><select id="mTo">${people.length ? people.map(e => `<option value="${esc(e)}" ${e === prev ? 'selected' : ''}>${e === ME.email ? 'Moi (' + esc(who(e)) + ')' : esc(who(e))}</option>`).join('') : '<option value="">Aucun utilisateur</option>'}</select></div><div class="mto"><label for="mSubj" style="margin:0">Sujet</label><input id="mSubj" maxlength="80" placeholder="Facultatif" value="${esc(MSG.subj || (MSG.ref ? refLbl(MSG.ref.module, MSG.ref.id) : ''))}"></div><div class="mmsgs"></div>${comp}`;
   } else {
-    el.innerHTML = `<div class="dh"><button class="ico sm back" id="mBack" aria-label="Retour">${IC.back}</button><h3>${esc(who(MSG.w))}</h3><button class="ico sm" id="mX" aria-label="Fermer">${IC.close}</button></div>
+    el.innerHTML = `<div class="dh"><button class="ico sm back" id="mBack" aria-label="Retour">${IC.back}</button><h3 style="flex:1;min-width:0">${esc(MSG.titre || who(MSG.w))}${MSG.titre ? `<small class="ms">${esc(MSG.w === ME.email ? 'Moi' : who(MSG.w))}</small>` : ''}</h3><button class="ico sm warn" id="mDel" title="${MSG.list.length && MSG.list.every(x => x.lu === 'oui' && !x._sync) ? 'Supprimer la conversation' : 'Suppression possible quand tout est lu par vous deux'}" aria-label="Supprimer la conversation" ${MSG.list.length && MSG.list.every(x => x.lu === 'oui' && !x._sync) ? '' : 'data-off="1"'}>${IC.trash}</button><button class="ico sm" id="mX" aria-label="Fermer">${IC.close}</button></div>
       <div class="mmsgs" id="mList">${MSG.list.length ? MSG.list.map(msgBody).join('') : '<div class="m">Aucun message.</div>'}</div>${comp}`;
   }
   const ml = $('#mList'); if (ml && bottom !== false) ml.scrollTop = ml.scrollHeight;
   $('#mX').onclick = closeMsg;
-  if ($('#mNew')) $('#mNew').onclick = () => { MSG.view = 'new'; MSG.ref = null; MSG.draft = ''; drawMsg(); };
-  if ($('#mBack')) $('#mBack').onclick = () => { MSG.view = 'list'; MSG.w = null; MSG.ref = null; drawMsg(); loadThreads(); };
+  if ($('#mNew')) $('#mNew').onclick = () => { MSG.view = 'new'; MSG.ref = null; MSG.draft = ''; MSG.subj = ''; drawMsg(); };
+  if ($('#mBack')) $('#mBack').onclick = () => { MSG.view = 'list'; MSG.w = null; MSG.conv = ''; MSG.ref = null; drawMsg(); loadThreads(); };
   if ($('#mSend')) $('#mSend').onclick = sendMsg;
+  if ($('#mSubj')) $('#mSubj').oninput = e => { MSG.subj = e.target.value; };
+  if ($('#mDel')) $('#mDel').onclick = async e => {
+    if (e.currentTarget.dataset.off) return toast('Suppression possible quand tous les messages sont lus par vous deux');
+    if (!(await ask('Supprimer cette conversation ?', 'Elle sera supprimée pour les deux personnes.', 'Supprimer'))) return;
+    const w = MSG.w, c = MSG.conv;
+    MSG.threads = (MSG.threads || []).filter(x => !(x.with === w && (x.conv || '') === c)); MSG.view = 'list'; MSG.w = null; MSG.conv = ''; drawMsg();
+    enqueue(() => api('msg_delete', {with:w, conv:c}), () => loadThreads());
+  };
   if ($('#mRefX')) $('#mRefX').onclick = () => { MSG.ref = null; drawMsg(false); };
   const ta = $('#mText'); if (ta) { ta.oninput = () => { MSG.draft = ta.value; }; ta.onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } }; if (MSG.view !== 'list' && bottom !== false) setTimeout(() => ta.focus(), 50); }
   el.onclick = e => {
-    const t = e.target.closest('.mt'); if (t) return openThread(t.dataset.w);
+    const t = e.target.closest('.mt'); if (t) return openThread(t.dataset.w, t.dataset.c);
     const l = e.target.closest('.mlk[data-mref]'); if (l) { closeMsg(); openNotif({module:l.dataset.mref, ref_id:l.dataset.mid, id:'', detail:'{}', lu:'oui'}); }
   };
 }
 function sendMsg(){
   const ta = $('#mText'); if (ta) MSG.draft = ta.value;
-  const texte = MSG.draft.trim(), ref = MSG.ref; let to = MSG.w;
-  if (MSG.view === 'new') to = $('#mTo') && $('#mTo').value;
+  const texte = MSG.draft.trim(), ref = MSG.ref; let to = MSG.w, conv = MSG.conv, titre = MSG.titre;
+  const fromNew = MSG.view === 'new';
+  if (fromNew) { to = $('#mTo') && $('#mTo').value; conv = newConvId(); titre = ($('#mSubj') ? $('#mSubj').value : MSG.subj).trim(); }
   if (!to) return toast('Choisis un destinataire');
   if (!texte && !ref) return;
   const tmp = {id:'tmp_' + Date.now(), de:ME.email, a:to, le:new Date().toISOString(), texte, ref_module: ref ? ref.module : '', ref_id: ref ? ref.id : '', _sync:true};
-  const fromNew = MSG.view === 'new';
-  MSG.w = to; MSG.view = 'thread'; MSG.list = (fromNew ? [] : MSG.list).concat(tmp); MSG.draft = ''; MSG.ref = null; drawMsg(true);
-  enqueue(async () => { await api('msg_send', {to, texte, ref_module:tmp.ref_module, ref_id:tmp.ref_id}); tmp._sync = false; if (MSG.w === to) await loadThread(); loadThreads(); },
+  if (ta) ta.value = '';
+  MSG.w = to; MSG.conv = conv; MSG.titre = titre; MSG.view = 'thread'; MSG.list = (fromNew ? [] : MSG.list).concat(tmp); MSG.draft = ''; MSG.subj = ''; MSG.ref = null; drawMsg(true);
+  enqueue(async () => { await api('msg_send', {to, texte, conv, titre, ref_module:tmp.ref_module, ref_id:tmp.ref_id}); tmp._sync = false; if (MSG.w === to && MSG.conv === conv) await loadThread(); loadThreads(); },
     () => { MSG.list = MSG.list.filter(x => x !== tmp); if (MSG.view === 'thread') drawMsg(); });
 }
 $('#bMsg').onclick = () => openMsg();
@@ -1939,6 +1983,35 @@ async function renderUsers(el){
     $('#dX').onclick = closeDet; $('#mDet').classList.add('on');
   };
 }
+
+// ------------------------------------------------------------ Infobulles design (remplacent les bulles natives)
+(function(){
+  const tip = document.createElement('div'); tip.id = 'tip'; tip.setAttribute('role', 'tooltip'); document.body.appendChild(tip);
+  let cur = null, tm = 0;
+  const hide = () => { clearTimeout(tm); tip.classList.remove('on'); cur = null; };
+  const show = el => {
+    const t = el.getAttribute('data-tip'); if (!t) return;
+    cur = el; tip.textContent = t; tip.className = ''; tip.style.left = '0px'; tip.style.top = '0px';
+    const r = el.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
+    let x = r.left + r.width / 2 - w / 2; x = Math.max(8, Math.min(innerWidth - w - 8, x));
+    let y = r.top - h - 10, below = false; if (y < 8) { y = r.bottom + 10; below = true; }
+    tip.style.left = x + 'px'; tip.style.top = y + 'px'; tip.style.setProperty('--ax', (r.left + r.width / 2 - x) + 'px');
+    tip.className = (below ? 'below ' : '') + 'on';
+  };
+  const arm = el => {
+    const t = el.getAttribute('title'); if (!t) return;
+    if (!el.hasAttribute('aria-label') && !el.textContent.trim()) el.setAttribute('aria-label', t);
+    el.setAttribute('data-tip', t); el.removeAttribute('title');
+  };
+  document.addEventListener('mouseover', e => {
+    const el = e.target.closest && e.target.closest('[title],[data-tip]'); if (!el || el === cur) return;
+    if (!window.matchMedia('(hover:hover)').matches) return;
+    arm(el); clearTimeout(tm); tm = setTimeout(() => show(el), 350);
+  });
+  document.addEventListener('mouseout', e => { const el = e.target.closest && e.target.closest('[data-tip]'); if (el && !el.contains(e.relatedTarget)) hide(); });
+  document.addEventListener('focusin', e => { const el = e.target.closest && e.target.closest('[title],[data-tip]'); if (el) { arm(el); show(el); } });
+  ['focusout', 'mousedown', 'scroll', 'keydown'].forEach(ev => document.addEventListener(ev, hide, true));
+})();
 </script>
 </body>
 </html>
