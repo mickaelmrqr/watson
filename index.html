@@ -103,9 +103,9 @@ button{font-family:inherit;cursor:pointer}
 .urgb svg{width:13px;height:13px}
 /* Mise à jour en cours : case floutée + 3 points ; puis vague verte du centre vers l'extérieur */
 .card>*{transition:filter .25s,opacity .25s}
-.card.sync{pointer-events:none}
+.card.sync.tmpc{pointer-events:none}
 .card.sync>*:not(.dots){filter:blur(3.5px);opacity:.55}
-.dots{position:absolute!important;inset:0;z-index:3!important;display:flex;align-items:center;justify-content:center;gap:9px}
+.dots{pointer-events:none;position:absolute!important;inset:0;z-index:3!important;display:flex;align-items:center;justify-content:center;gap:9px}
 .dots i{width:11px;height:11px;border-radius:50%;background:#fff;opacity:.9;animation:dj 1s ease-in-out infinite}
 .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
 @keyframes dj2{0%,70%,100%{transform:translateY(0);opacity:.55}35%{transform:translateY(-5px);opacity:1}}
@@ -223,10 +223,13 @@ label{display:block;font-weight:500;color:var(--mut);margin:14px 0 6px;font-size
 /* ---------- Attente (flou + blocage) */
 #busy{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(15,18,24,.45);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;pointer-events:none;transition:opacity .2s;cursor:wait}
 #busy.on{opacity:1;pointer-events:auto}
-#busy .boxes{display:flex;gap:10px;align-items:flex-end;height:64px}
-#busy .bx{width:38px;height:38px;fill:none;stroke:var(--orange);stroke-width:2.3;stroke-linejoin:round;stroke-linecap:round;transform-origin:50% 100%;animation:bxh 1.15s ease-in-out infinite;filter:drop-shadow(0 6px 10px rgba(255,90,43,.35))}
-#busy .bx:nth-child(2){animation-delay:.16s}#busy .bx:nth-child(3){animation-delay:.32s}
-@keyframes bxh{0%,60%,100%{transform:translateY(0) scale(1,1)}20%{transform:translateY(-22px) scale(.95,1.08)}38%{transform:translateY(0) scale(1.08,.9)}}
+#busy .boxes{display:flex;flex-direction:column;gap:12px;align-items:center}
+#busy .bx{width:46px;height:46px;fill:none;stroke:var(--orange);stroke-width:2.3;stroke-linejoin:round;stroke-linecap:round;transform-origin:50% 100%;animation:bxh 1.3s ease-in-out infinite;filter:drop-shadow(0 6px 10px rgba(255,90,43,.35))}
+#busy .ld{display:flex;gap:7px;height:8px}
+#busy .ld i{width:7px;height:7px;border-radius:50%;background:var(--orange);opacity:0;animation:ldf 1.3s ease-in-out infinite}
+#busy .ld i:nth-child(2){animation-delay:.25s}#busy .ld i:nth-child(3){animation-delay:.5s}
+@keyframes ldf{0%{opacity:0}25%,60%{opacity:1}85%,100%{opacity:0}}
+@keyframes bxh{0%,70%,100%{transform:translateY(0) scale(1,1)}25%{transform:translateY(-8px) scale(.97,1.04)}45%{transform:translateY(0) scale(1.04,.96)}}
 
 /* ---------- Divers */
 #login{text-align:center;padding:90px 20px}
@@ -265,6 +268,9 @@ tr:hover td{background:var(--hov)}
 .prow{display:grid;grid-template-columns:1fr 190px;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--hair)}
 .prow b{display:block;font-weight:700}.prow .m{margin:2px 0 0;font-size:14px;-webkit-line-clamp:3}
 .prow .u{color:var(--mut);font-size:13px;margin-top:3px}
+html[data-theme=light] input[type=checkbox]:not(.sw input){-webkit-appearance:none;appearance:none;width:20px;height:20px;border:2px solid #111;border-radius:5px;background:#fff;display:inline-grid;place-content:center;cursor:pointer;margin:0}
+html[data-theme=light] input[type=checkbox]:not(.sw input):checked{background:#fff}
+html[data-theme=light] input[type=checkbox]:not(.sw input):checked:after{content:"";width:10px;height:5px;border-left:2.5px solid #111;border-bottom:2.5px solid #111;transform:translateY(-1px) rotate(-45deg)}
 .sw{position:relative;width:46px;height:26px;flex:none;display:inline-block}
 .sw input{opacity:0;width:0;height:0;position:absolute}
 .sw i{position:absolute;inset:0;background:var(--raised);border:1px solid var(--line);border-radius:999px;transition:background .2s,border-color .2s;cursor:pointer}
@@ -363,7 +369,7 @@ button.bb.off{opacity:.65;background:transparent;border-style:dashed}
 .st3 button.on{color:#fff}
 .st3 button.on[data-s=a_faire]{background:#6b7488}.st3 button.on[data-s=en_cours]{background:var(--blue)}.st3 button.on[data-s=termine]{background:#22a974}
 .trow.done .tl1 b{text-decoration:line-through;color:var(--mut)}
-.trow.sync>*:not(.dots){filter:blur(3px);opacity:.55}.trow.sync{pointer-events:none}
+.trow.sync>*:not(.dots){filter:blur(3px);opacity:.55}.trow.sync.tmpc{pointer-events:none}
 .tag.au{background:rgba(255,90,42,.16);color:#ff8d70;height:22px;font-size:11.5px;padding:0 8px}
 #mTask{z-index:30}
 #mTask .r2c{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -423,7 +429,13 @@ html[data-theme=light] .cb.todo{color:#B45309}html[data-theme=light] .cb.done{co
 #mPhoto img{max-width:94vw;max-height:88vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
 #mPhoto .ico{position:absolute;top:16px;right:16px;color:#fff}
 #mContact{z-index:60}#mHist{z-index:70}
-.card>.bgph{position:absolute!important;inset:0;z-index:0;pointer-events:none;background-size:cover;background-position:center;opacity:.2;-webkit-mask-image:linear-gradient(to left,#000 0%,transparent 80%);mask-image:linear-gradient(to left,#000 0%,transparent 80%)}
+.dfls{margin-top:8px;display:flex;flex-direction:column;gap:4px}
+.dfl{display:flex;align-items:center;gap:8px;min-height:30px;padding:2px 4px 2px 10px;border-radius:10px;background:var(--raised);border:1px solid var(--line)}
+.dfl .dn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
+.dfl .dn em{font-style:normal;color:var(--mut);font-size:12.5px}
+.dfl .ico{flex:none}
+.card>.bgph{position:absolute!important;top:0;right:0;bottom:0;max-width:70%;z-index:0;pointer-events:none;display:flex;justify-content:flex-end;opacity:.3}
+.card>.bgph img{height:100%;width:auto;max-width:100%;object-fit:contain;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 40%,#000 78%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 40%,#000 78%,transparent 100%)}
 html[data-theme=light] .card>.bgph{opacity:.3}
 .cb.stop.no{color:#ff8d8d;border-color:rgba(255,92,92,.5);background:rgba(255,92,92,.1)}
 html[data-theme=light] .cb.stop.no{color:#C62828}
@@ -476,7 +488,7 @@ html[data-theme=light] .cbox.no .ct b{color:#C62828}
 <div class="modal" id="mBand"><div class="sheet" id="band"></div></div>
 <div class="modal" id="mAsk"><div class="sheet"><div class="sh"><div class="tt"><h3 id="askT"></h3></div></div><p id="askP"></p>
   <div class="foot"><button class="p" id="askOk" style="flex:1"></button><button class="s" id="askNo">Annuler</button></div></div></div>
-<div id="busy" aria-label="Chargement"><div class="boxes"><svg class="bx" viewBox="0 0 40 40"><path d="M20 4 35 12v16L20 36 5 28V12Z"/><path d="M5 12l15 8 15-8"/><path d="M20 20v16"/></svg><svg class="bx" viewBox="0 0 40 40"><path d="M20 4 35 12v16L20 36 5 28V12Z"/><path d="M5 12l15 8 15-8"/><path d="M20 20v16"/></svg><svg class="bx" viewBox="0 0 40 40"><path d="M20 4 35 12v16L20 36 5 28V12Z"/><path d="M5 12l15 8 15-8"/><path d="M20 20v16"/></svg></div></div>
+<div id="busy" aria-label="Chargement"><div class="boxes"><svg class="bx" viewBox="0 0 40 40"><path d="M20 4 35 12v16L20 36 5 28V12Z"/><path d="M5 12l15 8 15-8"/><path d="M20 20v16"/></svg><div class="ld"><i></i><i></i><i></i></div></div></div>
 <div class="toast" id="toast"></div>
 
 <script src="config.js"></script>
@@ -606,6 +618,9 @@ function setSync(){
   const s = $('#sync'); s.classList.remove('hide'); s.classList.toggle('work', pending > 0); s.classList.toggle('err', failed && pending === 0);
   $('#syncT').textContent = pending > 0 ? 'Synchronisation' : failed ? 'Erreur de synchro' : 'Synchronisé';
 }
+function syncOn(r){ r._n = (r._n || 0) + 1; r._sync = true; }
+function syncOff(r){ r._n = Math.max(0, (r._n || 1) - 1); r._sync = r._n > 0; }
+function relinkDet(){ if (det && det.r) det.r = rows.find(x => x.id === det.r.id) || det.r; }
 function enqueue(task, onFail){
   pending++; failed = false; setSync();
   chain = chain.then(task).catch(e => { failed = true; toast(e.message); if (onFail) return onFail(); })
@@ -689,7 +704,7 @@ async function refresh(){
     const fresh = await api('list', {module: m, archives: showArch});
     if (pending > 0) return;
     cache[k] = fresh;
-    if (key() === k) { rows = fresh; drawCards(); }
+    if (key() === k) { rows = fresh; relinkDet(); drawCards(); }
   } catch (e) {}
 }
 const stepsOf = m => ME.etapes.filter(e => e.module === m).sort((a,b) => a.ordre - b.ordre);
@@ -728,19 +743,20 @@ const kindOf = r => {
 const stLabel = (code, m = cur) => { const s = ME.etapes.find(e => e.module === m && e.code === code); return s ? s.libelle_etat : code; };
 function cardSec(r){
   const kind = kindOf(r), tmp = r._tmp === true, w = canWrite();
-  const mt = [r.motif_cb === true ? 'CB active' : '', r.motif_cash === true ? 'Argent liquide' : ''].filter(Boolean).map(x => `<span class="tag">${x}</span>`).join('') + (r.motif_libre ? `<span class="m" style="margin:0">${esc(r.motif_libre)}</span>` : '');
+  const mt = [r.motif_cb === true ? 'CB active' : '', r.motif_cash === true ? 'Argent liquide' : '', r.motif_libre ? esc(r.motif_libre) : ''].filter(Boolean).join(' · ');
   const cbub = r.contacter_client !== true ? `<span class="cb stop no" title="Ne surtout pas contacter le client">${IC.stop}Ne pas contacter le client</span>`
     : r.contact_fait_le ? `<span class="cb done" title="Client contacté">${IC.phone}Client contacté</span>` : `<span class="cb todo" title="Client à contacter">${IC.phone}Client à contacter</span>`;
   const acts = w && !showArch ? `<div class="act"><button class="s go" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}">Étape</button></div>` : '<div class="act" style="padding:0"></div>';
-  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}" data-id="${r.id}">${r.thumb ? `<div class="bgph" style="background-image:url(data:image/jpeg;base64,${r.thumb})"></div>` : ''}<div class="r1">${r.waybill ? `<div class="refs solo">${link(r.waybill)}</div>` : '<div class="name">Sans bordereau</div>'}<span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div>
-    <div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="mtags" style="margin:4px 0">${mt}</div><div class="rowb">${cbub}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${r.id}">${r.thumb ? `<div class="bgph"><img alt="" src="data:image/jpeg;base64,${r.thumb}"></div>` : ''}<div class="r1">${r.waybill ? `<div class="refs solo">${link(r.waybill)}</div>` : '<div class="name">Sans bordereau</div>'}<span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div>
+    <div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="m" style="margin:4px 0">${mt}</div><div class="rowb">${cbub}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 function cardDoc(r){
   const tmp = r._tmp === true;
-  const fl = r.fichiers || [], fn = fl.length === 0 ? 'Aucun fichier' : fl.length === 1 ? esc(fl[0].nom) + ' · ' + fsize(fl[0].taille) : fl.length + ' fichiers';
-  return `<div class="card ${r._sync || tmp ? 'sync' : ''}" data-id="${r.id}"><div class="dcard"><span class="dic">${IC.DOCUMENTS}</span><div class="dm"><div class="name" title="${esc(r.titre)}">${esc(r.titre)}</div><div class="fn">${fn}</div></div>
+  const fl = r.fichiers || [];
+  const files = fl.length ? fl.map(f => `<div class="dfl"><span class="dn" title="${esc(f.nom)}">${esc(f.nom)}<em>${f.taille ? ' · ' + fsize(f.taille) : ''}</em></span>${f.id !== 'tmp' && !f._sync ? `<button class="ico sm" data-a="dl" data-fid="${f.id}" title="Télécharger" aria-label="Télécharger ${esc(f.nom)}">${IC.download}</button>` : '<span class="dd3"><i></i><i></i><i></i></span>'}</div>`).join('') : '<div class="fn">Aucun fichier</div>';
+  return `<div class="card ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${r.id}"><div class="dcard"><span class="dic">${IC.DOCUMENTS}</span><div class="dm"><div class="name" title="${esc(r.titre)}">${esc(r.titre)}</div></div>
     <span class="bb ${r.visibilite === 'prive' ? '' : 'sh'}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</span></div>
-    <div class="act">${fl.length === 1 && fl[0].id !== 'tmp' ? `<button class="s go" data-a="dl" data-fid="${fl[0].id}" title="Télécharger" aria-label="Télécharger">${IC.download}</button>` : ''}</div>${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+    <div class="dfls">${files}</div>${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 function card(r){
   if (cur === 'SECURITY') return cardSec(r);
@@ -757,7 +773,7 @@ function card(r){
     : `<div class="r1">${urg}${refs || '<div class="name">—</div>'}${tag}</div>`;
   const lines = M.show.map(k => { const v = val(r, k); return v ? `<div class="m ${k === 'categorie_id' ? 'cat' : ''}">${esc(v)}</div>` : ''; }).join('');
   const acts = w && !showArch ? `<div class="act"><button class="s go" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}">Étape</button></div>` : '<div class="act" style="padding:0"></div>';
-  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}" data-id="${r.id}">${head}${lines}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${r.id}">${head}${lines}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 
 // ------------------------------------------------------------ Recherche globale (suggestions)
@@ -833,10 +849,10 @@ function doStep(r, code){
   const ev = {date_heure:new Date().toISOString(), utilisateur:ME.email, action:'etape', ancienne_valeur:old.etape, nouvelle_valeur:code};
   Object.assign(r, {etape:code, etape_par:ME.email, etape_le:ev.date_heure});
   if (H[r.id]) H[r.id].unshift(ev);
-  r._sync = true;
+  syncOn(r);
   drawCards(); if (det && det.r === r) { renderDet(); } if (bandR === r) drawBand();
-  enqueue(async () => { await api('step', {module:m, id:r.id, etape:code}); r._sync = false; if (key() === k) { drawCards(); waveCard(r.id); } if (det && det.r === r) renderDet(); },
-    () => { r._sync = false; Object.assign(r, old); if (H[r.id]) H[r.id] = H[r.id].filter(x => x !== ev); if (key() === k) drawCards(); if (det && det.r === r) renderDet(); });
+  enqueue(async () => { await api('step', {module:m, id:r.id, etape:code}); syncOff(r); if (key() === k) { drawCards(); waveCard(r.id); } if (det && det.r === r) renderDet(); },
+    () => { syncOff(r); Object.assign(r, old); if (H[r.id]) H[r.id] = H[r.id].filter(x => x !== ev); if (key() === k) drawCards(); if (det && det.r === r) renderDet(); });
 }
 async function doArchive(r, archive){
   if (archive && !(await ask('Archiver cet élément ?', 'Il quittera la liste active. Tu pourras le retrouver dans « Voir les archives ».', 'Archiver'))) return;
@@ -945,7 +961,7 @@ function viewCell(x, r){
   if (x.k === 'waybill' || x.k === 'pid') return v ? link(v) + `<button class="cp" data-copy="${esc(v)}" title="Copier" aria-label="Copier">${IC.copy}</button>` : '';
   if (x.t === 'bool') return v === true ? 'Oui' : 'Non';
   if (x.t === 'date') return fdateD(v);
-  if (x.t === 'motif') return [r.motif_cb === true ? 'CB active' : '', r.motif_cash === true ? 'Argent liquide' : ''].filter(Boolean).map(s => `<span class="tag" style="margin:2px 5px 2px 0">${s}</span>`).join('') + (r.motif_libre ? `<div style="margin-top:4px">${esc(r.motif_libre)}</div>` : '');
+  if (x.t === 'motif') return [r.motif_cb === true ? 'CB active' : '', r.motif_cash === true ? 'Argent liquide' : '', r.motif_libre ? esc(r.motif_libre) : ''].filter(Boolean).join(' · ') || '—';
   if (x.t === 'vis') return v === 'prive' ? 'Privé (moi seul)' : "Partagé dans l'agence";
   if (x.t === 'cat') return esc(val(r, x.k));
   if (x.t === 'multi') return String(v ?? '').split(';').map(s => s.trim()).filter(Boolean).map(s => `<span class="tag" style="margin:2px 5px 2px 0">${esc(s)}</span>`).join('');
@@ -1050,23 +1066,23 @@ function renderDet(){
 
 function saveLocal(r, data, extra){
   const m = cur, k = key(), now = new Date().toISOString();
-  if (r) { if (H[r.id]) Object.keys(data).forEach(f => { if (String(r[f] ?? '') !== String(data[f] ?? '')) H[r.id].unshift({date_heure:now, utilisateur:ME.email, action:'modification', champ:f, ancienne_valeur:r[f] ?? '', nouvelle_valeur:data[f]}); }); Object.assign(r, data, {modifie_le: now}); r._sync = true; }
+  if (r) { if (H[r.id]) Object.keys(data).forEach(f => { if (String(r[f] ?? '') !== String(data[f] ?? '')) H[r.id].unshift({date_heure:now, utilisateur:ME.email, action:'modification', champ:f, ancienne_valeur:r[f] ?? '', nouvelle_valeur:data[f]}); }); Object.assign(r, data, {modifie_le: now}); syncOn(r); }
   else {
     const row = Object.assign({id:'tmp_' + Date.now(), cree_par:ME.email, cree_le:now, etape:(stepsOf(m)[0] || {}).code || '', etape_par:ME.email, etape_le:now, archive:false, _tmp:true}, data, extra && extra.files ? {fichiers: extra.files.map(f => ({id:'tmp', nom:f.name, taille:f.size}))} : {}, extra && extra.photos && extra.photos[0] ? {thumb: extra.photos[0].thumb} : {});
     rows.unshift(row); cache[k] = rows;
   }
   drawCards();
-  const refresh = async () => { const fresh = await api('list', {module:m, archives:false}); cache[m] = fresh; if (key() === m) { rows = fresh; drawCards(); } };
+  const refresh = async () => { const fresh = await api('list', {module:m, archives:false}); cache[m] = fresh; if (key() === m) { rows = fresh; relinkDet(); drawCards(); } };
   enqueue(async () => {
     const newId = await api('save', {module:m, id: r ? r.id : null, data});
     if (!r && extra && newId) {
       for (const f of (extra.files || [])) await api('file_add', {module:m, ref_id:newId, name:f.name, mime:f.mime, b64:f.b64});
       for (const ph of (extra.photos || [])) await api('file_add', {module:m, ref_id:newId, name:ph.name, mime:ph.mime, b64:ph.b64, thumb_b64:ph.thumb});
     }
-    if (r) { delete H[r.id]; r._sync = false; }
+    if (r) { delete H[r.id]; syncOff(r); }
     if (pending === 1) await refresh(); else if (key() === k) drawCards();
     if (key() === k) { let id = r && r.id; if (!id) { const f = rows.filter(x => x.cree_par === ME.email && (!data.waybill || x.waybill === data.waybill)).sort((a, b) => String(b.cree_le).localeCompare(String(a.cree_le)))[0]; id = f && f.id; } if (id) waveCard(id); }
-  }, async () => { if (r) r._sync = false; try { await refresh(); } catch (e) {} });
+  }, async () => { if (r) syncOff(r); try { await refresh(); } catch (e) {} });
 }
 
 
@@ -1150,7 +1166,7 @@ function bindX(){
 }
 async function reloadCur(){
   const m = cur, k = key(), fresh = await api('list', {module:m, archives:showArch});
-  cache[k] = fresh; if (key() === k) { rows = fresh; if (det && det.r) det.r = rows.find(x => x.id === det.r.id) || det.r; drawCards(); }
+  cache[k] = fresh; if (key() === k) { rows = fresh; relinkDet(); drawCards(); }
 }
 async function addPhotos(files){
   if (!files.length) return;
@@ -1221,9 +1237,9 @@ function openContact(r){
     const entry = {par:ME.email, le:new Date().toISOString(), moyen, commentaire:com}, prev = CT[r.id];
     $('#mContact').classList.remove('on');
     CT[r.id] = [entry].concat(prev && prev.length ? prev : (r.contact_fait_le ? [{par:r.contact_fait_par, le:r.contact_fait_le, moyen:r.contact_moyen, commentaire:r.contact_commentaire}] : []));
-    Object.assign(r, {contact_fait_par:ME.email, contact_fait_le:entry.le, contact_moyen:moyen, contact_commentaire:com}); r._sync = true; drawCards(); if (det && det.r === r) drawX();
-    enqueue(async () => { await api('sec_contact', {id:r.id, moyen, commentaire:com}); r._sync = false; delete H[r.id]; if (key() === 'SECURITY') drawCards(); if (det && det.r === r) drawX(); },
-      () => { r._sync = false; Object.assign(r, old); CT[r.id] = prev; if (key() === 'SECURITY') drawCards(); if (det && det.r === r) drawX(); });
+    Object.assign(r, {contact_fait_par:ME.email, contact_fait_le:entry.le, contact_moyen:moyen, contact_commentaire:com}); syncOn(r); drawCards(); if (det && det.r === r) drawX();
+    enqueue(async () => { await api('sec_contact', {id:r.id, moyen, commentaire:com}); syncOff(r); delete H[r.id]; if (key() === 'SECURITY') { drawCards(); waveCard(r.id); } if (det && det.r === r) drawX(); },
+      () => { syncOff(r); Object.assign(r, old); CT[r.id] = prev; if (key() === 'SECURITY') drawCards(); if (det && det.r === r) drawX(); });
   };
 }
 $('#hX').innerHTML = IC.close; $('#hX').onclick = closeHist; $('#mHist').addEventListener('mousedown', e => { if (e.target.id === 'mHist') closeHist(); });
@@ -1315,12 +1331,12 @@ function todoRow(t){
   const rail = st === 'termine' ? 'var(--green)' : st === 'en_cours' ? 'var(--blue)' : late ? 'var(--red)' : '#6b7488';
   const when = t.rappel_le ? 'Rappel ' + fdate(t.rappel_le, true) : t.date_prog ? (t.date_prog < today && st !== 'termine' ? 'En retard · ' : '') + 'Prévu le ' + fdate(t.date_prog + 'T12:00:00') : '';
   const tmp = t._tmp === true;
-  return `<div class="trow nit ${st === 'termine' ? 'done' : ''} ${tmp ? 'sync' : ''}" data-id="${t.id}" style="--rail:${rail};cursor:default">
+  return `<div class="trow nit ${st === 'termine' ? 'done' : ''} ${tmp || t._sync ? 'sync' : ''}${tmp ? ' tmpc' : ''}" data-id="${t.id}" style="--rail:${rail};cursor:default">
     <div class="tl1"><b>${esc(t.titre)}</b>${t.auto === 'oui' ? '<span class="tag au">Auto</span>' : ''}${remIds.has(t.id) ? '<span class="tag au">Rappel</span>' : ''}</div>
     ${when ? `<div class="tl2">${esc(when)}</div>` : ''}
     <div class="tl3">${t.recurrence === 'jours_ouvres' && !t.modele_id ? `<span class="tl2" style="margin:0">Chaque jour travaillé${t.heure ? ' · ' + esc(t.heure) : ''}</span>` : `<div class="st3">${['a_faire', 'en_cours', 'termine'].map(k => `<button data-s="${k}" class="${st === k ? 'on' : ''}">${ST_LAB[k]}</button>`).join('')}</div>`}
-      <span class="sp"></span>${t.ref_module && t.ref_id ? `<button class="ico sm" data-a="open" title="Ouvrir le dossier" aria-label="Ouvrir le dossier">${IC.open}</button>` : ''}<button class="ico sm" data-a="del" title="Supprimer" aria-label="Supprimer">${IC.trash}</button></div>
-    ${tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+      <span class="sp"></span>${t.ref_module && t.ref_id ? `<button class="ico sm" data-a="open" title="Ouvrir le dossier" aria-label="Ouvrir le dossier">${IC.open}</button>` : ''}<button class="ico sm" data-a="edit" title="Modifier" aria-label="Modifier">${IC.pencil}</button><button class="ico sm" data-a="del" title="Supprimer" aria-label="Supprimer">${IC.trash}</button></div>
+    ${tmp || t._sync ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 function renderDrawer(){
   const el = $('#drawer'); if (!drawerOpen) return;
@@ -1344,6 +1360,7 @@ function renderDrawer(){
       const t = (T.items.concat(T.upcoming, T.templates)).find(x => x.id === tr.dataset.id); if (!t) return;
       const sb = e.target.closest('[data-s]'), a = e.target.closest('[data-a]');
       if (sb) { const ns = sb.dataset.s; if (t.statut === ns) return; t.statut = ns; t.fait_le = new Date().toISOString(); renderDrawer(); enqueue(() => api('todo_set', {id:t.id, statut:ns})); }
+      else if (a && a.dataset.a === 'edit') openTask(t);
       else if (a && a.dataset.a === 'del') { ['items', 'upcoming', 'templates'].forEach(k => T[k] = T[k].filter(x => x !== t)); renderDrawer(); enqueue(() => api('todo_delete', {id:t.id})); }
       else if (a && a.dataset.a === 'open') { closeDrawer(); openNotif({module:t.ref_module, ref_id:t.ref_id, id:'', detail:'{}', lu:'oui'}); }
       return;
@@ -1356,12 +1373,21 @@ function renderDrawer(){
   };
 }
 // Création d'une tâche (fenêtre)
-function openTask(){
-  $('#tTitre').value = ''; $('#tDate').value = todayIso(); $('#tHeure').value = ''; $('#tRec').checked = false; $('#tWhen').style.opacity = 1; $('#tDate').disabled = false;
+let editT = null;
+function hhmm(iso){ if (!iso) return ''; const d = new Date(iso); return isNaN(d) ? '' : String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
+function openTask(t){
+  editT = t && t.id ? t : null;
+  const rec = !!(editT && editT.recurrence === 'jours_ouvres' && !editT.modele_id);
+  $('#mTask h3').textContent = editT ? 'Modifier la tâche' : 'Nouvelle tâche';
+  $('#tAdd').innerHTML = (editT ? IC.pencil + 'Enregistrer' : IC.plus + 'Ajouter');
+  $('#tTitre').value = editT ? editT.titre : ''; $('#tDate').value = editT ? (editT.date_prog || todayIso()) : todayIso();
+  $('#tHeure').value = editT ? (rec ? (editT.heure || '') : hhmm(editT.rappel_le)) : '';
+  $('#tRec').checked = rec; $('#tRec').closest('label').style.display = editT ? 'none' : '';
+  $('#tWhen').style.opacity = rec ? .35 : 1; $('#tDate').disabled = rec;
   $('#mTask').classList.add('on'); setTimeout(() => $('#tTitre').focus(), 60);
 }
 function closeTask(){ $('#mTask').classList.remove('on'); }
-$('#tAdd').innerHTML = IC.plus + 'Ajouter'; $('#tkX').innerHTML = IC.close; $('#tkX').onclick = closeTask; $('#tkNo').onclick = closeTask;
+$('#tkX').innerHTML = IC.close; $('#tkX').onclick = closeTask; $('#tkNo').onclick = closeTask;
 $('#mTask').addEventListener('mousedown', e => { if (e.target.id === 'mTask') closeTask(); });
 $('#tRec').onchange = e => { $('#tWhen').style.opacity = e.target.checked ? .35 : 1; $('#tDate').disabled = e.target.checked; };
 $('#tTitre').onkeydown = e => { if (e.key === 'Enter') $('#tAdd').click(); };
@@ -1369,11 +1395,23 @@ $('#tAdd').onclick = () => {
   const titre = $('#tTitre').value.trim(); if (!titre) return toast('Donne un titre à la tâche');
   const rec = $('#tRec').checked, today = todayIso(), date = $('#tDate').value || today, heure = $('#tHeure').value;
   const p = rec ? {titre, recurrence:'jours_ouvres', heure} : {titre, date_prog:date, rappel_le: heure ? new Date(date + 'T' + heure).toISOString() : ''};
-  closeTask();
+  const t0 = editT; closeTask();
   if (!TD) TD = {items:[], upcoming:[], templates:[]};
+  const strip = x => ['items', 'upcoming', 'templates'].forEach(k => TD[k] = TD[k].filter(y => y !== x));
+  if (t0) {
+    const old = {titre:t0.titre, date_prog:t0.date_prog, rappel_le:t0.rappel_le, heure:t0.heure};
+    const isTpl = t0.recurrence === 'jours_ouvres' && !t0.modele_id;
+    const q = isTpl ? {id:t0.id, titre, heure} : {id:t0.id, titre, date_prog:date, rappel_le:p.rappel_le};
+    Object.assign(t0, isTpl ? {titre, heure} : {titre, date_prog:date, rappel_le:p.rappel_le}); syncOn(t0);
+    if (!isTpl) { strip(t0); (date > today ? TD.upcoming : TD.items).unshift(t0); }
+    renderDrawer();
+    enqueue(async () => { await api('todo_set', q); syncOff(t0); if (pending === 1) await loadTodo(true); else renderDrawer(); },
+      () => { syncOff(t0); Object.assign(t0, old); renderDrawer(); });
+    return;
+  }
   const tmp = {id:'tmp_' + Date.now(), titre, statut:'a_faire', date_prog: rec ? '' : date, rappel_le: p.rappel_le || '', recurrence: p.recurrence || '', heure: p.heure || '', _tmp:true};
   (rec ? TD.templates : date > today ? TD.upcoming : TD.items).unshift(tmp); renderDrawer();
-  enqueue(async () => { await api('todo_add', p); await loadTodo(true); }, () => { ['items', 'upcoming', 'templates'].forEach(k => TD[k] = TD[k].filter(x => x !== tmp)); renderDrawer(); });
+  enqueue(async () => { const nid = await api('todo_add', p); if (nid) { tmp.id = nid; delete tmp._tmp; } if (pending === 1) await loadTodo(true); else renderDrawer(); }, () => { strip(tmp); renderDrawer(); });
 };
 
 // ------------------------------------------------------------ Paramètres
