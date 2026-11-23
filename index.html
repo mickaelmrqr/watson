@@ -362,6 +362,8 @@ button.bb.off{opacity:.65;background:transparent;border-style:dashed}
 .drawer{display:flex;flex-direction:column;overflow:hidden}
 .dpart{flex:1 1 0;min-height:0;overflow:auto;padding-right:4px}
 .dsep{border:0;border-top:2px solid var(--line);margin:8px 0;flex:none}
+.drawer h4 .s+.s{margin-left:6px}
+.nit .na button.rm{margin-left:auto}
 .drawer h4 .s{margin-left:auto;padding:5px 11px;font-size:var(--fs-b)}
 .subh{font:700 var(--fs) var(--disp);letter-spacing:.4px;color:var(--mut);margin:14px 0 6px}
 .trow{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;overflow:hidden;padding:8px 10px 8px 17px}
@@ -723,7 +725,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.34</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.35</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -733,7 +735,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.34</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.35</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1845,7 +1847,7 @@ function ntItem(n){
   if (n.type === 'suppression' && n.fait !== 'oui') return `<div class="nit unread${gcl(n)}" ${gst(n)} data-id="${n.id}"><b>${esc(n.titre)}</b><div class="tx">${esc(n.texte)}</div><div class="tm">${ftime(n.cree_le)}</div>
     <div class="na"><button data-a="dv" class="dng">${IC.trash}Valider la suppression</button><button data-a="dn">${IC.close}Ne pas supprimer</button></div></div>`;
   return `<div class="nit ${n.lu !== 'oui' ? 'unread' : ''}${gcl(n)}" ${gst(n)} data-id="${n.id}"><b>${esc(n.titre)}</b><div class="tx">${esc(n.texte)}</div><div class="tm">${ftime(n.cree_le)}</div>
-    <div class="na"><button data-a="lu" ${n.lu === 'oui' ? 'disabled' : ''}>${IC.check}Lu</button><button data-a="todo" ${n.todo_ajoute === 'oui' ? 'disabled' : ''}>${IC.plus}${n.todo_ajoute === 'oui' ? 'Dans ma todo' : 'Ajouter à ma todo'}</button></div></div>`;
+    <div class="na"><button data-a="lu" ${n.lu === 'oui' ? 'disabled' : ''}>${IC.check}Lu</button><button data-a="todo" ${n.todo_ajoute === 'oui' ? 'disabled' : ''}>${IC.plus}${n.todo_ajoute === 'oui' ? 'Dans ma todo' : 'Ajouter à ma todo'}</button><button data-a="rm" class="rm dng" title="Supprimer la notification" aria-label="Supprimer la notification">${IC.trash}</button></div></div>`;
 }
 const ST_LAB = {a_faire:'À faire', en_cours:'En cours', termine:'Terminé'};
 const cleanT = x => String(x || '').replace(/\s*\.?\s*Date d'échéance à J\+?\d+\s*$/i, '');
@@ -1869,9 +1871,9 @@ function renderDrawer(){
   const T = TD || {items:[], upcoming:[], templates:[]};
   const open = T.items.filter(t => t.statut !== 'termine').length;
   el.innerHTML = `<div class="dh"><h3>Notifications</h3>${NOT.unread ? '<button class="s" id="nAll">Tout marquer comme lu</button>' : ''}<button class="ico sm" id="dwX" aria-label="Fermer">${IC.close}</button></div>
-    <div class="dpart"><h4>ÉVÈNEMENTS <span>${ev.length}</span></h4><div class="remb"><button class="s" id="rNew">${IC.bell}Créer un rappel</button><button class="s" id="rList">${IC.clock}Voir les rappels en attente</button></div>${ev.map(ntItem).join('') || '<div class="m">Rien pour le moment.</div>'}</div>
+    <div class="dpart"><h4>ÉVÈNEMENTS <span>${ev.length}</span><button class="s" id="rNew" title="Créer un rappel" aria-label="Créer un rappel">${IC.bell}</button><button class="s" id="rList" title="Voir les rappels en attente" aria-label="Voir les rappels en attente">${IC.clock}</button></h4>${ev.map(ntItem).join('') || '<div class="m">Rien pour le moment.</div>'}</div>
     <hr class="dsep">
-    <div class="dpart"><h4>TODO <span>${open}</span><button class="s" id="tNew">${IC.plus}Nouvelle tâche</button></h4>
+    <div class="dpart"><h4>TODO <span>${open}</span><button class="s" id="tNew" title="Nouvelle tâche" aria-label="Nouvelle tâche">${IC.plus}</button></h4>
       ${!TD ? '<div class="m">Chargement…</div>' : (T.items.concat(T.templates).map(todoRow).join('') || '<div class="m">Rien à faire aujourd\'hui.</div>')}
       ${T.upcoming.length ? `<div class="subh">À VENIR · ${T.upcoming.length}</div>${T.upcoming.map(todoRow).join('')}` : ''}
 </div>`;
@@ -1901,6 +1903,10 @@ function renderDrawer(){
         else cache[k] = cache[k].map(x => x.id === n.ref_id ? Object.assign(x, {suppr_par:''}) : x);
         if (cur + (showArch ? '_a' : '') === k) { rows = cache[k]; drawCards(); } });
       return enqueue(() => api('delete_resolve', {id:n.id, decision: val ? 'valider' : 'refuser'}).then(() => pollNotifs()), () => pollNotifs());
+    }
+    if (a.dataset.a === 'rm') {
+      fadeOut(n, () => { NOT.items = NOT.items.filter(x => x.id !== n.id); NOT.unread = NOT.items.filter(x => x.lu !== 'oui').length; drawBadges(); showToasts(); renderDrawer(); });
+      renderDrawer(); return enqueue(() => api('notif_delete', {id:n.id}), () => pollNotifs());
     }
     if (a.dataset.a === 'lu') { setRead(n); renderDrawer(); }
     else if (a.dataset.a === 'todo') { n.todo_ajoute = 'oui'; setRead(n); renderDrawer(); enqueue(async () => { await api('notif_todo', {id:n.id}); await loadTodo(true); }); }
