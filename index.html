@@ -603,6 +603,9 @@ html[data-dense="1"] .mod.io{padding:8px 10px}
 html[data-menu="v"] .mod:not(.io){flex:1 1 104px;max-width:140px;flex-direction:column;text-align:center;gap:5px;padding:10px 6px}
 html[data-menu="v"] .mod:not(.io) b{white-space:normal;overflow-wrap:anywhere;line-height:1.15}
 html[data-menu="v"] .mod:not(.io) small{display:none}
+.mod.io .il{display:none}
+html[data-menu="v"] .mod.io{flex:1 1 104px;max-width:140px;flex-direction:column;text-align:center;gap:5px;padding:10px 6px}
+html[data-menu="v"] .mod.io .il{display:block;white-space:normal;overflow-wrap:anywhere;line-height:1.15}
 html[data-menu="v"] .mod[data-n]::after{content:attr(data-n);position:absolute;top:6px;right:8px;min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:#ff8a1f;color:#fff;font:700 12px/20px var(--body);text-align:center}
 .mod b{font-size:calc(var(--fs-b)*.86)}.mod small{font-size:calc(var(--fs)*.88)}
 html[data-dense="1"] .mod b{font-size:calc(var(--fs-b)*.86)}html[data-dense="1"] .mod small{font-size:calc(var(--fs)*.88)}
@@ -764,7 +767,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.46</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.47</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -774,7 +777,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.46</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.47</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1026,7 +1029,7 @@ async function start(){
 document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur === 'LIBRARY') { if (pending === 0) reloadLib(); } else if (cur === 'ENTREPRISES') { if (pending === 0 && !ENT.edit) reloadEnt(); } else if (cur && cur !== '_admin' && pending === 0) refresh(); } });
 function buildNav(){
   const mods = Object.keys(MODS).filter(m => ME.rights[m]);
-  const io = (m, label, icon) => `<button class="mod io" data-m="${m}" title="${label}" aria-label="${label}"><span class="mi">${icon}</span></button>`;
+  const io = (m, label, icon) => `<button class="mod io" data-m="${m}" title="${label}" aria-label="${label}"><span class="mi">${icon}</span><b class="il">${label}</b></button>`;
   const tile = m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m].label}</b><small id="cnt_${m}"><span class="d3s"><i></i><i></i><i></i></span></small></span></button>`;
   $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${mods.filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY').map(tile).join('')}${mods.includes('DOCUMENTS') ? io('DOCUMENTS', 'Documents', IC.DOCUMENTS) : ''}${mods.includes('LIBRARY') ? io('LIBRARY', 'Bibliothèque', IC.LIBRARY) : ''}${isAdmin() ? io('_admin', 'Administration', IC.admin) : ''}</div>`;
   $('#seg').onclick = e => { const b = e.target.closest('button'); if (b) { showArch = false; openMod(b.dataset.m); } };
@@ -1047,7 +1050,7 @@ function drawTiles(){
     }
     const act = r.filter(x => kindOfM(m, x) !== 'ok'), u = act.filter(x => x.urgent === true).length;
     const af = m === 'SPARK' ? act.filter(x => x.etape === 'A_FAIRE').length : 0;
-    setN(u); t.innerHTML = u ? `<i>${u} urgent${u > 1 ? 's' : ''}</i>` : '';
+    const nc = m === 'SECURITY' ? r.filter(scmsMissing).length : 0; setN(u + nc); t.innerHTML = [u ? `<i>${u} urgent${u > 1 ? 's' : ''}</i>` : '', nc ? `<i>${nc} SCMS à créer</i>` : ''].filter(Boolean).join(' · ');
   });
 }
 async function warm(now){
