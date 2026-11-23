@@ -115,7 +115,46 @@ html[data-dense="1"] .card.hascat{padding-left:36px}
 .epc .epcl{max-height:150px;overflow:auto}
 .epc button{display:flex;gap:8px;width:100%;text-align:left;background:none;border:0;color:var(--ink);padding:2px 0;cursor:pointer;font-size:var(--fs)}
 .epc button b{color:var(--mut);white-space:nowrap;font-weight:700}.epc button span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.epc.nr{border-color:#e5484d}.epc.nr h5{color:#ff8d8d}
+.epc.nr{border-color:#e5484d}.epc.nr>summary{color:#ff8d8d}
+.chv{flex:none;width:7px;height:7px;border-right:2px solid var(--mut);border-bottom:2px solid var(--mut);transform:rotate(45deg);margin:-3px 3px 0 1px;transition:transform .18s}
+details:not([open])>summary>.chv{transform:rotate(-45deg);margin-top:0}
+.epu>summary,.epc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px}
+.epu>summary::-webkit-details-marker,.epc>summary::-webkit-details-marker{display:none}
+.epc>summary{font:700 13px var(--disp);margin:0}.epc[open]>summary{margin-bottom:4px}.epc>summary small{margin-left:auto;color:var(--mut);font-weight:700}
+.hpb{margin:0 0 16px;padding:10px 12px 12px;border:1px solid rgba(255,138,31,.5);border-radius:14px;background:rgba(255,138,31,.07)}
+.hpb h4{margin:0 0 10px;font:700 14px var(--disp);display:flex;gap:8px;align-items:center;color:#ffb066}.hpb h4 small{color:var(--mut)}
+.catp .cgh{margin:8px 0 4px;font:700 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}.catp .cgh:first-child{margin-top:0}
+.catp .ccw{display:flex;flex-wrap:wrap;gap:6px}
+.catp .cch{background:var(--raised);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:7px 14px;font:600 14px var(--body);cursor:pointer}
+.catp .cch.on{background:var(--orange);border-color:var(--orange);color:#fff}
+.catp.err .ccw{outline:1px solid #e5484d;border-radius:10px;outline-offset:3px}
+.cgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:14px}
+.cg{border:1px solid var(--line);border-top:3px solid var(--gc);border-radius:12px;padding:10px 12px;background:var(--raised)}
+.cg h4{margin:0 0 8px;display:flex;align-items:center;gap:8px;font:700 14px var(--disp);color:var(--ink)}.cg h4 small{margin-left:auto;color:var(--mut)}
+.cps{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.cp2{display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:2px 4px 2px 10px}.cp2.off{opacity:.5}
+.cp2 input{flex:1;min-width:0;border:0;background:none;color:var(--ink);font:600 14px var(--body);padding:6px 0}
+.cp2 b{font:700 11px var(--body);color:var(--mut);white-space:nowrap}
+.ggs{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+.gg{border:1px solid var(--line);border-radius:14px;background:var(--raised);padding:12px 14px}
+.gg>.gh{display:flex;align-items:center;gap:8px;margin-bottom:10px}.gg>.gh input{flex:1;font:700 16px var(--disp)}.gg>.gh small{color:var(--mut)}
+.gms{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.gm{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 8px}
+.gm .av{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,90,43,.18);color:var(--orange);font:700 13px var(--body)}
+.gm .gmn{flex:1;min-width:0;display:flex;flex-direction:column}.gm .gmn b{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gm .gmn small{color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gm .rl{border:1px solid var(--line);background:none;color:var(--mut);border-radius:999px;padding:3px 10px;font:700 11px var(--body);cursor:pointer}.gm .rl.ad{background:var(--orange);border-color:var(--orange);color:#fff}
+.gg .gf{display:flex;gap:8px;margin-top:10px}.gg .gf select{flex:1}
+.abg{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 8px;align-items:center}.abg .chk{margin:0;font-size:14px;gap:6px}.abg>span{color:var(--mut);font-size:13px}
+#busy .lg{position:relative;width:136px;height:136px}
+#busy .lgb,#busy .lgf{position:absolute;inset:0;-webkit-mask:url(icon-192.png) center/contain no-repeat;mask:url(icon-192.png) center/contain no-repeat}
+#busy .lgb{background:#58606e}
+#busy .lgf{overflow:hidden;animation:lgfd 3.4s ease-in-out infinite}
+#busy .wv{position:absolute;left:0;right:0;top:0;height:100%;transform:translateY(104%);animation:lgup 3.4s ease-in-out infinite}
+#busy .wv::before{content:'';position:absolute;left:0;right:0;top:-14px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 14'%3E%3Cpath d='M0 14V7Q12 0 24 7T48 7V14Z' fill='%23ff5a2b'/%3E%3C/svg%3E") repeat-x;background-size:48px 14px;animation:lgw 1s linear infinite}
+#busy .wv::after{content:'';position:absolute;inset:0;background:var(--orange)}
+@keyframes lgup{0%{transform:translateY(104%)}82%,100%{transform:translateY(-14px)}}
+@keyframes lgw{to{background-position-x:48px}}
+@keyframes lgfd{0%,86%{opacity:1}98%,100%{opacity:0}}
 .card.tmp{opacity:.72;animation:pop .35s var(--ease)}
 @keyframes pop{from{transform:scale(.96);opacity:0}}
 /* Pulsation « urgent » : une seule horloge globale (:root) => toutes les cases clignotent ensemble, sans jamais redémarrer */
@@ -251,13 +290,7 @@ html[data-theme=light] .bb.wk{color:#C22B31}
 /* ---------- Attente (flou + blocage) */
 #busy{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 50%,rgba(6,8,12,.86) 0,rgba(6,8,12,.66) 24%,rgba(10,13,18,.34) 52%,rgba(15,18,24,.1) 80%);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .2s;cursor:wait}
 #busy.on{opacity:1;pointer-events:auto}
-#busy .boxes{display:flex;flex-direction:column;gap:26px;align-items:center}
-#busy .bx{width:128px;height:128px;fill:none;stroke:var(--orange);stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round;animation:bxg 2.4s ease-in-out infinite}
-@keyframes bxg{0%,100%{filter:drop-shadow(0 0 6px rgba(255,90,43,.25))}50%{filter:drop-shadow(0 0 20px rgba(255,90,43,.6))}}
-#busy .ld{display:flex;gap:30px;height:16px;align-items:center;justify-content:center;width:190px}
-#busy .ld i{width:15px;height:15px;border-radius:50%;background:var(--orange);opacity:0;animation:ldf 1.3s ease-in-out infinite}
-#busy .ld i:nth-child(2){animation-delay:.25s}#busy .ld i:nth-child(3){animation-delay:.5s}
-@keyframes ldf{0%{opacity:0}25%,60%{opacity:1}85%,100%{opacity:0}}
+
 
 /* ---------- Divers */
 #login{text-align:center;padding:90px 20px}
@@ -808,7 +841,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.60</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.61</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -819,7 +852,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.60</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.61</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -859,7 +892,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 <div class="modal" id="mBand"><div class="sheet" id="band"></div></div>
 <div class="modal" id="mAsk"><div class="sheet"><div class="sh"><div class="tt"><h3 id="askT"></h3></div></div><p id="askP"></p>
   <div class="foot"><button class="p" id="askOk" style="flex:1"></button><button class="s" id="askNo">Annuler</button></div></div></div>
-<div id="busy" aria-label="Chargement"><div class="boxes"><svg class="bx" viewBox="0 0 40 40"><path d="M20 4 35 12v16L20 36 5 28V12Z"/><path d="M5 12l15 8 15-8"/><path d="M20 20v16"/></svg><div class="ld"><i></i><i></i><i></i></div></div></div>
+<div id="busy" aria-label="Chargement"><div class="lg"><div class="lgb"></div><div class="lgf"><div class="wv"></div></div></div></div>
 <div class="toast" id="toast"></div>
 
 <script src="config.js"></script>
@@ -946,7 +979,7 @@ const MODS = {
   AWB: { label: 'AWB', name: r => r.nom_client, fields: [
     {k:'waybill',l:'Waybill',t:'scan',req:1},
     {k:'nom_client',l:'Nom du client',t:'text',up:1},
-    {k:'categorie_id',l:'Catégorie',t:'cat'},
+    {k:'categorie_id',l:'Catégorie',t:'cat',req:true},
     {k:'remarque',l:'Remarque',t:'area'},
     {k:'location',l:'Location (étagère)',t:'scan'},
     {k:'urgent',l:'Urgent',t:'bool'},
@@ -1085,7 +1118,8 @@ const entRts = r => { const rs = entR(r).filter(x => String(x.nom || '').trim())
 const entNR = r => { const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new Date().getDay()]; return r.reduce((n, x) => n + (entRts(x).length ? 0 : entP(x).filter(p => entJours(p.jours).includes(c)).length), 0); };
 const entToday = r => { const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new Date().getDay()]; return r.reduce((n, x) => n + entP(x).filter(p => entJours(p.jours).includes(c)).length, 0); };
 function alN(m, r){
-  if (!r || m === 'ENTREPRISES' || m === 'DOCUMENTS') return 0;
+  if (m === 'ENTREPRISES') return r ? entNR(r) : 0;
+  if (!r || m === 'DOCUMENTS') return 0;
   if (m === 'DOM') return r.map(domAlert).filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late' || a[k] === 'warn')).length;
   return r.filter(x => kindOfM(m, x) !== 'ok' && (m === 'AWB' ? x.etape === 'A_FAIRE' : (x.urgent === true || (m === 'SPARK' && x.etape === 'A_FAIRE')))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
 }
@@ -1096,7 +1130,7 @@ function drawTiles(){
     if (!r) { if (!t.querySelector('.d3s')) t.innerHTML = '<span class="d3s"><i></i><i></i><i></i></span>'; return; }
     if (cur === '_home' && !drawTiles.h) { drawTiles.h = 1; renderHome(); drawTiles.h = 0; }
     if (m === 'DOCUMENTS') { t.innerHTML = `${r.length} document${r.length > 1 ? 's' : ''}`; return; }
-    if (m === 'ENTREPRISES') { const n = entToday(r); const nr = entNR(r); t.innerHTML = n ? `${n} PU aujourd’hui${nr ? ' · ' + nr + ' sans route' : ''}` : ''; setN(0); return; }
+    if (m === 'ENTREPRISES') { const n = entToday(r); const nr = entNR(r); t.innerHTML = n ? `${n} PU aujourd’hui` : ''; setN(nr); return; }
     if (m === 'DOM') {
       const al = r.map(domAlert), lt = al.filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late')).length, wn = al.filter(a => !['J1', 'J4', 'J10'].some(k => a[k] === 'late') && ['J1', 'J4', 'J10'].some(k => a[k] === 'warn')).length;
       setN(lt + wn); t.innerHTML = [lt ? `<i>${lt} en retard</i>` : '', wn ? `<i class="o">${wn} à faire aujourd'hui</i>` : ''].filter(Boolean).join(' · '); return;
@@ -1127,7 +1161,7 @@ const dossName = (m, r) => { try { return String((m === 'SECURITY' ? MODS[m].tit
 function homeTile(m){
   const r = cache[m], ic = IC[m];
   const head = `<div class="hth"><span class="mi">${ic}</span><b>${MODS[m].label}</b>${alN(m, r) ? `<span class="hbub">${alN(m, r)}</span>` : ''}</div>`;
-  if (m === 'ENTREPRISES' && r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${r.length}<small>entreprise${r.length > 1 ? 's' : ''}</small></div><div class="hcs"><span class="m">${entToday(r)} PU réguliers aujourd’hui${entNR(r) ? ' · <b>' + entNR(r) + '</b> sans route' : ''}</span></div></div>`;
+  if (m === 'ENTREPRISES' && r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${r.length}<small>entreprise${r.length > 1 ? 's' : ''}</small></div><div class="hcs"><span class="m">${entToday(r)} PU réguliers aujourd’hui</span></div></div>`;
   if (!r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn"><span class="d3s"><i></i><i></i><i></i></span></div></div>`;
   const today = todayIso(), ch = [], lists = [];
   const add = (n, label, cls = '') => { if (n) ch.push(`<span class="hc ${cls}"><b>${n}</b>${label}</span>`); };
@@ -1250,8 +1284,15 @@ function drawCards(){
   const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
   const out = rows.slice()
     .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (cur === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
-  list.className = 'grid';
-  list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>';
+  const isHp = r => cur === 'AWB' && String(val(r, 'categorie_id')).trim().toUpperCase() === 'HP';
+  const hp = out.filter(isHp), rest = hp.length ? out.filter(r => !isHp(r)) : out;
+  if (hp.length) {
+    list.className = '';
+    list.innerHTML = `<section class="hpb"><h4>${IC.alert}HP <small>${hp.length}</small></h4><div class="grid">${hp.map(card).join('')}</div></section>${rest.length ? `<div class="grid">${rest.map(card).join('')}</div>` : ''}`;
+  } else {
+    list.className = 'grid';
+    list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>';
+  }
   drawTiles();
 }
 function val(r, k){
@@ -1533,7 +1574,10 @@ function editCell(x, v){
   if (x.t === 'date') return `<input type="date" id="${id}" value="${esc(isoD(val))}">`;
   if (x.t === 'motif') return `<div style="flex:1"><label class="chk" style="margin:2px 0"><input type="checkbox" id="f_motif_cb" ${v.motif_cb === true ? 'checked' : ''}> CB active</label><label class="chk" style="margin:2px 0"><input type="checkbox" id="f_motif_cash" ${v.motif_cash === true ? 'checked' : ''}> Argent liquide</label><textarea id="f_motif_libre" rows="1" placeholder="Autre motif (facultatif)" style="margin-top:6px">${esc(v.motif_libre || '')}</textarea></div>`;
   if (x.t === 'vis') return `<select id="${id}"><option value="agence" ${val === 'agence' ? 'selected' : ''}>Partagé dans l'agence</option><option value="prive" ${val === 'prive' ? 'selected' : ''}>Privé (moi seul)</option></select>`;
-  if (x.t === 'cat') return `<select id="${id}"><option value=""></option>${ME.categories_awb.map(c => `<option value="${c.id}" ${val === c.id ? 'selected' : ''}>${esc(c.libelle)}${c.visibilite === 'prive' ? ' (perso)' : ''}</option>`).join('')}</select>`;
+  if (x.t === 'cat') {
+    const cs = ME.categories_awb || [], gs = CAT_GR.filter(([k]) => cs.some(c => String(c.groupe || 'CLASSIQUES').toUpperCase() === k));
+    return `<div style="flex:1"><input type="hidden" id="${id}" value="${esc(val)}"><div class="catp" id="catp">${gs.map(([k, l]) => `${gs.length > 1 ? `<div class="cgh">${l}</div>` : ''}<div class="ccw">${cs.filter(c => String(c.groupe || 'CLASSIQUES').toUpperCase() === k).map(c => `<button type="button" class="cch ${val === c.id ? 'on' : ''}" data-cv="${esc(c.id)}">${esc(c.libelle)}</button>`).join('')}</div>`).join('')}</div></div>`;
+  }
   if (x.t === 'multi') { const sel = String(val).split(';').map(s => s.trim()).filter(Boolean);
     return `<div id="${id}" style="flex:1">${ME.problemes_spark.map(p => `<label class="chk" style="margin:2px 0"><input type="checkbox" value="${esc(p)}" ${sel.includes(p) ? 'checked' : ''}> ${esc(p)}</label>`).join('')}</div>`; }
   if (x.t === 'area') return `<textarea id="${id}" rows="${x.k === 'remarque' ? 3 : 1}">${esc(val)}</textarea>`;
@@ -1542,7 +1586,9 @@ function editCell(x, v){
 }
 
 // Catégorie du dernier AWB créé par l'utilisateur (reprise par défaut à la création d'un nouvel AWB)
+document.addEventListener('click', e => { const b = e.target.closest('.cch'); if (!b) return; const p = b.closest('.catp'), h = $('#f_categorie_id'); if (!h) return; h.value = b.dataset.cv; p.classList.remove('err'); p.querySelectorAll('.cch').forEach(x => x.classList.toggle('on', x === b)); });
 function lastAwbCat(){
+  try { const k = localStorage.getItem('wlc_' + String(ME.email).toLowerCase()); if (k && (ME.categories_awb || []).some(c => c.id === k && c.actif !== false)) return k; } catch (e) {}
   const ok = id => id && (ME.categories_awb || []).some(c => c.id === id && c.actif !== false);
   const me = String(ME.email).toLowerCase();
   const all = [].concat(cache.AWB || [], cache.AWB_a || []).filter(x => x.categorie_id && String(x.cree_par || '').toLowerCase() === me && ok(x.categorie_id));
@@ -1621,9 +1667,10 @@ function renderDet(){
         if (x.t === 'bool') data[x.k] = e2.checked;
         else if (x.t === 'multi') data[x.k] = [...e2.querySelectorAll('input:checked')].map(i => i.value).join(' ; ');
         else data[x.k] = x.up ? e2.value.trim().toUpperCase() : e2.value.trim();
-        if (x.req && !data[x.k]) return toast(x.l + ' obligatoire');
+        if (x.req && !data[x.k]) { if (x.t === 'cat' && $('#catp')) $('#catp').classList.add('err'); return toast(x.l + (x.t === 'cat' ? ' obligatoire : choisis-en une' : ' obligatoire')); }
       }
       if (cur === 'DOCUMENTS' && !r && !(det.staged && det.staged.files && det.staged.files.length)) return toast('Ajoute au moins un fichier');
+      if (cur === 'AWB' && data.categorie_id) { try { localStorage.setItem('wlc_' + String(ME.email).toLowerCase(), data.categorie_id); } catch (e) {} }
       const extra = det.staged; det.staged = null;
       saveLocal(r, data, extra);
       if (r) { det.editing = false; renderDet(); } else closeDet();
@@ -2275,8 +2322,10 @@ async function renderAdminPage(){
       <tfoot><tr><td>Total</td><td>${totA}</td><td>${totS}</td></tr></tfoot></table>
       <div class="acts"><button class="s" id="admArch" ${totA ? '' : 'disabled'}>${IC.archive}Archiver ce qui doit l'être</button>
       <button class="s warn" id="admPurge" ${totS ? '' : 'disabled'}>${IC.trash}Supprimer les archives de plus de ${dj} jours</button></div></section>
-    <section class="at" id="atB"><h3><span class="mi">${IC.users}</span>Groupes</h3><p class="lead">Équipes et visibilité des absences.</p><div class="acts"><button class="s" id="admGrp">${IC.users}Gestion des groupes</button></div></section></div></div>`;
+    <section class="at" id="atB"><h3><span class="mi">${IC.users}</span>Groupes</h3><p class="lead">Équipes et visibilité des absences.</p><div class="acts"><button class="s" id="admGrp">${IC.users}Gestion des groupes</button></div></section>
+    <section class="at" id="atC"><h3><span class="mi">${IC.pencil}</span>Catégories</h3><p class="lead">Catégories des AWB, par groupe de droits.</p><div class="acts"><button class="s" id="admCat">${IC.pencil}Gestion des catégories</button></div></section></div></div>`;
   $('#admGrp').onclick = () => openGrp();
+  $('#admCat').onclick = () => openCat();
   const after = async msg => {
     Object.keys(cache).forEach(k => delete cache[k]);
     toast(msg); preload(Object.keys(MODS).filter(m => ME.rights[m])); await renderAdminPage();
@@ -2368,16 +2417,17 @@ async function renderUsers(el){
   const lv = (u, m) => { const cur = u.rights[m] || '', opts = m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<select data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<option value="${v}" ${v === cur ? 'selected' : ''}>${l}</option>`).join('')}</select>`; };
   el.innerHTML = `<h3>Utilisateurs</h3><p class="lead">Accès aux pages et connexions.</p>
-    <table class="utab"><tr><th>Utilisateur</th><th>Dernière connexion</th><th>Actif</th><th>AWB</th><th>SPARK</th><th>DOM</th><th>SCMS</th><th>Entreprises</th><th>Absences</th><th>Documents</th><th>Paramètres</th><th></th></tr>
+    <table class="utab"><tr><th>Utilisateur</th><th>Dernière connexion</th><th>Actif</th><th>AWB</th><th>SPARK</th><th>DOM</th><th>SCMS</th><th>Entreprises</th><th>Absences</th><th>Documents</th><th>Paramètres</th><th>Catégories</th><th></th></tr>
     ${us.map(u => `<tr><td><b>${esc(u.prenom)} ${esc(u.nom)}</b><div class="m" style="margin:0">${esc(u.email)}</div></td>
       <td>${u.last ? fdate(u.last.date, true) + `<div class="m" style="margin:0">${u.last.appareil}</div>` : '<span class="m">Jamais</span>'}</td>
       <td>${sw('a_' + u.email, u.actif, `data-act="${esc(u.email)}"`)}</td>
-      <td>${lv(u, 'AWB')}</td><td>${lv(u, 'SPARK')}</td><td>${lv(u, 'DOM')}</td><td>${lv(u, 'SECURITY')}</td><td>${lv(u, 'ENTREPRISES')}</td><td>${lv(u, 'ABSENCES')}</td><td>${lv(u, 'DOCUMENTS')}</td><td>${lv(u, 'PARAMETRES')}</td>
+      <td>${lv(u, 'AWB')}</td><td>${lv(u, 'SPARK')}</td><td>${lv(u, 'DOM')}</td><td>${lv(u, 'SECURITY')}</td><td>${lv(u, 'ENTREPRISES')}</td><td>${lv(u, 'ABSENCES')}</td><td>${lv(u, 'DOCUMENTS')}</td><td>${lv(u, 'PARAMETRES')}</td><td>${CAT_GR.map(([k, l]) => `<label class="chk" style="margin:2px 0;font-size:13px"><input type="checkbox" data-cm="CAT_${k}" data-cu="${esc(u.email)}" ${u.rights['CAT_' + k] ? 'checked' : ''}> ${l}</label>`).join('')}</td>
       <td><button class="s" data-conn="${esc(u.email)}" data-nm="${esc(u.prenom)}">Connexions</button></td></tr><tr class="hrow"><td colspan="9"><span class="m" style="margin:0 12px 0 0">Peut voir l'historique :</span><div class="hset">${[['AWB','AWB'],['SPARK','SPARK'],['DOM','DOM'],['SECURITY','SCMS'],['DOCUMENTS','Docs']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}>${l}</label>`; }).join('')}</div></td></tr>`).join('')}</table>`;
   el.onchange = async e => {
     const t = e.target;
     try {
       if (t.dataset.hm) await wait(() => api('users_set', {email:t.dataset.hu, rights:{['HIST_' + t.dataset.hm]: t.checked ? 'lecture' : ''}}));
+      else if (t.dataset.cm) await wait(() => api('users_set', {email:t.dataset.cu, rights:{[t.dataset.cm]: t.checked ? 'lecture' : ''}}));
       else if (t.dataset.act) await wait(() => api('users_set', {email:t.dataset.act, actif:t.checked}));
       else if (t.dataset.u) await wait(() => api('users_set', {email:t.dataset.u, rights:{[t.dataset.m]: t.value}}));
       else return;
@@ -2400,7 +2450,7 @@ IC.LIBRARY = ic('<rect x="3" y="4" width="4" height="16" rx="1"/><path d="M3 8h4
 IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
 MODS.ENTREPRISES = {label: 'Entreprises', noSteps: true, name: r => r.nom, show: [], fields: []};
 IC.ENTREPRISES = ic('<path d="M3 21V7l8-4v18"/><path d="M11 21V11l10 4v6"/><path d="M3 21h18"/><path d="M7 9v.01M7 13v.01M7 17v.01"/><path d="M15 17v.01M18 18v.01"/>');
-const ENT = {q: '', view: null, edit: null, pu: false, nr: false};
+const ENT = {q: '', view: null, edit: null, pu: false, nr: false, pb: true, rc: {}};
 const entRows = () => cache.ENTREPRISES || [];
 const entJ = v => { try { const a = typeof v === 'string' ? JSON.parse(v || '[]') : v; return Array.isArray(a) ? a : []; } catch (e) { return []; } };
 const entC = r => entJ(r.comptes), entR = r => entJ(r.routes), entP = r => entJ(r.pu);
@@ -2424,9 +2474,10 @@ function entPuBanner(){
     if (!rt.length) nr.push(it); else rt.forEach(n => (by[n] = by[n] || []).push(it));
   }));
   const srt = a => a.sort((x, y) => String(x.k).localeCompare(String(y.k)) || String(x.nom).localeCompare(String(y.nom), 'fr', {sensitivity: 'base'}));
-  const card = (t, a, cls) => `<div class="epc${cls || ''}"><h5><span>${esc(t)}</span><small>${a.length}</small></h5><div class="epcl">${srt(a).map(x => `<button data-id="${esc(x.id)}">${x.h ? `<b>${x.h}</b>` : ''}<span>${esc(x.nom)}</span></button>`).join('')}</div></div>`;
+  const card = (t, a, cls) => `<details class="epc${cls || ''}" data-rk="${esc(t)}" ${ENT.rc[t] ? '' : 'open'}><summary><span class="chv"></span><span>${esc(t)}</span><small>${a.length}</small></summary><div class="epcl">${srt(a).map(x => `<button data-id="${esc(x.id)}">${x.h ? `<b>${x.h}</b>` : ''}<span>${esc(x.nom)}</span></button>`).join('')}</div></details>`;
   const names = Object.keys(by).sort((a, b) => a.localeCompare(b, 'fr', {numeric: true, sensitivity: 'base'}));
-  el.innerHTML = `<details class="epu" open><summary>PU réguliers du jour <small>${jn} · ${tot}</small></summary>${tot ? `<div class="epg">${names.map(n => card(n, by[n])).join('')}${nr.length ? card('Sans route', nr, ' nr') : ''}</div>` : '<div class="m" style="margin:6px 0 0">Aucun PU régulier aujourd’hui.</div>'}</details>`;
+  el.innerHTML = `<details class="epu" data-main="1" ${ENT.pb ? 'open' : ''}><summary><span class="chv"></span>PU réguliers du jour <small>${jn} · ${tot}</small></summary>${tot ? `<div class="epg">${names.map(n => card(n, by[n])).join('')}${nr.length ? card('Sans route', nr, ' nr') : ''}</div>` : '<div class="m" style="margin:6px 0 0">Aucun PU régulier aujourd’hui.</div>'}</details>`;
+  el.querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => { if (d.dataset.main) ENT.pb = d.open; else ENT.rc[d.dataset.rk] = !d.open; }));
 }
 function renderEnt(){
   cur = 'ENTREPRISES'; closePop(); closeDet();
@@ -2574,14 +2625,16 @@ function absDraw(){
   const el = $('#absBox'); if (!el) return;
   el.style.display = !ABS.g || !ABS.g.length ? 'none' : '';
   if (!ABS.g || !ABS.g.length) return;
-  const rows = ABS.rows || [], adm = absAdm(), mon = absMon(ABS.off), today = absIso(new Date());
+  let hid = {}; try { hid = JSON.parse(localStorage.getItem('wabsh') || '{}') || {}; } catch (e) {}
+  const rows = (ABS.rows || []).filter(p => !hid[String(p.groupe_id)]), adm = absAdm(), mon = absMon(ABS.off), today = absIso(new Date());
   const days = Array.from({length: 21}, (_, k) => k).map(i => { const d = new Date(mon); d.setDate(mon.getDate() + i); return d; });
   const fm = d => d.toLocaleDateString('fr-FR', {day: 'numeric', month: 'short'});
   const dn = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
   const pend = [];
   rows.forEach(p => { const j = absJ(p); Object.keys(j).sort().forEach(k => { const c = j[k] || []; if (c[0] === '??' || c[1] === '??') pend.push({n: p.nom, k}); }); });
   const qb = pend.length ? `<div class="abq"><b>À confirmer !</b><span>${pend.slice(0, 6).map(x => esc(x.n) + ' (' + fm(new Date(x.k + 'T12:00:00')) + ')').join(' · ')}${pend.length > 6 ? ' …' : ''}</span></div>` : '';
-  el.innerHTML = `<div class="abh"><h3>Planning des absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[18])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}${ABS.g.some(g => g.admin) ? '<button class="s" data-ag="1">Groupes</button>' : ''}</div>
+  el.innerHTML = `<div class="abh"><h3>Planning des absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[18])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}</div>
+    ${ABS.g.length ? `<div class="abg"><span>Groupes :</span>${ABS.g.map(g => `<label class="chk"><input type="checkbox" data-agk="${esc(g.id)}" ${hid[String(g.id)] ? '' : 'checked'}>${esc(g.nom)}</label>`).join('')}</div>` : ''}
     ${qb}${rows.length ? `<table class="abt"><thead><tr><th></th>${[0, 1, 2].map(w => `<th colspan="7" class="wkh">${fm(days[w * 7])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td ' : ''}${i % 7 === 0 ? 'wk' : ''}${i % 7 > 4 ? ' we' : ''}">${dn[i % 7]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
       const we = di % 7 > 4, k = absIso(d), c = we ? [] : (j[k] || []), a = c[0] || '', b = c[1] || '', note = c[2] || '', nf = Number(c[3]) || 0, has = a || b || note || nf;
       const tip = has ? [p.nom + ' · ' + d.toLocaleDateString('fr-FR', {weekday: 'long', day: 'numeric', month: 'long'}), a && a === b ? (ABS_L[a] || a) : [a ? 'Matin : ' + (ABS_L[a] || a) : '', b ? 'Après-midi : ' + (ABS_L[b] || b) : ''].filter(Boolean).join(' · '), note, nf ? nf + ' fichier' + (nf > 1 ? 's' : '') : ''].filter(Boolean).join('\n') : '';
@@ -2591,6 +2644,7 @@ function absDraw(){
       : `<p class="m">${adm ? 'Aucune personne pour le moment : ajoute-en avec le bouton ci-dessus.' : 'Aucune personne pour le moment.'}</p>`}
     <div class="abl">${Object.keys(ABS_C).map(c => `<span><i style="background:${ABS_C[c]}"></i>${esc(c)} : ${ABS_L[c]}</span>`).join('')}<span class="m" style="margin:0">Gauche : matin · droite : après-midi</span></div>`;
 }
+document.addEventListener('change', e => { const t = e.target.closest('#absBox [data-agk]'); if (!t) return; let h = {}; try { h = JSON.parse(localStorage.getItem('wabsh') || '{}') || {}; } catch (x) {} if (t.checked) delete h[t.dataset.agk]; else h[t.dataset.agk] = 1; try { localStorage.setItem('wabsh', JSON.stringify(h)); } catch (x) {} absDraw(); });
 document.addEventListener('click', e => {
   const b = e.target.closest('#absBox [data-an],#absBox [data-am],#absBox [data-ac],#absBox [data-ag]'); if (!b) return;
   if (b.dataset.an !== undefined) { ABS.off = b.dataset.an === '0' ? 0 : ABS.off + Number(b.dataset.an); absDraw(); }
@@ -2666,27 +2720,49 @@ function openAbsEdit(id, d){
   };
   $('#mAbs').classList.add('on'); absFiles(id, d, true);
 }
+const CAT_GR = [['CLASSIQUES', 'Classiques'], ['CCTV', 'CCTV'], ['PPWK', 'PPWK'], ['UNDELS', 'Undels']];
+async function openCat(){
+  let D;
+  try { D = await wait(() => api('cat_all')); } catch (e) { return toast(e.message); }
+  const COL = {CLASSIQUES: '#3a8cff', CCTV: '#ee4650', PPWK: '#a66a3e', UNDELS: '#22b070'};
+  const run = async fn => { try { await wait(fn); D = await api('cat_all'); draw(); try { ME.categories_awb = (await api('me')).categories_awb; if (cur === 'AWB') drawCards(); } catch (e) {} } catch (e) { toast(e.message); draw(); } };
+  const draw = () => {
+    $('#sAbs').className = 'sheet wide';
+    $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Gestion des catégories</h3><div class="sub">Chaque groupe correspond à un droit : seules les personnes qui l’ont voient ses catégories</div></div><button class="ico sm" id="cX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+      <div class="cgs">${CAT_GR.map(([k, l]) => { const it = D.filter(x => x.groupe === k);
+        return `<section class="cg" style="--gc:${COL[k]}"><h4>${l}<small>${it.filter(x => x.actif).length}</small></h4><div class="cps">${it.map(x => `<span class="cp2 ${x.actif ? '' : 'off'}"><input data-ci="${esc(x.id)}" data-cg="${k}" value="${esc(x.libelle)}" maxlength="40" aria-label="Nom">${x.n ? `<b title="${x.n} AWB">${x.n}</b>` : ''}${x.actif ? '' : `<button class="ico sm" data-cr="${esc(x.id)}" data-cg="${k}" data-cl="${esc(x.libelle)}" title="Réactiver" aria-label="Réactiver">${IC.check}</button>`}<button class="ico sm warn" data-cd="${esc(x.id)}" title="${x.n ? 'Désactiver' : 'Supprimer'}" aria-label="Supprimer">${IC.close}</button></span>`).join('') || '<div class="m" style="margin:0">Aucune catégorie</div>'}</div>
+          <div class="erow" style="margin:0"><input data-cn="${k}" placeholder="Nouvelle catégorie" maxlength="40" autocomplete="off"><button class="p" data-ca="${k}" aria-label="Ajouter">${IC.plus}</button></div></section>`; }).join('')}</div>`;
+    $('#cX').onclick = closeAbs;
+    $('#sAbs').onchange = e => { const t = e.target; if (t.dataset.ci) { const n = t.value.trim(); if (!n) return draw(); run(() => api('cat_save', {id: t.dataset.ci, libelle: n, groupe: t.dataset.cg, actif: true})); } };
+    $('#sAbs').onkeydown = e => { if (e.key === 'Enter' && e.target.dataset.cn) { const b = $('#sAbs').querySelector(`[data-ca="${e.target.dataset.cn}"]`); if (b) b.click(); } };
+    $('#sAbs').onclick = async e => {
+      const b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.ca) { const i = $('#sAbs').querySelector(`[data-cn="${b.dataset.ca}"]`), n = i.value.trim(); if (n) run(() => api('cat_save', {libelle: n, groupe: b.dataset.ca})); }
+      else if (b.dataset.cr) run(() => api('cat_save', {id: b.dataset.cr, libelle: b.dataset.cl, groupe: b.dataset.cg, actif: true}));
+      else if (b.dataset.cd) { const x = D.find(y => y.id === b.dataset.cd); if (x && await ask(x.n ? 'Désactiver cette catégorie ?' : 'Supprimer cette catégorie ?', x.n ? `« ${x.libelle} » est utilisée par ${x.n} AWB : elle sera masquée mais les AWB la gardent.` : `« ${x.libelle} »`, x.n ? 'Désactiver' : 'Supprimer')) run(() => api('cat_delete', {id: b.dataset.cd})); }
+    };
+  };
+  draw(); $('#mAbs').classList.add('on');
+}
 async function openGrp(){
   let D;
   try { D = await wait(() => api('grp_all')); } catch (e) { return toast(e.message); }
   const nm = e => { const u = D.users.find(x => x.email === e); return u ? (((u.prenom || '') + ' ' + (u.nom || '')).trim() || e) : e; };
+  const ini = e => nm(e).split(/[\s@._-]+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
   const run = async fn => { try { await wait(fn); D = await api('grp_all'); draw(); if (cur === 'AWB' || cur === '_home' || document.querySelector('#absBox')) { try { await absReload(); } catch (e) {} } } catch (e) { toast(e.message); } };
   const draw = () => {
     $('#sAbs').className = 'sheet wide';
     $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Gestion des groupes</h3><div class="sub">Les membres d’un groupe voient les absences des personnes du groupe</div></div><button class="ico sm" id="gX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
-      ${D.groups.map(g => `<div class="esec"><h4 style="display:flex;gap:8px;align-items:center">${D.app ? `<input data-gn="${esc(g.id)}" value="${esc(g.nom)}" maxlength="60" style="flex:1">` : `<span style="flex:1">${esc(g.nom)}</span>`}${D.app ? `<button class="ico sm warn" data-gd="${esc(g.id)}" title="Supprimer le groupe" aria-label="Supprimer le groupe">${IC.trash}</button>` : ''}</h4>
-        ${g.members.map(m => `<div class="erow"><span style="flex:1">${esc(nm(m.email))} <span class="m" style="margin:0">${esc(m.email)}</span></span><select data-gm="${esc(g.id)}|${esc(m.email)}"><option value="membre"${m.role === 'membre' ? ' selected' : ''}>Membre</option><option value="admin"${m.role === 'admin' ? ' selected' : ''}>Admin</option></select><button class="ico sm warn" data-gr="${esc(g.id)}|${esc(m.email)}" title="Retirer du groupe" aria-label="Retirer du groupe">${IC.trash}</button></div>`).join('') || '<div class="m">Aucun membre</div>'}
-        <div class="erow"><select id="gu_${esc(g.id)}">${D.users.filter(u => !g.members.some(m => m.email === u.email)).map(u => `<option value="${esc(u.email)}">${esc(nm(u.email))}</option>`).join('')}</select><button class="p" data-ga="${esc(g.id)}">${IC.plus}Ajouter</button></div></div>`).join('') || '<p class="m">Aucun groupe.</p>'}
-      ${D.app ? `<div class="erow"><input id="gNew" placeholder="Nouveau groupe" maxlength="60" autocomplete="off"><button class="p" id="gAdd">${IC.plus}Créer</button></div>` : ''}`;
+      <div class="ggs">${D.groups.map(g => `<section class="gg"><div class="gh">${D.app ? `<input data-gn="${esc(g.id)}" value="${esc(g.nom)}" maxlength="60">` : `<b style="flex:1;font-size:16px">${esc(g.nom)}</b>`}<small>${g.members.length} membre${g.members.length > 1 ? 's' : ''}</small>${D.app ? `<button class="ico sm warn" data-gd="${esc(g.id)}" title="Supprimer le groupe" aria-label="Supprimer le groupe">${IC.trash}</button>` : ''}</div>
+        <div class="gms">${g.members.map(m => `<div class="gm"><span class="av">${esc(ini(m.email))}</span><div class="gmn"><b>${esc(nm(m.email))}</b><small>${esc(m.email)}</small></div><button class="rl ${m.role === 'admin' ? 'ad' : ''}" data-gm="${esc(g.id)}|${esc(m.email)}|${esc(m.role)}" title="Changer le rôle">${m.role === 'admin' ? 'Admin' : 'Membre'}</button><button class="ico sm" data-gr="${esc(g.id)}|${esc(m.email)}" title="Retirer du groupe" aria-label="Retirer du groupe">${IC.close}</button></div>`).join('') || '<div class="m" style="margin:0">Aucun membre</div>'}</div>
+        <div class="gf"><select id="gu_${esc(g.id)}">${D.users.filter(u => !g.members.some(m => m.email === u.email)).map(u => `<option value="${esc(u.email)}">${esc(nm(u.email))}</option>`).join('')}</select><button class="p" data-ga="${esc(g.id)}">${IC.plus}Ajouter</button></div></section>`).join('') || '<p class="m">Aucun groupe.</p>'}</div>
+      ${D.app ? `<div class="erow" style="margin-top:14px"><input id="gNew" placeholder="Nouveau groupe" maxlength="60" autocomplete="off"><button class="p" id="gAdd">${IC.plus}Créer</button></div>` : ''}`;
     $('#gX').onclick = closeAbs;
-    $('#sAbs').onchange = e => {
-      const t = e.target;
-      if (t.dataset.gn) return run(() => api('grp_save', {id: t.dataset.gn, nom: t.value}));
-      if (t.dataset.gm) { const [g, m] = t.dataset.gm.split('|'); return run(() => api('grp_member_set', {groupe_id: g, email: m, role: t.value})); }
-    };
+    $('#sAbs').onchange = e => { const t = e.target; if (t.dataset.gn) return run(() => api('grp_save', {id: t.dataset.gn, nom: t.value})); };
     $('#sAbs').onclick = async e => {
       const b = e.target.closest('button'); if (!b) return;
-      if (b.dataset.ga) { const sel = $('#gu_' + b.dataset.ga); if (sel && sel.value) run(() => api('grp_member_set', {groupe_id: b.dataset.ga, email: sel.value, role: 'membre'})); }
+      if (b.dataset.gm) { const [g, m, r] = b.dataset.gm.split('|'); run(() => api('grp_member_set', {groupe_id: g, email: m, role: r === 'admin' ? 'membre' : 'admin'})); }
+      else if (b.dataset.ga) { const sel = $('#gu_' + b.dataset.ga); if (sel && sel.value) run(() => api('grp_member_set', {groupe_id: b.dataset.ga, email: sel.value, role: 'membre'})); }
       else if (b.dataset.gr) { const [g, m] = b.dataset.gr.split('|'); if (await ask('Retirer du groupe ?', nm(m), 'Retirer')) run(() => api('grp_member_set', {groupe_id: g, email: m, role: ''})); }
       else if (b.dataset.gd) { const g = D.groups.find(x => x.id === b.dataset.gd); if (await ask('Supprimer ce groupe ?', g ? g.nom : '', 'Supprimer')) run(() => api('grp_delete', {id: b.dataset.gd})); }
       else if (b.id === 'gAdd') { const n = $('#gNew').value.trim(); if (n) run(() => api('grp_save', {nom: n})); }
