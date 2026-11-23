@@ -100,7 +100,7 @@ button{font-family:inherit;cursor:pointer}
 .hc.wt{opacity:.7}
 .card.hascat{padding-left:40px}.card.hascat:before{width:26px}.card.hascat:hover:before{width:29px}
 .card .rcat{position:absolute;left:0;top:0;bottom:0;width:26px;display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:none;z-index:2}
-.card .rcat span{writing-mode:vertical-rl;transform:rotate(180deg);font:700 11px/1 var(--disp);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-height:calc(100% - 10px);color:var(--ink);opacity:.8}
+.card .rcat span{writing-mode:vertical-rl;transform:rotate(180deg);font:700 13px/1 var(--disp);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-height:calc(100% - 10px);color:var(--ink);opacity:.8}
 .card.st-go .rcat span,.card.st-ok .rcat span{color:#fff;opacity:.95}
 html[data-dense="1"] .card.hascat{padding-left:36px}
 .epu{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;padding:8px 12px}
@@ -801,7 +801,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.58</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.59</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -812,7 +812,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.58</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.59</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1241,15 +1241,8 @@ function drawCards(){
   const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
   const out = rows.slice()
     .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (cur === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
-  if (cur === 'AWB' && out.length) {
-    const groups = [], idx = {};
-    out.forEach(r => { const c = (ME.categories_awb || []).find(c => c.id === r.categorie_id), key = c ? c.id : ''; if (!(key in idx)) { idx[key] = groups.length; groups.push({key, lab: c ? c.libelle : '', items: []}); } groups[idx[key]].items.push(r); });
-    list.className = 'cgs';
-    list.innerHTML = groups.map(g => g.key ? `<section class="cg"><h3 class="cgt">${esc(g.lab)}<small>${g.items.length}</small></h3><div class="grid">${g.items.map(card).join('')}</div></section>` : `<div class="grid">${g.items.map(card).join('')}</div>`).join('');
-  } else {
-    list.className = 'grid';
-    list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>';
-  }
+  list.className = 'grid';
+  list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>';
   drawTiles();
 }
 function val(r, k){
@@ -1932,10 +1925,10 @@ async function openNotif(n){
   if (n.module === 'ABSENCES') {
     let hz = {}; try { hz = JSON.parse(n.detail || '{}'); } catch (e) {}
     await openMod('_home');
-    try { ABS.rows = await api('abs_list'); ABS.t = Date.now(); } catch (e) {}
+    try { ABS.rows = await absLoad(); ABS.t = Date.now(); } catch (e) {}
     ABS.off = Math.max(-26, Math.min(26, Math.floor((new Date(n.ref_id + 'T12:00:00') - absMon(0)) / 6048e5))); absDraw();
     const ab = $('#absBox'); if (ab) ab.scrollIntoView({behavior: 'smooth', block: 'center'});
-    if (hz.pid) (absAdm() ? openAbsEdit : openAbsView)(hz.pid, n.ref_id);
+    if (hz.pid) (absPAdm(hz.pid) ? openAbsEdit : openAbsView)(hz.pid, n.ref_id);
     return;
   }
   let hl = {}; try { hl = JSON.parse(n.detail || '{}'); } catch (e) {}
@@ -2273,7 +2266,8 @@ async function renderAdminPage(){
       <tfoot><tr><td>Total</td><td>${totA}</td><td>${totS}</td></tr></tfoot></table>
       <div class="acts"><button class="s" id="admArch" ${totA ? '' : 'disabled'}>${IC.archive}Archiver ce qui doit l'être</button>
       <button class="s warn" id="admPurge" ${totS ? '' : 'disabled'}>${IC.trash}Supprimer les archives de plus de ${dj} jours</button></div></section>
-    <section class="at empty" id="atB" aria-label="Tuile vide"></section></div></div>`;
+    <section class="at" id="atB"><h3><span class="mi">${IC.users}</span>Groupes</h3><p class="lead">Équipes et visibilité des absences.</p><div class="acts"><button class="s" id="admGrp">${IC.users}Gestion des groupes</button></div></section></div></div>`;
+  $('#admGrp').onclick = () => openGrp();
   const after = async msg => {
     Object.keys(cache).forEach(k => delete cache[k]);
     toast(msg); preload(Object.keys(MODS).filter(m => ME.rights[m])); await renderAdminPage();
@@ -2536,10 +2530,12 @@ function entAdrSug(v){
       const l = $('#entAdrL'); if (l) l.innerHTML = (j.features || []).map(f => `<option value="${esc(f.properties.label)}">`).join(''); } catch (e) {}
   }, 250);
 }
-const ABS = {off: 0, rows: null, t: 0, ed: null, mgr: false};
+const ABS = {off: 0, rows: null, t: 0, ed: null, mgr: false, g: null};
+const absLoad = async () => { const [r, g] = await Promise.all([api('abs_list'), api('grp_mine')]); ABS.g = g; return r; };
+const absPAdm = id => { const p = (ABS.rows || []).find(x => String(x.id) === String(id)); return !!(p && p._adm && ME.rights.ABSENCES === 'admin'); };
 const ABS_C = {HOL: '#2fb36b', TRA: '#8b5a2b', '??': '#e53935', SIC: '#ff8a1f'};
 const ABS_L = {HOL: 'Congés', TRA: 'Formation', '??': 'À confirmer', SIC: 'Maladie'};
-const absAdm = () => ME && ME.rights && ME.rights.ABSENCES === 'admin';
+const absAdm = () => !!(ME && ME.rights && ME.rights.ABSENCES === 'admin' && ABS.g && ABS.g.some(g => g.admin));
 const absIso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 const absMon = off => { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() - ((d.getDay() + 6) % 7) + off * 7); return d; };
 const absJ = p => { try { const o = JSON.parse(String(p.jours || '{}')); return o && typeof o === 'object' ? o : {}; } catch (e) { return {}; } };
@@ -2551,12 +2547,14 @@ async function absInit(force){
   if (!ME.rights.ABSENCES || !$('#absBox')) return;
   absDraw();
   if (force || !ABS.rows || Date.now() - ABS.t > 60000) {
-    try { ABS.rows = await api('abs_list'); ABS.t = Date.now(); } catch (e) { return; }
+    try { ABS.rows = await absLoad(); ABS.t = Date.now(); } catch (e) { return; }
     absDraw();
   }
 }
 function absDraw(){
   const el = $('#absBox'); if (!el) return;
+  el.style.display = !ABS.g || !ABS.g.length ? 'none' : '';
+  if (!ABS.g || !ABS.g.length) return;
   const rows = ABS.rows || [], adm = absAdm(), mon = absMon(ABS.off), today = absIso(new Date());
   const days = Array.from({length: 21}, (_, k) => k).map(i => { const d = new Date(mon); d.setDate(mon.getDate() + i); return d; });
   const fm = d => d.toLocaleDateString('fr-FR', {day: 'numeric', month: 'short'});
@@ -2564,25 +2562,26 @@ function absDraw(){
   const pend = [];
   rows.forEach(p => { const j = absJ(p); Object.keys(j).sort().forEach(k => { const c = j[k] || []; if (c[0] === '??' || c[1] === '??') pend.push({n: p.nom, k}); }); });
   const qb = pend.length ? `<div class="abq"><b>À confirmer !</b><span>${pend.slice(0, 6).map(x => esc(x.n) + ' (' + fm(new Date(x.k + 'T12:00:00')) + ')').join(' · ')}${pend.length > 6 ? ' …' : ''}</span></div>` : '';
-  el.innerHTML = `<div class="abh"><h3>Planning des absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[18])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}</div>
+  el.innerHTML = `<div class="abh"><h3>Planning des absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[18])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}${ABS.g.some(g => g.admin) ? '<button class="s" data-ag="1">Groupes</button>' : ''}</div>
     ${qb}${rows.length ? `<table class="abt"><thead><tr><th></th>${[0, 1, 2].map(w => `<th colspan="7" class="wkh">${fm(days[w * 7])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td ' : ''}${i % 7 === 0 ? 'wk' : ''}${i % 7 > 4 ? ' we' : ''}">${dn[i % 7]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
       const we = di % 7 > 4, k = absIso(d), c = we ? [] : (j[k] || []), a = c[0] || '', b = c[1] || '', note = c[2] || '', nf = Number(c[3]) || 0, has = a || b || note || nf;
       const tip = has ? [p.nom + ' · ' + d.toLocaleDateString('fr-FR', {weekday: 'long', day: 'numeric', month: 'long'}), a && a === b ? (ABS_L[a] || a) : [a ? 'Matin : ' + (ABS_L[a] || a) : '', b ? 'Après-midi : ' + (ABS_L[b] || b) : ''].filter(Boolean).join(' · '), note, nf ? nf + ' fichier' + (nf > 1 ? 's' : '') : ''].filter(Boolean).join('\n') : '';
       const cell = a && a === b ? `<i style="background:${ABS_C[a]}">${esc(a)}</i>` : [a, b].map(x => x ? `<i style="background:${ABS_C[x]}">${esc(x)}</i>` : '<i></i>').join('');
-      const clk = !we && (adm || has);
+      const clk = !we && (absPAdm(p.id) || has);
       return `<td class="${di % 7 === 0 ? 'wk' : ''}"><div class="abc${we ? ' wend' : clk ? ' adm' : ''}" ${tip ? `title="${esc(tip)}"` : ''} ${clk ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}${note || nf ? '<u class="abn"></u>' : ''}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
       : `<p class="m">${adm ? 'Aucune personne pour le moment : ajoute-en avec le bouton ci-dessus.' : 'Aucune personne pour le moment.'}</p>`}
     <div class="abl">${Object.keys(ABS_C).map(c => `<span><i style="background:${ABS_C[c]}"></i>${esc(c)} : ${ABS_L[c]}</span>`).join('')}<span class="m" style="margin:0">Gauche : matin · droite : après-midi</span></div>`;
 }
 document.addEventListener('click', e => {
-  const b = e.target.closest('#absBox [data-an],#absBox [data-am],#absBox [data-ac]'); if (!b) return;
+  const b = e.target.closest('#absBox [data-an],#absBox [data-am],#absBox [data-ac],#absBox [data-ag]'); if (!b) return;
   if (b.dataset.an !== undefined) { ABS.off = b.dataset.an === '0' ? 0 : ABS.off + Number(b.dataset.an); absDraw(); }
   else if (b.dataset.am) openAbsMgr();
-  else if (b.dataset.ac) { const [id, d] = b.dataset.ac.split('|'); (absAdm() ? openAbsEdit : openAbsView)(id, d); }
+  else if (b.dataset.ag) openGrp();
+  else if (b.dataset.ac) { const [id, d] = b.dataset.ac.split('|'); (absPAdm(id) ? openAbsEdit : openAbsView)(id, d); }
 });
-function closeAbs(){ $('#mAbs').classList.remove('on'); ABS.ed = null; ABS.mgr = false; }
+function closeAbs(){ $('#mAbs').classList.remove('on'); $('#sAbs').className = 'sheet'; $('#sAbs').onclick = null; $('#sAbs').onchange = null; ABS.ed = null; ABS.mgr = false; }
 $('#mAbs').addEventListener('mousedown', e => { if (e.target.id === 'mAbs') closeAbs(); });
-const absReload = async () => { ABS.rows = await api('abs_list'); ABS.t = Date.now(); absDraw(); };
+const absReload = async () => { ABS.rows = await absLoad(); ABS.t = Date.now(); absDraw(); };
 const absDate = d => new Date(d + 'T12:00:00').toLocaleDateString('fr-FR', {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'});
 async function absFiles(id, d, adm){
   let l = [];
@@ -2644,19 +2643,47 @@ function openAbsEdit(id, d){
     const per = $('#abP').value, c = ABS.ed.code, com = $('#abCom').value.trim();
     const pl = {id, dates, am: per === 'pm' ? null : c, pm: per === 'am' ? null : c};
     if (c === '') pl.com = ''; else if (com !== ABS.ed.com0.trim()) pl.com = com;
-    try { await wait(() => api('abs_set', pl)); ABS.rows = await api('abs_list'); ABS.t = Date.now(); closeAbs(); absDraw(); toast('Enregistré'); } catch (err) { toast(err.message || 'Enregistrement impossible'); }
+    try { await wait(() => api('abs_set', pl)); ABS.rows = await absLoad(); ABS.t = Date.now(); closeAbs(); absDraw(); toast('Enregistré'); } catch (err) { toast(err.message || 'Enregistrement impossible'); }
   };
   $('#mAbs').classList.add('on'); absFiles(id, d, true);
+}
+async function openGrp(){
+  let D;
+  try { D = await wait(() => api('grp_all')); } catch (e) { return toast(e.message); }
+  const nm = e => { const u = D.users.find(x => x.email === e); return u ? (((u.prenom || '') + ' ' + (u.nom || '')).trim() || e) : e; };
+  const run = async fn => { try { await wait(fn); D = await api('grp_all'); draw(); if (cur === 'AWB' || cur === '_home' || document.querySelector('#absBox')) { try { await absReload(); } catch (e) {} } } catch (e) { toast(e.message); } };
+  const draw = () => {
+    $('#sAbs').className = 'sheet wide';
+    $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Gestion des groupes</h3><div class="sub">Les membres d’un groupe voient les absences des personnes du groupe</div></div><button class="ico sm" id="gX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+      ${D.groups.map(g => `<div class="esec"><h4 style="display:flex;gap:8px;align-items:center">${D.app ? `<input data-gn="${esc(g.id)}" value="${esc(g.nom)}" maxlength="60" style="flex:1">` : `<span style="flex:1">${esc(g.nom)}</span>`}${D.app ? `<button class="ico sm warn" data-gd="${esc(g.id)}" title="Supprimer le groupe" aria-label="Supprimer le groupe">${IC.trash}</button>` : ''}</h4>
+        ${g.members.map(m => `<div class="erow"><span style="flex:1">${esc(nm(m.email))} <span class="m" style="margin:0">${esc(m.email)}</span></span><select data-gm="${esc(g.id)}|${esc(m.email)}"><option value="membre"${m.role === 'membre' ? ' selected' : ''}>Membre</option><option value="admin"${m.role === 'admin' ? ' selected' : ''}>Admin</option></select><button class="ico sm warn" data-gr="${esc(g.id)}|${esc(m.email)}" title="Retirer du groupe" aria-label="Retirer du groupe">${IC.trash}</button></div>`).join('') || '<div class="m">Aucun membre</div>'}
+        <div class="erow"><select id="gu_${esc(g.id)}">${D.users.filter(u => !g.members.some(m => m.email === u.email)).map(u => `<option value="${esc(u.email)}">${esc(nm(u.email))}</option>`).join('')}</select><button class="p" data-ga="${esc(g.id)}">${IC.plus}Ajouter</button></div></div>`).join('') || '<p class="m">Aucun groupe.</p>'}
+      ${D.app ? `<div class="erow"><input id="gNew" placeholder="Nouveau groupe" maxlength="60" autocomplete="off"><button class="p" id="gAdd">${IC.plus}Créer</button></div>` : ''}`;
+    $('#gX').onclick = closeAbs;
+    $('#sAbs').onchange = e => {
+      const t = e.target;
+      if (t.dataset.gn) return run(() => api('grp_save', {id: t.dataset.gn, nom: t.value}));
+      if (t.dataset.gm) { const [g, m] = t.dataset.gm.split('|'); return run(() => api('grp_member_set', {groupe_id: g, email: m, role: t.value})); }
+    };
+    $('#sAbs').onclick = async e => {
+      const b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.ga) { const sel = $('#gu_' + b.dataset.ga); if (sel && sel.value) run(() => api('grp_member_set', {groupe_id: b.dataset.ga, email: sel.value, role: 'membre'})); }
+      else if (b.dataset.gr) { const [g, m] = b.dataset.gr.split('|'); if (await ask('Retirer du groupe ?', nm(m), 'Retirer')) run(() => api('grp_member_set', {groupe_id: g, email: m, role: ''})); }
+      else if (b.dataset.gd) { const g = D.groups.find(x => x.id === b.dataset.gd); if (await ask('Supprimer ce groupe ?', g ? g.nom : '', 'Supprimer')) run(() => api('grp_delete', {id: b.dataset.gd})); }
+      else if (b.id === 'gAdd') { const n = $('#gNew').value.trim(); if (n) run(() => api('grp_save', {nom: n})); }
+    };
+  };
+  draw(); $('#mAbs').classList.add('on');
 }
 function openAbsMgr(){
   ABS.mgr = true; ABS.ed = null;
   const draw = () => {
     $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Personnes</h3><div class="sub">Qui apparaît dans le calendrier</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
-      ${(ABS.rows || []).map(p => `<div class="erow"><input data-pn="${esc(p.id)}" value="${esc(p.nom)}" maxlength="80"><button class="ico sm warn" data-pd="${esc(p.id)}" title="Supprimer" aria-label="Supprimer">${IC.trash}</button></div>`).join('')}
-      <div class="erow"><input id="abNew" placeholder="Nouvelle personne" maxlength="80" autocomplete="off"><button class="p" id="abAdd">${IC.plus}Ajouter</button></div>`;
+      ${(ABS.rows || []).filter(p => p._adm).map(p => `<div class="erow"><input data-pn="${esc(p.id)}" value="${esc(p.nom)}" maxlength="80"><span class="m" style="margin:0;white-space:nowrap">${esc(((ABS.g || []).find(g => g.id === String(p.groupe_id)) || {}).nom || '')}</span><button class="ico sm warn" data-pd="${esc(p.id)}" title="Supprimer" aria-label="Supprimer">${IC.trash}</button></div>`).join('')}
+      <div class="erow"><select id="abG">${(ABS.g || []).filter(g => g.admin).map(g => `<option value="${esc(g.id)}">${esc(g.nom)}</option>`).join('')}</select><input id="abNew" placeholder="Nouvelle personne" maxlength="80" autocomplete="off"><button class="p" id="abAdd">${IC.plus}Ajouter</button></div>`;
     $('#abX').onclick = closeAbs;
-    const reload = async () => { ABS.rows = await api('abs_list'); ABS.t = Date.now(); absDraw(); };
-    $('#abAdd').onclick = async () => { const n = $('#abNew').value.trim(); if (!n) return; try { await wait(() => api('abs_person_save', {nom: n})); await reload(); draw(); $('#abNew').focus(); } catch (e) { toast(e.message); } };
+    const reload = async () => { ABS.rows = await absLoad(); ABS.t = Date.now(); absDraw(); };
+    $('#abAdd').onclick = async () => { const n = $('#abNew').value.trim(); if (!n) return; try { await wait(() => api('abs_person_save', {nom: n, groupe_id: $('#abG').value})); await reload(); draw(); $('#abNew').focus(); } catch (e) { toast(e.message); } };
     $('#abNew').onkeydown = e => { if (e.key === 'Enter') $('#abAdd').click(); };
     $('#sAbs').querySelectorAll('[data-pn]').forEach(i => { i.onchange = async () => { const n = i.value.trim(); if (!n) return draw(); try { await wait(() => api('abs_person_save', {id: i.dataset.pn, nom: n})); await reload(); toast('Enregistré'); } catch (e) { toast(e.message); } }; });
     $('#sAbs').querySelectorAll('[data-pd]').forEach(b => { b.onclick = async () => { const p = ABS.rows.find(x => String(x.id) === b.dataset.pd); if (!await ask('Supprimer cette personne ?', (p ? p.nom : '') + ' et toutes ses absences seront supprimées.', 'Supprimer')) return; try { await wait(() => api('abs_person_delete', {id: b.dataset.pd})); await reload(); draw(); } catch (e) { toast(e.message); } }; });
