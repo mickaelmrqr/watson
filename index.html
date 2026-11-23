@@ -915,11 +915,11 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.79</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.80</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div><div class="fr"></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.79</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.80</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1413,8 +1413,8 @@ function cardSec(r){
   const cbub = r.contacter_client !== true ? `<span class="cb stop no" title="Ne surtout pas contacter le client">${IC.stop}Ne pas contacter le client</span>`
     : r.contact_fait_le ? `<span class="cb done" title="Client contacté">${IC.phone}Client contacté</span>` : `<span class="cb todo" title="Client à contacter">${IC.phone}Client à contacter</span>`;
   const acts = w && !showArch ? `<div class="act"><button class="s go stp" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}Étape</button></div>` : '<div class="act" style="padding:0"></div>';
-  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${gcl(r)}" ${gst(r)} data-id="${r.id}">${r.thumb ? `<div class="bgph"><img alt="" src="data:image/jpeg;base64,${r.thumb}"></div>` : ''}<div class="r1"><div class="name" title="${esc(mt)}">${esc(mt) || 'SCMS'}</div><span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div>
-    ${r.waybill ? `<div class="r2"><div class="refs">${lnkc(r.waybill)}</div></div>` : ''}<div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="rowb">${cbub}${waitB(r)}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${gcl(r)}" ${gst(r)} data-id="${r.id}">${r.thumb ? `<div class="bgph"><img alt="" src="data:image/jpeg;base64,${r.thumb}"></div>` : ''}<div class="r1"><div class="name" title="${esc(mt)}">${esc(mt) || 'SCMS'}</div></div>
+    <div class="r2"><div class="refs">${lnkc(r.waybill)}</div><span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div><div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="rowb">${cbub}${waitB(r)}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 const lnkc = (v, label) => v ? `<span class="rc">${link(v, label)}<button class="cp sm" data-copy="${esc(v)}" title="Copier" aria-label="Copier">${IC.copy}</button></span>` : '';
 const stLabR = r => (cur === 'AWB' || cur === 'SPARK') && r.etape === 'EN_COURS' && r.etape_par ? 'En cours par ' + who(r.etape_par) : (cur === 'AWB' && r.etape === 'EN_ATTENTE' && r.etape_par ? 'Mis en attente par ' + who(r.etape_par) : stLabel(r.etape));
