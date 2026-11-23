@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<script>try{var d=document.documentElement,t=localStorage.getItem('wtheme'),z=localStorage.getItem('wzoom');if(t)d.dataset.theme=t;if(z)d.style.zoom=z;var n=localStorage.getItem('wdense');if(n==='1'||n==='2')d.dataset.dense='1';if(n==='2')d.dataset.ultra='1'}catch(e){}</script>
+<script>try{var d=document.documentElement,t=localStorage.getItem('wtheme'),z=localStorage.getItem('wzoom');if(t)d.dataset.theme=t;d.dataset.menu='v';if(z)d.style.zoom=z;var n=localStorage.getItem('wdense');if(n==='1'||n==='2')d.dataset.dense='1';if(n==='2')d.dataset.ultra='1'}catch(e){}</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#15181F">
@@ -947,11 +947,11 @@ html[data-ultra="1"] .mod.io{padding:5px 8px}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.88</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.89</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div><div class="fr"></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.88</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.89</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1198,7 +1198,7 @@ function applyDisplay(){
   document.documentElement.dataset.dense = dn === '0' ? '' : '1';
   document.documentElement.dataset.ultra = dn === '2' ? '1' : '';
   let mn = P.menu; try { if (mn === undefined) mn = localStorage.getItem('wmenu') || ''; localStorage.setItem('wmenu', mn || ''); } catch (e) {}
-  document.documentElement.dataset.menu = mn === 'v' ? 'v' : '';
+  document.documentElement.dataset.menu = 'v';
   $('meta[name=theme-color]').content = t === 'light' ? '#F2F4F8' : '#15181F';
   try { localStorage.setItem('wtheme', t); localStorage.setItem('wzoom', z); } catch (e) {}
 }
@@ -2554,9 +2554,9 @@ async function renderSec(){
       <div class="prow"><div><b>Mode</b><div class="m">Jour (fond clair) ou nuit (fond sombre).</div></div><div class="seg2" id="aMode"><button data-v="light" class="${th === 'light' ? 'on' : ''}">Jour</button><button data-v="dark" class="${th === 'dark' ? 'on' : ''}">Nuit</button></div></div>
       <div class="prow wide"><div><b>Taille du texte</b><div class="m">Agrandit ou réduit tout l'affichage.</div></div><div class="seg2"><button id="zMin" aria-label="Réduire">A−</button><input type="range" id="zRng" min="70" max="140" step="5" value="${zp}" aria-label="Taille du texte"><span id="zVal">${zp} %</span><button id="zPlus" aria-label="Agrandir">A+</button></div></div>
       <div class="prow wide"><div><b>Densité de l'affichage</b><div class="m">Normal, condensé ou ultra condensé : réduit les marges et les espaces pour voir plus de choses à l'écran.</div></div><div class="seg2" id="aDense"><button data-v="0" class="${dnv === '0' ? 'on' : ''}">Normal</button><button data-v="1" class="${dnv === '1' ? 'on' : ''}">Condensé</button><button data-v="2" class="${dnv === '2' ? 'on' : ''}" title="Ultra condensé">Ultra</button></div></div>
-      <div class="prow"><div><b>Menu en colonnes</b><div class="m">Une case par page, avec l'icône au-dessus et le nom en dessous.</div></div><div>${sw('aMenu', document.documentElement.dataset.menu === 'v')}</div></div>`;
+      `;
     $('#aDense').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#aDense').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); setLocal('wdense', b.dataset.v); };
-    $('#aMenu').onchange = e => setDisplay({menu: e.target.checked ? 'v' : ''});
+    
     $('#aMode').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#aMode').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); setLocal('wtheme', b.dataset.v); };
     const setZ = p => { p = clampZ(p); $('#zRng').value = p; $('#zVal').textContent = p + ' %'; setLocal('wzoom', p / 100); };
     $('#zRng').oninput = e => { $('#zVal').textContent = e.target.value + ' %'; }; $('#zRng').onchange = e => setZ(Number(e.target.value));
