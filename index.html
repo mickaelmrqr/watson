@@ -877,7 +877,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.11.67</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.11.68</span></div>
   <div class="hmid"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bQR" class="ico hide" title="Mes identifiants" aria-label="Mes identifiants"></button></div>
@@ -888,7 +888,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.67</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.68</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2603,7 +2603,7 @@ function drawEntView(r){
       ${r.commentaire ? `<div class="ebx"><h4>Informations</h4><div class="epr">${esc(r.commentaire)}</div></div>` : ''}
       <div class="ebx"><h4>Routes<span class="ech">${rs.length}</span></h4>${rs.length ? rs.map((x, i) => `<div class="eli"><div class="ct"><b>${esc(x.nom)}</b></div><div>${rtChips(x)}</div>${xd('routes', i)}</div>`).join('') : '<span class="m">Aucune route</span>'}
         ${w ? `<div class="erow eadd"><input id="aRn" placeholder="Nouvelle route" maxlength="80" autocomplete="off">${[['m13', '13m3'], ['m20', '20m3'], ['pu', 'PU'], ['del', 'DEL']].map(([f, l]) => `<label class="eck"><input type="checkbox" id="aR_${f}">${l}</label>`).join('')}<button class="ico sm ok" data-xa="routes" title="Ajouter la route" aria-label="Ajouter la route">${IC.plus}</button></div>` : ''}</div>
-      <div class="ebx"><h4>Numéros de compte<span class="ech">${cs.length}</span></h4>${cs.length ? cs.map((c, i) => `<div class="eli"><div class="ct"><b>${esc(c.numero)}</b>${c.commentaire ? `<small>${esc(c.commentaire)}</small>` : ''}${entMaj(c)}</div>${xd('comptes', i)}</div>`).join('') : '<span class="m">Aucun numéro de compte</span>'}
+      <div class="ebx"><h4>Numéros de compte<span class="ech">${cs.length}</span></h4>${cs.length ? cs.map((c, i) => `<div class="eli"><div class="ct"><b>${esc(c.numero)}</b>${c.commentaire ? `<small>${esc(c.commentaire)}</small>` : ''}${entMaj(c)}</div><button class="cp sm" data-cp="${esc(c.numero)}" title="Copier" aria-label="Copier">${IC.copy}</button>${xd('comptes', i)}</div>`).join('') : '<span class="m">Aucun numéro de compte</span>'}
         ${w ? `<div class="erow eadd"><input id="aCn" placeholder="Numéro de compte" maxlength="60" autocomplete="off"><input id="aCc" placeholder="Commentaire" maxlength="200" autocomplete="off"><button class="ico sm ok" data-xa="comptes" title="Ajouter le compte" aria-label="Ajouter le compte">${IC.plus}</button></div>` : ''}</div>
     </div><div class="scr">
       <div class="ebx"><h4>PU réguliers<span class="ech">${ps.length}</span></h4>${ps.length ? ps.map(p => `<div class="epu"><div class="eph"><b>${puHor(p) || 'Horaire non renseigné'}</b><span>${esc(jLbl(p.jours))}${puRoute(r, p) ? ' · Route ' + esc(puRoute(r, p)) : ''}</span></div>
@@ -2635,8 +2635,9 @@ function drawEntView(r){
   };
   el.onkeydown = e => { if (e.key === 'Enter' && e.target.closest('.eadd') && e.target.tagName === 'INPUT' && e.target.type === 'text') { e.preventDefault(); add(e.target.id === 'aRn' ? 'routes' : 'comptes'); } };
   el.onclick = async e => {
-    const a = e.target.closest('[data-xa]'), x = e.target.closest('[data-xd]');
-    if (a) add(a.dataset.xa);
+    const a = e.target.closest('[data-xa]'), x = e.target.closest('[data-xd]'), cp = e.target.closest('[data-cp]');
+    if (cp) navigator.clipboard.writeText(cp.dataset.cp).then(() => toast('Copié : ' + cp.dataset.cp));
+    else if (a) add(a.dataset.xa);
     else if (x) {
       const k = x.dataset.xd, i = +x.dataset.i, cr = entRows().find(z => String(z.id) === String(r.id)) || r, it = (k === 'routes' ? entR(cr) : entC(cr))[i]; if (!it) return;
       if (!await ask(k === 'routes' ? 'Supprimer la route ?' : 'Supprimer le numéro de compte ?', String(k === 'routes' ? it.nom : it.numero), 'Supprimer')) return;
