@@ -322,6 +322,7 @@ html[data-theme=light] .bb.wk{color:#C22B31}
 /* ---------- Attente (flou + blocage) */
 #busy{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 50%,rgba(6,8,12,.86) 0,rgba(6,8,12,.66) 24%,rgba(10,13,18,.34) 52%,rgba(15,18,24,.1) 80%);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .2s;cursor:wait}
 #busy.on{opacity:1;pointer-events:auto}
+#busy.soft{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
 
 
 /* ---------- Divers */
@@ -529,7 +530,7 @@ html[data-theme=light] .cb.todo{color:#B45309}html[data-theme=light] .cb.done{co
 .ph.add{display:grid;place-items:center;cursor:pointer;border-style:dashed;color:var(--mut);font-size:var(--fs);text-align:center;transition:border-color .15s,color .15s}
 .ph.add:hover{border-color:var(--blue);color:var(--hi)}
 .ph.add svg{width:1.6em;height:1.6em;display:block;margin:0 auto 4px}
-.ph.sync img{filter:blur(4px)}
+.ph.sync img{opacity:.6}
 .dph,.fbox{display:flex;align-items:center;gap:12px;background:var(--bg);border:1px dashed var(--line);border-radius:14px;padding:11px 14px;margin-top:8px;color:var(--mut)}
 .fbox{border-style:solid;color:var(--ink);flex-wrap:wrap}
 .fbox .fi{flex:1;min-width:140px;word-break:break-word}.fbox .fi small{display:block;color:var(--mut);font-size:var(--fs)}
@@ -649,7 +650,7 @@ html[data-theme=light] .hc b{color:var(--ink)}
 .mb{max-width:82%;padding:8px 12px;border-radius:14px;background:var(--raised);align-self:flex-start;word-break:break-word;white-space:pre-wrap}
 .mb.me{align-self:flex-end;background:#6b3a22;color:#fff}html[data-theme=light] .mb.me{background:#ffe0cf;color:var(--ink)}
 .mb small{display:block;color:var(--mut);font-size:var(--fs);margin-top:2px}.mb.me small{color:rgba(255,255,255,.7)}html[data-theme=light] .mb.me small{color:var(--mut)}
-.mb.sy{opacity:.55;filter:blur(1px)}
+.mb.sy{opacity:.6}
 .mlk{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:7px 10px;margin:4px 0 2px;cursor:pointer;color:var(--ink);text-align:left;width:100%}
 .mlk svg{width:16px;height:16px;flex:none}.mlk:hover{border-color:var(--bd2)}
 .mcomp{display:flex;flex-direction:column;gap:6px;padding-top:8px;border-top:1px solid var(--hair)}
@@ -665,7 +666,7 @@ html[data-theme=light] .hc b{color:var(--ink)}
 .absb{margin-top:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px}
 .abh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}.abh h3{margin:0;flex:1}
 .hbub{margin-left:auto;background:#ff8a1f;color:#fff;font:700 12px var(--body);min-width:22px;height:22px;padding:0 7px;border-radius:11px;display:grid;place-items:center}
-.abt{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0}table.abt th,table.abt td{padding:3px 0}.abt th:first-child{width:84px}table.abt .wk{padding-left:4px}.abc.wend{background:transparent}.abt th.wkh{text-align:left;font-weight:700}
+.abt{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0}table.abt th,table.abt td{padding:3px 1px}.abt th.tdy,.abt td.tdy{background:rgba(255,196,40,.24)}.abt th.tdy{border-radius:8px 8px 0 0}.abt th:first-child{width:84px}table.abt .wk{padding-left:6px}.abc.wend{background:transparent}.abt th.wkh{text-align:left;font-weight:700}
 .abt th{font-size:.7em;line-height:1.1;color:var(--mut);font-weight:700;text-align:center}.abt th.td{color:var(--blue)}
 .abt td.nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;padding:3px 6px 3px 4px}
 .abc{display:flex;height:22px;width:100%;border-radius:2px;background:var(--raised);overflow:hidden}
@@ -699,6 +700,9 @@ input[type=date]::-webkit-calendar-picker-indicator,input[type=datetime-local]::
 .eph{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}.eph span{color:var(--mut)}
 .epb{display:flex;gap:14px;flex-wrap:wrap;margin:4px 0}.epb a,.epb span{display:inline-flex;align-items:center;gap:5px}
 .epr{white-space:pre-wrap;margin:4px 0}
+.ebx{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:11px 14px}.ebx h4{margin:0 0 6px;color:rgb(196,136,92)}
+.eli{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}.eli .ct{flex:1;min-width:0}.eli .ct b{display:block;word-break:break-word}.eli .ct small{display:block;color:var(--mut);font-size:var(--fs);word-break:break-word}
+.eadd{margin:10px 0 0}.scr .ebx .epu{background:var(--panel);margin:0 0 10px}.scr .ebx .epu:last-of-type{margin-bottom:0}
 
 .mod[data-m=_admin]{--mc:238,70,80}
 .mod.on{border-color:rgb(var(--mc));background:linear-gradient(135deg,rgba(var(--mc),.24),rgba(var(--mc),.06));box-shadow:0 8px 26px rgba(var(--mc),.28)}
@@ -873,7 +877,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.11.66</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.11.67</span></div>
   <div class="hmid"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bQR" class="ico hide" title="Mes identifiants" aria-label="Mes identifiants"></button></div>
@@ -884,7 +888,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.66</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.67</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1064,8 +1068,9 @@ const link = (v, label) => v ? `<a class="ref" href="${SHERLOC}${encodeURICompon
 
 // ------------------------------------------------------------ Attente bloquante (flou + « Patienter… »)
 let busyN = 0;
-function busy(on){ busyN = Math.max(0, busyN + (on ? 1 : -1)); $('#busy').classList.toggle('on', busyN > 0); }
-async function wait(fn){ busy(true); try { return await fn(); } finally { busy(false); } }
+let hardN = 0;
+function busy(on, soft){ busyN = Math.max(0, busyN + (on ? 1 : -1)); if (!soft) hardN = Math.max(0, hardN + (on ? 1 : -1)); const b = $('#busy'); b.classList.toggle('on', busyN > 0); b.classList.toggle('soft', hardN === 0); }
+async function wait(fn, soft){ busy(true, soft); try { return await fn(); } finally { busy(false, soft); } }
 
 // ------------------------------------------------------------ API + synchronisation en arrière-plan
 async function api(action, p = {}) {
@@ -2450,8 +2455,8 @@ async function renderSec(){
       return `<div class="prow"><div><b>${PLAB[k] || k}</b><div class="m">${esc(p.description)}</div></div><div>${typeof p.valeur === 'boolean' ? sw('p_' + k, p.valeur, `data-k="${k}"`) : `<input data-k="${k}" value="${esc(p.valeur)}" inputmode="numeric">`}<div class="u">${esc(p.unite)}</div></div></div>`; }).join('')}`;
     el.onchange = async e => {
       const t = e.target; if (!t.dataset.k) return; const v = t.type === 'checkbox' ? t.checked : t.value;
-      try { await wait(() => api('params_set', {cle:t.dataset.k, valeur:v})); const p = PARAMS.find(x => x.cle === t.dataset.k); if (p) p.valeur = typeof p.valeur === 'boolean' ? v === true : (typeof p.valeur === 'number' ? Number(v) : v); toast('Enregistré'); }
-      catch (err) { toast(err.message); PARAMS = null; renderAdmin(); }
+      const p = PARAMS.find(x => x.cle === t.dataset.k); if (p) p.valeur = typeof p.valeur === 'boolean' ? v === true : (typeof p.valeur === 'number' ? Number(v) : v); toast('Enregistré');
+      enqueue(() => api('params_set', {cle:t.dataset.k, valeur:v}), () => { PARAMS = null; renderAdmin(); });
     };
   }
 }
@@ -2473,23 +2478,20 @@ async function renderUsers(el){
           <div class="usec"><h5>Catégories AWB visibles</h5><div class="chips">${catGr().map(([k, l, col]) => `<label class="tchip cc" style="--gc:${esc(col)}"><input type="checkbox" data-cm="CAT_${k}" data-cu="${esc(u.email)}" ${u.rights['CAT_' + k] ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div></div>
           <div class="usec"><h5>Peut voir l’historique</h5><div class="chips">${[['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'SCMS']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label class="tchip" title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}><span>${l}</span></label>`; }).join('')}</div></div>
         </div></div></section>`).join('')}`;
-  el.onchange = async e => {
+  const saveUs = p => { US = null; toast('Enregistré'); enqueue(() => api('users_set', p), () => { US = null; renderUsers(el); }).then(() => { if (!pending) api('users_list').then(x => US = x).catch(() => {}); }); };
+  el.onchange = e => {
     const t = e.target;
-    try {
-      if (t.dataset.hm) await wait(() => api('users_set', {email:t.dataset.hu, rights:{['HIST_' + t.dataset.hm]: t.checked ? 'lecture' : ''}}));
-      else if (t.dataset.cm) await wait(() => api('users_set', {email:t.dataset.cu, rights:{[t.dataset.cm]: t.checked ? 'lecture' : ''}}));
-      else if (t.dataset.act) await wait(() => api('users_set', {email:t.dataset.act, actif:t.checked}));
-      else if (t.dataset.u) await wait(() => api('users_set', {email:t.dataset.u, rights:{[t.dataset.m]: t.value}}));
-      else return;
-      US = null; api('users_list').then(x => US = x).catch(() => {}); toast('Enregistré');
-    } catch (err) { toast(err.message); US = null; renderUsers(el); }
+    if (t.dataset.hm) saveUs({email:t.dataset.hu, rights:{['HIST_' + t.dataset.hm]: t.checked ? 'lecture' : ''}});
+    else if (t.dataset.cm) saveUs({email:t.dataset.cu, rights:{[t.dataset.cm]: t.checked ? 'lecture' : ''}});
+    else if (t.dataset.act) { const cd = t.closest('.ucard'); if (cd) cd.classList.toggle('off', !t.checked); saveUs({email:t.dataset.act, actif:t.checked}); }
+    else if (t.dataset.u) saveUs({email:t.dataset.u, rights:{[t.dataset.m]: t.value}});
   };
   el.onclick = async e => {
     const g = e.target.closest('[data-lv]');
     if (g) {
       const box = g.parentElement, v = g.dataset.lv;
-      try { await wait(() => api('users_set', {email: box.dataset.u, rights: {[box.dataset.m]: v}})); box.querySelectorAll('button').forEach(x => { x.className = x === g ? 'on ' + (x.dataset.lv || 'none') : ''; }); US = null; api('users_list').then(x => US = x).catch(() => {}); toast('Enregistré'); }
-      catch (err) { toast(err.message); US = null; renderUsers(el); }
+      box.querySelectorAll('button').forEach(x => { x.className = x === g ? 'on ' + (x.dataset.lv || 'none') : ''; });
+      saveUs({email: box.dataset.u, rights: {[box.dataset.m]: v}});
       return;
     }
     const b = e.target.closest('[data-conn]'); if (!b) return;
@@ -2570,10 +2572,12 @@ function entDraw(){
 async function reloadEnt(){
   try { cache.ENTREPRISES = await api('ent_list'); } catch (e) { return; }
   if (cur === 'ENTREPRISES') entDraw();
-  if (ENT.view && $('#mEnt').classList.contains('on') && !ENT.edit) { const r = entRows().find(x => x.id === ENT.view); if (r) drawEntView(r); else closeEnt(); }
+  const ae = document.activeElement, typing = ae && ae.closest && ae.closest('#sEnt') && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName);
+  if (ENT.view && $('#mEnt').classList.contains('on') && !ENT.edit && !typing) { const r = entRows().find(x => x.id === ENT.view); if (r) drawEntView(r); else closeEnt(); }
   drawTiles();
 }
 async function openEnt(id){
+  if (String(id).startsWith('tmp')) return toast('Enregistrement en cours…');
   if (!cache.ENTREPRISES) { try { cache.ENTREPRISES = await wait(() => api('ent_list')); } catch (e) { return toast(e.message); } }
   const r = entRows().find(x => String(x.id) === String(id)); if (!r) return toast('Entreprise introuvable');
   ENT.view = r.id; ENT.edit = null; drawEntView(r); $('#mEnt').classList.add('on');
@@ -2581,21 +2585,63 @@ async function openEnt(id){
 function closeEnt(){ ENT.edit = null; ENT.view = null; $('#mEnt').classList.remove('on'); }
 $('#mEnt').addEventListener('mousedown', e => { if (e.target.id === 'mEnt' && !ENT.edit) closeEnt(); });
 const entMaj = o => (o && o.maj_le) ? `<small class="m" style="margin:0">MAJ ${fdate(o.maj_le)}${o.maj_par ? ' · ' + esc(who(o.maj_par)) : ''}</small>` : '';
+function entPatch(r, fn){
+  r = entRows().find(x => String(x.id) === String(r.id)) || r;
+  const o = {comptes: entC(r).map(x => ({...x})), routes: entR(r).map(x => ({...x})), pu: entP(r).map(x => ({...x}))}; fn(o);
+  r.comptes = JSON.stringify(o.comptes); r.routes = JSON.stringify(o.routes); r.pu = JSON.stringify(o.pu);
+  r.modifie_le = new Date().toISOString(); r.modifie_par = ME.email;
+  const data = {nom: r.nom, adresse: r.adresse || '', commentaire: r.commentaire || '', comptes: o.comptes, routes: o.routes, pu: o.pu};
+  entDraw(); drawTiles(); if (String(ENT.view) === String(r.id) && !ENT.edit) drawEntView(r);
+  enqueue(() => api('ent_save', {id: r.id, data}), () => reloadEnt()).then(() => { if (!pending) reloadEnt(); });
+}
 function drawEntView(r){
   const cs = entC(r), rs = entR(r), ps = entP(r), w = canWrite(), adm = ME.rights.ENTREPRISES === 'admin';
+  const xd = (k, i) => w ? `<button class="ico sm warn" data-xd="${k}" data-i="${i}" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : '';
   $('#sEnt').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(r.nom)}</h3>${r.adresse ? `<div class="sub"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.adresse)}" target="_blank" rel="noopener">${esc(r.adresse)}</a></div>` : ''}</div>
     ${adm ? `<button class="ico sm warn" id="enD" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}${w ? `<button class="ico sm" id="enE" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="enX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
-    ${r.commentaire ? `<div class="esec"><h4>Commentaire</h4><div class="epr" style="white-space:pre-wrap">${esc(r.commentaire)}</div></div>` : ''}<div class="esec"><h4>Numéros de compte</h4>${cs.length ? `<table class="etab s">${cs.map(c => `<tr><td><b>${esc(c.numero)}</b></td><td>${esc(c.commentaire || '')}</td><td>${entMaj(c)}</td></tr>`).join('')}</table>` : '<span class="m">Aucun</span>'}</div>
-    <div class="esec"><h4>Routes</h4>${rs.length ? `<table class="etab s">${rs.map(x => `<tr><td><b>${esc(x.nom)}</b></td><td>${rtChips(x) || '<span class="m">—</span>'}</td></tr>`).join('')}</table>` : '<span class="m">Aucune</span>'}</div>
-    <div class="esec"><h4>PU réguliers</h4>${ps.length ? ps.map(p => `<div class="epu"><div class="eph"><b>${puHor(p) || 'Horaire non renseigné'}</b><span>${esc(jLbl(p.jours))}${puRoute(r, p) ? ' · Route ' + esc(puRoute(r, p)) : ''}</span></div>
-      <div class="epb">${p.contact ? `<span>${IC.users.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.contact)}</span>` : ''}${p.tel ? `<a href="tel:${esc(String(p.tel).replace(/[^\d+]/g, ''))}">${IC.phone.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.tel)}</a>` : ''}${p.commercial ? `<span class="m" style="margin:0">Commercial : ${esc(p.commercial)}</span>` : ''}</div>
-      ${p.remarques ? `<div class="epr">${esc(p.remarques)}</div>` : ''}${entMaj(p)}</div>`).join('') : '<span class="m">Aucun</span>'}</div>
+    <div class="scg"><div class="scl">
+      ${r.commentaire ? `<div class="ebx"><h4>Informations</h4><div class="epr">${esc(r.commentaire)}</div></div>` : ''}
+      <div class="ebx"><h4>Routes<span class="ech">${rs.length}</span></h4>${rs.length ? rs.map((x, i) => `<div class="eli"><div class="ct"><b>${esc(x.nom)}</b></div><div>${rtChips(x)}</div>${xd('routes', i)}</div>`).join('') : '<span class="m">Aucune route</span>'}
+        ${w ? `<div class="erow eadd"><input id="aRn" placeholder="Nouvelle route" maxlength="80" autocomplete="off">${[['m13', '13m3'], ['m20', '20m3'], ['pu', 'PU'], ['del', 'DEL']].map(([f, l]) => `<label class="eck"><input type="checkbox" id="aR_${f}">${l}</label>`).join('')}<button class="ico sm ok" data-xa="routes" title="Ajouter la route" aria-label="Ajouter la route">${IC.plus}</button></div>` : ''}</div>
+      <div class="ebx"><h4>Numéros de compte<span class="ech">${cs.length}</span></h4>${cs.length ? cs.map((c, i) => `<div class="eli"><div class="ct"><b>${esc(c.numero)}</b>${c.commentaire ? `<small>${esc(c.commentaire)}</small>` : ''}${entMaj(c)}</div>${xd('comptes', i)}</div>`).join('') : '<span class="m">Aucun numéro de compte</span>'}
+        ${w ? `<div class="erow eadd"><input id="aCn" placeholder="Numéro de compte" maxlength="60" autocomplete="off"><input id="aCc" placeholder="Commentaire" maxlength="200" autocomplete="off"><button class="ico sm ok" data-xa="comptes" title="Ajouter le compte" aria-label="Ajouter le compte">${IC.plus}</button></div>` : ''}</div>
+    </div><div class="scr">
+      <div class="ebx"><h4>PU réguliers<span class="ech">${ps.length}</span></h4>${ps.length ? ps.map(p => `<div class="epu"><div class="eph"><b>${puHor(p) || 'Horaire non renseigné'}</b><span>${esc(jLbl(p.jours))}${puRoute(r, p) ? ' · Route ' + esc(puRoute(r, p)) : ''}</span></div>
+        <div class="epb">${p.contact ? `<span>${IC.users.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.contact)}</span>` : ''}${p.tel ? `<a href="tel:${esc(String(p.tel).replace(/[^\d+]/g, ''))}">${IC.phone.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.tel)}</a>` : ''}${p.commercial ? `<span class="m" style="margin:0">Commercial : ${esc(p.commercial)}</span>` : ''}</div>
+        ${p.remarques ? `<div class="epr">${esc(p.remarques)}</div>` : ''}${entMaj(p)}</div>`).join('') : '<span class="m">Aucun PU régulier</span>'}${w ? `<p class="m" style="margin:8px 0 0">Les PU réguliers se modifient avec le crayon en haut.</p>` : ''}</div>
+    </div></div>
     <p class="m" style="margin:14px 0 0">${r.cree_par ? 'Créée par ' + esc(who(r.cree_par)) + (r.cree_le ? ' le ' + fdate(r.cree_le) : '') + '. ' : ''}${r.modifie_le ? 'Dernière modification le ' + fdate(r.modifie_le, true) + (r.modifie_par ? ' par ' + esc(who(r.modifie_par)) : '') + '.' : ''}</p>`;
   $('#enX').onclick = closeEnt;
-  if ($('#enE')) $('#enE').onclick = () => openEntEdit(r);
+  if ($('#enE')) $('#enE').onclick = () => openEntEdit(entRows().find(x => String(x.id) === String(r.id)) || r);
   if ($('#enD')) $('#enD').onclick = async () => {
     if (!await ask('Supprimer l’entreprise ?', r.nom + ' sera définitivement supprimée.', 'Supprimer')) return;
-    try { await wait(() => api('ent_delete', {id: r.id})); cache.ENTREPRISES = entRows().filter(x => x.id !== r.id); closeEnt(); entDraw(); drawTiles(); toast('Entreprise supprimée'); } catch (e) { toast(e.message); }
+    cache.ENTREPRISES = entRows().filter(x => x.id !== r.id); closeEnt(); entDraw(); drawTiles(); toast('Entreprise supprimée');
+    enqueue(() => api('ent_delete', {id: r.id}), () => reloadEnt());
+  };
+  const el = $('#sEnt'), add = k => {
+    if (k === 'comptes') {
+      const n = $('#aCn').value.trim(); if (!n) { toast('Saisis un numéro de compte'); return $('#aCn').focus(); }
+      if (entC(entRows().find(x => String(x.id) === String(r.id)) || r).some(c => String(c.numero).trim() === n)) return toast('Ce numéro de compte existe déjà');
+      const com = $('#aCc').value.trim();
+      entPatch(r, o => o.comptes.push({numero: n, commentaire: com, maj_le: new Date().toISOString(), maj_par: ME.email}));
+      if ($('#aCn')) $('#aCn').focus();
+    } else {
+      const n = $('#aRn').value.trim(); if (!n) { toast('Saisis un nom de route'); return $('#aRn').focus(); }
+      if (entR(entRows().find(x => String(x.id) === String(r.id)) || r).some(x => String(x.nom).trim().toLowerCase() === n.toLowerCase())) return toast('Cette route existe déjà');
+      const fl = {}; ['m13', 'm20', 'pu', 'del'].forEach(f => { fl[f] = $('#aR_' + f).checked; });
+      entPatch(r, o => o.routes.push({nom: n, ...fl}));
+      if ($('#aRn')) $('#aRn').focus();
+    }
+  };
+  el.onkeydown = e => { if (e.key === 'Enter' && e.target.closest('.eadd') && e.target.tagName === 'INPUT' && e.target.type === 'text') { e.preventDefault(); add(e.target.id === 'aRn' ? 'routes' : 'comptes'); } };
+  el.onclick = async e => {
+    const a = e.target.closest('[data-xa]'), x = e.target.closest('[data-xd]');
+    if (a) add(a.dataset.xa);
+    else if (x) {
+      const k = x.dataset.xd, i = +x.dataset.i, cr = entRows().find(z => String(z.id) === String(r.id)) || r, it = (k === 'routes' ? entR(cr) : entC(cr))[i]; if (!it) return;
+      if (!await ask(k === 'routes' ? 'Supprimer la route ?' : 'Supprimer le numéro de compte ?', String(k === 'routes' ? it.nom : it.numero), 'Supprimer')) return;
+      entPatch(r, o => { const rm = o[k].splice(i, 1)[0]; if (k === 'routes' && rm) o.pu.forEach(p => { if (String(p.route || '').trim() === String(rm.nom || '').trim()) p.route = ''; }); });
+    }
   };
 }
 function openEntEdit(r){
@@ -2616,6 +2662,7 @@ function drawEntEdit(){
       <label>Route qui fait ce PU<select data-k="pu" data-i="${i}" data-f="route">${(() => { const nm = [...new Set(d.routes.map(x => String(x.nom || '').trim()).filter(Boolean))], cv = String(p.route || '').trim() || (nm.length === 1 ? nm[0] : ''); if (cv && !nm.includes(cv)) nm.push(cv); return '<option value="">— Non affectée —</option>' + nm.map(n => `<option ${n === cv ? 'selected' : ''}>${esc(n)}</option>`).join(''); })()}</select></label>
       <input data-k="pu" data-i="${i}" data-f="commercial" list="entComL" placeholder="Commercial" value="${esc(p.commercial || '')}" autocomplete="off" style="margin-bottom:8px"><textarea data-k="pu" data-i="${i}" data-f="remarques" rows="2" placeholder="Remarques">${esc(p.remarques || '')}</textarea>${entMaj(p)}</div>`; }).join('')}<button class="s" data-add="pu">${IC.plus}Ajouter un PU régulier</button></div>
     <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px"><button class="s" id="enC">Annuler</button><button class="p" id="enS">Enregistrer</button></div>`;
+  $('#sEnt').onkeydown = null;
   const cancel = () => { const r = d.id ? entRows().find(x => x.id === d.id) : null; ENT.edit = null; if (r) { drawEntView(r); } else closeEnt(); };
   $('#enX').onclick = cancel; $('#enC').onclick = cancel;
   $('#eAdr').oninput = e => entAdrSug(e.target.value);
@@ -2624,20 +2671,25 @@ function drawEntEdit(){
     if (a) { entSync(); const k = a.dataset.add; d[k].push(k === 'comptes' ? {numero: '', commentaire: ''} : k === 'routes' ? {nom: '', m13: false, m20: false, pu: false, del: false} : {debut: '', fin: '', contact: '', tel: '', jours: '', remarques: '', commercial: ''}); drawEntEdit(); const els = document.querySelectorAll(`#sEnt [data-k="${k}"][data-i="${d[k].length - 1}"]`); if (els[0]) els[0].focus(); }
     else if (x) { entSync(); d[x.dataset.rm].splice(+x.dataset.i, 1); drawEntEdit(); }
   };
-  const save = async () => {
+  const save = () => {
     entSync();
     const nom = d.nom.trim(); if (!nom) { toast('Le nom de l’entreprise est obligatoire'); return $('#eNom').focus(); }
     const data = {nom, adresse: d.adresse.trim(), commentaire: String(d.commentaire || '').trim(),
       comptes: d.comptes.filter(c => String(c.numero).trim()).map(c => ({...c, numero: String(c.numero).trim(), commentaire: String(c.commentaire || '').trim()})),
       routes: d.routes.filter(x => String(x.nom).trim()).map(x => ({...x, nom: String(x.nom).trim()})),
       pu: d.pu.filter(p => p.debut || p.fin || p.contact || p.tel || entJours(p.jours).length || p.remarques || p.commercial).map(p => ({...p, jours: entJours(p.jours).join(','), contact: String(p.contact || '').trim(), tel: String(p.tel || '').trim(), commercial: String(p.commercial || '').trim(), route: String(p.route || '').trim(), remarques: String(p.remarques || '').trim()}))};
-    try {
-      const id = await wait(() => api('ent_save', {id: d.id || undefined, data}));
-      ENT.edit = null; cache.ENTREPRISES = await api('ent_list');
-      const r = entRows().find(x => String(x.id) === String(id || d.id)); ENT.view = r ? r.id : null;
-      if (r) drawEntView(r); else closeEnt();
-      entDraw(); drawTiles(); toast('Enregistré');
-    } catch (e) { toast(e.message || 'Enregistrement impossible'); }
+    const now = new Date().toISOString(), js = {comptes: JSON.stringify(data.comptes), routes: JSON.stringify(data.routes), pu: JSON.stringify(data.pu)};
+    ENT.edit = null;
+    if (d.id) {
+      const r = entRows().find(x => String(x.id) === String(d.id));
+      if (r) Object.assign(r, {nom: data.nom, adresse: data.adresse, commentaire: data.commentaire, ...js, modifie_le: now, modifie_par: ME.email});
+      ENT.view = d.id; if (r) drawEntView(r); else closeEnt();
+    } else {
+      cache.ENTREPRISES = [{id: 'tmp' + Date.now(), nom: data.nom, adresse: data.adresse, commentaire: data.commentaire, ...js, cree_par: ME.email, cree_le: now, modifie_le: now, modifie_par: ME.email}, ...entRows()];
+      ENT.view = null; closeEnt();
+    }
+    entDraw(); drawTiles(); toast('Enregistré');
+    enqueue(() => api('ent_save', {id: d.id || undefined, data}), () => reloadEnt()).then(() => { if (!pending) reloadEnt(); });
   };
   $('#enS').onclick = save; $('#enS2').onclick = save;
 }
@@ -2701,14 +2753,14 @@ function absDraw(){
   const pend = [];
   rows.forEach(p => { const j = absJ(p); Object.keys(j).sort().forEach(k => { const c = j[k] || []; if (c[0] === '??' || c[1] === '??') pend.push({n: p.nom, k}); }); });
   const qb = pend.length ? `<div class="abq"><b>À confirmer !</b><span>${pend.slice(0, 6).map(x => esc(x.n) + ' (' + fm(new Date(x.k + 'T12:00:00')) + ')').join(' · ')}${pend.length > 6 ? ' …' : ''}</span></div>` : '';
-  el.innerHTML = `<div class="abh"><h3>Planning des absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[18])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}${ABS.g.some(g => g.admin) ? `<button class="ico sm" data-ag="1" title="Gérer les groupes" aria-label="Gérer les groupes">${IC.gear}</button>` : ''}</div>
+  el.innerHTML = `<div class="abh"><h3>Planning des absences</h3><button class="s" data-an="0">Aujourd’hui</button><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[18])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}${ABS.g.some(g => g.admin) ? `<button class="ico sm" data-ag="1" title="Gérer les groupes" aria-label="Gérer les groupes">${IC.gear}</button>` : ''}</div>
     ${ABS.g.length ? `<div class="abg"><span>Groupes :</span>${ABS.g.map(g => `<label class="chk"><input type="checkbox" data-agk="${esc(g.id)}" ${hid[String(g.id)] ? '' : 'checked'}>${esc(g.nom)}</label>`).join('')}</div>` : ''}
-    ${qb}${rows.length ? `<table class="abt"><thead><tr><th></th>${[0, 1, 2].map(w => `<th colspan="7" class="wkh">${fm(days[w * 7])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td ' : ''}${i % 7 === 0 ? 'wk' : ''}${i % 7 > 4 || absHol(d) ? ' we' : ''}"${absHol(d) ? ` title="${esc(absHol(d))}"` : ''}>${dn[i % 7]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
+    ${qb}${rows.length ? `<table class="abt"><thead><tr><th></th>${[0, 1, 2].map(w => `<th colspan="7" class="wkh">${fm(days[w * 7])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td tdy ' : ''}${i % 7 === 0 ? 'wk' : ''}${i % 7 > 4 || absHol(d) ? ' we' : ''}"${absHol(d) ? ` title="${esc(absHol(d))}"` : ''}>${dn[i % 7]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
       const fer = absHol(d), we = di % 7 > 4 || !!fer, k = absIso(d), c = we ? [] : (j[k] || []), a = c[0] || '', b = c[1] || '', note = c[2] || '', nf = Number(c[3]) || 0, has = a || b || note || nf;
       const tip = has ? [p.nom + ' · ' + d.toLocaleDateString('fr-FR', {weekday: 'long', day: 'numeric', month: 'long'}), a && a === b ? (ABS_L[a] || a) : [a ? 'Matin : ' + (ABS_L[a] || a) : '', b ? 'Après-midi : ' + (ABS_L[b] || b) : ''].filter(Boolean).join(' · '), note, nf ? nf + ' fichier' + (nf > 1 ? 's' : '') : ''].filter(Boolean).join('\n') : '';
       const cell = a && a === b ? `<i style="background:${ABS_C[a]}">${esc(a)}</i>` : [a, b].map(x => x ? `<i style="background:${ABS_C[x]}">${esc(x)}</i>` : '<i></i>').join('');
       const clk = !we && (absPAdm(p.id) || has);
-      return `<td class="${di % 7 === 0 ? 'wk' : ''}"><div class="abc${we ? ' wend' : clk ? ' adm' : ''}" ${tip || fer ? `title="${esc(tip || fer)}"` : ''} ${clk ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}${note || nf ? '<u class="abn"></u>' : ''}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
+      return `<td class="${di % 7 === 0 ? 'wk' : ''}${absIso(d) === today ? ' tdy' : ''}"><div class="abc${we ? ' wend' : clk ? ' adm' : ''}" ${tip || fer ? `title="${esc(tip || fer)}"` : ''} ${clk ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}${note || nf ? '<u class="abn"></u>' : ''}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
       : `<p class="m">${adm ? 'Aucune personne pour le moment : ajoute-en avec le bouton ci-dessus.' : 'Aucune personne pour le moment.'}</p>`}
     <div class="abl">${Object.keys(ABS_C).map(c => `<span><i style="background:${ABS_C[c]}"></i>${esc(c)} : ${ABS_L[c]}</span>`).join('')}</div>`;
 }
@@ -2740,13 +2792,13 @@ async function absFiles(id, d, adm){
   }; });
   box.querySelectorAll('[data-afx]').forEach(b => { b.onclick = async () => {
     if (!await ask('Supprimer ce fichier ?', 'Le fichier sera définitivement supprimé.', 'Supprimer')) return;
-    try { await wait(() => api('abs_file_delete', {id: b.dataset.afx})); await absReload(); absFiles(id, d, adm); } catch (e) { toast(e.message); }
+    try { await wait(() => api('abs_file_delete', {id: b.dataset.afx}), true); await absReload(); absFiles(id, d, adm); } catch (e) { toast(e.message); }
   }; });
   const inp = $('#abFin');
   if (inp) inp.onchange = async () => {
     for (const f of Array.from(inp.files)) {
       if (f.size > 8 * 1024 * 1024) { toast(f.name + ' dépasse 8 Mo'); continue; }
-      try { const b64 = await readB64(f); await wait(() => api('abs_file_add', {id, date: d, name: f.name, mime: f.type || 'application/octet-stream', b64})); } catch (e) { toast(e.message || 'Envoi impossible'); }
+      try { const b64 = await readB64(f); await wait(() => api('abs_file_add', {id, date: d, name: f.name, mime: f.type || 'application/octet-stream', b64}), true); } catch (e) { toast(e.message || 'Envoi impossible'); }
     }
     await absReload(); absFiles(id, d, adm);
   };
@@ -2784,7 +2836,10 @@ function openAbsEdit(id, d){
     const per = $('#abP').value, c = ABS.ed.code, com = $('#abCom').value.trim();
     const pl = {id, dates, am: per === 'pm' ? null : c, pm: per === 'am' ? null : c};
     if (c === '') pl.com = ''; else if (com !== ABS.ed.com0.trim()) pl.com = com;
-    try { await wait(() => api('abs_set', pl)); ABS.rows = await absLoad(); ABS.t = Date.now(); closeAbs(); absDraw(); toast('Enregistré'); } catch (err) { toast(err.message || 'Enregistrement impossible'); }
+    const pp = (ABS.rows || []).find(x => String(x.id) === String(id));
+    if (pp) { const j = absJ(pp); dates.forEach(k => { const c = j[k] ? j[k].slice() : ['', '', '', 0]; if (pl.am !== null) c[0] = pl.am || ''; if (pl.pm !== null) c[1] = pl.pm || ''; if ('com' in pl) c[2] = pl.com; if (!c[0] && !c[1] && !c[2] && !Number(c[3])) delete j[k]; else j[k] = c; }); pp.jours = JSON.stringify(j); }
+    closeAbs(); absDraw(); toast('Enregistré');
+    enqueue(() => api('abs_set', pl), () => absReload().catch(() => {})).then(() => { if (!pending) absReload().catch(() => {}); });
   };
   $('#mAbs').classList.add('on'); absFiles(id, d, true);
 }
@@ -2795,7 +2850,7 @@ async function openCat(){
   const load = async () => { const r = await Promise.all([api('cat_all'), api('catgr_list')]); D = r[0]; G = r[1]; };
   try { await wait(load); } catch (e) { return toast(e.message); }
   const refreshMe = async () => { try { const m = await api('me', {refresh: true}); ME.categories_awb = m.categories_awb; ME.cat_groups = m.cat_groups; ME.rights = m.rights; US = null; if (cur === 'AWB') drawCards(); } catch (e) {} };
-  const run = async fn => { try { await wait(fn); await load(); draw(); refreshMe(); } catch (e) { toast(e.message); draw(); } };
+  const run = async fn => { try { await wait(fn, true); await load(); draw(); refreshMe(); } catch (e) { toast(e.message); draw(); } };
   const draw = () => {
     $('#sAbs').className = 'sheet wide2';
     $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Gestion des catégories</h3><div class="sub">Chaque groupe correspond à un droit : seules les personnes qui l’ont voient ses catégories</div></div><button class="ico sm" id="cX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
@@ -2822,7 +2877,7 @@ async function openGrp(){
   try { D = await wait(() => api('grp_all')); } catch (e) { return toast(e.message); }
   const nm = e => { const u = D.users.find(x => x.email === e); return u ? (((u.prenom || '') + ' ' + (u.nom || '')).trim() || e) : e; };
   const ini = e => nm(e).split(/[\s@._-]+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
-  const run = async fn => { try { await wait(fn); D = await api('grp_all'); draw(); if (cur === 'AWB' || cur === '_home' || document.querySelector('#absBox')) { try { await absReload(); } catch (e) {} } } catch (e) { toast(e.message); } };
+  const run = async fn => { try { await wait(fn, true); D = await api('grp_all'); draw(); if (cur === 'AWB' || cur === '_home' || document.querySelector('#absBox')) { try { await absReload(); } catch (e) {} } } catch (e) { toast(e.message); } };
   const draw = () => {
     $('#sAbs').className = 'sheet wide2';
     $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Gestion des groupes</h3><div class="sub">Les membres d’un groupe voient les absences des personnes du groupe</div></div><button class="ico sm" id="gX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
@@ -2851,10 +2906,10 @@ function openAbsMgr(){
       <div class="erow"><select id="abG">${(ABS.g || []).filter(g => g.admin).map(g => `<option value="${esc(g.id)}">${esc(g.nom)}</option>`).join('')}</select><input id="abNew" placeholder="Nouvelle personne" maxlength="80" autocomplete="off"><button class="p" id="abAdd">${IC.plus}Ajouter</button></div>`;
     $('#abX').onclick = closeAbs;
     const reload = async () => { ABS.rows = await absLoad(); ABS.t = Date.now(); absDraw(); };
-    $('#abAdd').onclick = async () => { const n = $('#abNew').value.trim(); if (!n) return; try { await wait(() => api('abs_person_save', {nom: n, groupe_id: $('#abG').value})); await reload(); draw(); $('#abNew').focus(); } catch (e) { toast(e.message); } };
+    $('#abAdd').onclick = async () => { const n = $('#abNew').value.trim(); if (!n) return; try { await wait(() => api('abs_person_save', {nom: n, groupe_id: $('#abG').value}), true); await reload(); draw(); $('#abNew').focus(); } catch (e) { toast(e.message); } };
     $('#abNew').onkeydown = e => { if (e.key === 'Enter') $('#abAdd').click(); };
-    $('#sAbs').querySelectorAll('[data-pn]').forEach(i => { i.onchange = async () => { const n = i.value.trim(); if (!n) return draw(); try { await wait(() => api('abs_person_save', {id: i.dataset.pn, nom: n})); await reload(); toast('Enregistré'); } catch (e) { toast(e.message); } }; });
-    $('#sAbs').querySelectorAll('[data-pd]').forEach(b => { b.onclick = async () => { const p = ABS.rows.find(x => String(x.id) === b.dataset.pd); if (!await ask('Supprimer cette personne ?', (p ? p.nom : '') + ' et toutes ses absences seront supprimées.', 'Supprimer')) return; try { await wait(() => api('abs_person_delete', {id: b.dataset.pd})); await reload(); draw(); } catch (e) { toast(e.message); } }; });
+    $('#sAbs').querySelectorAll('[data-pn]').forEach(i => { i.onchange = async () => { const n = i.value.trim(); if (!n) return draw(); const pp = ABS.rows.find(x => String(x.id) === i.dataset.pn); if (pp) pp.nom = n; absDraw(); toast('Enregistré'); enqueue(() => api('abs_person_save', {id: i.dataset.pn, nom: n}), () => reload().then(draw).catch(() => {})); }; });
+    $('#sAbs').querySelectorAll('[data-pd]').forEach(b => { b.onclick = async () => { const p = ABS.rows.find(x => String(x.id) === b.dataset.pd); if (!await ask('Supprimer cette personne ?', (p ? p.nom : '') + ' et toutes ses absences seront supprimées.', 'Supprimer')) return; const pid = b.dataset.pd; ABS.rows = ABS.rows.filter(x => String(x.id) !== pid); absDraw(); draw(); enqueue(() => api('abs_person_delete', {id: pid}), () => reload().then(draw).catch(() => {})); }; });
   };
   draw(); $('#mAbs').classList.add('on');
 }
