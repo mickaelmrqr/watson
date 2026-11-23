@@ -693,6 +693,15 @@ html[data-theme=light] .tgc.on{color:#5a2fb3}
 .card.lib .ltg{display:flex;flex-wrap:wrap;gap:5px}
 .card.lib .lic{display:flex;gap:12px;color:var(--mut);font-size:var(--fs)}.card.lib .lic span{display:inline-flex;align-items:center;gap:4px}.card.lib .lic svg{width:15px;height:15px}
 .card.lib .lby{margin-top:auto;color:var(--mut);font-size:var(--fs);padding-top:4px}
+.lgrid{gap:10px}
+@media(min-width:800px){.lgrid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}}
+.card.lib{padding:8px 12px 8px 16px;gap:4px;min-height:0}
+.card.lib .ltt{font-size:var(--fs);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card.lib .ltg{flex-wrap:nowrap;overflow:hidden}
+.card.lib .lfoot{display:flex;align-items:center;gap:10px;color:var(--mut);font-size:calc(var(--fs) - 1px)}
+.card.lib .lfoot span{display:inline-flex;align-items:center;gap:3px}
+.card.lib .lfoot svg{width:14px;height:14px}
+.card.lib .lfoot .ld{margin-left:auto}
 .lbt{display:flex;gap:8px;align-items:center}
 .rich{line-height:1.55;word-break:break-word;font-size:var(--fs-b)}
 .rich h3{font:700 var(--fs-t) var(--disp);margin:12px 0 4px}.rich p,.rich div{margin:0 0 6px}.rich ul,.rich ol{margin:4px 0 8px;padding-left:24px}.rich blockquote{margin:6px 0;padding:2px 12px;border-left:3px solid #9b6cff;color:var(--mut)}
@@ -730,7 +739,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.39</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.40</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -740,7 +749,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.39</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.40</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2336,15 +2345,14 @@ function libDraw(){
   const l = libFiltered();
   $('#lgrid').innerHTML = l.map(libCard).join('') || `<div class="empty">${libItems().length ? 'Aucun résultat.' : 'La bibliothèque est vide pour le moment.'}</div>`;
 }
+const IC_TXT = ic('<path d="M4 6h16M4 12h16M4 18h10"/>');
 function libCard(it){
   const f = it.fichiers || [], nd = f.filter(x => x.kind !== 'photo').length, np = f.filter(x => x.kind === 'photo').length, nl = libLinks(it).length, tg = libTags(it);
-  const ex = htmlText(it.texte);
-  return `<div class="card lib ${String(it.id).startsWith('tmp_') ? 'tmpc' : ''}" data-id="${esc(it.id)}">${it.thumb ? `<div class="lth"><img alt="" src="data:image/jpeg;base64,${it.thumb}"></div>` : ''}
-    <div class="ltt">${esc(it.titre)}${it.visibilite === 'prive' ? ` <span class="bb" style="margin-left:6px">${IC.lock}Privé</span>` : ''}</div>
-    ${ex ? `<div class="lex">${esc(ex)}</div>` : ''}
-    ${tg.length ? `<div class="ltg">${tg.slice(0, 5).map(t => `<span class="tgc sm">${esc(t)}</span>`).join('')}${tg.length > 5 ? `<span class="tgc sm">+${tg.length - 5}</span>` : ''}</div>` : ''}
-    <div class="lic">${nl ? `<span>${IC.link}${nl}</span>` : ''}${nd ? `<span>${IC.DOCUMENTS}${nd}</span>` : ''}${np ? `<span>${IC.camera}${np}</span>` : ''}</div>
-    <div class="lby">${esc(it.par || who(it.cree_par))} · mis à jour le ${fdate(it.modifie_le || it.cree_le)}</div></div>`;
+  const hasTxt = !!htmlText(it.texte);
+  return `<div class="card lib ${String(it.id).startsWith('tmp_') ? 'tmpc' : ''}" data-id="${esc(it.id)}">
+    <div class="ltt" title="${esc(it.titre)}">${esc(it.titre)}${it.visibilite === 'prive' ? ` <span class="bb" style="margin-left:6px">${IC.lock}Privé</span>` : ''}</div>
+    ${tg.length ? `<div class="ltg">${tg.slice(0, 4).map(t => `<span class="tgc sm">${esc(t)}</span>`).join('')}${tg.length > 4 ? `<span class="tgc sm">+${tg.length - 4}</span>` : ''}</div>` : ''}
+    <div class="lfoot">${nl ? `<span title="Liens">${IC.link}${nl}</span>` : ''}${np ? `<span title="Photos">${IC.camera}${np}</span>` : ''}${nd ? `<span title="Documents">${IC.DOCUMENTS}${nd}</span>` : ''}${hasTxt ? `<span title="Contient du texte">${IC_TXT}</span>` : ''}<span class="ld" title="Dernière mise à jour">${fdate(it.modifie_le || it.cree_le)}</span></div></div>`;
 }
 async function reloadLib(){
   try { cache.LIBRARY = await api('lib_list'); } catch (e) { return; }
