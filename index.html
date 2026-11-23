@@ -109,6 +109,13 @@ html[data-dense="1"] .card.hascat{padding-left:36px}
 .epu .epl{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;max-height:132px;overflow:auto}
 .epu .epl button{display:inline-flex;gap:6px;align-items:center;background:var(--raised);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:4px 11px;font-size:var(--fs);cursor:pointer}
 .epu .epl button b{color:var(--mut);font-weight:700}
+.epg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:8px}
+.epc{background:var(--raised);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
+.epc h5{margin:0 0 4px;font:700 13px var(--disp);display:flex;justify-content:space-between;gap:8px}.epc h5 small{color:var(--mut);font-weight:700}
+.epc .epcl{max-height:150px;overflow:auto}
+.epc button{display:flex;gap:8px;width:100%;text-align:left;background:none;border:0;color:var(--ink);padding:2px 0;cursor:pointer;font-size:var(--fs)}
+.epc button b{color:var(--mut);white-space:nowrap;font-weight:700}.epc button span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.epc.nr{border-color:#e5484d}.epc.nr h5{color:#ff8d8d}
 .card.tmp{opacity:.72;animation:pop .35s var(--ease)}
 @keyframes pop{from{transform:scale(.96);opacity:0}}
 /* Pulsation « urgent » : une seule horloge globale (:root) => toutes les cases clignotent ensemble, sans jamais redémarrer */
@@ -801,7 +808,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.59</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.60</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -812,7 +819,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.59</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.60</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1074,6 +1081,8 @@ function buildNav(){
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === cur));
 }
 const moveInd = () => {};
+const entRts = r => { const rs = entR(r).filter(x => String(x.nom || '').trim()), pr = rs.filter(x => x.pu); return (pr.length ? pr : rs).map(x => String(x.nom).trim()); };
+const entNR = r => { const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new Date().getDay()]; return r.reduce((n, x) => n + (entRts(x).length ? 0 : entP(x).filter(p => entJours(p.jours).includes(c)).length), 0); };
 const entToday = r => { const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new Date().getDay()]; return r.reduce((n, x) => n + entP(x).filter(p => entJours(p.jours).includes(c)).length, 0); };
 function alN(m, r){
   if (!r || m === 'ENTREPRISES' || m === 'DOCUMENTS') return 0;
@@ -1087,7 +1096,7 @@ function drawTiles(){
     if (!r) { if (!t.querySelector('.d3s')) t.innerHTML = '<span class="d3s"><i></i><i></i><i></i></span>'; return; }
     if (cur === '_home' && !drawTiles.h) { drawTiles.h = 1; renderHome(); drawTiles.h = 0; }
     if (m === 'DOCUMENTS') { t.innerHTML = `${r.length} document${r.length > 1 ? 's' : ''}`; return; }
-    if (m === 'ENTREPRISES') { const n = entToday(r); t.innerHTML = n ? `${n} PU aujourd’hui` : ''; setN(0); return; }
+    if (m === 'ENTREPRISES') { const n = entToday(r); const nr = entNR(r); t.innerHTML = n ? `${n} PU aujourd’hui${nr ? ' · ' + nr + ' sans route' : ''}` : ''; setN(0); return; }
     if (m === 'DOM') {
       const al = r.map(domAlert), lt = al.filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late')).length, wn = al.filter(a => !['J1', 'J4', 'J10'].some(k => a[k] === 'late') && ['J1', 'J4', 'J10'].some(k => a[k] === 'warn')).length;
       setN(lt + wn); t.innerHTML = [lt ? `<i>${lt} en retard</i>` : '', wn ? `<i class="o">${wn} à faire aujourd'hui</i>` : ''].filter(Boolean).join(' · '); return;
@@ -1118,7 +1127,7 @@ const dossName = (m, r) => { try { return String((m === 'SECURITY' ? MODS[m].tit
 function homeTile(m){
   const r = cache[m], ic = IC[m];
   const head = `<div class="hth"><span class="mi">${ic}</span><b>${MODS[m].label}</b>${alN(m, r) ? `<span class="hbub">${alN(m, r)}</span>` : ''}</div>`;
-  if (m === 'ENTREPRISES' && r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${r.length}<small>entreprise${r.length > 1 ? 's' : ''}</small></div><div class="hcs"><span class="m">${entToday(r)} PU réguliers aujourd’hui</span></div></div>`;
+  if (m === 'ENTREPRISES' && r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${r.length}<small>entreprise${r.length > 1 ? 's' : ''}</small></div><div class="hcs"><span class="m">${entToday(r)} PU réguliers aujourd’hui${entNR(r) ? ' · <b>' + entNR(r) + '</b> sans route' : ''}</span></div></div>`;
   if (!r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn"><span class="d3s"><i></i><i></i><i></i></span></div></div>`;
   const today = todayIso(), ch = [], lists = [];
   const add = (n, label, cls = '') => { if (n) ch.push(`<span class="hc ${cls}"><b>${n}</b>${label}</span>`); };
@@ -2391,7 +2400,7 @@ IC.LIBRARY = ic('<rect x="3" y="4" width="4" height="16" rx="1"/><path d="M3 8h4
 IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
 MODS.ENTREPRISES = {label: 'Entreprises', noSteps: true, name: r => r.nom, show: [], fields: []};
 IC.ENTREPRISES = ic('<path d="M3 21V7l8-4v18"/><path d="M11 21V11l10 4v6"/><path d="M3 21h18"/><path d="M7 9v.01M7 13v.01M7 17v.01"/><path d="M15 17v.01M18 18v.01"/>');
-const ENT = {q: '', view: null, edit: null};
+const ENT = {q: '', view: null, edit: null, pu: false, nr: false};
 const entRows = () => cache.ENTREPRISES || [];
 const entJ = v => { try { const a = typeof v === 'string' ? JSON.parse(v || '[]') : v; return Array.isArray(a) ? a : []; } catch (e) { return []; } };
 const entC = r => entJ(r.comptes), entR = r => entJ(r.routes), entP = r => entJ(r.pu);
@@ -2407,18 +2416,27 @@ function entHay(r){
 function entPuBanner(){
   const el = $('#epu'); if (!el) return;
   const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new Date().getDay()], jn = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'][new Date().getDay()];
-  const it = [];
-  entRows().forEach(r => entP(r).forEach(p => { if (entJours(p.jours).includes(c)) it.push({id: r.id, nom: r.nom, h: puHor(p), k: p.debut || p.fin || '99:99'}); }));
-  it.sort((a, b) => String(a.k).localeCompare(String(b.k)) || String(a.nom).localeCompare(String(b.nom), 'fr', {sensitivity: 'base'}));
-  el.innerHTML = `<details class="epu" open><summary>PU réguliers du jour <small>${jn} · ${it.length}</small></summary>${it.length ? `<div class="epl">${it.map(x => `<button data-id="${esc(x.id)}">${x.h ? `<b>${x.h}</b>` : ''}${esc(x.nom)}</button>`).join('')}</div>` : '<div class="m" style="margin:6px 0 0">Aucun PU régulier aujourd’hui.</div>'}</details>`;
+  const by = {}, nr = []; let tot = 0;
+  entRows().forEach(r => entP(r).forEach(p => {
+    if (!entJours(p.jours).includes(c)) return;
+    tot++;
+    const it = {id: r.id, nom: r.nom, h: puHor(p), k: p.debut || p.fin || '99:99'}, rt = entRts(r);
+    if (!rt.length) nr.push(it); else rt.forEach(n => (by[n] = by[n] || []).push(it));
+  }));
+  const srt = a => a.sort((x, y) => String(x.k).localeCompare(String(y.k)) || String(x.nom).localeCompare(String(y.nom), 'fr', {sensitivity: 'base'}));
+  const card = (t, a, cls) => `<div class="epc${cls || ''}"><h5><span>${esc(t)}</span><small>${a.length}</small></h5><div class="epcl">${srt(a).map(x => `<button data-id="${esc(x.id)}">${x.h ? `<b>${x.h}</b>` : ''}<span>${esc(x.nom)}</span></button>`).join('')}</div></div>`;
+  const names = Object.keys(by).sort((a, b) => a.localeCompare(b, 'fr', {numeric: true, sensitivity: 'base'}));
+  el.innerHTML = `<details class="epu" open><summary>PU réguliers du jour <small>${jn} · ${tot}</small></summary>${tot ? `<div class="epg">${names.map(n => card(n, by[n])).join('')}${nr.length ? card('Sans route', nr, ' nr') : ''}</div>` : '<div class="m" style="margin:6px 0 0">Aucun PU régulier aujourd’hui.</div>'}</details>`;
 }
 function renderEnt(){
   cur = 'ENTREPRISES'; closePop(); closeDet();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === 'ENTREPRISES'));
-  $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="eq" placeholder="Rechercher une entreprise, un compte, une route, un contact, un commercial…" autocomplete="off" value="${esc(ENT.q)}" aria-label="Rechercher une entreprise"></div><span class="m" id="ecnt" style="margin:0"></span><span style="flex:1"></span>${canWrite() ? `<button class="p" id="eNew">${IC.plus}Nouvelle</button>` : ''}</div><div class="etw" id="etab"></div>`;
+  $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="eq" placeholder="Rechercher une entreprise, un compte, une route, un contact, un commercial…" autocomplete="off" value="${esc(ENT.q)}" aria-label="Rechercher une entreprise"></div><span class="m" id="ecnt" style="margin:0"></span><label class="eck"><input type="checkbox" id="ePU" ${ENT.pu ? 'checked' : ''}>PU réguliers</label><label class="eck" id="eNRw" style="${ENT.pu ? '' : 'display:none'}"><input type="checkbox" id="eNR" ${ENT.nr ? 'checked' : ''}>Sans route</label><span style="flex:1"></span>${canWrite() ? `<button class="p" id="eNew">${IC.plus}Nouvelle</button>` : ''}</div><div class="etw" id="etab"></div>`;
   $('#main').insertAdjacentHTML('afterbegin', '<div id="epu"></div>');
   $('#epu').onclick = e => { const t = e.target.closest('[data-id]'); if (t) openEnt(t.dataset.id); };
   $('#eq').oninput = e => { ENT.q = e.target.value; entDraw(); };
+  $('#ePU').onchange = e => { ENT.pu = e.target.checked; if (!ENT.pu) { ENT.nr = false; $('#eNR').checked = false; } $('#eNRw').style.display = ENT.pu ? '' : 'none'; entDraw(); };
+  $('#eNR').onchange = e => { ENT.nr = e.target.checked; entDraw(); };
   if ($('#eNew')) $('#eNew').onclick = () => openEntEdit(null);
   $('#etab').onclick = e => { const t = e.target.closest('[data-id]'); if (t) openEnt(t.dataset.id); };
   $('#etab').onkeydown = e => { if (e.key === 'Enter' && e.target.dataset.id) openEnt(e.target.dataset.id); };
@@ -2429,7 +2447,7 @@ function entDraw(){
   if (!cache.ENTREPRISES) { $('#etab').innerHTML = '<div class="m" style="padding:18px">Chargement…</div>'; return; }
   entPuBanner();
   const q = entNorm(ENT.q).trim().split(/\s+/).filter(Boolean);
-  const list = entRows().filter(r => { const h = entHay(r); return q.every(w => h.includes(w)); }).sort((a, b) => String(a.nom).localeCompare(String(b.nom), 'fr', {sensitivity: 'base'}));
+  const list = entRows().filter(r => { if (ENT.pu && (!entP(r).length || (ENT.nr && entRts(r).length))) return false; const h = entHay(r); return q.every(w => h.includes(w)); }).sort((a, b) => String(a.nom).localeCompare(String(b.nom), 'fr', {sensitivity: 'base'}));
   $('#ecnt').textContent = list.length + ' / ' + entRows().length;
   if (!list.length) { $('#etab').innerHTML = `<div class="m" style="padding:18px">${entRows().length ? 'Aucune entreprise ne correspond.' : 'Aucune entreprise pour le moment.'}</div>`; return; }
   $('#etab').innerHTML = `<table class="etab"><thead><tr><th>Entreprise</th><th>Comptes</th><th>Routes</th><th>PU réguliers</th><th>Mise à jour</th></tr></thead><tbody>${list.map(r => {
@@ -2458,7 +2476,7 @@ const entMaj = o => (o && o.maj_le) ? `<small class="m" style="margin:0">MAJ ${f
 function drawEntView(r){
   const cs = entC(r), rs = entR(r), ps = entP(r), w = canWrite(), adm = ME.rights.ENTREPRISES === 'admin';
   $('#sEnt').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(r.nom)}</h3>${r.adresse ? `<div class="sub"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.adresse)}" target="_blank" rel="noopener">${esc(r.adresse)}</a></div>` : ''}</div>
-    ${w ? `<button class="ico sm" id="enE" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}${adm ? `<button class="ico sm warn" id="enD" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}<button class="ico sm" id="enX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+    ${adm ? `<button class="ico sm warn" id="enD" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}${w ? `<button class="ico sm" id="enE" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="enX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
     ${r.commentaire ? `<div class="esec"><h4>Commentaire</h4><div class="epr" style="white-space:pre-wrap">${esc(r.commentaire)}</div></div>` : ''}<div class="esec"><h4>Numéros de compte</h4>${cs.length ? `<table class="etab s">${cs.map(c => `<tr><td><b>${esc(c.numero)}</b></td><td>${esc(c.commentaire || '')}</td><td>${entMaj(c)}</td></tr>`).join('')}</table>` : '<span class="m">Aucun</span>'}</div>
     <div class="esec"><h4>Routes</h4>${rs.length ? `<table class="etab s">${rs.map(x => `<tr><td><b>${esc(x.nom)}</b></td><td>${rtChips(x) || '<span class="m">—</span>'}</td></tr>`).join('')}</table>` : '<span class="m">Aucune</span>'}</div>
     <div class="esec"><h4>PU réguliers</h4>${ps.length ? ps.map(p => `<div class="epu"><div class="eph"><b>${puHor(p) || 'Horaire non renseigné'}</b><span>${esc(jLbl(p.jours))}</span></div>
@@ -2479,7 +2497,7 @@ function openEntEdit(r){
 function drawEntEdit(){
   const d = ENT.edit, coms = [...new Set(entRows().flatMap(r => entP(r).map(p => String(p.commercial || '').trim())).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'fr'));
   const rm = (k, i) => `<button class="ico sm warn" data-rm="${k}" data-i="${i}" title="Retirer" aria-label="Retirer">${IC.trash}</button>`;
-  $('#sEnt').innerHTML = `<div class="sh"><div class="tt"><h3>${d.id ? 'Modifier l’entreprise' : 'Nouvelle entreprise'}</h3></div><button class="ico sm" id="enX" title="Annuler" aria-label="Annuler">${IC.close}</button></div>
+  $('#sEnt').innerHTML = `<div class="sh"><div class="tt"><h3>${d.id ? 'Modifier l’entreprise' : 'Nouvelle entreprise'}</h3></div><button class="ico sm ok" id="enS2" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button><button class="ico sm" id="enX" title="Annuler" aria-label="Annuler">${IC.close}</button></div>
     <label>Nom de l’entreprise<input id="eNom" value="${esc(d.nom)}" autocomplete="off"></label>
     <label>Adresse <small class="m" style="margin:0">(suggestions : France)</small><input id="eAdr" list="entAdrL" value="${esc(d.adresse)}" autocomplete="off"></label><label>Commentaire<textarea id="eCom" rows="3">${esc(d.commentaire || '')}</textarea></label><datalist id="entAdrL"></datalist><datalist id="entComL">${coms.map(c => `<option value="${esc(c)}">`).join('')}</datalist>
     <div class="esec"><h4>Numéros de compte</h4>${d.comptes.map((c, i) => `<div class="erow"><input data-k="comptes" data-i="${i}" data-f="numero" placeholder="Numéro de compte" value="${esc(c.numero)}"><input data-k="comptes" data-i="${i}" data-f="commentaire" placeholder="Commentaire" value="${esc(c.commentaire || '')}">${rm('comptes', i)}</div>`).join('')}<button class="s" data-add="comptes">${IC.plus}Ajouter un compte</button></div>
@@ -2497,7 +2515,7 @@ function drawEntEdit(){
     if (a) { entSync(); const k = a.dataset.add; d[k].push(k === 'comptes' ? {numero: '', commentaire: ''} : k === 'routes' ? {nom: '', m13: false, m20: false, pu: false, del: false} : {debut: '', fin: '', contact: '', tel: '', jours: '', remarques: '', commercial: ''}); drawEntEdit(); const els = document.querySelectorAll(`#sEnt [data-k="${k}"][data-i="${d[k].length - 1}"]`); if (els[0]) els[0].focus(); }
     else if (x) { entSync(); d[x.dataset.rm].splice(+x.dataset.i, 1); drawEntEdit(); }
   };
-  $('#enS').onclick = async () => {
+  const save = async () => {
     entSync();
     const nom = d.nom.trim(); if (!nom) { toast('Le nom de l’entreprise est obligatoire'); return $('#eNom').focus(); }
     const data = {nom, adresse: d.adresse.trim(), commentaire: String(d.commentaire || '').trim(),
@@ -2512,6 +2530,7 @@ function drawEntEdit(){
       entDraw(); drawTiles(); toast('Enregistré');
     } catch (e) { toast(e.message || 'Enregistrement impossible'); }
   };
+  $('#enS').onclick = save; $('#enS2').onclick = save;
 }
 function entSync(){
   const d = ENT.edit; if (!d || !$('#eNom')) return;
