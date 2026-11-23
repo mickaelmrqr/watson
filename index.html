@@ -906,11 +906,11 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18">Watson<span class="ver">v4.11.75</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.76</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div><div class="fr"></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.75</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.76</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2377,7 +2377,7 @@ $('#tAdd').onclick = () => {
 // ------------------------------------------------------------ Paramètres
 const isAdmin = () => ME.rights.PARAMETRES === 'admin';
 const SECTIONS = [
-  {id:'profil', l:'Mon profil', ic:'users'}, {id:'aff', l:'Affichage', ic:'gear'}, {id:'notif', l:'Notifications', ic:'bell'}, {id:'region', l:'Région', ic:'globe'}, {id:'rapports', l:'Rapports automatiques', ic:'chart'},
+  {id:'aff', l:'Affichage', ic:'gear'}, {id:'profil', l:'Mon profil', ic:'users'}, {id:'notif', l:'Notifications', ic:'bell'}, {id:'region', l:'Région', ic:'globe'}, {id:'rapports', l:'Rapports automatiques', ic:'chart'},
   {id:'archi', l:'Archivage et suppression', ic:'archive', adm:1}, {id:'sec', l:'SCMS', ic:'SECURITY', adm:1}, {id:'dom', l:'Délais DOM', ic:'DOM', adm:1}, {id:'trait', l:'Traitement quotidien', ic:'clock', adm:1},
   {id:'histo', l:'Historique', ic:'clock', adm:1}];
 const PLAB = {archivage_auto_dom_jours:'DOM — archivage automatique', archivage_auto_awb_jours:'AWB — archivage automatique', archivage_auto_spark_jours:'SPARK — archivage automatique',
@@ -2464,7 +2464,7 @@ async function renderSec(){
   } else if (setSec === 'aff') {
     const th = P.theme || document.documentElement.dataset.theme || 'dark', zi = Math.max(0, ZOOMS.indexOf(P.zoom || Number(localStorage.getItem('wzoom')) || 1));
     el.innerHTML = `<h3>Affichage</h3><p class="lead">Apparence de l'application.</p>
-      <div class="prow"><div><b>Mode</b><div class="m">Nuit (fond sombre) ou jour (fond clair).</div></div><div class="seg2" id="aMode"><button data-v="dark" class="${th === 'dark' ? 'on' : ''}">Nuit</button><button data-v="light" class="${th === 'light' ? 'on' : ''}">Jour</button></div></div>
+      <div class="prow"><div><b>Mode</b><div class="m">Jour (fond clair) ou nuit (fond sombre).</div></div><div class="seg2" id="aMode"><button data-v="light" class="${th === 'light' ? 'on' : ''}">Jour</button><button data-v="dark" class="${th === 'dark' ? 'on' : ''}">Nuit</button></div></div>
       <div class="prow"><div><b>Taille du texte</b><div class="m">Agrandit ou réduit tout l'affichage.</div></div><div class="seg2"><button id="zMin" aria-label="Réduire">A−</button><span id="zVal">${Math.round(ZOOMS[zi] * 100)} %</span><button id="zPlus" aria-label="Agrandir">A+</button></div></div>
       <div class="prow"><div><b>Affichage condensé</b><div class="m">Réduit les marges et les espaces vides pour voir plus de choses à l'écran.</div></div><div>${sw('aDense', document.documentElement.dataset.dense === '1')}</div></div>
       <div class="prow"><div><b>Menu en colonnes</b><div class="m">Une case par page, avec l'icône au-dessus et le nom en dessous.</div></div><div>${sw('aMenu', document.documentElement.dataset.menu === 'v')}</div></div>`;
