@@ -730,7 +730,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.37</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.38</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -740,7 +740,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.37</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.38</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2051,6 +2051,15 @@ function fmtRem(iso){ const d = new Date(iso); return isNaN(d) ? '' : d.toLocale
 const DJ = {lu:'Lun', ma:'Mar', me:'Mer', je:'Jeu', ve:'Ven'};
 function recLbl(x){ const j = String(x.jours).split(',').filter(Boolean); return (j.length === 5 ? 'Chaque jour ouvré' : 'Chaque ' + j.map(d => DJ[d] || d).join(', ')) + ' à ' + String(x.heure).replace(':', 'h'); }
 function recToggle(){ const on = $('#rRec').checked; $('#rOnce').style.display = on ? 'none' : ''; $('#rRecBox').style.display = on ? '' : 'none'; }
+function rEditUi(){ const e = !!REM.edit; $('#mRem h3').textContent = e ? 'Modifier le rappel' : 'Rappels'; $('#rAdd').textContent = e ? 'Enregistrer' : 'Créer le rappel'; }
+function editRem(x){
+  REM.edit = x.id; REM.ref = x.ref_module ? {module:x.ref_module, id:x.ref_id} : null;
+  $('#rTitre').value = x.titre || ''; const rec = !!x.jours; $('#rRec').checked = rec;
+  const js = String(x.jours || 'lu,ma,me,je,ve').split(','); document.querySelectorAll('#rDays input').forEach(i => i.checked = js.indexOf(i.dataset.d) >= 0);
+  $('#rHeure').value = x.heure || '08:00';
+  const d = new Date(x.date_envoi); $('#rDate').value = !rec && !isNaN(d) ? localDT(d) : localDT(new Date(Date.now() + 3600000));
+  recToggle(); rEditUi(); drawRem(); remView('new');
+}
 function remView(v){
   $('#rvNew').style.display = v === 'new' ? '' : 'none'; $('#rvList').style.display = v === 'list' ? '' : 'none';
   $('#rtNew').classList.toggle('on', v === 'new'); $('#rtList').classList.toggle('on', v === 'list');
@@ -2060,18 +2069,18 @@ function drawRem(){
   const rf = REM.ref; $('#rRef').style.display = rf ? '' : 'none'; if (rf) $('#rRefT').textContent = refLbl(rf.module, rf.id);
   const L = REM.list;
   $('#rtList').textContent = 'En attente' + (L ? ' (' + L.length + ')' : '');
-  $('#rvList').innerHTML = !L ? '<div class="m">Chargement…</div>' : L.length ? L.map(x => '<div class="rit" data-id="' + esc(x.id) + '"><div class="rb"><b>' + esc(x.titre) + '</b><small>' + esc(x.jours ? recLbl(x) : fmtRem(x.date_envoi)) + (x.ref_module ? ' · ' + esc(refLbl(x.ref_module, x.ref_id)) : '') + '</small></div><button class="ico sm warn" data-del="1" title="Supprimer ce rappel" aria-label="Supprimer ce rappel">' + IC.trash + '</button></div>').join('') : '<div class="m">Aucun rappel en attente.</div>';
+  $('#rvList').innerHTML = !L ? '<div class="m">Chargement…</div>' : L.length ? L.map(x => '<div class="rit" data-id="' + esc(x.id) + '"><div class="rb"><b>' + esc(x.titre) + '</b><small>' + esc(x.jours ? recLbl(x) : fmtRem(x.date_envoi)) + (x.ref_module ? ' · ' + esc(refLbl(x.ref_module, x.ref_id)) : '') + '</small></div><button class="ico sm" data-edit="1" title="Modifier ce rappel" aria-label="Modifier ce rappel">' + IC.pencil + '</button><button class="ico sm warn" data-del="1" title="Supprimer ce rappel" aria-label="Supprimer ce rappel">' + IC.trash + '</button></div>').join('') : '<div class="m">Aucun rappel en attente.</div>';
 }
 function loadRem(){ api('rappel_list').then(l => { REM.list = l; drawRem(); }).catch(e => { REM.list = REM.list || []; drawRem(); }); }
 function openRem(ref, list){
-  REM.ref = ref || null; $('#rTitre').value = ''; $('#rRec').checked = false; $('#rHeure').value = '08:00'; document.querySelectorAll('#rDays input').forEach(x => x.checked = true); recToggle();
+  REM.edit = null; rEditUi(); REM.ref = ref || null; $('#rTitre').value = ''; $('#rRec').checked = false; $('#rHeure').value = '08:00'; document.querySelectorAll('#rDays input').forEach(x => x.checked = true); recToggle();
   const d = new Date(Date.now() + 3600000); d.setMinutes(0, 0, 0); $('#rDate').value = localDT(d);
   drawRem(); remView(list ? 'list' : 'new'); $('#mRem').classList.add('on'); loadRem();
 }
 function closeRem(){ $('#mRem').classList.remove('on'); }
 $('#rX').innerHTML = IC.close; $('#rRefX').innerHTML = IC.close; $('#rX').onclick = closeRem; $('#rNo').onclick = closeRem;
 $('#mRem').addEventListener('mousedown', e => { if (e.target.id === 'mRem') closeRem(); });
-$('#rtNew').onclick = () => remView('new'); $('#rtList').onclick = () => { remView('list'); loadRem(); };
+$('#rtNew').onclick = () => { if (REM.edit) openRem(REM.ref, false); else remView('new'); }; $('#rtList').onclick = () => { remView('list'); loadRem(); };
 $('#rRefX').onclick = () => { REM.ref = null; drawRem(); };
 $('#rRec').onchange = recToggle;
 $('#rAdd').onclick = async () => {
@@ -2083,12 +2092,13 @@ $('#rAdd').onclick = async () => {
   if (!rec && isNaN(d)) return toast('Choisis une date et une heure');
   const b = $('#rAdd'); b.disabled = true;
   try {
-    await api('rappel_create', {titre, date_envoi:d.toISOString(), jours:rec ? jours : '', heure:rec ? heure : '', ref_module:REM.ref ? REM.ref.module : '', ref_id:REM.ref ? REM.ref.id : ''});
-    toast(rec ? 'Rappel récurrent créé' : 'Rappel créé pour le ' + fmtRem(d.toISOString())); $('#rTitre').value = ''; REM.list = null; drawRem(); remView('list'); loadRem();
+    await api(REM.edit ? 'rappel_update' : 'rappel_create', {id:REM.edit || '', titre, date_envoi:d.toISOString(), jours:rec ? jours : '', heure:rec ? heure : '', ref_module:REM.ref ? REM.ref.module : '', ref_id:REM.ref ? REM.ref.id : ''});
+    toast(REM.edit ? 'Rappel modifié' : rec ? 'Rappel récurrent créé' : 'Rappel créé pour le ' + fmtRem(d.toISOString())); REM.edit = null; rEditUi(); $('#rTitre').value = ''; REM.list = null; drawRem(); remView('list'); loadRem();
   } catch (e) { toast(e.message || 'Erreur'); }
   b.disabled = false;
 };
 $('#rvList').onclick = e => {
+  const eb = e.target.closest('[data-edit]'); if (eb) { const x = (REM.list || []).find(y => y.id === eb.closest('.rit').dataset.id); if (x) editRem(x); return; }
   const b = e.target.closest('[data-del]'); if (!b) return; const row = b.closest('.rit'), id = row.dataset.id;
   REM.list = (REM.list || []).filter(x => x.id !== id); drawRem();
   api('rappel_delete', {id}).then(() => toast('Rappel supprimé')).catch(err => { toast(err.message || 'Erreur'); loadRem(); });
