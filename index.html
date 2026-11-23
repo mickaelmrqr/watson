@@ -515,6 +515,24 @@ html[data-theme=light] .hc.u{background:#fcd9db;color:#9d1f26}html[data-theme=li
 html[data-theme=light] .hc.ok{background:#c5ecd8;color:#0f6a42}html[data-theme=light] .hc.ok b{color:#0f6a42}
 html[data-theme=light] .hc.w{background:#ffe3c4;color:#8a4a07}html[data-theme=light] .hc.w b{color:#8a4a07}
 html[data-theme=light] .hc b{color:var(--ink)}
+/* v4.29 : page Administration */
+.adm h2{font:700 var(--fs-t) var(--disp);margin:6px 0 14px}
+.adg{display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+@media(max-width:900px){.adg{grid-template-columns:1fr}}
+.at{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-height:260px}
+.at h3{font:700 var(--fs-t) var(--disp);margin:0;display:flex;align-items:center;gap:10px}
+.at h3 .mi{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:rgb(150,100,230);color:#fff;font-size:17px}
+.at table{width:100%;border-collapse:collapse}
+.at th{font:600 var(--fs) var(--body);color:var(--mut);text-align:right;padding:4px 8px;border-bottom:1px solid var(--line)}
+.at th:first-child,.at td:first-child{text-align:left}
+.at td{padding:8px;border-bottom:1px solid var(--line);text-align:right;font:500 var(--fs-b) var(--body)}
+.at td b{font:700 var(--fs-b) var(--disp)}
+.at td.z{color:var(--mut)}
+.at tfoot td{border-bottom:0;font-weight:700}
+.at .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
+.at .acts .s[disabled]{opacity:.45;cursor:default}
+.at .acts .s.warn{border-color:rgba(238,70,80,.6)}
+.at.empty{border-style:dashed}
 /* Messagerie */
 #msgp{display:flex;flex-direction:column;overflow:hidden}
 #msgp .dh .back{flex:none}
@@ -538,6 +556,7 @@ html[data-theme=light] .hc b{color:var(--ink)}
 .mod[data-m=AWB],.mod[data-m=DOCUMENTS],.ht[data-m=AWB],.ht[data-m=DOCUMENTS]{--mc:58,140,255}
 .mod[data-m=SPARK],.mod[data-m=DOM],.ht[data-m=SPARK],.ht[data-m=DOM]{--mc:34,176,112}
 .mod[data-m=SECURITY],.ht[data-m=SECURITY]{--mc:238,70,80}
+.mod[data-m=_admin]{--mc:150,100,230}
 .mod.on{border-color:rgb(var(--mc));background:linear-gradient(135deg,rgba(var(--mc),.24),rgba(var(--mc),.06));box-shadow:0 8px 26px rgba(var(--mc),.28)}
 .mod.on .mi{background:rgb(var(--mc));color:#fff}
 html[data-theme=light] .mod.on{background:linear-gradient(135deg,rgba(var(--mc),.18),rgba(var(--mc),.05))}
@@ -692,7 +711,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.28</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.29</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -702,7 +721,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.28</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.29</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -745,6 +764,7 @@ const IC = {
   pencil: ic('<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>'),
   archive: ic('<rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"/><path d="M10 13h4"/>'),
   unarchive: ic('<rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"/><path d="M12 18v-6"/><path d="m9.5 14.5 2.5-2.5 2.5 2.5"/>'),
+  admin: ic('<path d="M12 3 4 6v6c0 5 3.4 8.2 8 9 4.6-.8 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/>'),
   gear: ic('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/>'),
   out: ic('<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>'),
   qr: ic('<rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><path d="M15 15h2v2"/><path d="M21 15v.01"/><path d="M15 21h2"/><path d="M21 19v2"/><path d="M12 3v6"/><path d="M12 13v2"/><path d="M3 12h2"/><path d="M9 12h6"/>'),
@@ -938,12 +958,12 @@ async function start(){
     applyDisplay(); setSync(); openMod('_home'); preload(mods); startPoll(); warm();
   } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; }
 }
-document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur === 'LIBRARY') { if (pending === 0) reloadLib(); } else if (cur && pending === 0) refresh(); } });
+document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur === 'LIBRARY') { if (pending === 0) reloadLib(); } else if (cur && cur !== '_admin' && pending === 0) refresh(); } });
 function buildNav(){
   const mods = Object.keys(MODS).filter(m => ME.rights[m]);
   const io = (m, label, icon) => `<button class="mod io" data-m="${m}" title="${label}" aria-label="${label}"><span class="mi">${icon}</span></button>`;
   const tile = m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m].label}</b><small id="cnt_${m}"><span class="d3s"><i></i><i></i><i></i></span></small></span></button>`;
-  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${mods.filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY').map(tile).join('')}${mods.includes('DOCUMENTS') ? io('DOCUMENTS', 'Documents', IC.DOCUMENTS) : ''}${mods.includes('LIBRARY') ? io('LIBRARY', 'Bibliothèque', IC.LIBRARY) : ''}</div>`;
+  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${mods.filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY').map(tile).join('')}${mods.includes('DOCUMENTS') ? io('DOCUMENTS', 'Documents', IC.DOCUMENTS) : ''}${mods.includes('LIBRARY') ? io('LIBRARY', 'Bibliothèque', IC.LIBRARY) : ''}${isAdmin() ? io('_admin', 'Administration', IC.admin) : ''}</div>`;
   $('#seg').onclick = e => { const b = e.target.closest('button'); if (b) { showArch = false; openMod(b.dataset.m); } };
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === cur));
 }
@@ -1066,6 +1086,7 @@ async function openMod(m){
   moveInd();
   if (m === '_home') return renderHome();
   if (m === 'LIBRARY') return renderLib();
+  if (m === '_admin') return renderAdminPage();
   if (cache[key()]) { rows = cache[key()]; renderList(); refresh(); return; }
   try { rows = await wait(() => api('list', {module: m, archives: showArch})); cache[key()] = rows; }
   catch (e) { return toast(e.message); }
@@ -2030,6 +2051,42 @@ const NOTIFS = [['nouveau','Nouvel élément partagé'], ['modification',"Modifi
 const TZS = ['Europe/Paris','Europe/London','Europe/Berlin','Europe/Brussels','Europe/Zurich','Indian/Reunion','America/Martinique','America/New_York','Asia/Dubai'];
 let setSec = 'profil', PARAMS = null;
 const sw = (id, on, extra = '') => `<label class="sw"><input type="checkbox" id="${id}" ${on ? 'checked' : ''} ${extra}><i></i></label>`;
+
+// ------------------------------------------------------------ Page « Administration » (réservée aux admins)
+const ADM_MODS = [['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'SCMS']];
+let ADM = null;
+async function renderAdminPage(){
+  if (!isAdmin()) { toast('Page réservée aux administrateurs'); return openMod('_home'); }
+  const main = $('#main');
+  if (!ADM) main.innerHTML = `<div class="adm"><h2>Administration</h2></div>`;
+  try { ADM = await wait(() => api('admin_summary')); } catch (e) { return toast(e.message); }
+  if (cur !== '_admin') return;
+  const n = m => ADM[m] || {a_archiver: 0, a_supprimer: 0};
+  const totA = ADM_MODS.reduce((t, [m]) => t + n(m).a_archiver, 0), totS = ADM_MODS.reduce((t, [m]) => t + n(m).a_supprimer, 0);
+  const days = [...new Set(ADM_MODS.map(([m]) => n(m).jours_suppression).filter(Boolean))], dj = days.length === 1 ? days[0] : 30;
+  const c = v => v ? `<b>${v}</b>` : `<span class="z">0</span>`;
+  main.innerHTML = `<div class="adm"><h2>Administration</h2><div class="adg">
+    <section class="at" id="atArch"><h3><span class="mi">${IC.archive}</span>Archives</h3>
+      <table><thead><tr><th>Page</th><th>À archiver</th><th>Archivés depuis plus de ${dj} j</th></tr></thead>
+      <tbody>${ADM_MODS.map(([m, l]) => `<tr><td>${l}</td><td>${c(n(m).a_archiver)}</td><td>${c(n(m).a_supprimer)}</td></tr>`).join('')}</tbody>
+      <tfoot><tr><td>Total</td><td>${totA}</td><td>${totS}</td></tr></tfoot></table>
+      <div class="acts"><button class="s" id="admArch" ${totA ? '' : 'disabled'}>${IC.archive}Archiver ce qui doit l'être</button>
+      <button class="s warn" id="admPurge" ${totS ? '' : 'disabled'}>${IC.trash}Supprimer les archives de plus de ${dj} jours</button></div></section>
+    <section class="at empty" id="atB" aria-label="Tuile vide"></section></div></div>`;
+  const after = async msg => {
+    Object.keys(cache).forEach(k => delete cache[k]);
+    toast(msg); preload(Object.keys(MODS).filter(m => ME.rights[m])); await renderAdminPage();
+  };
+  const sum = r => ADM_MODS.map(([m, l]) => r[m] ? `${l} : ${r[m]}` : '').filter(Boolean).join(' · ') || 'rien à faire';
+  $('#admArch').onclick = async () => {
+    if (!(await ask('Archiver ce qui doit l\'être ?', `${totA} élément${totA > 1 ? 's' : ''} en étape finale depuis assez longtemps ${totA > 1 ? 'seront archivés' : 'sera archivé'}.`, 'Archiver'))) return;
+    try { const r = await wait(() => api('admin_archive')); await after('Archivé · ' + sum(r)); } catch (e) { toast(e.message); }
+  };
+  $('#admPurge').onclick = async () => {
+    if (!(await ask('Supprimer définitivement ?', `${totS} élément${totS > 1 ? 's archivés' : ' archivé'} depuis plus de ${dj} jours, avec leurs commentaires, tâches et fichiers, seront supprimés. Cette action est irréversible.`, 'Supprimer'))) return;
+    try { const r = await wait(() => api('admin_purge')); await after('Supprimé · ' + sum(r)); } catch (e) { toast(e.message); }
+  };
+}
 
 async function renderAdmin(){
   if (isAdmin() && !PARAMS) { try { PARAMS = await wait(() => api('params_get')); } catch (e) { return toast(e.message); } }
