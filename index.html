@@ -786,7 +786,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.54</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.55</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -797,7 +797,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.54</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.55</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2375,7 +2375,7 @@ const entNorm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u
 const rtChips = r => [r.m13 && '13m3', r.m20 && '20m3', r.pu && 'PU', r.del && 'DEL'].filter(Boolean).map(x => `<span class="ech">${x}</span>`).join('');
 const puHor = p => (p.debut || p.fin) ? `${esc(p.debut || '?')}–${esc(p.fin || '?')}` : '';
 function entHay(r){
-  return entNorm([r.nom, r.adresse, entC(r).map(c => c.numero + ' ' + c.commentaire).join(' '), entR(r).map(x => x.nom).join(' '), entP(r).map(p => [p.contact, p.tel, String(p.tel || '').replace(/\D/g, ''), p.commercial, p.remarques].join(' ')).join(' ')].join(' '));
+  return entNorm([r.nom, r.adresse, r.commentaire, entC(r).map(c => c.numero + ' ' + c.commentaire).join(' '), entR(r).map(x => x.nom).join(' '), entP(r).map(p => [p.contact, p.tel, String(p.tel || '').replace(/\D/g, ''), p.commercial, p.remarques].join(' ')).join(' ')].join(' '));
 }
 function renderEnt(){
   cur = 'ENTREPRISES'; closePop(); closeDet();
@@ -2421,7 +2421,7 @@ function drawEntView(r){
   const cs = entC(r), rs = entR(r), ps = entP(r), w = canWrite(), adm = ME.rights.ENTREPRISES === 'admin';
   $('#sEnt').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(r.nom)}</h3>${r.adresse ? `<div class="sub"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.adresse)}" target="_blank" rel="noopener">${esc(r.adresse)}</a></div>` : ''}</div>
     ${w ? `<button class="ico sm" id="enE" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}${adm ? `<button class="ico sm warn" id="enD" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}<button class="ico sm" id="enX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
-    <div class="esec"><h4>Numéros de compte</h4>${cs.length ? `<table class="etab s">${cs.map(c => `<tr><td><b>${esc(c.numero)}</b></td><td>${esc(c.commentaire || '')}</td><td>${entMaj(c)}</td></tr>`).join('')}</table>` : '<span class="m">Aucun</span>'}</div>
+    ${r.commentaire ? `<div class="esec"><h4>Commentaire</h4><div class="epr" style="white-space:pre-wrap">${esc(r.commentaire)}</div></div>` : ''}<div class="esec"><h4>Numéros de compte</h4>${cs.length ? `<table class="etab s">${cs.map(c => `<tr><td><b>${esc(c.numero)}</b></td><td>${esc(c.commentaire || '')}</td><td>${entMaj(c)}</td></tr>`).join('')}</table>` : '<span class="m">Aucun</span>'}</div>
     <div class="esec"><h4>Routes</h4>${rs.length ? `<table class="etab s">${rs.map(x => `<tr><td><b>${esc(x.nom)}</b></td><td>${rtChips(x) || '<span class="m">—</span>'}</td></tr>`).join('')}</table>` : '<span class="m">Aucune</span>'}</div>
     <div class="esec"><h4>PU réguliers</h4>${ps.length ? ps.map(p => `<div class="epu"><div class="eph"><b>${puHor(p) || 'Horaire non renseigné'}</b><span>${esc(jLbl(p.jours))}</span></div>
       <div class="epb">${p.contact ? `<span>${IC.users.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.contact)}</span>` : ''}${p.tel ? `<a href="tel:${esc(String(p.tel).replace(/[^\d+]/g, ''))}">${IC.phone.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.tel)}</a>` : ''}${p.commercial ? `<span class="m" style="margin:0">Commercial : ${esc(p.commercial)}</span>` : ''}</div>
@@ -2435,7 +2435,7 @@ function drawEntView(r){
   };
 }
 function openEntEdit(r){
-  ENT.edit = {id: r ? r.id : '', nom: r ? r.nom : '', adresse: r ? (r.adresse || '') : '', comptes: r ? entC(r) : [], routes: r ? entR(r) : [], pu: r ? entP(r).map(p => ({...p, jours: entJours(p.jours).join(',')})) : []};
+  ENT.edit = {id: r ? r.id : '', nom: r ? r.nom : '', adresse: r ? (r.adresse || '') : '', commentaire: r ? (r.commentaire || '') : '', comptes: r ? entC(r) : [], routes: r ? entR(r) : [], pu: r ? entP(r).map(p => ({...p, jours: entJours(p.jours).join(',')})) : []};
   ENT.view = r ? r.id : null; drawEntEdit(); $('#mEnt').classList.add('on'); setTimeout(() => { if (!r && $('#eNom')) $('#eNom').focus(); }, 60);
 }
 function drawEntEdit(){
@@ -2443,7 +2443,7 @@ function drawEntEdit(){
   const rm = (k, i) => `<button class="ico sm warn" data-rm="${k}" data-i="${i}" title="Retirer" aria-label="Retirer">${IC.trash}</button>`;
   $('#sEnt').innerHTML = `<div class="sh"><div class="tt"><h3>${d.id ? 'Modifier l’entreprise' : 'Nouvelle entreprise'}</h3></div><button class="ico sm" id="enX" title="Annuler" aria-label="Annuler">${IC.close}</button></div>
     <label>Nom de l’entreprise<input id="eNom" value="${esc(d.nom)}" autocomplete="off"></label>
-    <label>Adresse <small class="m" style="margin:0">(suggestions : France)</small><input id="eAdr" list="entAdrL" value="${esc(d.adresse)}" autocomplete="off"></label><datalist id="entAdrL"></datalist><datalist id="entComL">${coms.map(c => `<option value="${esc(c)}">`).join('')}</datalist>
+    <label>Adresse <small class="m" style="margin:0">(suggestions : France)</small><input id="eAdr" list="entAdrL" value="${esc(d.adresse)}" autocomplete="off"></label><label>Commentaire<textarea id="eCom" rows="3">${esc(d.commentaire || '')}</textarea></label><datalist id="entAdrL"></datalist><datalist id="entComL">${coms.map(c => `<option value="${esc(c)}">`).join('')}</datalist>
     <div class="esec"><h4>Numéros de compte</h4>${d.comptes.map((c, i) => `<div class="erow"><input data-k="comptes" data-i="${i}" data-f="numero" placeholder="Numéro de compte" value="${esc(c.numero)}"><input data-k="comptes" data-i="${i}" data-f="commentaire" placeholder="Commentaire" value="${esc(c.commentaire || '')}">${rm('comptes', i)}</div>`).join('')}<button class="s" data-add="comptes">${IC.plus}Ajouter un compte</button></div>
     <div class="esec"><h4>Routes</h4>${d.routes.map((x, i) => `<div class="erow"><input data-k="routes" data-i="${i}" data-f="nom" placeholder="Route" value="${esc(x.nom)}">${[['m13', '13m3'], ['m20', '20m3'], ['pu', 'PU'], ['del', 'DEL']].map(([f, l]) => `<label class="eck"><input type="checkbox" data-k="routes" data-i="${i}" data-f="${f}" ${x[f] ? 'checked' : ''}>${l}</label>`).join('')}${rm('routes', i)}</div>`).join('')}<button class="s" data-add="routes">${IC.plus}Ajouter une route</button></div>
     <div class="esec"><h4>PU réguliers</h4>${d.pu.map((p, i) => { const js = entJours(p.jours); return `<div class="epu"><div class="erow"><label class="etm">Début<input type="time" data-k="pu" data-i="${i}" data-f="debut" value="${esc(p.debut || '')}"></label><label class="etm">Fin<input type="time" data-k="pu" data-i="${i}" data-f="fin" value="${esc(p.fin || '')}"></label><span style="flex:1"></span>${rm('pu', i)}</div>
@@ -2462,7 +2462,7 @@ function drawEntEdit(){
   $('#enS').onclick = async () => {
     entSync();
     const nom = d.nom.trim(); if (!nom) { toast('Le nom de l’entreprise est obligatoire'); return $('#eNom').focus(); }
-    const data = {nom, adresse: d.adresse.trim(),
+    const data = {nom, adresse: d.adresse.trim(), commentaire: String(d.commentaire || '').trim(),
       comptes: d.comptes.filter(c => String(c.numero).trim()).map(c => ({...c, numero: String(c.numero).trim(), commentaire: String(c.commentaire || '').trim()})),
       routes: d.routes.filter(x => String(x.nom).trim()).map(x => ({...x, nom: String(x.nom).trim()})),
       pu: d.pu.filter(p => p.debut || p.fin || p.contact || p.tel || entJours(p.jours).length || p.remarques || p.commercial).map(p => ({...p, jours: entJours(p.jours).join(','), contact: String(p.contact || '').trim(), tel: String(p.tel || '').trim(), commercial: String(p.commercial || '').trim(), remarques: String(p.remarques || '').trim()}))};
@@ -2477,7 +2477,7 @@ function drawEntEdit(){
 }
 function entSync(){
   const d = ENT.edit; if (!d || !$('#eNom')) return;
-  d.nom = $('#eNom').value; d.adresse = $('#eAdr').value;
+  d.nom = $('#eNom').value; d.adresse = $('#eAdr').value; if ($('#eCom')) d.commentaire = $('#eCom').value;
   document.querySelectorAll('#sEnt [data-k]').forEach(el => {
     const it = d[el.dataset.k][+el.dataset.i]; if (!it) return;
     if (el.dataset.j) { const a = entJours(it.jours), on = el.checked; it.jours = JOURS.map(j => j[0]).filter(c => c === el.dataset.j ? on : a.includes(c)).join(','); }
