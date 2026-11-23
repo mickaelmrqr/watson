@@ -38,7 +38,7 @@ header{display:flex;align-items:center;gap:10px;padding:10px 20px;position:stick
 .logo{display:flex;align-items:center;gap:12px;flex:1;font:700 22px var(--disp);letter-spacing:.2px}
 .hmid{display:flex;align-items:center;gap:10px;justify-content:center}.hrt{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:10px}
 .hsep{width:2px;height:26px;border-radius:1px;background:rgba(222,228,240,.62);margin:0 6px;flex:none}
-.hz{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.hz{margin-top:14px;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
 @media(max-width:820px){header{flex-wrap:wrap}.hmid{order:3;flex:1 0 100%}.hrt{flex:0 1 auto}}
 .logo img{height:40px;width:auto;aspect-ratio:1/1;object-fit:contain;display:block}
 .ver{font:500 12px var(--disp);letter-spacing:.4px;color:#ffb8a0;border:1px solid rgba(255,90,42,.55);background:rgba(255,90,42,.12);border-radius:8px;padding:2px 8px;margin-left:-2px;align-self:center}
@@ -878,7 +878,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.11.72</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.11.73</span></div>
   <div class="hmid"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button><span class="hsep hide" id="hs1"></span>
   <button id="bQR" class="ico hide" title="Mes identifiants" aria-label="Mes identifiants"></button>
@@ -889,7 +889,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.72</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.73</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1244,8 +1244,8 @@ function renderHome(){
   $('#bSet').classList.remove('on');
   const mods = Object.keys(MODS).filter(m => ME.rights[m] && m !== 'DOCUMENTS' && m !== 'LIBRARY');
   $('#main').innerHTML = `<div class="home"><h2>Bonjour ${esc(ME.prenom || '')}</h2><div class="hg">${mods.map(homeTile).join('')}
-  </div>${absBox()}<div class="hz"><button class="p" id="dsBtn">Créer ma daysheet</button></div></div>`;
-  absInit(); $('#dsBtn').onclick = openDaysheet;
+  </div>${absBox()}<div class="hz"><div class="ht" id="dsBtn" tabindex="0" role="button" style="--mc:230,90,50"><div class="hth"><span class="mi">${IC.print}</span><b>Créer ma daysheet</b></div><div class="hcs"><span class="m">Remplie avec tes infos, prête à imprimer</span></div></div></div></div>`;
+  absInit(); $('#dsBtn').onclick = e => { e.stopPropagation(); openDaysheet(); }; $('#dsBtn').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); openDaysheet(); } };
   const hm = $('#main').querySelector('.home');
   const go = e => {
     const l = e.target.closest('.hli');
@@ -3218,6 +3218,7 @@ function libSave(){
 
 // ------------------------------------------------------------ Daysheet : remplit le PDF modèle (daysheet.pdf) et lance l'impression
 const DS = {url: null};
+IC.print = ic('<path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>');
 const dsLib = () => new Promise((ok, ko) => { if (window.PDFLib) return ok(); const sc = document.createElement('script'); sc.src = 'https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js'; sc.onload = ok; sc.onerror = () => ko(new Error('Bibliothèque PDF indisponible (connexion ?)')); document.head.appendChild(sc); });
 async function dsBuild(v){
   await dsLib();
