@@ -878,7 +878,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.11.71</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.11.72</span></div>
   <div class="hmid"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button><span class="hsep hide" id="hs1"></span>
   <button id="bQR" class="ico hide" title="Mes identifiants" aria-label="Mes identifiants"></button>
@@ -889,7 +889,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.71</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.72</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -3233,6 +3233,7 @@ async function dsBuild(v){
   put(String(v.nom || '').toUpperCase(), tx(165), tx(397), ty(38), ty(109), 11, bold);
   put(v.prenom, tx(165), tx(397), ty(109), ty(180), 11, bold);
   put(v.matricule, tx(496), tx(551), ty(38), ty(109), 9, bold);
+  put(String(v.date || '').split('-').reverse().join('/'), tx(1062), tx(1217), ty(38), ty(180), 12, bold);
   const X = [8, 165, 346, 507].map(bx), Y = [98, 148, 197].map(by);
   put(v.activite, X[0], X[1], Y[0], Y[1], 11, font);
   put(v.h1, X[1], X[2], Y[0], Y[1], 12, font); put(v.h2, X[2], X[3], Y[0], Y[1], 12, font);
@@ -3249,13 +3250,14 @@ async function openDaysheet(){
   const d = (ME.prefs && ME.prefs.ds) || {}, inp = (id, l, v) => `<label>${l}<input type="time" id="${id}" value="${esc(v || '')}"></label>`;
   ABS.ed = null; ABS.mgr = false; $('#sAbs').className = 'sheet';
   $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Ma daysheet</h3><div class="sub">${esc(pr.prenom)} ${esc(pr.nom)}${d.matricule ? ' · ' + esc(d.matricule) : ''}</div></div><button class="ico sm" id="dsX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+    <div class="sc2"><label>Nom<input id="dsN" value="${esc(pr.nom || '')}" autocomplete="off"></label><label>Prénom<input id="dsP" value="${esc(pr.prenom || '')}" autocomplete="off"></label><label>Matricule<input id="dsMt" value="${esc(d.matricule || '')}" autocomplete="off"></label><label>Date<input type="date" id="dsD" value="${absIso(new Date())}"></label></div>
     <label>Activité<input id="dsA" value="${esc(d.activite || '')}" autocomplete="off"></label>
     <div class="sc2">${inp('dsH1', 'Prise de poste', d.h1)}${inp('dsH2', 'Pause', d.h2)}${inp('dsH3', 'Fin de pause', d.h3)}${inp('dsH4', 'Fin de poste', d.h4)}</div>
-    <p class="m" id="dsM">Horaires habituels de ton profil : tu peux les modifier ici sans changer ton profil.${d.matricule ? '' : ' Ton matricule n’est pas renseigné (Paramètres › Mon profil).'}</p>
+    <p class="m" id="dsM">Vérifie les informations avant de valider : tu peux tout modifier ici (par exemple pour imprimer la daysheet d’un collègue) sans changer ton profil.</p>
     <div id="dsB" style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="s" id="dsC">Annuler</button><button class="p" id="dsOk">Valider</button></div>`;
   $('#dsX').onclick = closeAbs; $('#dsC').onclick = closeAbs;
   $('#dsOk').onclick = async () => {
-    const v = {nom: pr.nom, prenom: pr.prenom, matricule: d.matricule || '', activite: $('#dsA').value.trim(), h1: $('#dsH1').value, h2: $('#dsH2').value, h3: $('#dsH3').value, h4: $('#dsH4').value};
+    const v = {nom: $('#dsN').value.trim(), prenom: $('#dsP').value.trim(), matricule: $('#dsMt').value.trim(), date: $('#dsD').value, activite: $('#dsA').value.trim(), h1: $('#dsH1').value, h2: $('#dsH2').value, h3: $('#dsH3').value, h4: $('#dsH4').value};
     let bytes; try { bytes = await wait(() => dsBuild(v), true); } catch (e) { return toast(e.message || 'Création du PDF impossible'); }
     if (DS.url) URL.revokeObjectURL(DS.url); DS.url = URL.createObjectURL(new Blob([bytes], {type: 'application/pdf'}));
     $('#dsM').textContent = 'PDF prêt. La fenêtre d’impression doit s’ouvrir ; sinon, ouvre le PDF et imprime-le depuis le navigateur.';
