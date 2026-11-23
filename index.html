@@ -594,9 +594,13 @@ html[data-theme=light] .cbox.no .ct b{color:#C62828}
 .cmt summary::-webkit-details-marker{display:none}.cmt summary:before{content:"▸";transition:transform .2s;color:var(--mut)}.cmt[open] summary:before{transform:rotate(90deg)}
 .cmi{display:flex;gap:8px;align-items:flex-end;margin-bottom:8px}.cmi textarea{flex:1;min-width:0;resize:none;padding:7px 10px;border-radius:10px;font-size:var(--fs)}
 .cml{max-height:280px;overflow:auto;margin-bottom:8px}
-.cmr{padding:8px 2px;border-top:1px solid var(--hair);position:relative}.cmr:first-child{border-top:0}
+.cmr{display:flex;gap:12px;align-items:stretch;padding:9px 2px;border-top:1px solid var(--hair);position:relative}.cmr:first-child{border-top:0}
 .cmr.sync{opacity:.55;filter:blur(1.5px)}
-.cmh{display:flex;gap:8px;align-items:baseline}.cmh small{color:var(--mut);font-size:var(--fs)}.cmx{white-space:pre-wrap;word-break:break-word;font-size:var(--fs);margin-top:1px}
+.cmw{flex:0 0 112px;min-width:0;display:flex;flex-direction:column;gap:2px}.cmw b{overflow-wrap:anywhere}.cmw small{color:var(--mut);font-size:var(--fs)}.cmv{flex:none;width:2px;border-radius:2px;background:var(--line)}.cmx{flex:1;min-width:0;white-space:pre-wrap;word-break:break-word;font-size:var(--fs)}.cmr .ico{flex:none;align-self:flex-start}
+.dsp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}.dspl,.dspr{min-width:0}.dspr .cmb{margin:14px 0 0}.dspr .cml{max-height:60vh}
+@media(max-width:760px){.dsp{grid-template-columns:1fr}.cmw{flex-basis:92px}}
+.dt3 .cc{display:block;font-style:normal;font-weight:700;color:#ff9d9d}.dt3.warn .cc{color:#ffc47d}
+html[data-theme=light] .dt3.late .cc{color:#C22B31}html[data-theme=light] .dt3.warn .cc{color:#B45309}
 /* Affichage condensé */
 html[data-dense="1"] body{font-size:var(--fs)}
 html[data-dense="1"] header{padding:5px 14px}
@@ -725,6 +729,8 @@ input[type=date]::-webkit-calendar-picker-indicator,input[type=datetime-local]::
 .eadd{margin:10px 0 0}.scr .ebx .epu{background:var(--panel);margin:0 0 10px}.scr .ebx .epu:last-of-type{margin-bottom:0}
 
 .mod[data-m=_admin]{--mc:238,70,80}
+#mAdm{z-index:19}#sAdm{border-top:3px solid rgb(238,70,80)}
+footer #bAdm{color:rgb(238,70,80)}footer #bAdm:hover{background:rgba(238,70,80,.18);border-color:rgba(238,70,80,.6);color:rgb(238,70,80)}footer #bAdm.on{background:rgb(238,70,80);border-color:rgb(238,70,80);color:#fff}
 .mod.on{border-color:rgb(var(--mc));background:linear-gradient(135deg,rgba(var(--mc),.24),rgba(var(--mc),.06));box-shadow:0 8px 26px rgba(var(--mc),.28)}
 .mod.on .mi{background:rgb(var(--mc));color:#fff}
 html[data-theme=light] .mod.on{background:linear-gradient(135deg,rgba(var(--mc),.18),rgba(var(--mc),.05))}
@@ -906,15 +912,16 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.77</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.78</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div><div class="fr"></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.77</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.78</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
 <div class="modal" id="mSet"><div class="sheet xl" id="sSet"></div></div>
+<div class="modal" id="mAdm"><div class="sheet xl" id="sAdm"></div></div>
 <div class="modal" id="mLib"><div class="sheet wide" id="sLib"></div></div>
 <div class="modal" id="mEnt"><div class="sheet xw" id="sEnt"></div></div>
 <div class="modal" id="mAbs"><div class="sheet" id="sAbs"></div></div>
@@ -1138,7 +1145,7 @@ window.onload = () => {
   initSearch();
   const w = setInterval(() => { if (window.google && google.accounts) { clearInterval(w); initGoogle(); } }, 100);
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
-  $('#bAdm').innerHTML = IC.admin; $('#bAdm').onclick = () => { showArch = false; openMod('_admin'); };
+  $('#bAdm').innerHTML = IC.admin; $('#bAdm').onclick = () => renderAdminPage();
   $('#bSet').innerHTML = IC.gear; $('#bOut').innerHTML = IC.out; $('#qrX').innerHTML = IC.close;
   $('#bRef').innerHTML = IC.refresh; $('#bQR').innerHTML = IC.qr; $('#bMsg').innerHTML = IC.mail; $('#bSearch').innerHTML = IC.search; $('#bBell').innerHTML = IC.bell;
 };
@@ -1306,12 +1313,10 @@ $('#bRef').onclick = reloadAll;
 async function openMod(m){
   cur = m; closePop();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === m));
-  $('#bAdm').classList.toggle('on', m === '_admin');
   moveInd();
   if (m === '_home') return renderHome();
   if (m === 'LIBRARY') return renderLib();
   if (m === 'ENTREPRISES') return renderEnt();
-  if (m === '_admin') return renderAdminPage();
   if (cache[key()]) { rows = cache[key()]; renderList(); refresh(); return; }
   try { rows = await wait(() => api('list', {module: m, archives: showArch})); cache[key()] = rows; }
   catch (e) { return toast(e.message); }
@@ -1582,6 +1587,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') {
   if ($('#mEnt').classList.contains('on')) return ENT.edit ? null : closeEnt();
   if ($('#mAbs').classList.contains('on')) return closeAbs();
   if ($('#mSet').classList.contains('on') && !$('#mDet').classList.contains('on')) return closeSet();
+  if ($('#mAdm').classList.contains('on')) return closeAdm();
   if ($('#mHist').classList.contains('on')) return closeHist();
   if ($('#mPhoto').classList.contains('on')) return $('#mPhoto').classList.remove('on');
   if ($('#mContact').classList.contains('on')) return $('#mContact').classList.remove('on');
@@ -1714,16 +1720,16 @@ function renderDet(){
     if (cur === 'SECURITY' && r.scms_le) meta.push(['SCMS créé', fdate(r.scms_le, true)]);
     if (r.archive === true) meta.push(['Archivé', esc(who(r.archive_par)) + ' · ' + fdate(r.archive_le, true)]);
   }
-  const al = domAlert(r);
+  const al = domAlert(r), sp = cur === 'DOM' && !!r && !ed, xb = `<div id="xBlocks">${extraBlocks(r, ed)}</div>`;
   const dates = r && cur === 'DOM' && r.j1 ? `<div class="dates">${[['J1', r.j1], ['J4', r.j4], ['J10', r.j10]].map(([l, d]) => {
     const dd = new Date(d), df = al.d[l], cls = al[l] || (l !== 'J1' && df > 0 ? 'now' : '');
-    const sub = al[l] === 'late' ? `dépassé de ${-df} j` : '';
+    const sub = l === 'J1' && al.J1 ? '<em class="cc">Contacter le client</em>' + (al.J1 === 'late' ? `dépassé de ${-df} j` : '') : (al[l] === 'late' ? `dépassé de ${-df} j` : '');
     return `<div class="dt3 ${cls}"><small>${l}</small><b>${dd.toLocaleDateString('fr-FR', {weekday:'short', day:'numeric', month:'short'})}</b><span>${sub || '&nbsp;'}</span></div>`; }).join('')}</div>` : '';
-  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3>${stat ? '' : bubs}</div>${btns}</div>${stat}${dates}
+  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3>${stat ? '' : bubs}</div>${btns}</div>${stat}${sp ? '<div class="dsp"><div class="dspl">' : ''}${dates}
     ${cur === 'SECURITY' && r && !ed ? '' : `<dl class="det">${fields}${meta.filter(m => m[1]).map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>`}
-    <div id="xBlocks">${extraBlocks(r, ed)}</div>
-    ${r && !ed && canHist(cur) && cur !== 'SECURITY' ? `<div class="hbar"><button class="s" id="dHist">${IC.clock}Afficher l'historique</button></div>` : ''}`;
-  el.classList.toggle('xw', cur === 'SECURITY' && !!r && !ed);
+    ${sp ? '' : xb}
+    ${r && !ed && canHist(cur) && cur !== 'SECURITY' ? `<div class="hbar"><button class="s" id="dHist">${IC.clock}Afficher l'historique</button></div>` : ''}${sp ? `</div><div class="dspr">${xb}</div></div>` : ''}`;
+  el.classList.toggle('xw', (cur === 'SECURITY' || cur === 'DOM') && !!r && !ed);
   el.classList.toggle('syncing', !!(r && r._sync));
   if (r && r._sync) el.insertAdjacentHTML('beforeend', '<div class="dots"><i></i><i></i><i></i></div>');
   afterExtra(r, ed);
@@ -1860,7 +1866,13 @@ function cmtBlock(r){
   const l = CMT[r.id], w = canWrite() && !showArch, op = !!(det && det.cmOpen);
   return `<div class="cmb"><div class="cmbh"><span>Commentaires${l && l.length ? ' · ' + l.length : ''}</span>${w && !op ? `<button class="s" id="cmNew">${IC.plus}Ajouter un commentaire</button>` : ''}</div>
     ${w && op ? `<div class="cmi cmn"><textarea id="cmIn" rows="4" maxlength="1000" placeholder="Écris ici ce que tu fais sur ce colis…">${esc((det && det.cmtDraft) || '')}</textarea><div class="cma"><button class="s" id="cmCancel">Annuler</button><button class="p" id="cmAdd">Enregistrer</button></div></div>` : ''}
-    <div class="cml">${l === undefined ? '<div class="m">Chargement…</div>' : l.length ? l.map(c => `<div class="cmr ${c._sync ? 'sync' : ''}"><div class="cmh"><b>${esc(who(c.par))}</b><small>${fdate(c.le, true)}</small></div><div class="cmx">${esc(c.texte)}</div></div>`).join('') : '<div class="m">Aucun commentaire.</div>'}</div></div>`;
+    <div class="cml">${l === undefined ? '<div class="m">Chargement…</div>' : l.length ? l.map(c => `<div class="cmr ${c._sync ? 'sync' : ''}"><div class="cmw"><b>${esc(who(c.par))}</b><small>${fdate(c.le, true)}</small></div><i class="cmv"></i><div class="cmx">${esc(c.texte)}</div>${ME.rights.DOM === 'admin' && !c._sync && !String(c.id).startsWith('tmp_') ? `<button class="ico sm warn" data-cdel="${esc(c.id)}" title="Supprimer le commentaire" aria-label="Supprimer le commentaire">${IC.trash}</button>` : ''}</div>`).join('') : '<div class="m">Aucun commentaire.</div>'}</div></div>`;
+}
+async function delComment(r, cid){
+  const before = CMT[r.id] || [], c = before.find(x => x.id === cid); if (!c) return;
+  if (!(await ask('Supprimer ce commentaire ?', 'Il sera définitivement supprimé.', 'Supprimer'))) return;
+  CMT[r.id] = before.filter(x => x !== c); drawX();
+  enqueue(async () => { await api('comment_del', {id:cid}); }, () => { CMT[r.id] = before; if (det && det.r === r) drawX(); });
 }
 function addComment(r){
   const ta = $('#cmIn'); const texte = ta ? ta.value.trim() : ''; if (!texte) return;
@@ -1915,6 +1927,7 @@ function bindX(){
     if (e.target.closest('#cmNew')) { det.cmOpen = true; drawX(); const t = $('#cmIn'); if (t) t.focus(); return; }
     if (e.target.closest('#cmCancel')) { det.cmOpen = false; det.cmtDraft = ''; return drawX(); }
     if (e.target.closest('#cmAdd')) return addComment(r);
+    const cx = e.target.closest('[data-cdel]'); if (cx) return delComment(r, cx.dataset.cdel);
     const d = e.target.closest('[data-pdel]'); if (d) { e.stopPropagation(); return delPhoto(d.dataset.pdel); }
     const pm = e.target.closest('[data-pmain]'); if (pm) { e.stopPropagation(); return setMain(pm.dataset.pmain); }
     const im = e.target.closest('.ph:not(.add) img'); if (im) { $('#phImg').src = im.src; return $('#mPhoto').classList.add('on'); }
@@ -2396,17 +2409,21 @@ const sw = (id, on, extra = '') => `<label class="sw"><input type="checkbox" id=
 // ------------------------------------------------------------ Page « Administration » (réservée aux admins)
 const ADM_MODS = [['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'SCMS']];
 let ADM = null;
+const admOpen = () => $('#mAdm').classList.contains('on');
+function closeAdm(){ $('#mAdm').classList.remove('on'); $('#bAdm').classList.remove('on'); }
+$('#mAdm').addEventListener('mousedown', e => { if (e.target.id === 'mAdm') closeAdm(); });
 async function renderAdminPage(){
-  if (!isAdmin()) { toast('Page réservée aux administrateurs'); return openMod('_home'); }
-  const main = $('#main');
-  if (!ADM) main.innerHTML = `<div class="adm"><h2>Administration</h2></div>`;
-  try { ADM = await wait(() => api('admin_summary')); } catch (e) { return toast(e.message); }
-  if (cur !== '_admin') return;
+  if (!isAdmin()) return toast('Réservé aux administrateurs');
+  const main = $('#sAdm'), head = `<div class="sh"><div class="tt"><h3>Administration</h3></div><button class="ico sm" id="admX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>`;
+  $('#mAdm').classList.add('on'); $('#bAdm').classList.add('on');
+  if (!ADM) { main.innerHTML = head + '<div class="adm"></div>'; $('#admX').onclick = closeAdm; }
+  try { ADM = await wait(() => api('admin_summary')); } catch (e) { closeAdm(); return toast(e.message); }
+  if (!admOpen()) return;
   const n = m => ADM[m] || {a_archiver: 0, a_supprimer: 0};
   const totA = ADM_MODS.reduce((t, [m]) => t + n(m).a_archiver, 0), totS = ADM_MODS.reduce((t, [m]) => t + n(m).a_supprimer, 0);
   const days = [...new Set(ADM_MODS.map(([m]) => n(m).jours_suppression).filter(Boolean))], dj = days.length === 1 ? days[0] : 30;
   const c = v => v ? `<b>${v}</b>` : `<span class="z">0</span>`;
-  main.innerHTML = `<div class="adm"><h2>Administration</h2><div class="adg">
+  main.innerHTML = `${head}<div class="adm"><div class="adg">
     <section class="at" id="atArch"><h3><span class="mi">${IC.archive}</span>Archives</h3>
       <table><thead><tr><th>Page</th><th>À archiver</th><th>Archivés depuis plus de ${dj} j</th></tr></thead>
       <tbody>${ADM_MODS.map(([m, l]) => `<tr><td>${l}</td><td>${c(n(m).a_archiver)}</td><td>${c(n(m).a_supprimer)}</td></tr>`).join('')}</tbody>
@@ -2414,6 +2431,7 @@ async function renderAdminPage(){
       <div class="acts"><button class="s" id="admArch" ${totA ? '' : 'disabled'}>${IC.archive}Archiver ce qui doit l'être</button>
       <button class="s warn" id="admPurge" ${totS ? '' : 'disabled'}>${IC.trash}Supprimer les archives de plus de ${dj} jours</button></div></section>
     <section class="at" id="atB"><h3><span class="mi">${IC.users}</span>Gestion</h3><div class="acts"><button class="s" id="admUsr">${IC.users}Gestion des utilisateurs</button><button class="s" id="admGrp">${IC.users}Gestion des groupes</button><button class="s" id="admCat">${IC.pencil}Gestion des catégories</button></div></section></div></div>`;
+  $('#admX').onclick = closeAdm;
   $('#admGrp').onclick = () => openGrp();
   $('#admCat').onclick = () => openCat();
   $('#admUsr').onclick = () => { setSec = 'users'; $('#mSet').classList.add('on'); renderAdmin(); };
@@ -3269,9 +3287,9 @@ function libSave(){
     try {
       if (typeof ME !== 'undefined' && ME && typeof cur === 'string' && cur) {
         const M = MODS[cur];
-        const page = cur === '_home' ? 'Accueil' : cur === '_admin' ? 'Administration' : M ? M.label : '';
+        const page = cur === '_home' ? 'Accueil' : M ? M.label : '';
         let sub = '';
-        if ($('#mSet').classList.contains('on')) sub = 'Paramètres';
+        if ($('#mSet').classList.contains('on')) sub = 'Paramètres'; else if ($('#mAdm').classList.contains('on')) sub = 'Administration';
         else if ($('#mLib').classList.contains('on')) sub = (($('#sLib h3') || {}).textContent || '').trim();
         else if ($('#mDet').classList.contains('on') && det) {
           if (det.r && M) sub = String((M.title || M.name)(det.r) || '').trim().toUpperCase();
