@@ -576,6 +576,18 @@ html[data-theme=light] .hc b{color:var(--ink)}
 .mod[data-m=SPARK],.mod[data-m=DOM],.ht[data-m=SPARK],.ht[data-m=DOM]{--mc:34,176,112}
 .mod[data-m=SECURITY],.ht[data-m=SECURITY]{--mc:238,70,80}
 .mod[data-m=ENTREPRISES],.ht[data-m=ENTREPRISES]{--mc:166,106,62}
+.absb{margin-top:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px}
+.abh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}.abh h3{margin:0;flex:1}
+.abt{width:100%;border-collapse:separate;border-spacing:3px}
+.abt th{font-size:.85em;color:var(--mut);font-weight:700;text-align:center}.abt th.td{color:var(--blue)}
+.abt td.nm{white-space:nowrap;font-weight:700;padding-right:10px}
+.abc{display:flex;height:30px;border-radius:7px;background:var(--raised);overflow:hidden}
+.abc i{flex:1;display:grid;place-items:center;font:700 11px var(--body);font-style:normal;color:#fff}
+.abc.adm{cursor:pointer}.abc.adm:hover{outline:2px solid var(--blue)}
+.abl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:.85em}.abl>span>i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+#mAbs .sheet{max-width:460px}
+#abCodes .s.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+
 #mEnt{z-index:21}
 .etw{overflow-x:auto}
 .etab{width:100%;border-collapse:collapse}
@@ -767,7 +779,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.48</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.49</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -778,13 +790,14 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.48</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.49</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
 <div class="modal" id="mSet"><div class="sheet xl" id="sSet"></div></div>
 <div class="modal" id="mLib"><div class="sheet wide" id="sLib"></div></div>
 <div class="modal" id="mEnt"><div class="sheet xw" id="sEnt"></div></div>
+<div class="modal" id="mAbs"><div class="sheet" id="sAbs"></div></div>
 <div class="modal" id="mDet"><div class="sheet wide" id="sDet"></div></div>
 <div class="modal" id="mScan"><div class="sheet" id="scan"><h3 style="font:700 22px var(--disp);margin:0 0 12px">Scanner</h3><div class="frame"><video id="vid" playsinline muted></video></div><p id="scanMsg" class="m">Place le code-barres dans le cadre.</p><button class="s" id="scanX">Fermer</button></div></div>
 <div class="modal" id="mQR"><div class="sheet"><div class="sh"><div class="tt"><h3>Mes identifiants</h3></div><button class="ico sm" id="qrX" aria-label="Fermer" title="Fermer"></button></div><div class="ids">
@@ -1120,7 +1133,8 @@ function renderHome(){
   $('#bSet').classList.remove('on');
   const mods = Object.keys(MODS).filter(m => ME.rights[m] && m !== 'DOCUMENTS' && m !== 'LIBRARY');
   $('#main').innerHTML = `<div class="home"><h2>Bonjour ${esc(ME.prenom || '')}</h2><div class="hg">${mods.map(homeTile).join('')}
-  </div></div>`;
+  </div>${absBox()}</div>`;
+  absInit();
   const hm = $('#main').querySelector('.home');
   const go = e => {
     const l = e.target.closest('.hli');
@@ -1407,6 +1421,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') {
   if ($('#mMsg').classList.contains('on')) return closeMsg();
   if ($('#mLib').classList.contains('on')) return LIB.edit ? null : closeLib();
   if ($('#mEnt').classList.contains('on')) return ENT.edit ? null : closeEnt();
+  if ($('#mAbs').classList.contains('on')) return closeAbs();
   if ($('#mSet').classList.contains('on') && !$('#mDet').classList.contains('on')) return closeSet();
   if ($('#mHist').classList.contains('on')) return closeHist();
   if ($('#mPhoto').classList.contains('on')) return $('#mPhoto').classList.remove('on');
@@ -2310,11 +2325,11 @@ async function renderUsers(el){
   const lv = (u, m) => { const cur = u.rights[m] || '', opts = m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<select data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<option value="${v}" ${v === cur ? 'selected' : ''}>${l}</option>`).join('')}</select>`; };
   el.innerHTML = `<h3>Utilisateurs</h3><p class="lead">Accès aux pages et connexions.</p>
-    <table class="utab"><tr><th>Utilisateur</th><th>Dernière connexion</th><th>Actif</th><th>AWB</th><th>SPARK</th><th>DOM</th><th>SCMS</th><th>Entreprises</th><th>Documents</th><th>Paramètres</th><th></th></tr>
+    <table class="utab"><tr><th>Utilisateur</th><th>Dernière connexion</th><th>Actif</th><th>AWB</th><th>SPARK</th><th>DOM</th><th>SCMS</th><th>Entreprises</th><th>Absences</th><th>Documents</th><th>Paramètres</th><th></th></tr>
     ${us.map(u => `<tr><td><b>${esc(u.prenom)} ${esc(u.nom)}</b><div class="m" style="margin:0">${esc(u.email)}</div></td>
       <td>${u.last ? fdate(u.last.date, true) + `<div class="m" style="margin:0">${u.last.appareil}</div>` : '<span class="m">Jamais</span>'}</td>
       <td>${sw('a_' + u.email, u.actif, `data-act="${esc(u.email)}"`)}</td>
-      <td>${lv(u, 'AWB')}</td><td>${lv(u, 'SPARK')}</td><td>${lv(u, 'DOM')}</td><td>${lv(u, 'SECURITY')}</td><td>${lv(u, 'ENTREPRISES')}</td><td>${lv(u, 'DOCUMENTS')}</td><td>${lv(u, 'PARAMETRES')}</td>
+      <td>${lv(u, 'AWB')}</td><td>${lv(u, 'SPARK')}</td><td>${lv(u, 'DOM')}</td><td>${lv(u, 'SECURITY')}</td><td>${lv(u, 'ENTREPRISES')}</td><td>${lv(u, 'ABSENCES')}</td><td>${lv(u, 'DOCUMENTS')}</td><td>${lv(u, 'PARAMETRES')}</td>
       <td><button class="s" data-conn="${esc(u.email)}" data-nm="${esc(u.prenom)}">Connexions</button></td></tr><tr class="hrow"><td colspan="9"><span class="m" style="margin:0 12px 0 0">Peut voir l'historique :</span><div class="hset">${[['AWB','AWB'],['SPARK','SPARK'],['DOM','DOM'],['SECURITY','SCMS'],['DOCUMENTS','Docs']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}>${l}</label>`; }).join('')}</div></td></tr>`).join('')}</table>`;
   el.onchange = async e => {
     const t = e.target;
@@ -2469,6 +2484,81 @@ function entAdrSug(v){
     try { const j = await (await fetch('https://api-adresse.data.gouv.fr/search/?limit=6&autocomplete=1&q=' + encodeURIComponent(v))).json();
       const l = $('#entAdrL'); if (l) l.innerHTML = (j.features || []).map(f => `<option value="${esc(f.properties.label)}">`).join(''); } catch (e) {}
   }, 250);
+}
+const ABS = {off: 0, rows: null, t: 0, ed: null, mgr: false};
+const ABS_C = {HOL: '#2fb36b', TRA: '#8f6cf0', WRK: '#3a8cff', SIC: '#ee4650'};
+const absAdm = () => ME && ME.rights && ME.rights.ABSENCES === 'admin';
+const absIso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+const absMon = off => { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() - ((d.getDay() + 6) % 7) + off * 7); return d; };
+const absJ = p => { try { const o = JSON.parse(String(p.jours || '{}')); return o && typeof o === 'object' ? o : {}; } catch (e) { return {}; } };
+function absBox(){
+  if (!ME.rights.ABSENCES) return '';
+  return '<div class="absb" id="absBox"></div>';
+}
+async function absInit(force){
+  if (!ME.rights.ABSENCES || !$('#absBox')) return;
+  absDraw();
+  if (force || !ABS.rows || Date.now() - ABS.t > 60000) {
+    try { ABS.rows = await api('abs_list'); ABS.t = Date.now(); } catch (e) { return; }
+    absDraw();
+  }
+}
+function absDraw(){
+  const el = $('#absBox'); if (!el) return;
+  const rows = ABS.rows || [], adm = absAdm(), mon = absMon(ABS.off), today = absIso(new Date());
+  const days = [0, 1, 2, 3, 4].map(i => { const d = new Date(mon); d.setDate(mon.getDate() + i); return d; });
+  const fm = d => d.toLocaleDateString('fr-FR', {day: 'numeric', month: 'short'});
+  const dn = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
+  el.innerHTML = `<div class="abh"><h3>Absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[4])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}</div>
+    ${rows.length ? `<table class="abt"><thead><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td' : ''}">${dn[i]} ${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map(d => {
+      const k = absIso(d), c = j[k] || ['', ''], cell = (c[0] && c[0] === c[1]) ? `<i style="background:${ABS_C[c[0]]}">${c[0]}</i>` : ['', ''].map((_, h) => c[h] ? `<i style="background:${ABS_C[c[h]]}" title="${h ? 'Après-midi' : 'Matin'}">${c[h]}</i>` : '<i></i>').join('');
+      return `<td><div class="abc${adm ? ' adm' : ''}" ${adm ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
+      : `<p class="m">${adm ? 'Aucune personne pour le moment : ajoute-en avec le bouton ci-dessus.' : 'Aucune personne pour le moment.'}</p>`}
+    <div class="abl">${Object.keys(ABS_C).map(c => `<span><i style="background:${ABS_C[c]}"></i>${c}</span>`).join('')}<span class="m" style="margin:0">Gauche : matin · droite : après-midi</span></div>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('#absBox [data-an],#absBox [data-am],#absBox [data-ac]'); if (!b) return;
+  if (b.dataset.an !== undefined) { ABS.off = b.dataset.an === '0' ? 0 : ABS.off + Number(b.dataset.an); absDraw(); }
+  else if (b.dataset.am) openAbsMgr();
+  else if (b.dataset.ac && absAdm()) { const [id, d] = b.dataset.ac.split('|'); openAbsEdit(id, d); }
+});
+function closeAbs(){ $('#mAbs').classList.remove('on'); ABS.ed = null; ABS.mgr = false; }
+$('#mAbs').addEventListener('mousedown', e => { if (e.target.id === 'mAbs') closeAbs(); });
+function openAbsEdit(id, d){
+  const p = (ABS.rows || []).find(x => String(x.id) === String(id)); if (!p) return;
+  ABS.ed = {id, code: 'HOL', per: 'j'}; ABS.mgr = false;
+  $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(p.nom)}</h3><div class="sub">Poser une absence</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+    <div class="erow"><label class="etm">Du<input type="date" id="abD1" value="${d}"></label><label class="etm">Au<input type="date" id="abD2" value="${d}"></label></div>
+    <div class="erow"><label class="etm">Période<select id="abP"><option value="j">Journée</option><option value="am">Matin</option><option value="pm">Après-midi</option></select></label></div>
+    <div class="erow" id="abCodes">${Object.keys(ABS_C).map(c => `<button class="s${c === 'HOL' ? ' on' : ''}" data-c="${c}" style="border-color:${ABS_C[c]}">${c}</button>`).join('')}<button class="s" data-c="">Effacer</button></div>
+    <p class="m">Les week-ends sont ignorés.</p>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="s" id="abC">Annuler</button><button class="p" id="abS">Enregistrer</button></div>`;
+  $('#abX').onclick = closeAbs; $('#abC').onclick = closeAbs;
+  $('#abCodes').onclick = e => { const b = e.target.closest('[data-c]'); if (!b) return; ABS.ed.code = b.dataset.c; $('#abCodes').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };
+  $('#abS').onclick = async () => {
+    const d1 = $('#abD1').value, d2 = $('#abD2').value || d1; if (!d1) return toast('Choisis une date');
+    if (d2 < d1) return toast('La date de fin est avant le début');
+    const dates = []; for (let x = new Date(d1 + 'T12:00:00'); absIso(x) <= d2 && dates.length < 400; x.setDate(x.getDate() + 1)) { if (x.getDay() % 6) dates.push(absIso(x)); }
+    if (!dates.length) return toast('Aucun jour ouvré dans cette période');
+    const per = $('#abP').value, c = ABS.ed.code;
+    try { await wait(() => api('abs_set', {id, dates, am: per === 'pm' ? null : c, pm: per === 'am' ? null : c})); ABS.rows = await api('abs_list'); ABS.t = Date.now(); closeAbs(); absDraw(); toast('Enregistré'); } catch (err) { toast(err.message || 'Enregistrement impossible'); }
+  };
+  $('#mAbs').classList.add('on');
+}
+function openAbsMgr(){
+  ABS.mgr = true; ABS.ed = null;
+  const draw = () => {
+    $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Personnes</h3><div class="sub">Qui apparaît dans le calendrier</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+      ${(ABS.rows || []).map(p => `<div class="erow"><input data-pn="${esc(p.id)}" value="${esc(p.nom)}" maxlength="80"><button class="ico sm warn" data-pd="${esc(p.id)}" title="Supprimer" aria-label="Supprimer">${IC.trash}</button></div>`).join('')}
+      <div class="erow"><input id="abNew" placeholder="Nouvelle personne" maxlength="80" autocomplete="off"><button class="p" id="abAdd">${IC.plus}Ajouter</button></div>`;
+    $('#abX').onclick = closeAbs;
+    const reload = async () => { ABS.rows = await api('abs_list'); ABS.t = Date.now(); absDraw(); };
+    $('#abAdd').onclick = async () => { const n = $('#abNew').value.trim(); if (!n) return; try { await wait(() => api('abs_person_save', {nom: n})); await reload(); draw(); $('#abNew').focus(); } catch (e) { toast(e.message); } };
+    $('#abNew').onkeydown = e => { if (e.key === 'Enter') $('#abAdd').click(); };
+    $('#sAbs').querySelectorAll('[data-pn]').forEach(i => { i.onchange = async () => { const n = i.value.trim(); if (!n) return draw(); try { await wait(() => api('abs_person_save', {id: i.dataset.pn, nom: n})); await reload(); toast('Enregistré'); } catch (e) { toast(e.message); } }; });
+    $('#sAbs').querySelectorAll('[data-pd]').forEach(b => { b.onclick = async () => { const p = ABS.rows.find(x => String(x.id) === b.dataset.pd); if (!await ask('Supprimer cette personne ?', (p ? p.nom : '') + ' et toutes ses absences seront supprimées.', 'Supprimer')) return; try { await wait(() => api('abs_person_delete', {id: b.dataset.pd})); await reload(); draw(); } catch (e) { toast(e.message); } }; });
+  };
+  draw(); $('#mAbs').classList.add('on');
 }
 IC.tag = ic('<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8Z"/><circle cx="7" cy="7" r="1.2"/>');
 const LIB = {q: '', tags: [], edit: null, view: null}, LIBF = {};
