@@ -388,6 +388,9 @@ button.bb.off{opacity:.65;background:transparent;border-style:dashed}
 #mTask{z-index:30}
 #mTask .r2c{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 #mRem{z-index:31}
+#mRem .rdays{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+#mRem .rdays label{display:flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid var(--line);border-radius:9px;cursor:pointer;margin:0}
+#mRem .rdays input{width:auto;padding:0;accent-color:var(--blue)}
 #mRem .rtabs{display:flex;gap:8px;margin:0 0 12px}
 #mRem .rtabs .s.on{background:var(--blue);color:#fff;border-color:var(--blue)}
 #mRem .rref{display:flex;align-items:center;gap:8px;margin:10px 0;padding:8px 10px;border:1px solid var(--line,rgba(128,128,128,.3));border-radius:10px}
@@ -727,7 +730,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.36</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.37</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -737,7 +740,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.36</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.37</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -760,7 +763,9 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <div class="rtabs"><button class="s on" id="rtNew">Créer un rappel</button><button class="s" id="rtList">En attente</button></div>
   <div id="rvNew"><label for="rTitre">Titre</label><input id="rTitre" maxlength="200" autocomplete="off">
     <div class="rref" id="rRef" style="display:none"><span id="rRefT"></span><button class="ico sm" id="rRefX" aria-label="Retirer le dossier" title="Retirer le dossier"></button></div>
-    <label for="rDate">Date et heure d'arrivée</label><input id="rDate" type="datetime-local">
+    <div id="rOnce"><label for="rDate">Date et heure d'arrivée</label><input id="rDate" type="datetime-local"></div>
+    <label class="chk"><input type="checkbox" id="rRec"> Rappel récurrent (jours ouvrés)</label>
+    <div id="rRecBox" style="display:none"><label>Jours</label><div class="rdays" id="rDays"><label><input type="checkbox" data-d="lu" checked>Lun</label><label><input type="checkbox" data-d="ma" checked>Mar</label><label><input type="checkbox" data-d="me" checked>Mer</label><label><input type="checkbox" data-d="je" checked>Jeu</label><label><input type="checkbox" data-d="ve" checked>Ven</label></div><label for="rHeure">Heure d'arrivée</label><input id="rHeure" type="time" value="08:00"></div>
     <div class="foot"><button class="p" id="rAdd" style="flex:1">Créer le rappel</button><button class="s" id="rNo">Annuler</button></div></div>
   <div id="rvList" style="display:none"></div></div></div>
 <div class="modal" id="mContact"><div class="sheet"><div class="sh"><div class="tt"><h3>Client contacté</h3><div class="sub" id="cSub"></div></div><button class="ico sm" id="cX" aria-label="Fermer" title="Fermer"></button></div>
@@ -2043,6 +2048,9 @@ let REM = {ref:null, list:null};
 const p2 = n => String(n).padStart(2, '0');
 const localDT = d => d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate()) + 'T' + p2(d.getHours()) + ':' + p2(d.getMinutes());
 function fmtRem(iso){ const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleString('fr-FR', {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}); }
+const DJ = {lu:'Lun', ma:'Mar', me:'Mer', je:'Jeu', ve:'Ven'};
+function recLbl(x){ const j = String(x.jours).split(',').filter(Boolean); return (j.length === 5 ? 'Chaque jour ouvré' : 'Chaque ' + j.map(d => DJ[d] || d).join(', ')) + ' à ' + String(x.heure).replace(':', 'h'); }
+function recToggle(){ const on = $('#rRec').checked; $('#rOnce').style.display = on ? 'none' : ''; $('#rRecBox').style.display = on ? '' : 'none'; }
 function remView(v){
   $('#rvNew').style.display = v === 'new' ? '' : 'none'; $('#rvList').style.display = v === 'list' ? '' : 'none';
   $('#rtNew').classList.toggle('on', v === 'new'); $('#rtList').classList.toggle('on', v === 'list');
@@ -2052,11 +2060,11 @@ function drawRem(){
   const rf = REM.ref; $('#rRef').style.display = rf ? '' : 'none'; if (rf) $('#rRefT').textContent = refLbl(rf.module, rf.id);
   const L = REM.list;
   $('#rtList').textContent = 'En attente' + (L ? ' (' + L.length + ')' : '');
-  $('#rvList').innerHTML = !L ? '<div class="m">Chargement…</div>' : L.length ? L.map(x => '<div class="rit" data-id="' + esc(x.id) + '"><div class="rb"><b>' + esc(x.titre) + '</b><small>' + esc(fmtRem(x.date_envoi)) + (x.ref_module ? ' · ' + esc(refLbl(x.ref_module, x.ref_id)) : '') + '</small></div><button class="ico sm warn" data-del="1" title="Supprimer ce rappel" aria-label="Supprimer ce rappel">' + IC.trash + '</button></div>').join('') : '<div class="m">Aucun rappel en attente.</div>';
+  $('#rvList').innerHTML = !L ? '<div class="m">Chargement…</div>' : L.length ? L.map(x => '<div class="rit" data-id="' + esc(x.id) + '"><div class="rb"><b>' + esc(x.titre) + '</b><small>' + esc(x.jours ? recLbl(x) : fmtRem(x.date_envoi)) + (x.ref_module ? ' · ' + esc(refLbl(x.ref_module, x.ref_id)) : '') + '</small></div><button class="ico sm warn" data-del="1" title="Supprimer ce rappel" aria-label="Supprimer ce rappel">' + IC.trash + '</button></div>').join('') : '<div class="m">Aucun rappel en attente.</div>';
 }
 function loadRem(){ api('rappel_list').then(l => { REM.list = l; drawRem(); }).catch(e => { REM.list = REM.list || []; drawRem(); }); }
 function openRem(ref, list){
-  REM.ref = ref || null; $('#rTitre').value = '';
+  REM.ref = ref || null; $('#rTitre').value = ''; $('#rRec').checked = false; $('#rHeure').value = '08:00'; document.querySelectorAll('#rDays input').forEach(x => x.checked = true); recToggle();
   const d = new Date(Date.now() + 3600000); d.setMinutes(0, 0, 0); $('#rDate').value = localDT(d);
   drawRem(); remView(list ? 'list' : 'new'); $('#mRem').classList.add('on'); loadRem();
 }
@@ -2065,14 +2073,18 @@ $('#rX').innerHTML = IC.close; $('#rRefX').innerHTML = IC.close; $('#rX').onclic
 $('#mRem').addEventListener('mousedown', e => { if (e.target.id === 'mRem') closeRem(); });
 $('#rtNew').onclick = () => remView('new'); $('#rtList').onclick = () => { remView('list'); loadRem(); };
 $('#rRefX').onclick = () => { REM.ref = null; drawRem(); };
+$('#rRec').onchange = recToggle;
 $('#rAdd').onclick = async () => {
-  const titre = $('#rTitre').value.trim(), d = new Date($('#rDate').value);
+  const rec = $('#rRec').checked, titre = $('#rTitre').value.trim(), d = rec ? new Date() : new Date($('#rDate').value);
+  const jours = [...document.querySelectorAll('#rDays input:checked')].map(x => x.dataset.d).join(','), heure = $('#rHeure').value;
   if (!titre) { toast('Donne un titre au rappel'); return $('#rTitre').focus(); }
-  if (isNaN(d)) return toast('Choisis une date et une heure');
+  if (rec && !jours) return toast('Choisis au moins un jour');
+  if (rec && !heure) return toast('Choisis une heure');
+  if (!rec && isNaN(d)) return toast('Choisis une date et une heure');
   const b = $('#rAdd'); b.disabled = true;
   try {
-    await api('rappel_create', {titre, date_envoi:d.toISOString(), ref_module:REM.ref ? REM.ref.module : '', ref_id:REM.ref ? REM.ref.id : ''});
-    toast('Rappel créé pour le ' + fmtRem(d.toISOString())); $('#rTitre').value = ''; REM.list = null; drawRem(); remView('list'); loadRem();
+    await api('rappel_create', {titre, date_envoi:d.toISOString(), jours:rec ? jours : '', heure:rec ? heure : '', ref_module:REM.ref ? REM.ref.module : '', ref_id:REM.ref ? REM.ref.id : ''});
+    toast(rec ? 'Rappel récurrent créé' : 'Rappel créé pour le ' + fmtRem(d.toISOString())); $('#rTitre').value = ''; REM.list = null; drawRem(); remView('list'); loadRem();
   } catch (e) { toast(e.message || 'Erreur'); }
   b.disabled = false;
 };
