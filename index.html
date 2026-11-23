@@ -145,16 +145,8 @@ details:not([open])>summary>.chv{transform:rotate(-45deg);margin-top:0}
 .gm .rl{border:1px solid var(--line);background:none;color:var(--mut);border-radius:999px;padding:3px 10px;font:700 11px var(--body);cursor:pointer}.gm .rl.ad{background:var(--orange);border-color:var(--orange);color:#fff}
 .gg .gf{display:flex;gap:8px;margin-top:10px}.gg .gf select{flex:1}
 .abg{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 8px;align-items:center}.abg .chk{margin:0;font-size:14px;gap:6px}.abg>span{color:var(--mut);font-size:13px}
-#busy .lg{position:relative;width:136px;height:136px}
-#busy .lgb,#busy .lgf{position:absolute;inset:0;-webkit-mask:url(icon-192.png) center/contain no-repeat;mask:url(icon-192.png) center/contain no-repeat}
-#busy .lgb{background:#58606e}
-#busy .lgf{overflow:hidden;animation:lgfd 3.4s ease-in-out infinite}
-#busy .wv{position:absolute;left:0;right:0;top:0;height:100%;transform:translateY(104%);animation:lgup 3.4s ease-in-out infinite}
-#busy .wv::before{content:'';position:absolute;left:0;right:0;top:-14px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 14'%3E%3Cpath d='M0 14V7Q12 0 24 7T48 7V14Z' fill='%23ff5a2b'/%3E%3C/svg%3E") repeat-x;background-size:48px 14px;animation:lgw 1s linear infinite}
-#busy .wv::after{content:'';position:absolute;inset:0;background:var(--orange)}
-@keyframes lgup{0%{transform:translateY(104%)}82%,100%{transform:translateY(-14px)}}
-@keyframes lgw{to{background-position-x:48px}}
-@keyframes lgfd{0%,86%{opacity:1}98%,100%{opacity:0}}
+#busy .lg{width:136px;height:136px;-webkit-mask-image:url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png);-webkit-mask-position:calc(50% + 0px) calc(50% + 0px),calc(50% + 2.4px) calc(50% + 0px),calc(50% + -2.4px) calc(50% + 0px),calc(50% + 0px) calc(50% + 2.4px),calc(50% + 0px) calc(50% + -2.4px),calc(50% + 1.7px) calc(50% + 1.7px),calc(50% + -1.7px) calc(50% + 1.7px),calc(50% + 1.7px) calc(50% + -1.7px),calc(50% + -1.7px) calc(50% + -1.7px);-webkit-mask-size:100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%;-webkit-mask-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat;mask-image:url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png);mask-position:calc(50% + 0px) calc(50% + 0px),calc(50% + 2.4px) calc(50% + 0px),calc(50% + -2.4px) calc(50% + 0px),calc(50% + 0px) calc(50% + 2.4px),calc(50% + 0px) calc(50% + -2.4px),calc(50% + 1.7px) calc(50% + 1.7px),calc(50% + -1.7px) calc(50% + 1.7px),calc(50% + 1.7px) calc(50% + -1.7px),calc(50% + -1.7px) calc(50% + -1.7px);mask-size:100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%;mask-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat;background-color:#58606e;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 14'%3E%3Cpath d='M0 14V7Q12 0 24 7T48 7V14Z' fill='%23ff5a2b'/%3E%3C/svg%3E"),linear-gradient(#ff5a2b,#ff5a2b);background-size:48px 14px,100% 100%;background-repeat:repeat-x,no-repeat;background-position:0 140px,0 153px;animation:lgup 3.2s ease-in-out infinite alternate}
+@keyframes lgup{0%{background-position:0 140px,0 153px}100%{background-position:96px -14px,0 -1px}}
 .card.tmp{opacity:.72;animation:pop .35s var(--ease)}
 @keyframes pop{from{transform:scale(.96);opacity:0}}
 /* Pulsation « urgent » : une seule horloge globale (:root) => toutes les cases clignotent ensemble, sans jamais redémarrer */
@@ -841,7 +833,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.61</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.63</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -852,7 +844,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.61</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.63</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -892,7 +884,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 <div class="modal" id="mBand"><div class="sheet" id="band"></div></div>
 <div class="modal" id="mAsk"><div class="sheet"><div class="sh"><div class="tt"><h3 id="askT"></h3></div></div><p id="askP"></p>
   <div class="foot"><button class="p" id="askOk" style="flex:1"></button><button class="s" id="askNo">Annuler</button></div></div></div>
-<div id="busy" aria-label="Chargement"><div class="lg"><div class="lgb"></div><div class="lgf"><div class="wv"></div></div></div></div>
+<div id="busy" aria-label="Chargement"><div class="lg"></div></div>
 <div class="toast" id="toast"></div>
 
 <script src="config.js"></script>
@@ -2633,7 +2625,7 @@ function absDraw(){
   const pend = [];
   rows.forEach(p => { const j = absJ(p); Object.keys(j).sort().forEach(k => { const c = j[k] || []; if (c[0] === '??' || c[1] === '??') pend.push({n: p.nom, k}); }); });
   const qb = pend.length ? `<div class="abq"><b>À confirmer !</b><span>${pend.slice(0, 6).map(x => esc(x.n) + ' (' + fm(new Date(x.k + 'T12:00:00')) + ')').join(' · ')}${pend.length > 6 ? ' …' : ''}</span></div>` : '';
-  el.innerHTML = `<div class="abh"><h3>Planning des absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[18])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}</div>
+  el.innerHTML = `<div class="abh"><h3>Planning des absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[18])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}${ABS.g.some(g => g.admin) ? `<button class="ico sm" data-ag="1" title="Gérer les groupes" aria-label="Gérer les groupes">${IC.gear}</button>` : ''}</div>
     ${ABS.g.length ? `<div class="abg"><span>Groupes :</span>${ABS.g.map(g => `<label class="chk"><input type="checkbox" data-agk="${esc(g.id)}" ${hid[String(g.id)] ? '' : 'checked'}>${esc(g.nom)}</label>`).join('')}</div>` : ''}
     ${qb}${rows.length ? `<table class="abt"><thead><tr><th></th>${[0, 1, 2].map(w => `<th colspan="7" class="wkh">${fm(days[w * 7])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td ' : ''}${i % 7 === 0 ? 'wk' : ''}${i % 7 > 4 ? ' we' : ''}">${dn[i % 7]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
       const we = di % 7 > 4, k = absIso(d), c = we ? [] : (j[k] || []), a = c[0] || '', b = c[1] || '', note = c[2] || '', nf = Number(c[3]) || 0, has = a || b || note || nf;
