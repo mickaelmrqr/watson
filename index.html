@@ -95,6 +95,20 @@ button{font-family:inherit;cursor:pointer}
 .card:hover{transform:translateY(-3px);border-color:var(--bd2);background:var(--hov);box-shadow:0 14px 34px rgba(0,0,0,.38)}
 .card:hover:before{width:9px}
 .card.st-go{--rail:var(--blue)} .card.st-ok{--rail:var(--green)}
+.card.st-wait{--rail:var(--line);opacity:.55;filter:grayscale(1)}.card.st-wait:hover{opacity:.85}
+.tag.wait{background:var(--raised);color:var(--mut)}
+.hc.wt{opacity:.7}
+.card.hascat{padding-left:40px}.card.hascat:before{width:26px}.card.hascat:hover:before{width:29px}
+.card .rcat{position:absolute;left:0;top:0;bottom:0;width:26px;display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:none;z-index:2}
+.card .rcat span{writing-mode:vertical-rl;transform:rotate(180deg);font:700 11px/1 var(--disp);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-height:calc(100% - 10px);color:var(--ink);opacity:.8}
+.card.st-go .rcat span,.card.st-ok .rcat span{color:#fff;opacity:.95}
+html[data-dense="1"] .card.hascat{padding-left:36px}
+.epu{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;padding:8px 12px}
+.epu summary{cursor:pointer;font-weight:700;display:flex;gap:8px;align-items:center}
+.epu summary small{font-weight:600;color:var(--mut)}
+.epu .epl{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;max-height:132px;overflow:auto}
+.epu .epl button{display:inline-flex;gap:6px;align-items:center;background:var(--raised);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:4px 11px;font-size:var(--fs);cursor:pointer}
+.epu .epl button b{color:var(--mut);font-weight:700}
 .card.tmp{opacity:.72;animation:pop .35s var(--ease)}
 @keyframes pop{from{transform:scale(.96);opacity:0}}
 /* Pulsation « urgent » : une seule horloge globale (:root) => toutes les cases clignotent ensemble, sans jamais redémarrer */
@@ -787,7 +801,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.57</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.58</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -798,7 +812,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.57</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.58</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -963,7 +977,7 @@ MODS.DOCUMENTS = { label: 'Documents', noSteps: true, name: r => r.titre, show: 
     {k:'titre',l:'Titre',t:'text',req:1},
     {k:'visibilite',l:'Visibilité',t:'vis'},
     {k:'_file',l:'Fichier',t:'file'}] };
-const STEP_KIND = {EN_COURS:'go',ATTENTE_CLIENT:'go',ATTENTE_COMMERCIAL:'go',SCMS_CREE:'go',TERMINE:'ok',A_ARCHIVER:'ok',RTO_FAIT:'ok',INSTRUCTION_APPLIQUEE:'ok',RESOLU:'ok'};
+const STEP_KIND = {EN_ATTENTE:'wait',EN_COURS:'go',ATTENTE_CLIENT:'go',ATTENTE_COMMERCIAL:'go',SCMS_CREE:'go',TERMINE:'ok',A_ARCHIVER:'ok',RTO_FAIT:'ok',INSTRUCTION_APPLIQUEE:'ok',RESOLU:'ok'};
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let token = sessionStorage.getItem('wtk'), cur = null, rows = [], showArch = false, det = null;
@@ -1064,7 +1078,7 @@ const entToday = r => { const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new
 function alN(m, r){
   if (!r || m === 'ENTREPRISES' || m === 'DOCUMENTS') return 0;
   if (m === 'DOM') return r.map(domAlert).filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late' || a[k] === 'warn')).length;
-  return r.filter(x => kindOfM(m, x) !== 'ok' && (x.urgent === true || (m === 'SPARK' && x.etape === 'A_FAIRE'))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
+  return r.filter(x => kindOfM(m, x) !== 'ok' && (m === 'AWB' ? x.etape === 'A_FAIRE' : (x.urgent === true || (m === 'SPARK' && x.etape === 'A_FAIRE')))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
 }
 function drawTiles(){
   document.querySelectorAll('.mod').forEach(b => {
@@ -1079,7 +1093,7 @@ function drawTiles(){
       setN(lt + wn); t.innerHTML = [lt ? `<i>${lt} en retard</i>` : '', wn ? `<i class="o">${wn} à faire aujourd'hui</i>` : ''].filter(Boolean).join(' · '); return;
     }
     const act = r.filter(x => kindOfM(m, x) !== 'ok'), u = act.filter(x => x.urgent === true).length;
-    const af = m === 'SPARK' ? act.filter(x => x.etape === 'A_FAIRE').length : 0;
+    const af = (m === 'SPARK' || m === 'AWB') ? act.filter(x => x.etape === 'A_FAIRE').length : 0;
     const nc = m === 'SECURITY' ? r.filter(scmsMissing).length : 0; setN(alN(m, r)); t.innerHTML = [u ? `<i>${u} urgent${u > 1 ? 's' : ''}</i>` : '', af ? `<i class="o">${af} à faire</i>` : '', nc ? `<i>${nc} SCMS à créer</i>` : ''].filter(Boolean).join(' · ');
   });
 }
@@ -1094,6 +1108,7 @@ async function preload(mods){
 
 // ------------------------------------------------------------ Accueil
 function kindOfM(m, r){
+  if (r.etape === 'A_FAIRE') return '';
   if (STEP_KIND[r.etape]) return STEP_KIND[r.etape];
   const st = stepsOf(m), i = st.findIndex(x => x.code === r.etape), n = st.length;
   if (i <= 0) return '';
@@ -1116,7 +1131,7 @@ function homeTile(m){
   const ref = x => m === 'SECURITY' ? (x.waybill || '') : (x.waybill || x.pid || '');
   const big = r.filter(x => kindOfM(m, x) !== 'ok').length, sub = 'en cours';
   const k = {'': 0, go: 0, ok: 0}; r.forEach(x => k[kindOfM(m, x)]++);
-  stepsOf(m).forEach(st => { const n = r.filter(x => x.etape === st.code).length; add(n, esc(st.libelle_etat), kindOfM(m, {etape: st.code}) === 'ok' ? 'ok' : (m === 'SPARK' && st.code === 'A_FAIRE' ? 'w' : '')); });
+  stepsOf(m).forEach(st => { const n = r.filter(x => x.etape === st.code).length; add(n, esc(st.libelle_etat), kindOfM(m, {etape: st.code}) === 'ok' ? 'ok' : (st.code === 'EN_ATTENTE' ? 'wt' : ((m === 'SPARK' || m === 'AWB') && st.code === 'A_FAIRE' ? 'w' : ''))); });
   
   if (m === 'DOM') {
     const late = k => r.filter(x => domAlert(x)[k] === 'late'), since = k => x => 'dépassé de ' + (-domAlert(x).d[k]) + ' j';
@@ -1222,7 +1237,7 @@ function renderList(){
 }
 function drawCards(){
   const list = $('#list'); if (!list) return;
-  const ord = {}; stepsOf(cur).forEach((x, i) => ord[x.code] = i);
+  const ord = {}; stepsOf(cur).forEach((x, i) => ord[x.code] = x.code === 'EN_ATTENTE' ? 50 : i);
   const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
   const out = rows.slice()
     .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (cur === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
@@ -1244,6 +1259,7 @@ function val(r, k){
   return v;
 }
 const kindOf = r => {
+  if (r.etape === 'A_FAIRE') return '';
   if (STEP_KIND[r.etape]) return STEP_KIND[r.etape];
   const st = stepsOf(cur), i = st.findIndex(x => x.code === r.etape), n = st.length;
   if (i <= 0) return '';
@@ -1260,7 +1276,7 @@ function cardSec(r){
     ${r.waybill ? `<div class="r2"><div class="refs">${lnkc(r.waybill)}</div></div>` : ''}<div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="rowb">${cbub}${waitB(r)}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 const lnkc = (v, label) => v ? `<span class="rc">${link(v, label)}<button class="cp sm" data-copy="${esc(v)}" title="Copier" aria-label="Copier">${IC.copy}</button></span>` : '';
-const stLabR = r => (cur === 'AWB' || cur === 'SPARK') && r.etape === 'EN_COURS' && r.etape_par ? 'En cours par ' + who(r.etape_par) : stLabel(r.etape);
+const stLabR = r => (cur === 'AWB' || cur === 'SPARK') && r.etape === 'EN_COURS' && r.etape_par ? 'En cours par ' + who(r.etape_par) : (cur === 'AWB' && r.etape === 'EN_ATTENTE' && r.etape_par ? 'Mis en attente par ' + who(r.etape_par) : stLabel(r.etape));
 const ecCls = r => (cur === 'AWB' || cur === 'SPARK') && r.etape === 'EN_COURS' && r.etape_par ? (String(r.etape_par).toLowerCase() === ME.email ? ' ec-me' : ' ec-ot') : '';
 const waitB = r => r.suppr_par ? `<span class="bb wait" title="Le créateur doit valider la suppression">${IC.trash}En attente de suppression</span>` : '';
 function cardDoc(r){
@@ -1287,7 +1303,8 @@ function card(r){
   const lines = M.show.filter(k => !(cur === 'AWB' && k === 'categorie_id')).map(k => { const v = val(r, k); return v ? `<div class="m ${k === 'categorie_id' ? 'cat' : ''}">${esc(v)}</div>` : ''; }).join('');
   const acts = w && !showArch ? `<div class="act"><button class="s go stp" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}Étape</button></div>` : '<div class="act" style="padding:0"></div>';
   const al = cur === 'DOM' ? domAlert(r) : null, alc = al ? (['J1', 'J4', 'J10'].some(k => al[k] === 'late') ? ' al-late' : ['J1', 'J4', 'J10'].some(k => al[k] === 'warn') ? ' al-warn' : '') : '';
-  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${alc}${ecCls(r)}${gcl(r)}" ${gst(r)} data-id="${r.id}">${head}${wk}${lines}${r.suppr_par ? `<div class="rowb">${waitB(r)}</div>` : ''}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+  const cl = cur === 'AWB' ? val(r, 'categorie_id') : '';
+  return `<div class="card st-${kind}${cl ? ' hascat' : ''} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${alc}${ecCls(r)}${gcl(r)}" ${gst(r)} data-id="${r.id}">${cl ? `<div class="rcat" title="${esc(cl)}"><span>${esc(cl)}</span></div>` : ''}${head}${wk}${lines}${r.suppr_par ? `<div class="rowb">${waitB(r)}</div>` : ''}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 
 // ------------------------------------------------------------ Recherche globale (suggestions)
@@ -1415,7 +1432,7 @@ function lastBy(r, code){
   if (r.etape === code && r.etape_par) return {u: r.etape_par, d: r.etape_le};
   const h = (H[r.id] || []).find(x => x.action === 'etape' && x.nouvelle_valeur === code);
   if (h) return {u: h.utilisateur, d: h.date_heure};
-  const st = stepsOf(cur); if (st[0] && st[0].code === code && r.cree_par) return {u: r.cree_par, d: r.cree_le};
+  const st = stepsOf(cur), f0 = st.find(x => x.code === 'A_FAIRE') || st[0]; if (f0 && f0.code === code && r.cree_par) return {u: r.cree_par, d: r.cree_le};
   return null;
 }
 function drawBand(){
@@ -1645,7 +1662,7 @@ function saveLocal(r, data, extra){
   const m = cur, k = key(), now = new Date().toISOString();
   if (r) { if (H[r.id]) Object.keys(data).forEach(f => { if (String(r[f] ?? '') !== String(data[f] ?? '')) H[r.id].unshift({date_heure:now, utilisateur:ME.email, action:'modification', champ:f, ancienne_valeur:r[f] ?? '', nouvelle_valeur:data[f]}); }); Object.assign(r, data, {modifie_le: now}); syncOn(r); }
   else {
-    const row = Object.assign({id:'tmp_' + Date.now(), cree_par:ME.email, cree_le:now, etape:(stepsOf(m)[0] || {}).code || '', etape_par:ME.email, etape_le:now, archive:false, _tmp:true}, data, extra && extra.files ? {fichiers: extra.files.map(f => ({id:'tmp', nom:f.name, taille:f.size}))} : {}, extra && extra.photos && extra.photos[0] ? {thumb: extra.photos[0].thumb} : {});
+    const row = Object.assign({id:'tmp_' + Date.now(), cree_par:ME.email, cree_le:now, etape:(stepsOf(m).find(x => x.code === 'A_FAIRE') || stepsOf(m)[0] || {}).code || '', etape_par:ME.email, etape_le:now, archive:false, _tmp:true}, data, extra && extra.files ? {fichiers: extra.files.map(f => ({id:'tmp', nom:f.name, taille:f.size}))} : {}, extra && extra.photos && extra.photos[0] ? {thumb: extra.photos[0].thumb} : {});
     rows.unshift(row); cache[k] = rows;
   }
   drawCards();
@@ -2393,10 +2410,20 @@ const puHor = p => (p.debut || p.fin) ? `${esc(p.debut || '?')}–${esc(p.fin ||
 function entHay(r){
   return entNorm([r.nom, r.adresse, r.commentaire, entC(r).map(c => c.numero + ' ' + c.commentaire).join(' '), entR(r).map(x => x.nom).join(' '), entP(r).map(p => [p.contact, p.tel, String(p.tel || '').replace(/\D/g, ''), p.commercial, p.remarques].join(' ')).join(' ')].join(' '));
 }
+function entPuBanner(){
+  const el = $('#epu'); if (!el) return;
+  const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new Date().getDay()], jn = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'][new Date().getDay()];
+  const it = [];
+  entRows().forEach(r => entP(r).forEach(p => { if (entJours(p.jours).includes(c)) it.push({id: r.id, nom: r.nom, h: puHor(p), k: p.debut || p.fin || '99:99'}); }));
+  it.sort((a, b) => String(a.k).localeCompare(String(b.k)) || String(a.nom).localeCompare(String(b.nom), 'fr', {sensitivity: 'base'}));
+  el.innerHTML = `<details class="epu" open><summary>PU réguliers du jour <small>${jn} · ${it.length}</small></summary>${it.length ? `<div class="epl">${it.map(x => `<button data-id="${esc(x.id)}">${x.h ? `<b>${x.h}</b>` : ''}${esc(x.nom)}</button>`).join('')}</div>` : '<div class="m" style="margin:6px 0 0">Aucun PU régulier aujourd’hui.</div>'}</details>`;
+}
 function renderEnt(){
   cur = 'ENTREPRISES'; closePop(); closeDet();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === 'ENTREPRISES'));
   $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="eq" placeholder="Rechercher une entreprise, un compte, une route, un contact, un commercial…" autocomplete="off" value="${esc(ENT.q)}" aria-label="Rechercher une entreprise"></div><span class="m" id="ecnt" style="margin:0"></span><span style="flex:1"></span>${canWrite() ? `<button class="p" id="eNew">${IC.plus}Nouvelle</button>` : ''}</div><div class="etw" id="etab"></div>`;
+  $('#main').insertAdjacentHTML('afterbegin', '<div id="epu"></div>');
+  $('#epu').onclick = e => { const t = e.target.closest('[data-id]'); if (t) openEnt(t.dataset.id); };
   $('#eq').oninput = e => { ENT.q = e.target.value; entDraw(); };
   if ($('#eNew')) $('#eNew').onclick = () => openEntEdit(null);
   $('#etab').onclick = e => { const t = e.target.closest('[data-id]'); if (t) openEnt(t.dataset.id); };
@@ -2406,6 +2433,7 @@ function renderEnt(){
 function entDraw(){
   if (cur !== 'ENTREPRISES' || !$('#etab')) return;
   if (!cache.ENTREPRISES) { $('#etab').innerHTML = '<div class="m" style="padding:18px">Chargement…</div>'; return; }
+  entPuBanner();
   const q = entNorm(ENT.q).trim().split(/\s+/).filter(Boolean);
   const list = entRows().filter(r => { const h = entHay(r); return q.every(w => h.includes(w)); }).sort((a, b) => String(a.nom).localeCompare(String(b.nom), 'fr', {sensitivity: 'base'}));
   $('#ecnt').textContent = list.length + ' / ' + entRows().length;
