@@ -603,19 +603,19 @@ html[data-theme=light] .cbox.no .ct b{color:#C62828}
 .dt3 .cc{display:block;font-style:normal;font-weight:700;color:#ff9d9d}.dt3.warn .cc{color:#ffc47d}
 html[data-theme=light] .dt3.late .cc{color:#C22B31}html[data-theme=light] .dt3.warn .cc{color:#B45309}
 /* Affichage condensé */
-html[data-dense="1"] body{font-size:var(--fs)}
+
 html[data-dense="1"] header{padding:5px 14px}
 html[data-dense="1"] main{padding:8px 14px 30px}
-html[data-dense="1"] .mod{padding:8px 12px;gap:10px;border-radius:12px}
-html[data-dense="1"] .mod .mi{width:34px;height:34px;border-radius:10px;font-size:16px}
-html[data-dense="1"] .mod b{font-size:var(--fs-b)}html[data-dense="1"] .mod small{font-size:var(--fs)}
+html[data-dense="1"] .mod{padding:8px 12px;gap:10px}
+
+
 html[data-dense="1"] .bar{margin:6px 0 10px;gap:8px}
 html[data-dense="1"] .grid{gap:8px}
-html[data-dense="1"] .card{padding:8px 12px 8px 18px;border-radius:12px}
-html[data-dense="1"] .m{font-size:var(--fs);margin:1px 0}
+html[data-dense="1"] .card{padding:8px 12px 8px 18px}
+html[data-dense="1"] .m{margin:1px 0}
 html[data-dense="1"] .act{padding-top:6px}
 html[data-dense="1"] .sheet{padding:14px}
-html[data-dense="1"] .det dt{padding:4px 0;font-size:var(--fs)}html[data-dense="1"] .det dd{padding:4px 0;min-height:1.9em}
+html[data-dense="1"] .det dt{padding:4px 0}html[data-dense="1"] .det dd{padding:4px 0}
 html[data-dense="1"] .cbox{margin:8px 0 2px;padding:8px 10px}
 html[data-dense="1"] .cmt{margin:8px 0 2px}html[data-dense="1"] .cmt summary{padding:6px 0}
 html[data-dense="1"] .trow{padding:6px 8px 6px 15px;margin-bottom:5px}
@@ -751,7 +751,7 @@ html[data-menu="v"] .mod.io{flex:1 1 104px;max-width:140px;flex-direction:column
 html[data-menu="v"] .mod.io .il{display:block;white-space:normal;overflow-wrap:anywhere;line-height:1.15}
 html[data-menu="v"] .mod[data-n]::after{content:attr(data-n);position:absolute;top:6px;right:8px;min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:#ff8a1f;color:#fff;font:700 12px/20px var(--body);text-align:center}
 .mod b{font-size:calc(var(--fs-b)*.86)}.mod small{font-size:calc(var(--fs)*.88)}
-html[data-dense="1"] .mod b{font-size:calc(var(--fs-b)*.86)}html[data-dense="1"] .mod small{font-size:calc(var(--fs)*.88)}
+
 @media(max-width:700px){.mod.io{flex:0 0 auto;flex-direction:row;padding:10px}}
 .ht .mi{background:rgb(var(--mc,128,138,158));color:#fff}
 /* Recharger */
@@ -909,17 +909,17 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 /* Affichage ultra condensé */
 html[data-ultra="1"] header{padding:3px 10px}
 html[data-ultra="1"] main{padding:4px 8px 20px}
-html[data-ultra="1"] .mod{padding:4px 8px;gap:7px;border-radius:9px}
-html[data-ultra="1"] .mod .mi{width:26px;height:26px;border-radius:8px;font-size:13px}
+html[data-ultra="1"] .mod{padding:4px 8px;gap:7px}
+
 html[data-ultra="1"] .bar{margin:3px 0 6px;gap:5px}
 html[data-ultra="1"] .grid{gap:4px}
-html[data-ultra="1"] .card{padding:4px 8px 4px 14px;border-radius:9px}
+html[data-ultra="1"] .card{padding:4px 8px 4px 14px}
 html[data-ultra="1"] .card.hascat{padding-left:30px}
 html[data-ultra="1"] .m{margin:0}
 html[data-ultra="1"] .act{padding-top:3px}
 html[data-ultra="1"] .sheet{padding:10px}
 html[data-ultra="1"] .det dt,html[data-ultra="1"] .det dd{padding:2px 0}
-html[data-ultra="1"] .det dd{min-height:1.5em}
+
 html[data-ultra="1"] .cbox{margin:5px 0 2px;padding:5px 8px}
 html[data-ultra="1"] .cmt{margin:5px 0 2px}
 html[data-ultra="1"] .cmt summary{padding:3px 0}
@@ -947,11 +947,11 @@ html[data-ultra="1"] .mod.io{padding:5px 8px}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.89</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.90</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div><div class="fr"></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.89</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.90</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
