@@ -600,6 +600,7 @@ html[data-theme=light] .hc b{color:var(--ink)}
 html[data-theme=light] .mod.on{background:linear-gradient(135deg,rgba(var(--mc),.18),rgba(var(--mc),.05))}
 .mod.io{flex:0 0 auto;max-width:none;padding:14px}
 html[data-dense="1"] .mod.io{padding:8px 10px}
+html[data-menu="v"] .mod:not(.io){flex:1 1 112px;max-width:150px;flex-direction:column;text-align:center;gap:6px;padding:10px 8px}
 @media(max-width:700px){.mod.io{flex:0 0 auto;flex-direction:row;padding:10px}}
 .ht .mi{background:rgb(var(--mc,128,138,158));color:#fff}
 /* Recharger */
@@ -758,7 +759,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.44</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.45</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -768,7 +769,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.44</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.45</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -982,6 +983,8 @@ function applyDisplay(){
   document.documentElement.style.zoom = z === 1 ? '' : z;
   let dn = P.dense; try { if (dn === undefined) dn = localStorage.getItem('wdense') === '1'; localStorage.setItem('wdense', dn ? '1' : '0'); } catch (e) {}
   document.documentElement.dataset.dense = dn ? '1' : '';
+  let mn = P.menu; try { if (mn === undefined) mn = localStorage.getItem('wmenu') || ''; localStorage.setItem('wmenu', mn || ''); } catch (e) {}
+  document.documentElement.dataset.menu = mn === 'v' ? 'v' : '';
   $('meta[name=theme-color]').content = t === 'light' ? '#F2F4F8' : '#15181F';
   try { localStorage.setItem('wtheme', t); localStorage.setItem('wzoom', z); } catch (e) {}
 }
@@ -2243,8 +2246,10 @@ async function renderSec(){
     el.innerHTML = `<h3>Affichage</h3><p class="lead">Apparence de l'application.</p>
       <div class="prow"><div><b>Mode</b><div class="m">Nuit (fond sombre) ou jour (fond clair).</div></div><div class="seg2" id="aMode"><button data-v="dark" class="${th === 'dark' ? 'on' : ''}">Nuit</button><button data-v="light" class="${th === 'light' ? 'on' : ''}">Jour</button></div></div>
       <div class="prow"><div><b>Taille du texte</b><div class="m">Agrandit ou réduit tout l'affichage.</div></div><div class="seg2"><button id="zMin" aria-label="Réduire">A−</button><span id="zVal">${Math.round(ZOOMS[zi] * 100)} %</span><button id="zPlus" aria-label="Agrandir">A+</button></div></div>
-      <div class="prow"><div><b>Affichage condensé</b><div class="m">Réduit les marges et les espaces vides pour voir plus de choses à l'écran.</div></div><div>${sw('aDense', document.documentElement.dataset.dense === '1')}</div></div>`;
+      <div class="prow"><div><b>Affichage condensé</b><div class="m">Réduit les marges et les espaces vides pour voir plus de choses à l'écran.</div></div><div>${sw('aDense', document.documentElement.dataset.dense === '1')}</div></div>
+      <div class="prow"><div><b>Menu en colonnes</b><div class="m">Une case par page, avec l'icône au-dessus et le nom en dessous.</div></div><div>${sw('aMenu', document.documentElement.dataset.menu === 'v')}</div></div>`;
     $('#aDense').onchange = e => setDisplay({dense: e.target.checked});
+    $('#aMenu').onchange = e => setDisplay({menu: e.target.checked ? 'v' : ''});
     $('#aMode').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#aMode').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); setDisplay({theme: b.dataset.v}); };
     let z = zi; const bump = d => { z = Math.min(ZOOMS.length - 1, Math.max(0, z + d)); $('#zVal').textContent = Math.round(ZOOMS[z] * 100) + ' %'; setDisplay({zoom: ZOOMS[z]}); };
     $('#zMin').onclick = () => bump(-1); $('#zPlus').onclick = () => bump(1);
