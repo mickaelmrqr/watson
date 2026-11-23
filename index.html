@@ -36,12 +36,12 @@ svg.i{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:2;st
 header{display:flex;align-items:center;gap:10px;padding:6px 20px;position:sticky;top:0;z-index:5;
   background:var(--hdr);border-bottom:1px solid var(--line);min-height:52px}
 header .ico{width:38px;height:38px}
-footer{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;align-items:center;gap:10px;padding:0 14px;height:30px;background:var(--hdr);border-top:1px solid var(--line);color:var(--ink)}
-footer .fl{flex:1;display:flex;align-items:center;gap:7px;font:700 13px var(--disp)}footer .fl img{width:18px;height:18px;display:block}
-footer .ver{font-size:10.5px;padding:0 6px;border-radius:6px;margin-left:0}
-footer .fm{display:flex;align-items:center;gap:8px}footer .fr{flex:1}
-footer .ico{width:26px;height:26px;border-radius:8px;font-size:14px}
-footer #sync{font-size:12px}
+footer{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;align-items:center;gap:10px;padding:0 16px;height:40px;background:var(--hdr);border-top:1px solid var(--line);color:var(--ink)}
+footer .fl{flex:1;display:flex;align-items:center;gap:10px;font:700 20px var(--disp)}footer .fl img{width:28px;height:28px;display:block}
+footer .ver{font-size:12px;padding:2px 8px;border-radius:8px;margin-left:0}
+footer .fm{display:flex;align-items:center;gap:10px}footer .fr{flex:1}
+footer .ico{width:34px;height:34px;border-radius:10px;font-size:17px}
+footer #sync{font-size:var(--fs)}
 .logo{display:flex;align-items:center;gap:12px;flex:1;font:700 22px var(--disp);letter-spacing:.2px}
 .hmid{display:flex;align-items:center;gap:10px;justify-content:center}.hrt{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:10px}
 .hsep{width:2px;height:26px;border-radius:1px;background:rgba(222,228,240,.62);margin:0 6px;flex:none}
@@ -76,7 +76,7 @@ nav{display:flex;justify-content:center;padding:20px 16px 4px}
 .mod small i{font-style:normal;color:#ff8d70;font-weight:700}
 .mod.on{color:var(--hi);border-color:var(--blue);background:linear-gradient(135deg,rgba(58,140,255,.22),rgba(58,140,255,.06));box-shadow:0 8px 26px rgba(58,140,255,.25)}
 .mod.on .mi{background:var(--blue);color:#fff}
-main{padding:14px 22px 56px;max-width:1500px;margin:0 auto}
+main{padding:14px 22px 66px;max-width:1500px;margin:0 auto}
 
 /* ---------- Champs et boutons */
 input,select,textarea{font:inherit;color:var(--ink);padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel);width:100%;transition:border-color .18s,box-shadow .18s,background .18s}
@@ -339,7 +339,7 @@ html[data-theme=light] .bb.wk{color:#C22B31}
 #login h2{font:700 32px var(--disp);margin:16px 0 6px}
 #login p{color:var(--mut)}
 #lerr{color:var(--red)}
-.toast{position:fixed;bottom:44px;left:50%;transform:translate(-50%,20px);background:var(--raised);border:1px solid var(--line);color:var(--ink);padding:12px 20px;border-radius:12px;z-index:120;opacity:0;pointer-events:none;transition:opacity .25s,transform .3s var(--ease)}
+.toast{position:fixed;bottom:54px;left:50%;transform:translate(-50%,20px);background:var(--raised);border:1px solid var(--line);color:var(--ink);padding:12px 20px;border-radius:12px;z-index:120;opacity:0;pointer-events:none;transition:opacity .25s,transform .3s var(--ease)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:14px;overflow:hidden}
 td,th{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
@@ -579,6 +579,16 @@ html[data-theme=light] .cbox.no .ct b{color:#C62828}
 .xh{display:flex;align-items:baseline;gap:8px;margin:18px 0 2px;font:700 var(--fs) var(--disp)}.xh small{color:var(--mut);font:500 var(--fs) var(--sans,inherit)}
 
 /* Commentaires */
+.advice{border:1px solid rgba(58,140,255,.5);background:rgba(58,140,255,.1);border-radius:14px;padding:11px 16px;margin:0 0 12px}
+.advice b{font:700 var(--fs-b) var(--disp)}.advice ol{margin:6px 0 0;padding-left:20px}.advice li{margin:2px 0}
+.advice .no{margin-top:6px;font-weight:700;color:var(--orange)}
+.cmb{margin:14px 0 4px;border:1px solid var(--line);border-radius:14px;background:var(--bg);padding:12px 14px}
+.cmbh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;font:700 var(--fs) var(--disp)}
+.cmi.cmn{flex-direction:column;align-items:stretch}.cmn textarea{resize:vertical;min-height:84px}.cma{display:flex;justify-content:flex-end;gap:8px}
+.epbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:8px 0 6px}
+.epd{display:flex;gap:4px;flex-wrap:wrap}.epd button{border:1px solid var(--line);background:var(--raised);color:var(--ink);border-radius:999px;padding:3px 11px;font-size:var(--fs);cursor:pointer}
+.epd button.on{background:var(--orange);border-color:var(--orange);color:#fff}
+.ppl{display:grid;gap:8px;margin:10px 0;max-height:50vh;overflow:auto}.ppl label,.ppa{display:flex;align-items:center;gap:8px}
 .cmt{margin:14px 0 4px;border:1px solid var(--line);border-radius:14px;background:var(--bg);padding:2px 14px}
 .cmt summary{cursor:pointer;padding:10px 0;font:700 var(--fs) var(--disp);list-style:none;display:flex;align-items:center;gap:8px}
 .cmt summary::-webkit-details-marker{display:none}.cmt summary:before{content:"▸";transition:transform .2s;color:var(--mut)}.cmt[open] summary:before{transform:rotate(90deg)}
@@ -896,11 +906,11 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18">Watson<span class="ver">v4.11.74</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18">Watson<span class="ver">v4.11.75</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div><div class="fr"></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.74</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.75</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1068,7 +1078,7 @@ MODS.DOCUMENTS = { label: 'Documents', noSteps: true, name: r => r.titre, show: 
 const STEP_KIND = {EN_ATTENTE:'wait',EN_COURS:'go',ATTENTE_CLIENT:'go',ATTENTE_COMMERCIAL:'go',SCMS_CREE:'go',TERMINE:'ok',A_ARCHIVER:'ok',RTO_FAIT:'ok',INSTRUCTION_APPLIQUEE:'ok',RESOLU:'ok'};
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let token = sessionStorage.getItem('wtk'), cur = null, rows = [], showArch = false, det = null;
+let token = (() => { try { return localStorage.getItem('wst'); } catch (e) { return null; } })() || sessionStorage.getItem('wtk'), cur = null, rows = [], showArch = false, det = null;
 let ME = null; window.ME = null;
 const cache = {};
 const key = () => cur + (showArch ? '_a' : '');
@@ -1136,7 +1146,7 @@ function initGoogle(){
   google.accounts.id.initialize({client_id: WATSON.CLIENT_ID, callback: r => { token = r.credential; sessionStorage.setItem('wtk', token); start(); }, auto_select: true});
   if (token) start(); else google.accounts.id.renderButton($('#gbtn'), {theme:'filled_black', size:'large', text:'signin_with', locale:'fr'});
 }
-function logout(){ sessionStorage.removeItem('wtk'); token = null; location.reload(); }
+function logout(){ sessionStorage.removeItem('wtk'); try { localStorage.removeItem('wst'); } catch (e) {} token = null; location.reload(); }
 $('#bOut').onclick = logout;
 $('#bSet').onclick = () => { setSec = 'profil'; $('#mSet').classList.add('on'); renderAdmin(); };
 const closeSet = () => $('#mSet').classList.remove('on');
@@ -1145,12 +1155,13 @@ $('#mSet').addEventListener('mousedown', e => { if (e.target.id === 'mSet') clos
 async function start(){
   try {
     ME = await wait(() => api('me', {device: /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) ? 'Smartphone' : 'Navigateur', ua: navigator.userAgent})); window.ME = ME;
+    if (ME.session) { token = ME.session; try { localStorage.setItem('wst', token); } catch (e) {} }
     $('#login').classList.add('hide'); $('#app').classList.remove('hide'); $('#foot').classList.remove('hide');
     ['#bOut', '#bQR', '#bSearch', '#bBell', '#bMsg', '#bRef', '#hs2'].forEach(s => $(s).classList.remove('hide'));
     $('#bSet').classList.remove('hide');
     const mods = Object.keys(MODS).filter(m => ME.rights[m]); buildNav();
     applyDisplay(); setSync(); openMod('_home'); preload(mods); startPoll(); warm();
-  } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; }
+  } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; try { if (/AUTH|expir|refus/i.test(e.message)) localStorage.removeItem('wst'); } catch (_) {} if (window.google && google.accounts) google.accounts.id.renderButton($('#gbtn'), {theme:'filled_black', size:'large', text:'signin_with', locale:'fr'}); }
 }
 document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur === 'LIBRARY') { if (pending === 0) reloadLib(); } else if (cur === 'ENTREPRISES') { if (pending === 0 && !ENT.edit) reloadEnt(); } else if (cur && cur !== '_admin' && pending === 0) refresh(); } });
 function buildNav(){
@@ -1320,7 +1331,7 @@ const canWrite = () => ['ecriture','admin'].includes(ME.rights[cur]);
 
 function renderList(){
   const steps = stepsOf(cur);
-  $('#main').innerHTML = `<div class="bar">
+  $('#main').innerHTML = `${cur === 'DOM' ? '<div class="advice"><b>Conduite à tenir pour un colis DOM</b><ol><li>Contacter l’expéditeur pour savoir quoi faire du colis.</li><li>Sans réponse à J+4, ou s’il est injoignable : demander au commercial qui gère le compte.</li><li>Sans instruction à J+10 : faire un RTO avec le compte de l’expéditeur.</li></ol><div class="no">On n’ouvre plus de dossier Spark.</div></div>' : ''}<div class="bar">
     <span style="flex:1"></span>
     ${cur === 'DOCUMENTS' ? '' : `<button class="s" id="bArch">${showArch ? IC.unarchive + 'Voir les actifs' : IC.archive + 'Voir les archives'}</button>`}
     ${canWrite() && !showArch ? `<button class="p" id="bNew">${IC.plus}Nouveau</button>` : ''}</div><div class="grid" id="list"></div>`;
@@ -1846,14 +1857,14 @@ function fileBox(r){
   return `<div class="xh">Fichiers${rows ? ` <small>${r ? (r.fichiers || []).length : staged.length}</small>` : ''}</div><div class="fbox" style="display:block;padding:4px 14px 12px">${rows || '<div class="m" style="margin:10px 0 0">Aucun fichier (8 Mo maximum par fichier).</div>'}${add}</div>`;
 }
 function cmtBlock(r){
-  const l = CMT[r.id], w = canWrite() && !showArch;
-  return `<details class="cmt" id="cmtD" ${det && det.cmtOpen ? 'open' : ''}><summary>Commentaires${l ? ' · ' + l.length : ''}</summary>
-    ${w ? `<div class="cmi"><textarea id="cmIn" rows="2" maxlength="1000" placeholder="Ajouter un commentaire…">${esc((det && det.cmtDraft) || '')}</textarea><button class="s go" id="cmAdd">Ajouter</button></div>` : ''}
-    <div class="cml">${l === undefined ? '<div class="m">Chargement…</div>' : l.length ? l.map(c => `<div class="cmr ${c._sync ? 'sync' : ''}"><div class="cmh"><b>${esc(who(c.par))}</b><small>${fdate(c.le, true)}</small></div><div class="cmx">${esc(c.texte)}</div></div>`).join('') : '<div class="m">Aucun commentaire.</div>'}</div></details>`;
+  const l = CMT[r.id], w = canWrite() && !showArch, op = !!(det && det.cmOpen);
+  return `<div class="cmb"><div class="cmbh"><span>Commentaires${l && l.length ? ' · ' + l.length : ''}</span>${w && !op ? `<button class="s" id="cmNew">${IC.plus}Ajouter un commentaire</button>` : ''}</div>
+    ${w && op ? `<div class="cmi cmn"><textarea id="cmIn" rows="4" maxlength="1000" placeholder="Écris ici ce que tu fais sur ce colis…">${esc((det && det.cmtDraft) || '')}</textarea><div class="cma"><button class="s" id="cmCancel">Annuler</button><button class="p" id="cmAdd">Enregistrer</button></div></div>` : ''}
+    <div class="cml">${l === undefined ? '<div class="m">Chargement…</div>' : l.length ? l.map(c => `<div class="cmr ${c._sync ? 'sync' : ''}"><div class="cmh"><b>${esc(who(c.par))}</b><small>${fdate(c.le, true)}</small></div><div class="cmx">${esc(c.texte)}</div></div>`).join('') : '<div class="m">Aucun commentaire.</div>'}</div></div>`;
 }
 function addComment(r){
   const ta = $('#cmIn'); const texte = ta ? ta.value.trim() : ''; if (!texte) return;
-  const m = cur; det.cmtDraft = '';
+  const m = cur; det.cmtDraft = ''; det.cmOpen = false;
   const tmp = {id:'tmp_' + Date.now(), par:ME.email, le:new Date().toISOString(), texte, _sync:true};
   (CMT[r.id] = CMT[r.id] || []).unshift(tmp); drawX();
   enqueue(async () => { const id = await api('comment_add', {module:m, ref_id:r.id, texte}); tmp.id = id; tmp._sync = false; if (det && det.r === r) drawX(); },
@@ -1870,7 +1881,7 @@ function scmsLayout(r){
     <div class="scr">${contactBox(r)}<div class="dph">${IC.DOCUMENTS}<div>Document « Découverte de contenu interdit »<small style="display:block">Bientôt disponible.</small></div></div>${hist}</div></div>`;
 }
 function extraBlocks(r, ed){
-  const cm = '';
+  const cm = cur === 'DOM' && r && !ed ? cmtBlock(r) : '';
   if (cur === 'SECURITY' && r && !ed) return scmsLayout(r);
   if (cur === 'SECURITY') return (r && !ed ? contactBox(r) : '') + photosBlock(r) + (r && !ed ? `<div class="dph">${IC.DOCUMENTS}<div>Document « Découverte de contenu interdit »<small style="display:block">Bientôt disponible.</small></div></div>` : '') + cm;
   if (cur === 'DOCUMENTS') return fileBox(r);
@@ -1879,6 +1890,10 @@ function extraBlocks(r, ed){
 function drawX(){ if (!det || !$('#xBlocks')) return; $('#xBlocks').innerHTML = extraBlocks(det.r, det.editing); bindX(); }
 function afterExtra(r, ed){
   bindX();
+  if (cur === 'DOM' && r && !ed && !String(r.id).startsWith('tmp_') && CMT[r.id] === undefined && !CMLOAD[r.id]) {
+    const id = r.id; CMLOAD[id] = true;
+    api('comments_list', {module:'DOM', ref_id:id}).then(l => { CMT[id] = l; }).catch(() => { CMT[id] = []; }).finally(() => { delete CMLOAD[id]; if (det && det.r && det.r.id === id) drawX(); });
+  }
   if (cur === 'SECURITY' && r && !String(r.id).startsWith('tmp_')) {
     const id = r.id;
     if (FILES[id] === undefined && !FLOAD[id]) {
@@ -1897,6 +1912,8 @@ function bindX(){
   const cd = $('#cmtD'); if (cd) cd.ontoggle = () => { if (det) det.cmtOpen = cd.open; };
   const ci = $('#cmIn'); if (ci) ci.oninput = () => { if (det) det.cmtDraft = ci.value; };
   b.onclick = e => {
+    if (e.target.closest('#cmNew')) { det.cmOpen = true; drawX(); const t = $('#cmIn'); if (t) t.focus(); return; }
+    if (e.target.closest('#cmCancel')) { det.cmOpen = false; det.cmtDraft = ''; return drawX(); }
     if (e.target.closest('#cmAdd')) return addComment(r);
     const d = e.target.closest('[data-pdel]'); if (d) { e.stopPropagation(); return delPhoto(d.dataset.pdel); }
     const pm = e.target.closest('[data-pmain]'); if (pm) { e.stopPropagation(); return setMain(pm.dataset.pmain); }
@@ -2544,7 +2561,7 @@ IC.LIBRARY = ic('<rect x="3" y="4" width="4" height="16" rx="1"/><path d="M3 8h4
 IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
 MODS.ENTREPRISES = {label: 'Entreprises', noSteps: true, name: r => r.nom, show: [], fields: []};
 IC.ENTREPRISES = ic('<path d="M3 21V7l8-4v18"/><path d="M11 21V11l10 4v6"/><path d="M3 21h18"/><path d="M7 9v.01M7 13v.01M7 17v.01"/><path d="M15 17v.01M18 18v.01"/>');
-const ENT = {q: '', view: null, edit: null, pu: false, nr: false, pb: true, rc: {}};
+const ENT = {q: '', view: null, edit: null, pu: false, nr: false, pb: false, pd: null, rc: {}};
 const entRows = () => cache.ENTREPRISES || [];
 const entJ = v => { try { const a = typeof v === 'string' ? JSON.parse(v || '[]') : v; return Array.isArray(a) ? a : []; } catch (e) { return []; } };
 const entC = r => entJ(r.comptes), entR = r => entJ(r.routes), entP = r => entJ(r.pu);
@@ -2557,28 +2574,65 @@ const puHor = p => (p.debut || p.fin) ? `${esc(p.debut || '?')}–${esc(p.fin ||
 function entHay(r){
   return entNorm([r.nom, r.adresse, r.commentaire, entC(r).map(c => c.numero + ' ' + c.commentaire).join(' '), entR(r).map(x => x.nom).join(' '), entP(r).map(p => [p.contact, p.tel, String(p.tel || '').replace(/\D/g, ''), p.commercial, p.remarques].join(' ')).join(' ')].join(' '));
 }
-function entPuBanner(){
-  const el = $('#epu'); if (!el) return;
-  const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new Date().getDay()], jn = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'][new Date().getDay()];
+const JN = {di:'dimanche', lu:'lundi', ma:'mardi', me:'mercredi', je:'jeudi', ve:'vendredi', sa:'samedi'}, JK = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'];
+const entPuDay = () => ENT.pd || JK[new Date().getDay()];
+function entPuDate(c){ const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + (JK.indexOf(c) - d.getDay() + 7) % 7); return d; }
+function entPuData(c){
   const by = {}, nr = []; let tot = 0;
   entRows().forEach(r => entP(r).forEach(p => {
     if (!entJours(p.jours).includes(c)) return;
     tot++;
-    const it = {id: r.id, nom: r.nom, h: puHor(p), k: p.debut || p.fin || '99:99'}, rn = puRoute(r, p);
+    const it = {id: r.id, nom: r.nom, h: puHor(p), k: p.debut || p.fin || '99:99', contact: p.contact || '', tel: p.tel || '', rem: p.remarques || ''}, rn = puRoute(r, p);
     if (!rn) nr.push(it); else (by[rn] = by[rn] || []).push(it);
   }));
   const srt = a => a.sort((x, y) => String(x.k).localeCompare(String(y.k)) || String(x.nom).localeCompare(String(y.nom), 'fr', {sensitivity: 'base'}));
-  const card = (t, a, cls) => `<details class="epc${cls || ''}" data-rk="${esc(t)}" ${ENT.rc[t] ? '' : 'open'}><summary><span class="chv"></span><span>${esc(t)}</span><small>${a.length}</small></summary><div class="epcl">${srt(a).map(x => `<button data-id="${esc(x.id)}">${x.h ? `<b>${x.h}</b>` : ''}<span>${esc(x.nom)}</span></button>`).join('')}</div></details>`;
-  const names = Object.keys(by).sort((a, b) => a.localeCompare(b, 'fr', {numeric: true, sensitivity: 'base'}));
-  el.innerHTML = `<details class="epu" data-main="1" ${ENT.pb ? 'open' : ''}><summary><span class="chv"></span>PU réguliers du jour <small>${jn} · ${tot}</small></summary>${tot ? `<div class="epg">${names.map(n => card(n, by[n])).join('')}${nr.length ? card('Non affectés', nr, ' nr') : ''}</div>` : '<div class="m" style="margin:6px 0 0">Aucun PU régulier aujourd’hui.</div>'}</details>`;
+  const groups = Object.keys(by).sort((a, b) => a.localeCompare(b, 'fr', {numeric: true, sensitivity: 'base'})).map(n => [n, srt(by[n])]);
+  if (nr.length) groups.push(['Non affectés', srt(nr)]);
+  return {groups, tot};
+}
+function entPuBanner(){
+  const el = $('#epu'); if (!el) return;
+  const c = entPuDay(), isT = c === JK[new Date().getDay()], {groups, tot} = entPuData(c);
+  const card = ([t, a]) => `<details class="epc${t === 'Non affectés' ? ' nr' : ''}" data-rk="${esc(t)}" ${ENT.rc[t] ? '' : 'open'}><summary><span class="chv"></span><span>${esc(t)}</span><small>${a.length}</small></summary><div class="epcl">${a.map(x => `<button data-id="${esc(x.id)}">${x.h ? `<b>${x.h}</b>` : ''}<span>${esc(x.nom)}</span></button>`).join('')}</div></details>`;
+  el.innerHTML = `<details class="epu" data-main="1" ${ENT.pb ? 'open' : ''}><summary><span class="chv"></span>PU réguliers ${isT ? 'du jour' : 'du ' + JN[c]} <small>${JN[c]}${isT ? '' : ' ' + entPuDate(c).toLocaleDateString('fr-FR', {day: '2-digit', month: '2-digit'})} · ${tot}</small></summary>
+    <div class="epbar"><div class="epd">${JOURS.map(([k, l]) => `<button data-pd="${k}" class="${k === c ? 'on' : ''}">${l}</button>`).join('')}</div>${tot ? `<button class="s" data-pp="1">${IC.print}Imprimer</button>` : ''}</div>
+    ${tot ? `<div class="epg">${groups.map(card).join('')}</div>` : `<div class="m" style="margin:6px 0 0">Aucun PU régulier ${isT ? 'aujourd’hui' : 'ce jour-là'}.</div>`}</details>`;
   el.querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => { if (d.dataset.main) ENT.pb = d.open; else ENT.rc[d.dataset.rk] = !d.open; }));
+}
+function printHtml(html){
+  const f = document.createElement('iframe'); f.style.cssText = 'position:fixed;right:0;bottom:0;width:1px;height:1px;border:0;opacity:0;pointer-events:none';
+  f.onload = () => setTimeout(() => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) { toast('Impression impossible'); } }, 300);
+  f.srcdoc = html; document.body.appendChild(f); setTimeout(() => f.remove(), 180000);
+}
+function openPuPrint(){
+  const c = entPuDay(), {groups, tot} = entPuData(c), dt = entPuDate(c).toLocaleDateString('fr-FR'); if (!tot) return toast('Aucun PU régulier ce jour');
+  ABS.ed = null; ABS.mgr = false; $('#sAbs').className = 'sheet';
+  $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Imprimer les PU réguliers</h3><div class="sub">${JN[c]} ${dt}</div></div><button class="ico sm" id="ppX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+    <label class="ppa"><input type="checkbox" id="ppAll" checked><b>Tout sélectionner</b></label>
+    <div class="ppl">${groups.map(([n, a]) => `<label><input type="checkbox" class="ppc" value="${esc(n)}" checked>${esc(n)} <small>${a.length}</small></label>`).join('')}</div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="s" id="ppC">Annuler</button><button class="p" id="ppOk">${IC.print}Imprimer</button></div>`;
+  $('#ppX').onclick = closeAbs; $('#ppC').onclick = closeAbs;
+  $('#ppAll').onchange = e => document.querySelectorAll('#sAbs .ppc').forEach(x => { x.checked = e.target.checked; });
+  $('#sAbs').onchange = e => { if (e.target.classList.contains('ppc')) $('#ppAll').checked = [...document.querySelectorAll('#sAbs .ppc')].every(x => x.checked); };
+  $('#ppOk').onclick = () => {
+    const keys = [...document.querySelectorAll('#sAbs .ppc')].filter(x => x.checked).map(x => x.value);
+    if (!keys.length) return toast('Coche au moins une route');
+    const body = groups.filter(g => keys.includes(g[0])).map(([n, a]) => `<h2>${esc(n)} <small>(${a.length})</small></h2><table><tr><th style="width:84px">Horaire</th><th>Entreprise</th><th>Contact</th><th style="width:110px">Téléphone</th><th>Remarques</th></tr>${a.map(x => `<tr><td>${x.h}</td><td><b>${esc(x.nom)}</b></td><td>${esc(x.contact)}</td><td>${esc(x.tel)}</td><td>${esc(x.rem)}</td></tr>`).join('')}</table>`).join('');
+    printHtml(`<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>PU réguliers</title><style>body{font:12px Arial,sans-serif;margin:14px;color:#000}h1{font-size:17px;margin:0 0 8px}h2{font-size:14px;margin:16px 0 4px;border-bottom:2px solid #000;break-after:avoid}h2 small{font-weight:400}table{width:100%;border-collapse:collapse}th,td{border:1px solid #888;padding:4px 6px;text-align:left;vertical-align:top}th{background:#e8e8e8}tr{break-inside:avoid}</style></head><body><h1>PU réguliers — ${JN[c]} ${dt}</h1>${body}</body></html>`);
+    closeAbs();
+  };
+  $('#mAbs').classList.add('on');
 }
 function renderEnt(){
   cur = 'ENTREPRISES'; closePop(); closeDet();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === 'ENTREPRISES'));
   $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="eq" placeholder="Rechercher une entreprise, un compte, une route, un contact, un commercial…" autocomplete="off" value="${esc(ENT.q)}" aria-label="Rechercher une entreprise"></div><span class="m" id="ecnt" style="margin:0"></span><label class="eck"><input type="checkbox" id="ePU" ${ENT.pu ? 'checked' : ''}>PU réguliers</label><label class="eck" id="eNRw" style="${ENT.pu ? '' : 'display:none'}"><input type="checkbox" id="eNR" ${ENT.nr ? 'checked' : ''}>Non affectés</label><span style="flex:1"></span>${canWrite() ? `<button class="p" id="eNew">${IC.plus}Nouvelle</button>` : ''}</div><div class="etw" id="etab"></div>`;
   $('#main').insertAdjacentHTML('afterbegin', '<div id="epu"></div>');
-  $('#epu').onclick = e => { const t = e.target.closest('[data-id]'); if (t) openEnt(t.dataset.id); };
+  $('#epu').onclick = e => {
+    const d = e.target.closest('[data-pd]'); if (d) { ENT.pd = d.dataset.pd === JK[new Date().getDay()] ? null : d.dataset.pd; return entPuBanner(); }
+    if (e.target.closest('[data-pp]')) return openPuPrint();
+    const t = e.target.closest('[data-id]'); if (t) openEnt(t.dataset.id);
+  };
   $('#eq').oninput = e => { ENT.q = e.target.value; entDraw(); };
   $('#ePU').onchange = e => { ENT.pu = e.target.checked; if (!ENT.pu) { ENT.nr = false; $('#eNR').checked = false; } $('#eNRw').style.display = ENT.pu ? '' : 'none'; entDraw(); };
   $('#eNR').onchange = e => { ENT.nr = e.target.checked; entDraw(); };
