@@ -17,23 +17,24 @@
 :root{
   --fs:15px; --fs-ref:calc(var(--fs)*1.2); --fs-t:calc(var(--fs)*1.5); --fs-b:calc(var(--fs)*1.2);
   --bg:#15181F; --panel:#1D222C; --raised:#272E3B; --line:#343C4C;
-  --ink:#F1F4FA; --mut:#A3AEC2; --hi:#fff; --hov:var(--hov); --hov2:var(--hov2); --bd2:var(--bd2); --bd3:var(--bd3); --hair:var(--hair); --scrim:rgba(10,12,16,.58); --hdr:rgba(21,24,31,.86); --t1:#2a3242; --t2:#232a39;
+  --ink:#F1F4FA; --mut:#A3AEC2; --hi:#fff; --hov:var(--hov); --hov2:var(--hov2); --bd2:var(--bd2); --bd3:var(--bd3); --hair:var(--hair); --scrim:rgba(10,12,16,.66); --hdr:rgba(21,24,31,.97); --t1:#2a3242; --t2:#232a39;
   --blue:#3A8CFF; --orange:#FF5A2B; --green:#3ECF8E; --red:#FF5C5C;
   --ease:cubic-bezier(.2,.8,.2,1);
   --body:'DM Sans',system-ui,sans-serif; --disp:'Sora','DM Sans',system-ui,sans-serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{background:var(--bg)}
-body{margin:0;font:16.5px/1.5 var(--body);color:var(--ink);background:
+body{margin:0;font:16.5px/1.5 var(--body);color:var(--ink);min-height:100vh}
+/* v4.32 : fond en calque fixe (plus de repeinture à chaque défilement) */
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
   radial-gradient(900px 420px at 85% -10%,rgba(74,148,255,.14),transparent 60%),
-  radial-gradient(700px 380px at -10% 110%,rgba(255,90,42,.08),transparent 60%),var(--bg);
-  min-height:100vh;background-attachment:fixed}
+  radial-gradient(700px 380px at -10% 110%,rgba(255,90,42,.08),transparent 60%)}
 :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 svg.i{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
 /* ---------- En-tête */
 header{display:flex;align-items:center;gap:10px;padding:10px 20px;position:sticky;top:0;z-index:5;
-  background:var(--hdr);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);min-height:62px}
+  background:var(--hdr);border-bottom:1px solid var(--line);min-height:62px}
 .logo{display:flex;align-items:center;gap:12px;flex:1;font:700 22px var(--disp);letter-spacing:.2px}
 .logo img{height:40px;width:auto;aspect-ratio:1/1;object-fit:contain;display:block}
 .ver{font:700 12px var(--disp);letter-spacing:.4px;color:#ff7a50;border:1px solid rgba(255,90,42,.55);background:rgba(255,90,42,.12);border-radius:8px;padding:2px 8px;margin-left:-2px;align-self:center}
@@ -98,7 +99,7 @@ button{font-family:inherit;cursor:pointer}
 @keyframes pop{from{transform:scale(.96);opacity:0}}
 /* Pulsation « urgent » : une seule horloge globale (:root) => toutes les cases clignotent ensemble, sans jamais redémarrer */
 @property --pw{syntax:'<number>';inherits:true;initial-value:0}
-:root{animation:pw 3.4s ease-in-out infinite}
+html.pulse{animation:pw 3.4s ease-in-out infinite}
 @keyframes pw{0%,100%{--pw:0}50%{--pw:1}}
 .urgb{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;flex:none;color:#ff5c5c;background:rgba(255,70,70,.1);
   border:2px solid color-mix(in srgb,rgba(255,84,84,.95) calc(var(--pw) * 100%),rgba(255,84,84,.22))}
@@ -158,7 +159,7 @@ button{font-family:inherit;cursor:pointer}
 .flow .stp.none .wh{opacity:.4}
 
 /* ---------- Fenêtres */
-.modal{position:fixed;inset:0;background:var(--scrim);backdrop-filter:blur(5px);display:flex;align-items:flex-end;justify-content:center;z-index:20;opacity:0;pointer-events:none;transition:opacity .22s}
+.modal{position:fixed;inset:0;background:var(--scrim);display:flex;align-items:flex-end;justify-content:center;z-index:20;opacity:0;pointer-events:none;transition:opacity .22s}
 .modal.on{opacity:1;pointer-events:auto}
 .sheet{background:var(--panel);border:1px solid var(--line);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:22px;transform:translateY(40px);transition:transform .3s var(--ease)}
 .sheet.wide{max-width:740px}
@@ -384,7 +385,7 @@ button.bb.off{opacity:.65;background:transparent;border-style:dashed}
 #mTask .r2c{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 /* ---------- Mode jour */
 html[data-theme=light]{--bg:#F2F4F8;--panel:#FFFFFF;--raised:#E8ECF3;--line:#D3D9E5;--ink:#1B2230;--mut:#5A667C;--hi:#0D1320;--hov:#F5F7FB;--hov2:#DDE3EE;--bd2:#9AA7BE;--bd3:#B3BDD0;--hair:rgba(20,30,50,.08);--scrim:rgba(30,40,60,.38);--hdr:rgba(255,255,255,.88);--t1:#FFFFFF;--t2:#F4F6FA;--blue:#2F78E6;--green:#1FA56F;--red:#E5484D}
-html[data-theme=light] body{background:radial-gradient(900px 420px at 85% -10%,rgba(74,148,255,.10),transparent 60%),radial-gradient(700px 380px at -10% 110%,rgba(255,90,42,.07),transparent 60%),var(--bg)}
+html[data-theme=light] body:before{background:radial-gradient(900px 420px at 85% -10%,rgba(74,148,255,.10),transparent 60%),radial-gradient(700px 380px at -10% 110%,rgba(255,90,42,.07),transparent 60%)}
 html[data-theme=light] .ref{color:#1F5FC9}
 html[data-theme=light] .m.cat{color:#C2410C}
 html[data-theme=light] .tag.go{background:#cfe0fa;color:#154f9f}
@@ -711,7 +712,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.31</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.32</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -721,7 +722,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.31</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.32</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2390,6 +2391,14 @@ function libSave(){
     delete LIBF[id]; await reloadLib();
   }, () => reloadLib());
 }
+
+// ------------------------------------------------------------ Pulsation « urgent » : l'horloge globale ne tourne que si une pastille urgente est à l'écran
+(function(){
+  const root = document.documentElement; let q = 0;
+  const upd = () => { q = 0; const on = !!document.querySelector('.urgb,.bb.u'); if (on !== root.classList.contains('pulse')) root.classList.toggle('pulse', on); };
+  new MutationObserver(() => { if (!q) q = requestAnimationFrame(upd); }).observe(document.body, {childList: true, subtree: true});
+  upd();
+})();
 
 // ------------------------------------------------------------ Infobulles design (remplacent les bulles natives)
 (function(){
