@@ -575,6 +575,25 @@ html[data-theme=light] .hc b{color:var(--ink)}
 .mod[data-m=AWB],.mod[data-m=DOCUMENTS],.ht[data-m=AWB],.ht[data-m=DOCUMENTS]{--mc:58,140,255}
 .mod[data-m=SPARK],.mod[data-m=DOM],.ht[data-m=SPARK],.ht[data-m=DOM]{--mc:34,176,112}
 .mod[data-m=SECURITY],.ht[data-m=SECURITY]{--mc:238,70,80}
+.mod[data-m=ENTREPRISES],.ht[data-m=ENTREPRISES]{--mc:166,106,62}
+#mEnt{z-index:21}
+.etw{overflow-x:auto}
+.etab{width:100%;border-collapse:collapse}
+.etab th{text-align:left;color:var(--mut);font-weight:700;font-size:var(--fs);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.etab td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;font-size:var(--fs)}
+.etab tbody tr[data-id]{cursor:pointer}.etab tbody tr[data-id]:hover,.etab tbody tr[data-id]:focus{background:rgba(166,106,62,.12);outline:0}
+.etab.s td{padding:6px 10px 6px 0;border:0}
+.ech{display:inline-block;padding:1px 7px;margin-left:4px;border-radius:8px;background:rgba(166,106,62,.22);color:rgb(196,136,92);font-size:.8em;font-weight:700}
+.esec{margin:16px 0 0}.esec h4{margin:0 0 6px;color:rgb(196,136,92)}
+.erow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px}.erow>input{flex:1 1 140px;width:auto}
+.eck,.etm{display:flex;align-items:center;gap:5px;margin:0;padding:5px 9px;border:1px solid var(--line);border-radius:9px;cursor:pointer}
+.eck input{width:auto;padding:0;accent-color:rgb(166,106,62)}
+.etm{flex-direction:column;align-items:flex-start;border:0;padding:0;font-size:.85em;color:var(--mut)}.etm input{width:auto}
+.epu{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:0 0 10px}
+.eph{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}.eph span{color:var(--mut)}
+.epb{display:flex;gap:14px;flex-wrap:wrap;margin:4px 0}.epb a,.epb span{display:inline-flex;align-items:center;gap:5px}
+.epr{white-space:pre-wrap;margin:4px 0}
+
 .mod[data-m=_admin]{--mc:238,70,80}
 .mod.on{border-color:rgb(var(--mc));background:linear-gradient(135deg,rgba(var(--mc),.24),rgba(var(--mc),.06));box-shadow:0 8px 26px rgba(var(--mc),.28)}
 .mod.on .mi{background:rgb(var(--mc));color:#fff}
@@ -739,7 +758,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.42</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.43</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -749,12 +768,13 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.42</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.43</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
 <div class="modal" id="mSet"><div class="sheet xl" id="sSet"></div></div>
 <div class="modal" id="mLib"><div class="sheet wide" id="sLib"></div></div>
+<div class="modal" id="mEnt"><div class="sheet xw" id="sEnt"></div></div>
 <div class="modal" id="mDet"><div class="sheet wide" id="sDet"></div></div>
 <div class="modal" id="mScan"><div class="sheet" id="scan"><h3 style="font:700 22px var(--disp);margin:0 0 12px">Scanner</h3><div class="frame"><video id="vid" playsinline muted></video></div><p id="scanMsg" class="m">Place le code-barres dans le cadre.</p><button class="s" id="scanX">Fermer</button></div></div>
 <div class="modal" id="mQR"><div class="sheet"><div class="sh"><div class="tt"><h3>Mes identifiants</h3></div><button class="ico sm" id="qrX" aria-label="Fermer" title="Fermer"></button></div><div class="ids">
@@ -919,7 +939,7 @@ let token = sessionStorage.getItem('wtk'), cur = null, rows = [], showArch = fal
 let ME = null; window.ME = null;
 const cache = {};
 const key = () => cur + (showArch ? '_a' : '');
-const fetchList = (m, arch) => m === 'LIBRARY' ? api('lib_list') : api('list', {module: m, archives: arch});
+const fetchList = (m, arch) => m === 'LIBRARY' ? api('lib_list') : m === 'ENTREPRISES' ? api('ent_list') : api('list', {module: m, archives: arch});
 
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),2600)}
 function fdate(v,time){if(!v)return '';const d=new Date(v);const tz=(window.ME&&ME.prefs&&ME.prefs.tz)||undefined;const o=tz?{timeZone:tz}:{};return d.toLocaleDateString('fr-FR',o)+(time?' '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',...o}):'')}
@@ -995,7 +1015,7 @@ async function start(){
     applyDisplay(); setSync(); openMod('_home'); preload(mods); startPoll(); warm();
   } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; }
 }
-document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur === 'LIBRARY') { if (pending === 0) reloadLib(); } else if (cur && cur !== '_admin' && pending === 0) refresh(); } });
+document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur === 'LIBRARY') { if (pending === 0) reloadLib(); } else if (cur === 'ENTREPRISES') { if (pending === 0 && !ENT.edit) reloadEnt(); } else if (cur && cur !== '_admin' && pending === 0) refresh(); } });
 function buildNav(){
   const mods = Object.keys(MODS).filter(m => ME.rights[m]);
   const io = (m, label, icon) => `<button class="mod io" data-m="${m}" title="${label}" aria-label="${label}"><span class="mi">${icon}</span></button>`;
@@ -1011,6 +1031,7 @@ function drawTiles(){
     if (!r) { if (!t.querySelector('.d3s')) t.innerHTML = '<span class="d3s"><i></i><i></i><i></i></span>'; return; }
     if (cur === '_home' && !drawTiles.h) { drawTiles.h = 1; renderHome(); drawTiles.h = 0; }
     if (m === 'DOCUMENTS') { t.innerHTML = `${r.length} document${r.length > 1 ? 's' : ''}`; return; }
+    if (m === 'ENTREPRISES') { t.innerHTML = `${r.length} entreprise${r.length > 1 ? 's' : ''}`; return; }
     if (m === 'DOM') {
       const al = r.map(domAlert), lt = al.filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late')).length, wn = al.filter(a => !['J1', 'J4', 'J10'].some(k => a[k] === 'late') && ['J1', 'J4', 'J10'].some(k => a[k] === 'warn')).length;
       t.innerHTML = `${r.filter(x => kindOfM(m, x) !== 'ok').length} en cours` + (lt ? ` · <i>${lt} en retard</i>` : '') + (wn ? ` · <i class="o">${wn} à faire aujourd'hui</i>` : ''); return;
@@ -1040,6 +1061,7 @@ const dossName = (m, r) => { try { return String((m === 'SECURITY' ? MODS[m].tit
 function homeTile(m){
   const r = cache[m], ic = IC[m];
   const head = `<div class="hth"><span class="mi">${ic}</span><b>${MODS[m].label}</b></div>`;
+  if (m === 'ENTREPRISES' && r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${r.length}<small>entreprise${r.length > 1 ? 's' : ''}</small></div><div class="hcs"><span class="m">${r.reduce((n, x) => n + entP(x).length, 0)} PU réguliers</span></div></div>`;
   if (!r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn"><span class="d3s"><i></i><i></i><i></i></span></div></div>`;
   const today = todayIso(), ch = [], lists = [];
   const add = (n, label, cls = '') => { if (n) ch.push(`<span class="hc ${cls}"><b>${n}</b>${label}</span>`); };
@@ -1109,6 +1131,7 @@ async function reloadAll(){
     await Promise.all([...mods.map(async m => { try { cache[m] = await fetchList(m, false); } catch (e) {} }), pollNotifs(), loadTodo(true), warm(true)]);
     if (cur === '_home') renderHome();
     else if (cur === 'LIBRARY') renderLib();
+    else if (cur === 'ENTREPRISES') renderEnt();
     else if (cur && MODS[cur]) { if (showArch) { try { cache[key()] = await api('list', {module:cur, archives:true}); } catch (e) {} } rows = cache[key()] || rows; relinkDet(); renderList(); }
     drawTiles(); toast('Données rechargées');
   } catch (e) { toast(e.message || 'Rechargement impossible'); }
@@ -1123,6 +1146,7 @@ async function openMod(m){
   moveInd();
   if (m === '_home') return renderHome();
   if (m === 'LIBRARY') return renderLib();
+  if (m === 'ENTREPRISES') return renderEnt();
   if (m === '_admin') return renderAdminPage();
   if (cache[key()]) { rows = cache[key()]; renderList(); refresh(); return; }
   try { rows = await wait(() => api('list', {module: m, archives: showArch})); cache[key()] = rows; }
@@ -1230,8 +1254,8 @@ let sTimer = 0, sSeq = 0, sItems = [], sHl = -1, sQ = '';
 function localHits(q){
   const out = [];
   Object.keys(MODS).forEach(m => (cache[m] || []).forEach(r => {
-    const hay = [r.waybill, r.pid, r.nom_client, r.nom_dest, r.titre, r.motif_libre, (r.fichiers || []).map(f => f.nom).join(' '), r.remarque, r.location, r.commentaire, r.mots_cles, r.texte ? htmlText(r.texte) : ''].join(' ').toLowerCase();
-    if (hay.includes(q)) out.push({kind:'row', module:m, id:r.id, title:String(r.nom_client || r.nom_dest || r.titre || r.waybill || r.pid || MODS[m].label).toUpperCase(), sub:[r.waybill, r.pid].filter(Boolean).join(' · '), archive:false});
+    const hay = [m === 'ENTREPRISES' ? r.nom + ' ' + r.adresse : '', r.waybill, r.pid, r.nom_client, r.nom_dest, r.titre, r.motif_libre, (r.fichiers || []).map(f => f.nom).join(' '), r.remarque, r.location, r.commentaire, r.mots_cles, r.texte ? htmlText(r.texte) : ''].join(' ').toLowerCase();
+    if (hay.includes(q)) out.push({kind:'row', module:m, id:r.id, title:String((m === 'ENTREPRISES' && r.nom) || r.nom_client || r.nom_dest || r.titre || r.waybill || r.pid || MODS[m].label).toUpperCase(), sub:[r.waybill, r.pid].filter(Boolean).join(' · '), archive:false});
   }));
   return out.slice(0, 15);
 }
@@ -1285,6 +1309,7 @@ async function pickSug(it){
   if (it.kind === 'hist' && !it.alive) return openGhost(it);
   showArch = it.archive === true; await openMod(it.module);
   if (it.module === 'LIBRARY') return openLib(it.id);
+  if (it.module === 'ENTREPRISES') return openEnt(it.id);
   const r = rows.find(x => x.id === it.id); if (r) openDetail(r, false); else toast('Élément introuvable');
 }
 async function openGhost(it){
@@ -1365,6 +1390,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') {
   if ($('#mAsk').classList.contains('on') && ask.cancel) return ask.cancel();
   if ($('#mMsg').classList.contains('on')) return closeMsg();
   if ($('#mLib').classList.contains('on')) return LIB.edit ? null : closeLib();
+  if ($('#mEnt').classList.contains('on')) return ENT.edit ? null : closeEnt();
   if ($('#mSet').classList.contains('on') && !$('#mDet').classList.contains('on')) return closeSet();
   if ($('#mHist').classList.contains('on')) return closeHist();
   if ($('#mPhoto').classList.contains('on')) return $('#mPhoto').classList.remove('on');
@@ -2266,11 +2292,11 @@ async function renderUsers(el){
   const lv = (u, m) => { const cur = u.rights[m] || '', opts = m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<select data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<option value="${v}" ${v === cur ? 'selected' : ''}>${l}</option>`).join('')}</select>`; };
   el.innerHTML = `<h3>Utilisateurs</h3><p class="lead">Accès aux pages et connexions.</p>
-    <table class="utab"><tr><th>Utilisateur</th><th>Dernière connexion</th><th>Actif</th><th>AWB</th><th>SPARK</th><th>DOM</th><th>SCMS</th><th>Documents</th><th>Paramètres</th><th></th></tr>
+    <table class="utab"><tr><th>Utilisateur</th><th>Dernière connexion</th><th>Actif</th><th>AWB</th><th>SPARK</th><th>DOM</th><th>SCMS</th><th>Entreprises</th><th>Documents</th><th>Paramètres</th><th></th></tr>
     ${us.map(u => `<tr><td><b>${esc(u.prenom)} ${esc(u.nom)}</b><div class="m" style="margin:0">${esc(u.email)}</div></td>
       <td>${u.last ? fdate(u.last.date, true) + `<div class="m" style="margin:0">${u.last.appareil}</div>` : '<span class="m">Jamais</span>'}</td>
       <td>${sw('a_' + u.email, u.actif, `data-act="${esc(u.email)}"`)}</td>
-      <td>${lv(u, 'AWB')}</td><td>${lv(u, 'SPARK')}</td><td>${lv(u, 'DOM')}</td><td>${lv(u, 'SECURITY')}</td><td>${lv(u, 'DOCUMENTS')}</td><td>${lv(u, 'PARAMETRES')}</td>
+      <td>${lv(u, 'AWB')}</td><td>${lv(u, 'SPARK')}</td><td>${lv(u, 'DOM')}</td><td>${lv(u, 'SECURITY')}</td><td>${lv(u, 'ENTREPRISES')}</td><td>${lv(u, 'DOCUMENTS')}</td><td>${lv(u, 'PARAMETRES')}</td>
       <td><button class="s" data-conn="${esc(u.email)}" data-nm="${esc(u.prenom)}">Connexions</button></td></tr><tr class="hrow"><td colspan="9"><span class="m" style="margin:0 12px 0 0">Peut voir l'historique :</span><div class="hset">${[['AWB','AWB'],['SPARK','SPARK'],['DOM','DOM'],['SECURITY','SCMS'],['DOCUMENTS','Docs']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}>${l}</label>`; }).join('')}</div></td></tr>`).join('')}</table>`;
   el.onchange = async e => {
     const t = e.target;
@@ -2296,6 +2322,136 @@ async function renderUsers(el){
 MODS.LIBRARY = {label: 'Bibliothèque', noSteps: true, name: r => r.titre, show: [], fields: []};
 IC.LIBRARY = ic('<rect x="3" y="4" width="4" height="16" rx="1"/><path d="M3 8h4"/><rect x="9" y="3" width="4" height="17" rx="1"/><path d="M9 7h4"/><path d="m15.3 5.6 3.1-.8 3.4 13.1-3.1.8z"/>');
 IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
+MODS.ENTREPRISES = {label: 'Entreprises', noSteps: true, name: r => r.nom, show: [], fields: []};
+IC.ENTREPRISES = ic('<path d="M3 21V7l8-4v18"/><path d="M11 21V11l10 4v6"/><path d="M3 21h18"/><path d="M7 9v.01M7 13v.01M7 17v.01"/><path d="M15 17v.01M18 18v.01"/>');
+const ENT = {q: '', view: null, edit: null};
+const entRows = () => cache.ENTREPRISES || [];
+const entJ = v => { try { const a = typeof v === 'string' ? JSON.parse(v || '[]') : v; return Array.isArray(a) ? a : []; } catch (e) { return []; } };
+const entC = r => entJ(r.comptes), entR = r => entJ(r.routes), entP = r => entJ(r.pu);
+const JOURS = [['lu', 'Lun'], ['ma', 'Mar'], ['me', 'Mer'], ['je', 'Jeu'], ['ve', 'Ven'], ['sa', 'Sam'], ['di', 'Dim']];
+const entJours = s => (Array.isArray(s) ? s : String(s || '').split(',')).map(x => String(x).trim()).filter(x => JOURS.some(j => j[0] === x));
+const jLbl = s => { const a = entJours(s); if (!a.length) return ''; if (a.join() === 'lu,ma,me,je,ve') return 'Lun–Ven'; if (a.length === 7) return 'Tous les jours'; return a.map(x => JOURS.find(j => j[0] === x)[1]).join(', '); };
+const entNorm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const rtChips = r => [r.m13 && '13m3', r.m20 && '20m3', r.pu && 'PU', r.del && 'DEL'].filter(Boolean).map(x => `<span class="ech">${x}</span>`).join('');
+const puHor = p => (p.debut || p.fin) ? `${esc(p.debut || '?')}–${esc(p.fin || '?')}` : '';
+function entHay(r){
+  return entNorm([r.nom, r.adresse, entC(r).map(c => c.numero + ' ' + c.commentaire).join(' '), entR(r).map(x => x.nom).join(' '), entP(r).map(p => [p.contact, p.tel, String(p.tel || '').replace(/\D/g, ''), p.commercial, p.remarques].join(' ')).join(' ')].join(' '));
+}
+function renderEnt(){
+  cur = 'ENTREPRISES'; closePop(); closeDet();
+  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === 'ENTREPRISES'));
+  $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="eq" placeholder="Rechercher une entreprise, un compte, une route, un contact, un commercial…" autocomplete="off" value="${esc(ENT.q)}" aria-label="Rechercher une entreprise"></div><span class="m" id="ecnt" style="margin:0"></span><span style="flex:1"></span>${canWrite() ? `<button class="p" id="eNew">${IC.plus}Nouvelle</button>` : ''}</div><div class="etw" id="etab"></div>`;
+  $('#eq').oninput = e => { ENT.q = e.target.value; entDraw(); };
+  if ($('#eNew')) $('#eNew').onclick = () => openEntEdit(null);
+  $('#etab').onclick = e => { const t = e.target.closest('[data-id]'); if (t) openEnt(t.dataset.id); };
+  $('#etab').onkeydown = e => { if (e.key === 'Enter' && e.target.dataset.id) openEnt(e.target.dataset.id); };
+  entDraw(); reloadEnt();
+}
+function entDraw(){
+  if (cur !== 'ENTREPRISES' || !$('#etab')) return;
+  if (!cache.ENTREPRISES) { $('#etab').innerHTML = '<div class="m" style="padding:18px">Chargement…</div>'; return; }
+  const q = entNorm(ENT.q).trim().split(/\s+/).filter(Boolean);
+  const list = entRows().filter(r => { const h = entHay(r); return q.every(w => h.includes(w)); }).sort((a, b) => String(a.nom).localeCompare(String(b.nom), 'fr', {sensitivity: 'base'}));
+  $('#ecnt').textContent = list.length + ' / ' + entRows().length;
+  if (!list.length) { $('#etab').innerHTML = `<div class="m" style="padding:18px">${entRows().length ? 'Aucune entreprise ne correspond.' : 'Aucune entreprise pour le moment.'}</div>`; return; }
+  $('#etab').innerHTML = `<table class="etab"><thead><tr><th>Entreprise</th><th>Comptes</th><th>Routes</th><th>PU réguliers</th><th>Mise à jour</th></tr></thead><tbody>${list.map(r => {
+    const cs = entC(r), rs = entR(r), ps = entP(r);
+    return `<tr data-id="${esc(r.id)}" tabindex="0"><td><b>${esc(r.nom)}</b><div class="m" style="margin:0">${esc(r.adresse || '')}</div></td>
+      <td>${cs.map(c => `<div>${esc(c.numero)}</div>`).join('') || '<span class="m">—</span>'}</td>
+      <td>${rs.map(x => `<div>${esc(x.nom)} ${rtChips(x)}</div>`).join('') || '<span class="m">—</span>'}</td>
+      <td>${ps.map(p => `<div>${puHor(p)} <span class="m" style="margin:0">${esc(jLbl(p.jours))}</span></div>`).join('') || '<span class="m">—</span>'}</td>
+      <td><span class="m" style="margin:0">${r.modifie_le ? fdate(r.modifie_le) : ''}${r.modifie_par ? '<br>' + esc(who(r.modifie_par)) : ''}</span></td></tr>`;
+  }).join('')}</tbody></table>`;
+}
+async function reloadEnt(){
+  try { cache.ENTREPRISES = await api('ent_list'); } catch (e) { return; }
+  if (cur === 'ENTREPRISES') entDraw();
+  if (ENT.view && $('#mEnt').classList.contains('on') && !ENT.edit) { const r = entRows().find(x => x.id === ENT.view); if (r) drawEntView(r); else closeEnt(); }
+  drawTiles();
+}
+async function openEnt(id){
+  if (!cache.ENTREPRISES) { try { cache.ENTREPRISES = await wait(() => api('ent_list')); } catch (e) { return toast(e.message); } }
+  const r = entRows().find(x => String(x.id) === String(id)); if (!r) return toast('Entreprise introuvable');
+  ENT.view = r.id; ENT.edit = null; drawEntView(r); $('#mEnt').classList.add('on');
+}
+function closeEnt(){ ENT.edit = null; ENT.view = null; $('#mEnt').classList.remove('on'); }
+$('#mEnt').addEventListener('mousedown', e => { if (e.target.id === 'mEnt' && !ENT.edit) closeEnt(); });
+const entMaj = o => (o && o.maj_le) ? `<small class="m" style="margin:0">MAJ ${fdate(o.maj_le)}${o.maj_par ? ' · ' + esc(who(o.maj_par)) : ''}</small>` : '';
+function drawEntView(r){
+  const cs = entC(r), rs = entR(r), ps = entP(r), w = canWrite(), adm = ME.rights.ENTREPRISES === 'admin';
+  $('#sEnt').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(r.nom)}</h3>${r.adresse ? `<div class="sub"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.adresse)}" target="_blank" rel="noopener">${esc(r.adresse)}</a></div>` : ''}</div>
+    ${w ? `<button class="ico sm" id="enE" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}${adm ? `<button class="ico sm warn" id="enD" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}<button class="ico sm" id="enX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+    <div class="esec"><h4>Numéros de compte</h4>${cs.length ? `<table class="etab s">${cs.map(c => `<tr><td><b>${esc(c.numero)}</b></td><td>${esc(c.commentaire || '')}</td><td>${entMaj(c)}</td></tr>`).join('')}</table>` : '<span class="m">Aucun</span>'}</div>
+    <div class="esec"><h4>Routes</h4>${rs.length ? `<table class="etab s">${rs.map(x => `<tr><td><b>${esc(x.nom)}</b></td><td>${rtChips(x) || '<span class="m">—</span>'}</td></tr>`).join('')}</table>` : '<span class="m">Aucune</span>'}</div>
+    <div class="esec"><h4>PU réguliers</h4>${ps.length ? ps.map(p => `<div class="epu"><div class="eph"><b>${puHor(p) || 'Horaire non renseigné'}</b><span>${esc(jLbl(p.jours))}</span></div>
+      <div class="epb">${p.contact ? `<span>${IC.users.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.contact)}</span>` : ''}${p.tel ? `<a href="tel:${esc(String(p.tel).replace(/[^\d+]/g, ''))}">${IC.phone.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.tel)}</a>` : ''}${p.commercial ? `<span class="m" style="margin:0">Commercial : ${esc(p.commercial)}</span>` : ''}</div>
+      ${p.remarques ? `<div class="epr">${esc(p.remarques)}</div>` : ''}${entMaj(p)}</div>`).join('') : '<span class="m">Aucun</span>'}</div>
+    <p class="m" style="margin:14px 0 0">${r.cree_par ? 'Créée par ' + esc(who(r.cree_par)) + (r.cree_le ? ' le ' + fdate(r.cree_le) : '') + '. ' : ''}${r.modifie_le ? 'Dernière modification le ' + fdate(r.modifie_le, true) + (r.modifie_par ? ' par ' + esc(who(r.modifie_par)) : '') + '.' : ''}</p>`;
+  $('#enX').onclick = closeEnt;
+  if ($('#enE')) $('#enE').onclick = () => openEntEdit(r);
+  if ($('#enD')) $('#enD').onclick = async () => {
+    if (!await ask('Supprimer l’entreprise ?', r.nom + ' sera définitivement supprimée.', 'Supprimer')) return;
+    try { await wait(() => api('ent_delete', {id: r.id})); cache.ENTREPRISES = entRows().filter(x => x.id !== r.id); closeEnt(); entDraw(); drawTiles(); toast('Entreprise supprimée'); } catch (e) { toast(e.message); }
+  };
+}
+function openEntEdit(r){
+  ENT.edit = {id: r ? r.id : '', nom: r ? r.nom : '', adresse: r ? (r.adresse || '') : '', comptes: r ? entC(r) : [], routes: r ? entR(r) : [], pu: r ? entP(r).map(p => ({...p, jours: entJours(p.jours).join(',')})) : []};
+  ENT.view = r ? r.id : null; drawEntEdit(); $('#mEnt').classList.add('on'); setTimeout(() => { if (!r && $('#eNom')) $('#eNom').focus(); }, 60);
+}
+function drawEntEdit(){
+  const d = ENT.edit, coms = [...new Set(entRows().flatMap(r => entP(r).map(p => String(p.commercial || '').trim())).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'fr'));
+  const rm = (k, i) => `<button class="ico sm warn" data-rm="${k}" data-i="${i}" title="Retirer" aria-label="Retirer">${IC.trash}</button>`;
+  $('#sEnt').innerHTML = `<div class="sh"><div class="tt"><h3>${d.id ? 'Modifier l’entreprise' : 'Nouvelle entreprise'}</h3></div><button class="ico sm" id="enX" title="Annuler" aria-label="Annuler">${IC.close}</button></div>
+    <label>Nom de l’entreprise<input id="eNom" value="${esc(d.nom)}" autocomplete="off"></label>
+    <label>Adresse <small class="m" style="margin:0">(suggestions : France)</small><input id="eAdr" list="entAdrL" value="${esc(d.adresse)}" autocomplete="off"></label><datalist id="entAdrL"></datalist><datalist id="entComL">${coms.map(c => `<option value="${esc(c)}">`).join('')}</datalist>
+    <div class="esec"><h4>Numéros de compte</h4>${d.comptes.map((c, i) => `<div class="erow"><input data-k="comptes" data-i="${i}" data-f="numero" placeholder="Numéro de compte" value="${esc(c.numero)}"><input data-k="comptes" data-i="${i}" data-f="commentaire" placeholder="Commentaire" value="${esc(c.commentaire || '')}">${rm('comptes', i)}</div>`).join('')}<button class="s" data-add="comptes">${IC.plus}Ajouter un compte</button></div>
+    <div class="esec"><h4>Routes</h4>${d.routes.map((x, i) => `<div class="erow"><input data-k="routes" data-i="${i}" data-f="nom" placeholder="Route" value="${esc(x.nom)}">${[['m13', '13m3'], ['m20', '20m3'], ['pu', 'PU'], ['del', 'DEL']].map(([f, l]) => `<label class="eck"><input type="checkbox" data-k="routes" data-i="${i}" data-f="${f}" ${x[f] ? 'checked' : ''}>${l}</label>`).join('')}${rm('routes', i)}</div>`).join('')}<button class="s" data-add="routes">${IC.plus}Ajouter une route</button></div>
+    <div class="esec"><h4>PU réguliers</h4>${d.pu.map((p, i) => { const js = entJours(p.jours); return `<div class="epu"><div class="erow"><label class="etm">Début<input type="time" data-k="pu" data-i="${i}" data-f="debut" value="${esc(p.debut || '')}"></label><label class="etm">Fin<input type="time" data-k="pu" data-i="${i}" data-f="fin" value="${esc(p.fin || '')}"></label><span style="flex:1"></span>${rm('pu', i)}</div>
+      <div class="erow"><input data-k="pu" data-i="${i}" data-f="contact" placeholder="Contact" value="${esc(p.contact || '')}"><input data-k="pu" data-i="${i}" data-f="tel" type="tel" placeholder="Téléphone" value="${esc(p.tel || '')}"></div>
+      <div class="erow">${JOURS.map(([c, l]) => `<label class="eck"><input type="checkbox" data-k="pu" data-i="${i}" data-j="${c}" ${js.includes(c) ? 'checked' : ''}>${l}</label>`).join('')}</div>
+      <input data-k="pu" data-i="${i}" data-f="commercial" list="entComL" placeholder="Commercial" value="${esc(p.commercial || '')}" autocomplete="off" style="margin-bottom:8px"><textarea data-k="pu" data-i="${i}" data-f="remarques" rows="2" placeholder="Remarques">${esc(p.remarques || '')}</textarea>${entMaj(p)}</div>`; }).join('')}<button class="s" data-add="pu">${IC.plus}Ajouter un PU régulier</button></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px"><button class="s" id="enC">Annuler</button><button class="p" id="enS">Enregistrer</button></div>`;
+  const cancel = () => { const r = d.id ? entRows().find(x => x.id === d.id) : null; ENT.edit = null; if (r) { drawEntView(r); } else closeEnt(); };
+  $('#enX').onclick = cancel; $('#enC').onclick = cancel;
+  $('#eAdr').oninput = e => entAdrSug(e.target.value);
+  $('#sEnt').onclick = e => {
+    const a = e.target.closest('[data-add]'), x = e.target.closest('[data-rm]');
+    if (a) { entSync(); const k = a.dataset.add; d[k].push(k === 'comptes' ? {numero: '', commentaire: ''} : k === 'routes' ? {nom: '', m13: false, m20: false, pu: false, del: false} : {debut: '', fin: '', contact: '', tel: '', jours: '', remarques: '', commercial: ''}); drawEntEdit(); const els = document.querySelectorAll(`#sEnt [data-k="${k}"][data-i="${d[k].length - 1}"]`); if (els[0]) els[0].focus(); }
+    else if (x) { entSync(); d[x.dataset.rm].splice(+x.dataset.i, 1); drawEntEdit(); }
+  };
+  $('#enS').onclick = async () => {
+    entSync();
+    const nom = d.nom.trim(); if (!nom) { toast('Le nom de l’entreprise est obligatoire'); return $('#eNom').focus(); }
+    const data = {nom, adresse: d.adresse.trim(),
+      comptes: d.comptes.filter(c => String(c.numero).trim()).map(c => ({...c, numero: String(c.numero).trim(), commentaire: String(c.commentaire || '').trim()})),
+      routes: d.routes.filter(x => String(x.nom).trim()).map(x => ({...x, nom: String(x.nom).trim()})),
+      pu: d.pu.filter(p => p.debut || p.fin || p.contact || p.tel || entJours(p.jours).length || p.remarques || p.commercial).map(p => ({...p, jours: entJours(p.jours).join(','), contact: String(p.contact || '').trim(), tel: String(p.tel || '').trim(), commercial: String(p.commercial || '').trim(), remarques: String(p.remarques || '').trim()}))};
+    try {
+      const id = await wait(() => api('ent_save', {id: d.id || undefined, data}));
+      ENT.edit = null; cache.ENTREPRISES = await api('ent_list');
+      const r = entRows().find(x => String(x.id) === String(id || d.id)); ENT.view = r ? r.id : null;
+      if (r) drawEntView(r); else closeEnt();
+      entDraw(); drawTiles(); toast('Enregistré');
+    } catch (e) { toast(e.message || 'Enregistrement impossible'); }
+  };
+}
+function entSync(){
+  const d = ENT.edit; if (!d || !$('#eNom')) return;
+  d.nom = $('#eNom').value; d.adresse = $('#eAdr').value;
+  document.querySelectorAll('#sEnt [data-k]').forEach(el => {
+    const it = d[el.dataset.k][+el.dataset.i]; if (!it) return;
+    if (el.dataset.j) { const a = entJours(it.jours), on = el.checked; it.jours = JOURS.map(j => j[0]).filter(c => c === el.dataset.j ? on : a.includes(c)).join(','); }
+    else it[el.dataset.f] = el.type === 'checkbox' ? el.checked : el.value;
+  });
+}
+let entAdrT;
+function entAdrSug(v){
+  clearTimeout(entAdrT); if (String(v).trim().length < 3) return;
+  entAdrT = setTimeout(async () => {
+    try { const j = await (await fetch('https://api-adresse.data.gouv.fr/search/?limit=6&autocomplete=1&q=' + encodeURIComponent(v))).json();
+      const l = $('#entAdrL'); if (l) l.innerHTML = (j.features || []).map(f => `<option value="${esc(f.properties.label)}">`).join(''); } catch (e) {}
+  }, 250);
+}
 IC.tag = ic('<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8Z"/><circle cx="7" cy="7" r="1.2"/>');
 const LIB = {q: '', tags: [], edit: null, view: null}, LIBF = {};
 const libItems = () => cache.LIBRARY || [];
