@@ -579,9 +579,10 @@ html[data-theme=light] .cbox.no .ct b{color:#C62828}
 .xh{display:flex;align-items:baseline;gap:8px;margin:18px 0 2px;font:700 var(--fs) var(--disp)}.xh small{color:var(--mut);font:500 var(--fs) var(--sans,inherit)}
 
 /* Commentaires */
-.advice{border:1px solid rgba(58,140,255,.5);background:rgba(58,140,255,.1);border-radius:14px;padding:11px 16px;margin:0 0 12px}
-.advice b{font:700 var(--fs-b) var(--disp)}.advice ol{margin:6px 0 0;padding-left:20px}.advice li{margin:2px 0}
-.advice .no{margin-top:6px;font-weight:700;color:var(--orange)}
+.advice{display:flex;align-items:center;gap:14px;border:1px solid rgba(58,140,255,.5);background:rgba(58,140,255,.1);border-radius:14px;padding:7px 14px;margin:0 0 10px}
+.advice .ai{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:rgba(58,140,255,.24);color:var(--blue)}.advice .ai .i{width:21px;height:21px}
+.advice .acx{min-width:0}.advice ol{margin:0;padding-left:18px}.advice li{margin:0;line-height:1.35}
+.advice .no{margin-top:2px;line-height:1.3;font-weight:700;color:var(--orange)}
 .cmb{margin:14px 0 4px;border:1px solid var(--line);border-radius:14px;background:var(--bg);padding:12px 14px}
 .cmbh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;font:700 var(--fs) var(--disp)}
 .cmi.cmn{flex-direction:column;align-items:stretch}.cmn textarea{resize:vertical;min-height:84px}.cma{display:flex;justify-content:flex-end;gap:8px}
@@ -915,11 +916,11 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.80</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.81</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div><div class="fr"></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.80</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.81</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1367,7 +1368,7 @@ const canWrite = () => ['ecriture','admin'].includes(ME.rights[cur]);
 
 function renderList(){
   const steps = stepsOf(cur);
-  $('#main').innerHTML = `${cur === 'DOM' ? '<div class="advice"><b>Conduite à tenir pour un colis DOM</b><ol><li>Contacter l’expéditeur pour savoir quoi faire du colis.</li><li>Sans réponse à J+4, ou s’il est injoignable : demander au commercial qui gère le compte.</li><li>Sans instruction à J+10 : faire un RTO avec le compte de l’expéditeur.</li></ol><div class="no">On n’ouvre plus de dossier Spark.</div></div>' : ''}<div class="bar">
+  $('#main').innerHTML = `${cur === 'DOM' ? '<div class="advice"><span class="ai" title="Conseil">' + IC.bulb + '</span><div class="acx"><ol><li>Contacter l’expéditeur pour savoir quoi faire du colis.</li><li>Sans réponse à J+4, ou s’il est injoignable : demander au commercial qui gère le compte.</li><li>Sans instruction à J+10 : faire un RTO avec le compte de l’expéditeur.</li></ol><div class="no">On n’ouvre plus de dossier Spark.</div></div></div>' : ''}<div class="bar">
     <span style="flex:1"></span>
     ${cur === 'DOCUMENTS' ? '' : `<button class="s" id="bArch">${showArch ? IC.unarchive + 'Voir les actifs' : IC.archive + 'Voir les archives'}</button>`}
     ${canWrite() && !showArch ? `<button class="p" id="bNew">${IC.plus}Nouveau</button>` : ''}</div><div class="grid" id="list"></div>`;
@@ -1451,6 +1452,7 @@ function card(r){
 // ------------------------------------------------------------ Recherche globale (suggestions)
 const HLAB = {telechargement:'Téléchargement', suppression:'Supprimé définitivement', creation:'Création', etape:"Changement d'étape", modification:'Modification', archivage:'Archivage', desarchivage:'Désarchivage'};
 IC.step = ic('<path d="M10 20.777a8.942 8.942 0 0 1-2.48-.969"/><path d="M14 3.223a9.003 9.003 0 0 1 0 17.554"/><path d="M4.579 17.093a8.961 8.961 0 0 1-1.227-2.592"/><path d="M3.124 10.5c.16-.95.468-1.85.9-2.675l.169-.305"/><path d="M6.907 4.579a8.954 8.954 0 0 1 3.093-1.356"/><path d="M9 12l2 2l4-4"/>');
+IC.bulb = ic('<path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V17h6v-.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2Z"/>');
 const IC_HIST = ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>');
 let sTimer = 0, sSeq = 0, sItems = [], sHl = -1, sQ = '';
 function localHits(q){
