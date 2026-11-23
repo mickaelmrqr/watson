@@ -730,7 +730,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.38</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.39</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -740,7 +740,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.38</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.39</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -945,7 +945,7 @@ function enqueue(task, onFail){
 }
 
 // ------------------------------------------------------------ Affichage : mode nuit/jour, taille du texte
-const ZOOMS = [0.9, 1, 1.1, 1.2, 1.35, 1.5];
+const ZOOMS = [0.85, 0.9, 1, 1.1, 1.2, 1.35, 1.5];
 function applyDisplay(){
   const P = (ME && ME.prefs) || {}; let t = P.theme, z = P.zoom;
   try { t = t || localStorage.getItem('wtheme') || 'dark'; z = z || Number(localStorage.getItem('wzoom')) || 1; } catch (e) {}
