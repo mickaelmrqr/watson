@@ -711,7 +711,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.30</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.31</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -721,7 +721,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.30</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.31</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2396,13 +2396,19 @@ function libSave(){
   const tip = document.createElement('div'); tip.id = 'tip'; tip.setAttribute('role', 'tooltip'); document.body.appendChild(tip);
   let cur = null, tm = 0;
   const hide = () => { clearTimeout(tm); tip.classList.remove('on'); cur = null; };
+  // Le zoom de la page (réglage « taille du texte ») décale les coordonnées : on mesure l'écart réel avant de placer la bulle
+  const probe = () => {
+    tip.style.left = '0px'; tip.style.top = '0px'; const p0 = tip.getBoundingClientRect();
+    tip.style.left = '100px'; tip.style.top = '100px'; const p1 = tip.getBoundingClientRect();
+    return {k: (p1.left - p0.left) / 100 || 1, cx: p0.left, cy: p0.top, w: p0.width, h: p0.height};
+  };
   const show = el => {
     const t = el.getAttribute('data-tip'); if (!t) return;
-    cur = el; tip.textContent = t; tip.className = ''; tip.style.left = '0px'; tip.style.top = '0px';
-    const r = el.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
-    let x = r.left + r.width / 2 - w / 2; x = Math.max(8, Math.min(innerWidth - w - 8, x));
-    let y = r.top - h - 32, below = false; if (y < 8) { y = r.bottom + 32; below = true; }
-    tip.style.left = x + 'px'; tip.style.top = y + 'px'; tip.style.setProperty('--ax', (r.left + r.width / 2 - x) + 'px');
+    cur = el; tip.textContent = t; tip.className = 'on';
+    const r = el.getBoundingClientRect(), p = probe(), vw = document.documentElement.clientWidth * p.k;
+    let x = r.left + r.width / 2 - p.w / 2; x = Math.max(8, Math.min(vw - p.w - 8, x));
+    let y = r.top - p.h - 12, below = false; if (y < 8) { y = r.bottom + 12; below = true; }
+    tip.style.left = (x - p.cx) / p.k + 'px'; tip.style.top = (y - p.cy) / p.k + 'px'; tip.style.setProperty('--ax', (r.left + r.width / 2 - x) / p.k + 'px');
     tip.className = (below ? 'below ' : '') + 'on';
   };
   const arm = el => {
