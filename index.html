@@ -877,7 +877,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.11.69</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.11.70</span></div>
   <div class="hmid"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button><span class="hsep hide" id="hs1"></span>
   <button id="bQR" class="ico hide" title="Mes identifiants" aria-label="Mes identifiants"></button>
@@ -888,7 +888,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.69</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.70</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -3210,6 +3210,7 @@ function libSave(){
 // ------------------------------------------------------------ Infobulles design (remplacent les bulles natives)
 (function(){
   const tip = document.createElement('div'); tip.id = 'tip'; tip.setAttribute('role', 'tooltip'); document.body.appendChild(tip);
+  const vpb = document.createElement('div'); vpb.style.cssText = 'position:fixed;left:0;right:0;top:0;height:0;visibility:hidden;pointer-events:none'; document.body.appendChild(vpb);
   let cur = null, tm = 0;
   const hide = () => { clearTimeout(tm); tip.classList.remove('on'); cur = null; };
   // Le zoom de la page (réglage « taille du texte ») décale les coordonnées : on mesure l'écart réel avant de placer la bulle
@@ -3221,7 +3222,7 @@ function libSave(){
   const show = el => {
     const t = el.getAttribute('data-tip'); if (!t) return;
     cur = el; tip.textContent = t; tip.className = 'on';
-    const r = el.getBoundingClientRect(), p = probe(), vw = document.documentElement.clientWidth * p.k;
+    const r = el.getBoundingClientRect(), p = probe(), vw = vpb.getBoundingClientRect().right;
     let x = r.left + r.width / 2 - p.w / 2; x = Math.max(8, Math.min(vw - p.w - 8, x));
     let y = r.top - p.h - 12, below = false; if (y < 8) { y = r.bottom + 12; below = true; }
     tip.style.left = (x - p.cx) / p.k + 'px'; tip.style.top = (y - p.cy) / p.k + 'px'; tip.style.setProperty('--ax', (r.left + r.width / 2 - x) / p.k + 'px');
