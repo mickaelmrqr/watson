@@ -729,6 +729,9 @@ input[type=date]::-webkit-calendar-picker-indicator,input[type=datetime-local]::
 .eadd{margin:10px 0 0}.scr .ebx .epu{background:var(--panel);margin:0 0 10px}.scr .ebx .epu:last-of-type{margin-bottom:0}
 
 .mod[data-m=_admin]{--mc:238,70,80}
+#mErr{z-index:85}#sErr{border-top:3px solid #ff3b3b}#sync.err{cursor:pointer}
+.erl{max-height:50vh;overflow:auto;margin:10px 0}.eri{padding:9px 0;border-top:1px solid var(--hair)}.eri:first-child{border-top:0}.eri b{display:block;word-break:break-word;color:#ff9d9d}.eri small{display:block;color:var(--mut)}.eri code{display:block;margin-top:4px;font-size:calc(var(--fs) - 1px);color:var(--mut);word-break:break-all}
+html[data-theme=light] .eri b{color:#C22B31}
 #mAdm{z-index:19}#sAdm{border-top:3px solid rgb(238,70,80)}
 footer #bAdm{color:rgb(238,70,80)}footer #bAdm:hover{background:rgba(238,70,80,.18);border-color:rgba(238,70,80,.6);color:rgb(238,70,80)}footer #bAdm.on{background:rgb(238,70,80);border-color:rgb(238,70,80);color:#fff}
 .mod.on{border-color:rgb(var(--mc));background:linear-gradient(135deg,rgba(var(--mc),.24),rgba(var(--mc),.06));box-shadow:0 8px 26px rgba(var(--mc),.28)}
@@ -922,6 +925,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 
 <div class="modal" id="mSet"><div class="sheet xl" id="sSet"></div></div>
 <div class="modal" id="mAdm"><div class="sheet xl" id="sAdm"></div></div>
+<div class="modal" id="mErr"><div class="sheet" id="sErr"></div></div>
 <div class="modal" id="mLib"><div class="sheet wide" id="sLib"></div></div>
 <div class="modal" id="mEnt"><div class="sheet xw" id="sEnt"></div></div>
 <div class="modal" id="mAbs"><div class="sheet" id="sAbs"></div></div>
@@ -1102,14 +1106,20 @@ function busy(on, soft){ busyN = Math.max(0, busyN + (on ? 1 : -1)); if (!soft) 
 async function wait(fn, soft){ busy(true, soft); try { return await fn(); } finally { busy(false, soft); } }
 
 // ------------------------------------------------------------ API + synchronisation en arrière-plan
+const parSum = p => Object.keys(p || {}).map(k => { const v = p[k]; return typeof v === 'string' ? (v.length > 120 ? '' : k + ':' + v) : (typeof v === 'number' || typeof v === 'boolean' ? k + ':' + v : ''); }).filter(Boolean).join(' · ').slice(0, 300);
 async function api(action, p = {}) {
-  const r = await fetch(WATSON.API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
-    body: JSON.stringify({token, action, ...p})});
-  const j = await r.json();
-  if (!j.ok) { if (j.error === 'AUTH') { logout(); throw new Error('Session expirée'); } throw new Error(j.error); }
+  let j;
+  try {
+    const r = await fetch(WATSON.API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify({token, action, ...p})});
+    j = await r.json();
+  } catch (e) { e.act = action; e.par = parSum(p); throw e; }
+  if (!j.ok) { if (j.error === 'AUTH') { logout(); throw new Error('Session expirée'); } const er = new Error(j.error); er.act = action; er.par = parSum(p); throw er; }
   return j.data;
 }
 let chain = Promise.resolve(), pending = 0, failed = false;
+$('#mErr').addEventListener('mousedown', e => { if (e.target.id === 'mErr') closeErr(); });
+$('#sync').addEventListener('click', () => { if (failed && pending === 0) showErr(); });
 function setSync(){
   const s = $('#sync'); s.classList.remove('hide'); s.classList.toggle('work', pending > 0); s.classList.toggle('err', failed && pending === 0);
   $('#syncT').textContent = pending > 0 ? 'Synchronisation' : failed ? 'Erreur de synchro' : 'Synchronisé';
@@ -1117,9 +1127,30 @@ function setSync(){
 function syncOn(r){ r._n = (r._n || 0) + 1; r._sync = true; }
 function syncOff(r){ r._n = Math.max(0, (r._n || 1) - 1); r._sync = r._n > 0; }
 function relinkDet(){ if (det && det.r) det.r = rows.find(x => x.id === det.r.id) || det.r; }
+const ADMIN_MAIL = 'mickael.mrqr@gmail.com';
+let SERR = [];
+const decEnt = s => { const t = document.createElement('textarea'); t.innerHTML = String(s || ''); return t.value; };
+const errText = () => SERR.map(x => fdate(x.t, true) + ' · ' + (x.act || 'action inconnue') + (x.pg ? ' · ' + x.pg : '') + (x.par ? '\n' + x.par : '') + '\n' + x.msg).join('\n\n');
+function closeErr(){ $('#mErr').classList.remove('on'); }
+function showErr(){
+  if (!SERR.length) return;
+  const own = String(ME.email).toLowerCase() === ADMIN_MAIL;
+  $('#sErr').innerHTML = `<div class="sh"><div class="tt"><h3>Erreur de synchronisation</h3><div class="sub">Une modification n’a pas pu être enregistrée</div></div><button class="ico sm" id="erX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+    <div class="erl">${SERR.map(x => `<div class="eri"><b>${esc(x.msg)}</b><small>${fdate(x.t, true)}${x.act ? ' · ' + esc(x.act) : ''}${x.pg ? ' · ' + esc(x.pg) : ''}</small>${x.par ? `<code>${esc(x.par)}</code>` : ''}</div>`).join('')}</div>
+    <div class="cma"><button class="s" id="erC">Fermer</button><button class="p" id="erS">${own ? 'Copier le détail' : 'Envoyer à l’administrateur'}</button></div>`;
+  $('#erX').onclick = closeErr; $('#erC').onclick = closeErr;
+  $('#erS').onclick = async () => {
+    const texte = ('Erreur de synchronisation (Watson ' + (($('footer .ver') || {}).textContent || '').trim() + ')\nUtilisateur : ' + ME.email + '\n\n' + errText()).slice(0, 1500);
+    if (own) { try { await navigator.clipboard.writeText(texte); toast('Détail copié'); } catch (e) { toast('Copie impossible'); } return; }
+    try { await wait(() => api('msg_send', {to: ADMIN_MAIL, texte, conv: newConvId(), titre: 'Erreur de synchronisation', ref_module: '', ref_id: ''})); toast('Envoyé à l’administrateur'); closeErr(); } catch (e) { toast(e.message); }
+  };
+  $('#mErr').classList.add('on');
+}
+function syncErr(e){ SERR.push({t: new Date().toISOString(), msg: decEnt(e && e.message) || 'Erreur inconnue', act: e && e.act || '', par: e && e.par || '', pg: cur || ''}); if (SERR.length > 5) SERR.shift(); showErr(); }
 function enqueue(task, onFail){
+  if (pending === 0) SERR = [];
   pending++; failed = false; setSync();
-  chain = chain.then(task).catch(e => { failed = true; toast(e.message); if (onFail) return onFail(); })
+  chain = chain.then(task).catch(e => { failed = true; syncErr(e); if (onFail) return onFail(); })
     .finally(() => { pending--; setSync(); });
   return chain;
 }
@@ -1155,7 +1186,7 @@ function initGoogle(){
 }
 function logout(){ sessionStorage.removeItem('wtk'); try { localStorage.removeItem('wst'); } catch (e) {} token = null; location.reload(); }
 $('#bOut').onclick = logout;
-$('#bSet').onclick = () => { setSec = 'profil'; $('#mSet').classList.add('on'); renderAdmin(); };
+$('#bSet').onclick = () => { setSec = 'aff'; $('#mSet').classList.add('on'); renderAdmin(); };
 const closeSet = () => $('#mSet').classList.remove('on');
 $('#mSet').addEventListener('mousedown', e => { if (e.target.id === 'mSet') closeSet(); });
 
@@ -1175,7 +1206,7 @@ function buildNav(){
   const mods = Object.keys(MODS).filter(m => ME.rights[m]);
   const io = (m, label, icon) => `<button class="mod io" data-m="${m}" title="${label}" aria-label="${label}"><span class="mi">${icon}</span><b class="il">${label}</b></button>`;
   const tile = m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m].label}</b><small id="cnt_${m}"><span class="d3s"><i></i><i></i><i></i></span></small></span></button>`;
-  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${mods.filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY').map(tile).join('')}${mods.includes('LIBRARY') ? io('LIBRARY', 'Biblio', IC.LIBRARY) : ''}</div>`;
+  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${mods.filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY').map(tile).join('')}${mods.includes('LIBRARY') ? io('LIBRARY', 'Bibliothèque', IC.LIBRARY) : ''}</div>`;
   $('#bAdm').classList.toggle('hide', !isAdmin());
   $('#seg').onclick = e => { const b = e.target.closest('button'); if (b) { showArch = false; openMod(b.dataset.m); } };
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === cur));
@@ -1582,6 +1613,7 @@ function drawBand(){
 $('#mBand').addEventListener('mousedown', e => { if (e.target.id === 'mBand') closePop(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') {
   if ($('#mAsk').classList.contains('on') && ask.cancel) return ask.cancel();
+  if ($('#mErr').classList.contains('on')) return closeErr();
   if ($('#mMsg').classList.contains('on')) return closeMsg();
   if ($('#mLib').classList.contains('on')) return LIB.edit ? null : closeLib();
   if ($('#mEnt').classList.contains('on')) return ENT.edit ? null : closeEnt();
@@ -2403,7 +2435,7 @@ const PGROUP = {archi:['archivage_auto_dom_jours','archivage_auto_awb_jours','ar
   dom:['dom_delai_j4_jours','dom_delai_j10_jours','dom_jours_ouvres'], trait:['heure_traitement_quotidien'], histo:['historique_retention_mois']};
 const NOTIFS = [['nouveau','Nouvel élément partagé'], ['modification',"Modification d'un élément"], ['etape',"Changement d'étape"], ['urgent','Élément urgent'], ['archive','Archivage'], ['echeance','Échéance DOM (J4 / J10)']];
 const TZS = ['Europe/Paris','Europe/London','Europe/Berlin','Europe/Brussels','Europe/Zurich','Indian/Reunion','America/Martinique','America/New_York','Asia/Dubai'];
-let setSec = 'profil', PARAMS = null;
+let setSec = 'aff', PARAMS = null;
 const sw = (id, on, extra = '') => `<label class="sw"><input type="checkbox" id="${id}" ${on ? 'checked' : ''} ${extra}><i></i></label>`;
 
 // ------------------------------------------------------------ Page « Administration » (réservée aux admins)
@@ -2532,7 +2564,7 @@ async function renderSec(){
 }
 async function renderUsers(el){
   let us = US; if (us) api('users_list').then(x => US = x).catch(() => {}); else { try { us = US = await wait(() => api('users_list')); } catch (e) { return toast(e.message); } }
-  const MU = [['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'SCMS'], ['ENTREPRISES', 'Entreprises'], ['ABSENCES', 'Absences'], ['DOCUMENTS', 'Biblio'], ['PARAMETRES', 'Paramètres']];
+  const MU = [['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'SCMS'], ['ENTREPRISES', 'Entreprises'], ['ABSENCES', 'Absences'], ['DOCUMENTS', 'Bibliothèque'], ['PARAMETRES', 'Paramètres']];
   const CC = {CLASSIQUES: '#3a8cff', CCTV: '#ee4650', PPWK: '#a66a3e', UNDELS: '#22b070'};
   const seg = (u, m) => { const cur = u.rights[m] || '', opts = m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<div class="useg" data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<button type="button" data-lv="${v}" class="${v === cur ? 'on ' + (v || 'none') : ''}">${l}</button>`).join('')}</div>`; };
@@ -2574,7 +2606,7 @@ async function renderUsers(el){
 }
 
 // ------------------------------------------------------------ Bibliothèque (fichiers, textes, liens, photos + mots-clés)
-MODS.LIBRARY = {label: 'Biblio', noSteps: true, name: r => r.titre, show: [], fields: []};
+MODS.LIBRARY = {label: 'Bibliothèque', noSteps: true, name: r => r.titre, show: [], fields: []};
 IC.LIBRARY = ic('<rect x="3" y="4" width="4" height="16" rx="1"/><path d="M3 8h4"/><rect x="9" y="3" width="4" height="17" rx="1"/><path d="M9 7h4"/><path d="m15.3 5.6 3.1-.8 3.4 13.1-3.1.8z"/>');
 IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
 MODS.ENTREPRISES = {label: 'Entreprises', noSteps: true, name: r => r.nom, show: [], fields: []};
