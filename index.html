@@ -363,7 +363,9 @@ button.bb.off{opacity:.65;background:transparent;border-style:dashed}
 .dpart{flex:1 1 0;min-height:0;overflow:auto;padding-right:4px}
 .dsep{border:0;border-top:2px solid var(--line);margin:8px 0;flex:none}
 .drawer h4 .s+.s{margin-left:6px}
-.nit .na button.rm{margin-left:auto}
+.nit.nn{padding-right:86px}
+.nit.nn .na{position:absolute;top:8px;right:8px;margin:0}
+.nit.nn .na button{padding:5px 8px}
 .drawer h4 .s{margin-left:auto;padding:5px 11px;font-size:var(--fs-b)}
 .subh{font:700 var(--fs) var(--disp);letter-spacing:.4px;color:var(--mut);margin:14px 0 6px}
 .trow{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;overflow:hidden;padding:8px 10px 8px 17px}
@@ -725,7 +727,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.35</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.36</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -735,7 +737,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.35</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.36</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1846,8 +1848,8 @@ async function loadTodo(silent){ try { TD = await api('todo_list'); if (drawerOp
 function ntItem(n){
   if (n.type === 'suppression' && n.fait !== 'oui') return `<div class="nit unread${gcl(n)}" ${gst(n)} data-id="${n.id}"><b>${esc(n.titre)}</b><div class="tx">${esc(n.texte)}</div><div class="tm">${ftime(n.cree_le)}</div>
     <div class="na"><button data-a="dv" class="dng">${IC.trash}Valider la suppression</button><button data-a="dn">${IC.close}Ne pas supprimer</button></div></div>`;
-  return `<div class="nit ${n.lu !== 'oui' ? 'unread' : ''}${gcl(n)}" ${gst(n)} data-id="${n.id}"><b>${esc(n.titre)}</b><div class="tx">${esc(n.texte)}</div><div class="tm">${ftime(n.cree_le)}</div>
-    <div class="na"><button data-a="lu" ${n.lu === 'oui' ? 'disabled' : ''}>${IC.check}Lu</button><button data-a="todo" ${n.todo_ajoute === 'oui' ? 'disabled' : ''}>${IC.plus}${n.todo_ajoute === 'oui' ? 'Dans ma todo' : 'Ajouter à ma todo'}</button><button data-a="rm" class="rm dng" title="Supprimer la notification" aria-label="Supprimer la notification">${IC.trash}</button></div></div>`;
+  return `<div class="nit nn ${n.lu !== 'oui' ? 'unread' : ''}${gcl(n)}" ${gst(n)} data-id="${n.id}"><b>${esc(n.titre)}</b><div class="tx">${esc(n.texte)}</div><div class="tm">${ftime(n.cree_le)}</div>
+    <div class="na"><button data-a="lu" ${n.lu === 'oui' ? 'disabled' : ''} title="Marquer comme lu" aria-label="Marquer comme lu">${IC.check}</button><button data-a="rm" class="rm dng" title="Supprimer la notification" aria-label="Supprimer la notification">${IC.trash}</button></div></div>`;
 }
 const ST_LAB = {a_faire:'À faire', en_cours:'En cours', termine:'Terminé'};
 const cleanT = x => String(x || '').replace(/\s*\.?\s*Date d'échéance à J\+?\d+\s*$/i, '');
