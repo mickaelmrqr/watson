@@ -383,6 +383,17 @@ button.bb.off{opacity:.65;background:transparent;border-style:dashed}
 .tag.au{background:rgba(255,90,42,.16);color:#ff8d70;height:22px;font-size:var(--fs);padding:0 8px}
 #mTask{z-index:30}
 #mTask .r2c{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#mRem{z-index:31}
+#mRem .rtabs{display:flex;gap:8px;margin:0 0 12px}
+#mRem .rtabs .s.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+#mRem .rref{display:flex;align-items:center;gap:8px;margin:10px 0;padding:8px 10px;border:1px solid var(--line,rgba(128,128,128,.3));border-radius:10px}
+#mRem .rref span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#mRem .rit{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line,rgba(128,128,128,.25))}
+#mRem .rit .rb{flex:1;min-width:0}
+#mRem .rit .rb b{display:block;overflow-wrap:anywhere}
+#mRem .rit .rb small{opacity:.7}
+.remb{display:flex;gap:8px;margin:0 0 10px;flex-wrap:wrap}
+.remb .s{padding:5px 11px;font-size:var(--fs-b)}
 /* ---------- Mode jour */
 html[data-theme=light]{--bg:#F2F4F8;--panel:#FFFFFF;--raised:#E8ECF3;--line:#D3D9E5;--ink:#1B2230;--mut:#5A667C;--hi:#0D1320;--hov:#F5F7FB;--hov2:#DDE3EE;--bd2:#9AA7BE;--bd3:#B3BDD0;--hair:rgba(20,30,50,.08);--scrim:rgba(30,40,60,.38);--hdr:rgba(255,255,255,.88);--t1:#FFFFFF;--t2:#F4F6FA;--blue:#2F78E6;--green:#1FA56F;--red:#E5484D}
 html[data-theme=light] body:before{background:radial-gradient(900px 420px at 85% -10%,rgba(74,148,255,.10),transparent 60%),radial-gradient(700px 380px at -10% 110%,rgba(255,90,42,.07),transparent 60%)}
@@ -712,7 +723,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.33</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.34</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -722,7 +733,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.33</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.34</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -741,6 +752,13 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <div class="r2c" id="tWhen"><div><label for="tDate">Date prévue</label><input id="tDate" type="date"></div><div><label for="tHeure">Heure du rappel (facultatif)</label><input id="tHeure" type="time"></div></div>
   <label class="chk"><input type="checkbox" id="tRec"> Chaque jour travaillé (ajoutée automatiquement)</label>
   <div class="foot"><button class="p" id="tAdd" style="flex:1">Ajouter</button><button class="s" id="tkNo">Annuler</button></div></div></div>
+<div class="modal" id="mRem"><div class="sheet"><div class="sh"><div class="tt"><h3>Rappels</h3></div><button class="ico sm" id="rX" aria-label="Fermer" title="Fermer"></button></div>
+  <div class="rtabs"><button class="s on" id="rtNew">Créer un rappel</button><button class="s" id="rtList">En attente</button></div>
+  <div id="rvNew"><label for="rTitre">Titre</label><input id="rTitre" maxlength="200" autocomplete="off">
+    <div class="rref" id="rRef" style="display:none"><span id="rRefT"></span><button class="ico sm" id="rRefX" aria-label="Retirer le dossier" title="Retirer le dossier"></button></div>
+    <label for="rDate">Date et heure d'arrivée</label><input id="rDate" type="datetime-local">
+    <div class="foot"><button class="p" id="rAdd" style="flex:1">Créer le rappel</button><button class="s" id="rNo">Annuler</button></div></div>
+  <div id="rvList" style="display:none"></div></div></div>
 <div class="modal" id="mContact"><div class="sheet"><div class="sh"><div class="tt"><h3>Client contacté</h3><div class="sub" id="cSub"></div></div><button class="ico sm" id="cX" aria-label="Fermer" title="Fermer"></button></div>
   <label for="cMoyen">Moyen de contact</label><select id="cMoyen"></select>
   <label for="cCom">Commentaire</label><textarea id="cCom" rows="3" maxlength="500" placeholder="Ex. : message laissé, rappel prévu…"></textarea>
@@ -1333,6 +1351,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') {
   if ($('#mHist').classList.contains('on')) return closeHist();
   if ($('#mPhoto').classList.contains('on')) return $('#mPhoto').classList.remove('on');
   if ($('#mContact').classList.contains('on')) return $('#mContact').classList.remove('on');
+  if ($('#mRem').classList.contains('on')) return closeRem();
   if ($('#mTask').classList.contains('on')) return closeTask();
   if (bandR) return closePop();
   if ($('#mSearch').classList.contains('on')) return closeSearch();
@@ -1433,7 +1452,7 @@ function renderDet(){
   const title = r ? (name || (M.title ? M.title(r) : '') || r.waybill || r.pid || M.label) : (cur === 'DOCUMENTS' ? 'Nouveau document' : 'Nouveau ' + M.label);
   const btns = ed
     ? `<button class="ico sm ok" id="dSave" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button><button class="ico sm" id="dX" title="${r ? 'Annuler la modification' : 'Fermer'}" aria-label="Annuler">${IC.close}</button>`
-    : `${canDelDoc ? `<button class="ico sm warn" id="dDocDel" title="Supprimer le document" aria-label="Supprimer le document">${IC.trash}</button>` : ''}${r && !M.noSteps && w && !r.suppr_par && !String(r.id).startsWith('tmp_') && (ME.rights[cur] === 'admin' || String(r.cree_par).toLowerCase() === ME.email) ? `<button class="ico sm warn" id="dDel" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}${r && !M.noSteps && w && !showArch ? `<button class="ico sm warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button>` : ''}${r && !M.noSteps && w && showArch ? `<button class="ico sm" id="dUn" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>` : ''}${r && !M.noSteps && !String(r.id).startsWith('tmp_') ? `<button class="ico sm" id="dMsg" title="Envoyer ce dossier par message" aria-label="Envoyer ce dossier par message">${IC.mail}</button>` : ''}${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
+    : `${canDelDoc ? `<button class="ico sm warn" id="dDocDel" title="Supprimer le document" aria-label="Supprimer le document">${IC.trash}</button>` : ''}${r && !M.noSteps && w && !r.suppr_par && !String(r.id).startsWith('tmp_') && (ME.rights[cur] === 'admin' || String(r.cree_par).toLowerCase() === ME.email) ? `<button class="ico sm warn" id="dDel" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}${r && !M.noSteps && w && !showArch ? `<button class="ico sm warn" id="dArch" title="Archiver" aria-label="Archiver">${IC.archive}</button>` : ''}${r && !M.noSteps && w && showArch ? `<button class="ico sm" id="dUn" title="Désarchiver" aria-label="Désarchiver">${IC.unarchive}</button>` : ''}${r && !M.noSteps && !String(r.id).startsWith('tmp_') ? `<button class="ico sm" id="dMsg" title="Envoyer ce dossier par message" aria-label="Envoyer ce dossier par message">${IC.mail}</button><button class="ico sm" id="dRem" title="Créer un rappel sur ce dossier" aria-label="Créer un rappel sur ce dossier">${IC.bell}</button>` : ''}${w && !showArch ? `<button class="ico sm" id="dPen" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">${IC.close}</button>`;
   const hlc = det && det.hl && det.hl.champs || [], canTg = r && w && !showArch && !ed, hasU = r && M.fields.some(f => f.k === 'urgent'), hasW = r && M.fields.some(f => f.k === 'wrong_ok');
   const bubs = r && !ed ? `<div class="bbs">${hasU ? `<button class="bb tg ${r.urgent === true ? 'u' : 'off'} ${hlc.includes('urgent') ? 'hl' : ''}" data-tg="urgent" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.alert}${r.urgent === true ? 'Urgent' : 'Pas urgent'}</button>` : ''}${hasW ? `<button class="bb tg ${r.wrong_ok === true ? 'wk' : 'off'} ${hlc.includes('wrong_ok') ? 'hl' : ''}" data-tg="wrong_ok" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.check}${r.wrong_ok === true ? 'Wrong OK' : 'Pas wrong OK'}</button>` : ''}<button class="bb tg ${r.visibilite === 'prive' ? '' : 'sh'} ${hlc.includes('visibilite') ? 'hl' : ''}" data-tg="visibilite" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</button>${waitB(r)}</div>` : '';
   const stat = r && !M.noSteps ? `<div class="dstat ${ed ? 'lock' : ''}"><div class="dl">${bubs}</div><div class="dr"><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabR(r))}</span>${w && !showArch ? `<button class="s go stp" data-a="stepmenu" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}</button>` : ''}</div></div>` : '';
@@ -1475,6 +1494,7 @@ function renderDet(){
   if ($('#dDocDel')) $('#dDocDel').onclick = () => delDoc(r);
   if ($('#dDel')) $('#dDel').onclick = () => delRec(r);
   if ($('#dMsg')) $('#dMsg').onclick = () => openMsg({ref:{module:cur, id:r.id}});
+  if ($('#dRem')) $('#dRem').onclick = () => openRem({module:cur, id:r.id});
   if (ed) {
     el.querySelectorAll('input.up').forEach(i => i.addEventListener('input', () => { const p = i.selectionStart; i.value = i.value.toUpperCase(); i.setSelectionRange(p, p); }));
     const grow = t => { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; };
@@ -1849,14 +1869,14 @@ function renderDrawer(){
   const T = TD || {items:[], upcoming:[], templates:[]};
   const open = T.items.filter(t => t.statut !== 'termine').length;
   el.innerHTML = `<div class="dh"><h3>Notifications</h3>${NOT.unread ? '<button class="s" id="nAll">Tout marquer comme lu</button>' : ''}<button class="ico sm" id="dwX" aria-label="Fermer">${IC.close}</button></div>
-    <div class="dpart"><h4>ÉVÈNEMENTS <span>${ev.length}</span></h4>${ev.map(ntItem).join('') || '<div class="m">Rien pour le moment.</div>'}</div>
+    <div class="dpart"><h4>ÉVÈNEMENTS <span>${ev.length}</span></h4><div class="remb"><button class="s" id="rNew">${IC.bell}Créer un rappel</button><button class="s" id="rList">${IC.clock}Voir les rappels en attente</button></div>${ev.map(ntItem).join('') || '<div class="m">Rien pour le moment.</div>'}</div>
     <hr class="dsep">
     <div class="dpart"><h4>TODO <span>${open}</span><button class="s" id="tNew">${IC.plus}Nouvelle tâche</button></h4>
       ${!TD ? '<div class="m">Chargement…</div>' : (T.items.concat(T.templates).map(todoRow).join('') || '<div class="m">Rien à faire aujourd\'hui.</div>')}
       ${T.upcoming.length ? `<div class="subh">À VENIR · ${T.upcoming.length}</div>${T.upcoming.map(todoRow).join('')}` : ''}
 </div>`;
   [...el.querySelectorAll('.dpart')].forEach((x, i) => x.scrollTop = sc[i] || 0);
-  $('#dwX').onclick = closeDrawer; $('#tNew').onclick = openTask;
+  $('#dwX').onclick = closeDrawer; $('#tNew').onclick = openTask; $('#rNew').onclick = () => openRem(); $('#rList').onclick = () => openRem(null, true);
   if ($('#nAll')) $('#nAll').onclick = () => { NOT.items.forEach(n => n.lu = 'oui'); NOT.unread = 0; drawBadges(); showToasts(); renderDrawer(); enqueue(() => api('notif_set', {all:true})); };
   el.onclick = e => {
     const tr = e.target.closest('.trow');
@@ -2010,6 +2030,49 @@ function closeTask(){ $('#mTask').classList.remove('on'); }
 $('#tkX').innerHTML = IC.close; $('#tkX').onclick = closeTask; $('#tkNo').onclick = closeTask;
 $('#mTask').addEventListener('mousedown', e => { if (e.target.id === 'mTask') closeTask(); });
 $('#tRec').onchange = e => { $('#tWhen').style.opacity = e.target.checked ? .35 : 1; $('#tDate').disabled = e.target.checked; };
+// ------------------------------------------------------------ Rappels (notification qui arrive plus tard)
+let REM = {ref:null, list:null};
+const p2 = n => String(n).padStart(2, '0');
+const localDT = d => d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate()) + 'T' + p2(d.getHours()) + ':' + p2(d.getMinutes());
+function fmtRem(iso){ const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleString('fr-FR', {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}); }
+function remView(v){
+  $('#rvNew').style.display = v === 'new' ? '' : 'none'; $('#rvList').style.display = v === 'list' ? '' : 'none';
+  $('#rtNew').classList.toggle('on', v === 'new'); $('#rtList').classList.toggle('on', v === 'list');
+  if (v === 'new') setTimeout(() => $('#rTitre').focus(), 60);
+}
+function drawRem(){
+  const rf = REM.ref; $('#rRef').style.display = rf ? '' : 'none'; if (rf) $('#rRefT').textContent = refLbl(rf.module, rf.id);
+  const L = REM.list;
+  $('#rtList').textContent = 'En attente' + (L ? ' (' + L.length + ')' : '');
+  $('#rvList').innerHTML = !L ? '<div class="m">Chargement…</div>' : L.length ? L.map(x => '<div class="rit" data-id="' + esc(x.id) + '"><div class="rb"><b>' + esc(x.titre) + '</b><small>' + esc(fmtRem(x.date_envoi)) + (x.ref_module ? ' · ' + esc(refLbl(x.ref_module, x.ref_id)) : '') + '</small></div><button class="ico sm warn" data-del="1" title="Supprimer ce rappel" aria-label="Supprimer ce rappel">' + IC.trash + '</button></div>').join('') : '<div class="m">Aucun rappel en attente.</div>';
+}
+function loadRem(){ api('rappel_list').then(l => { REM.list = l; drawRem(); }).catch(e => { REM.list = REM.list || []; drawRem(); }); }
+function openRem(ref, list){
+  REM.ref = ref || null; $('#rTitre').value = '';
+  const d = new Date(Date.now() + 3600000); d.setMinutes(0, 0, 0); $('#rDate').value = localDT(d);
+  drawRem(); remView(list ? 'list' : 'new'); $('#mRem').classList.add('on'); loadRem();
+}
+function closeRem(){ $('#mRem').classList.remove('on'); }
+$('#rX').innerHTML = IC.close; $('#rRefX').innerHTML = IC.close; $('#rX').onclick = closeRem; $('#rNo').onclick = closeRem;
+$('#mRem').addEventListener('mousedown', e => { if (e.target.id === 'mRem') closeRem(); });
+$('#rtNew').onclick = () => remView('new'); $('#rtList').onclick = () => { remView('list'); loadRem(); };
+$('#rRefX').onclick = () => { REM.ref = null; drawRem(); };
+$('#rAdd').onclick = async () => {
+  const titre = $('#rTitre').value.trim(), d = new Date($('#rDate').value);
+  if (!titre) { toast('Donne un titre au rappel'); return $('#rTitre').focus(); }
+  if (isNaN(d)) return toast('Choisis une date et une heure');
+  const b = $('#rAdd'); b.disabled = true;
+  try {
+    await api('rappel_create', {titre, date_envoi:d.toISOString(), ref_module:REM.ref ? REM.ref.module : '', ref_id:REM.ref ? REM.ref.id : ''});
+    toast('Rappel créé pour le ' + fmtRem(d.toISOString())); $('#rTitre').value = ''; REM.list = null; drawRem(); remView('list'); loadRem();
+  } catch (e) { toast(e.message || 'Erreur'); }
+  b.disabled = false;
+};
+$('#rvList').onclick = e => {
+  const b = e.target.closest('[data-del]'); if (!b) return; const row = b.closest('.rit'), id = row.dataset.id;
+  REM.list = (REM.list || []).filter(x => x.id !== id); drawRem();
+  api('rappel_delete', {id}).then(() => toast('Rappel supprimé')).catch(err => { toast(err.message || 'Erreur'); loadRem(); });
+};
 $('#tTitre').onkeydown = e => { if (e.key === 'Enter') $('#tAdd').click(); };
 $('#tAdd').onclick = () => {
   const titre = $('#tTitre').value.trim(); if (!titre) return toast('Donne un titre à la tâche');
