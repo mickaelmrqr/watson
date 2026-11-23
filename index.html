@@ -36,8 +36,11 @@ svg.i{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:2;st
 header{display:flex;align-items:center;gap:10px;padding:10px 20px;position:sticky;top:0;z-index:5;
   background:var(--hdr);border-bottom:1px solid var(--line);min-height:62px}
 .logo{display:flex;align-items:center;gap:12px;flex:1;font:700 22px var(--disp);letter-spacing:.2px}
+.hmid{display:flex;align-items:center;gap:10px;justify-content:center}.hrt{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:10px}
+#bSearch,#bBell{margin-right:16px}
+@media(max-width:820px){header{flex-wrap:wrap}.hmid{order:3;flex:1 0 100%}.hrt{flex:0 1 auto}#bSearch,#bBell{margin-right:8px}}
 .logo img{height:40px;width:auto;aspect-ratio:1/1;object-fit:contain;display:block}
-.ver{font:700 12px var(--disp);letter-spacing:.4px;color:#ff7a50;border:1px solid rgba(255,90,42,.55);background:rgba(255,90,42,.12);border-radius:8px;padding:2px 8px;margin-left:-2px;align-self:center}
+.ver{font:500 12px var(--disp);letter-spacing:.4px;color:#ffb8a0;border:1px solid rgba(255,90,42,.55);background:rgba(255,90,42,.12);border-radius:8px;padding:2px 8px;margin-left:-2px;align-self:center}
 #who{color:var(--mut);font-weight:500}
 #sync{font-size:var(--fs);font-weight:500;color:var(--mut);display:flex;align-items:center;gap:7px}
 #sync .d3{display:flex;gap:4px;align-items:center;height:14px}
@@ -121,7 +124,7 @@ details:not([open])>summary>.chv{transform:rotate(-45deg);margin-top:0}
 .epu>summary,.epc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:6px}
 .epu>summary::-webkit-details-marker,.epc>summary::-webkit-details-marker{display:none}
 .epc>summary{font:700 13px var(--disp);margin:0}.epc[open]>summary{margin-bottom:4px}.epc>summary small{margin-left:auto;color:var(--mut);font-weight:700}
-.hpb{margin:0 0 16px;padding:10px 12px 12px;border:1px solid rgba(255,138,31,.5);border-radius:14px;background:rgba(255,138,31,.07)}
+.hpb{margin:0 0 28px}
 .hpb h4{margin:0 0 10px;font:700 14px var(--disp);display:flex;gap:8px;align-items:center;color:#ffb066}.hpb h4 small{color:var(--mut)}
 .catp .cgh{margin:8px 0 4px;font:700 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}.catp .cgh:first-child{margin-top:0}
 .catp .ccw{display:flex;flex-wrap:wrap;gap:6px}
@@ -179,6 +182,11 @@ details:not([open])>summary>.chv{transform:rotate(-45deg);margin-top:0}
 .gms{grid-template-columns:1fr}
 .cgs{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
 .cps{flex-direction:row;flex-wrap:wrap}.cp2{width:auto}.cp2 input{flex:none;width:auto}
+.cg h4 .cgn{flex:1;min-width:0;border:0;background:none;color:var(--ink);font:700 14px var(--disp);padding:2px 0}.cg h4 .cgn:focus{outline:1px solid var(--line);border-radius:6px;padding-left:6px}
+.cg h4 small{margin-left:0!important}
+.ltr{margin-left:auto;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;align-items:center}
+.ltr .lic{display:inline-flex;align-items:center;gap:3px;color:var(--mut);font-size:calc(var(--fs) - 1px);margin-right:4px}.ltr .lic svg{width:15px;height:15px}
+.flow .stp .dot svg{width:20px;height:20px}
 .card.tmp{opacity:.72;animation:pop .35s var(--ease)}
 @keyframes pop{from{transform:scale(.96);opacity:0}}
 /* Pulsation « urgent » : une seule horloge globale (:root) => toutes les cases clignotent ensemble, sans jamais redémarrer */
@@ -853,7 +861,7 @@ html[data-theme=light] .llk a{color:#1F5FC9}
 /* v4.28 : bandeau supérieur toujours sombre, même en mode jour */
 html[data-theme=light] header{--bg:#15181F;--panel:#1D222C;--raised:#272E3B;--line:#343C4C;--ink:#F1F4FA;--mut:#A3AEC2;--hi:#fff;--hov:#232a39;--hov2:#2a3242;--bd2:#4a5468;--bd3:#3d4658;--hdr:rgba(21,24,31,.96);color:var(--ink)}
 html[data-theme=light] header .ico.warn:hover{color:#FF5A2B}
-html[data-theme=light] header .ver{color:#ff7a50}
+html[data-theme=light] header .ver{color:#ffb8a0}
 /* v4.28 : extrait de recherche */
 #mSearch .sheet{max-width:920px}
 .sug .sn{flex:1.25;min-width:0;color:var(--mut);font-size:calc(var(--fs)*.92);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:1px solid var(--line);padding-left:12px}
@@ -865,18 +873,18 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.65</span></div>
-  <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.11.66</span></div>
+  <div class="hmid"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
-  <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
+  <button id="bQR" class="ico hide" title="Mes identifiants" aria-label="Mes identifiants"></button></div>
+  <div class="hrt"><button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
   <button id="bMsg" class="ico hide" title="Messagerie (conversations non lues)" aria-label="Messagerie"></button>
   <button id="bBell" class="ico hide" title="Notifications (orange : non lues · bleu : todo du jour)" aria-label="Notifications"></button>
-  <button id="bQR" class="ico hide" title="Mes identifiants" aria-label="Mes identifiants"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button>
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
-  <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
+  <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.65</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.11.66</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1139,10 +1147,11 @@ function buildNav(){
 }
 const moveInd = () => {};
 const entRts = r => { const rs = entR(r).filter(x => String(x.nom || '').trim()), pr = rs.filter(x => x.pu); return (pr.length ? pr : rs).map(x => String(x.nom).trim()); };
-const entNR = r => { const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new Date().getDay()]; return r.reduce((n, x) => n + (entRts(x).length ? 0 : entP(x).filter(p => entJours(p.jours).includes(c)).length), 0); };
+const puRoute = (r, p) => { const v = String(p.route || '').trim(); if (v) return v; const rs = entR(r).filter(x => String(x.nom || '').trim()); return rs.length === 1 ? String(rs[0].nom).trim() : ''; };
+const entNR = r => { const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new Date().getDay()]; return r.reduce((n, x) => n + entP(x).filter(p => entJours(p.jours).includes(c) && !puRoute(x, p)).length, 0); };
 const entToday = r => { const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new Date().getDay()]; return r.reduce((n, x) => n + entP(x).filter(p => entJours(p.jours).includes(c)).length, 0); };
 function alN(m, r){
-  if (m === 'ENTREPRISES') return r ? entNR(r) : 0;
+  if (m === 'ENTREPRISES') return 0;
   if (!r || m === 'DOCUMENTS') return 0;
   if (m === 'DOM') return r.map(domAlert).filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late' || a[k] === 'warn')).length;
   return r.filter(x => kindOfM(m, x) !== 'ok' && (m === 'AWB' ? x.etape === 'A_FAIRE' : (x.urgent === true || (m === 'SPARK' && x.etape === 'A_FAIRE')))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
@@ -1154,7 +1163,7 @@ function drawTiles(){
     if (!r) { if (!t.querySelector('.d3s')) t.innerHTML = '<span class="d3s"><i></i><i></i><i></i></span>'; return; }
     if (cur === '_home' && !drawTiles.h) { drawTiles.h = 1; renderHome(); drawTiles.h = 0; }
     if (m === 'DOCUMENTS') { t.innerHTML = `${r.length} document${r.length > 1 ? 's' : ''}`; return; }
-    if (m === 'ENTREPRISES') { const n = entToday(r); const nr = entNR(r); t.innerHTML = n ? `${n} PU aujourd’hui` : ''; setN(nr); return; }
+    if (m === 'ENTREPRISES') { const n = entToday(r), nr = entNR(r); t.innerHTML = [n ? `${n} PU aujourd’hui` : '', nr ? `<i class="o">PU Reg non affectés : ${nr}</i>` : ''].filter(Boolean).join(' · '); setN(0); return; }
     if (m === 'DOM') {
       const al = r.map(domAlert), lt = al.filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late')).length, wn = al.filter(a => !['J1', 'J4', 'J10'].some(k => a[k] === 'late') && ['J1', 'J4', 'J10'].some(k => a[k] === 'warn')).length;
       setN(lt + wn); t.innerHTML = [lt ? `<i>${lt} en retard</i>` : '', wn ? `<i class="o">${wn} à faire aujourd'hui</i>` : ''].filter(Boolean).join(' · '); return;
@@ -1185,7 +1194,7 @@ const dossName = (m, r) => { try { return String((m === 'SECURITY' ? MODS[m].tit
 function homeTile(m){
   const r = cache[m], ic = IC[m];
   const head = `<div class="hth"><span class="mi">${ic}</span><b>${MODS[m].label}</b>${alN(m, r) ? `<span class="hbub">${alN(m, r)}</span>` : ''}</div>`;
-  if (m === 'ENTREPRISES' && r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${r.length}<small>entreprise${r.length > 1 ? 's' : ''}</small></div><div class="hcs"><span class="m">${entToday(r)} PU réguliers aujourd’hui</span></div></div>`;
+  if (m === 'ENTREPRISES' && r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${r.length}<small>entreprise${r.length > 1 ? 's' : ''}</small></div><div class="hcs"><span class="m">${entToday(r)} PU réguliers aujourd’hui</span>${entNR(r) ? `<span class="hc w">PU Reg non affectés : <b>${entNR(r)}</b></span>` : ''}</div></div>`;
   if (!r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn"><span class="d3s"><i></i><i></i><i></i></span></div></div>`;
   const today = todayIso(), ch = [], lists = [];
   const add = (n, label, cls = '') => { if (n) ch.push(`<span class="hc ${cls}"><b>${n}</b>${label}</span>`); };
@@ -1502,13 +1511,22 @@ function lastBy(r, code){
   const st = stepsOf(cur), f0 = st.find(x => x.code === 'A_FAIRE') || st[0]; if (f0 && f0.code === code && r.cree_par) return {u: r.cree_par, d: r.cree_le};
   return null;
 }
+const STEP_IC = (() => {
+  const dchk = ic('<path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/>'), hg = ic('<path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.2a2 2 0 0 0-.6-1.4L12 12l-4.4 4.4A2 2 0 0 0 7 17.8V22"/><path d="M7 2v4.2a2 2 0 0 0 .6 1.4L12 12l4.4-4.4A2 2 0 0 0 17 6.2V2"/>');
+  return {A_FAIRE: ic('<rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>'),
+    EN_COURS: ic('<circle cx="9" cy="8" r="3.2"/><path d="M3 21v-2.5A4.5 4.5 0 0 1 7.5 14H10"/><path d="M13.6 15.2 17 7.4"/><circle cx="17.6" cy="5.2" r="1.7"/>'),
+    TERMINE: IC.check, A_ARCHIVER: dchk, EN_ATTENTE: ic('<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>'),
+    ATTENTE_CLIENT: hg, ATTENTE_COMMERCIAL: hg, RTO_FAIT: dchk, INSTRUCTION_APPLIQUEE: dchk, RESOLU: dchk,
+    DECOUVERT: ic('<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'),
+    SCMS_CREE: ic('<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><path d="m9.5 16 2 2 3.5-3.5"/>')};
+})();
 function drawBand(){
   const r = bandR; if (!r) return;
   const st = stepsOf(cur), ci = st.findIndex(s => s.code === r.etape), M = MODS[cur];
   const title = String(M.name(r) || '').toUpperCase() || r.waybill || r.pid || M.label;
   $('#band').innerHTML = `<div class="bt"><b>${esc(title)}</b><span>Choisis l'étape</span><button class="ico sm" id="bandX" aria-label="Fermer" title="Fermer">${IC.close}</button></div>
     <div class="flow">${st.map((s, i) => { const l = lastBy(r, s.code);
-      return `<button class="stp ${i < ci ? 'done' : ''} ${i === ci ? 'cur' : ''} ${l ? '' : 'none'}" data-e="${s.code}"><span class="dot">${i < ci ? IC.check : i + 1}</span>${esc(s.libelle_bouton || s.libelle_etat)}
+      return `<button class="stp ${i < ci ? 'done' : ''} ${i === ci ? 'cur' : ''} ${l ? '' : 'none'}" data-e="${s.code}"><span class="dot">${STEP_IC[s.code] || (i < ci ? IC.check : i + 1)}</span>${esc(s.libelle_bouton || s.libelle_etat)}
       <span class="wh">${l ? `<b>${esc(who(l.u))}</b>${fdate(l.d, true)}` : (H[r.id] === undefined ? '…' : '—')}</span></button>`; }).join('')}</div>`;
   $('#bandX').onclick = closePop;
   $('#band').onclick = e => { const o = e.target.closest('.stp'); if (!o || o.classList.contains('cur')) return; const code = o.dataset.e; closePop(); doStep(r, code); };
@@ -1599,7 +1617,7 @@ function editCell(x, v){
   if (x.t === 'motif') return `<div style="flex:1"><label class="chk" style="margin:2px 0"><input type="checkbox" id="f_motif_cb" ${v.motif_cb === true ? 'checked' : ''}> CB active</label><label class="chk" style="margin:2px 0"><input type="checkbox" id="f_motif_cash" ${v.motif_cash === true ? 'checked' : ''}> Argent liquide</label><textarea id="f_motif_libre" rows="1" placeholder="Autre motif (facultatif)" style="margin-top:6px">${esc(v.motif_libre || '')}</textarea></div>`;
   if (x.t === 'vis') return `<select id="${id}"><option value="agence" ${val === 'agence' ? 'selected' : ''}>Partagé dans l'agence</option><option value="prive" ${val === 'prive' ? 'selected' : ''}>Privé (moi seul)</option></select>`;
   if (x.t === 'cat') {
-    const cs = ME.categories_awb || [], gs = CAT_GR.filter(([k]) => cs.some(c => String(c.groupe || 'CLASSIQUES').toUpperCase() === k));
+    const cs = ME.categories_awb || [], gs = catGr().filter(([k]) => cs.some(c => String(c.groupe || 'CLASSIQUES').toUpperCase() === k));
     return `<div style="flex:1"><input type="hidden" id="${id}" value="${esc(val)}"><div class="catp" id="catp">${gs.map(([k, l]) => `${gs.length > 1 ? `<div class="cgh">${l}</div>` : ''}<div class="ccw">${cs.filter(c => String(c.groupe || 'CLASSIQUES').toUpperCase() === k).map(c => `<button type="button" class="cch ${val === c.id ? 'on' : ''}" data-cv="${esc(c.id)}">${esc(c.libelle)}</button>`).join('')}</div>`).join('')}</div></div>`;
   }
   if (x.t === 'multi') { const sel = String(val).split(';').map(s => s.trim()).filter(Boolean);
@@ -2312,7 +2330,7 @@ const isAdmin = () => ME.rights.PARAMETRES === 'admin';
 const SECTIONS = [
   {id:'profil', l:'Mon profil', ic:'users'}, {id:'aff', l:'Affichage', ic:'gear'}, {id:'notif', l:'Notifications', ic:'bell'}, {id:'region', l:'Région', ic:'globe'}, {id:'rapports', l:'Rapports automatiques', ic:'chart'},
   {id:'archi', l:'Archivage et suppression', ic:'archive', adm:1}, {id:'sec', l:'SCMS', ic:'SECURITY', adm:1}, {id:'dom', l:'Délais DOM', ic:'DOM', adm:1}, {id:'trait', l:'Traitement quotidien', ic:'clock', adm:1},
-  {id:'histo', l:'Historique', ic:'clock', adm:1}, {id:'users', l:'Utilisateurs', ic:'users', adm:1}];
+  {id:'histo', l:'Historique', ic:'clock', adm:1}];
 const PLAB = {archivage_auto_dom_jours:'DOM — archivage automatique', archivage_auto_awb_jours:'AWB — archivage automatique', archivage_auto_spark_jours:'SPARK — archivage automatique',
   suppression_apres_archive_awb_jours:'AWB — suppression après archivage', suppression_apres_archive_spark_jours:'SPARK — suppression après archivage', suppression_apres_archive_dom_jours:'DOM — suppression après archivage',
   dom_delai_j4_jours:'Délai J4', dom_delai_j10_jours:'Délai J10', dom_jours_ouvres:'Compter en jours ouvrés', heure_traitement_quotidien:'Heure du traitement', historique_retention_mois:"Conservation de l'historique",
@@ -2439,7 +2457,7 @@ async function renderSec(){
 }
 async function renderUsers(el){
   let us = US; if (us) api('users_list').then(x => US = x).catch(() => {}); else { try { us = US = await wait(() => api('users_list')); } catch (e) { return toast(e.message); } }
-  const MU = [['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'SCMS'], ['ENTREPRISES', 'Entreprises'], ['ABSENCES', 'Absences'], ['DOCUMENTS', 'Documents'], ['PARAMETRES', 'Paramètres']];
+  const MU = [['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'SCMS'], ['ENTREPRISES', 'Entreprises'], ['ABSENCES', 'Absences'], ['DOCUMENTS', 'Biblio'], ['PARAMETRES', 'Paramètres']];
   const CC = {CLASSIQUES: '#3a8cff', CCTV: '#ee4650', PPWK: '#a66a3e', UNDELS: '#22b070'};
   const seg = (u, m) => { const cur = u.rights[m] || '', opts = m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<div class="useg" data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<button type="button" data-lv="${v}" class="${v === cur ? 'on ' + (v || 'none') : ''}">${l}</button>`).join('')}</div>`; };
@@ -2452,8 +2470,8 @@ async function renderUsers(el){
       <div class="ubd">
         <div class="usec"><h5>Accès aux pages</h5><div class="ugrid">${MU.map(([m, l]) => `<div class="umod"><b>${l}</b>${seg(u, m)}</div>`).join('')}</div></div>
         <div class="urow">
-          <div class="usec"><h5>Catégories AWB visibles</h5><div class="chips">${CAT_GR.map(([k, l]) => `<label class="tchip cc" style="--gc:${CC[k]}"><input type="checkbox" data-cm="CAT_${k}" data-cu="${esc(u.email)}" ${u.rights['CAT_' + k] ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div></div>
-          <div class="usec"><h5>Peut voir l’historique</h5><div class="chips">${[['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'SCMS'], ['DOCUMENTS', 'Docs']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label class="tchip" title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}><span>${l}</span></label>`; }).join('')}</div></div>
+          <div class="usec"><h5>Catégories AWB visibles</h5><div class="chips">${catGr().map(([k, l, col]) => `<label class="tchip cc" style="--gc:${esc(col)}"><input type="checkbox" data-cm="CAT_${k}" data-cu="${esc(u.email)}" ${u.rights['CAT_' + k] ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div></div>
+          <div class="usec"><h5>Peut voir l’historique</h5><div class="chips">${[['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'SCMS']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label class="tchip" title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}><span>${l}</span></label>`; }).join('')}</div></div>
         </div></div></section>`).join('')}`;
   el.onchange = async e => {
     const t = e.target;
@@ -2509,19 +2527,19 @@ function entPuBanner(){
   entRows().forEach(r => entP(r).forEach(p => {
     if (!entJours(p.jours).includes(c)) return;
     tot++;
-    const it = {id: r.id, nom: r.nom, h: puHor(p), k: p.debut || p.fin || '99:99'}, rt = entRts(r);
-    if (!rt.length) nr.push(it); else rt.forEach(n => (by[n] = by[n] || []).push(it));
+    const it = {id: r.id, nom: r.nom, h: puHor(p), k: p.debut || p.fin || '99:99'}, rn = puRoute(r, p);
+    if (!rn) nr.push(it); else (by[rn] = by[rn] || []).push(it);
   }));
   const srt = a => a.sort((x, y) => String(x.k).localeCompare(String(y.k)) || String(x.nom).localeCompare(String(y.nom), 'fr', {sensitivity: 'base'}));
   const card = (t, a, cls) => `<details class="epc${cls || ''}" data-rk="${esc(t)}" ${ENT.rc[t] ? '' : 'open'}><summary><span class="chv"></span><span>${esc(t)}</span><small>${a.length}</small></summary><div class="epcl">${srt(a).map(x => `<button data-id="${esc(x.id)}">${x.h ? `<b>${x.h}</b>` : ''}<span>${esc(x.nom)}</span></button>`).join('')}</div></details>`;
   const names = Object.keys(by).sort((a, b) => a.localeCompare(b, 'fr', {numeric: true, sensitivity: 'base'}));
-  el.innerHTML = `<details class="epu" data-main="1" ${ENT.pb ? 'open' : ''}><summary><span class="chv"></span>PU réguliers du jour <small>${jn} · ${tot}</small></summary>${tot ? `<div class="epg">${names.map(n => card(n, by[n])).join('')}${nr.length ? card('Sans route', nr, ' nr') : ''}</div>` : '<div class="m" style="margin:6px 0 0">Aucun PU régulier aujourd’hui.</div>'}</details>`;
+  el.innerHTML = `<details class="epu" data-main="1" ${ENT.pb ? 'open' : ''}><summary><span class="chv"></span>PU réguliers du jour <small>${jn} · ${tot}</small></summary>${tot ? `<div class="epg">${names.map(n => card(n, by[n])).join('')}${nr.length ? card('Non affectés', nr, ' nr') : ''}</div>` : '<div class="m" style="margin:6px 0 0">Aucun PU régulier aujourd’hui.</div>'}</details>`;
   el.querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => { if (d.dataset.main) ENT.pb = d.open; else ENT.rc[d.dataset.rk] = !d.open; }));
 }
 function renderEnt(){
   cur = 'ENTREPRISES'; closePop(); closeDet();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === 'ENTREPRISES'));
-  $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="eq" placeholder="Rechercher une entreprise, un compte, une route, un contact, un commercial…" autocomplete="off" value="${esc(ENT.q)}" aria-label="Rechercher une entreprise"></div><span class="m" id="ecnt" style="margin:0"></span><label class="eck"><input type="checkbox" id="ePU" ${ENT.pu ? 'checked' : ''}>PU réguliers</label><label class="eck" id="eNRw" style="${ENT.pu ? '' : 'display:none'}"><input type="checkbox" id="eNR" ${ENT.nr ? 'checked' : ''}>Sans route</label><span style="flex:1"></span>${canWrite() ? `<button class="p" id="eNew">${IC.plus}Nouvelle</button>` : ''}</div><div class="etw" id="etab"></div>`;
+  $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="eq" placeholder="Rechercher une entreprise, un compte, une route, un contact, un commercial…" autocomplete="off" value="${esc(ENT.q)}" aria-label="Rechercher une entreprise"></div><span class="m" id="ecnt" style="margin:0"></span><label class="eck"><input type="checkbox" id="ePU" ${ENT.pu ? 'checked' : ''}>PU réguliers</label><label class="eck" id="eNRw" style="${ENT.pu ? '' : 'display:none'}"><input type="checkbox" id="eNR" ${ENT.nr ? 'checked' : ''}>Non affectés</label><span style="flex:1"></span>${canWrite() ? `<button class="p" id="eNew">${IC.plus}Nouvelle</button>` : ''}</div><div class="etw" id="etab"></div>`;
   $('#main').insertAdjacentHTML('afterbegin', '<div id="epu"></div>');
   $('#epu').onclick = e => { const t = e.target.closest('[data-id]'); if (t) openEnt(t.dataset.id); };
   $('#eq').oninput = e => { ENT.q = e.target.value; entDraw(); };
@@ -2537,7 +2555,7 @@ function entDraw(){
   if (!cache.ENTREPRISES) { $('#etab').innerHTML = '<div class="m" style="padding:18px">Chargement…</div>'; return; }
   entPuBanner();
   const q = entNorm(ENT.q).trim().split(/\s+/).filter(Boolean);
-  const list = entRows().filter(r => { if (ENT.pu && (!entP(r).length || (ENT.nr && entRts(r).length))) return false; const h = entHay(r); return q.every(w => h.includes(w)); }).sort((a, b) => String(a.nom).localeCompare(String(b.nom), 'fr', {sensitivity: 'base'}));
+  const list = entRows().filter(r => { if (ENT.pu && (!entP(r).length || (ENT.nr && !entP(r).some(p => !puRoute(r, p))))) return false; const h = entHay(r); return q.every(w => h.includes(w)); }).sort((a, b) => String(a.nom).localeCompare(String(b.nom), 'fr', {sensitivity: 'base'}));
   $('#ecnt').textContent = list.length + ' / ' + entRows().length;
   if (!list.length) { $('#etab').innerHTML = `<div class="m" style="padding:18px">${entRows().length ? 'Aucune entreprise ne correspond.' : 'Aucune entreprise pour le moment.'}</div>`; return; }
   $('#etab').innerHTML = `<table class="etab"><thead><tr><th>Entreprise</th><th>Comptes</th><th>Routes</th><th>PU réguliers</th><th>Mise à jour</th></tr></thead><tbody>${list.map(r => {
@@ -2545,7 +2563,7 @@ function entDraw(){
     return `<tr data-id="${esc(r.id)}" tabindex="0"><td><b>${esc(r.nom)}</b><div class="m" style="margin:0">${esc(r.adresse || '')}</div></td>
       <td>${cs.map(c => `<div>${esc(c.numero)}</div>`).join('') || '<span class="m">—</span>'}</td>
       <td>${rs.map(x => `<div>${esc(x.nom)} ${rtChips(x)}</div>`).join('') || '<span class="m">—</span>'}</td>
-      <td>${ps.map(p => `<div>${puHor(p)} <span class="m" style="margin:0">${esc(jLbl(p.jours))}</span></div>`).join('') || '<span class="m">—</span>'}</td>
+      <td>${ps.map(p => `<div>${puHor(p)} <span class="m" style="margin:0">${esc(jLbl(p.jours))}</span>${puRoute(r, p) ? ` <span class="ech">${esc(puRoute(r, p))}</span>` : ''}</div>`).join('') || '<span class="m">—</span>'}</td>
       <td><span class="m" style="margin:0">${r.modifie_le ? fdate(r.modifie_le) : ''}${r.modifie_par ? '<br>' + esc(who(r.modifie_par)) : ''}</span></td></tr>`;
   }).join('')}</tbody></table>`;
 }
@@ -2569,7 +2587,7 @@ function drawEntView(r){
     ${adm ? `<button class="ico sm warn" id="enD" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}${w ? `<button class="ico sm" id="enE" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="enX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
     ${r.commentaire ? `<div class="esec"><h4>Commentaire</h4><div class="epr" style="white-space:pre-wrap">${esc(r.commentaire)}</div></div>` : ''}<div class="esec"><h4>Numéros de compte</h4>${cs.length ? `<table class="etab s">${cs.map(c => `<tr><td><b>${esc(c.numero)}</b></td><td>${esc(c.commentaire || '')}</td><td>${entMaj(c)}</td></tr>`).join('')}</table>` : '<span class="m">Aucun</span>'}</div>
     <div class="esec"><h4>Routes</h4>${rs.length ? `<table class="etab s">${rs.map(x => `<tr><td><b>${esc(x.nom)}</b></td><td>${rtChips(x) || '<span class="m">—</span>'}</td></tr>`).join('')}</table>` : '<span class="m">Aucune</span>'}</div>
-    <div class="esec"><h4>PU réguliers</h4>${ps.length ? ps.map(p => `<div class="epu"><div class="eph"><b>${puHor(p) || 'Horaire non renseigné'}</b><span>${esc(jLbl(p.jours))}</span></div>
+    <div class="esec"><h4>PU réguliers</h4>${ps.length ? ps.map(p => `<div class="epu"><div class="eph"><b>${puHor(p) || 'Horaire non renseigné'}</b><span>${esc(jLbl(p.jours))}${puRoute(r, p) ? ' · Route ' + esc(puRoute(r, p)) : ''}</span></div>
       <div class="epb">${p.contact ? `<span>${IC.users.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.contact)}</span>` : ''}${p.tel ? `<a href="tel:${esc(String(p.tel).replace(/[^\d+]/g, ''))}">${IC.phone.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.tel)}</a>` : ''}${p.commercial ? `<span class="m" style="margin:0">Commercial : ${esc(p.commercial)}</span>` : ''}</div>
       ${p.remarques ? `<div class="epr">${esc(p.remarques)}</div>` : ''}${entMaj(p)}</div>`).join('') : '<span class="m">Aucun</span>'}</div>
     <p class="m" style="margin:14px 0 0">${r.cree_par ? 'Créée par ' + esc(who(r.cree_par)) + (r.cree_le ? ' le ' + fdate(r.cree_le) : '') + '. ' : ''}${r.modifie_le ? 'Dernière modification le ' + fdate(r.modifie_le, true) + (r.modifie_par ? ' par ' + esc(who(r.modifie_par)) : '') + '.' : ''}</p>`;
@@ -2595,6 +2613,7 @@ function drawEntEdit(){
     <div class="esec"><h4>PU réguliers</h4>${d.pu.map((p, i) => { const js = entJours(p.jours); return `<div class="epu"><div class="erow"><label class="etm">Début<input type="time" data-k="pu" data-i="${i}" data-f="debut" value="${esc(p.debut || '')}"></label><label class="etm">Fin<input type="time" data-k="pu" data-i="${i}" data-f="fin" value="${esc(p.fin || '')}"></label><span style="flex:1"></span>${rm('pu', i)}</div>
       <div class="erow"><input data-k="pu" data-i="${i}" data-f="contact" placeholder="Contact" value="${esc(p.contact || '')}"><input data-k="pu" data-i="${i}" data-f="tel" type="tel" placeholder="Téléphone" value="${esc(p.tel || '')}"></div>
       <div class="erow">${JOURS.map(([c, l]) => `<label class="eck"><input type="checkbox" data-k="pu" data-i="${i}" data-j="${c}" ${js.includes(c) ? 'checked' : ''}>${l}</label>`).join('')}</div>
+      <label>Route qui fait ce PU<select data-k="pu" data-i="${i}" data-f="route">${(() => { const nm = [...new Set(d.routes.map(x => String(x.nom || '').trim()).filter(Boolean))], cv = String(p.route || '').trim() || (nm.length === 1 ? nm[0] : ''); if (cv && !nm.includes(cv)) nm.push(cv); return '<option value="">— Non affectée —</option>' + nm.map(n => `<option ${n === cv ? 'selected' : ''}>${esc(n)}</option>`).join(''); })()}</select></label>
       <input data-k="pu" data-i="${i}" data-f="commercial" list="entComL" placeholder="Commercial" value="${esc(p.commercial || '')}" autocomplete="off" style="margin-bottom:8px"><textarea data-k="pu" data-i="${i}" data-f="remarques" rows="2" placeholder="Remarques">${esc(p.remarques || '')}</textarea>${entMaj(p)}</div>`; }).join('')}<button class="s" data-add="pu">${IC.plus}Ajouter un PU régulier</button></div>
     <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px"><button class="s" id="enC">Annuler</button><button class="p" id="enS">Enregistrer</button></div>`;
   const cancel = () => { const r = d.id ? entRows().find(x => x.id === d.id) : null; ENT.edit = null; if (r) { drawEntView(r); } else closeEnt(); };
@@ -2611,7 +2630,7 @@ function drawEntEdit(){
     const data = {nom, adresse: d.adresse.trim(), commentaire: String(d.commentaire || '').trim(),
       comptes: d.comptes.filter(c => String(c.numero).trim()).map(c => ({...c, numero: String(c.numero).trim(), commentaire: String(c.commentaire || '').trim()})),
       routes: d.routes.filter(x => String(x.nom).trim()).map(x => ({...x, nom: String(x.nom).trim()})),
-      pu: d.pu.filter(p => p.debut || p.fin || p.contact || p.tel || entJours(p.jours).length || p.remarques || p.commercial).map(p => ({...p, jours: entJours(p.jours).join(','), contact: String(p.contact || '').trim(), tel: String(p.tel || '').trim(), commercial: String(p.commercial || '').trim(), remarques: String(p.remarques || '').trim()}))};
+      pu: d.pu.filter(p => p.debut || p.fin || p.contact || p.tel || entJours(p.jours).length || p.remarques || p.commercial).map(p => ({...p, jours: entJours(p.jours).join(','), contact: String(p.contact || '').trim(), tel: String(p.tel || '').trim(), commercial: String(p.commercial || '').trim(), route: String(p.route || '').trim(), remarques: String(p.remarques || '').trim()}))};
     try {
       const id = await wait(() => api('ent_save', {id: d.id || undefined, data}));
       ENT.edit = null; cache.ENTREPRISES = await api('ent_list');
@@ -2660,6 +2679,16 @@ async function absInit(force){
     absDraw();
   }
 }
+const HOLC = {};
+function frHol(y){
+  const k = y + (ME.region_alsace ? 'a' : ''); if (HOLC[k]) return HOLC[k];
+  const a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), kk = c % 4, l = (32 + 2 * e + 2 * i - h - kk) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451), mo = Math.floor((h + l - 7 * m + 114) / 31), da = ((h + l - 7 * m + 114) % 31) + 1;
+  const easter = new Date(y, mo - 1, da, 12), add = n => { const x = new Date(easter); x.setDate(x.getDate() + n); return absIso(x); };
+  const o = {[y + '-01-01']: 'Jour de l’an', [add(1)]: 'Lundi de Pâques', [y + '-05-01']: 'Fête du travail', [y + '-05-08']: 'Victoire 1945', [add(39)]: 'Ascension', [add(50)]: 'Lundi de Pentecôte', [y + '-07-14']: 'Fête nationale', [y + '-08-15']: 'Assomption', [y + '-11-01']: 'Toussaint', [y + '-11-11']: 'Armistice 1918', [y + '-12-25']: 'Noël'};
+  if (ME.region_alsace) { o[add(-2)] = 'Vendredi saint'; o[y + '-12-26'] = 'Saint-Étienne'; }
+  return HOLC[k] = o;
+}
+const absHol = d => frHol(d.getFullYear())[absIso(d)] || '';
 function absDraw(){
   const el = $('#absBox'); if (!el) return;
   el.style.display = !ABS.g || !ABS.g.length ? 'none' : '';
@@ -2674,14 +2703,14 @@ function absDraw(){
   const qb = pend.length ? `<div class="abq"><b>À confirmer !</b><span>${pend.slice(0, 6).map(x => esc(x.n) + ' (' + fm(new Date(x.k + 'T12:00:00')) + ')').join(' · ')}${pend.length > 6 ? ' …' : ''}</span></div>` : '';
   el.innerHTML = `<div class="abh"><h3>Planning des absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[18])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}${ABS.g.some(g => g.admin) ? `<button class="ico sm" data-ag="1" title="Gérer les groupes" aria-label="Gérer les groupes">${IC.gear}</button>` : ''}</div>
     ${ABS.g.length ? `<div class="abg"><span>Groupes :</span>${ABS.g.map(g => `<label class="chk"><input type="checkbox" data-agk="${esc(g.id)}" ${hid[String(g.id)] ? '' : 'checked'}>${esc(g.nom)}</label>`).join('')}</div>` : ''}
-    ${qb}${rows.length ? `<table class="abt"><thead><tr><th></th>${[0, 1, 2].map(w => `<th colspan="7" class="wkh">${fm(days[w * 7])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td ' : ''}${i % 7 === 0 ? 'wk' : ''}${i % 7 > 4 ? ' we' : ''}">${dn[i % 7]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
-      const we = di % 7 > 4, k = absIso(d), c = we ? [] : (j[k] || []), a = c[0] || '', b = c[1] || '', note = c[2] || '', nf = Number(c[3]) || 0, has = a || b || note || nf;
+    ${qb}${rows.length ? `<table class="abt"><thead><tr><th></th>${[0, 1, 2].map(w => `<th colspan="7" class="wkh">${fm(days[w * 7])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td ' : ''}${i % 7 === 0 ? 'wk' : ''}${i % 7 > 4 || absHol(d) ? ' we' : ''}"${absHol(d) ? ` title="${esc(absHol(d))}"` : ''}>${dn[i % 7]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
+      const fer = absHol(d), we = di % 7 > 4 || !!fer, k = absIso(d), c = we ? [] : (j[k] || []), a = c[0] || '', b = c[1] || '', note = c[2] || '', nf = Number(c[3]) || 0, has = a || b || note || nf;
       const tip = has ? [p.nom + ' · ' + d.toLocaleDateString('fr-FR', {weekday: 'long', day: 'numeric', month: 'long'}), a && a === b ? (ABS_L[a] || a) : [a ? 'Matin : ' + (ABS_L[a] || a) : '', b ? 'Après-midi : ' + (ABS_L[b] || b) : ''].filter(Boolean).join(' · '), note, nf ? nf + ' fichier' + (nf > 1 ? 's' : '') : ''].filter(Boolean).join('\n') : '';
       const cell = a && a === b ? `<i style="background:${ABS_C[a]}">${esc(a)}</i>` : [a, b].map(x => x ? `<i style="background:${ABS_C[x]}">${esc(x)}</i>` : '<i></i>').join('');
       const clk = !we && (absPAdm(p.id) || has);
-      return `<td class="${di % 7 === 0 ? 'wk' : ''}"><div class="abc${we ? ' wend' : clk ? ' adm' : ''}" ${tip ? `title="${esc(tip)}"` : ''} ${clk ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}${note || nf ? '<u class="abn"></u>' : ''}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
+      return `<td class="${di % 7 === 0 ? 'wk' : ''}"><div class="abc${we ? ' wend' : clk ? ' adm' : ''}" ${tip || fer ? `title="${esc(tip || fer)}"` : ''} ${clk ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}${note || nf ? '<u class="abn"></u>' : ''}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
       : `<p class="m">${adm ? 'Aucune personne pour le moment : ajoute-en avec le bouton ci-dessus.' : 'Aucune personne pour le moment.'}</p>`}
-    <div class="abl">${Object.keys(ABS_C).map(c => `<span><i style="background:${ABS_C[c]}"></i>${esc(c)} : ${ABS_L[c]}</span>`).join('')}<span class="m" style="margin:0">Gauche : matin · droite : après-midi</span></div>`;
+    <div class="abl">${Object.keys(ABS_C).map(c => `<span><i style="background:${ABS_C[c]}"></i>${esc(c)} : ${ABS_L[c]}</span>`).join('')}</div>`;
 }
 document.addEventListener('change', e => { const t = e.target.closest('#absBox [data-agk]'); if (!t) return; let h = {}; try { h = JSON.parse(localStorage.getItem('wabsh') || '{}') || {}; } catch (x) {} if (t.checked) delete h[t.dataset.agk]; else h[t.dataset.agk] = 1; try { localStorage.setItem('wabsh', JSON.stringify(h)); } catch (x) {} absDraw(); });
 document.addEventListener('click', e => {
@@ -2759,24 +2788,29 @@ function openAbsEdit(id, d){
   };
   $('#mAbs').classList.add('on'); absFiles(id, d, true);
 }
-const CAT_GR = [['CLASSIQUES', 'Classiques'], ['CCTV', 'CCTV'], ['PPWK', 'PPWK'], ['UNDELS', 'Undels']];
+const CAT_DEF = [['CLASSIQUES', 'Classiques', '#3a8cff'], ['CCTV', 'CCTV', '#ee4650'], ['PPWK', 'PPWK', '#a66a3e'], ['UNDELS', 'Undels', '#22b070']];
+const catGr = () => ME && ME.cat_groups && ME.cat_groups.length ? ME.cat_groups.map(g => [g.code, g.libelle, g.couleur || '#7d8696']) : CAT_DEF;
 async function openCat(){
-  let D;
-  try { D = await wait(() => api('cat_all')); } catch (e) { return toast(e.message); }
-  const COL = {CLASSIQUES: '#3a8cff', CCTV: '#ee4650', PPWK: '#a66a3e', UNDELS: '#22b070'};
-  const run = async fn => { try { await wait(fn); D = await api('cat_all'); draw(); try { ME.categories_awb = (await api('me')).categories_awb; if (cur === 'AWB') drawCards(); } catch (e) {} } catch (e) { toast(e.message); draw(); } };
+  let D, G;
+  const load = async () => { const r = await Promise.all([api('cat_all'), api('catgr_list')]); D = r[0]; G = r[1]; };
+  try { await wait(load); } catch (e) { return toast(e.message); }
+  const refreshMe = async () => { try { const m = await api('me', {refresh: true}); ME.categories_awb = m.categories_awb; ME.cat_groups = m.cat_groups; ME.rights = m.rights; US = null; if (cur === 'AWB') drawCards(); } catch (e) {} };
+  const run = async fn => { try { await wait(fn); await load(); draw(); refreshMe(); } catch (e) { toast(e.message); draw(); } };
   const draw = () => {
     $('#sAbs').className = 'sheet wide2';
     $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Gestion des catégories</h3><div class="sub">Chaque groupe correspond à un droit : seules les personnes qui l’ont voient ses catégories</div></div><button class="ico sm" id="cX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
-      <div class="cgs">${CAT_GR.map(([k, l]) => { const it = D.filter(x => x.groupe === k);
-        return `<section class="cg" style="--gc:${COL[k]}"><h4>${l}<small>${it.filter(x => x.actif).length}</small></h4><div class="cps">${it.map(x => `<span class="cp2 ${x.actif ? '' : 'off'}"><input data-ci="${esc(x.id)}" data-cg="${k}" value="${esc(x.libelle)}" size="${Math.max(7, String(x.libelle).length)}" maxlength="40" aria-label="Nom">${x.n ? `<b title="${x.n} AWB">${x.n}</b>` : ''}${x.actif ? '' : `<button class="ico sm" data-cr="${esc(x.id)}" data-cg="${k}" data-cl="${esc(x.libelle)}" title="Réactiver" aria-label="Réactiver">${IC.check}</button>`}<button class="ico sm warn" data-cd="${esc(x.id)}" title="${x.n ? 'Désactiver' : 'Supprimer'}" aria-label="Supprimer">${IC.close}</button></span>`).join('') || '<div class="m" style="margin:0">Aucune catégorie</div>'}</div>
-          <div class="erow" style="margin:0"><input data-cn="${k}" placeholder="Nouvelle catégorie" maxlength="40" autocomplete="off"><button class="p" data-ca="${k}" aria-label="Ajouter">${IC.plus}</button></div></section>`; }).join('')}</div>`;
+      <div class="cgs">${G.map(g => { const k = g.code, it = D.filter(x => x.groupe === k);
+        return `<section class="cg" style="--gc:${esc(g.couleur)}"><h4><input class="cgn" data-gc="${esc(k)}" value="${esc(g.libelle)}" maxlength="30" aria-label="Nom du groupe"><small>${it.filter(x => x.actif).length}</small><button class="ico sm warn" data-gd="${esc(k)}" title="Supprimer le groupe" aria-label="Supprimer le groupe">${IC.trash}</button></h4><div class="cps">${it.map(x => `<span class="cp2 ${x.actif ? '' : 'off'}"><input data-ci="${esc(x.id)}" data-cg="${esc(k)}" value="${esc(x.libelle)}" size="${Math.max(7, String(x.libelle).length)}" maxlength="40" aria-label="Nom">${x.n ? `<b title="${x.n} AWB">${x.n}</b>` : ''}${x.actif ? '' : `<button class="ico sm" data-cr="${esc(x.id)}" data-cg="${esc(k)}" data-cl="${esc(x.libelle)}" title="Réactiver" aria-label="Réactiver">${IC.check}</button>`}<button class="ico sm warn" data-cd="${esc(x.id)}" title="${x.n ? 'Désactiver' : 'Supprimer'}" aria-label="Supprimer">${IC.close}</button></span>`).join('') || '<div class="m" style="margin:0">Aucune catégorie</div>'}</div>
+          <div class="erow" style="margin:0"><input data-cn="${esc(k)}" placeholder="Nouvelle catégorie" maxlength="40" autocomplete="off"><button class="p" data-ca="${esc(k)}" aria-label="Ajouter">${IC.plus}</button></div></section>`; }).join('')}</div>
+      <div class="erow" style="margin-top:16px"><input id="cgNew" placeholder="Nouveau groupe de catégories" maxlength="30" autocomplete="off"><button class="p" id="cgAdd">${IC.plus}Créer le groupe</button></div>`;
     $('#cX').onclick = closeAbs;
-    $('#sAbs').onchange = e => { const t = e.target; if (t.dataset.ci) { const n = t.value.trim(); if (!n) return draw(); run(() => api('cat_save', {id: t.dataset.ci, libelle: n, groupe: t.dataset.cg, actif: true})); } };
-    $('#sAbs').onkeydown = e => { if (e.key === 'Enter' && e.target.dataset.cn) { const b = $('#sAbs').querySelector(`[data-ca="${e.target.dataset.cn}"]`); if (b) b.click(); } };
+    $('#sAbs').onchange = e => { const t = e.target; if (t.dataset.ci) { const n = t.value.trim(); if (!n) return draw(); run(() => api('cat_save', {id: t.dataset.ci, libelle: n, groupe: t.dataset.cg, actif: true})); } else if (t.dataset.gc) { const n = t.value.trim(); if (!n) return draw(); run(() => api('catgr_save', {code: t.dataset.gc, libelle: n})); } };
+    $('#sAbs').onkeydown = e => { if (e.key === 'Enter' && e.target.dataset.cn) { const b = $('#sAbs').querySelector(`[data-ca="${e.target.dataset.cn}"]`); if (b) b.click(); } else if (e.key === 'Enter' && e.target.id === 'cgNew') $('#cgAdd').click(); };
     $('#sAbs').onclick = async e => {
       const b = e.target.closest('button'); if (!b) return;
-      if (b.dataset.ca) { const i = $('#sAbs').querySelector(`[data-cn="${b.dataset.ca}"]`), n = i.value.trim(); if (n) run(() => api('cat_save', {libelle: n, groupe: b.dataset.ca})); }
+      if (b.id === 'cgAdd') { const n = $('#cgNew').value.trim(); if (n) run(() => api('catgr_save', {libelle: n})); }
+      else if (b.dataset.gd) { const g = G.find(y => y.code === b.dataset.gd); if (!g) return; if (g.n) return toast('« ' + g.libelle + ' » contient encore ' + g.n + ' catégorie' + (g.n > 1 ? 's' : '') + ' : supprime-les d’abord'); if (await ask('Supprimer ce groupe ?', '« ' + g.libelle + ' » et le droit associé seront supprimés.', 'Supprimer')) run(() => api('catgr_delete', {code: g.code})); }
+      else if (b.dataset.ca) { const i = $('#sAbs').querySelector(`[data-cn="${b.dataset.ca}"]`), n = i.value.trim(); if (n) run(() => api('cat_save', {libelle: n, groupe: b.dataset.ca})); }
       else if (b.dataset.cr) run(() => api('cat_save', {id: b.dataset.cr, libelle: b.dataset.cl, groupe: b.dataset.cg, actif: true}));
       else if (b.dataset.cd) { const x = D.find(y => y.id === b.dataset.cd); if (x && await ask(x.n ? 'Désactiver cette catégorie ?' : 'Supprimer cette catégorie ?', x.n ? `« ${x.libelle} » est utilisée par ${x.n} AWB : elle sera masquée mais les AWB la gardent.` : `« ${x.libelle} »`, x.n ? 'Désactiver' : 'Supprimer')) run(() => api('cat_delete', {id: b.dataset.cd})); }
     };
@@ -2953,13 +2987,14 @@ function openLib(id){
   const it = libItems().find(x => x.id === id); if (!it || String(id).startsWith('tmp_')) return;
   LIB.view = id; LIB.edit = null; drawLibView(it); $('#mLib').classList.add('on');
 }
+const libHost = u => { try { return new URL(/^https?:/i.test(u) ? u : 'https://' + u).hostname.replace(/^www\./, ''); } catch (e) { return u; } };
 function drawLibView(it){
   const el = $('#sLib'), can = libCan(it), tg = libTags(it), links = libLinks(it), docs = (it.fichiers || []).filter(f => f.kind !== 'photo'), np = (it.fichiers || []).filter(f => f.kind === 'photo').length;
   el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(it.titre)}</h3><div class="sub">Créé par ${esc(it.par || who(it.cree_par))} le ${fdate(it.cree_le, true)} · mis à jour le ${fdate(it.modifie_le || it.cree_le, true)}</div></div>
     <div class="lbt">${can ? `<button class="ico sm warn" id="lDel" title="Supprimer" aria-label="Supprimer">${IC.trash}</button><button class="ico sm" id="lEd" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="lX" title="Fermer" aria-label="Fermer">${IC.close}</button></div></div>
-    <div class="ltg" style="display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px">${(() => { const p = it.visibilite === 'prive'; return can ? `<button type="button" id="lVis" class="bb lvb${p ? '' : ' sh'}" title="Cliquer pour changer">${p ? IC.lock + 'Privé' : IC.users + 'Partagé'}</button>` : `<span class="bb${p ? '' : ' sh'}">${p ? IC.lock + 'Privé' : IC.users + 'Partagé'}</span>`; })()}${tg.map(t => `<span class="tgc sm">${esc(t)}</span>`).join('')}</div>
+    <div class="ltg" style="display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px">${(() => { const p = it.visibilite === 'prive'; return can ? `<button type="button" id="lVis" class="bb lvb${p ? '' : ' sh'}" title="Cliquer pour changer">${p ? IC.lock + 'Privé' : IC.users + 'Partagé'}</button>` : `<span class="bb${p ? '' : ' sh'}">${p ? IC.lock + 'Privé' : IC.users + 'Partagé'}</span>`; })()}<span class="ltr">${(() => { const nl = links.length, nd = docs.length, ht = !!htmlText(it.texte); return [nl ? ['Liens', IC.link, nl] : null, np ? ['Photos', IC.camera, np] : null, nd ? ['Documents', IC.DOCUMENTS, nd] : null, ht ? ['Contient du texte', IC_TXT, ''] : null].filter(Boolean).map(([t, sv, n]) => `<span class="lic" title="${t}">${sv}${n}</span>`).join(''); })()}${tg.map(t => `<span class="tgc sm">${esc(t)}</span>`).join('')}</span></div>
     ${it.texte ? `<div class="rich" style="margin-top:12px">${cleanHtml(it.texte)}</div>` : ''}
-    ${links.length ? `<div class="xh">Liens <small>${links.length}</small></div>${links.map(l => `<div class="llk">${IC.link}<div><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.titre || l.url)}</a>${l.titre ? `<small>${esc(l.url)}</small>` : ''}</div></div>`).join('')}` : ''}
+    ${links.length ? `<div class="xh">Liens <small>${links.length}</small></div>${links.map(l => `<div class="llk">${IC.link}<div><a href="${esc(l.url)}" target="_blank" rel="noopener" title="Ouvrir le lien">${esc(l.titre || libHost(l.url))}</a></div></div>`).join('')}` : ''}
     ${docs.length ? `<div class="xh">Documents <small>${docs.length}</small></div>${docs.map(f => `<div class="frow"><span class="fic" style="width:38px;height:38px;font-size:17px">${IC.DOCUMENTS}</span><div class="fi">${esc(f.nom)}<small>${fsize(f.taille)}</small></div><button class="ico sm" data-dl="${esc(f.id)}" data-nm="${esc(f.nom)}" title="Télécharger ${esc(f.nom)}" aria-label="Télécharger ${esc(f.nom)}">${IC.download}</button></div>`).join('')}` : ''}
     ${np ? `<div class="xh">Photos <small>${np}</small></div><div class="lph" id="lPh"><span class="m">Chargement…</span></div>` : ''}`;
   $('#lX').onclick = closeLib;
