@@ -584,7 +584,7 @@ html[data-theme=light] .hc b{color:var(--ink)}
 .abt td.nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;padding:3px 6px 3px 4px}
 .abc{display:flex;height:22px;width:100%;border-radius:2px;background:var(--raised);overflow:hidden}
 .abc i{flex:1;min-width:0;overflow:hidden;display:grid;place-items:center;font:700 11px var(--body);font-style:normal;color:#fff}
-.abc.adm{cursor:pointer}.abc.adm:hover{outline:2px solid var(--blue)}
+.abc.adm{cursor:pointer}.abc.adm:hover{outline:2px solid var(--blue)}.abc{position:relative}.abn{position:absolute;right:0;top:0;width:0;height:0;border-style:solid;border-width:0 8px 8px 0;border-color:transparent rgba(0,0,0,.6) transparent transparent;pointer-events:none}.abq{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0}.abq b{background:#e53935;color:#fff;border-radius:12px;padding:3px 12px;font:700 13px var(--body)}.abq span{font-size:.85em;opacity:.85}
 .abl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:.85em}.abl>span>i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
 #mAbs .sheet{max-width:460px}
 input[type=date]::-webkit-calendar-picker-indicator,input[type=datetime-local]::-webkit-calendar-picker-indicator{display:none}
@@ -787,7 +787,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.56</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.57</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -798,7 +798,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.56</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.57</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1060,6 +1060,7 @@ function buildNav(){
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === cur));
 }
 const moveInd = () => {};
+const entToday = r => { const c = ['di', 'lu', 'ma', 'me', 'je', 've', 'sa'][new Date().getDay()]; return r.reduce((n, x) => n + entP(x).filter(p => entJours(p.jours).includes(c)).length, 0); };
 function alN(m, r){
   if (!r || m === 'ENTREPRISES' || m === 'DOCUMENTS') return 0;
   if (m === 'DOM') return r.map(domAlert).filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late' || a[k] === 'warn')).length;
@@ -1072,7 +1073,7 @@ function drawTiles(){
     if (!r) { if (!t.querySelector('.d3s')) t.innerHTML = '<span class="d3s"><i></i><i></i><i></i></span>'; return; }
     if (cur === '_home' && !drawTiles.h) { drawTiles.h = 1; renderHome(); drawTiles.h = 0; }
     if (m === 'DOCUMENTS') { t.innerHTML = `${r.length} document${r.length > 1 ? 's' : ''}`; return; }
-    if (m === 'ENTREPRISES') { t.innerHTML = ''; setN(0); return; }
+    if (m === 'ENTREPRISES') { const n = entToday(r); t.innerHTML = n ? `${n} PU aujourd’hui` : ''; setN(0); return; }
     if (m === 'DOM') {
       const al = r.map(domAlert), lt = al.filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late')).length, wn = al.filter(a => !['J1', 'J4', 'J10'].some(k => a[k] === 'late') && ['J1', 'J4', 'J10'].some(k => a[k] === 'warn')).length;
       setN(lt + wn); t.innerHTML = [lt ? `<i>${lt} en retard</i>` : '', wn ? `<i class="o">${wn} à faire aujourd'hui</i>` : ''].filter(Boolean).join(' · '); return;
@@ -1102,7 +1103,7 @@ const dossName = (m, r) => { try { return String((m === 'SECURITY' ? MODS[m].tit
 function homeTile(m){
   const r = cache[m], ic = IC[m];
   const head = `<div class="hth"><span class="mi">${ic}</span><b>${MODS[m].label}</b>${alN(m, r) ? `<span class="hbub">${alN(m, r)}</span>` : ''}</div>`;
-  if (m === 'ENTREPRISES' && r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${r.length}<small>entreprise${r.length > 1 ? 's' : ''}</small></div><div class="hcs"><span class="m">${r.reduce((n, x) => n + entP(x).length, 0)} PU réguliers</span></div></div>`;
+  if (m === 'ENTREPRISES' && r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${r.length}<small>entreprise${r.length > 1 ? 's' : ''}</small></div><div class="hcs"><span class="m">${entToday(r)} PU réguliers aujourd’hui</span></div></div>`;
   if (!r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn"><span class="d3s"><i></i><i></i><i></i></span></div></div>`;
   const today = todayIso(), ch = [], lists = [];
   const add = (n, label, cls = '') => { if (n) ch.push(`<span class="hc ${cls}"><b>${n}</b>${label}</span>`); };
@@ -1911,6 +1912,15 @@ function setRead(n){ if (n.lu === 'oui') return; n.lu = 'oui'; NOT.unread = NOT.
 async function openNotif(n){
   setRead(n); closeDrawer();
   if (!n.module || !n.ref_id) { openDrawer(); return; }
+  if (n.module === 'ABSENCES') {
+    let hz = {}; try { hz = JSON.parse(n.detail || '{}'); } catch (e) {}
+    await openMod('_home');
+    try { ABS.rows = await api('abs_list'); ABS.t = Date.now(); } catch (e) {}
+    ABS.off = Math.max(-26, Math.min(26, Math.floor((new Date(n.ref_id + 'T12:00:00') - absMon(0)) / 6048e5))); absDraw();
+    const ab = $('#absBox'); if (ab) ab.scrollIntoView({behavior: 'smooth', block: 'center'});
+    if (hz.pid) (absAdm() ? openAbsEdit : openAbsView)(hz.pid, n.ref_id);
+    return;
+  }
   let hl = {}; try { hl = JSON.parse(n.detail || '{}'); } catch (e) {}
   showArch = false; await openMod(n.module);
   let r = rows.find(x => x.id === n.ref_id);
@@ -2499,7 +2509,8 @@ function entAdrSug(v){
   }, 250);
 }
 const ABS = {off: 0, rows: null, t: 0, ed: null, mgr: false};
-const ABS_C = {HOL: '#2fb36b', TRA: '#8f6cf0', WRK: '#3a8cff', SIC: '#ee4650'};
+const ABS_C = {HOL: '#2fb36b', TRA: '#8b5a2b', '??': '#e53935', SIC: '#ff8a1f'};
+const ABS_L = {HOL: 'Congés', TRA: 'Formation', '??': 'À confirmer', SIC: 'Maladie'};
 const absAdm = () => ME && ME.rights && ME.rights.ABSENCES === 'admin';
 const absIso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 const absMon = off => { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() - ((d.getDay() + 6) % 7) + off * 7); return d; };
@@ -2522,30 +2533,79 @@ function absDraw(){
   const days = Array.from({length: 21}, (_, k) => k).map(i => { const d = new Date(mon); d.setDate(mon.getDate() + i); return d; });
   const fm = d => d.toLocaleDateString('fr-FR', {day: 'numeric', month: 'short'});
   const dn = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+  const pend = [];
+  rows.forEach(p => { const j = absJ(p); Object.keys(j).sort().forEach(k => { const c = j[k] || []; if (c[0] === '??' || c[1] === '??') pend.push({n: p.nom, k}); }); });
+  const qb = pend.length ? `<div class="abq"><b>À confirmer !</b><span>${pend.slice(0, 6).map(x => esc(x.n) + ' (' + fm(new Date(x.k + 'T12:00:00')) + ')').join(' · ')}${pend.length > 6 ? ' …' : ''}</span></div>` : '';
   el.innerHTML = `<div class="abh"><h3>Planning des absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[18])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}</div>
-    ${rows.length ? `<table class="abt"><thead><tr><th></th>${[0, 1, 2].map(w => `<th colspan="7" class="wkh">${fm(days[w * 7])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td ' : ''}${i % 7 === 0 ? 'wk' : ''}${i % 7 > 4 ? ' we' : ''}">${dn[i % 7]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
-      const we = di % 7 > 4, k = absIso(d), c = we ? ['', ''] : (j[k] || ['', '']), cell = (c[0] && c[0] === c[1]) ? `<i style="background:${ABS_C[c[0]]}">${c[0]}</i>` : ['', ''].map((_, h) => c[h] ? `<i style="background:${ABS_C[c[h]]}" title="${h ? 'Après-midi' : 'Matin'}">${c[h]}</i>` : '<i></i>').join('');
-      return `<td class="${di % 7 === 0 ? 'wk' : ''}"><div class="abc${we ? ' wend' : adm ? ' adm' : ''}" ${adm && !we ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
+    ${qb}${rows.length ? `<table class="abt"><thead><tr><th></th>${[0, 1, 2].map(w => `<th colspan="7" class="wkh">${fm(days[w * 7])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td ' : ''}${i % 7 === 0 ? 'wk' : ''}${i % 7 > 4 ? ' we' : ''}">${dn[i % 7]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
+      const we = di % 7 > 4, k = absIso(d), c = we ? [] : (j[k] || []), a = c[0] || '', b = c[1] || '', note = c[2] || '', nf = Number(c[3]) || 0, has = a || b || note || nf;
+      const tip = has ? [p.nom + ' · ' + d.toLocaleDateString('fr-FR', {weekday: 'long', day: 'numeric', month: 'long'}), a && a === b ? (ABS_L[a] || a) : [a ? 'Matin : ' + (ABS_L[a] || a) : '', b ? 'Après-midi : ' + (ABS_L[b] || b) : ''].filter(Boolean).join(' · '), note, nf ? nf + ' fichier' + (nf > 1 ? 's' : '') : ''].filter(Boolean).join('\n') : '';
+      const cell = a && a === b ? `<i style="background:${ABS_C[a]}">${esc(a)}</i>` : [a, b].map(x => x ? `<i style="background:${ABS_C[x]}">${esc(x)}</i>` : '<i></i>').join('');
+      const clk = !we && (adm || has);
+      return `<td class="${di % 7 === 0 ? 'wk' : ''}"><div class="abc${we ? ' wend' : clk ? ' adm' : ''}" ${tip ? `title="${esc(tip)}"` : ''} ${clk ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}${note || nf ? '<u class="abn"></u>' : ''}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
       : `<p class="m">${adm ? 'Aucune personne pour le moment : ajoute-en avec le bouton ci-dessus.' : 'Aucune personne pour le moment.'}</p>`}
-    <div class="abl">${Object.keys(ABS_C).map(c => `<span><i style="background:${ABS_C[c]}"></i>${c}</span>`).join('')}<span class="m" style="margin:0">Gauche : matin · droite : après-midi</span></div>`;
+    <div class="abl">${Object.keys(ABS_C).map(c => `<span><i style="background:${ABS_C[c]}"></i>${esc(c)} : ${ABS_L[c]}</span>`).join('')}<span class="m" style="margin:0">Gauche : matin · droite : après-midi</span></div>`;
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('#absBox [data-an],#absBox [data-am],#absBox [data-ac]'); if (!b) return;
   if (b.dataset.an !== undefined) { ABS.off = b.dataset.an === '0' ? 0 : ABS.off + Number(b.dataset.an); absDraw(); }
   else if (b.dataset.am) openAbsMgr();
-  else if (b.dataset.ac && absAdm()) { const [id, d] = b.dataset.ac.split('|'); openAbsEdit(id, d); }
+  else if (b.dataset.ac) { const [id, d] = b.dataset.ac.split('|'); (absAdm() ? openAbsEdit : openAbsView)(id, d); }
 });
 function closeAbs(){ $('#mAbs').classList.remove('on'); ABS.ed = null; ABS.mgr = false; }
 $('#mAbs').addEventListener('mousedown', e => { if (e.target.id === 'mAbs') closeAbs(); });
+const absReload = async () => { ABS.rows = await api('abs_list'); ABS.t = Date.now(); absDraw(); };
+const absDate = d => new Date(d + 'T12:00:00').toLocaleDateString('fr-FR', {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'});
+async function absFiles(id, d, adm){
+  let l = [];
+  try { l = await api('abs_files_list', {id, date: d}); } catch (e) { const bx = $('#abF'); if (bx) bx.innerHTML = '<div class="m">Fichiers indisponibles</div>'; return; }
+  const box = $('#abF'); if (!box) return;
+  box.innerHTML = (l.length ? l.map(f => `<div class="frow"><span class="fic" style="width:38px;height:38px;font-size:17px">${IC.DOCUMENTS}</span><div class="fi">${esc(f.nom)}<small>${fsize(f.taille)}</small></div><button class="ico sm" data-afd="${esc(f.id)}" title="Télécharger" aria-label="Télécharger">${IC.download}</button>${adm ? `<button class="ico sm warn" data-afx="${esc(f.id)}" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}</div>`).join('') : '<div class="m" style="margin:6px 0">Aucun fichier' + (adm ? ' (8 Mo maximum par fichier)' : '') + '.</div>')
+    + (adm ? `<label class="s" style="cursor:pointer;margin-top:8px">${IC.plus}Ajouter un fichier<input type="file" id="abFin" multiple hidden></label>` : '');
+  box.querySelectorAll('[data-afd]').forEach(b => { b.onclick = async () => {
+    try {
+      const o = await wait(() => api('abs_file_get', {id: b.dataset.afd}));
+      const bin = atob(o.b64), u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
+      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([u], {type: o.mime || 'application/octet-stream'})); a.download = o.nom || 'document'; document.body.appendChild(a); a.click();
+      setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+    } catch (e) { toast(e.message); }
+  }; });
+  box.querySelectorAll('[data-afx]').forEach(b => { b.onclick = async () => {
+    if (!await ask('Supprimer ce fichier ?', 'Le fichier sera définitivement supprimé.', 'Supprimer')) return;
+    try { await wait(() => api('abs_file_delete', {id: b.dataset.afx})); await absReload(); absFiles(id, d, adm); } catch (e) { toast(e.message); }
+  }; });
+  const inp = $('#abFin');
+  if (inp) inp.onchange = async () => {
+    for (const f of Array.from(inp.files)) {
+      if (f.size > 8 * 1024 * 1024) { toast(f.name + ' dépasse 8 Mo'); continue; }
+      try { const b64 = await readB64(f); await wait(() => api('abs_file_add', {id, date: d, name: f.name, mime: f.type || 'application/octet-stream', b64})); } catch (e) { toast(e.message || 'Envoi impossible'); }
+    }
+    await absReload(); absFiles(id, d, adm);
+  };
+}
+function openAbsView(id, d){
+  const p = (ABS.rows || []).find(x => String(x.id) === String(id)); if (!p) return;
+  const c = absJ(p)[d] || [], a = c[0] || '', b = c[1] || '';
+  ABS.ed = null; ABS.mgr = false;
+  const tag = x => `<span class="abp" style="background:${ABS_C[x]};color:#fff;border-radius:4px;padding:1px 8px;font-weight:700">${esc(x)}</span> ${esc(ABS_L[x] || '')}`;
+  const per = !(a || b) ? '' : a === b ? `<div class="erow">${tag(a)}</div>` : `${a ? `<div class="erow">Matin : ${tag(a)}</div>` : ''}${b ? `<div class="erow">Après-midi : ${tag(b)}</div>` : ''}`;
+  $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(p.nom)}</h3><div class="sub">${esc(absDate(d))}</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+    ${per}${c[2] ? `<div class="esec"><h4>Commentaire</h4><div class="epr" style="white-space:pre-wrap">${esc(c[2])}</div></div>` : ''}
+    <div class="esec"><h4>Fichiers</h4><div id="abF"><div class="m">Chargement…</div></div></div>`;
+  $('#abX').onclick = closeAbs; $('#mAbs').classList.add('on'); absFiles(id, d, false);
+}
 function openAbsEdit(id, d){
   const p = (ABS.rows || []).find(x => String(x.id) === String(id)); if (!p) return;
-  ABS.ed = {id, code: 'HOL', per: 'j'}; ABS.mgr = false;
+  const c0 = absJ(p)[d] || [];
+  ABS.ed = {id, code: 'HOL', per: 'j', com0: String(c0[2] || '')}; ABS.mgr = false;
   $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(p.nom)}</h3><div class="sub">Poser une absence</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
     <div class="erow"><label class="etm">Du<input type="date" id="abD1" value="${d}"></label><label class="etm">Au<input type="date" id="abD2" value="${d}"></label></div>
     <div class="erow"><label class="etm">Période<select id="abP"><option value="j">Journée</option><option value="am">Matin</option><option value="pm">Après-midi</option></select></label></div>
-    <div class="erow" id="abCodes">${Object.keys(ABS_C).map(c => `<button class="s${c === 'HOL' ? ' on' : ''}" data-c="${c}" style="border-color:${ABS_C[c]}">${c}</button>`).join('')}<button class="s" data-c="">Effacer</button></div>
-    <p class="m">Les week-ends sont ignorés.</p>
-    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="s" id="abC">Annuler</button><button class="p" id="abS">Enregistrer</button></div>`;
+    <div class="erow" id="abCodes">${Object.keys(ABS_C).map(c => `<button class="s${c === 'HOL' ? ' on' : ''}" data-c="${c}" title="${esc(ABS_L[c])}" style="border-color:${ABS_C[c]}">${esc(c)}</button>`).join('')}<button class="s" data-c="">Effacer</button></div>
+    <p class="m">${Object.keys(ABS_C).map(c => esc(c) + ' : ' + ABS_L[c].toLowerCase()).join(' · ')}. Les week-ends sont ignorés.</p>
+    <label>Commentaire <small class="m" style="margin:0">(visible au clic et en infobulle)</small><textarea id="abCom" rows="3" maxlength="500">${esc(ABS.ed.com0)}</textarea></label>
+    <div class="esec"><h4>Fichiers · ${esc(absDate(d))}</h4><div id="abF"><div class="m">Chargement…</div></div></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="s" id="abC">Fermer</button><button class="p" id="abS">Enregistrer</button></div>`;
   $('#abX').onclick = closeAbs; $('#abC').onclick = closeAbs;
   $('#abCodes').onclick = e => { const b = e.target.closest('[data-c]'); if (!b) return; ABS.ed.code = b.dataset.c; $('#abCodes').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };
   $('#abS').onclick = async () => {
@@ -2553,10 +2613,12 @@ function openAbsEdit(id, d){
     if (d2 < d1) return toast('La date de fin est avant le début');
     const dates = []; for (let x = new Date(d1 + 'T12:00:00'); absIso(x) <= d2 && dates.length < 400; x.setDate(x.getDate() + 1)) { if (x.getDay() % 6) dates.push(absIso(x)); }
     if (!dates.length) return toast('Aucun jour ouvré dans cette période');
-    const per = $('#abP').value, c = ABS.ed.code;
-    try { await wait(() => api('abs_set', {id, dates, am: per === 'pm' ? null : c, pm: per === 'am' ? null : c})); ABS.rows = await api('abs_list'); ABS.t = Date.now(); closeAbs(); absDraw(); toast('Enregistré'); } catch (err) { toast(err.message || 'Enregistrement impossible'); }
+    const per = $('#abP').value, c = ABS.ed.code, com = $('#abCom').value.trim();
+    const pl = {id, dates, am: per === 'pm' ? null : c, pm: per === 'am' ? null : c};
+    if (c === '') pl.com = ''; else if (com !== ABS.ed.com0.trim()) pl.com = com;
+    try { await wait(() => api('abs_set', pl)); ABS.rows = await api('abs_list'); ABS.t = Date.now(); closeAbs(); absDraw(); toast('Enregistré'); } catch (err) { toast(err.message || 'Enregistrement impossible'); }
   };
-  $('#mAbs').classList.add('on');
+  $('#mAbs').classList.add('on'); absFiles(id, d, true);
 }
 function openAbsMgr(){
   ABS.mgr = true; ABS.ed = null;
