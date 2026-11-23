@@ -578,14 +578,21 @@ html[data-theme=light] .hc b{color:var(--ink)}
 .mod[data-m=ENTREPRISES],.ht[data-m=ENTREPRISES]{--mc:166,106,62}
 .absb{margin-top:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px}
 .abh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}.abh h3{margin:0;flex:1}
-.abt{width:100%;border-collapse:separate;border-spacing:3px}
-.abt th{font-size:.85em;color:var(--mut);font-weight:700;text-align:center}.abt th.td{color:var(--blue)}
+.abt{width:auto;border-collapse:separate;border-spacing:2px}.abt .wk{padding-left:8px}.abt th.wkh{text-align:left;font-weight:700}
+.abt th{font-size:.7em;line-height:1.1;color:var(--mut);font-weight:700;text-align:center}.abt th.td{color:var(--blue)}
 .abt td.nm{white-space:nowrap;font-weight:700;padding-right:10px}
-.abc{display:flex;height:30px;border-radius:7px;background:var(--raised);overflow:hidden}
-.abc i{flex:1;display:grid;place-items:center;font:700 11px var(--body);font-style:normal;color:#fff}
+.abc{display:flex;height:22px;width:26px;border-radius:5px;background:var(--raised);overflow:hidden}
+.abc i{flex:1;min-width:0;overflow:hidden;display:grid;place-items:center;font:700 8px var(--body);font-style:normal;color:#fff}
 .abc.adm{cursor:pointer}.abc.adm:hover{outline:2px solid var(--blue)}
 .abl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:.85em}.abl>span>i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
 #mAbs .sheet{max-width:460px}
+input[type=date]::-webkit-calendar-picker-indicator,input[type=datetime-local]::-webkit-calendar-picker-indicator{display:none}
+.dpw{display:flex;align-items:center;gap:6px;width:100%}.dpw input{flex:1;min-width:0}.dpw .dpb{flex:0 0 auto}
+#mDp{z-index:80;align-items:center}#mDp .sheet{max-width:320px;border-radius:20px;padding:14px}
+.dpg{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}.dpg b{text-align:center;font-size:.8em;color:var(--mut);padding:4px 0}
+.dpg button{padding:9px 0;border-radius:9px;border:1px solid transparent;background:transparent;color:var(--ink);cursor:pointer;font:inherit}
+.dpg button:hover{background:var(--raised)}.dpg button.we{color:var(--mut)}.dpg button.td{border-color:var(--blue)}.dpg button.on{background:var(--blue);color:#fff}
+
 #abCodes .s.on{background:var(--blue);color:#fff;border-color:var(--blue)}
 
 #mEnt{z-index:21}
@@ -779,7 +786,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.49</span></div>
+  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson<span class="ver">v4.50</span></div>
   <span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button>
@@ -790,7 +797,7 @@ html[data-theme=light] .sug .sn mark{color:#D2431B}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button>
 </header>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.49</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="58" height="58" style="height:58px">Watson<span class="ver" style="font-size:15px">v4.50</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2506,13 +2513,13 @@ async function absInit(force){
 function absDraw(){
   const el = $('#absBox'); if (!el) return;
   const rows = ABS.rows || [], adm = absAdm(), mon = absMon(ABS.off), today = absIso(new Date());
-  const days = [0, 1, 2, 3, 4].map(i => { const d = new Date(mon); d.setDate(mon.getDate() + i); return d; });
+  const days = Array.from({length: 15}, (_, k) => k + Math.floor(k / 5) * 2).map(i => { const d = new Date(mon); d.setDate(mon.getDate() + i); return d; });
   const fm = d => d.toLocaleDateString('fr-FR', {day: 'numeric', month: 'short'});
-  const dn = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
-  el.innerHTML = `<div class="abh"><h3>Absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[4])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}</div>
-    ${rows.length ? `<table class="abt"><thead><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td' : ''}">${dn[i]} ${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map(d => {
+  const dn = ['L', 'M', 'M', 'J', 'V'];
+  el.innerHTML = `<div class="abh"><h3>Absences</h3><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[14])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${ABS.off ? '<button class="s" data-an="0">Aujourd’hui</button>' : ''}${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}</div>
+    ${rows.length ? `<table class="abt"><thead><tr><th></th>${[0, 1, 2].map(w => `<th colspan="5" class="wkh">${fm(days[w * 5])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td ' : ''}${i % 5 === 0 ? 'wk' : ''}">${dn[i % 5]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
       const k = absIso(d), c = j[k] || ['', ''], cell = (c[0] && c[0] === c[1]) ? `<i style="background:${ABS_C[c[0]]}">${c[0]}</i>` : ['', ''].map((_, h) => c[h] ? `<i style="background:${ABS_C[c[h]]}" title="${h ? 'Après-midi' : 'Matin'}">${c[h]}</i>` : '<i></i>').join('');
-      return `<td><div class="abc${adm ? ' adm' : ''}" ${adm ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
+      return `<td class="${di % 5 === 0 ? 'wk' : ''}"><div class="abc${adm ? ' adm' : ''}" ${adm ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
       : `<p class="m">${adm ? 'Aucune personne pour le moment : ajoute-en avec le bouton ci-dessus.' : 'Aucune personne pour le moment.'}</p>`}
     <div class="abl">${Object.keys(ABS_C).map(c => `<span><i style="background:${ABS_C[c]}"></i>${c}</span>`).join('')}<span class="m" style="margin:0">Gauche : matin · droite : après-midi</span></div>`;
 }
@@ -2559,6 +2566,47 @@ function openAbsMgr(){
     $('#sAbs').querySelectorAll('[data-pd]').forEach(b => { b.onclick = async () => { const p = ABS.rows.find(x => String(x.id) === b.dataset.pd); if (!await ask('Supprimer cette personne ?', (p ? p.nom : '') + ' et toutes ses absences seront supprimées.', 'Supprimer')) return; try { await wait(() => api('abs_person_delete', {id: b.dataset.pd})); await reload(); draw(); } catch (e) { toast(e.message); } }; });
   };
   draw(); $('#mAbs').classList.add('on');
+}
+const IC_CAL = ic('<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18"/><path d="M8 2v4"/><path d="M16 2v4"/>');
+const DP = {inp: null, y: 0, m: 0, time: ''};
+(function(){ const m = document.createElement('div'); m.className = 'modal'; m.id = 'mDp'; m.innerHTML = '<div class="sheet" id="sDp"></div>'; document.body.appendChild(m); m.addEventListener('mousedown', e => { if (e.target === m) dpClose(); }); })();
+function dpClose(){ $('#mDp').classList.remove('on'); DP.inp = null; }
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && DP.inp) { e.stopPropagation(); dpClose(); } }, true);
+function dpEnh(){
+  document.querySelectorAll('input[type=date]:not([data-dp]),input[type=datetime-local]:not([data-dp])').forEach(i => {
+    i.dataset.dp = '1';
+    const w = document.createElement('span'); w.className = 'dpw';
+    i.parentNode.insertBefore(w, i); w.appendChild(i);
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'ico sm dpb'; b.title = 'Choisir une date'; b.setAttribute('aria-label', 'Choisir une date'); b.innerHTML = IC_CAL;
+    b.onclick = e => { e.preventDefault(); e.stopPropagation(); dpOpen(i); };
+    w.appendChild(b);
+  });
+}
+let dpT; new MutationObserver(() => { cancelAnimationFrame(dpT); dpT = requestAnimationFrame(dpEnh); }).observe(document.body, {childList: true, subtree: true}); dpEnh();
+function dpOpen(inp){
+  const v = inp.value || '', d = /^\d{4}-\d{2}-\d{2}/.test(v) ? new Date(v.slice(0, 10) + 'T12:00:00') : new Date();
+  DP.inp = inp; DP.y = d.getFullYear(); DP.m = d.getMonth(); DP.time = inp.type === 'datetime-local' ? (v.slice(11, 16) || '09:00') : '';
+  dpDraw(); $('#mDp').classList.add('on');
+}
+function dpDraw(){
+  const inp = DP.inp; if (!inp) return;
+  const sel = (inp.value || '').slice(0, 10), today = absIso(new Date()), dt = inp.type === 'datetime-local';
+  const off = (new Date(DP.y, DP.m, 1).getDay() + 6) % 7, n = new Date(DP.y, DP.m + 1, 0).getDate(), cells = [];
+  for (let i = 0; i < off; i++) cells.push('<i></i>');
+  for (let k = 1; k <= n; k++) { const iso = DP.y + '-' + String(DP.m + 1).padStart(2, '0') + '-' + String(k).padStart(2, '0'); cells.push(`<button type="button" data-d="${iso}" class="${iso === sel ? 'on ' : ''}${iso === today ? 'td ' : ''}${(off + k - 1) % 7 > 4 ? 'we' : ''}">${k}</button>`); }
+  $('#sDp').innerHTML = `<div class="abh" style="margin-bottom:6px"><button type="button" class="s" data-dm="-1" aria-label="Mois précédent">‹</button><b style="flex:1;text-align:center;text-transform:capitalize">${new Date(DP.y, DP.m, 1).toLocaleDateString('fr-FR', {month: 'long', year: 'numeric'})}</b><button type="button" class="s" data-dm="1" aria-label="Mois suivant">›</button></div>
+    <div class="dpg">${['L', 'M', 'M', 'J', 'V', 'S', 'D'].map(x => `<b>${x}</b>`).join('')}${cells.join('')}</div>
+    ${dt ? `<div class="erow" style="margin-top:10px"><label class="etm">Heure<input type="time" id="dpTime" value="${DP.time}"></label></div>` : ''}
+    <div style="display:flex;gap:8px;justify-content:space-between;margin-top:10px"><button type="button" class="s" data-dt="today">Aujourd’hui</button>${inp.required ? '' : '<button type="button" class="s" data-dt="clear">Effacer</button>'}<button type="button" class="s" data-dt="close">Fermer</button></div>`;
+  const set = iso => { const inp = DP.inp; const t = $('#dpTime'); inp.value = iso ? (inp.type === 'datetime-local' ? iso + 'T' + ((t && t.value) || DP.time || '09:00') : iso) : ''; inp.dispatchEvent(new Event('input', {bubbles: true})); inp.dispatchEvent(new Event('change', {bubbles: true})); dpClose(); };
+  $('#sDp').onclick = e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.d) set(b.dataset.d);
+    else if (b.dataset.dm) { DP.m += Number(b.dataset.dm); if (DP.m < 0) { DP.m = 11; DP.y--; } if (DP.m > 11) { DP.m = 0; DP.y++; } const t = $('#dpTime'); if (t) DP.time = t.value; dpDraw(); }
+    else if (b.dataset.dt === 'today') set(absIso(new Date()));
+    else if (b.dataset.dt === 'clear') set('');
+    else if (b.dataset.dt === 'close') dpClose();
+  };
 }
 IC.tag = ic('<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8Z"/><circle cx="7" cy="7" r="1.2"/>');
 const LIB = {q: '', tags: [], edit: null, view: null}, LIBF = {};
