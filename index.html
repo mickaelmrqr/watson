@@ -928,6 +928,12 @@ html[data-ultra="1"] .nit{padding:5px 8px}
 html[data-ultra="1"] .prow{padding:5px 0}
 html[data-ultra="1"] .mod.io{padding:5px 8px}
 #zRng{width:150px;accent-color:var(--orange);vertical-align:middle;margin:0 6px}
+.prow.wide{grid-template-columns:1fr;gap:8px}
+.prow.wide .seg2{display:flex;flex-wrap:wrap;width:100%}
+.prow.wide .seg2 button{flex:1 1 auto}
+.prow.wide #zRng{flex:1 1 80px;width:auto;min-width:60px}
+.prow.wide .seg2.zsl button{flex:0 0 auto}
+.prow.wide .seg2 span{min-width:48px}
 </style>
 </head>
 <body>
@@ -941,11 +947,11 @@ html[data-ultra="1"] .mod.io{padding:5px 8px}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.87</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.88</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div><div class="fr"></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.87</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.88</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2546,8 +2552,8 @@ async function renderSec(){
     const th = document.documentElement.dataset.theme || P.theme || 'dark', zp = clampZ(Math.round((Number(localStorage.getItem('wzoom')) || P.zoom || 1) * 100)), dnv = document.documentElement.dataset.ultra === '1' ? '2' : (document.documentElement.dataset.dense === '1' ? '1' : '0');
     el.innerHTML = `<h3>Affichage</h3><p class="lead">Apparence de l'application.</p>
       <div class="prow"><div><b>Mode</b><div class="m">Jour (fond clair) ou nuit (fond sombre).</div></div><div class="seg2" id="aMode"><button data-v="light" class="${th === 'light' ? 'on' : ''}">Jour</button><button data-v="dark" class="${th === 'dark' ? 'on' : ''}">Nuit</button></div></div>
-      <div class="prow"><div><b>Taille du texte</b><div class="m">Agrandit ou réduit tout l'affichage.</div></div><div class="seg2"><button id="zMin" aria-label="Réduire">A−</button><input type="range" id="zRng" min="70" max="140" step="5" value="${zp}" aria-label="Taille du texte"><span id="zVal">${zp} %</span><button id="zPlus" aria-label="Agrandir">A+</button></div></div>
-      <div class="prow"><div><b>Densité de l'affichage</b><div class="m">Normal, condensé ou ultra condensé : réduit les marges et les espaces pour voir plus de choses à l'écran.</div></div><div class="seg2" id="aDense"><button data-v="0" class="${dnv === '0' ? 'on' : ''}">Normal</button><button data-v="1" class="${dnv === '1' ? 'on' : ''}">Condensé</button><button data-v="2" class="${dnv === '2' ? 'on' : ''}" title="Ultra condensé">Ultra</button></div></div>
+      <div class="prow wide"><div><b>Taille du texte</b><div class="m">Agrandit ou réduit tout l'affichage.</div></div><div class="seg2"><button id="zMin" aria-label="Réduire">A−</button><input type="range" id="zRng" min="70" max="140" step="5" value="${zp}" aria-label="Taille du texte"><span id="zVal">${zp} %</span><button id="zPlus" aria-label="Agrandir">A+</button></div></div>
+      <div class="prow wide"><div><b>Densité de l'affichage</b><div class="m">Normal, condensé ou ultra condensé : réduit les marges et les espaces pour voir plus de choses à l'écran.</div></div><div class="seg2" id="aDense"><button data-v="0" class="${dnv === '0' ? 'on' : ''}">Normal</button><button data-v="1" class="${dnv === '1' ? 'on' : ''}">Condensé</button><button data-v="2" class="${dnv === '2' ? 'on' : ''}" title="Ultra condensé">Ultra</button></div></div>
       <div class="prow"><div><b>Menu en colonnes</b><div class="m">Une case par page, avec l'icône au-dessus et le nom en dessous.</div></div><div>${sw('aMenu', document.documentElement.dataset.menu === 'v')}</div></div>`;
     $('#aDense').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#aDense').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); setLocal('wdense', b.dataset.v); };
     $('#aMenu').onchange = e => setDisplay({menu: e.target.checked ? 'v' : ''});
