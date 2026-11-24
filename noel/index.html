@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>🎄 Secret Santa</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎄%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#d7263d; --red2:#a31428; --green:#2e8b57; --green2:#1d6b3a; --gold:#ffd166;
+  --bg1:#0b1d2e; --bg2:#12392b; --glass:rgba(255,255,255,.09); --line:rgba(255,255,255,.16);
+  --txt:#fff6ea; --mut:#c9d6cf;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family:'Quicksand',system-ui,sans-serif; color:var(--txt);
+  background:radial-gradient(1200px 600px at 20% -10%,#2a1a3a 0,transparent 60%),
+             linear-gradient(160deg,var(--bg1),var(--bg2));
+  overflow:hidden;
+}
+h1,h2,.fancy{font-family:'Mountains of Christmas','Brush Script MT',cursive;letter-spacing:.5px}
+#snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+button{font:inherit;cursor:pointer}
+
+/* guirlande */
+.garland{position:fixed;top:0;left:0;right:0;height:22px;z-index:5;pointer-events:none;
+  background:linear-gradient(#173d2d,#173d2d) 0 4px/100% 2px no-repeat;display:flex;justify-content:space-around}
+.garland i{width:10px;height:14px;border-radius:50% 50% 55% 55%;margin-top:5px;animation:blink 2.4s infinite;box-shadow:0 0 10px currentColor}
+.garland i:nth-child(4n+1){background:#ff4d5e;color:#ff4d5e}
+.garland i:nth-child(4n+2){background:#ffd166;color:#ffd166;animation-delay:.6s}
+.garland i:nth-child(4n+3){background:#4ade80;color:#4ade80;animation-delay:1.2s}
+.garland i:nth-child(4n){background:#60a5fa;color:#60a5fa;animation-delay:1.8s}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* écran d'accueil */
+#welcome{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:24px;overflow:auto}
+.card{
+  width:min(440px,100%);background:var(--glass);border:1px solid var(--line);border-radius:24px;
+  padding:28px 26px;backdrop-filter:blur(10px);box-shadow:0 20px 60px rgba(0,0,0,.45);text-align:center
+}
+.card h1{font-size:44px;margin:4px 0 2px;color:#fff;text-shadow:0 2px 0 var(--red2)}
+.card p.sub{margin:0 0 18px;color:var(--mut)}
+.card .big{font-size:54px;line-height:1}
+label.f{display:block;text-align:left;font-weight:700;font-size:14px;margin:12px 0 5px;color:var(--gold)}
+input[type=text],input[type=email]{
+  width:100%;padding:13px 15px;border-radius:14px;border:2px solid transparent;background:rgba(255,255,255,.92);
+  font:inherit;font-size:16px;color:#222;outline:none
+}
+input[type=text]:focus,input[type=email]:focus{border-color:var(--gold)}
+.chk{display:flex;align-items:center;gap:10px;margin:14px 0 4px;text-align:left;font-size:15px;color:var(--txt);cursor:pointer}
+.chk input{width:20px;height:20px;accent-color:var(--green)}
+.btn{
+  border:0;border-radius:16px;padding:14px 22px;font-weight:700;font-size:17px;color:#fff;
+  background:linear-gradient(180deg,#ef4458,var(--red2));box-shadow:0 6px 0 #6e0d1b,0 10px 24px rgba(0,0,0,.35);
+  transition:transform .08s,box-shadow .08s,filter .2s
+}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 #6e0d1b}
+.btn:disabled{filter:grayscale(.8) brightness(.7);cursor:not-allowed;transform:none;box-shadow:0 4px 0 #333}
+.btn.green{background:linear-gradient(180deg,#3fb574,var(--green2));box-shadow:0 6px 0 #0f3f22,0 10px 24px rgba(0,0,0,.35)}
+.btn.green:active{box-shadow:0 2px 0 #0f3f22}
+.btn.wide{width:100%;margin-top:18px}
+.link{background:none;border:0;color:var(--mut);text-decoration:underline;font-size:14px;padding:8px;margin-top:6px}
+.err{color:#ffb4bc;font-weight:700;margin-top:12px;min-height:1px}
+
+/* écran principal : deux moitiés */
+#app{position:fixed;inset:0;z-index:3;display:none;grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:10px;padding:26px 12px 12px}
+.panel{background:var(--glass);border:1px solid var(--line);border-radius:22px;backdrop-filter:blur(8px);min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.phead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px 6px}
+.phead h2{margin:0;font-size:26px;color:#fff;text-shadow:0 2px 0 var(--red2)}
+.pbody{flex:1;overflow:auto;padding:4px 16px 14px;min-height:0}
+.small{font-size:13px;color:var(--mut)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.chip{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid var(--line);font-weight:700;animation:pop .35s both}
+.chip.ok{background:rgba(63,181,116,.28);border-color:#3fb574}
+.chip.me{outline:2px solid var(--gold)}
+.av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.kick{border:0;background:rgba(0,0,0,.35);color:#fff;border-radius:50%;width:20px;height:20px;line-height:18px;padding:0;font-size:12px}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.bar{height:10px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden;margin:8px 0 12px}
+.bar>b{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--gold));border-radius:99px;transition:width .4s}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.opts{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;margin-top:12px}
+.opts .chk{margin:0;font-size:14px}
+.mini{border:1px solid var(--line);background:rgba(255,255,255,.1);color:var(--txt);border-radius:12px;padding:7px 12px;font-size:14px;font-weight:700}
+.mini:hover{background:rgba(255,255,255,.2)}
+.result{
+  margin-top:12px;border-radius:20px;padding:16px;text-align:center;
+  background:linear-gradient(135deg,rgba(215,38,61,.35),rgba(46,139,87,.35));border:2px dashed var(--gold)
+}
+.result .who{font-family:'Mountains of Christmas',cursive;font-size:46px;color:var(--gold);text-shadow:0 3px 0 var(--red2);animation:pop .5s both;word-break:break-word}
+
+/* chat */
+#msgs{flex:1;overflow:auto;padding:4px 14px;display:flex;flex-direction:column;gap:6px;min-height:0}
+.m{max-width:82%;padding:7px 12px;border-radius:16px;background:rgba(255,255,255,.14);align-self:flex-start;word-break:break-word;animation:pop .25s both}
+.m b{display:block;font-size:12px;color:var(--gold);margin-bottom:1px}
+.m.mine{align-self:flex-end;background:linear-gradient(180deg,#e04257,var(--red2))}
+.m.mine b{display:none}
+.m.sys{align-self:center;background:none;border:1px dashed var(--line);font-size:13px;color:var(--mut);text-align:center}
+#chatform{display:flex;gap:8px;padding:10px 12px 12px}
+#chatform input{flex:1;padding:11px 14px;border-radius:14px;border:2px solid transparent;font-size:16px;background:rgba(255,255,255,.92);color:#222;outline:none;min-width:0}
+#chatform input:focus{border-color:var(--gold)}
+#chatform .btn{padding:10px 16px;font-size:16px;box-shadow:0 4px 0 #6e0d1b}
+
+dialog{border:0;border-radius:22px;padding:22px;max-width:min(420px,92vw);background:#16372a;color:var(--txt);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+dialog h3{margin:0 0 6px;font-size:28px}
+dialog .list{max-height:42vh;overflow:auto;margin:10px 0}
+dialog .row{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+#toast{position:fixed;left:50%;bottom:18px;transform:translate(-50%,40px);z-index:50;background:#222;color:#fff;padding:10px 18px;border-radius:999px;opacity:0;transition:.3s;pointer-events:none;max-width:92vw;text-align:center;font-weight:700}
+#toast.on{transform:translate(-50%,0);opacity:1}
+#toast.bad{background:var(--red2)}
+.hidden{display:none!important}
+@media (max-width:520px){.card h1{font-size:38px}.result .who{font-size:38px}.phead h2{font-size:22px}}
+</style>
+</head>
+<body>
+<canvas id="snow"></canvas>
+<div class="garland" id="garland"></div>
+
+<!-- Accueil -->
+<div id="welcome">
+  <form class="card" id="joinForm" autocomplete="on">
+    <div class="big">🎅🎄🎁</div>
+    <h1>Secret Santa</h1>
+    <p class="sub" id="wSub">Entre ton prénom pour rejoindre la fête !</p>
+    <label class="f" for="fPrenom">Ton prénom</label>
+    <input type="text" id="fPrenom" name="given-name" maxlength="24" required placeholder="Ex : Léa">
+    <label class="f" for="fEmail">Ton adresse mail</label>
+    <input type="email" id="fEmail" name="email" required placeholder="lea@exemple.fr">
+    <label class="chk" id="fMailRow"><input type="checkbox" id="fMail" checked> 📧 Je veux recevoir mon tirage par mail</label>
+    <button class="btn wide" id="fGo" type="submit">Rejoindre la fête 🎅</button>
+    <div class="err" id="fErr"></div>
+    <button class="link" type="button" id="fMode">Déjà inscrit(e) ? Retrouver ma place</button>
+    <div class="small" id="fCount"></div>
+  </form>
+</div>
+
+<!-- Application -->
+<div id="app">
+  <section class="panel" id="top">
+    <div class="phead">
+      <h2>🎄 Les joyeux participants</h2>
+      <button class="mini" id="btnLeave" title="Quitter la fête">Quitter</button>
+    </div>
+    <div class="pbody" id="topBody"></div>
+  </section>
+  <section class="panel" id="bottom">
+    <div class="phead"><h2>💬 Le chat de la fête</h2></div>
+    <div id="msgs"></div>
+    <form id="chatform" autocomplete="off">
+      <input type="text" id="cIn" maxlength="300" placeholder="Écris un message à tout le monde…">
+      <button class="btn green" type="submit">Envoyer ✉️</button>
+    </form>
+  </section>
+</div>
+
+<dialog id="exDlg">
+  <h3 class="fancy">🚫 Exclusions</h3>
+  <div class="small">Les personnes cochées ne pourront pas te tirer, et tu ne pourras pas les tirer (pratique pour un couple). Seul toi vois ce choix.</div>
+  <div class="list" id="exList"></div>
+  <div class="row"><button class="mini" id="exCancel" type="button">Annuler</button><button class="btn green" id="exSave" type="button" style="padding:9px 18px;font-size:15px">Enregistrer</button></div>
+</dialog>
+<div id="toast"></div>
+
+<script>
+/* ====== Configuration ====== */
+const API = "https://script.google.com/macros/s/AKfycbxuPhn9HFEOCZFE6GKH5gyAI9xYhIZLoxDoFe2VjOSinWGymPehzd_HQbeCBjIvsPy4Vw/exec";      // adresse du serveur Apps Script (remplie au déploiement)
+const LS_TOKEN = "noel_token_v1";
+const COLORS = ["#d7263d","#2e8b57","#e08a1e","#3b82c4","#8e44ad","#c0392b","#16a085","#d35400","#2c7fb8","#b5338a"];
+
+const $ = s => document.querySelector(s);
+const esc = t => String(t).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const colorOf = id => { let h = 0; for (const c of String(id)) h = (h * 31 + c.charCodeAt(0)) >>> 0; return COLORS[h % COLORS.length]; };
+
+let token = null; try { token = localStorage.getItem(LS_TOKEN); } catch (e) {}
+let S = null;               // dernier état reçu
+let chat = [];              // messages
+let since = 0;
+let recoverMode = false;
+let revealed = false, revealTimer = null;
+let wasDrawn = null;
+let busy = false;
+let lastTop = "";
+
+/* ====== Guirlande ====== */
+(function(){ const g = $("#garland"); for (let i = 0; i < 28; i++) g.appendChild(document.createElement("i")); })();
+
+/* ====== Réseau ====== */
+async function api(body) {
+  if (!API || API.startsWith("__")) throw new Error("Le serveur n'est pas encore configuré.");
+  const r = await fetch(API, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body) });
+  const j = await r.json();
+  if (!j.ok) throw new Error(j.error || "Erreur");
+  return j;
+}
+function toast(msg, bad) {
+  const t = $("#toast"); t.textContent = msg; t.className = "on" + (bad ? " bad" : "");
+  clearTimeout(toast.h); toast.h = setTimeout(() => t.className = "", 3200);
+}
+async function act(body, okMsg) {
+  if (busy) return null;
+  busy = true;
+  try {
+    const j = await api({ ...body, token, since });
+    apply(j);
+    if (okMsg) toast(okMsg);
+    return j;
+  } catch (e) { toast(e.message, true); refresh(); return null; }
+  finally { busy = false; }
+}
+
+/* ====== Rafraîchissement ====== */
+async function refresh() {
+  if (busy || !token) return;
+  try { apply(await api({ a: "state", token, since })); } catch (e) { /* réseau : on réessaie plus tard */ }
+}
+(function loop() {
+  const delay = document.hidden ? 25000 : 5000;
+  setTimeout(async () => { await refresh(); loop(); }, delay);
+})();
+document.addEventListener("visibilitychange", () => { if (!document.hidden) refresh(); });
+
+function apply(j) {
+  if (j.token) { token = j.token; try { localStorage.setItem(LS_TOKEN, token); } catch (e) {} }
+  if (!j.joined) {
+    if (token) { try { localStorage.removeItem(LS_TOKEN); } catch (e) {} token = null; }
+    S = null; chat = []; since = 0;
+    showWelcome(j);
+    return;
+  }
+  const first = S === null;
+  S = j;
+  if (j.chat && j.chat.length) {
+    j.chat.forEach(m => { if (!chat.some(x => x.t === m.t)) chat.push(m); });
+    chat.sort((a, b) => a.t - b.t);
+    if (chat.length > 400) chat = chat.slice(-400);
+    since = chat[chat.length - 1].t;
+    renderChat(!first);
+  } else if (first) renderChat(false);
+  $("#welcome").classList.add("hidden");
+  $("#app").style.display = "grid";
+  if (wasDrawn === false && j.drawn) { confetti(); toast("🎁 Le tirage est fait !"); }
+  wasDrawn = j.drawn;
+  renderTop();
+}
+
+/* ====== Accueil ====== */
+function showWelcome(j) {
+  $("#app").style.display = "none";
+  $("#welcome").classList.remove("hidden");
+  $("#fCount").textContent = j.count ? (j.count + (j.count > 1 ? " personnes sont déjà dans la fête 🎄" : " personne est déjà dans la fête 🎄")) : "Tu es le premier ! Tu seras l'organisateur 👑";
+  if (j.drawn && !recoverMode) { setMode(true); $("#wSub").textContent = "Le tirage a déjà eu lieu. Retrouve ta place avec ton prénom et ton mail."; }
+}
+function setMode(rec) {
+  recoverMode = rec;
+  $("#fMailRow").classList.toggle("hidden", rec);
+  $("#fGo").textContent = rec ? "Retrouver ma place 🔑" : "Rejoindre la fête 🎅";
+  $("#fMode").textContent = rec ? "← Je suis nouveau / nouvelle" : "Déjà inscrit(e) ? Retrouver ma place";
+  $("#wSub").textContent = rec ? "Même prénom et même mail que ton inscription." : "Entre ton prénom pour rejoindre la fête !";
+  $("#fErr").textContent = "";
+}
+$("#fMode").onclick = () => setMode(!recoverMode);
+$("#joinForm").onsubmit = async e => {
+  e.preventDefault();
+  $("#fErr").textContent = ""; $("#fGo").disabled = true;
+  try {
+    const j = await api(recoverMode
+      ? { a: "recover", prenom: $("#fPrenom").value, email: $("#fEmail").value }
+      : { a: "join", prenom: $("#fPrenom").value, email: $("#fEmail").value, mail: $("#fMail").checked, since: 0 });
+    chat = []; since = 0; S = null;
+    apply(j);
+    if (!recoverMode) toast("Bienvenue " + j.me.prenom + " ! 🎅");
+  } catch (err) { $("#fErr").textContent = err.message; }
+  finally { $("#fGo").disabled = false; }
+};
+
+/* ====== Panneau du haut ====== */
+function renderTop() {
+  const { people, me, drawn } = S;
+  const n = people.length, done = people.filter(p => p.clicked).length;
+  const orgId = people[0] && people[0].id;
+  const chips = people.map(p => `
+    <div class="chip ${p.clicked && !drawn ? "ok" : ""} ${p.id === me.id ? "me" : ""}">
+      <span class="av" style="background:${colorOf(p.id)}">${esc([...p.prenom][0].toUpperCase())}</span>
+      <span>${p.id === orgId ? "👑 " : ""}${esc(p.prenom)}${p.id === me.id ? " (moi)" : ""}</span>
+      <span>${drawn ? "🎁" : p.clicked ? "✅" : "⏳"}</span>
+      ${me.organizer && !drawn && p.id !== me.id ? `<button class="kick" data-kick="${esc(p.id)}" title="Retirer ${esc(p.prenom)}">✕</button>` : ""}
+    </div>`).join("");
+
+  let mid = "";
+  if (!drawn) {
+    const mine = people.find(p => p.id === me.id).clicked;
+    mid = `
+      <div class="small">${n < 3 ? "Il faut au moins 3 personnes pour tirer au sort." : done + " / " + n + " ont cliqué sur « Tirer au sort ». Le tirage se fait quand tout le monde a cliqué."}</div>
+      <div class="bar"><b style="width:${n ? Math.round(done / n * 100) : 0}%"></b></div>
+      <div class="actions">
+        <button class="btn" id="btnDraw" ${n < 3 ? "disabled" : ""}>${mine ? "✅ Prêt(e) ! (annuler)" : "🎁 Tirer au sort"}</button>
+        <button class="mini" id="btnEx">🚫 Exclusions${me.ex.length ? " (" + me.ex.length + ")" : ""}</button>
+      </div>
+      <div class="opts">
+        <label class="chk"><input type="checkbox" id="optMail" ${me.mail ? "checked" : ""}> 📧 Recevoir mon tirage par mail</label>
+      </div>
+      <div class="small" style="margin-top:8px">Si quelqu'un arrive après ton clic, tout le monde doit recliquer.</div>`;
+  } else {
+    mid = `
+      <div class="result">
+        <div class="small">🎁 Le tirage est fait ! Ton secret t'attend…</div>
+        ${revealed ? `<div class="who">${esc(me.receiver || "?")}</div><div class="small">Tu dois faire un cadeau à cette personne. Chut ! 🤫</div>
+           <button class="mini" id="btnHide" style="margin-top:8px">🙈 Cacher</button>`
+          : `<button class="btn" id="btnReveal" style="margin-top:10px">👀 Voir mon tirage</button>`}
+      </div>
+      ${me.organizer ? `<div class="actions" style="margin-top:12px"><button class="mini" id="btnReset">🔄 Recommencer le tirage (organisateur)</button></div>` : ""}`;
+  }
+  const html = `<div class="chips">${chips}</div>${mid}`;
+  if (html === lastTop) return;
+  lastTop = html;
+  const body = $("#topBody"), keep = body.scrollTop;
+  body.innerHTML = html;
+  body.scrollTop = keep;
+}
+$("#topBody").addEventListener("click", async e => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.kick) { if (confirm("Retirer cette personne de la fête ?")) act({ a: "kick", id: t.dataset.kick }); }
+  else if (t.id === "btnDraw") { const mine = S.people.find(p => p.id === S.me.id).clicked; act({ a: "click", value: !mine }); }
+  else if (t.id === "btnEx") openEx();
+  else if (t.id === "btnReveal") { revealed = true; lastTop = ""; renderTop(); clearTimeout(revealTimer); revealTimer = setTimeout(() => { revealed = false; lastTop = ""; if (S) renderTop(); }, 20000); }
+  else if (t.id === "btnHide") { revealed = false; lastTop = ""; renderTop(); }
+  else if (t.id === "btnReset") { if (confirm("Recommencer ? Le tirage actuel sera effacé et tout le monde devra recliquer.")) { revealed = false; lastTop = ""; act({ a: "reset" }); } }
+});
+$("#topBody").addEventListener("change", e => {
+  if (e.target.id === "optMail") act({ a: "update", mail: e.target.checked }, e.target.checked ? "Tu recevras un mail 📧" : "Pas de mail");
+});
+$("#btnLeave").onclick = async () => {
+  if (!S) return;
+  if (S.drawn) { if (confirm("Se déconnecter de cet appareil ? (tu pourras retrouver ta place avec ton mail)")) { try { localStorage.removeItem(LS_TOKEN); } catch (e) {} token = null; S = null; chat = []; since = 0; lastTop = ""; showWelcome({ count: 0 }); setMode(true); refresh(); } return; }
+  if (confirm("Quitter la fête ? Ta place sera libérée.")) { const j = await act({ a: "leave" }); if (j) toast("À bientôt ! 👋"); }
+};
+
+/* Exclusions */
+function openEx() {
+  const others = S.people.filter(p => p.id !== S.me.id);
+  $("#exList").innerHTML = others.length ? others.map(p => `
+    <label class="chk"><input type="checkbox" value="${esc(p.id)}" ${S.me.ex.includes(p.id) ? "checked" : ""}> ${esc(p.prenom)}</label>`).join("") : '<div class="small">Personne d\'autre pour l\'instant.</div>';
+  $("#exDlg").showModal();
+}
+$("#exCancel").onclick = () => $("#exDlg").close();
+$("#exSave").onclick = async () => {
+  const ex = [...$("#exList").querySelectorAll("input:checked")].map(i => i.value);
+  $("#exDlg").close();
+  lastTop = "";
+  await act({ a: "update", mail: S.me.mail, ex }, "Exclusions enregistrées");
+};
+
+/* ====== Chat ====== */
+function renderChat(stick) {
+  const box = $("#msgs");
+  const near = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
+  box.innerHTML = chat.map(m => m.id === "sys"
+    ? `<div class="m sys">${esc(m.x)}</div>`
+    : `<div class="m ${S && m.id === S.me.id ? "mine" : ""}"><b>${esc(m.n)}</b>${esc(m.x)}</div>`).join("");
+  if (!stick || near) box.scrollTop = box.scrollHeight;
+}
+$("#chatform").onsubmit = async e => {
+  e.preventDefault();
+  const v = $("#cIn").value.trim(); if (!v) return;
+  $("#cIn").value = "";
+  const j = await act({ a: "chat", text: v });
+  if (!j) $("#cIn").value = v;
+};
+
+/* ====== Neige + confettis ====== */
+const cv = $("#snow"), cx = cv.getContext("2d");
+let W, H, flakes = [], bits = [];
+function size() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
+addEventListener("resize", size); size();
+for (let i = 0; i < 70; i++) flakes.push({ x: Math.random() * W, y: Math.random() * H, r: 1 + Math.random() * 3, s: .4 + Math.random() * 1.1, d: Math.random() * 6 });
+function confetti() {
+  for (let i = 0; i < 140; i++) bits.push({ x: W / 2 + (Math.random() - .5) * 120, y: H * .35, vx: (Math.random() - .5) * 9, vy: -Math.random() * 9 - 2, w: 6 + Math.random() * 6, c: COLORS[i % COLORS.length], a: Math.random() * 6, life: 160 });
+}
+(function draw() {
+  cx.clearRect(0, 0, W, H);
+  cx.fillStyle = "rgba(255,255,255,.85)";
+  flakes.forEach(f => {
+    f.y += f.s; f.d += .01; f.x += Math.sin(f.d) * .4;
+    if (f.y > H + 5) { f.y = -5; f.x = Math.random() * W; }
+    cx.beginPath(); cx.arc(f.x, f.y, f.r, 0, 6.3); cx.fill();
+  });
+  bits = bits.filter(b => b.life-- > 0);
+  bits.forEach(b => {
+    b.x += b.vx; b.y += b.vy; b.vy += .25; b.a += .2;
+    cx.save(); cx.translate(b.x, b.y); cx.rotate(b.a); cx.fillStyle = b.c; cx.fillRect(-b.w / 2, -b.w / 4, b.w, b.w / 2); cx.restore();
+  });
+  requestAnimationFrame(draw);
+})();
+
+/* ====== Démarrage ====== */
+(async function init() {
+  try { apply(await api({ a: "state", token, since: 0 })); }
+  catch (e) { $("#fCount").textContent = e.message; }
+})();
+</script>
+</body>
+</html>
