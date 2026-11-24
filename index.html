@@ -1628,7 +1628,7 @@ html[data-ultra="1"] main{padding:4px 8px 34px}
 html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
 /* Survol (planning des absences) : ligne + colonne, même teinte plus sombre */ .abt{--hz:rgba(0,0,0,.30);--hb:.74} html[data-theme="light"] .abt{--hz:rgba(25,35,60,.11);--hb:.89} .abt td.hcol,.abt th.hcol,.abt td.hrow,.abt th.hrow{background-image:linear-gradient(var(--hz),var(--hz))} .abt th.hcol{color:var(--ink)} .abt td.hcol .abc,.abt td.hrow .abc{filter:brightness(var(--hb))}
 #abCodes button.s.on{background:var(--c,var(--blue));border-color:var(--c,var(--blue));color:#fff}
-.hsum{margin-top:4px;opacity:.85;white-space:normal;word-break:break-word} /* v4.11.100 : plus de bulles dans le menu du haut */ #nav .badge{display:none}
+.hsum{margin-top:4px;opacity:.85;white-space:normal;word-break:break-word} /* v4.11.100 : plus de bulles dans le menu du haut */ #nav .badge,html[data-menu="v"] .mod[data-n]::after{display:none}
 </style>
 </head>
 <body>
@@ -1642,10 +1642,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.100</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.101</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.100</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.101</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
