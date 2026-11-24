@@ -102,8 +102,8 @@ input[type=text]:focus,input[type=email]:focus{border-color:var(--gold)}
 .hint{font-size:13px;color:var(--mut);text-align:left;margin-top:6px}
 
 /* choix d'avatar */
-.avgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
-.avb{aspect-ratio:1;border-radius:50%;border:2px solid transparent;background:rgba(255,255,255,.12);font-size:20px;line-height:1;padding:0;display:grid;place-items:center;transition:transform .15s,background .15s}
+.avgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-height:236px;overflow-y:auto;padding:6px;border-radius:18px;background:rgba(0,0,0,.18);-webkit-overflow-scrolling:touch}
+.avb{aspect-ratio:1;border-radius:50%;border:2px solid transparent;background:rgba(255,255,255,.12);font-size:36px;line-height:1;padding:0;display:grid;place-items:center;transition:transform .15s,background .15s}
 .avb:hover{transform:scale(1.15)}
 .avb.on{border-color:var(--gold);background:rgba(255,209,102,.28);transform:scale(1.12)}
 
@@ -124,7 +124,7 @@ input[type=text]:focus,input[type=email]:focus{border-color:var(--gold)}
 .chip small{font-size:10px;font-weight:700;border-radius:99px;padding:2px 6px;text-transform:uppercase;letter-spacing:.4px}
 .chip .badge{background:var(--gold);color:#4a2a00}
 .chip .rdy{background:#3fb574;color:#04260f}
-.av{width:30px;height:30px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:17px;line-height:1}
+.av{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:26px;line-height:1}
 .kick{border:0;background:rgba(0,0,0,.35);color:#fff;border-radius:50%;width:20px;height:20px;line-height:18px;padding:0;font-size:12px}
 @keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
 .bar{height:9px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden;margin:8px 0 12px}
@@ -145,7 +145,7 @@ input[type=text]:focus,input[type=email]:focus{border-color:var(--gold)}
 #msgs{flex:1;overflow:auto;padding:4px 12px;display:flex;flex-direction:column;gap:7px;min-height:0}
 .row{display:flex;gap:7px;align-items:flex-end;max-width:92%;align-self:flex-start}
 .row.mine{align-self:flex-end;flex-direction:row-reverse}
-.row .av{width:26px;height:26px;font-size:15px}
+.row .av{width:34px;height:34px;font-size:22px}
 .m{padding:7px 12px;border-radius:16px;background:rgba(255,255,255,.14);word-break:break-word}
 .m b{display:block;font-size:12px;color:var(--gold);margin-bottom:1px}
 .row.mine .m{background:linear-gradient(180deg,#e04257,var(--red2))}
@@ -210,7 +210,6 @@ dialog .row2{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
       <p class="sub">Que veux-tu faire ?</p>
       <button class="btn wide" id="chOrg" type="button">J'organise un Secret Santa</button>
       <button class="btn green wide" id="chJoin" type="button">Je rejoins un Secret Santa</button>
-      <button class="link" type="button" id="chRec">Déjà inscrit(e) ? Retrouver ma place</button>
     </div>
     <form class="card hidden" id="joinForm" autocomplete="on">
       <h1 id="fTitle">Secret Santa</h1>
@@ -219,14 +218,14 @@ dialog .row2{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
       <input type="text" id="fGroupe" maxlength="30" required autocomplete="off" placeholder="Ex : Famille Dupont 2026">
       <div class="hint" id="fGroupeHint"></div>
       <div id="fAvRow">
-        <label class="f">Ton avatar</label>
+        <label class="f">Ton avatar <span style="font-weight:500;color:var(--mut)">(fais défiler la liste)</span></label>
         <div class="avgrid" id="fAv"></div>
       </div>
       <label class="f" for="fPrenom">Ton prénom</label>
       <input type="text" id="fPrenom" name="given-name" maxlength="24" required placeholder="Ex : Léa">
       <label class="f" for="fEmail">Ton adresse mail</label>
       <input type="email" id="fEmail" name="email" required placeholder="lea@exemple.fr">
-      <label class="chk" id="fMailRow"><input type="checkbox" id="fMail" checked> Je veux recevoir mon tirage par mail</label>
+      <div class="hint" id="fMailRow">Ton tirage s'affichera à l'écran et te sera aussi envoyé par mail.</div>
       <button class="btn wide" id="fGo" type="submit">Valider</button>
       <div class="err" id="fErr"></div>
       <button class="link" type="button" id="fBack">← Retour</button>
@@ -274,7 +273,7 @@ dialog .row2{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
 const API = "https://script.google.com/macros/s/AKfycbxuPhn9HFEOCZFE6GKH5gyAI9xYhIZLoxDoFe2VjOSinWGymPehzd_HQbeCBjIvsPy4Vw/exec";
 const LS_TOKEN = "noel_token_v1";
 const COLORS = ["#d7263d","#2e8b57","#e08a1e","#3b82c4","#8e44ad","#c0392b","#16a085","#d35400","#2c7fb8","#b5338a"];
-const AV = { santa:"🎅", mrs:"🤶", elf:"🧝", deer:"🦌", snowman:"⛄", tree:"🎄", penguin:"🐧", bear:"🐻‍❄️", star:"⭐", bell:"🔔", gift:"🎁", cookie:"🍪", sock:"🧦", candle:"🕯️", angel:"👼", mitten:"🧤" };
+const AV = { clown:"🤡", unicorn:"🦄", frog:"🐸", trex:"🦖", octopus:"🐙", ghost:"👻", cool:"😎", cowboy:"🤠", party:"🥳", nerd:"🤓", robot:"🤖", alien:"👽", wizard:"🧙", poo:"💩", sloth:"🦥", duck:"🦆", chicken:"🐔", pig:"🐷", cow:"🐮", llama:"🦙", hedgehog:"🦔", otter:"🦦", koala:"🐨", panda:"🐼", fox:"🦊", monkey:"🐵", shark:"🦈", pizza:"🍕", avocado:"🥑", cheese:"🧀", donut:"🍩", potato:"🥔", taco:"🌮", banana:"🍌", croissant:"🥐", vampire:"🧛", mermaid:"🧜", frozen:"🥶", goofy:"🤪", moai:"🗿", hamster:"🐹", snail:"🐌", lobster:"🦞", crab:"🦀", whale:"🐳", chick:"🐥", owl:"🦉", flamingo:"🦩", santa:"🎅", mrs:"🤶", elf:"🧝", deer:"🦌", snowman:"⛄", tree:"🎄", penguin:"🐧", bear:"🐻‍❄️", star:"⭐", bell:"🔔", gift:"🎁", cookie:"🍪", sock:"🧦", candle:"🕯️", angel:"👼", mitten:"🧤" };
 const AVKEYS = Object.keys(AV);
 
 const $ = s => document.querySelector(s);
@@ -289,7 +288,7 @@ let chat = [];              // messages
 let pending = [];           // messages en cours d'envoi (floutés)
 const seen = new Set();     // messages déjà affichés
 let since = 0;
-let wMode = "join";         // create | join | recover
+let wMode = "join";         // create | join
 let selAv = AVKEYS[Math.floor(Math.random() * AVKEYS.length)];
 let revealed = false, revealTimer = null;
 let wasDrawn = null;
@@ -400,28 +399,24 @@ function setMode(m) {
   wMode = m;
   $("#wChoice").classList.add("hidden");
   $("#joinForm").classList.remove("hidden");
-  $("#fMailRow").classList.toggle("hidden", m === "recover");
-  $("#fAvRow").classList.toggle("hidden", m === "recover");
-  $("#fTitle").textContent = m === "create" ? "Organiser" : m === "join" ? "Rejoindre" : "Retrouver ma place";
+  $("#fTitle").textContent = m === "create" ? "Organiser" : "Rejoindre";
   $("#wSub").textContent = m === "create" ? "Choisis un nom pour ton groupe, puis donne-le aux autres participants."
-    : m === "join" ? "Entre le nom du groupe donné par l'organisateur."
-    : "Même groupe, même prénom et même mail que ton inscription.";
+    : "Entre le nom du groupe donné par l'organisateur.";
   $("#fGroupeLbl").textContent = m === "create" ? "Nom de ton groupe" : "Nom du groupe";
   $("#fGroupeHint").textContent = m === "create" ? "Les autres devront saisir exactement ce nom pour te rejoindre (majuscules et accents sans importance)." : "";
-  $("#fGo").textContent = m === "create" ? "Créer le groupe" : m === "join" ? "Rejoindre" : "Retrouver ma place";
+  $("#fGo").textContent = m === "create" ? "Créer le groupe" : "Rejoindre";
   $("#fErr").textContent = "";
 }
 fillAvGrid($("#fAv"), selAv, k => selAv = k);
 $("#chOrg").onclick = () => setMode("create");
 $("#chJoin").onclick = () => setMode("join");
-$("#chRec").onclick = () => setMode("recover");
 $("#fBack").onclick = showChoice;
 $("#joinForm").onsubmit = async e => {
   e.preventDefault();
   $("#fErr").textContent = "";
   const btn = $("#fGo"); setLoading(btn, true);
   try {
-    const base = { group: $("#fGroupe").value, prenom: $("#fPrenom").value, email: $("#fEmail").value, mail: $("#fMail").checked, avatar: selAv, since: 0 };
+    const base = { group: $("#fGroupe").value, prenom: $("#fPrenom").value, email: $("#fEmail").value, mail: true, avatar: selAv, since: 0 };
     const j = await api({ ...base, a: wMode });
     chat = []; pending = []; seen.clear(); since = 0; S = null;
     apply(j);
@@ -439,6 +434,7 @@ $("#joinForm").onsubmit = async e => {
 function renderTop() {
   const { people, me, drawn } = S;
   $("#gTitle").textContent = S.group.name;
+  $("#btnLeave").classList.toggle("hidden", !!drawn);
   document.title = S.group.name + " - Secret Santa";
   const n = people.length, done = people.filter(p => p.clicked).length;
   const orgId = people[0] && people[0].id;
@@ -460,9 +456,6 @@ function renderTop() {
       <div class="actions">
         <button class="btn" id="btnDraw" ${n < 3 ? "disabled" : ""}>${mine ? "Prêt (annuler)" : "Tirer au sort"}</button>
         <button class="mini" id="btnEx">Exclusions${me.ex.length ? " (" + me.ex.length + ")" : ""}</button>
-      </div>
-      <div class="opts">
-        <label class="chk"><input type="checkbox" id="optMail" ${me.mail ? "checked" : ""}> Recevoir mon tirage par mail</label>
       </div>
       <div class="small" style="margin-top:8px">Si quelqu'un arrive après ton clic, tout le monde doit recliquer.</div>`;
   } else {
@@ -497,12 +490,9 @@ $("#topBody").addEventListener("click", async e => {
   else if (t.id === "btnHide") { revealed = false; lastTop = ""; renderTop(); }
   else if (t.id === "btnReset") { if (confirm("Recommencer ? Le tirage actuel sera effacé et tout le monde devra recliquer.")) { revealed = false; lastTop = ""; act({ a: "reset" }); } }
 });
-$("#topBody").addEventListener("change", e => {
-  if (e.target.id === "optMail") act({ a: "update", mail: e.target.checked }, e.target.checked ? "Tu recevras un mail" : "Pas de mail");
-});
 $("#btnLeave").onclick = async () => {
   if (!S) return;
-  if (S.drawn) { if (confirm("Se déconnecter de cet appareil ? (tu pourras retrouver ta place avec le nom du groupe, ton prénom et ton mail)")) { try { localStorage.removeItem(LS_TOKEN); } catch (e) {} token = null; S = null; chat = []; pending = []; seen.clear(); since = 0; lastTop = ""; wasDrawn = null; revealed = false; showChoice(); showWelcome(); } return; }
+  if (S.drawn) return;
   if (confirm("Quitter le groupe ? Ta place sera libérée.")) { const j = await act({ a: "leave" }, null, "À bientôt"); if (j) toast("À bientôt !"); }
 };
 $("#btnInvite").onclick = async () => {
