@@ -1631,6 +1631,8 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
 .abt th.hcol{color:var(--ink)}
 .abt td.hcol .abc{filter:brightness(1.18)}
 html[data-theme="light"] .abt td.hcol .abc{filter:brightness(.94)}
+#abCodes button.s.on{background:var(--c,var(--blue));border-color:var(--c,var(--blue));color:#fff}
+.hsum{margin-top:4px;opacity:.85;white-space:normal;word-break:break-word}
 </style>
 </head>
 <body>
@@ -1644,11 +1646,11 @@ html[data-theme="light"] .abt td.hcol .abc{filter:brightness(.94)}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.93</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.94</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div><div class="fr"></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.93</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.94</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2405,7 +2407,7 @@ function histHtml(h, m){
       case 'telechargement': act = `a téléchargé « ${esc(x.nouvelle_valeur)} »`; break;
       case 'archivage': act = String(x.utilisateur).toLowerCase() === 'auto' ? 'archivage automatique' : 'a archivé l\'élément'; det2 = x.commentaire && x.commentaire !== 'automatique' ? esc(x.commentaire) : ''; break;
       case 'desarchivage': case 'unarchive': act = "a désarchivé l'élément"; break;
-      case 'suppression': act = 'suppression définitive (automatique)'; det2 = x.commentaire ? esc(x.commentaire) : ''; break;
+      case 'suppression': act = 'suppression définitive' + (String(x.utilisateur).toLowerCase() === 'auto' ? ' (automatique)' : ''); det2 = (x.commentaire ? esc(x.commentaire) : '') + (x.nouvelle_valeur ? '<div class="hsum">' + esc(x.nouvelle_valeur).replace(/\n/g, '<br>') + '</div>' : ''); break;
       default: return '';
     }
     const auto = String(x.utilisateur).toLowerCase() === 'auto';
@@ -2910,21 +2912,24 @@ function todoRow(t){
     ${tmp || t._sync ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 const IC_DBL = ic('<path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/>');
+let TREC = false;
+const IC_REC = ic('<path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>');
 function renderDrawer(){
   const el = $('#drawer'); if (!drawerOpen) return;
   const sc = [...el.querySelectorAll('.dpart')].map(x => x.scrollTop);
   const ev = NOT.items.filter(n => n.categorie !== 'todo');
   const T = TD || {items:[], upcoming:[], templates:[]};
   const open = T.items.filter(t => t.statut !== 'termine').length;
+  const recHtml = `<div class="subh">RÉCURRENTES · ${T.templates.length}</div>` + (T.templates.map(todoRow).join('') || '<div class="m">Aucune tâche récurrente.</div>') + '<div class="m">Chaque tâche récurrente crée sa propre ligne à chaque jour travaillé. La modifier ou la supprimer ici arrête ou change la répétition.</div>';
   el.innerHTML = `<div class="dh"><h3>Notifications</h3>${NOT.unread ? '<button class="ico sm" id="nAll" title="Tout marquer comme lu" aria-label="Tout marquer comme lu">' + IC_DBL + '</button>' : ''}<button class="ico sm" id="dwX" aria-label="Fermer">${IC.close}</button></div>
     <div class="dpart"><h4>ÉVÈNEMENTS <span>${ev.length}</span><button class="s" id="rNew" title="Créer un rappel" aria-label="Créer un rappel">${IC.bell}</button><button class="s" id="rList" title="Voir les rappels en attente" aria-label="Voir les rappels en attente">${IC.clock}</button></h4>${ev.map(ntItem).join('') || '<div class="m">Rien pour le moment.</div>'}</div>
     <hr class="dsep">
-    <div class="dpart"><h4>TODO <span>${open}</span><button class="s" id="tNew" title="Nouvelle tâche" aria-label="Nouvelle tâche">${IC.plus}</button></h4>
-      ${!TD ? '<div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div>' : (T.items.concat(T.templates).map(todoRow).join('') || '<div class="m">Rien à faire aujourd\'hui.</div>')}
-      ${T.upcoming.length ? `<div class="subh">À VENIR · ${T.upcoming.length}</div>${T.upcoming.map(todoRow).join('')}` : ''}
+    <div class="dpart"><h4>TODO <span>${open}</span><button class="s${TREC ? ' on' : ''}" id="tRecBtn" title="Gérer les tâches récurrentes" aria-label="Gérer les tâches récurrentes">${IC_REC}</button><button class="s" id="tNew" title="Nouvelle tâche" aria-label="Nouvelle tâche">${IC.plus}</button></h4>
+      ${!TD ? '<div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div>' : (TREC ? recHtml : (T.items.map(todoRow).join('') || '<div class="m">Rien à faire aujourd\'hui.</div>'))}
+      ${!TREC && T.upcoming.length ? `<div class="subh">À VENIR · ${T.upcoming.length}</div>${T.upcoming.map(todoRow).join('')}` : ''}
 </div>`;
   [...el.querySelectorAll('.dpart')].forEach((x, i) => x.scrollTop = sc[i] || 0);
-  $('#dwX').onclick = closeDrawer; $('#tNew').onclick = openTask; $('#rNew').onclick = () => openRem(); $('#rList').onclick = () => openRem(null, true);
+  $('#dwX').onclick = closeDrawer; $('#tNew').onclick = openTask; $('#tRecBtn').onclick = () => { TREC = !TREC; renderDrawer(); }; $('#rNew').onclick = () => openRem(); $('#rList').onclick = () => openRem(null, true);
   if ($('#nAll')) $('#nAll').onclick = () => { NOT.items.forEach(n => n.lu = 'oui'); NOT.unread = 0; drawBadges(); showToasts(); renderDrawer(); enqueue(() => api('notif_set', {all:true})); };
   el.onclick = e => {
     const tr = e.target.closest('.trow');
@@ -3163,6 +3168,7 @@ $('#tAdd').onclick = () => {
   }
   const tmp = {id:'tmp_' + Date.now(), titre, statut:'a_faire', date_prog: rec ? '' : date, rappel_le: p.rappel_le || '', recurrence: p.recurrence || '', heure: p.heure || '', _tmp:true};
   (rec ? TD.templates : date > today ? TD.upcoming : TD.items).unshift(tmp); renderDrawer();
+  if (rec) toast('Tâche récurrente créée : une ligne apparaîtra chaque jour travaillé (gestion avec le bouton ⟳ de la liste TODO)');
   enqueue(async () => { const nid = await api('todo_add', p); if (nid) { tmp.id = nid; delete tmp._tmp; } if (pending === 1) await loadTodo(true); else renderDrawer(); }, () => { strip(tmp); renderDrawer(); });
 };
 
@@ -3763,7 +3769,7 @@ function openAbsEdit(id, d){
   $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(p.nom)}</h3><div class="sub">Poser une absence</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
     <div class="erow"><label class="etm">Du<input type="date" id="abD1" value="${d}"></label><label class="etm">Au<input type="date" id="abD2" value="${d}"></label></div>
     <div class="erow"><label class="etm">Période<select id="abP"><option value="j">Journée</option><option value="am">Matin</option><option value="pm">Après-midi</option></select></label></div>
-    <div class="erow" id="abCodes">${Object.keys(ABS_C).map(c => `<button class="s${c === 'HOL' ? ' on' : ''}" data-c="${c}" title="${esc(ABS_L[c])}" style="border-color:${ABS_C[c]}">${esc(c)}</button>`).join('')}<button class="s" data-c="">Effacer</button></div>
+    <div class="erow" id="abCodes">${Object.keys(ABS_C).map(c => `<button class="s${c === 'HOL' ? ' on' : ''}" data-c="${c}" title="${esc(ABS_L[c])}" style="--c:${ABS_C[c]};border-color:${ABS_C[c]}">${esc(c)}</button>`).join('')}<button class="s" data-c="">Effacer</button></div>
     <p class="m">${Object.keys(ABS_C).map(c => esc(c) + ' : ' + ABS_L[c].toLowerCase()).join(' · ')}. Les week-ends sont ignorés.</p>
     <label>Commentaire <small class="m" style="margin:0">(visible au clic et en infobulle)</small><textarea id="abCom" rows="3" maxlength="500">${esc(ABS.ed.com0)}</textarea></label>
     <div class="esec"><h4>Fichiers · ${esc(absDate(d))}</h4><div id="abF"><div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div></div></div>
