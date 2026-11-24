@@ -1646,11 +1646,11 @@ html[data-theme="light"] .abt td.hcol .abc{filter:brightness(.94)}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.94</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.95</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div><div class="fr"></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.94</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.95</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2862,7 +2862,7 @@ function showToasts(){
 function setRead(n){ if (n.lu === 'oui') return; n.lu = 'oui'; NOT.unread = NOT.items.filter(x => x.lu !== 'oui').length; drawBadges(); showToasts(); enqueue(() => api('notif_set', {id:n.id})); }
 async function openNotif(n){
   setRead(n); closeDrawer();
-  if (!n.module || !n.ref_id) { openDrawer(); return; }
+  if (n.module === 'ADMIN') { if (isAdmin()) renderAdminPage(); return; } if (!n.module || !n.ref_id) { openDrawer(); return; }
   if (n.module === 'ABSENCES') {
     let hz = {}; try { hz = JSON.parse(n.detail || '{}'); } catch (e) {}
     await openMod('_home');
