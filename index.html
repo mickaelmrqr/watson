@@ -1639,11 +1639,11 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.91</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.92</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button>
   <button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div><div class="fr"></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.91</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.92</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -3406,8 +3406,9 @@ function openPuPrint(){
 function renderEnt(){
   cur = 'ENTREPRISES'; closePop(); closeDet();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === 'ENTREPRISES'));
-  $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="eq" placeholder="Rechercher une entreprise, un compte, une route, un contact, un commercial…" autocomplete="off" value="${esc(ENT.q)}" aria-label="Rechercher une entreprise"></div><span class="m" id="ecnt" style="margin:0"></span><label class="eck"><input type="checkbox" id="ePU" ${ENT.pu ? 'checked' : ''}>PU réguliers</label><label class="eck" id="eNRw" style="${ENT.pu ? '' : 'display:none'}"><input type="checkbox" id="eNR" ${ENT.nr ? 'checked' : ''}>Non affectés</label><span style="flex:1"></span>${canWrite() ? `<button class="p" id="eNew">${IC.plus}Nouvelle</button>` : ''}</div><div class="etw" id="etab"></div>`;
+  $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="eq" placeholder="Rechercher une entreprise, un compte, une route, un contact, un commercial…" autocomplete="off" value="${esc(ENT.q)}" aria-label="Rechercher une entreprise"></div><span class="m" id="ecnt" style="margin:0"></span><label class="eck"><input type="checkbox" id="ePU" ${ENT.pu ? 'checked' : ''}>PU réguliers</label><label class="eck" id="eNRw" style="${ENT.pu ? '' : 'display:none'}"><input type="checkbox" id="eNR" ${ENT.nr ? 'checked' : ''}>Non affectés</label><span style="flex:1"></span><button class="s" id="eXls" title="Exporter la vue en Excel">${IC.download}Excel</button>${canWrite() ? `<button class="p" id="eNew">${IC.plus}Nouvelle</button>` : ''}</div><div class="etw" id="etab"></div>`;
   $('#main').insertAdjacentHTML('afterbegin', '<div id="epu"></div>');
+  $('#eXls').onclick = exportEntXlsx;
   $('#epu').onclick = e => {
     const d = e.target.closest('[data-pd]'); if (d) { ENT.pd = d.dataset.pd === JK[new Date().getDay()] ? null : d.dataset.pd; return entPuBanner(); }
     if (e.target.closest('[data-pp]')) return openPuPrint();
@@ -3420,6 +3421,58 @@ function renderEnt(){
   $('#etab').onclick = e => { const t = e.target.closest('[data-id]'); if (t) openEnt(t.dataset.id); };
   $('#etab').onkeydown = e => { if (e.key === 'Enter' && e.target.dataset.id) openEnt(e.target.dataset.id); };
   entDraw(); reloadEnt();
+}
+function crc32(u8){ let T = crc32.T; if (!T) { T = crc32.T = []; for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; T[n] = c >>> 0; } } let c = 0xFFFFFFFF; for (let i = 0; i < u8.length; i++) c = T[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+function zipStore(files){
+  const enc = new TextEncoder(), le = (n, b) => { const a = []; for (let i = 0; i < b; i++) a.push((n >>> (8 * i)) & 255); return a; };
+  const parts = [], cen = []; let off = 0;
+  files.forEach(f => {
+    const nm = enc.encode(f.name), data = enc.encode(f.text), crc = crc32(data), sz = data.length;
+    const lh = new Uint8Array([0x50, 0x4b, 3, 4, 20, 0, 0, 8, 0, 0, 0, 0, 0x21, 0, ...le(crc, 4), ...le(sz, 4), ...le(sz, 4), ...le(nm.length, 2), 0, 0]);
+    parts.push(lh, nm, data);
+    cen.push(new Uint8Array([0x50, 0x4b, 1, 2, 20, 0, 20, 0, 0, 8, 0, 0, 0, 0, 0x21, 0, ...le(crc, 4), ...le(sz, 4), ...le(sz, 4), ...le(nm.length, 2), ...new Array(12).fill(0), ...le(off, 4)]), nm);
+    off += lh.length + nm.length + sz;
+  });
+  const cs = cen.reduce((s, a) => s + a.length, 0);
+  const end = new Uint8Array([0x50, 0x4b, 5, 6, 0, 0, 0, 0, ...le(files.length, 2), ...le(files.length, 2), ...le(cs, 4), ...le(off, 4), 0, 0]);
+  return new Blob([...parts, ...cen, end], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+}
+function entFiltered(){
+  const q = entNorm(ENT.q).trim().split(/\s+/).filter(Boolean);
+  return entRows().filter(r => { if (ENT.pu && (!entP(r).length || (ENT.nr && !entP(r).some(p => !puRoute(r, p))))) return false; const h = entHay(r); return q.every(w => h.includes(w)); }).sort((a, b) => String(a.nom).localeCompare(String(b.nom), 'fr', {sensitivity: 'base'}));
+}
+function exportEntXlsx(){
+  const list = entFiltered();
+  if (!list.length) return toast('Rien à exporter : la vue est vide.');
+  const H = ['Entreprise', 'Adresse', 'Commentaire', 'Comptes', 'Routes', 'PU réguliers', 'Dernière mise à jour', 'Mis à jour par'];
+  const W = [32, 36, 30, 24, 30, 64, 20, 18];
+  const rows = list.map(r => [
+    r.nom, r.adresse, r.commentaire,
+    entC(r).map(c => [c.numero, c.commentaire].filter(Boolean).join(' - ')).join('\n'),
+    entR(r).filter(x => String(x.nom || '').trim()).map(x => { const t = [x.m13 && '13m3', x.m20 && '20m3', x.pu && 'PU', x.del && 'DEL'].filter(Boolean).join(', '); return String(x.nom).trim() + (t ? ' (' + t + ')' : ''); }).join('\n'),
+    entP(r).map(p => [(p.debut || p.fin) ? (p.debut || '…') + '–' + (p.fin || '…') : '', jLbl(p.jours), puRoute(r, p), p.contact, p.tel, p.commercial && ('Commercial : ' + p.commercial), p.remarques].filter(Boolean).join(' | ')).join('\n'),
+    r.modifie_le ? fdate(r.modifie_le) : '', r.modifie_par ? who(r.modifie_par) : ''
+  ]);
+  const X = s => String(s == null ? '' : s).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const cell = (val, i, n, st) => `<c r="${String.fromCharCode(65 + i)}${n}" t="inlineStr" s="${st}"><is><t xml:space="preserve">${X(val)}</t></is></c>`;
+  const NS = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main', RS = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships', HD = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+  const sheet = HD + `<worksheet xmlns="${NS}"><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><cols>${W.map((w, i) => `<col min="${i + 1}" max="${i + 1}" width="${w}" customWidth="1"/>`).join('')}</cols><sheetData><row r="1">${H.map((h, i) => cell(h, i, 1, 1)).join('')}</row>${rows.map((row, k) => `<row r="${k + 2}">${row.map((val, i) => cell(val, i, k + 2, 0)).join('')}</row>`).join('')}</sheetData><autoFilter ref="A1:${String.fromCharCode(64 + H.length)}${rows.length + 1}"/></worksheet>`;
+  const styles = HD + `<styleSheet xmlns="${NS}"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FFFF5A2B"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="2"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="top" wrapText="1"/></xf><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`;
+  const REL = 'http://schemas.openxmlformats.org/package/2006/relationships', OD = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships';
+  const files = [
+    {name: '[Content_Types].xml', text: HD + '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>'},
+    {name: '_rels/.rels', text: HD + `<Relationships xmlns="${REL}"><Relationship Id="rId1" Type="${OD}/officeDocument" Target="xl/workbook.xml"/></Relationships>`},
+    {name: 'xl/workbook.xml', text: HD + `<workbook xmlns="${NS}" xmlns:r="${RS}"><sheets><sheet name="Entreprises" sheetId="1" r:id="rId1"/></sheets></workbook>`},
+    {name: 'xl/_rels/workbook.xml.rels', text: HD + `<Relationships xmlns="${REL}"><Relationship Id="rId1" Type="${OD}/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="${OD}/styles" Target="styles.xml"/></Relationships>`},
+    {name: 'xl/styles.xml', text: styles},
+    {name: 'xl/worksheets/sheet1.xml', text: sheet}
+  ];
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(zipStore(files));
+  a.download = 'Entreprises_' + new Date().toLocaleDateString('sv-SE') + '.xlsx';
+  document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+  toast(list.length + (list.length > 1 ? ' entreprises exportées' : ' entreprise exportée'));
 }
 function entDraw(){
   if (cur !== 'ENTREPRISES' || !$('#etab')) return;
