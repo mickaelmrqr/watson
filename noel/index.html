@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>🎄 Secret Santa</title>
+<title>Secret Santa</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎄%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
@@ -26,25 +26,58 @@ h1,h2,.fancy{font-family:'Mountains of Christmas','Brush Script MT',cursive;lett
 #snow{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 button{font:inherit;cursor:pointer}
 
+/* ===== Cadre smartphone centré ===== */
+#phone{position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(100vw,440px);z-index:3;overflow:hidden;background:rgba(9,24,32,.38)}
+@media (min-width:600px){
+  #phone{top:14px;bottom:14px;border-radius:36px;border:1px solid rgba(255,255,255,.22);box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 8px rgba(255,255,255,.04)}
+}
+
 /* guirlande */
-.garland{position:fixed;top:0;left:0;right:0;height:22px;z-index:5;pointer-events:none;
+.garland{position:absolute;top:0;left:0;right:0;height:22px;z-index:5;pointer-events:none;
   background:linear-gradient(#173d2d,#173d2d) 0 4px/100% 2px no-repeat;display:flex;justify-content:space-around}
-.garland i{width:10px;height:14px;border-radius:50% 50% 55% 55%;margin-top:5px;animation:blink 2.4s infinite;box-shadow:0 0 10px currentColor}
+.garland i{width:9px;height:13px;border-radius:50% 50% 55% 55%;margin-top:5px;animation:blink 2.4s infinite;box-shadow:0 0 10px currentColor}
 .garland i:nth-child(4n+1){background:#ff4d5e;color:#ff4d5e}
 .garland i:nth-child(4n+2){background:#ffd166;color:#ffd166;animation-delay:.6s}
 .garland i:nth-child(4n+3){background:#4ade80;color:#4ade80;animation-delay:1.2s}
 .garland i:nth-child(4n){background:#60a5fa;color:#60a5fa;animation-delay:1.8s}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
 
-/* écran d'accueil */
-#welcome{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:24px;overflow:auto}
+/* ===== Sapin (logo + chargements) ===== */
+.tree{width:84px;height:100px;display:block;margin:0 auto}
+.tree circle{animation:blink 1.4s infinite}
+.tree circle:nth-of-type(2n){animation-delay:.35s}
+.tree circle:nth-of-type(3n){animation-delay:.7s}
+.tree .star{transform-origin:50px 8px;animation:spin 3s ease-in-out infinite}
+@keyframes spin{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(8deg) scale(1.12)}}
+.bounce{animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* petits ornements qui rebondissent (chargement) */
+.bl{display:inline-flex;gap:7px;align-items:flex-end;height:20px}
+.bl i{width:11px;height:11px;border-radius:50%;animation:hop .8s ease-in-out infinite;box-shadow:inset -2px -2px 0 rgba(0,0,0,.2)}
+.bl i:nth-child(1){background:#ff4d5e}
+.bl i:nth-child(2){background:#ffd166;animation-delay:.15s}
+.bl i:nth-child(3){background:#4ade80;animation-delay:.3s}
+@keyframes hop{0%,100%{transform:translateY(0)}45%{transform:translateY(-9px)}}
+
+/* voiles de chargement */
+.veil{position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  background:rgba(8,20,28,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .35s;text-align:center;padding:30px}
+.veil.on{opacity:1;pointer-events:auto}
+.veil p{margin:0;font-size:17px;font-weight:700;color:var(--gold)}
+
+/* traîneau à la connexion */
+.fly{position:absolute;top:16%;left:-170px;width:150px;z-index:45;pointer-events:none;animation:fly 2.1s cubic-bezier(.4,.1,.5,1) forwards;filter:drop-shadow(0 0 10px rgba(255,209,102,.75))}
+@keyframes fly{0%{transform:translate(0,30px) rotate(-6deg);opacity:0}12%{opacity:1}50%{transform:translate(360px,-26px) rotate(3deg)}100%{transform:translate(720px,14px) rotate(-3deg);opacity:1}}
+
+/* ===== Accueil ===== */
+#welcome{position:absolute;inset:0;z-index:10;display:flex;padding:30px 16px 16px;overflow:auto}
 .card{
-  width:min(440px,100%);background:var(--glass);border:1px solid var(--line);border-radius:24px;
-  padding:28px 26px;backdrop-filter:blur(10px);box-shadow:0 20px 60px rgba(0,0,0,.45);text-align:center
+  width:100%;margin:auto;background:var(--glass);border:1px solid var(--line);border-radius:24px;
+  padding:24px 20px;box-shadow:0 20px 60px rgba(0,0,0,.35);text-align:center
 }
-.card h1{font-size:44px;margin:4px 0 2px;color:#fff;text-shadow:0 2px 0 var(--red2)}
-.card p.sub{margin:0 0 18px;color:var(--mut)}
-.card .big{font-size:54px;line-height:1}
+.card h1{font-size:42px;margin:6px 0 2px;color:#fff;text-shadow:0 2px 0 var(--red2)}
+.card p.sub{margin:0 0 14px;color:var(--mut);font-size:15px}
 label.f{display:block;text-align:left;font-weight:700;font-size:14px;margin:12px 0 5px;color:var(--gold)}
 input[type=text],input[type=email]{
   width:100%;padding:13px 15px;border-radius:14px;border:2px solid transparent;background:rgba(255,255,255,.92);
@@ -56,139 +89,230 @@ input[type=text]:focus,input[type=email]:focus{border-color:var(--gold)}
 .btn{
   border:0;border-radius:16px;padding:14px 22px;font-weight:700;font-size:17px;color:#fff;
   background:linear-gradient(180deg,#ef4458,var(--red2));box-shadow:0 6px 0 #6e0d1b,0 10px 24px rgba(0,0,0,.35);
-  transition:transform .08s,box-shadow .08s,filter .2s
+  transition:transform .12s,box-shadow .08s,filter .2s;min-height:50px
 }
-.btn:hover{filter:brightness(1.08)}
+.btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
 .btn:active{transform:translateY(4px);box-shadow:0 2px 0 #6e0d1b}
-.btn:disabled{filter:grayscale(.8) brightness(.7);cursor:not-allowed;transform:none;box-shadow:0 4px 0 #333}
+.btn:disabled{filter:grayscale(.5) brightness(.8);cursor:wait;transform:none;box-shadow:0 4px 0 #333}
 .btn.green{background:linear-gradient(180deg,#3fb574,var(--green2));box-shadow:0 6px 0 #0f3f22,0 10px 24px rgba(0,0,0,.35)}
 .btn.green:active{box-shadow:0 2px 0 #0f3f22}
-.btn.wide{width:100%;margin-top:18px}
+.btn.wide{width:100%;margin-top:16px}
 .link{background:none;border:0;color:var(--mut);text-decoration:underline;font-size:14px;padding:8px;margin-top:6px}
 .err{color:#ffb4bc;font-weight:700;margin-top:12px;min-height:1px}
+.hint{font-size:13px;color:var(--mut);text-align:left;margin-top:6px}
 
-/* écran principal : deux moitiés */
-#app{position:fixed;inset:0;z-index:3;display:none;grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:10px;padding:26px 12px 12px}
-.panel{background:var(--glass);border:1px solid var(--line);border-radius:22px;backdrop-filter:blur(8px);min-height:0;display:flex;flex-direction:column;overflow:hidden}
-.phead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px 6px}
-.phead h2{margin:0;font-size:26px;color:#fff;text-shadow:0 2px 0 var(--red2)}
-.pbody{flex:1;overflow:auto;padding:4px 16px 14px;min-height:0}
+/* choix d'avatar */
+.avgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.avb{aspect-ratio:1;border-radius:50%;border:2px solid transparent;background:rgba(255,255,255,.12);font-size:20px;line-height:1;padding:0;display:grid;place-items:center;transition:transform .15s,background .15s}
+.avb:hover{transform:scale(1.15)}
+.avb.on{border-color:var(--gold);background:rgba(255,209,102,.28);transform:scale(1.12)}
+
+/* ===== Application : deux moitiés ===== */
+#app{position:absolute;inset:0;z-index:3;display:none;grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:10px;padding:26px 10px 10px}
+#app.in{animation:appin .6s both}
+@keyframes appin{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.panel{background:var(--glass);border:1px solid var(--line);border-radius:22px;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.phead{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px 6px}
+.phead h2{margin:0;font-size:25px;color:#fff;text-shadow:0 2px 0 var(--red2);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pbody{flex:1;overflow:auto;padding:4px 14px 14px;min-height:0}
 .small{font-size:13px;color:var(--mut)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
-.chip{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid var(--line);font-weight:700;animation:pop .35s both}
-.chip.ok{background:rgba(63,181,116,.28);border-color:#3fb574}
+.chip{display:flex;align-items:center;gap:7px;padding:4px 11px 4px 4px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid var(--line);font-weight:700;font-size:14px;animation:pop .35s both}
+.chip.ok{background:rgba(63,181,116,.26);border-color:#3fb574}
 .chip.me{outline:2px solid var(--gold)}
-.av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.chip[data-me]{cursor:pointer}
+.chip small{font-size:10px;font-weight:700;border-radius:99px;padding:2px 6px;text-transform:uppercase;letter-spacing:.4px}
+.chip .badge{background:var(--gold);color:#4a2a00}
+.chip .rdy{background:#3fb574;color:#04260f}
+.av{width:30px;height:30px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:17px;line-height:1}
 .kick{border:0;background:rgba(0,0,0,.35);color:#fff;border-radius:50%;width:20px;height:20px;line-height:18px;padding:0;font-size:12px}
 @keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
-.bar{height:10px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden;margin:8px 0 12px}
+.bar{height:9px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden;margin:8px 0 12px}
 .bar>b{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--gold));border-radius:99px;transition:width .4s}
 .actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.opts{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;margin-top:12px}
+.opts{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;margin-top:10px}
 .opts .chk{margin:0;font-size:14px}
-.mini{border:1px solid var(--line);background:rgba(255,255,255,.1);color:var(--txt);border-radius:12px;padding:7px 12px;font-size:14px;font-weight:700}
-.mini:hover{background:rgba(255,255,255,.2)}
+.mini{border:1px solid var(--line);background:rgba(255,255,255,.1);color:var(--txt);border-radius:12px;padding:7px 11px;font-size:14px;font-weight:700;transition:background .15s,transform .15s}
+.mini:hover{background:rgba(255,255,255,.2);transform:translateY(-1px)}
 .result{
-  margin-top:12px;border-radius:20px;padding:16px;text-align:center;
+  margin-top:12px;border-radius:20px;padding:14px;text-align:center;
   background:linear-gradient(135deg,rgba(215,38,61,.35),rgba(46,139,87,.35));border:2px dashed var(--gold)
 }
-.result .who{font-family:'Mountains of Christmas',cursive;font-size:46px;color:var(--gold);text-shadow:0 3px 0 var(--red2);animation:pop .5s both;word-break:break-word}
+.result .giftbig{font-size:34px;animation:bob 1.6s ease-in-out infinite}
+.result .who{font-family:'Mountains of Christmas',cursive;font-size:44px;color:var(--gold);text-shadow:0 3px 0 var(--red2);animation:pop .5s both;word-break:break-word}
 
 /* chat */
-#msgs{flex:1;overflow:auto;padding:4px 14px;display:flex;flex-direction:column;gap:6px;min-height:0}
-.m{max-width:82%;padding:7px 12px;border-radius:16px;background:rgba(255,255,255,.14);align-self:flex-start;word-break:break-word;animation:pop .25s both}
+#msgs{flex:1;overflow:auto;padding:4px 12px;display:flex;flex-direction:column;gap:7px;min-height:0}
+.row{display:flex;gap:7px;align-items:flex-end;max-width:92%;align-self:flex-start}
+.row.mine{align-self:flex-end;flex-direction:row-reverse}
+.row .av{width:26px;height:26px;font-size:15px}
+.m{padding:7px 12px;border-radius:16px;background:rgba(255,255,255,.14);word-break:break-word}
 .m b{display:block;font-size:12px;color:var(--gold);margin-bottom:1px}
-.m.mine{align-self:flex-end;background:linear-gradient(180deg,#e04257,var(--red2))}
-.m.mine b{display:none}
-.m.sys{align-self:center;background:none;border:1px dashed var(--line);font-size:13px;color:var(--mut);text-align:center}
-#chatform{display:flex;gap:8px;padding:10px 12px 12px}
+.row.mine .m{background:linear-gradient(180deg,#e04257,var(--red2))}
+.row.mine .m b{display:none}
+.m.new{animation:unblur .5s both}
+.m.sending{filter:blur(3.5px);opacity:.7;animation:sendpulse 1s ease-in-out infinite}
+@keyframes unblur{from{filter:blur(5px);opacity:.4;transform:scale(.97)}to{filter:blur(0);opacity:1;transform:none}}
+@keyframes sendpulse{0%,100%{opacity:.55}50%{opacity:.85}}
+.sys{align-self:center;border:1px dashed var(--line);font-size:13px;color:var(--mut);text-align:center;padding:4px 12px;border-radius:14px;animation:pop .25s both}
+#chatform{display:flex;gap:8px;padding:10px 10px 12px}
 #chatform input{flex:1;padding:11px 14px;border-radius:14px;border:2px solid transparent;font-size:16px;background:rgba(255,255,255,.92);color:#222;outline:none;min-width:0}
 #chatform input:focus{border-color:var(--gold)}
-#chatform .btn{padding:10px 16px;font-size:16px;box-shadow:0 4px 0 #6e0d1b}
+#chatform .btn{padding:10px 14px;font-size:15px;box-shadow:0 4px 0 #0f3f22;min-height:0}
 
-dialog{border:0;border-radius:22px;padding:22px;max-width:min(420px,92vw);background:#16372a;color:var(--txt);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+dialog{border:0;border-radius:22px;padding:20px;width:min(380px,92vw);background:#16372a;color:var(--txt);box-shadow:0 20px 60px rgba(0,0,0,.6)}
 dialog::backdrop{background:rgba(0,0,0,.6)}
 dialog h3{margin:0 0 6px;font-size:28px}
 dialog .list{max-height:42vh;overflow:auto;margin:10px 0}
-dialog .row{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
-#toast{position:fixed;left:50%;bottom:18px;transform:translate(-50%,40px);z-index:50;background:#222;color:#fff;padding:10px 18px;border-radius:999px;opacity:0;transition:.3s;pointer-events:none;max-width:92vw;text-align:center;font-weight:700}
+dialog .row2{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+#toast{position:absolute;left:50%;bottom:16px;transform:translate(-50%,40px);z-index:60;background:#222;color:#fff;padding:10px 18px;border-radius:999px;opacity:0;transition:.3s;pointer-events:none;width:max-content;max-width:90%;text-align:center;font-weight:700;font-size:14px}
 #toast.on{transform:translate(-50%,0);opacity:1}
 #toast.bad{background:var(--red2)}
 .hidden{display:none!important}
-@media (max-width:520px){.card h1{font-size:38px}.result .who{font-size:38px}.phead h2{font-size:22px}}
 </style>
 </head>
 <body>
 <canvas id="snow"></canvas>
-<div class="garland" id="garland"></div>
 
-<!-- Accueil -->
-<div id="welcome">
-  <form class="card" id="joinForm" autocomplete="on">
-    <div class="big">🎅🎄🎁</div>
-    <h1>Secret Santa</h1>
-    <p class="sub" id="wSub">Entre ton prénom pour rejoindre la fête !</p>
-    <label class="f" for="fPrenom">Ton prénom</label>
-    <input type="text" id="fPrenom" name="given-name" maxlength="24" required placeholder="Ex : Léa">
-    <label class="f" for="fEmail">Ton adresse mail</label>
-    <input type="email" id="fEmail" name="email" required placeholder="lea@exemple.fr">
-    <label class="chk" id="fMailRow"><input type="checkbox" id="fMail" checked> 📧 Je veux recevoir mon tirage par mail</label>
-    <button class="btn wide" id="fGo" type="submit">Rejoindre la fête 🎅</button>
-    <div class="err" id="fErr"></div>
-    <button class="link" type="button" id="fMode">Déjà inscrit(e) ? Retrouver ma place</button>
-    <div class="small" id="fCount"></div>
-  </form>
-</div>
+<template id="treeTpl">
+  <svg class="tree" viewBox="0 0 100 120" aria-hidden="true">
+    <polygon points="50,14 78,50 22,50" fill="#2e8b57"/>
+    <polygon points="50,32 86,80 14,80" fill="#2a7d4e"/>
+    <polygon points="50,56 94,108 6,108" fill="#216b40"/>
+    <rect x="43" y="108" width="14" height="10" fill="#8a5a2b"/>
+    <polygon class="star" points="50,0 53.5,9 63,9 55.5,14.5 58.5,24 50,18 41.5,24 44.5,14.5 37,9 46.5,9" fill="#ffd166"/>
+    <circle cx="44" cy="40" r="3" fill="#ff4d5e"/><circle cx="58" cy="46" r="3" fill="#ffd166"/>
+    <circle cx="32" cy="66" r="3" fill="#60a5fa"/><circle cx="52" cy="62" r="3" fill="#ff4d5e"/><circle cx="70" cy="72" r="3" fill="#ffd166"/>
+    <circle cx="22" cy="96" r="3" fill="#ffd166"/><circle cx="44" cy="88" r="3" fill="#60a5fa"/><circle cx="64" cy="96" r="3" fill="#ff4d5e"/><circle cx="82" cy="100" r="3" fill="#ffffff"/>
+  </svg>
+</template>
+<template id="sleighTpl">
+  <svg class="fly" viewBox="0 0 150 70" aria-hidden="true">
+    <circle cx="8" cy="40" r="2.5" fill="#ffd166"/><circle cx="20" cy="30" r="2" fill="#fff"/><circle cx="14" cy="52" r="1.8" fill="#ffd166"/>
+    <path d="M38 44 Q32 24 52 26 L106 26 Q122 26 118 42 L110 52 L50 52 Z" fill="#d7263d"/>
+    <path d="M30 62 Q76 70 124 60 Q140 56 134 42" stroke="#ffd166" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M52 52 L50 62 M100 52 L102 61" stroke="#ffd166" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="70" cy="16" r="10" fill="#ffd9b8"/>
+    <path d="M59 14 Q70 -6 81 14 Z" fill="#d7263d"/><circle cx="70" cy="-2" r="4" fill="#fff"/>
+    <path d="M60 18 Q70 34 80 18 Q70 26 60 18Z" fill="#fff"/>
+    <ellipse cx="102" cy="22" rx="14" ry="12" fill="#2e8b57"/>
+  </svg>
+</template>
 
-<!-- Application -->
-<div id="app">
-  <section class="panel" id="top">
-    <div class="phead">
-      <h2>🎄 Les joyeux participants</h2>
-      <button class="mini" id="btnLeave" title="Quitter la fête">Quitter</button>
+<div id="phone">
+  <div class="garland" id="garland"></div>
+
+  <!-- Accueil -->
+  <div id="welcome">
+    <div class="card" id="wChoice">
+      <div class="logo bounce"></div>
+      <h1>Secret Santa</h1>
+      <p class="sub">Que veux-tu faire ?</p>
+      <button class="btn wide" id="chOrg" type="button">J'organise un Secret Santa</button>
+      <button class="btn green wide" id="chJoin" type="button">Je rejoins un Secret Santa</button>
+      <button class="link" type="button" id="chRec">Déjà inscrit(e) ? Retrouver ma place</button>
     </div>
-    <div class="pbody" id="topBody"></div>
-  </section>
-  <section class="panel" id="bottom">
-    <div class="phead"><h2>💬 Le chat de la fête</h2></div>
-    <div id="msgs"></div>
-    <form id="chatform" autocomplete="off">
-      <input type="text" id="cIn" maxlength="300" placeholder="Écris un message à tout le monde…">
-      <button class="btn green" type="submit">Envoyer ✉️</button>
+    <form class="card hidden" id="joinForm" autocomplete="on">
+      <h1 id="fTitle">Secret Santa</h1>
+      <p class="sub" id="wSub"></p>
+      <label class="f" for="fGroupe" id="fGroupeLbl">Nom du groupe</label>
+      <input type="text" id="fGroupe" maxlength="30" required autocomplete="off" placeholder="Ex : Famille Dupont 2026">
+      <div class="hint" id="fGroupeHint"></div>
+      <div id="fAvRow">
+        <label class="f">Ton avatar</label>
+        <div class="avgrid" id="fAv"></div>
+      </div>
+      <label class="f" for="fPrenom">Ton prénom</label>
+      <input type="text" id="fPrenom" name="given-name" maxlength="24" required placeholder="Ex : Léa">
+      <label class="f" for="fEmail">Ton adresse mail</label>
+      <input type="email" id="fEmail" name="email" required placeholder="lea@exemple.fr">
+      <label class="chk" id="fMailRow"><input type="checkbox" id="fMail" checked> Je veux recevoir mon tirage par mail</label>
+      <button class="btn wide" id="fGo" type="submit">Valider</button>
+      <div class="err" id="fErr"></div>
+      <button class="link" type="button" id="fBack">← Retour</button>
     </form>
-  </section>
+  </div>
+
+  <!-- Application -->
+  <div id="app">
+    <section class="panel" id="top">
+      <div class="phead">
+        <h2 id="gTitle">Participants</h2>
+        <div style="display:flex;gap:6px;flex:none"><button class="mini" id="btnInvite" title="Copier le lien d'invitation">Inviter</button><button class="mini" id="btnLeave" title="Quitter le groupe">Quitter</button></div>
+      </div>
+      <div class="pbody" id="topBody"></div>
+    </section>
+    <section class="panel" id="bottom">
+      <div class="phead"><h2>Discussion</h2></div>
+      <div id="msgs"></div>
+      <form id="chatform" autocomplete="off">
+        <input type="text" id="cIn" maxlength="300" placeholder="Écris un message…">
+        <button class="btn green" type="submit">Envoyer</button>
+      </form>
+    </section>
+  </div>
+
+  <div class="veil on" id="boot"><div class="logo"></div><p>Le Père Noël prépare la fête</p><span class="bl"><i></i><i></i><i></i></span></div>
+  <div class="veil" id="busy"><div class="logo bounce"></div><p id="busyTxt">Un instant</p><span class="bl"><i></i><i></i><i></i></span></div>
+  <div id="toast"></div>
 </div>
 
 <dialog id="exDlg">
-  <h3 class="fancy">🚫 Exclusions</h3>
+  <h3 class="fancy">Exclusions</h3>
   <div class="small">Les personnes cochées ne pourront pas te tirer, et tu ne pourras pas les tirer (pratique pour un couple). Seul toi vois ce choix.</div>
   <div class="list" id="exList"></div>
-  <div class="row"><button class="mini" id="exCancel" type="button">Annuler</button><button class="btn green" id="exSave" type="button" style="padding:9px 18px;font-size:15px">Enregistrer</button></div>
+  <div class="row2"><button class="mini" id="exCancel" type="button">Annuler</button><button class="btn green" id="exSave" type="button" style="padding:9px 18px;font-size:15px;min-height:0">Enregistrer</button></div>
 </dialog>
-<div id="toast"></div>
+<dialog id="avDlg">
+  <h3 class="fancy">Mon avatar</h3>
+  <div class="avgrid" id="avList" style="margin-top:10px"></div>
+  <div class="row2"><button class="mini" id="avCancel" type="button">Fermer</button></div>
+</dialog>
 
 <script>
 /* ====== Configuration ====== */
-const API = "https://script.google.com/macros/s/AKfycbxuPhn9HFEOCZFE6GKH5gyAI9xYhIZLoxDoFe2VjOSinWGymPehzd_HQbeCBjIvsPy4Vw/exec";      // adresse du serveur Apps Script (remplie au déploiement)
+const API = "https://script.google.com/macros/s/AKfycbxuPhn9HFEOCZFE6GKH5gyAI9xYhIZLoxDoFe2VjOSinWGymPehzd_HQbeCBjIvsPy4Vw/exec";
 const LS_TOKEN = "noel_token_v1";
 const COLORS = ["#d7263d","#2e8b57","#e08a1e","#3b82c4","#8e44ad","#c0392b","#16a085","#d35400","#2c7fb8","#b5338a"];
+const AV = { santa:"🎅", mrs:"🤶", elf:"🧝", deer:"🦌", snowman:"⛄", tree:"🎄", penguin:"🐧", bear:"🐻‍❄️", star:"⭐", bell:"🔔", gift:"🎁", cookie:"🍪", sock:"🧦", candle:"🕯️", angel:"👼", mitten:"🧤" };
+const AVKEYS = Object.keys(AV);
 
 const $ = s => document.querySelector(s);
 const esc = t => String(t).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const colorOf = id => { let h = 0; for (const c of String(id)) h = (h * 31 + c.charCodeAt(0)) >>> 0; return COLORS[h % COLORS.length]; };
+const avOf = k => AV[k] || AV.santa;
+const noEmoji = t => String(t).replace(/[\p{Extended_Pictographic}️‍]/gu, "").replace(/\s+/g, " ").trim();
 
 let token = null; try { token = localStorage.getItem(LS_TOKEN); } catch (e) {}
 let S = null;               // dernier état reçu
 let chat = [];              // messages
+let pending = [];           // messages en cours d'envoi (floutés)
+const seen = new Set();     // messages déjà affichés
 let since = 0;
-let recoverMode = false;
+let wMode = "join";         // create | join | recover
+let selAv = AVKEYS[Math.floor(Math.random() * AVKEYS.length)];
 let revealed = false, revealTimer = null;
 let wasDrawn = null;
 let busy = false;
 let lastTop = "";
 
-/* ====== Guirlande ====== */
-(function(){ const g = $("#garland"); for (let i = 0; i < 28; i++) g.appendChild(document.createElement("i")); })();
+/* ====== Décors ====== */
+(function(){
+  const g = $("#garland"); for (let i = 0; i < 26; i++) g.appendChild(document.createElement("i"));
+  document.querySelectorAll(".logo").forEach(el => el.appendChild($("#treeTpl").content.cloneNode(true)));
+})();
+function fly() {   // traîneau qui traverse l'écran à la connexion
+  const el = $("#sleighTpl").content.firstElementChild.cloneNode(true);
+  $("#phone").appendChild(el);
+  setTimeout(() => el.remove(), 2400);
+}
+function setLoading(btn, on) {
+  if (!btn) return;
+  if (on) { if (btn.dataset.t === undefined) btn.dataset.t = btn.innerHTML; btn.innerHTML = '<span class="bl"><i></i><i></i><i></i></span>'; btn.disabled = true; }
+  else { if (btn.dataset.t !== undefined) { btn.innerHTML = btn.dataset.t; delete btn.dataset.t; } btn.disabled = false; }
+}
+function busyOn(msg) { $("#busyTxt").textContent = msg; $("#busy").classList.add("on"); }
+function busyOff() { $("#busy").classList.remove("on"); }
 
 /* ====== Réseau ====== */
 async function api(body) {
@@ -202,16 +326,20 @@ function toast(msg, bad) {
   const t = $("#toast"); t.textContent = msg; t.className = "on" + (bad ? " bad" : "");
   clearTimeout(toast.h); toast.h = setTimeout(() => t.className = "", 3200);
 }
-async function act(body, okMsg) {
+async function act(body, okMsg, overlay) {
   if (busy) return null;
   busy = true;
+  if (overlay) busyOn(overlay);
   try {
     const j = await api({ ...body, token, since });
     apply(j);
     if (okMsg) toast(okMsg);
     return j;
-  } catch (e) { toast(e.message, true); refresh(); return null; }
-  finally { busy = false; }
+  } catch (e) { toast(e.message, true); return null; }
+  finally {
+    busy = false; busyOff();
+    if (S) { lastTop = ""; renderTop(); }
+  }
 }
 
 /* ====== Rafraîchissement ====== */
@@ -229,8 +357,10 @@ function apply(j) {
   if (j.token) { token = j.token; try { localStorage.setItem(LS_TOKEN, token); } catch (e) {} }
   if (!j.joined) {
     if (token) { try { localStorage.removeItem(LS_TOKEN); } catch (e) {} token = null; }
-    S = null; chat = []; since = 0;
-    showWelcome(j);
+    const wasIn = S !== null;
+    S = null; chat = []; pending = []; seen.clear(); since = 0; lastTop = ""; wasDrawn = null; revealed = false;
+    if (wasIn) showChoice();
+    showWelcome();
     return;
   }
   const first = S === null;
@@ -240,55 +370,84 @@ function apply(j) {
     chat.sort((a, b) => a.t - b.t);
     if (chat.length > 400) chat = chat.slice(-400);
     since = chat[chat.length - 1].t;
-    renderChat(!first);
-  } else if (first) renderChat(false);
-  $("#welcome").classList.add("hidden");
-  $("#app").style.display = "grid";
-  if (wasDrawn === false && j.drawn) { confetti(); toast("🎁 Le tirage est fait !"); }
+  }
+  if (first) {
+    $("#welcome").classList.add("hidden");
+    const app = $("#app"); app.style.display = "grid"; app.classList.remove("in"); void app.offsetWidth; app.classList.add("in");
+    chat.forEach(m => seen.add(m.t));   // l'historique s'affiche sans animation
+  }
+  renderChat(!first);
+  if (wasDrawn === false && j.drawn) { confetti(); toast("Le tirage est fait !"); }
   wasDrawn = j.drawn;
   renderTop();
 }
 
 /* ====== Accueil ====== */
-function showWelcome(j) {
+function showWelcome() {
   $("#app").style.display = "none";
   $("#welcome").classList.remove("hidden");
-  $("#fCount").textContent = j.count ? (j.count + (j.count > 1 ? " personnes sont déjà dans la fête 🎄" : " personne est déjà dans la fête 🎄")) : "Tu es le premier ! Tu seras l'organisateur 👑";
-  if (j.drawn && !recoverMode) { setMode(true); $("#wSub").textContent = "Le tirage a déjà eu lieu. Retrouve ta place avec ton prénom et ton mail."; }
 }
-function setMode(rec) {
-  recoverMode = rec;
-  $("#fMailRow").classList.toggle("hidden", rec);
-  $("#fGo").textContent = rec ? "Retrouver ma place 🔑" : "Rejoindre la fête 🎅";
-  $("#fMode").textContent = rec ? "← Je suis nouveau / nouvelle" : "Déjà inscrit(e) ? Retrouver ma place";
-  $("#wSub").textContent = rec ? "Même prénom et même mail que ton inscription." : "Entre ton prénom pour rejoindre la fête !";
+function showChoice() {
+  $("#wChoice").classList.remove("hidden");
+  $("#joinForm").classList.add("hidden");
   $("#fErr").textContent = "";
 }
-$("#fMode").onclick = () => setMode(!recoverMode);
+function fillAvGrid(el, current, onPick) {
+  el.innerHTML = AVKEYS.map(k => '<button type="button" class="avb ' + (k === current ? "on" : "") + '" data-k="' + k + '">' + AV[k] + "</button>").join("");
+  el.onclick = e => { const b = e.target.closest(".avb"); if (!b) return; el.querySelectorAll(".avb").forEach(x => x.classList.toggle("on", x === b)); onPick(b.dataset.k); };
+}
+function setMode(m) {
+  wMode = m;
+  $("#wChoice").classList.add("hidden");
+  $("#joinForm").classList.remove("hidden");
+  $("#fMailRow").classList.toggle("hidden", m === "recover");
+  $("#fAvRow").classList.toggle("hidden", m === "recover");
+  $("#fTitle").textContent = m === "create" ? "Organiser" : m === "join" ? "Rejoindre" : "Retrouver ma place";
+  $("#wSub").textContent = m === "create" ? "Choisis un nom pour ton groupe, puis donne-le aux autres participants."
+    : m === "join" ? "Entre le nom du groupe donné par l'organisateur."
+    : "Même groupe, même prénom et même mail que ton inscription.";
+  $("#fGroupeLbl").textContent = m === "create" ? "Nom de ton groupe" : "Nom du groupe";
+  $("#fGroupeHint").textContent = m === "create" ? "Les autres devront saisir exactement ce nom pour te rejoindre (majuscules et accents sans importance)." : "";
+  $("#fGo").textContent = m === "create" ? "Créer le groupe" : m === "join" ? "Rejoindre" : "Retrouver ma place";
+  $("#fErr").textContent = "";
+}
+fillAvGrid($("#fAv"), selAv, k => selAv = k);
+$("#chOrg").onclick = () => setMode("create");
+$("#chJoin").onclick = () => setMode("join");
+$("#chRec").onclick = () => setMode("recover");
+$("#fBack").onclick = showChoice;
 $("#joinForm").onsubmit = async e => {
   e.preventDefault();
-  $("#fErr").textContent = ""; $("#fGo").disabled = true;
+  $("#fErr").textContent = "";
+  const btn = $("#fGo"); setLoading(btn, true);
   try {
-    const j = await api(recoverMode
-      ? { a: "recover", prenom: $("#fPrenom").value, email: $("#fEmail").value }
-      : { a: "join", prenom: $("#fPrenom").value, email: $("#fEmail").value, mail: $("#fMail").checked, since: 0 });
-    chat = []; since = 0; S = null;
+    const base = { group: $("#fGroupe").value, prenom: $("#fPrenom").value, email: $("#fEmail").value, mail: $("#fMail").checked, avatar: selAv, since: 0 };
+    const j = await api({ ...base, a: wMode });
+    chat = []; pending = []; seen.clear(); since = 0; S = null;
     apply(j);
-    if (!recoverMode) toast("Bienvenue " + j.me.prenom + " ! 🎅");
+    fly();
+    toast(wMode === "create" ? "Groupe créé ! Utilise « Inviter » pour partager le lien." : "Bienvenue " + j.me.prenom + " !");
   } catch (err) { $("#fErr").textContent = err.message; }
-  finally { $("#fGo").disabled = false; }
+  finally { setLoading(btn, false); }
 };
+(function () {   // lien d'invitation : ?g=Nom du groupe
+  const g = new URLSearchParams(location.search).get("g");
+  if (g) { $("#fGroupe").value = g; setMode("join"); }
+})();
 
 /* ====== Panneau du haut ====== */
 function renderTop() {
   const { people, me, drawn } = S;
+  $("#gTitle").textContent = S.group.name;
+  document.title = S.group.name + " - Secret Santa";
   const n = people.length, done = people.filter(p => p.clicked).length;
   const orgId = people[0] && people[0].id;
   const chips = people.map(p => `
-    <div class="chip ${p.clicked && !drawn ? "ok" : ""} ${p.id === me.id ? "me" : ""}">
-      <span class="av" style="background:${colorOf(p.id)}">${esc([...p.prenom][0].toUpperCase())}</span>
-      <span>${p.id === orgId ? "👑 " : ""}${esc(p.prenom)}${p.id === me.id ? " (moi)" : ""}</span>
-      <span>${drawn ? "🎁" : p.clicked ? "✅" : "⏳"}</span>
+    <div class="chip ${p.clicked && !drawn ? "ok" : ""} ${p.id === me.id ? "me" : ""}" ${p.id === me.id && !drawn ? 'data-me="1" title="Changer mon avatar"' : ""}>
+      <span class="av" style="background:${colorOf(p.id)}">${avOf(p.av)}</span>
+      <span>${esc(p.prenom)}</span>
+      ${p.id === orgId ? '<small class="badge">orga</small>' : ""}
+      ${!drawn && p.clicked ? '<small class="rdy">prêt</small>' : ""}
       ${me.organizer && !drawn && p.id !== me.id ? `<button class="kick" data-kick="${esc(p.id)}" title="Retirer ${esc(p.prenom)}">✕</button>` : ""}
     </div>`).join("");
 
@@ -296,25 +455,24 @@ function renderTop() {
   if (!drawn) {
     const mine = people.find(p => p.id === me.id).clicked;
     mid = `
-      <div class="small">${n < 3 ? "Il faut au moins 3 personnes pour tirer au sort." : done + " / " + n + " ont cliqué sur « Tirer au sort ». Le tirage se fait quand tout le monde a cliqué."}</div>
+      <div class="small">${n < 3 ? "Il faut au moins 3 personnes pour tirer au sort." : done + " / " + n + " prêts. Le tirage se fait quand tout le monde a cliqué."}</div>
       <div class="bar"><b style="width:${n ? Math.round(done / n * 100) : 0}%"></b></div>
       <div class="actions">
-        <button class="btn" id="btnDraw" ${n < 3 ? "disabled" : ""}>${mine ? "✅ Prêt(e) ! (annuler)" : "🎁 Tirer au sort"}</button>
-        <button class="mini" id="btnEx">🚫 Exclusions${me.ex.length ? " (" + me.ex.length + ")" : ""}</button>
+        <button class="btn" id="btnDraw" ${n < 3 ? "disabled" : ""}>${mine ? "Prêt (annuler)" : "Tirer au sort"}</button>
+        <button class="mini" id="btnEx">Exclusions${me.ex.length ? " (" + me.ex.length + ")" : ""}</button>
       </div>
       <div class="opts">
-        <label class="chk"><input type="checkbox" id="optMail" ${me.mail ? "checked" : ""}> 📧 Recevoir mon tirage par mail</label>
+        <label class="chk"><input type="checkbox" id="optMail" ${me.mail ? "checked" : ""}> Recevoir mon tirage par mail</label>
       </div>
       <div class="small" style="margin-top:8px">Si quelqu'un arrive après ton clic, tout le monde doit recliquer.</div>`;
   } else {
     mid = `
       <div class="result">
-        <div class="small">🎁 Le tirage est fait ! Ton secret t'attend…</div>
-        ${revealed ? `<div class="who">${esc(me.receiver || "?")}</div><div class="small">Tu dois faire un cadeau à cette personne. Chut ! 🤫</div>
-           <button class="mini" id="btnHide" style="margin-top:8px">🙈 Cacher</button>`
-          : `<button class="btn" id="btnReveal" style="margin-top:10px">👀 Voir mon tirage</button>`}
+        ${revealed ? `<div class="giftbig">🎁</div><div class="who">${esc(me.receiver || "?")}</div><div class="small">Tu dois faire un cadeau à cette personne. Chut !</div>
+           <button class="mini" id="btnHide" style="margin-top:8px">Cacher</button>`
+          : `<div class="small">Le tirage est fait. Ton secret t'attend.</div><button class="btn" id="btnReveal" style="margin-top:10px">Voir mon tirage</button>`}
       </div>
-      ${me.organizer ? `<div class="actions" style="margin-top:12px"><button class="mini" id="btnReset">🔄 Recommencer le tirage (organisateur)</button></div>` : ""}`;
+      ${me.organizer ? `<div class="actions" style="margin-top:12px"><button class="mini" id="btnReset">Recommencer le tirage (organisateur)</button></div>` : ""}`;
   }
   const html = `<div class="chips">${chips}</div>${mid}`;
   if (html === lastTop) return;
@@ -324,22 +482,42 @@ function renderTop() {
   body.scrollTop = keep;
 }
 $("#topBody").addEventListener("click", async e => {
-  const t = e.target.closest("button"); if (!t) return;
-  if (t.dataset.kick) { if (confirm("Retirer cette personne de la fête ?")) act({ a: "kick", id: t.dataset.kick }); }
-  else if (t.id === "btnDraw") { const mine = S.people.find(p => p.id === S.me.id).clicked; act({ a: "click", value: !mine }); }
+  const chip = e.target.closest(".chip[data-me]");
+  const t = e.target.closest("button");
+  if (!t) { if (chip) openAv(); return; }
+  if (t.dataset.kick) { if (confirm("Retirer cette personne du groupe ?")) act({ a: "kick", id: t.dataset.kick }); }
+  else if (t.id === "btnDraw") {
+    const mine = S.people.find(p => p.id === S.me.id).clicked;
+    const finishing = !mine && S.people.length >= 3 && S.people.every(p => p.id === S.me.id || p.clicked);
+    setLoading(t, true);
+    act({ a: "click", value: !mine }, null, finishing ? "Le Père Noël mélange les noms" : null);
+  }
   else if (t.id === "btnEx") openEx();
   else if (t.id === "btnReveal") { revealed = true; lastTop = ""; renderTop(); clearTimeout(revealTimer); revealTimer = setTimeout(() => { revealed = false; lastTop = ""; if (S) renderTop(); }, 20000); }
   else if (t.id === "btnHide") { revealed = false; lastTop = ""; renderTop(); }
   else if (t.id === "btnReset") { if (confirm("Recommencer ? Le tirage actuel sera effacé et tout le monde devra recliquer.")) { revealed = false; lastTop = ""; act({ a: "reset" }); } }
 });
 $("#topBody").addEventListener("change", e => {
-  if (e.target.id === "optMail") act({ a: "update", mail: e.target.checked }, e.target.checked ? "Tu recevras un mail 📧" : "Pas de mail");
+  if (e.target.id === "optMail") act({ a: "update", mail: e.target.checked }, e.target.checked ? "Tu recevras un mail" : "Pas de mail");
 });
 $("#btnLeave").onclick = async () => {
   if (!S) return;
-  if (S.drawn) { if (confirm("Se déconnecter de cet appareil ? (tu pourras retrouver ta place avec ton mail)")) { try { localStorage.removeItem(LS_TOKEN); } catch (e) {} token = null; S = null; chat = []; since = 0; lastTop = ""; showWelcome({ count: 0 }); setMode(true); refresh(); } return; }
-  if (confirm("Quitter la fête ? Ta place sera libérée.")) { const j = await act({ a: "leave" }); if (j) toast("À bientôt ! 👋"); }
+  if (S.drawn) { if (confirm("Se déconnecter de cet appareil ? (tu pourras retrouver ta place avec le nom du groupe, ton prénom et ton mail)")) { try { localStorage.removeItem(LS_TOKEN); } catch (e) {} token = null; S = null; chat = []; pending = []; seen.clear(); since = 0; lastTop = ""; wasDrawn = null; revealed = false; showChoice(); showWelcome(); } return; }
+  if (confirm("Quitter le groupe ? Ta place sera libérée.")) { const j = await act({ a: "leave" }, null, "À bientôt"); if (j) toast("À bientôt !"); }
 };
+$("#btnInvite").onclick = async () => {
+  if (!S) return;
+  const url = location.origin + location.pathname + "?g=" + encodeURIComponent(S.group.name);
+  try { await navigator.clipboard.writeText(url); toast("Lien copié. Nom du groupe : " + S.group.name); }
+  catch (e) { prompt("Copie ce lien pour inviter les autres :", url); }
+};
+
+/* Avatar */
+function openAv() {
+  fillAvGrid($("#avList"), S.me.av, async k => { $("#avDlg").close(); await act({ a: "update", mail: S.me.mail, avatar: k }, "Avatar changé"); });
+  $("#avDlg").showModal();
+}
+$("#avCancel").onclick = () => $("#avDlg").close();
 
 /* Exclusions */
 function openEx() {
@@ -352,7 +530,6 @@ $("#exCancel").onclick = () => $("#exDlg").close();
 $("#exSave").onclick = async () => {
   const ex = [...$("#exList").querySelectorAll("input:checked")].map(i => i.value);
   $("#exDlg").close();
-  lastTop = "";
   await act({ a: "update", mail: S.me.mail, ex }, "Exclusions enregistrées");
 };
 
@@ -360,17 +537,26 @@ $("#exSave").onclick = async () => {
 function renderChat(stick) {
   const box = $("#msgs");
   const near = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
-  box.innerHTML = chat.map(m => m.id === "sys"
-    ? `<div class="m sys">${esc(m.x)}</div>`
-    : `<div class="m ${S && m.id === S.me.id ? "mine" : ""}"><b>${esc(m.n)}</b>${esc(m.x)}</div>`).join("");
-  if (!stick || near) box.scrollTop = box.scrollHeight;
+  const avById = {}; if (S) S.people.forEach(p => avById[p.id] = p.av);
+  let html = chat.map(m => {
+    const isNew = !seen.has(m.t); seen.add(m.t);
+    if (m.id === "sys") return `<div class="sys">${esc(noEmoji(m.x))}</div>`;
+    const mine = S && m.id === S.me.id;
+    return `<div class="row ${mine ? "mine" : ""}">${mine ? "" : `<span class="av" style="background:${colorOf(m.id)}">${avOf(avById[m.id])}</span>`}<div class="m ${isNew && stick ? "new" : ""}"><b>${esc(m.n)}</b>${esc(m.x)}</div></div>`;
+  }).join("");
+  html += pending.map(p => `<div class="row mine"><div class="m sending">${esc(p)}</div></div>`).join("");
+  box.innerHTML = html;
+  if (!stick || near || pending.length) box.scrollTop = box.scrollHeight;
 }
 $("#chatform").onsubmit = async e => {
   e.preventDefault();
-  const v = $("#cIn").value.trim(); if (!v) return;
+  const v = $("#cIn").value.trim(); if (!v || !S) return;
   $("#cIn").value = "";
+  pending.push(v); renderChat(true);
   const j = await act({ a: "chat", text: v });
+  const i = pending.indexOf(v); if (i >= 0) pending.splice(i, 1);
   if (!j) $("#cIn").value = v;
+  renderChat(true);
 };
 
 /* ====== Neige + confettis ====== */
@@ -378,9 +564,10 @@ const cv = $("#snow"), cx = cv.getContext("2d");
 let W, H, flakes = [], bits = [];
 function size() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
 addEventListener("resize", size); size();
-for (let i = 0; i < 70; i++) flakes.push({ x: Math.random() * W, y: Math.random() * H, r: 1 + Math.random() * 3, s: .4 + Math.random() * 1.1, d: Math.random() * 6 });
+for (let i = 0; i < 90; i++) flakes.push({ x: Math.random() * W, y: Math.random() * H, r: 1 + Math.random() * 3, s: .4 + Math.random() * 1.1, d: Math.random() * 6 });
 function confetti() {
-  for (let i = 0; i < 140; i++) bits.push({ x: W / 2 + (Math.random() - .5) * 120, y: H * .35, vx: (Math.random() - .5) * 9, vy: -Math.random() * 9 - 2, w: 6 + Math.random() * 6, c: COLORS[i % COLORS.length], a: Math.random() * 6, life: 160 });
+  const x0 = W / 2;
+  for (let i = 0; i < 140; i++) bits.push({ x: x0 + (Math.random() - .5) * 120, y: H * .35, vx: (Math.random() - .5) * 9, vy: -Math.random() * 9 - 2, w: 6 + Math.random() * 6, c: COLORS[i % COLORS.length], a: Math.random() * 6, life: 160 });
 }
 (function draw() {
   cx.clearRect(0, 0, W, H);
@@ -400,9 +587,11 @@ function confetti() {
 
 /* ====== Démarrage ====== */
 (async function init() {
-  try { apply(await api({ a: "state", token, since: 0 })); }
-  catch (e) { $("#fCount").textContent = e.message; }
+  const t0 = Date.now();
+  try { apply(await api({ a: "state", token, since: 0 })); } catch (e) { /* hors ligne : on reste sur l'accueil */ }
+  setTimeout(() => $("#boot").classList.remove("on"), Math.max(0, 900 - (Date.now() - t0)));
 })();
+setTimeout(() => $("#boot").classList.remove("on"), 9000);
 </script>
 </body>
 </html>
