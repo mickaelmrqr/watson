@@ -1641,10 +1641,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.116</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.117</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.116</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.117</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -4425,6 +4425,7 @@ async function dsBuild(v){
   put(v.activite, X[0], X[1], Y[0], Y[1], 11, font);
   put(v.h1, X[1], X[2], Y[0], Y[1], 12, font); put(v.h2, X[2], X[3], Y[0], Y[1], 12, font);
   put(v.h3, X[1], X[2], Y[1], Y[2], 12, font); put(v.h4, X[2], X[3], Y[1], Y[2], 12, font);
+  { const yy = H - (v.statut === 'INT' ? 53.2 : 84.7), hw = v.statut === 'INT' ? 14 : 30; page.drawLine({start: {x: 375 - hw, y: yy}, end: {x: 375 + hw, y: yy}, thickness: 1.3, color: ink}); };
   return await doc.save();
 }
 function dsPrint(url){
@@ -4438,13 +4439,14 @@ async function openDaysheet(){
   ABS.ed = null; ABS.mgr = false; $('#sAbs').className = 'sheet';
   $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Ma daysheet</h3><div class="sub">${esc(pr.prenom)} ${esc(pr.nom)}${d.matricule ? ' · ' + esc(d.matricule) : ''}</div></div><button class="ico sm" id="dsX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
     <div class="sc2"><label>Nom<input id="dsN" value="${esc(pr.nom || '')}" autocomplete="off"></label><label>Prénom<input id="dsP" value="${esc(pr.prenom || '')}" autocomplete="off"></label><label>Matricule<input id="dsMt" value="${esc(d.matricule || '')}" autocomplete="off"></label><label>Date<input type="date" id="dsD" value="${absIso(new Date())}"></label></div>
-    <label>Activité<input id="dsA" value="${esc(d.activite || '')}" autocomplete="off"></label>
+    <label>Activité<input id="dsA" value="${esc(d.activite || '')}" autocomplete="off"></label> <div class="sc2" style="align-items:center"><label class="chk"><input type="checkbox" id="dsStD"${(function(){try{return localStorage.getItem('wds_st') === 'I' ? '' : ' checked'}catch(e){return ' checked'}})()}> DHL</label><label class="chk"><input type="checkbox" id="dsStI"${(function(){try{return localStorage.getItem('wds_st') === 'I' ? ' checked' : ''}catch(e){return ''}})()}> Interim</label></div>
     <div class="sc2">${inp('dsH1', 'Prise de poste', d.h1)}${inp('dsH2', 'Pause', d.h2)}${inp('dsH3', 'Fin de pause', d.h3)}${inp('dsH4', 'Fin de poste', d.h4)}</div>
     <p class="m" id="dsM">Vérifie les informations avant de valider : tu peux tout modifier ici (par exemple pour imprimer la daysheet d’un collègue) sans changer ton profil.</p>
     <div id="dsB" style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="s" id="dsC">Annuler</button><button class="p" id="dsOk">Valider</button></div>`;
-  $('#dsX').onclick = closeAbs; $('#dsC').onclick = closeAbs;
+  $('#dsX').onclick = closeAbs;
+  ['dsStD', 'dsStI'].forEach(id => { $('#' + id).onchange = () => { const me = $('#' + id), other = $(id === 'dsStD' ? '#dsStI' : '#dsStD'); other.checked = !me.checked; }; }); $('#dsC').onclick = closeAbs;
   $('#dsOk').onclick = async () => {
-    const v = {nom: $('#dsN').value.trim(), prenom: $('#dsP').value.trim(), matricule: $('#dsMt').value.trim(), date: $('#dsD').value, activite: $('#dsA').value.trim(), h1: $('#dsH1').value, h2: $('#dsH2').value, h3: $('#dsH3').value, h4: $('#dsH4').value};
+    const v = {nom: $('#dsN').value.trim(), prenom: $('#dsP').value.trim(), matricule: $('#dsMt').value.trim(), date: $('#dsD').value, activite: $('#dsA').value.trim(), h1: $('#dsH1').value, h2: $('#dsH2').value, h3: $('#dsH3').value, h4: $('#dsH4').value, statut: ((st) => { try { localStorage.setItem('wds_st', st === 'INT' ? 'I' : 'D'); } catch (e) {} return st; })($('#dsStI').checked ? 'INT' : 'DHL')};
     let bytes; try { bytes = await wait(() => dsBuild(v), true); } catch (e) { return toast(e.message || 'Création du PDF impossible'); }
     if (DS.url) URL.revokeObjectURL(DS.url); DS.url = URL.createObjectURL(new Blob([bytes], {type: 'application/pdf'}));
     $('#dsM').textContent = 'PDF prêt. La fenêtre d’impression doit s’ouvrir ; sinon, ouvre le PDF et imprime-le depuis le navigateur.';
