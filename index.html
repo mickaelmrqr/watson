@@ -1642,10 +1642,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.98</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.99</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.98</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.99</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -3669,6 +3669,7 @@ const absLoad = async () => { const [r, g] = await Promise.all([api('abs_list'),
 const absPAdm = id => { const p = (ABS.rows || []).find(x => String(x.id) === String(id)); return !!(p && p._adm && ME.rights.ABSENCES === 'admin'); };
 const ABS_C = {HOL: '#2fb36b', TRA: '#8b5a2b', SIC: '#ff8a1f', '??': '#e53935'};
 const ABS_L = {HOL: 'Congés', TRA: 'Formation', SIC: 'Maladie', '??': 'À confirmer'};
+Object.defineProperty(ABS_C, 'ABS', {value: '#7d8799', enumerable: false}); Object.defineProperty(ABS_L, 'ABS', {value: 'Absent', enumerable: false});
 const absAdm = () => !!(ME && ME.rights && ME.rights.ABSENCES === 'admin' && ABS.g && ABS.g.some(g => g.admin));
 const absIso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 const absMon = off => { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() - ((d.getDay() + 6) % 7) + off * 7); return d; };
@@ -3716,7 +3717,7 @@ function absDraw(){
       const clk = !we && (absPAdm(p.id) || has);
       return `<td class="${di % 7 === 0 ? 'wk' : ''}${absIso(d) === today ? ' tdy' : ''}"><div class="abc${we ? ' wend' : clk ? ' adm' : ''}" ${tip || fer ? `title="${esc(tip || fer)}"` : ''} ${clk ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}${note || nf ? '<u class="abn"></u>' : ''}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
       : `<p class="m">${adm ? 'Aucune personne pour le moment : ajoute-en avec le bouton ci-dessus.' : 'Aucune personne pour le moment.'}</p>`}
-    <div class="abl">${Object.keys(ABS_C).map(c => `<span><i style="background:${ABS_C[c]}"></i>${esc(c)} : ${ABS_L[c]}</span>`).join('')}</div>`;
+    <div class="abl">${(() => { const full = rows.some(p => absPAdm(p.id)), part = rows.some(p => !absPAdm(p.id)); return (full ? Object.keys(ABS_C).filter(c => c !== '??') : []).concat(part ? ['ABS'] : [], ['??']); })().map(c => `<span><i style="background:${ABS_C[c]}"></i>${esc(c)} : ${ABS_L[c]}</span>`).join('')}</div>`;
 }
 document.addEventListener('change', e => { const t = e.target.closest('#absBox [data-agk]'); if (!t) return; let h = {}; try { h = JSON.parse(localStorage.getItem('wabsh') || '{}') || {}; } catch (x) {} if (t.checked) delete h[t.dataset.agk]; else h[t.dataset.agk] = 1; try { localStorage.setItem('wabsh', JSON.stringify(h)); } catch (x) {} absDraw(); });
 document.addEventListener('click', e => {
@@ -3766,7 +3767,7 @@ function openAbsView(id, d){
   $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(p.nom)}</h3><div class="sub">${esc(absDate(d))}</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
     ${per}${c[2] ? `<div class="esec"><h4>Commentaire</h4><div class="epr" style="white-space:pre-wrap">${esc(c[2])}</div></div>` : ''}
     <div class="esec"><h4>Fichiers</h4><div id="abF"><div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div></div></div>`;
-  $('#abX').onclick = closeAbs; $('#mAbs').classList.add('on'); absFiles(id, d, false);
+  $('#abX').onclick = closeAbs; $('#mAbs').classList.add('on'); if (absPAdm(id)) absFiles(id, d, false);
 }
 function openAbsEdit(id, d){
   const p = (ABS.rows || []).find(x => String(x.id) === String(id)); if (!p) return;
