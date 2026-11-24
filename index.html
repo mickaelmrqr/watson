@@ -671,7 +671,7 @@ html[data-theme=light] .hc b{color:var(--ink)}
 .mod[data-m=AWB],.mod[data-m=DOCUMENTS],.ht[data-m=AWB],.ht[data-m=DOCUMENTS]{--mc:58,140,255}
 .mod[data-m=SPARK],.mod[data-m=DOM],.ht[data-m=SPARK],.ht[data-m=DOM]{--mc:34,176,112}
 .mod[data-m=SECURITY],.ht[data-m=SECURITY]{--mc:238,70,80}
-.mod[data-m=ENTREPRISES],.ht[data-m=ENTREPRISES]{--mc:166,106,62}
+.mod[data-m=ENTREPRISES],.ht[data-m=ENTREPRISES]{--mc:166,106,62} .mod[data-m="CARTE"],.pg[data-m="CARTE"]{--mc:110,200,255} .mod[data-m="DEBRIEF"],.pg[data-m="DEBRIEF"]{--mc:160,120,235} .pg{padding:4px 0} .pgt{display:flex;align-items:center;gap:12px;font:700 var(--fs-t) var(--disp);margin:6px 0 14px} .pgt .mi{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;background:rgba(var(--mc),.18);color:rgb(var(--mc))} .pgt .mi svg{width:20px;height:20px} .pgtabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--line)} .pgtab{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 18px;color:var(--mut);font:600 var(--fs) var(--body);cursor:pointer;transition:border-color .2s,background .2s,color .2s} .pgtab:hover{border-color:var(--bd2);color:var(--ink)} .pgtab.on{color:var(--ink);border-color:rgba(var(--mc),.75);background:rgba(var(--mc),.16)} .pgbody{min-height:240px} .ht .htn{display:none} .ht[data-m="ENTREPRISES"] .hcs .m{display:none}
 .absb{margin-top:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:14px}
 .abh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}.abh h3{margin:0;flex:1}
 .hbub{margin-left:auto;background:#ff8a1f;color:#fff;font:700 12px var(--body);min-width:22px;height:22px;padding:0 7px;border-radius:11px;display:grid;place-items:center}
@@ -1641,10 +1641,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.102</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.1032</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.102</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.1032</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1950,8 +1950,8 @@ document.addEventListener('visibilitychange', () => { if (!document.hidden && ME
 function buildNav(){
   const mods = Object.keys(MODS).filter(m => ME.rights[m]);
   const io = (m, label, icon) => `<button class="mod io" data-m="${m}" title="${label}" aria-label="${label}"><span class="mi">${icon}</span><b class="il">${label}</b></button>`;
-  const tile = m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m].label}</b><small id="cnt_${m}"><span class="d3s"><i></i><i></i><i></i></span></small></span></button>`;
-  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${mods.filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY').map(tile).join('')}${mods.includes('LIBRARY') ? io('LIBRARY', 'Bibliothèque', IC.LIBRARY) : ''}</div>`;
+  const tile = m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m] ? MODS[m].label : PGS[m].label}</b>${PGS[m] ? '' : '<small id="cnt_' + m + '"><span class="d3s"><i></i><i></i><i></i></span></small>'}</span></button>`;
+  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${navOrder(mods).filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY').map(tile).join('')}${mods.includes('LIBRARY') ? io('LIBRARY', 'Bibliothèque', IC.LIBRARY) : ''}</div>`;
   $('#bAdm').classList.toggle('hide', !isAdmin());
   $('#seg').onclick = e => { const b = e.target.closest('button'); if (b) { showArch = false; openMod(b.dataset.m); } };
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === cur));
@@ -2093,12 +2093,14 @@ async function openMod(m){
   if (m === '_home') return renderHome();
   if (m === 'LIBRARY') return renderLib();
   if (m === 'ENTREPRISES') return renderEnt();
+  if (PGS[m]) return renderPg(m);
   if (cache[key()]) { rows = cache[key()]; renderList(); refresh(); return; }
   try { rows = await wait(() => api('list', {module: m, archives: showArch})); cache[key()] = rows; }
   catch (e) { return toast(e.message); }
   renderList();
 }
 async function refresh(){
+  if (PGS[cur]) return;
   const m = cur, k = key();
   try {
     const fresh = await api('list', {module: m, archives: showArch});
@@ -3323,7 +3325,7 @@ async function renderSec(){
 }
 async function renderUsers(el){
   let us = US; if (us) api('users_list').then(x => US = x).catch(() => {}); else { try { us = US = await wait(() => api('users_list')); } catch (e) { return toast(e.message); } }
-  const MU = [['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'SCMS'], ['ENTREPRISES', 'Entreprises'], ['ABSENCES', 'Absences'], ['DOCUMENTS', 'Bibliothèque'], ['PARAMETRES', 'Paramètres']];
+  const MU = [['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'SCMS'], ['CARTE', 'Carte'], ['DEBRIEF', 'Debrief'], ['ENTREPRISES', 'Entreprises'], ['ABSENCES', 'Absences'], ['DOCUMENTS', 'Bibliothèque'], ['PARAMETRES', 'Paramètres']];
   const CC = {CLASSIQUES: '#3a8cff', CCTV: '#ee4650', PPWK: '#a66a3e', UNDELS: '#22b070'};
   const seg = (u, m) => { const cur = u.rights[m] || '', opts = m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<div class="useg" data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<button type="button" data-lv="${v}" class="${v === cur ? 'on ' + (v || 'none') : ''}">${l}</button>`).join('')}</div>`; };
@@ -3368,6 +3370,26 @@ async function renderUsers(el){
 MODS.LIBRARY = {label: 'Bibliothèque', noSteps: true, name: r => r.titre, show: [], fields: []};
 IC.LIBRARY = ic('<rect x="3" y="4" width="4" height="16" rx="1"/><path d="M3 8h4"/><rect x="9" y="3" width="4" height="17" rx="1"/><path d="M9 7h4"/><path d="m15.3 5.6 3.1-.8 3.4 13.1-3.1.8z"/>');
 IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
+const PGS = {
+  CARTE: {label: 'Carte', tabs: null},
+  DEBRIEF: {label: 'Debrief', tabs: ['Analyse', 'Suivi', 'Perf dialog']}
+};
+const PGT = {};
+IC.CARTE = ic('<path d="M9 4 3 6.5v13L9 17l6 3 6-2.5v-13L15 7 9 4Z"/><path d="M9 4v13M15 7v13"/>');
+IC.DEBRIEF = ic('<path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/>');
+function navOrder(list) {
+  const base = list.filter(m => !PGS[m]), pg = Object.keys(PGS).filter(p => ME.rights[p]);
+  let at = -1; base.forEach((m, i) => { if (['AWB', 'SPARK', 'DOM', 'SECURITY'].includes(m)) at = i; });
+  base.splice(at + 1, 0, ...pg); return base;
+}
+function renderPg(m) {
+  cur = m; closePop(); closeDet();
+  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === m));
+  $('#bSet').classList.remove('on');
+  const p = PGS[m], t = PGT[m] || 0;
+  $('#main').innerHTML = '<div class="pg" data-m="' + m + '"><h2 class="pgt"><span class="mi">' + IC[m] + '</span>' + p.label + '</h2>' + (p.tabs ? '<div class="pgtabs" role="tablist">' + p.tabs.map((x, i) => '<button class="pgtab' + (i === t ? ' on' : '') + '" role="tab" data-i="' + i + '">' + x + '</button>').join('') + '</div>' : '') + '<div class="pgbody" data-t="' + t + '"></div></div>';
+  document.querySelectorAll('#main .pgtab').forEach(b => b.onclick = () => { PGT[m] = +b.dataset.i; renderPg(m); });
+}
 MODS.ENTREPRISES = {label: 'Entreprises', noSteps: true, name: r => r.nom, show: [], fields: []};
 IC.ENTREPRISES = ic('<path d="M3 21V7l8-4v18"/><path d="M11 21V11l10 4v6"/><path d="M3 21h18"/><path d="M7 9v.01M7 13v.01M7 17v.01"/><path d="M15 17v.01M18 18v.01"/>');
 const ENT = {q: '', view: null, edit: null, pu: false, nr: false, pb: false, pd: null, rc: {}};
