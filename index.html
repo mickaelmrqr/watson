@@ -1641,10 +1641,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.110</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.111</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.110</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.111</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2006,7 +2006,7 @@ const dossName = (m, r) => { try { return String((m === 'SECURITY' ? MODS[m].tit
 function homeTile(m){
   const r = cache[m], ic = IC[m];
   const head = `<div class="hth"><span class="mi">${ic}</span><b>${MODS[m].label}</b>${alN(m, r) ? `<span class="hbub">${alN(m, r)}</span>` : ''}</div>`;
-  if (m === 'ENTREPRISES' && r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${r.length}<small>entreprise${r.length > 1 ? 's' : ''}</small></div><div class="hcs"><span class="hc ok">Nombre de PU Reg aujourd’hui : <b>${entToday(r)}</b></span>${entNR(r) ? `<span class="hc w">PU Reg non affectés : <b>${entNR(r)}</b></span>` : ''}</div></div>`;
+  if (m === 'ENTREPRISES' && r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn">${r.length}<small>entreprise${r.length > 1 ? 's' : ''}</small></div><div class="hcs"><span class="hc ok">PU Reg auj : <b>${entToday(r)}</b></span>${entNR(r) ? `<span class="hc w">PU Reg non affectés : <b>${entNR(r)}</b></span>` : ''}</div></div>`;
   if (!r) return `<div class="ht" data-m="${m}" tabindex="0" role="button">${head}<div class="htn"><span class="d3s"><i></i><i></i><i></i></span></div></div>`;
   const today = todayIso(), ch = [], lists = [];
   const add = (n, label, cls = '') => { if (n) ch.push(`<span class="hc ${cls}"><b>${n}</b>${label}</span>`); };
