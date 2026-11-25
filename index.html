@@ -212,7 +212,8 @@ html.pulse{animation:pw 3.4s ease-in-out infinite}
 .dots i{width:11px;height:11px;border-radius:50%;background:#fff;opacity:.9;animation:dj 1s ease-in-out infinite}
 .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
 @keyframes shim{from{background-position:200% 0}to{background-position:-200% 0}}
-.card.sync:after{content:"";position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;background:linear-gradient(105deg,rgba(130,136,150,.10) 20%,rgba(160,166,180,.55) 40%,rgba(130,136,150,.10) 60%);background-size:250% 100%;animation:shim 1.5s linear infinite}
+.card.sync:after{content:"";position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;background:rgba(150,156,172,.5);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='32'%3E%3Crect x='1' y='1' width='38' height='14' rx='3'/%3E%3Crect x='21' y='17' width='38' height='14' rx='3'/%3E%3Crect x='-19' y='17' width='38' height='14' rx='3'/%3E%3C/svg%3E") 0 0/40px 32px repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='32'%3E%3Crect x='1' y='1' width='38' height='14' rx='3'/%3E%3Crect x='21' y='17' width='38' height='14' rx='3'/%3E%3Crect x='-19' y='17' width='38' height='14' rx='3'/%3E%3C/svg%3E") 0 0/40px 32px repeat;animation:brk 1.9s ease-out infinite}
+@keyframes brk{0%{clip-path:circle(0% at 50% 50%);opacity:1}72%{clip-path:circle(78% at 50% 50%);opacity:1}100%{clip-path:circle(78% at 50% 50%);opacity:0}}
 @keyframes dj2{0%,70%,100%{transform:translateY(0);opacity:.55}35%{transform:translateY(-5px);opacity:1}}
 .d3s{display:inline-flex;gap:3px;align-items:center;height:13px;vertical-align:middle}.d3s i{width:4px;height:4px;border-radius:50%;background:var(--mut);animation:dj2 .9s ease-in-out infinite}.d3s i:nth-child(2){animation-delay:.15s}.d3s i:nth-child(3){animation-delay:.3s}
 @keyframes dj{0%,70%,100%{transform:translateY(0);opacity:.55}35%{transform:translateY(-9px);opacity:1}}
@@ -377,6 +378,7 @@ tr:hover td{background:var(--hov)}
 .ico.dng,.ico.dng:hover,.ico.dng:focus,.modal .ico.warn[title="Supprimer"],.modal .ico.warn[title="Supprimer"]:hover{background:transparent!important;border:0!important;border-color:transparent!important;box-shadow:none!important;color:#ff1a1a!important}
 .sug button.hsx .st{flex:0 0 36%}.sx .sxl.sxad{flex-wrap:nowrap;justify-content:space-between}.sx .sxad .sxa{flex:1;min-width:0;font-size:13px;color:var(--ink)}.sx .sxrt{font:700 13px var(--body);color:var(--ink)}.sxcode{font-weight:800;font-size:15px;color:var(--hi);letter-spacing:.4px}
 @media (max-width:760px){.sx{flex-basis:100%;border-left:0!important;padding-left:46px!important}.sug button.hsx .st{flex:1 1 auto}}
+.sxsep{display:flex;align-items:center;gap:10px;margin:10px 6px 4px;color:var(--mut);font:700 11px var(--body);text-transform:uppercase;letter-spacing:.08em}.sxsep:before,.sxsep:after{content:"";flex:1;height:1px;background:var(--line)}.sxsep:before{flex:0 0 18px}
 .sug button:hover,.sug button.hl{background:rgba(58,140,255,.2)}
 .sug .si{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--bg);color:var(--blue);flex:none}
 .sug .st{flex:1;min-width:0}.sug .st b{display:block;font:700 var(--fs) var(--disp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1716,10 +1718,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.154</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.155</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.154</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.155</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2539,6 +2541,14 @@ function sxHtml(x){
   rows = rows.filter(Boolean);
   return rows.length ? '<span class="sx">' + rows.join('') + '</span>' : '';
 }
+function sxSep(){
+  try {
+    var i = sItems.findIndex(function (x) { return x && x.kind === 'hist' && !x.alive; });
+    if (i < 0) return;
+    var b = document.querySelector('#sug button[data-i="' + i + '"]');
+    if (b) b.insertAdjacentHTML('beforebegin', '<div class="sxsep"><span>Supprimés</span></div>');
+  } catch (e) {}
+}
 function sxAd(a, nom, ent){
   if (!a) return '';
   return '<span class="sxl sxad"><span class="sxa">' + esc(a) + '</span><span class="adbs"><span role="button" class="ico sm adb" data-gm="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a) + '" title="Ouvrir dans Google Maps" aria-label="Ouvrir dans Google Maps">' + IC.CARTE + '</span><span role="button" tabindex="0" class="ico sm mapb adb" data-mapa="' + esc(a) + '" data-mapg="" data-mape="' + esc(ent || '') + '" data-mapn="' + esc(nom || '') + '" title="Voir sur la carte" aria-label="Voir sur la carte">' + IC.PIN + '</span></span></span>';
@@ -2565,7 +2575,7 @@ document.addEventListener('click', function (e) {
   var done = function () { c.classList.add('ok'); setTimeout(function () { c.classList.remove('ok'); }, 1200); };
   try { navigator.clipboard.writeText(c.getAttribute('data-cp')).then(done, done); } catch (_) {}
 }, true);
-function drawSug(items, loading, hint){ try { return drawSug0(items, loading, hint); } finally { sxDecorate(); } }
+function drawSug(items, loading, hint){ var dl = function (x) { return x && x.kind === 'hist' && !x.alive; }; items = (items || []).filter(function (x) { return !dl(x); }).concat((items || []).filter(dl)); try { return drawSug0(items, loading, hint); } finally { sxDecorate(); sxSep(); } }
 function drawSug0(items, loading, hint){
   sItems = items; sHl = -1; const box = $('#sug');
   box.innerHTML = items.length ? items.map((x, i) => `<button data-i="${i}"><span class="si">${IC[x.module]}</span><span class="st"><b>${esc(x.title || '—')}</b><small>${(MODS[x.module] || {}).label || x.module}${x.sub ? ' · ' + esc(x.kind === 'hist' ? (HLAB[x.sub] || x.sub) : x.sub) : ''}${x.archive ? ' · archivé' : ''}</small></span>${snipHtml(x.snip || (x.kind === 'hist' ? null : localSnip(x, sQ)), sQ)}${x.kind === 'hist' ? `<span class="hs" title="Trouvé dans l'historique">${IC_HIST}${x.alive ? 'Historique' : 'Supprimé'}</span>` : ''}</button>`).join('') + (loading ? '<div class="none"><span class="srl" role="status" aria-label="Recherche en cours"><i></i><i></i><i></i></span></div>' : '')
