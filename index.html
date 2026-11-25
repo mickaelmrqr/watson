@@ -585,6 +585,8 @@ html[data-theme=light] .cbox.no .ct b{color:#C62828}
 .cmb{margin:14px 0 4px;border:1px solid var(--line);border-radius:14px;background:var(--bg);padding:12px 14px}
 .cmbh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;font:700 var(--fs) var(--disp)}
 .cmi.cmn{flex-direction:column;align-items:stretch}.cmn textarea{resize:vertical;min-height:84px}.cma{display:flex;justify-content:flex-end;gap:8px}
+#verBtn{cursor:pointer;transition:background .18s,border-color .18s}#verBtn:hover{background:rgba(255,90,42,.28);border-color:rgba(255,90,42,.9)}
+#mAbout .sheet{max-width:340px}.abt{text-align:center;padding:8px 4px 14px}.abt img{display:block;width:128px;height:128px;margin:0 auto 12px;object-fit:contain}.abt h3{font:700 26px/1.1 var(--disp);letter-spacing:1.5px;margin:0 0 8px}.abt .abv{display:inline-block;font:500 13px var(--disp);letter-spacing:.4px;color:#ffb8a0;border:1px solid rgba(255,90,42,.55);background:rgba(255,90,42,.12);border-radius:8px;padding:2px 10px}.abt .abd{color:var(--mut);font-size:13px;margin:10px 0 18px}.abt p{margin:0 0 8px}.abt a.abm{color:#6db3ff}.abt a.abm:hover{text-decoration:underline}
 .epbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:8px 0 6px}
 .epd{display:flex;gap:4px;flex-wrap:wrap}.epd button{border:1px solid var(--line);background:var(--raised);color:var(--ink);border-radius:999px;padding:3px 11px;font-size:var(--fs);cursor:pointer}
 .epd button.on{background:var(--orange);border-color:var(--orange);color:#fff}
@@ -1641,16 +1643,17 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver">v4.11.117</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.118</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.117</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.118</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
 <div class="modal" id="mSet"><div class="sheet xl" id="sSet"></div></div>
 <div class="modal" id="mAdm"><div class="sheet xl" id="sAdm"></div></div>
 <div class="modal" id="mErr"><div class="sheet" id="sErr"></div></div>
+<div class="modal" id="mAbout"><div class="sheet" id="sAbout"></div></div>
 <div class="modal" id="mLib"><div class="sheet wide" id="sLib"></div></div>
 <div class="modal" id="mEnt"><div class="sheet xw" id="sEnt"></div></div>
 <div class="modal" id="mAbs"><div class="sheet" id="sAbs"></div></div>
@@ -1858,6 +1861,17 @@ let SERR = [];
 const decEnt = s => { const t = document.createElement('textarea'); t.innerHTML = String(s || ''); return t.value; };
 const errText = () => SERR.map(x => fdate(x.t, true) + ' · ' + (x.act || 'action inconnue') + (x.pg ? ' · ' + x.pg : '') + (x.par ? '\n' + x.par : '') + '\n' + x.msg).join('\n\n');
 function closeErr(){ $('#mErr').classList.remove('on'); }
+const APP_DATE = '25 novembre 2026';
+function closeAbout(){ $('#mAbout').classList.remove('on'); }
+function showAbout(){
+  const ver = (($('footer .ver') || {}).textContent || '').trim();
+  $('#sAbout').innerHTML = `<div class="abt"><img src="icon-512.png" alt="Logo Watson" width="128" height="128"><h3>WATSON</h3><div class="abv">${esc(ver)}</div><div class="abd">Dernière mise à jour : ${esc(APP_DATE)}</div><p>Application créée par Mickael</p><a class="abm" href="mailto:${ADMIN_MAIL}?subject=Watson">Contact</a></div><div class="cma"><button class="s" id="abC">Fermer</button></div>`;
+  $('#abC').onclick = closeAbout;
+  $('#mAbout').classList.add('on');
+}
+$('#mAbout').addEventListener('mousedown', e => { if (e.target.id === 'mAbout') closeAbout(); });
+$('#verBtn').addEventListener('click', showAbout);
+$('#verBtn').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showAbout(); } });
 function showErr(){
   if (!SERR.length) return;
   const own = String(ME.email).toLowerCase() === ADMIN_MAIL;
@@ -2364,6 +2378,7 @@ function drawBand(){
 $('#mBand').addEventListener('mousedown', e => { if (e.target.id === 'mBand') closePop(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') {
   if ($('#mAsk').classList.contains('on') && ask.cancel) return ask.cancel();
+  if ($('#mAbout').classList.contains('on')) return closeAbout();
   if ($('#mErr').classList.contains('on')) return closeErr();
   if ($('#mMsg').classList.contains('on')) return closeMsg();
   if ($('#mLib').classList.contains('on')) return LIB.edit ? null : closeLib();
