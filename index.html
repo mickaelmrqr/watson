@@ -1643,10 +1643,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.123</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.124</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.123</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.124</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -3659,7 +3659,7 @@ function entPuData(c){
 function entPuBanner(){
   const el = $('#epu'); if (!el) return;
   const c = entPuDay(), isT = c === JK[new Date().getDay()], {groups, tot} = entPuData(c);
-  const card = ([t, a]) => `<details class="epc${t === 'Non affectés' ? ' nr' : ''}" data-rk="${esc(t)}" ${ENT.rc[t] ? '' : 'open'}><summary><span class="chv"></span><span>${esc(t)}</span><small>${a.length}</small></summary><div class="epcl">${a.map(x => `<button data-id="${esc(x.id)}">${x.h ? `<b>${x.h}</b>` : ''}<span>${esc(x.nom)}</span></button>`).join('')}</div></details>`;
+  const card = ([t, a]) => `<details class="epc${t === 'Non affectés' ? ' nr' : ''}" data-rk="${esc(t)}" ${ENT.rc[t] === false ? 'open' : ''}><summary><span class="chv"></span><span>${esc(t)}</span><small>${a.length}</small></summary><div class="epcl">${a.map(x => `<button data-id="${esc(x.id)}">${x.h ? `<b>${x.h}</b>` : ''}<span>${esc(x.nom)}</span></button>`).join('')}</div></details>`;
   el.innerHTML = `<details class="epu" data-main="1" ${ENT.pb ? 'open' : ''}><summary><span class="chv"></span>PU réguliers ${isT ? 'du jour' : 'du ' + JN[c]} <small>${JN[c]}${isT ? '' : ' ' + entPuDate(c).toLocaleDateString('fr-FR', {day: '2-digit', month: '2-digit'})} · ${tot}</small></summary>
     <div class="epbar"><div class="epd">${JOURS.map(([k, l]) => `<button data-pd="${k}" class="${k === c ? 'on' : ''}">${l}</button>`).join('')}</div>${tot ? `<button class="s" data-pp="1">${IC.print}Imprimer</button>` : ''}</div>
     ${tot ? `<div class="epg">${groups.map(card).join('')}</div>` : `<div class="m" style="margin:6px 0 0">Aucun PU régulier ${isT ? 'aujourd’hui' : 'ce jour-là'}.</div>`}</details>`;
