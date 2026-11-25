@@ -380,6 +380,14 @@ tr:hover td{background:var(--hov)}
 @media (max-width:760px){.sx{flex-basis:100%;border-left:0!important;padding-left:46px!important}.sug button.hsx .st{flex:1 1 auto}}
 .sxsep{display:flex;align-items:center;gap:10px;margin:10px 6px 4px;color:var(--mut);font:700 11px var(--body);text-transform:uppercase;letter-spacing:.08em}.sxsep:before,.sxsep:after{content:"";flex:1;height:1px;background:var(--line)}.sxsep:before{flex:0 0 18px}
 .dsp.cct{grid-template-rows:auto 1fr}.dsp.cct>.dspl{grid-column:1;grid-row:1}.dsp.cct>#xBlocks{display:contents}.cctp{grid-column:1;grid-row:2;min-width:0}.cctc{grid-column:2;grid-row:1/span 2;min-width:0}.cctc .cmb{margin:14px 0 0}.cctc .cml{max-height:60vh}@media(max-width:760px){.cctp,.cctc{grid-column:1;grid-row:auto}}
+#nav .mod[data-m="_home"],.mod[data-m="_home"],.ht[data-m="_home"]{--mc:128,138,158!important}
+.mod[data-m="SPARK"],.ht[data-m="SPARK"],.pg[data-m="SPARK"]{--mc:150,104,240!important}
+.mod[data-m="DOM"],.ht[data-m="DOM"],.pg[data-m="DOM"]{--mc:34,176,112!important}
+.mod[data-m="CARTE"],.pg[data-m="CARTE"],.ht[data-m="CARTE"]{--mc:30,200,190!important}
+.mod[data-m="PR"],.pg[data-m="PR"],.ht[data-m="PR"]{--mc:22,110,64!important}
+.mod[data-m="DEBRIEF"],.pg[data-m="DEBRIEF"],.ht[data-m="DEBRIEF"]{--mc:255,138,31!important}
+.mod[data-m="LIBRARY"],.pg[data-m="LIBRARY"],.ht[data-m="LIBRARY"]{--mc:230,100,165!important}
+#seg .mod b,#seg .mod.on b{font-weight:400!important;font-size:calc(var(--fs)*.92)}#seg .mod:hover b{font-weight:600!important}
 .sug button:hover,.sug button.hl{background:rgba(58,140,255,.2)}
 .sug .si{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--bg);color:var(--blue);flex:none}
 .sug .st{flex:1;min-width:0}.sug .st b{display:block;font:700 var(--fs) var(--disp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1719,10 +1727,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.157</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.158</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.157</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.158</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2074,8 +2082,8 @@ function buildNav(){
   const gtile = g => { const its = g.items.filter(m => m === 'CCTV+' ? (order.includes('CCTV') && ME.rights.CCTV === 'admin') : order.includes(m)); if (!its.length || (g.id === 'lsr' && !its.includes('SECURITY'))) return ''; its.forEach(m => inGrp.add(m)); return `<div class="gw" data-g="${g.id}"><button class="mod gb" data-g="${g.id}" aria-haspopup="true" aria-expanded="false"><span class="mi">${g.icon}</span><span><b>${g.label}</b><em class="gs"></em></span><i class="chv" aria-hidden="true"></i></button><div class="gm">${its.map(m => m === 'CCTV+' ? `<button class="mod gi" data-m="CCTV" data-new="1"><span class="mi">${IC.plus}</span><b>+ CCTV</b></button>` : `<button class="mod gi" data-m="${m}"><span class="mi">${IC[m]}</span><b>${esc(lbl(m))}</b>${PGS[m] ? '' : `<small id="cnt_${m}"></small>`}</button>`).join('')}</div></div>`; };
   const gh = '';
   const rest = (() => { const out = []; let done = false; const plus = `<button class="mod" data-m="CCTV" data-new="1" title="Faire une demande de CCTV" aria-label="Faire une demande de CCTV"><span class="mi">${IC.CCTVplus}</span><span><b>CCTV</b></span></button>`; order.forEach(m => { if (m === 'SECURITY' || m === 'CCTV') { if (done) return; done = true; if (lsrOk()) out.push(`<button class="mod" data-m="LSR"><span class="mi">${IC.CCTV}</span><span><b>LSR</b></span></button>`); if (!lsrOk()) out.push(plus); return; } out.push(tile(m)); }); if (!done && !lsrOk()) out.push(plus); return out.join(''); })();
-  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${gh}${rest}</div>`;
-  $('#bAdm').classList.toggle('hide', !isAdmin()); $('#bLib').innerHTML = IC.LIBRARY; $('#bLib').classList.toggle('hide', !mods.includes('LIBRARY'));
+  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${gh}${rest}${mods.includes('LIBRARY') ? '<button class="mod" data-m="LIBRARY"><span class="mi">' + IC.LIBRARY + '</span><span><b>Bibliothèque</b></span></button>' : ''}</div>`;
+  $('#bAdm').classList.toggle('hide', !isAdmin()); $('#bLib').innerHTML = IC.LIBRARY; $('#bLib').classList.add('hide');
   $('#seg').onclick = e => {
     const gb = e.target.closest('.gb');
     if (gb) { const w = gb.parentElement, was = w.classList.contains('open'); closeGm(); if (!was) { w.classList.add('open'); gb.setAttribute('aria-expanded', 'true'); } return; }
@@ -2280,7 +2288,7 @@ function frameMain(label){
   const ab = w.querySelector('.abh .abr');
   ['#eXls', '#eNew'].forEach(s => { const b = w.querySelector(s); if (b) { b.classList.remove('p'); b.classList.add('s'); ab.appendChild(b); } });
 }
-{ const _re = renderEnt; renderEnt = function () { const r = _re.apply(this, arguments); frameMain('Pros'); return r; }; }
+{ const _re = renderEnt; renderEnt = function () { const r = _re.apply(this, arguments); frameMain('Entreprises'); return r; }; }
 { const _dc = drawCards; drawCards = function () {
     const prev = new Set(), prevSync = new Set(); let hadTmp = false;
     document.querySelectorAll('.card[data-id]').forEach(c => { prev.add(c.dataset.id); if (c.classList.contains('sync')) prevSync.add(c.dataset.id); if (c.classList.contains('tmpc')) hadTmp = true; });
@@ -2332,7 +2340,7 @@ async function reloadAll(){
 $('#bRef').onclick = () => { try { sessionStorage.setItem('wback', JSON.stringify({m: cur, a: showArch})); } catch (e) {} location.reload(); };
 
 // ------------------------------------------------------------ Liste
-async function openMod(m){ if (m === 'LIBRARY') { renderLib(); return; } if ($('#mBib') && $('#mBib').classList.contains('on')) bibClose(); if (m === 'LSR') m = ME.rights.SECURITY ? 'SECURITY' : 'CCTV'; lsrPage = false; if ($('#bLib')) $('#bLib').classList.toggle('on', m === 'LIBRARY');
+async function openMod(m){ if ($('#mBib') && $('#mBib').classList.contains('on')) bibClose(); if (m === 'LSR') m = ME.rights.SECURITY ? 'SECURITY' : 'CCTV'; lsrPage = false; if ($('#bLib')) $('#bLib').classList.toggle('on', m === 'LIBRARY');
   cur = m; closePop();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === ((m === 'SECURITY' || m === 'CCTV') && lsrOk() ? 'LSR' : m) && !b.dataset.new));
   moveInd();
@@ -3711,7 +3719,7 @@ IC.LIBRARY = ic('<rect x="3" y="4" width="4" height="16" rx="1"/><path d="M3 8h4
 IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
 const PGS = {
   CARTE: {label: 'Carte', tabs: null},
-  PR: {label: 'PR', tabs: null},
+  PR: {label: 'Points relais', tabs: null},
   DEBRIEF: {label: 'Debrief', tabs: ['Analyse', 'Suivi', 'Perf dialog']}
 };
 const PGT = {};
@@ -4064,7 +4072,7 @@ function prPrint() {
   });
   printHtml('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Points relais</title><style>@page{size:A4;margin:8mm}*{box-sizing:border-box}body{margin:0;font:11px Arial,sans-serif;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}.pg{page-break-after:always;height:279mm}.pg:last-child{page-break-after:auto}h1{font-size:14px;margin:0 0 3mm}h1 small{font-weight:400;color:#444}.gr{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,1fr);gap:3mm;height:261mm}.b{border:1px solid #000;border-radius:2mm;padding:3mm;overflow:hidden;display:flex;flex-direction:column}.n{font-size:18px;line-height:1.15}.a{margin-top:2mm;font-size:15px;line-height:1.25}.i{margin-top:2mm;font-style:italic;font-size:12px}.k{margin-top:auto;font-size:12px}.c{margin-top:1mm}.c svg{display:block}</style></head><body>' + h + '</body></html>');
 }
-MODS.ENTREPRISES = {label: 'Pros', noSteps: true, name: r => r.nom, show: [], fields: []};
+MODS.ENTREPRISES = {label: 'Entreprises', noSteps: true, name: r => r.nom, show: [], fields: []};
 IC.ENTREPRISES = ic('<path d="M3 21V7l8-4v18"/><path d="M11 21V11l10 4v6"/><path d="M3 21h18"/><path d="M7 9v.01M7 13v.01M7 17v.01"/><path d="M15 17v.01M18 18v.01"/>');
 const ENT = {q: '', view: null, edit: null, pu: false, nr: false, pb: false, pd: null, rc: {}};
 const entRows = () => cache.ENTREPRISES || [];
@@ -4692,12 +4700,12 @@ function bibClose(){
 function renderLib(){
   if (cur !== 'LIBRARY') bibPrev = cur;
   cur = 'LIBRARY'; closePop(); closeDet();
-  $('#sBib').innerHTML = '<button class="ico sm" id="bibX" title="Fermer" aria-label="Fermer">' + IC.close + '</button><div class="abh"><h3>Bibliothèque</h3></div>' + `<div class="lbar"><div class="lsearch">${IC.search}<input id="lq" placeholder="Rechercher un titre, un texte, un mot-clé, un fichier…" autocomplete="off" value="${esc(LIB.q)}" aria-label="Rechercher dans la bibliothèque"></div><span style="flex:1"></span>${canWrite() ? `<button class="p" id="lNew">${IC.plus}Nouveau</button>` : ''}</div>
+  $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="lq" placeholder="Rechercher un titre, un texte, un mot-clé, un fichier…" autocomplete="off" value="${esc(LIB.q)}" aria-label="Rechercher dans la bibliothèque"></div><span style="flex:1"></span>${canWrite() ? `<button class="p" id="lNew">${IC.plus}Nouveau</button>` : ''}</div>
     <details class="ltagsw" id="ltw"><summary><span class="chv"></span>${IC.tag.replace('class="i"', 'class="i" width="15" height="15"')}Tags <small id="ltn"></small></summary><div class="ltags" id="ltags"></div></details><div class="lgrid" id="lgrid"></div>`;
   $('#lq').oninput = e => { LIB.q = e.target.value; libDraw(); };
   if ($('#lNew')) $('#lNew').onclick = () => openLibEdit(null);
   if ($('#lNew')) $('#lNew').classList.replace('p', 's');
-  $('#bibX').onclick = bibClose; $('#mBib').classList.add('on'); if ($('#bLib')) $('#bLib').classList.add('on');
+  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === 'LIBRARY')); frameMain('Bibliothèque');
   $('#ltags').onclick = e => { const b = e.target.closest('[data-t]'); if (!b) return; const t = b.dataset.t; LIB.tags = LIB.tags.includes(t) ? LIB.tags.filter(x => x !== t) : LIB.tags.concat(t); libDraw(); };
   $('#lgrid').onclick = e => { const c = e.target.closest('.card'); if (c && !c.classList.contains('tmpc')) openLib(c.dataset.id); };
   libDraw();
