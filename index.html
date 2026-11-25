@@ -206,11 +206,13 @@ html.pulse{animation:pw 3.4s ease-in-out infinite}
 .urgb svg{width:24px;height:24px;stroke-width:2.2;filter:drop-shadow(0 0 calc(2px + 5px * var(--pw,.6)) rgba(255,60,60,.95)) drop-shadow(0 0 calc(5px + 8px * var(--pw,.6)) rgba(255,60,60,.55))}
 /* Mise à jour en cours : case floutée + 3 points ; puis vague verte du centre vers l'extérieur */
 .card>*{transition:filter .25s,opacity .25s}
-.card.sync.tmpc{pointer-events:none}
+.card.sync{pointer-events:none}
 .card.sync>*:not(.dots){filter:blur(3.5px);opacity:.55}
 .dots{pointer-events:none;position:absolute!important;inset:0;z-index:3!important;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:inherit;background:radial-gradient(ellipse at 50% 50%,rgba(6,8,12,.72) 0,rgba(6,8,12,.5) 35%,rgba(6,8,12,.16) 75%,transparent 100%)}
 .dots i{width:11px;height:11px;border-radius:50%;background:#fff;opacity:.9;animation:dj 1s ease-in-out infinite}
 .dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes shim{from{background-position:200% 0}to{background-position:-200% 0}}
+.card.sync:after{content:"";position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;background:linear-gradient(105deg,rgba(130,136,150,.10) 20%,rgba(160,166,180,.55) 40%,rgba(130,136,150,.10) 60%);background-size:250% 100%;animation:shim 1.5s linear infinite}
 @keyframes dj2{0%,70%,100%{transform:translateY(0);opacity:.55}35%{transform:translateY(-5px);opacity:1}}
 .d3s{display:inline-flex;gap:3px;align-items:center;height:13px;vertical-align:middle}.d3s i{width:4px;height:4px;border-radius:50%;background:var(--mut);animation:dj2 .9s ease-in-out infinite}.d3s i:nth-child(2){animation-delay:.15s}.d3s i:nth-child(3){animation-delay:.3s}
 @keyframes dj{0%,70%,100%{transform:translateY(0);opacity:.55}35%{transform:translateY(-9px);opacity:1}}
@@ -774,8 +776,10 @@ html[data-theme=light] .dt3.warn b{color:#B45309}
 .card.al-warn{border-color:rgba(255,159,26,.55);animation:cflasho 1.1s ease-in-out infinite}.card.al-warn:before{background:#ff9f1a;animation:oflash 1.1s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){.dt3.warn,.card.al-late,.card.al-late:before,.card.al-warn,.card.al-warn:before{animation:none}}
 .dstat .dr{display:flex;align-items:center;gap:10px;flex:none;margin-left:auto}.dstat .dr .tag{margin:0}
-@keyframes goneA{to{opacity:0;filter:blur(10px)}}
-.gone{animation:goneA 3s ease forwards!important;animation-delay:var(--gd,0s)!important;pointer-events:none!important}
+@keyframes goneA{0%{opacity:1}60%{opacity:.85}100%{opacity:0;transform:scale(.96)}}
+@keyframes wvin{from{transform:scale(2.4);opacity:0}25%{opacity:1}to{transform:scale(0);opacity:1}}
+.gone{animation:goneA 1.6s ease forwards!important;animation-delay:var(--gd,0s)!important;pointer-events:none!important}
+.card.gone:after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at 50% 50%,rgba(255,60,60,0) 35%,rgba(255,60,60,.55) 55%,rgba(255,60,60,0) 70%);animation:wvin 1.6s ease-in forwards;animation-delay:var(--gd,0s)}
 .card.gone:before{animation:none!important}
 :root{--fs-ct:calc(var(--fs)*1.32)}
 .name{font-size:var(--fs-ct)}.dcard .name{font-size:var(--fs-ct)}.dcc .dtl{font-size:var(--fs-ct)}
@@ -825,7 +829,7 @@ html[data-theme=light] .cbox.no{background:linear-gradient(135deg,rgba(255,70,70
 .ref{text-decoration:none}
 .ref:hover{color:#9cc3ff;border-color:transparent;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:currentColor}
 html[data-theme=light] .ref:hover{color:#1F5FC9}
-.card.sync>*:not(.dots){filter:none;opacity:1}.card.sync.tmpc{opacity:.78}.card .dots,.trow .dots,#sDet>.dots{display:none!important}
+.card.sync>*:not(.dots){filter:blur(2.5px);opacity:.6}.card.sync.tmpc{opacity:.85}.card .dots,.trow .dots,#sDet>.dots{display:none!important}
 .trow.sync>*:not(.dots){filter:none;opacity:1}
 #sDet.syncing>*:not(.dots):not(.sh){filter:none;opacity:1;pointer-events:auto}
 .cmr.sync{opacity:.75;filter:none}
@@ -1690,10 +1694,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.149</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.150</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.149</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.150</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1799,7 +1803,7 @@ const canHist = m => !!ME && (ME.rights[m] === 'admin' || ME.rights['HIST_' + m]
 const fdateD = v => isoD(v).split('-').reverse().join('/');
 const todayISO = () => new Date().toLocaleDateString('sv-SE', {timeZone:'Europe/Paris'});
 // Suppression : fondu + flou sur 3 s (l'animation reprend au bon moment si l'écran est redessiné)
-const GONE_MS = 3000;
+const GONE_MS = 1600;
 function fadeOut(o, done){ o._gone = Date.now(); setTimeout(() => { if (o._gone) done(); }, GONE_MS + 60); }
 const gcl = o => o && o._gone ? ' gone' : '';
 const gd = o => o && o._gone ? '--gd:-' + Math.min(GONE_MS, Date.now() - o._gone) + 'ms;' : '';
@@ -2252,6 +2256,12 @@ function frameMain(label){
   ['#eXls', '#eNew'].forEach(s => { const b = w.querySelector(s); if (b) { b.classList.remove('p'); b.classList.add('s'); ab.appendChild(b); } });
 }
 { const _re = renderEnt; renderEnt = function () { const r = _re.apply(this, arguments); frameMain('Pros'); return r; }; }
+{ const _dc = drawCards; drawCards = function () {
+    const prev = new Set(), prevSync = new Set(); let hadTmp = false;
+    document.querySelectorAll('.card[data-id]').forEach(c => { prev.add(c.dataset.id); if (c.classList.contains('sync')) prevSync.add(c.dataset.id); if (c.classList.contains('tmpc')) hadTmp = true; });
+    const r = _dc.apply(this, arguments);
+    document.querySelectorAll('.card[data-id]').forEach(c => { const id = c.dataset.id; if (c.classList.contains('sync') || c.classList.contains('gone')) return; if (prevSync.has(id) || (hadTmp && !prev.has(id))) waveCard(id); });
+    return r; }; }
 function renderHome(){
   cur = '_home'; closePop(); closeDet();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === '_home'));
@@ -2796,9 +2806,8 @@ async function delRec(r){
   if (!ok) return;
   if (direct) {
     const k = key(), before = (cache[k] || rows).slice(); closeDet();
-    fadeOut(r, () => { cache[k] = (cache[k] || []).filter(x => x.id !== r.id); if (key() === k) { rows = cache[k]; drawCards(); } });
-    drawCards();
-    enqueue(() => api('delete_request', {module:m, id:r.id}), () => { r._gone = 0; cache[k] = before; if (key() === k) { rows = before; drawCards(); } });
+    syncOn(r); drawCards();
+    enqueue(async () => { await api('delete_request', {module:m, id:r.id}); syncOff(r); fadeOut(r, () => { cache[k] = (cache[k] || []).filter(x => x.id !== r.id); if (key() === k) { rows = cache[k]; drawCards(); } }); drawCards(); }, () => { syncOff(r); r._gone = 0; cache[k] = before; if (key() === k) { rows = before; drawCards(); } });
   } else {
     r.suppr_par = ME.email; syncOn(r); drawCards(); if (det && det.r === r) renderDet();
     enqueue(async () => { await api('delete_request', {module:m, id:r.id}); syncOff(r); if (key() === m || key() === m + '_a') drawCards(); if (det && det.r === r) renderDet(); },
