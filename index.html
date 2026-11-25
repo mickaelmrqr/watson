@@ -1808,10 +1808,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.179</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.180</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.179</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.180</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2189,7 +2189,7 @@ function alN(m, r){
   if (!r || m === 'DOCUMENTS') return 0;
   if (m === 'CCTV') return ME.rights.CCTV === 'admin' ? r.filter(x => x.etape === 'A_FAIRE').length : 0;
   if (m === 'DOM') return r.map(domAlert).filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late' || a[k] === 'warn')).length;
-  return r.filter(x => kindOfM(m, x) !== 'ok' && (m === 'AWB' ? x.etape === 'A_FAIRE' : (x.urgent === true || (m === 'SPARK' && x.etape === 'A_FAIRE')))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
+  return r.filter(x => kindOfM(m, x) !== 'ok' && (m === 'AWB' ? x.etape === 'A_FAIRE' : (m === 'SPARK' && x.etape === 'A_FAIRE'))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
 }
 function drawTiles(){
   document.querySelectorAll('.mod').forEach(b => {
@@ -2203,7 +2203,7 @@ function drawTiles(){
       const al = r.map(domAlert), lt = al.filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late')).length, wn = al.filter(a => !['J1', 'J4', 'J10'].some(k => a[k] === 'late') && ['J1', 'J4', 'J10'].some(k => a[k] === 'warn')).length;
       setN(lt + wn); t.innerHTML = [lt ? `<i>${lt} en retard</i>` : '', wn ? `<i class="o">${wn} à faire aujourd'hui</i>` : ''].filter(Boolean).join(' · '); return;
     }
-    const act = r.filter(x => kindOfM(m, x) !== 'ok'), u = act.filter(x => x.urgent === true).length;
+    const act = r.filter(x => kindOfM(m, x) !== 'ok'), u = 0;
     const af = (m === 'SPARK' || m === 'AWB') ? act.filter(x => x.etape === 'A_FAIRE').length : 0;
     const nc = m === 'SECURITY' ? r.filter(scmsMissing).length : 0; setN(alN(m, r)); t.innerHTML = [u ? `<i>${u} urgent${u > 1 ? 's' : ''}</i>` : '', af ? `<i class="o">${af} à faire</i>` : '', nc ? `<i>${nc} SCMS à créer</i>` : ''].filter(Boolean).join(' · ');
   });
@@ -2309,7 +2309,7 @@ function homeTile(m){
     list('SCMS non créés', 'u', nc, x => x.waybill || '');
     list('Client à contacter', 'w', cc, x => x.waybill || '');
     shown = new Set([...nc, ...cc].map(x => x.id));
-  } else list('Urgents', 'u', r.filter(x => x.urgent === true), ref);
+  }
   if (m === 'DOM' || m === 'SECURITY') {
     const old = r.filter(x => !shown.has(x.id) && kindOfM(m, x) !== 'ok' && x.cree_le && (Date.now() - new Date(x.cree_le).getTime()) > 30 * 864e5);
     list("Plus d'un mois", 'w', old, x => 'depuis ' + Math.floor((Date.now() - new Date(x.cree_le).getTime()) / 864e5) + ' j');
@@ -2561,7 +2561,7 @@ function drawCards0(){
   const ord = {}; stepsOf(cur).forEach((x, i) => ord[x.code] = x.code === 'EN_ATTENTE' ? 50 : i);
   const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
   const out = rows.slice()
-    .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (cur === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || (b.urgent===true)-(a.urgent===true) || String(b.cree_le).localeCompare(String(a.cree_le)));
+    .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (cur === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || String(b.cree_le).localeCompare(String(a.cree_le)));
   const isHp = r => cur === 'AWB' && String(val(r, 'categorie_id')).trim().toUpperCase() === 'HP';
   const hp = out.filter(isHp), rest = hp.length ? out.filter(r => !isHp(r)) : out;
   if (hp.length) {
@@ -2695,7 +2695,7 @@ function sxHtml(x){
   var line = function (a) { a = a.filter(Boolean); return a.length ? '<span class="sxl">' + a.join('') + '</span>' : ''; };
   var stp = (ME.etapes || []).filter(function (e) { return e.module === m && e.code === c.etape; })[0];
   var etp = stp ? lab('sxe', esc(stp.libelle_etat || stp.code)) : '';
-  var urg = c.urgent === true ? lab('sxu', IC.alert + 'Urgent') : '';
+  var urg = '';
   var rows = [];
   if (m === 'PR') {
     rows.push(sxAd(c.adresse, c.nom, ''));
