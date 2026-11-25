@@ -64,7 +64,7 @@ footer #sync{font-size:var(--fs)}
 .ico.warn:hover{color:var(--orange);border-color:rgba(255,90,42,.5)}
 .ico.sm{width:38px;height:38px}
 /* ---------- Tuiles de modules */
-nav{display:flex;justify-content:center;padding:20px 16px 4px}
+nav{display:flex;justify-content:center;box-sizing:border-box;width:100%;max-width:1500px;margin:0 auto;padding:20px 22px 4px}
 .mods{display:flex;flex-wrap:wrap;gap:10px;width:100%;justify-content:center}
 .mod{flex:1 1 100px;max-width:150px;position:relative;display:flex;align-items:center;gap:10px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:10px 10px;color:var(--mut);overflow:hidden;
   transition:transform .22s var(--ease),border-color .22s,box-shadow .22s,background .22s,color .22s}
@@ -1263,7 +1263,7 @@ html[data-dense="1"] #zRng{margin:0 5px}
 html[data-dense="1"] .prow.wide{gap:5px}
 @media(max-width:700px){html[data-dense="1"] .mods{gap:5px}html[data-dense="1"] .mod{padding:6px 5px;gap:4px}html[data-dense="1"] .mod.io{padding:6px 8px}}
 @media (max-width:760px){html[data-dense="1"] .sug .sn{padding-left:37px}}
-html[data-dense="1"] main{padding:8px 14px 40px}
+html[data-dense="1"] main{padding:8px 14px 40px} html[data-dense="1"] nav{padding-left:14px;padding-right:14px}
 html[data-dense="1"] .mi,html[data-dense="1"] .ico{zoom:0.94}
 /* Densité ultra : marges, paddings, espacements */
 html[data-ultra="1"] header{gap:4px;padding:2px 11px}
@@ -1626,7 +1626,7 @@ html[data-ultra="1"] #zRng{margin:0 3px}
 html[data-ultra="1"] .prow.wide{gap:3px}
 @media(max-width:700px){html[data-ultra="1"] .mods{gap:3px}html[data-ultra="1"] .mod{padding:3px;gap:2px}html[data-ultra="1"] .mod.io{padding:3px 6px}}
 @media (max-width:760px){html[data-ultra="1"] .sug .sn{padding-left:25px}}
-html[data-ultra="1"] main{padding:4px 8px 34px}
+html[data-ultra="1"] main{padding:4px 8px 34px} html[data-ultra="1"] nav{padding-left:8px;padding-right:8px}
 html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
 /* Survol (planning des absences) : ligne + colonne, même teinte plus sombre */ .abt{--hz:rgba(0,0,0,.30);--hb:.74} html[data-theme="light"] .abt{--hz:rgba(25,35,60,.11);--hb:.89} .abt td.hcol,.abt th.hcol,.abt td.hrow,.abt th.hrow{background-image:linear-gradient(var(--hz),var(--hz))} .abt th.hcol{color:var(--ink)} .abt td.hcol .abc,.abt td.hrow .abc{filter:brightness(var(--hb))}
 #abCodes button.s.on{background:var(--c,var(--blue));border-color:var(--c,var(--blue));color:#fff}
@@ -1644,10 +1644,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.131</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.132</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.131</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.132</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
