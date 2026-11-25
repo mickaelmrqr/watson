@@ -379,6 +379,7 @@ tr:hover td{background:var(--hov)}
 .sug button.hsx .st{flex:0 0 36%}.sx .sxl.sxad{flex-wrap:nowrap;justify-content:space-between}.sx .sxad .sxa{flex:1;min-width:0;font-size:13px;color:var(--ink)}.sx .sxrt{font:700 13px var(--body);color:var(--ink)}.sxcode{font-weight:800;font-size:15px;color:var(--hi);letter-spacing:.4px}
 @media (max-width:760px){.sx{flex-basis:100%;border-left:0!important;padding-left:46px!important}.sug button.hsx .st{flex:1 1 auto}}
 .sxsep{display:flex;align-items:center;gap:10px;margin:10px 6px 4px;color:var(--mut);font:700 11px var(--body);text-transform:uppercase;letter-spacing:.08em}.sxsep:before,.sxsep:after{content:"";flex:1;height:1px;background:var(--line)}.sxsep:before{flex:0 0 18px}
+.dsp.cct{grid-template-rows:auto 1fr}.dsp.cct>.dspl{grid-column:1;grid-row:1}.dsp.cct>#xBlocks{display:contents}.cctp{grid-column:1;grid-row:2;min-width:0}.cctc{grid-column:2;grid-row:1/span 2;min-width:0}.cctc .cmb{margin:14px 0 0}.cctc .cml{max-height:60vh}@media(max-width:760px){.cctp,.cctc{grid-column:1;grid-row:auto}}
 .sug button:hover,.sug button.hl{background:rgba(58,140,255,.2)}
 .sug .si{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--bg);color:var(--blue);flex:none}
 .sug .st{flex:1;min-width:0}.sug .st b{display:block;font:700 var(--fs) var(--disp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1718,10 +1719,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.155</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.156</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.155</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.156</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2841,10 +2842,10 @@ function renderDet(){
     const dd = new Date(d), df = al.d[l], cls = al[l] || (l !== 'J1' && df > 0 ? 'now' : '');
     const sub = l === 'J1' && al.J1 ? '<em class="cc">Contacter le client</em>' + (al.J1 === 'late' ? `dépassé de ${-df} j` : '') : (al[l] === 'late' ? `dépassé de ${-df} j` : '');
     return `<div class="dt3 ${cls}"><small>${l}</small><b>${dd.toLocaleDateString('fr-FR', {weekday:'short', day:'numeric', month:'short'})}</b><span>${sub || '&nbsp;'}</span></div>`; }).join('')}</div>` : '';
-  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3>${stat ? '' : bubs}</div>${btns}</div>${stat}${sp ? '<div class="dsp"><div class="dspl">' : ''}${dates}
+  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3>${stat ? '' : bubs}</div>${btns}</div>${stat}${sp ? '<div class="dsp' + (cur === 'CCTV' ? ' cct' : '') + '"><div class="dspl">' : ''}${dates}
     ${cur === 'SECURITY' && r && !ed ? '' : `<dl class="det">${fields}${meta.filter(m => m[1]).map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>`}
     ${sp ? '' : xb}
-    ${sp ? `</div><div class="dspr">${xb}</div></div>` : ''}`;
+    ${sp ? (cur === 'CCTV' ? `</div>${xb}</div>` : `</div><div class="dspr">${xb}</div></div>`) : ''}`;
   el.classList.toggle('xw', cur !== 'DOCUMENTS' && !!r && !ed);
   el.classList.toggle('syncing', !!(r && r._sync));
   if (r && r._sync) el.insertAdjacentHTML('beforeend', '<div class="dots"><i></i><i></i><i></i></div>');
@@ -3014,7 +3015,7 @@ function extraBlocks(r, ed){
   if (cur === 'SECURITY' && r && !ed) return scmsLayout(r, cm);
   if (cur === 'SECURITY') return (r && !ed ? contactBox(r) : '') + photosBlock(r) + (r && !ed ? `<div class="dph">${IC.DOCUMENTS}<div>Document « Découverte de contenu interdit »<small style="display:block">Bientôt disponible.</small></div></div>` : '') + cm;
   if (cur === 'DOCUMENTS') return fileBox(r);
-  if (cur === 'CCTV') return photosBlock(r) + cm;
+  if (cur === 'CCTV') return r && !ed ? '<div class="cctp">' + photosBlock(r) + '</div><div class="cctc">' + cm + '</div>' : photosBlock(r) + cm;
   return cm;
 }
 function drawX(){ if (!det || !$('#xBlocks')) return; $('#xBlocks').innerHTML = extraBlocks(det.r, det.editing); bindX(); }
