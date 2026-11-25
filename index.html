@@ -234,9 +234,9 @@ html.pulse{animation:pw 3.4s ease-in-out infinite}
 #seg .mod{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:12px}
 #seg .mod .mi{background:transparent!important;color:var(--mut)}
 #seg .mod:hover{background:var(--hov)!important;transform:none}
-#seg .mod.on{background:radial-gradient(ellipse at 22% 50%,rgba(var(--mc),.30),rgba(var(--mc),.06) 72%)!important;box-shadow:0 0 22px rgba(var(--mc),.32)!important;color:var(--hi)}
+#seg .mod.on{background:transparent!important;box-shadow:none!important;border:0!important;outline:0!important;color:var(--hi)}#seg .mod.on .mi svg{filter:drop-shadow(0 0 5px rgba(var(--mc),.95)) drop-shadow(0 0 12px rgba(var(--mc),.6))}
 #seg .mod.on .mi{background:transparent!important;color:rgb(var(--mc))!important}
-#seg .mod.on b{font-weight:800;color:var(--hi)}
+#seg .mod.on b{font-weight:800;color:var(--hi);text-shadow:0 0 10px rgba(var(--mc),.85)}
 .vsel{display:flex;gap:8px;flex-wrap:wrap}.vsel .vb{opacity:.75}.vsel .vb.on{opacity:1;border-color:var(--blue);background:rgba(58,140,255,.16);color:var(--hi)}
 .hgm{display:flex;flex-direction:column;gap:14px;justify-content:flex-start;min-width:0}.hr{display:flex;min-width:0}.hr>.ht{flex:1;min-width:0}.hgm .hz{margin:0;display:flex;flex-direction:column;gap:10px}@media(max-width:900px){.hgx{grid-template-columns:1fr}}#planX{position:absolute;top:12px;right:12px;z-index:2}
 .m.ml{white-space:pre-wrap;-webkit-line-clamp:8;word-break:break-word}
@@ -363,7 +363,7 @@ tr:hover td{background:var(--hov)}
 .sug{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:40;background:var(--raised);border:1px solid var(--bd3);border-radius:14px;padding:6px;box-shadow:0 18px 44px rgba(0,0,0,.5);display:none;max-height:60vh;overflow:auto}
 .sug.on{display:block}
 .sug button{display:flex;align-items:center;gap:12px;width:100%;background:transparent;border:0;color:var(--ink);text-align:left;padding:9px 11px;border-radius:9px;font:500 var(--fs) var(--body);transition:background .15s}
-.sug .st{min-width:0}.sx{display:flex;flex-direction:column;gap:5px;margin-top:5px}.sxl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.sug .st{min-width:0}.sx{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px;justify-content:center;border-left:1px solid var(--line);padding-left:14px}.sxl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .sx .sxc{font:800 17px/1.1 var(--body);letter-spacing:.5px;padding:3px 10px;border-radius:8px;background:rgba(58,140,255,.18);color:var(--hi);border:1px solid rgba(58,140,255,.5)}
 .sx .sxa,.sx .sxr,.sx .sxd,.sx .sxe{font:500 12px var(--body);color:var(--mut)}.sx .sxd b{color:var(--hi)}
 .sx .sxr,.sx .sxe{padding:1px 8px;border-radius:999px;border:1px solid var(--line)}
@@ -373,6 +373,10 @@ tr:hover td{background:var(--hov)}
 .sx .sxk{display:inline-flex;align-items:center;gap:6px;padding:2px 4px 2px 9px;border:1px solid var(--line);border-radius:8px;font:600 12px var(--body)}.sx .sxk small{color:var(--mut);font-weight:500}
 .sx .sxcp{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;cursor:pointer;color:var(--mut)}.sx .sxcp:hover{background:var(--hov);color:var(--hi)}.sx .sxcp.ok{color:#4cd08a}.sx .sxcp svg{width:14px;height:14px}
 .sx .sxt{display:inline-flex}.sx .sxt svg{width:18px;height:18px}.sx .sxt.no{color:#ff6b6b}.sx .sxt.ok{color:#4cd08a}.sx .sxt.go{color:#ffb25c}
+.adrow{display:flex;align-items:center;justify-content:space-between;gap:10px}.adrow>:first-child{min-width:0}.adbs{display:inline-flex;gap:6px;flex:none;margin-left:6px}.adb{width:34px;height:34px;border:1px solid var(--line)!important;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;color:var(--mut);text-decoration:none;margin:0}.adb:hover{color:var(--hi);border-color:var(--blue)!important}.adb svg{width:16px;height:16px}
+.ico.dng,.ico.dng:hover,.ico.dng:focus,.modal .ico.warn[title="Supprimer"],.modal .ico.warn[title="Supprimer"]:hover{background:transparent!important;border:0!important;border-color:transparent!important;box-shadow:none!important;color:#ff1a1a!important}
+.sug button.hsx .st{flex:0 0 36%}.sx .sxl.sxad{flex-wrap:nowrap;justify-content:space-between}.sx .sxad .sxa{flex:1;min-width:0;font-size:13px;color:var(--ink)}.sx .sxrt{font:700 13px var(--body);color:var(--ink)}.sxcode{font-weight:800;font-size:15px;color:var(--hi);letter-spacing:.4px}
+@media (max-width:760px){.sx{flex-basis:100%;border-left:0!important;padding-left:46px!important}.sug button.hsx .st{flex:1 1 auto}}
 .sug button:hover,.sug button.hl{background:rgba(58,140,255,.2)}
 .sug .si{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--bg);color:var(--blue);flex:none}
 .sug .st{flex:1;min-width:0}.sug .st b{display:block;font:700 var(--fs) var(--disp);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1712,10 +1716,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.153</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.154</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.153</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.154</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2512,11 +2516,11 @@ function sxHtml(x){
   var urg = c.urgent === true ? lab('sxu', IC.alert + 'Urgent') : '';
   var rows = [];
   if (m === 'PR') {
-    rows.push(line([lab('sxc', esc(c.code_pr || ''), 'Code point relais'), c.route ? lab('sxr', 'Route ' + esc(c.route)) : '']));
-    rows.push(line([c.adresse ? lab('sxa', esc(c.adresse)) : '']));
+    rows.push(sxAd(c.adresse, c.nom, ''));
+    rows.push(line([c.route ? lab('sxrt', esc(c.route), 'Route') : '']));
   } else if (m === 'ENTREPRISES') {
     var rs = entR(c).map(function (r) { return String(r.nom || '').trim(); }).filter(Boolean);
-    rows.push(line([c.adresse ? lab('sxa', esc(c.adresse)) : ''].concat(rs.map(function (n) { return lab('sxr', esc(n), 'Route'); }))));
+    rows.push(sxAd(c.adresse, c.nom, c.id)); rows.push(line(rs.map(function (n) { return lab('sxr', esc(n), 'Route'); })));
     var cs = entC(c).filter(function (k) { return k && k.numero; });
     if (cs.length) rows.push(line(cs.map(function (k) { return '<span class="sxk"><b>' + esc(k.numero) + '</b>' + (k.commentaire ? '<small>' + esc(k.commentaire) + '</small>' : '') + '<span class="sxcp" role="button" tabindex="0" data-cp="' + esc(k.numero) + '" title="Copier le numéro de compte" aria-label="Copier le numéro de compte">' + IC.copy + '</span></span>'; })));
   } else if (m === 'DOM') {
@@ -2535,12 +2539,23 @@ function sxHtml(x){
   rows = rows.filter(Boolean);
   return rows.length ? '<span class="sx">' + rows.join('') + '</span>' : '';
 }
+function sxAd(a, nom, ent){
+  if (!a) return '';
+  return '<span class="sxl sxad"><span class="sxa">' + esc(a) + '</span><span class="adbs"><span role="button" class="ico sm adb" data-gm="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a) + '" title="Ouvrir dans Google Maps" aria-label="Ouvrir dans Google Maps">' + IC.CARTE + '</span><span role="button" tabindex="0" class="ico sm mapb adb" data-mapa="' + esc(a) + '" data-mapg="" data-mape="' + esc(ent || '') + '" data-mapn="' + esc(nom || '') + '" title="Voir sur la carte" aria-label="Voir sur la carte">' + IC.PIN + '</span></span></span>';
+}
+document.addEventListener('click', function (e) {
+  var g = e.target.closest && e.target.closest('[data-gm]');
+  if (g) { e.stopPropagation(); e.preventDefault(); window.open(g.getAttribute('data-gm'), '_blank', 'noopener'); return; }
+  if (e.target.closest && e.target.closest('#sug .mapb')) closeSearch();
+}, true);
 function sxDecorate(){
   try {
     document.querySelectorAll('#sug button[data-i]').forEach(function (b) {
       var x = sItems[+b.dataset.i], st = b.querySelector('.st');
-      if (!x || !st || st.querySelector('.sx')) return;
-      var h = sxHtml(x); if (h) st.insertAdjacentHTML('beforeend', h);
+      if (!x || !st || b.querySelector('.sx')) return;
+      var h = sxHtml(x); if (!h) return;
+      st.insertAdjacentHTML('afterend', h); b.classList.add('hsx');
+      if (x.module === 'PR') { var pc = (cache.PR || []).find(function (r) { return String(r.id) === String(x.id); }), sm = st.querySelector('small'); if (pc && sm) sm.innerHTML = 'PR · ' + (pc.code_relais ? esc(pc.code_relais) + ' · ' : '') + '<b class="sxcode">' + esc(pc.code_pr) + '</b>'; }
     });
   } catch (e) {}
 }
@@ -2733,7 +2748,7 @@ function drawHist(r, m = cur){
 
 function viewCell(x, r){
   const v = r[x.k];
-  if (x.t === 'addr') return v ? '<span class="adrv">' + esc(v) + '</span>' + mapBtn(v, r.geo, '', (MODS[cur] && MODS[cur].name) ? MODS[cur].name(r) : '') : '';
+  if (x.t === 'addr') return v ? '<span class="adrow"><span class="adrv">' + esc(v) + '</span>' + mapBtn(v, r.geo, '', (MODS[cur] && MODS[cur].name) ? MODS[cur].name(r) : '') + '</span>' : '';
   if (x.k === 'waybill' || x.k === 'pid') return v ? link(v) + `<button class="cp" data-copy="${esc(v)}" title="Copier" aria-label="Copier">${IC.copy}</button>` : '';
   if (x.t === 'bool') return v === true ? 'Oui' : 'Non';
   if (x.t === 'date') return fdateD(v);
@@ -2981,8 +2996,8 @@ function scmsLayout(r, cm){
   const hist = '';
   return `<div class="scg"><div class="scl">${wb ? `<div class="scw"><small>Waybill</small>${wb}</div>` : ''}
     <div class="sc2"><div class="dt3"><small>Découverte</small><b>${fdateD(r.date_decouverte)}</b></div><div class="dt3${scmsMissing(r) ? ' late' : ''}"><small>SCMS créé</small><b>${r.scms_le ? fdate(r.scms_le) : (scmsMissing(r) ? 'À créer' : '—')}</b></div></div>${arch}
-    <div>${photosBlock(r)}</div></div>
-    <div class="scr">${contactBox(r)}<div class="dph">${IC.DOCUMENTS}<div>Document « Découverte de contenu interdit »<small style="display:block">Bientôt disponible.</small></div></div>${cm || ''}${hist}</div></div>`;
+    <div class="dph">${IC.DOCUMENTS}<div>Document « Découverte de contenu interdit »<small style="display:block">Bientôt disponible.</small></div></div><div>${photosBlock(r)}</div></div>
+    <div class="scr">${contactBox(r)}${cm || ''}${hist}</div></div>`;
 }
 function extraBlocks(r, ed){
   const cm = CMMODS.includes(cur) && r && !ed ? cmtBlock(r) : '';
@@ -3709,7 +3724,7 @@ async function addrSearch(txt) {
 }
 const geoStr = a => JSON.stringify({lat: Math.round(a.lat * 1e6) / 1e6, lon: Math.round(a.lon * 1e6) / 1e6, cp: a.cp || '', city: a.city || '', label: a.label || ''});
 const parseGeo = s => { try { const g = typeof s === 'string' ? JSON.parse(s) : s; return g && isFinite(g.lat) && isFinite(g.lon) ? g : null; } catch (e) { return null; } };
-const mapBtn = (label, geo, ent, nom) => '<button type="button" class="ico sm mapb" data-mapa="' + esc(label) + '" data-mapg="' + esc(geo || '') + '" data-mape="' + esc(ent || '') + '" data-mapn="' + esc(nom || '') + '" title="Voir sur la carte" aria-label="Voir sur la carte">' + IC.PIN + '</button>';
+const mapBtn = (label, geo, ent, nom) => '<span class="adbs"><a class="ico sm adb" href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(label || '') + '" target="_blank" rel="noopener" title="Ouvrir dans Google Maps" aria-label="Ouvrir dans Google Maps">' + IC.CARTE + '</a><button type="button" class="ico sm mapb adb" data-mapa="' + esc(label) + '" data-mapg="' + esc(geo || '') + '" data-mape="' + esc(ent || '') + '" data-mapn="' + esc(nom || '') + '" title="Voir sur la carte" aria-label="Voir sur la carte">' + IC.PIN + '</button></span>';
 document.addEventListener('click', e => { const b = e.target.closest('[data-adcopy]'); if (!b) return; navigator.clipboard.writeText(b.dataset.adcopy).then(() => toast('Adresse copiée'), () => toast('Copie impossible')); });
 function loadLeaflet() {
   if (window.L) return Promise.resolve();
@@ -3966,7 +3981,7 @@ function prRows() {
 }
 function prCard(r) {
   return '<div class="prc"><div class="prh"><b class="prn">' + esc(r.nom || '—') + '</b>' + (prRoute(r) ? '<span class="prt">' + esc(prRoute(r)) + '</span>' : '') + '</div>'
-    + '<div class="pra">' + esc(r.adresse) + '</div>'
+    + '<div class="pra adrow"><span>' + esc(r.adresse) + '</span>' + (r.adresse ? mapBtn(r.adresse, '', '', r.nom) : '') + '</div>'
     + (r.instructions ? '<div class="pri">' + esc(r.instructions) + '</div>' : '')
     + '<div class="prk"><span>Code PR <b>' + esc(r.code_pr) + '</b></span>' + (r.code_relais ? '<span>Relais Colis <b>' + esc(r.code_relais) + '</b></span>' : '') + '</div>'
     + '<div class="prbc">' + prBc(r.code_pr, '46px', 1.8, 'px') + '</div>'
@@ -4185,7 +4200,7 @@ function entDraw(){
   if (!list.length) { $('#etab').innerHTML = `<div class="m" style="padding:18px">${entRows().length ? 'Aucune entreprise ne correspond.' : 'Aucune entreprise pour le moment.'}</div>`; return; }
   $('#etab').innerHTML = `<table class="etab"><thead><tr><th>Entreprise</th><th>Comptes</th><th>Routes</th><th>PU réguliers</th><th>Mise à jour</th></tr></thead><tbody>${list.map(r => {
     const cs = entC(r), rs = entR(r), ps = entP(r);
-    return `<tr data-id="${esc(r.id)}" tabindex="0"><td><b>${esc(r.nom)}</b><div class="m" style="margin:0">${esc(r.adresse || '')}${r.adresse ? mapBtn(r.adresse, '', r.id, r.nom) : ''}</div></td>
+    return `<tr data-id="${esc(r.id)}" tabindex="0"><td><b>${esc(r.nom)}</b><div class="m adrow" style="margin:0"><span>${esc(r.adresse || '')}</span>${r.adresse ? mapBtn(r.adresse, '', r.id, r.nom) : ''}</div></td>
       <td>${cs.map(c => `<div>${esc(c.numero)}</div>`).join('') || '<span class="m">—</span>'}</td>
       <td>${rs.map(x => `<div>${esc(x.nom)} ${rtChips(x)}</div>`).join('') || '<span class="m">—</span>'}</td>
       <td>${ps.map(p => `<div>${puHor(p)} <span class="m" style="margin:0">${esc(jLbl(p.jours))}</span>${puRoute(r, p) ? ` <span class="ech">${esc(puRoute(r, p))}</span>` : ''}</div>`).join('') || '<span class="m">—</span>'}</td>
@@ -4220,7 +4235,7 @@ function entPatch(r, fn){
 function drawEntView(r){
   const cs = entC(r), rs = entR(r), ps = entP(r), w = canWrite(), adm = ME.rights.ENTREPRISES === 'admin';
   const xd = (k, i) => w ? `<button class="ico sm warn" data-xd="${k}" data-i="${i}" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : '';
-  $('#sEnt').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(r.nom)}</h3>${r.adresse ? `<div class="sub adl"><span class="adt">${esc(r.adresse)}</span><button type="button" class="ico sm" data-adcopy="${esc(r.adresse)}" title="Copier l’adresse" aria-label="Copier l’adresse">${IC.copy}</button><a class="ico sm" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.adresse)}" target="_blank" rel="noopener" title="Ouvrir dans Google Maps" aria-label="Ouvrir dans Google Maps">${IC.open}</a>${mapBtn(r.adresse, '', r.id, r.nom)}</div>` : ''}</div>
+  $('#sEnt').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(r.nom)}</h3>${r.adresse ? `<div class="sub adl"><span class="adt">${esc(r.adresse)}</span><button type="button" class="ico sm" data-adcopy="${esc(r.adresse)}" title="Copier l’adresse" aria-label="Copier l’adresse">${IC.copy}</button>${mapBtn(r.adresse, '', r.id, r.nom)}</div>` : ''}</div>
     ${adm ? `<button class="ico sm warn" id="enD" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>` : ''}${w ? `<button class="ico sm" id="enE" title="Modifier" aria-label="Modifier">${IC.pencil}</button>` : ''}<button class="ico sm" id="enX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
     <div class="scg"><div class="scl">
       ${r.commentaire ? `<div class="ebx"><h4>Informations</h4><div class="epr">${esc(r.commentaire)}</div></div>` : ''}
