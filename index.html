@@ -1631,7 +1631,7 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
 /* Survol (planning des absences) : ligne + colonne, même teinte plus sombre */ .abt{--hz:rgba(0,0,0,.30);--hb:.74} html[data-theme="light"] .abt{--hz:rgba(25,35,60,.11);--hb:.89} .abt td.hcol,.abt th.hcol,.abt td.hrow,.abt th.hrow{background-image:linear-gradient(var(--hz),var(--hz))} .abt th.hcol{color:var(--ink)} .abt td.hcol .abc,.abt td.hrow .abc{filter:brightness(var(--hb))}
 #abCodes button.s.on{background:var(--c,var(--blue));border-color:var(--c,var(--blue));color:#fff}
 .hsum{margin-top:4px;opacity:.85;white-space:normal;word-break:break-word} /* v4.11.100 : plus de bulles dans le menu du haut */ #nav .badge,html[data-menu="v"] .mod[data-n]::after{display:none}
-/* v4.11.141 : menu groupé, fixe, compact, position haut/gauche */
+/* v4.11.142 : menu groupé, fixe, compact, position haut/gauche */
 nav{position:sticky;top:var(--hh,52px);z-index:4;background:var(--bg)}
 html.sc nav{box-shadow:0 1px 0 var(--line)}
 .gw{position:relative;flex:1 1 104px;max-width:190px;display:flex}
@@ -1668,8 +1668,6 @@ html[data-navpos="l"] .gm{position:static;transform:none;box-shadow:none;border:
 html[data-navpos="l"] .gw.cur>.gm{display:flex}
 html[data-navpos="l"] .gb .chv{top:50%;margin-top:-5px}
 html[data-navpos="l"] .gw.open .gb .chv,html[data-navpos="l"] .gw.cur .gb .chv{transform:rotate(-135deg);margin-top:-2px}
-html[data-navpos="l"] .gw>.gb{display:none}
-html[data-navpos="l"] .gw>.gm{display:flex;gap:6px;padding:0}
 html[data-navpos="l"][data-menu] #nav .gm .gi.mod{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:9px 12px;box-shadow:none}
 html[data-navpos="l"][data-menu] #nav .gm .gi.mod.on{background:linear-gradient(135deg,rgba(var(--mc),.18),rgba(var(--mc),.05));border-color:rgba(var(--mc),.6)}
 html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
@@ -1687,10 +1685,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.141</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.142</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.141</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.142</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
