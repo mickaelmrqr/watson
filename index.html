@@ -1631,7 +1631,7 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
 /* Survol (planning des absences) : ligne + colonne, même teinte plus sombre */ .abt{--hz:rgba(0,0,0,.30);--hb:.74} html[data-theme="light"] .abt{--hz:rgba(25,35,60,.11);--hb:.89} .abt td.hcol,.abt th.hcol,.abt td.hrow,.abt th.hrow{background-image:linear-gradient(var(--hz),var(--hz))} .abt th.hcol{color:var(--ink)} .abt td.hcol .abc,.abt td.hrow .abc{filter:brightness(var(--hb))}
 #abCodes button.s.on{background:var(--c,var(--blue));border-color:var(--c,var(--blue));color:#fff}
 .hsum{margin-top:4px;opacity:.85;white-space:normal;word-break:break-word} /* v4.11.100 : plus de bulles dans le menu du haut */ #nav .badge,html[data-menu="v"] .mod[data-n]::after{display:none}
-/* v4.11.136 : menu groupé, fixe, compact, position haut/gauche */
+/* v4.11.138 : menu groupé, fixe, compact, position haut/gauche */
 nav{position:sticky;top:var(--hh,52px);z-index:4;background:var(--bg)}
 html.sc nav{box-shadow:0 1px 0 var(--line)}
 .gw{position:relative;flex:1 1 104px;max-width:190px;display:flex}
@@ -1681,10 +1681,10 @@ html[data-navpos="l"] .gw.open .gb .chv,html[data-navpos="l"] .gw.cur .gb .chv{t
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.136</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.138</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.136</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.138</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -3839,12 +3839,12 @@ function entPuDate(c){ const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(
 function entPuData(c){
   const by = {}, nr = []; let tot = 0;
   entRows().forEach(r => entP(r).forEach(p => {
-    if (!entJours(p.jours).includes(c)) return;
+    if (c !== 'all' && !entJours(p.jours).includes(c)) return;
     tot++;
-    const it = {id: r.id, nom: r.nom, h: puHor(p), k: p.debut || p.fin || '99:99', contact: p.contact || '', tel: p.tel || '', rem: p.remarques || ''}, rn = puRoute(r, p);
+    const it = {id: r.id, nom: r.nom, j: jLbl(p.jours), jo: entJours(p.jours).reduce((m, x) => Math.min(m, ['lu', 'ma', 'me', 'je', 've', 'sa', 'di'].indexOf(x)), 9), h: puHor(p), k: p.debut || p.fin || '99:99', contact: p.contact || '', tel: p.tel || '', rem: p.remarques || ''}, rn = puRoute(r, p);
     if (!rn) nr.push(it); else (by[rn] = by[rn] || []).push(it);
   }));
-  const srt = a => a.sort((x, y) => String(x.k).localeCompare(String(y.k)) || String(x.nom).localeCompare(String(y.nom), 'fr', {sensitivity: 'base'}));
+  const srt = a => a.sort((x, y) => (c === 'all' ? (x.jo - y.jo) : 0) || String(x.k).localeCompare(String(y.k)) || String(x.nom).localeCompare(String(y.nom), 'fr', {sensitivity: 'base'}));
   const groups = Object.keys(by).sort((a, b) => a.localeCompare(b, 'fr', {numeric: true, sensitivity: 'base'})).map(n => [n, srt(by[n])]);
   if (nr.length) groups.push(['Non affectés', srt(nr)]);
   return {groups, tot};
@@ -3852,9 +3852,10 @@ function entPuData(c){
 function entPuBanner(){
   const el = $('#epu'); if (!el) return;
   const c = entPuDay(), isT = c === JK[new Date().getDay()], {groups, tot} = entPuData(c);
-  const card = ([t, a]) => `<details class="epc${t === 'Non affectés' ? ' nr' : ''}" data-rk="${esc(t)}" ${ENT.rc[t] === false ? 'open' : ''}><summary><span class="chv"></span><span>${esc(t)}</span><small>${a.length}</small></summary><div class="epcl">${a.map(x => `<button data-id="${esc(x.id)}">${x.h ? `<b>${x.h}</b>` : ''}<span>${esc(x.nom)}</span></button>`).join('')}</div></details>`;
-  el.innerHTML = `<details class="epu" data-main="1" ${ENT.pb ? 'open' : ''}><summary><span class="chv"></span>PU réguliers ${isT ? 'du jour' : 'du ' + JN[c]} <small>${JN[c]}${isT ? '' : ' ' + entPuDate(c).toLocaleDateString('fr-FR', {day: '2-digit', month: '2-digit'})} · ${tot}</small></summary>
-    <div class="epbar"><div class="epd">${JOURS.filter(([k]) => k !== 'sa' && k !== 'di').map(([k, l]) => `<button data-pd="${k}" class="${k === c ? 'on' : ''}">${l}</button>`).join('')}</div>${tot ? `<button class="s" data-pp="1">${IC.print}Imprimer</button>` : ''}</div>
+  const hb = x => { const s = [c === 'all' ? x.j : '', x.h].filter(Boolean).join(' · '); return s ? '<b>' + s + '</b>' : ''; };
+  const card = ([t, a]) => `<details class="epc${t === 'Non affectés' ? ' nr' : ''}" data-rk="${esc(t)}" ${ENT.rc[t] === false ? 'open' : ''}><summary><span class="chv"></span><span>${esc(t)}</span><small>${a.length}</small></summary><div class="epcl">${a.map(x => `<button data-id="${esc(x.id)}">${hb(x)}<span>${esc(x.nom)}</span></button>`).join('')}</div></details>`;
+  el.innerHTML = `<details class="epu" data-main="1" ${ENT.pb ? 'open' : ''}><summary><span class="chv"></span>PU réguliers ${c === 'all' ? '— tous les jours' : isT ? 'du jour' : 'du ' + JN[c]} <small>${c === 'all' ? '' : JN[c] + (isT ? '' : ' ' + entPuDate(c).toLocaleDateString('fr-FR', {day: '2-digit', month: '2-digit'})) + ' · '}${tot}</small></summary>
+    <div class="epbar"><div class="epd">${JOURS.filter(([k]) => k !== 'sa' && k !== 'di').map(([k, l]) => `<button data-pd="${k}" class="${k === c ? 'on' : ''}">${l}</button>`).join('')}<button data-pd="all" title="Tous les jours" class="${c === 'all' ? 'on' : ''}">Tous</button></div>${tot ? `<button class="s" data-pp="1">${IC.print}Imprimer</button>` : ''}</div>
     ${tot ? `<div class="epg">${groups.map(card).join('')}</div>` : `<div class="m" style="margin:6px 0 0">Aucun PU régulier ${isT ? 'aujourd’hui' : 'ce jour-là'}.</div>`}</details>`;
   el.querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => { if (d.dataset.main) ENT.pb = d.open; else ENT.rc[d.dataset.rk] = !d.open; }));
 }
@@ -3864,9 +3865,9 @@ function printHtml(html){
   f.srcdoc = html; document.body.appendChild(f); setTimeout(() => f.remove(), 180000);
 }
 function openPuPrint(){
-  const c = entPuDay(), {groups, tot} = entPuData(c), dt = entPuDate(c).toLocaleDateString('fr-FR'); if (!tot) return toast('Aucun PU régulier ce jour');
+  const c = entPuDay(), {groups, tot} = entPuData(c), dt = c === 'all' ? '' : entPuDate(c).toLocaleDateString('fr-FR'); if (!tot) return toast('Aucun PU régulier ce jour');
   ABS.ed = null; ABS.mgr = false; $('#sAbs').className = 'sheet';
-  $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Imprimer les PU réguliers</h3><div class="sub">${JN[c]} ${dt}</div></div><button class="ico sm" id="ppX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+  $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Imprimer les PU réguliers</h3><div class="sub">${c === 'all' ? 'tous les jours' : JN[c] + ' ' + dt}</div></div><button class="ico sm" id="ppX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
     <label class="ppa"><input type="checkbox" id="ppAll" checked><b>Tout sélectionner</b></label>
     <div class="ppl">${groups.map(([n, a]) => `<label><input type="checkbox" class="ppc" value="${esc(n)}" checked>${esc(n)} <small>${a.length}</small></label>`).join('')}</div>
     <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="s" id="ppC">Annuler</button><button class="p" id="ppOk">${IC.print}Imprimer</button></div>`;
@@ -3876,8 +3877,8 @@ function openPuPrint(){
   $('#ppOk').onclick = () => {
     const keys = [...document.querySelectorAll('#sAbs .ppc')].filter(x => x.checked).map(x => x.value);
     if (!keys.length) return toast('Coche au moins une route');
-    const body = groups.filter(g => keys.includes(g[0])).map(([n, a]) => `<h2>${esc(n)} <small>(${a.length})</small></h2><table><tr><th style="width:84px">Horaire</th><th>Entreprise</th><th>Contact</th><th style="width:110px">Téléphone</th><th>Remarques</th></tr>${a.map(x => `<tr><td>${x.h}</td><td><b>${esc(x.nom)}</b></td><td>${esc(x.contact)}</td><td>${esc(x.tel)}</td><td>${esc(x.rem)}</td></tr>`).join('')}</table>`).join('');
-    printHtml(`<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>PU réguliers</title><style>body{font:12px Arial,sans-serif;margin:14px;color:#000}h1{font-size:17px;margin:0 0 8px}h2{font-size:14px;margin:16px 0 4px;border-bottom:2px solid #000;break-after:avoid}h2 small{font-weight:400}table{width:100%;border-collapse:collapse}th,td{border:1px solid #888;padding:4px 6px;text-align:left;vertical-align:top}th{background:#e8e8e8}tr{break-inside:avoid}</style></head><body><h1>PU réguliers — ${JN[c]} ${dt}</h1>${body}</body></html>`);
+    const body = groups.filter(g => keys.includes(g[0])).map(([n, a]) => `<h2>${esc(n)} <small>(${a.length})</small></h2><table><tr><th style="width:84px">Horaire</th><th>Entreprise</th><th>Contact</th><th style="width:110px">Téléphone</th><th>Remarques</th></tr>${a.map(x => `<tr><td>${c === 'all' && x.j ? x.j + '<br>' : ''}${x.h}</td><td><b>${esc(x.nom)}</b></td><td>${esc(x.contact)}</td><td>${esc(x.tel)}</td><td>${esc(x.rem)}</td></tr>`).join('')}</table>`).join('');
+    printHtml(`<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>PU réguliers</title><style>body{font:12px Arial,sans-serif;margin:14px;color:#000}h1{font-size:17px;margin:0 0 8px}h2{font-size:14px;margin:16px 0 4px;border-bottom:2px solid #000;break-after:avoid}h2 small{font-weight:400}table{width:100%;border-collapse:collapse}th,td{border:1px solid #888;padding:4px 6px;text-align:left;vertical-align:top}th{background:#e8e8e8}tr{break-inside:avoid}</style></head><body><h1>PU réguliers — ${c === 'all' ? 'tous les jours' : JN[c] + ' ' + dt}</h1>${body}</body></html>`);
     closeAbs();
   };
   $('#mAbs').classList.add('on');
@@ -3885,7 +3886,7 @@ function openPuPrint(){
 function renderEnt(){
   cur = 'ENTREPRISES'; closePop(); closeDet();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === 'ENTREPRISES'));
-  $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="eq" placeholder="Rechercher une entreprise, un compte, une route, un contact, un commercial…" autocomplete="off" value="${esc(ENT.q)}" aria-label="Rechercher une entreprise"></div><span class="m" id="ecnt" style="margin:0"></span><label class="eck"><input type="checkbox" id="ePU" ${ENT.pu ? 'checked' : ''}>PU réguliers</label><label class="eck" id="eNRw" style="${ENT.pu ? '' : 'display:none'}"><input type="checkbox" id="eNR" ${ENT.nr ? 'checked' : ''}>Non affectés</label><span style="flex:1"></span><button class="s" id="eXls" title="Exporter la vue en Excel">${IC.download}Excel</button>${canWrite() ? `<button class="p" id="eNew">${IC.plus}Nouvelle</button>` : ''}</div><div class="etw" id="etab"></div>`;
+  $('#main').innerHTML = `<div class="lbar"><div class="lsearch">${IC.search}<input id="eq" placeholder="Rechercher une entreprise, un compte, une route, un contact, un commercial…" autocomplete="off" value="${esc(ENT.q)}" aria-label="Rechercher une entreprise"></div><button class="s" id="eClr" type="button">Effacer</button><span class="m" id="ecnt" style="margin:0"></span><label class="eck"><input type="checkbox" id="ePU" ${ENT.pu ? 'checked' : ''}>PU réguliers</label><label class="eck" id="eNRw" style="${ENT.pu ? '' : 'display:none'}"><input type="checkbox" id="eNR" ${ENT.nr ? 'checked' : ''}>Non affectés</label><span style="flex:1"></span><button class="s" id="eXls" title="Exporter la vue en Excel">${IC.download}Excel</button>${canWrite() ? `<button class="p" id="eNew">${IC.plus}Nouvelle</button>` : ''}</div><div class="etw" id="etab"></div>`;
   $('#main').insertAdjacentHTML('afterbegin', '<div id="epu"></div>');
   $('#eXls').onclick = exportEntXlsx;
   $('#epu').onclick = e => {
@@ -3893,6 +3894,7 @@ function renderEnt(){
     if (e.target.closest('[data-pp]')) return openPuPrint();
     const t = e.target.closest('[data-id]'); if (t) openEnt(t.dataset.id);
   };
+  $('#eClr').onclick = () => { ENT.q = ''; $('#eq').value = ''; entDraw(); $('#eq').focus(); };
   $('#eq').oninput = e => { ENT.q = e.target.value; entDraw(); };
   $('#ePU').onchange = e => { ENT.pu = e.target.checked; if (!ENT.pu) { ENT.nr = false; $('#eNR').checked = false; } $('#eNRw').style.display = ENT.pu ? '' : 'none'; entDraw(); };
   $('#eNR').onchange = e => { ENT.nr = e.target.checked; entDraw(); };
