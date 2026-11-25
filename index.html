@@ -1643,10 +1643,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.119</span></div>
+<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="18"><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.120</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.119</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="58" style="height:58px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.120</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -4036,8 +4036,8 @@ function openAbsEdit(id, d){
     <p class="m">${Object.keys(ABS_C).map(c => esc(c) + ' : ' + ABS_L[c].toLowerCase()).join(' · ')}. Les week-ends sont ignorés.</p>
     <label>Commentaire <small class="m" style="margin:0">(visible au clic et en infobulle)</small><textarea id="abCom" rows="3" maxlength="500">${esc(ABS.ed.com0)}</textarea></label>
     <div class="esec"><h4>Fichiers · ${esc(absDate(d))}</h4><div id="abF"><div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div></div></div>
-    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="s" id="abC">Fermer</button><button class="p" id="abS">Enregistrer</button></div>`;
-  $('#abX').onclick = closeAbs; $('#abC').onclick = closeAbs;
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="s" id="abCl">Fermer</button><button class="p" id="abS">Enregistrer</button></div>`;
+  $('#abX').onclick = closeAbs; $('#abCl').onclick = closeAbs;
   $('#abCodes').onclick = e => { const b = e.target.closest('[data-c]'); if (!b) return; ABS.ed.code = b.dataset.c; $('#abCodes').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };
   $('#abS').onclick = async () => {
     const d1 = $('#abD1').value, d2 = $('#abD2').value || d1; if (!d1) return toast('Choisis une date');
