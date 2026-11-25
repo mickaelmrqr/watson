@@ -1644,10 +1644,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.125</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.126</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.125</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.126</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2228,7 +2228,7 @@ function localHits(q){
   if (ME.rights.PR && cache.PR) cache.PR.forEach(function (r) { if (prNorm([r.code_pr, r.code_relais, r.nom, r.adresse, r.route].join(' ')).includes(prNorm(q))) prH.push({kind:'row', module:'PR', id:r.id, title:String(r.nom || r.code_pr).toUpperCase(), sub:[r.code_pr, r.code_relais].filter(Boolean).join(' · '), archive:false}); });
   return out.slice(0, 15 - Math.min(prH.length, 5)).concat(prH.slice(0, 5));
 }
-function openSearchfunction openSearch(){ if (ME.rights.PR) prLoad(); $('#mSearch').classList.add('on'); $('#sq').value = ''; drawSug([], false, true); setTimeout(() => $('#sq').focus(), 60); }
+function openSearch(){ if (ME.rights.PR) prLoad(); $('#mSearch').classList.add('on'); $('#sq').value = ''; drawSug([], false, true); setTimeout(() => $('#sq').focus(), 60); }
 function closeSearch(){ $('#mSearch').classList.remove('on'); }
 function initSearch(){
   const q = $('#sq'), box = $('#sug');
