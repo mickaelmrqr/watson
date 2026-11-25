@@ -48,7 +48,7 @@ footer #sync{font-size:var(--fs)}
 .hz .ht{padding:9px 13px;justify-content:center}.hz .hth{align-items:center}.hz .hth b{font-size:14.5px;line-height:1.2}.hz .hth .mi{width:30px;height:30px;font-size:15px}
 .hz{margin:14px 0;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr))}
 @media(max-width:820px){header{flex-wrap:wrap}.hmid{order:3;flex:1 0 100%}.hrt{flex:0 1 auto}}
-.logo img{height:36px;width:38px;object-fit:fill;display:block}
+/* Logo : modèle unique (même forme, même épaisseur partout) */ .wlg{--lw:38px;--t:calc(var(--lw) * .0112);--u:calc(var(--lw) * .0079);display:block;flex:none;width:var(--lw);height:calc(var(--lw) * .9474);background:#ff5a2b;-webkit-mask-image:url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png);mask-image:url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png),url(icon-192.png);-webkit-mask-size:100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%;mask-size:100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 100%;-webkit-mask-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat;mask-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat;-webkit-mask-position:calc(50% + 0px) calc(50% + 0px),calc(50% + var(--t)) calc(50% + 0px),calc(50% - var(--t)) calc(50% + 0px),calc(50% + 0px) calc(50% + var(--t)),calc(50% + 0px) calc(50% - var(--t)),calc(50% + var(--u)) calc(50% + var(--u)),calc(50% - var(--u)) calc(50% + var(--u)),calc(50% + var(--u)) calc(50% - var(--u)),calc(50% - var(--u)) calc(50% - var(--u));mask-position:calc(50% + 0px) calc(50% + 0px),calc(50% + var(--t)) calc(50% + 0px),calc(50% - var(--t)) calc(50% + 0px),calc(50% + 0px) calc(50% + var(--t)),calc(50% + 0px) calc(50% - var(--t)),calc(50% + var(--u)) calc(50% + var(--u)),calc(50% - var(--u)) calc(50% + var(--u)),calc(50% + var(--u)) calc(50% - var(--u)),calc(50% - var(--u)) calc(50% - var(--u))} .logo img{height:36px;width:38px;object-fit:fill;display:block}
 .ver{font:500 12px var(--disp);letter-spacing:.4px;color:#ffb8a0;border:1px solid rgba(255,90,42,.55);background:rgba(255,90,42,.12);border-radius:8px;padding:2px 8px;margin-left:-2px;align-self:center}
 #who{color:var(--mut);font-weight:500}
 #sync{font-size:var(--fs);font-weight:500;color:var(--mut);display:flex;align-items:center;gap:7px}
@@ -586,7 +586,7 @@ html[data-theme=light] .cbox.no .ct b{color:#C62828}
 .cmbh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;font:700 var(--fs) var(--disp)}
 .cmi.cmn{flex-direction:column;align-items:stretch}.cmn textarea{resize:vertical;min-height:84px}.cma{display:flex;justify-content:flex-end;gap:8px}
 #verBtn{cursor:pointer;transition:background .18s,border-color .18s}#verBtn:hover{background:rgba(255,90,42,.28);border-color:rgba(255,90,42,.9)}
-#mAbout .sheet{max-width:340px}.abt{text-align:center;padding:8px 4px 14px}.abt img{display:block;width:128px;height:128px;margin:0 auto 12px;object-fit:contain}.abt h3{font:700 26px/1.1 var(--disp);letter-spacing:1.5px;margin:0 0 8px}.abt .abv{display:inline-block;font:500 13px var(--disp);letter-spacing:.4px;color:#ffb8a0;border:1px solid rgba(255,90,42,.55);background:rgba(255,90,42,.12);border-radius:8px;padding:2px 10px}.abt .abd{color:var(--mut);font-size:13px;margin:10px 0 18px}.abt p{margin:0 0 8px}.abt a.abm{color:#6db3ff}.abt a.abm:hover{text-decoration:underline}
+#mAbout .sheet{max-width:340px}.abt{text-align:center;padding:8px 4px 14px}.abt .wlg{margin:0 auto 12px}.abt h3{font:700 26px/1.1 var(--disp);letter-spacing:1.5px;margin:0 0 8px}.abt .abv{display:inline-block;font:500 13px var(--disp);letter-spacing:.4px;color:#ffb8a0;border:1px solid rgba(255,90,42,.55);background:rgba(255,90,42,.12);border-radius:8px;padding:2px 10px}.abt .abd{color:var(--mut);font-size:13px;margin:10px 0 18px}.abt p{margin:0 0 8px}.abt a.abm{color:#6db3ff}.abt a.abm:hover{text-decoration:underline}
 .epbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:8px 0 6px}
 .epd{display:flex;gap:4px;flex-wrap:wrap}.epd button{border:1px solid var(--line);background:var(--raised);color:var(--ink);border-radius:999px;padding:3px 11px;font-size:var(--fs);cursor:pointer}
 .epd button.on{background:var(--orange);border-color:var(--orange);color:#fff}
@@ -1634,7 +1634,7 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
 </head>
 <body>
 <header>
-  <div class="logo"><img src="icon-192.png" alt="" width="40" height="40">Watson</div>
+  <div class="logo"><span class="wlg" style="--lw:38px" role="img" aria-label="Watson"></span>Watson</div>
   <div class="hmid">
   <button id="bQR" class="ico hide" title="Mes identifiants" aria-label="Mes identifiants"></button>
   <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button></div>
@@ -1643,10 +1643,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><img src="icon-192.png" alt="" width="18" height="17"><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.122</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.123</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><img src="icon-192.png" alt="" width="65" height="62" style="height:62px;width:65px">Watson<span class="ver" style="font-size:15px">v4.11.122</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.123</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1865,7 +1865,7 @@ const APP_DATE = '25 novembre 2026';
 function closeAbout(){ $('#mAbout').classList.remove('on'); }
 function showAbout(){
   const ver = (($('footer .ver') || {}).textContent || '').trim();
-  $('#sAbout').innerHTML = `<div class="abt"><img src="icon-512.png" alt="Logo Watson" width="128" height="121"><h3>WATSON</h3><div class="abv">${esc(ver)}</div><div class="abd">Dernière mise à jour : ${esc(APP_DATE)}</div><p>Application créée par Mickael</p><a class="abm" href="mailto:${ADMIN_MAIL}?subject=Watson">Contact</a></div><div class="cma"><button class="s" id="abC">Fermer</button></div>`;
+  $('#sAbout').innerHTML = `<div class="abt"><span class="wlg" style="--lw:128px" role="img" aria-label="Watson"></span><h3>WATSON</h3><div class="abv">${esc(ver)}</div><div class="abd">Dernière mise à jour : ${esc(APP_DATE)}</div><p>Application créée par Mickael</p><a class="abm" href="mailto:${ADMIN_MAIL}?subject=Watson">Contact</a></div><div class="cma"><button class="s" id="abC">Fermer</button></div>`;
   $('#abC').onclick = closeAbout;
   $('#mAbout').classList.add('on');
 }
@@ -3265,10 +3265,10 @@ async function renderAdmin(){
   if (isAdmin() && !PARAMS) { try { PARAMS = await wait(() => api('params_get')); } catch (e) { return toast(e.message); } }
   const secs = SECTIONS.filter(x => !x.adm || isAdmin());
   const nav = secs.map((x, i) => `${x.adm && !secs[i - 1].adm ? '<hr class="sep">' : ''}<button data-s="${x.id}" class="${x.id === setSec ? 'on' : ''}">${x.l}</button>`).join('');
-  $('#sSet').innerHTML = `<div class="sh"><div class="tt"><h3>Paramètres</h3></div><button class="ico sm" id="sX" aria-label="Fermer" title="Fermer">${IC.close}</button></div><div class="set inmodal"><div class="snav">${nav}</div><div class="spane" id="spane"></div></div>`;
+  $('#sSet').innerHTML = `<div class="sh"><div class="tt"><h3>${setSec === 'users' ? '' : 'Paramètres'}</h3></div><button class="ico sm" id="sX" aria-label="Fermer" title="Fermer">${IC.close}</button></div><div class="set inmodal">${setSec === 'users' ? '' : `<div class="snav">${nav}</div>`}<div class="spane" id="spane"></div></div>`;
   $('#sX').onclick = closeSet;
   $('.set').classList.toggle('tn', setSec === 'users');
-  $('.snav').onclick = e => { const b = e.target.closest('button'); if (b) { setSec = b.dataset.s; renderAdmin(); } };
+  if ($('.snav')) $('.snav').onclick = e => { const b = e.target.closest('button'); if (b) { setSec = b.dataset.s; renderAdmin(); } };
   renderSec();
 }
 async function renderSec(){
