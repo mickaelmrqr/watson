@@ -1631,7 +1631,7 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
 /* Survol (planning des absences) : ligne + colonne, même teinte plus sombre */ .abt{--hz:rgba(0,0,0,.30);--hb:.74} html[data-theme="light"] .abt{--hz:rgba(25,35,60,.11);--hb:.89} .abt td.hcol,.abt th.hcol,.abt td.hrow,.abt th.hrow{background-image:linear-gradient(var(--hz),var(--hz))} .abt th.hcol{color:var(--ink)} .abt td.hcol .abc,.abt td.hrow .abc{filter:brightness(var(--hb))}
 #abCodes button.s.on{background:var(--c,var(--blue));border-color:var(--c,var(--blue));color:#fff}
 .hsum{margin-top:4px;opacity:.85;white-space:normal;word-break:break-word} /* v4.11.100 : plus de bulles dans le menu du haut */ #nav .badge,html[data-menu="v"] .mod[data-n]::after{display:none}
-/* v4.11.135 : menu groupé, fixe, compact, position haut/gauche */
+/* v4.11.136 : menu groupé, fixe, compact, position haut/gauche */
 nav{position:sticky;top:var(--hh,52px);z-index:4;background:var(--bg)}
 html.sc nav{box-shadow:0 1px 0 var(--line)}
 .gw{position:relative;flex:1 1 104px;max-width:190px;display:flex}
@@ -1681,10 +1681,10 @@ html[data-navpos="l"] .gw.open .gb .chv,html[data-navpos="l"] .gw.cur .gb .chv{t
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.135</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.136</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.135</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.136</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -4003,13 +4003,13 @@ function drawEntView(r){
     <div class="scg"><div class="scl">
       ${r.commentaire ? `<div class="ebx"><h4>Informations</h4><div class="epr">${esc(r.commentaire)}</div></div>` : ''}
       <div class="ebx"><h4>Routes<span class="ech">${rs.length}</span></h4>${rs.length ? rs.map((x, i) => `<div class="eli"><div class="ct"><b>${esc(x.nom)}</b></div><div>${rtChips(x)}</div>${xd('routes', i)}</div>`).join('') : '<span class="m">Aucune route</span>'}
-        ${w ? `<div class="erow eadd"><input id="aRn" placeholder="Nouvelle route" maxlength="80" autocomplete="off">${[['m13', '13m3'], ['m20', '20m3'], ['pu', 'PU'], ['del', 'DEL']].map(([f, l]) => `<label class="eck"><input type="checkbox" id="aR_${f}">${l}</label>`).join('')}<button class="ico sm ok" data-xa="routes" title="Ajouter la route" aria-label="Ajouter la route">${IC.plus}</button></div>` : ''}</div>
+        ${w ? `<div style="margin-top:10px"><button class="s" data-xo="routes">${IC.plus}Ajouter une route</button></div>` : ''}</div>
       <div class="ebx"><h4>Numéros de compte<span class="ech">${cs.length}</span></h4>${cs.length ? cs.map((c, i) => `<div class="eli"><div class="ct"><b>${esc(c.numero)}</b>${c.commentaire ? `<small>${esc(c.commentaire)}</small>` : ''}${entMaj(c)}</div><button class="cp sm" data-cp="${esc(c.numero)}" title="Copier" aria-label="Copier">${IC.copy}</button>${xd('comptes', i)}</div>`).join('') : '<span class="m">Aucun numéro de compte</span>'}
-        ${w ? `<div class="erow eadd"><input id="aCn" placeholder="Numéro de compte" maxlength="60" autocomplete="off"><input id="aCc" placeholder="Commentaire" maxlength="200" autocomplete="off"><button class="ico sm ok" data-xa="comptes" title="Ajouter le compte" aria-label="Ajouter le compte">${IC.plus}</button></div>` : ''}</div>
+        ${w ? `<div style="margin-top:10px"><button class="s" data-xo="comptes">${IC.plus}Ajouter un numéro de compte</button></div>` : ''}</div>
     </div><div class="scr">
       <div class="ebx"><h4>PU réguliers<span class="ech">${ps.length}</span></h4>${ps.length ? ps.map(p => `<div class="epu"><div class="eph"><b>${puHor(p) || 'Horaire non renseigné'}</b><span>${esc(jLbl(p.jours))}${puRoute(r, p) ? ' · Route ' + esc(puRoute(r, p)) : ''}</span></div>
         <div class="epb">${p.contact ? `<span>${IC.users.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.contact)}</span>` : ''}${p.tel ? `<a href="tel:${esc(String(p.tel).replace(/[^\d+]/g, ''))}">${IC.phone.replace('class="i"', 'class="i" width="14" height="14"')} ${esc(p.tel)}</a>` : ''}${p.commercial ? `<span class="m" style="margin:0">Commercial : ${esc(p.commercial)}</span>` : ''}</div>
-        ${p.remarques ? `<div class="epr">${esc(p.remarques)}</div>` : ''}${entMaj(p)}</div>`).join('') : '<span class="m">Aucun PU régulier</span>'}${w ? `<p class="m" style="margin:8px 0 0">Les PU réguliers se modifient avec le crayon en haut.</p>` : ''}</div>
+        ${p.remarques ? `<div class="epr">${esc(p.remarques)}</div>` : ''}${entMaj(p)}</div>`).join('') : '<span class="m">Aucun PU régulier</span>'}${w ? `<div style="margin-top:10px"><button class="s" data-xo="pu">${IC.plus}Ajouter un PU régulier</button></div>` : ''}</div>
     </div></div>
     <p class="m" style="margin:14px 0 0">${r.cree_par ? 'Créée par ' + esc(who(r.cree_par)) + (r.cree_le ? ' le ' + fdate(r.cree_le) : '') + '. ' : ''}${r.modifie_le ? 'Dernière modification le ' + fdate(r.modifie_le, true) + (r.modifie_par ? ' par ' + esc(who(r.modifie_par)) : '') + '.' : ''}</p>`;
   $('#enX').onclick = closeEnt;
@@ -4038,6 +4038,7 @@ function drawEntView(r){
   el.onclick = async e => {
     const a = e.target.closest('[data-xa]'), x = e.target.closest('[data-xd]'), cp = e.target.closest('[data-cp]');
     if (cp) navigator.clipboard.writeText(cp.dataset.cp).then(() => toast('Copié : ' + cp.dataset.cp));
+    else if (e.target.closest('[data-xo]')) entAddDlg(r, e.target.closest('[data-xo]').dataset.xo)
     else if (a) add(a.dataset.xa);
     else if (x) {
       const k = x.dataset.xd, i = +x.dataset.i, cr = entRows().find(z => String(z.id) === String(r.id)) || r, it = (k === 'routes' ? entR(cr) : entC(cr))[i]; if (!it) return;
@@ -4045,6 +4046,50 @@ function drawEntView(r){
       entPatch(r, o => { const rm = o[k].splice(i, 1)[0]; if (k === 'routes' && rm) o.pu.forEach(p => { if (String(p.route || '').trim() === String(rm.nom || '').trim()) p.route = ''; }); });
     }
   };
+}
+function entAddDlg(r, k) {
+  const cr = entRows().find(x => String(x.id) === String(r.id)) || r;
+  const coms = [...new Set(entRows().flatMap(z => entP(z).map(p => String(p.commercial || '').trim())).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'fr'));
+  const d = document.createElement('div'); d.className = 'prdg';
+  let title, body;
+  if (k === 'routes') {
+    title = 'Ajouter une route';
+    body = `<label>Nom de la route<input id="ad_n" maxlength="80" autocomplete="off"></label><div class="erow">${[['m13', '13m3'], ['m20', '20m3'], ['pu', 'PU'], ['del', 'DEL']].map(([f, l]) => `<label class="eck"><input type="checkbox" id="ad_${f}">${l}</label>`).join('')}</div>`;
+  } else if (k === 'comptes') {
+    title = 'Ajouter un numéro de compte';
+    body = `<label>Numéro de compte<input id="ad_n" maxlength="60" autocomplete="off"></label><label>Commentaire<input id="ad_c" maxlength="200" autocomplete="off"></label>`;
+  } else {
+    title = 'Ajouter un PU régulier';
+    const nm = [...new Set(entR(cr).map(x => String(x.nom || '').trim()).filter(Boolean))];
+    body = `<div class="erow"><label class="etm">Début<input type="time" id="ad_d"></label><label class="etm">Fin<input type="time" id="ad_f"></label></div><div class="erow"><input id="ad_ct" placeholder="Contact" autocomplete="off"><input id="ad_t" type="tel" placeholder="Téléphone" autocomplete="off"></div><div class="erow">${JOURS_O.map(([c, l]) => `<label class="eck"><input type="checkbox" data-j="${c}">${l}</label>`).join('')}</div><label>Route qui fait ce PU<select id="ad_r"><option value="">— Non affectée —</option>${nm.map(n => `<option ${nm.length === 1 ? 'selected' : ''}>${esc(n)}</option>`).join('')}</select></label><input id="ad_co" list="adComL" placeholder="Commercial" autocomplete="off"><datalist id="adComL">${coms.map(c => `<option value="${esc(c)}">`).join('')}</datalist><textarea id="ad_re" rows="2" placeholder="Remarques"></textarea>`;
+  }
+  d.innerHTML = `<div class="prbx"><h3>${title}</h3>${body}<div class="prbt"><span style="flex:1"></span><button class="s" id="adNo">Annuler</button><button class="s" id="adOk">Ajouter</button></div></div>`;
+  document.body.appendChild(d);
+  const q = s => d.querySelector(s), close = () => d.remove();
+  const f0 = d.querySelector('input,select,textarea'); if (f0) setTimeout(() => f0.focus(), 30);
+  d.onclick = e => { if (e.target === d) close(); };
+  q('#adNo').onclick = close;
+  const ok = () => {
+    const now = new Date().toISOString();
+    if (k === 'routes') {
+      const n = q('#ad_n').value.trim(); if (!n) { toast('Saisis un nom de route'); return q('#ad_n').focus(); }
+      if (entR(cr).some(x => String(x.nom).trim().toLowerCase() === n.toLowerCase())) return toast('Cette route existe déjà');
+      const fl = {}; ['m13', 'm20', 'pu', 'del'].forEach(f => { fl[f] = q('#ad_' + f).checked; });
+      entPatch(r, o => o.routes.push({nom: n, ...fl}));
+    } else if (k === 'comptes') {
+      const n = q('#ad_n').value.trim(); if (!n) { toast('Saisis un numéro de compte'); return q('#ad_n').focus(); }
+      if (entC(cr).some(c => String(c.numero).trim() === n)) return toast('Ce numéro de compte existe déjà');
+      const com = q('#ad_c').value.trim();
+      entPatch(r, o => o.comptes.push({numero: n, commentaire: com, maj_le: now, maj_par: ME.email}));
+    } else {
+      const p = {debut: q('#ad_d').value, fin: q('#ad_f').value, contact: q('#ad_ct').value.trim(), tel: q('#ad_t').value.trim(), jours: [...d.querySelectorAll('[data-j]')].filter(x => x.checked).map(x => x.dataset.j).join(','), route: q('#ad_r').value, commercial: q('#ad_co').value.trim(), remarques: q('#ad_re').value.trim(), maj_le: now, maj_par: ME.email};
+      if (!(p.debut || p.fin || p.contact || p.tel || p.jours || p.commercial || p.remarques)) return toast('Renseigne au moins un champ');
+      entPatch(r, o => o.pu.push(p));
+    }
+    close();
+  };
+  q('#adOk').onclick = ok;
+  d.onkeydown = e => { if (e.key === 'Escape') { e.stopPropagation(); close(); } else if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.type !== 'checkbox') { e.preventDefault(); ok(); } };
 }
 function openEntEdit(r){
   ENT.edit = {id: r ? r.id : '', nom: r ? r.nom : '', adresse: r ? (r.adresse || '') : '', commentaire: r ? (r.commentaire || '') : '', comptes: r ? entC(r) : [], routes: r ? entR(r) : [], pu: r ? entP(r).map(p => ({...p, jours: entJours(p.jours).join(',')})) : []};
