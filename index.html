@@ -1644,10 +1644,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.129</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.130</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.129</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.130</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1967,7 +1967,7 @@ function buildNav(){
   const mods = Object.keys(MODS).filter(m => ME.rights[m]);
   const io = (m, label, icon) => `<button class="mod io" data-m="${m}" title="${label}" aria-label="${label}"><span class="mi">${icon}</span><b class="il">${label}</b></button>`;
   const tile = m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m] ? MODS[m].label : PGS[m].label}</b>${PGS[m] ? '' : '<small id="cnt_' + m + '"><span class="d3s"><i></i><i></i><i></i></span></small>'}</span></button>`;
-  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${navOrder(mods).filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY').map(tile).join('')}${mods.includes('LIBRARY') ? io('LIBRARY', 'Bibliothèque', IC.LIBRARY) : ''}</div>`;
+  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${navOrder(mods).filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY').map(tile).join('')}${mods.includes('LIBRARY') ? io('LIBRARY', 'Biblio', IC.LIBRARY) : ''}</div>`;
   $('#bAdm').classList.toggle('hide', !isAdmin());
   $('#seg').onclick = e => { const b = e.target.closest('button'); if (b) { showArch = false; openMod(b.dataset.m); } };
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === cur));
@@ -3390,7 +3390,7 @@ async function renderUsers(el){
 }
 
 // ------------------------------------------------------------ Bibliothèque (fichiers, textes, liens, photos + mots-clés)
-MODS.LIBRARY = {label: 'Bibliothèque', noSteps: true, name: r => r.titre, show: [], fields: []};
+MODS.LIBRARY = {label: 'Biblio', noSteps: true, name: r => r.titre, show: [], fields: []};
 IC.LIBRARY = ic('<rect x="3" y="4" width="4" height="16" rx="1"/><path d="M3 8h4"/><rect x="9" y="3" width="4" height="17" rx="1"/><path d="M9 7h4"/><path d="m15.3 5.6 3.1-.8 3.4 13.1-3.1.8z"/>');
 IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
 const PGS = {
@@ -3748,7 +3748,7 @@ function prPrint() {
   });
   printHtml('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Points relais</title><style>@page{size:A4;margin:8mm}*{box-sizing:border-box}body{margin:0;font:11px Arial,sans-serif;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}.pg{page-break-after:always;height:279mm}.pg:last-child{page-break-after:auto}h1{font-size:14px;margin:0 0 3mm}h1 small{font-weight:400;color:#444}.gr{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,1fr);gap:3mm;height:261mm}.b{border:1px solid #000;border-radius:2mm;padding:3mm;overflow:hidden;display:flex;flex-direction:column}.n{font-size:18px;line-height:1.15}.a{margin-top:2mm;font-size:15px;line-height:1.25}.i{margin-top:2mm;font-style:italic;font-size:12px}.k{margin-top:auto;font-size:12px}.c{margin-top:1mm}.c svg{display:block}</style></head><body>' + h + '</body></html>');
 }
-MODS.ENTREPRISES = {label: 'Entreprises', noSteps: true, name: r => r.nom, show: [], fields: []};
+MODS.ENTREPRISES = {label: 'Pros', noSteps: true, name: r => r.nom, show: [], fields: []};
 IC.ENTREPRISES = ic('<path d="M3 21V7l8-4v18"/><path d="M11 21V11l10 4v6"/><path d="M3 21h18"/><path d="M7 9v.01M7 13v.01M7 17v.01"/><path d="M15 17v.01M18 18v.01"/>');
 const ENT = {q: '', view: null, edit: null, pu: false, nr: false, pb: false, pd: null, rc: {}};
 const entRows = () => cache.ENTREPRISES || [];
