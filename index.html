@@ -64,7 +64,7 @@ footer #sync{font-size:var(--fs)}
 .ico.warn:hover{color:var(--orange);border-color:rgba(255,90,42,.5)}
 .ico.sm{width:38px;height:38px}
 /* ---------- Tuiles de modules */
-nav{display:flex;justify-content:center;box-sizing:border-box;width:100%;max-width:1500px;margin:0 auto;padding:20px 22px 4px}
+nav{display:flex;justify-content:center;box-sizing:border-box;width:100%;max-width:1500px;margin:0 auto;padding:8px 22px 0}
 .mods{display:flex;flex-wrap:wrap;gap:10px;width:100%;justify-content:center}
 .mod{flex:1 1 100px;max-width:150px;position:relative;display:flex;align-items:center;gap:10px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:10px 10px;color:var(--mut);overflow:hidden;
   transition:transform .22s var(--ease),border-color .22s,box-shadow .22s,background .22s,color .22s}
@@ -76,7 +76,7 @@ nav{display:flex;justify-content:center;box-sizing:border-box;width:100%;max-wid
 .mod small i{font-style:normal;color:#ff8d70;font-weight:700}
 .mod.on{color:var(--hi);border-color:var(--blue);background:linear-gradient(135deg,rgba(58,140,255,.22),rgba(58,140,255,.06));box-shadow:0 8px 26px rgba(58,140,255,.25)}
 .mod.on .mi{background:var(--blue);color:#fff}
-main{padding:14px 22px 66px;max-width:1500px;margin:0 auto}
+main{padding:8px 22px 66px;max-width:1500px;margin:0 auto}
 
 /* ---------- Champs et boutons */
 input,select,textarea{font:inherit;color:var(--ink);padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--panel);width:100%;transition:border-color .18s,box-shadow .18s,background .18s}
@@ -1631,6 +1631,41 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
 /* Survol (planning des absences) : ligne + colonne, même teinte plus sombre */ .abt{--hz:rgba(0,0,0,.30);--hb:.74} html[data-theme="light"] .abt{--hz:rgba(25,35,60,.11);--hb:.89} .abt td.hcol,.abt th.hcol,.abt td.hrow,.abt th.hrow{background-image:linear-gradient(var(--hz),var(--hz))} .abt th.hcol{color:var(--ink)} .abt td.hcol .abc,.abt td.hrow .abc{filter:brightness(var(--hb))}
 #abCodes button.s.on{background:var(--c,var(--blue));border-color:var(--c,var(--blue));color:#fff}
 .hsum{margin-top:4px;opacity:.85;white-space:normal;word-break:break-word} /* v4.11.100 : plus de bulles dans le menu du haut */ #nav .badge,html[data-menu="v"] .mod[data-n]::after{display:none}
+/* v4.11.133 : menu groupé, fixe, compact, position haut/gauche */
+nav{position:sticky;top:var(--hh,52px);z-index:4;background:var(--bg)}
+html.sc nav{box-shadow:0 1px 0 var(--line)}
+.gw{position:relative;flex:1 1 104px;max-width:190px;display:flex}
+html[data-menu="v"] #seg>.mod:not(.io){max-width:190px}
+html[data-menu="v"] .gw>.gb{flex:1 1 auto;max-width:none;width:100%}
+.gb .chv{position:absolute;right:8px;top:9px;width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);opacity:.55}
+.gw.open .gb .chv{transform:rotate(-135deg);top:13px}
+.gs{display:block;font-style:normal;font-size:.8em;font-weight:600;color:var(--mut);margin-top:1px}
+.gs:empty{display:none}
+.gm{display:none;position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);min-width:100%;z-index:60;flex-direction:column;gap:2px;padding:6px;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+.gw.open>.gm{display:flex}
+html[data-menu] #nav .gm .gi.mod{flex:0 0 auto;max-width:none;width:100%;flex-direction:row;align-items:center;text-align:left;gap:10px;padding:7px 10px;background:none;border:0;border-radius:10px;box-shadow:none;white-space:nowrap}
+#nav .gm .gi.mod b{white-space:nowrap}
+#nav .gm .gi.mod small{display:none}
+#nav .gm .gi.mod:hover{background:rgba(var(--mc),.14)}
+#nav .gm .gi.mod.on{background:rgba(var(--mc),.22)}
+#nav .gm .gi .mi{zoom:.85}
+html.sc:not([data-navpos="l"]) #nav .mod:not(.gi) .mi,html.sc:not([data-navpos="l"]) #nav .gs{display:none}
+html.sc:not([data-navpos="l"]) #nav .mod:not(.gi){padding:6px 10px;flex-direction:row;min-height:0}
+html.sc:not([data-navpos="l"]) #nav .gb{padding-right:24px}
+html.sc:not([data-navpos="l"]) .gb .chv{top:50%;margin-top:-6px;right:8px}
+html.sc:not([data-navpos="l"]) nav{padding-top:4px;padding-bottom:4px}
+@media(min-width:760px){
+html[data-navpos="l"] #app:not(.hide){display:grid;grid-template-columns:176px minmax(0,1fr);align-items:start}
+html[data-navpos="l"] nav{grid-column:1;grid-row:1;top:var(--hh,52px);max-width:none;width:auto;margin:0;padding:12px 6px 12px 12px;max-height:calc(100vh - var(--hh,52px) - 34px);overflow-y:auto;background:none;box-shadow:none}
+html[data-navpos="l"] main{grid-column:2;grid-row:1;width:100%;min-width:0}
+html[data-navpos="l"] .mods{flex-direction:column;flex-wrap:nowrap;justify-content:flex-start;align-items:stretch;gap:6px}
+html[data-navpos="l"] #nav .mods>.mod,html[data-navpos="l"] #nav .gw>.gb{flex:0 0 auto;max-width:none;width:100%;flex-direction:row;text-align:left;padding:9px 12px;gap:10px;align-items:center}
+html[data-navpos="l"] #nav .gw{display:block;flex:0 0 auto;max-width:none;width:100%}
+html[data-navpos="l"] .gm{position:static;transform:none;box-shadow:none;border:0;background:none;padding:2px 0 0 12px;min-width:0}
+html[data-navpos="l"] .gw.cur>.gm{display:flex}
+html[data-navpos="l"] .gb .chv{top:50%;margin-top:-5px}
+html[data-navpos="l"] .gw.open .gb .chv,html[data-navpos="l"] .gw.cur .gb .chv{transform:rotate(-135deg);margin-top:-2px}
+}
 </style>
 </head>
 <body>
@@ -1644,10 +1679,10 @@ html[data-ultra="1"] .mi,html[data-ultra="1"] .ico{zoom:0.88}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.132</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.133</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.132</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.133</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1907,7 +1942,7 @@ function applyDisplay(){
   document.documentElement.dataset.dense = dn === '0' ? '' : '1';
   document.documentElement.dataset.ultra = dn === '2' ? '1' : '';
   let mn = P.menu; try { if (mn === undefined) mn = localStorage.getItem('wmenu') || ''; localStorage.setItem('wmenu', mn || ''); } catch (e) {}
-  document.documentElement.dataset.menu = 'v';
+  document.documentElement.dataset.navpos = navPosV(); document.documentElement.dataset.menu = 'v';
   $('meta[name=theme-color]').content = t === 'light' ? '#F2F4F8' : '#15181F';
   try { localStorage.setItem('wtheme', t); localStorage.setItem('wzoom', z); } catch (e) {}
 }
@@ -1963,13 +1998,44 @@ async function start(){
   } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; try { if (/AUTH|expir|refus/i.test(e.message)) localStorage.removeItem('wst'); } catch (_) {} if (window.google && google.accounts) google.accounts.id.renderButton($('#gbtn'), {theme:'filled_black', size:'large', text:'signin_with', locale:'fr'}); }
 }
 document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur === 'LIBRARY') { if (pending === 0) reloadLib(); } else if (cur === 'ENTREPRISES') { if (pending === 0 && !ENT.edit) reloadEnt(); } else if (cur && cur !== '_admin' && pending === 0) refresh(); } });
+const NGRP = [
+  {id:'suivi', label:'Suivi', items:['AWB','SPARK','DOM','SECURITY'], icon:'<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>'},
+  {id:'reseau', label:'Réseau', items:['CARTE','PR','ENTREPRISES'], icon:'<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path d="M12 7.5v4M12 11.5 6.5 16.8M12 11.5l5.5 5.3"/></svg>'}
+];
+function navPosV(){ try { return localStorage.getItem('wnavpos') === 'l' ? 'l' : ''; } catch (e) { return ''; } }
+function closeGm(){ document.querySelectorAll('#seg .gw.open').forEach(w => { w.classList.remove('open'); const b = w.firstElementChild; if (b) b.setAttribute('aria-expanded', 'false'); }); }
+function navSync(){
+  document.querySelectorAll('#seg .gw').forEach(w => {
+    const hit = w.querySelector('.gi.on'), gb = w.firstElementChild;
+    w.classList.toggle('cur', !!hit); if (gb) gb.classList.toggle('on', !!hit);
+    const s = w.querySelector('.gs'), tx = hit ? hit.textContent.trim() : ''; if (s && s.textContent !== tx) s.textContent = tx;
+  });
+}
+if (!window.__navInit) { window.__navInit = 1;
+  document.addEventListener('click', e => { if (!e.target.closest('#seg .gw')) closeGm(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGm(); });
+  (function(){ const de = document.documentElement; let on = false; const f = () => { const y = window.scrollY || de.scrollTop || 0; if (!on && y > 80) { on = true; de.classList.add('sc'); } else if (on && y < 20) { on = false; de.classList.remove('sc'); } const h = document.querySelector('header'); if (h) de.style.setProperty('--hh', h.offsetHeight + 'px'); }; window.addEventListener('scroll', f, {passive:true}); window.addEventListener('resize', f); f(); })();
+}
 function buildNav(){
   const mods = Object.keys(MODS).filter(m => ME.rights[m]);
   const io = (m, label, icon) => `<button class="mod io" data-m="${m}" title="${label}" aria-label="${label}"><span class="mi">${icon}</span><b class="il">${label}</b></button>`;
   const tile = m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m] ? MODS[m].label : PGS[m].label}</b>${PGS[m] ? '' : '<small id="cnt_' + m + '"><span class="d3s"><i></i><i></i><i></i></span></small>'}</span></button>`;
-  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${navOrder(mods).filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY').map(tile).join('')}${mods.includes('LIBRARY') ? io('LIBRARY', 'Biblio', IC.LIBRARY) : ''}</div>`;
+  const order = navOrder(mods).filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY');
+  const lbl = m => MODS[m] ? MODS[m].label : PGS[m].label;
+  const inGrp = new Set();
+  const gtile = g => { const its = g.items.filter(m => order.includes(m)); if (!its.length) return ''; its.forEach(m => inGrp.add(m)); return `<div class="gw" data-g="${g.id}"><button class="mod gb" data-g="${g.id}" aria-haspopup="true" aria-expanded="false"><span class="mi">${g.icon}</span><span><b>${g.label}</b><em class="gs"></em></span><i class="chv" aria-hidden="true"></i></button><div class="gm">${its.map(m => `<button class="mod gi" data-m="${m}"><span class="mi">${IC[m]}</span><b>${esc(lbl(m))}</b>${PGS[m] ? '' : `<small id="cnt_${m}"></small>`}</button>`).join('')}</div></div>`; };
+  const gh = NGRP.map(gtile).join('');
+  const rest = order.filter(m => !inGrp.has(m)).map(tile).join('');
+  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${gh}${rest}${mods.includes('LIBRARY') ? io('LIBRARY', 'Biblio', IC.LIBRARY) : ''}</div>`;
   $('#bAdm').classList.toggle('hide', !isAdmin());
-  $('#seg').onclick = e => { const b = e.target.closest('button'); if (b) { showArch = false; openMod(b.dataset.m); } };
+  $('#seg').onclick = e => {
+    const gb = e.target.closest('.gb');
+    if (gb) { const w = gb.parentElement, was = w.classList.contains('open'); closeGm(); if (!was) { w.classList.add('open'); gb.setAttribute('aria-expanded', 'true'); } return; }
+    const b = e.target.closest('button'); if (b && b.dataset.m) { closeGm(); showArch = false; openMod(b.dataset.m); }
+  };
+  if (window.__navMO) window.__navMO.disconnect();
+  window.__navMO = new MutationObserver(navSync); window.__navMO.observe($('#seg'), {subtree:true, attributes:true, attributeFilter:['class']});
+  navSync();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === cur));
 }
 const moveInd = () => {};
@@ -3300,7 +3366,9 @@ async function renderSec(){
       <div class="prow"><div><b>Mode</b><div class="m">Jour (fond clair) ou nuit (fond sombre).</div></div><div class="seg2" id="aMode"><button data-v="light" class="${th === 'light' ? 'on' : ''}">Jour</button><button data-v="dark" class="${th === 'dark' ? 'on' : ''}">Nuit</button></div></div>
       <div class="prow wide"><div><b>Taille du texte</b><div class="m">Agrandit ou réduit tout l'affichage.</div></div><div class="seg2"><button id="zMin" aria-label="Réduire">A−</button><input type="range" id="zRng" min="70" max="140" step="5" value="${zp}" aria-label="Taille du texte"><span id="zVal">${zp} %</span><button id="zPlus" aria-label="Agrandir">A+</button></div></div>
       <div class="prow wide"><div><b>Densité de l'affichage</b><div class="m">Normal, condensé ou ultra condensé : réduit les marges et les espaces pour voir plus de choses à l'écran.</div></div><div class="seg2" id="aDense"><button data-v="0" class="${dnv === '0' ? 'on' : ''}">Normal</button><button data-v="1" class="${dnv === '1' ? 'on' : ''}">Condensé</button><button data-v="2" class="${dnv === '2' ? 'on' : ''}" title="Ultra condensé">Ultra</button></div></div>
+      <div class="prow wide"><div><b>Position du menu</b><div class="m">En haut de l'écran, ou dans une colonne à gauche (écrans larges uniquement).</div></div><div class="seg2" id="aNavPos"><button data-v="" class="${navPosV() !== 'l' ? 'on' : ''}">En haut</button><button data-v="l" class="${navPosV() === 'l' ? 'on' : ''}">À gauche</button></div></div>
       `;
+    $('#aNavPos').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#aNavPos').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); setLocal('wnavpos', b.dataset.v); };
     $('#aDense').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#aDense').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); setLocal('wdense', b.dataset.v); };
     
     $('#aMode').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#aMode').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); setLocal('wtheme', b.dataset.v); };
