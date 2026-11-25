@@ -1762,10 +1762,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.165</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.166</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.165</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span>Watson<span class="ver" style="font-size:15px">v4.11.166</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -3007,7 +3007,7 @@ function saveLocal(r, data, extra){
       for (const ph of (extra.photos || [])) await api('file_add', {module:m, ref_id:newId, name:ph.name, mime:ph.mime, b64:ph.b64, thumb_b64:ph.thumb});
     }
     if (r) { delete H[r.id]; syncOff(r); if (det && det.r === r && !det.editing) renderDet(); }
-    if (pending === 1) await refresh(); else if (key() === k) drawCards();
+    if (pending === 1) { if (r) refresh().catch(() => {}); else await refresh(); } else if (key() === k) drawCards();
     if (key() === k) { let id = r && r.id; if (!id) { const f = rows.filter(x => x.cree_par === ME.email && (!data.waybill || x.waybill === data.waybill)).sort((a, b) => String(b.cree_le).localeCompare(String(a.cree_le)))[0]; id = f && f.id; } if (id) waveCard(id); }
   }, async () => { if (r) { syncOff(r); if (det && det.r === r && !det.editing) renderDet(); } try { await refresh(); } catch (e) {} });
 }
