@@ -467,6 +467,8 @@ html[data-menu] #nav .mod[data-n]::after{display:inline-flex!important;align-ite
 :root:root:root:root:root:root:root:root:root #nav .mods{gap:2px!important}:root:root:root:root:root:root:root:root:root #nav .mods>.mod{padding:3px 10px!important}:root:root:root:root:root:root:root:root:root #nav .mods>.mod[data-m="ADMIN"]{margin-top:8px}
 :root:root:root #bAdm{display:none!important}
 #admPg{position:static!important;width:auto!important;max-width:none!important;max-height:none!important;height:auto!important;box-shadow:none!important;transform:none!important;opacity:1!important;margin:0;background:transparent!important;border:0!important;padding:0!important;overflow:visible!important}#admPg #admX{display:none!important}
+.rmg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.rmc{border:1px solid rgba(128,138,158,.3);border-radius:12px;padding:10px}.rmh{font-weight:600;margin-bottom:8px}.rmh small{opacity:.6}.rme{opacity:.5;font-size:.9em}.rmtop{margin-bottom:12px}.rmf{display:flex;flex-direction:column;gap:10px;max-width:640px}.rmf label{display:flex;flex-direction:column;gap:4px}.rmf textarea{resize:vertical;font:inherit}.rml{font-size:.85em;opacity:.7}.rmb{display:flex;gap:10px;align-items:center}.rmb span{flex:1}.rma{color:#E5543A;font-weight:600;margin:0}
+:root:root:root:root:root:root:root:root:root .rmi{display:block;width:100%;text-align:left;margin:0 0 8px;padding:9px 11px;border-radius:10px;border:1px solid rgba(128,138,158,.3)!important;background:rgba(128,138,158,.08)!important;box-shadow:none!important}:root:root:root:root:root:root:root:root:root .rmi span{display:block;opacity:.7;font-weight:400;white-space:pre-wrap;margin-top:3px;max-height:3.6em;overflow:hidden}:root:root:root:root:root:root:root:root:root .rmi:hover{border-color:#2F6FDE!important}:root:root:root:root:root:root:root:root:root #rmOk{background:#2fb36b!important;border-color:#2fb36b!important;color:#fff!important}:root:root:root:root:root:root:root:root:root #rmS .s.on{background:#2F6FDE!important;border-color:#2F6FDE!important;color:#fff!important}:root:root:root:root:root:root:root:root:root #abCodes button.on[data-c]{background:var(--c)!important;border-color:var(--c)!important;color:#fff!important}
 #busy .lg{-webkit-mask-image:none!important;mask-image:none!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cstyle%3E@keyframes sp{to{transform:rotate(360deg)}}@keyframes br{0%25{stroke-dasharray:6 94;stroke-dashoffset:0}50%25{stroke-dasharray:70 30;stroke-dashoffset:-12}100%25{stroke-dasharray:6 94;stroke-dashoffset:-100}}.r{transform-origin:60px 60px;animation:sp 1.6s linear infinite}.r circle{fill:none;stroke:%23ff5a2b;stroke-width:6;stroke-linecap:round;stroke-dasharray:6 94;animation:br 1.6s ease-in-out infinite}.l{fill:none;stroke:%23ff5a2b;stroke-width:13;stroke-linejoin:miter}%3C/style%3E%3Cg class='r'%3E%3Ccircle cx='60' cy='60' r='54' pathLength='100'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat!important;animation:none!important;filter:none!important}
 .srl{display:inline-block!important;width:40px!important;height:40px!important;gap:0!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cstyle%3E@keyframes sp{to{transform:rotate(360deg)}}@keyframes br{0%25{stroke-dasharray:6 94;stroke-dashoffset:0}50%25{stroke-dasharray:70 30;stroke-dashoffset:-12}100%25{stroke-dasharray:6 94;stroke-dashoffset:-100}}.r{transform-origin:60px 60px;animation:sp 1.6s linear infinite}.r circle{fill:none;stroke:%23ff5a2b;stroke-width:6;stroke-linecap:round;stroke-dasharray:6 94;animation:br 1.6s ease-in-out infinite}.l{fill:none;stroke:%23ff5a2b;stroke-width:13;stroke-linejoin:miter}%3C/style%3E%3Cg class='r'%3E%3Ccircle cx='60' cy='60' r='54' pathLength='100'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}.srl i{display:none!important}
 .sug button:hover,.sug button.hl{background:rgba(58,140,255,.2)}
@@ -1808,10 +1810,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.183</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.184</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.183</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.184</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2167,7 +2169,7 @@ function buildNav(){
   const gtile = g => { const its = g.items.filter(m => m === 'CCTV+' ? (order.includes('CCTV') && ME.rights.CCTV === 'admin') : order.includes(m)); if (!its.length || (g.id === 'lsr' && !its.includes('SECURITY'))) return ''; its.forEach(m => inGrp.add(m)); return `<div class="gw" data-g="${g.id}"><button class="mod gb" data-g="${g.id}" aria-haspopup="true" aria-expanded="false"><span class="mi">${g.icon}</span><span><b>${g.label}</b><em class="gs"></em></span><i class="chv" aria-hidden="true"></i></button><div class="gm">${its.map(m => m === 'CCTV+' ? `<button class="mod gi" data-m="CCTV" data-new="1"><span class="mi">${IC.plus}</span><b>+ CCTV</b></button>` : `<button class="mod gi" data-m="${m}"><span class="mi">${IC[m]}</span><b>${esc(lbl(m))}</b>${PGS[m] ? '' : `<small id="cnt_${m}"></small>`}</button>`).join('')}</div></div>`; };
   const gh = '';
   const rest = (() => { const out = []; let done = false; const plus = `<button class="mod" data-m="CCTV" data-new="1" title="Faire une demande de CCTV" aria-label="Faire une demande de CCTV"><span class="mi">${IC.CCTVplus}</span><span><b>CCTV</b></span></button>`; order.forEach(m => { if (m === 'SECURITY' || m === 'CCTV') { if (done) return; done = true; if (lsrOk()) out.push(`<button class="mod" data-m="LSR"><span class="mi">${IC.CCTV}</span><span><b>LSR</b></span></button>`); if (!lsrOk()) out.push(plus); return; } out.push(tile(m)); }); if (!done && !lsrOk()) out.push(plus); return out.join(''); })();
-  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${gh}${rest}${mods.includes('LIBRARY') ? '<button class="mod" data-m="LIBRARY"><span class="mi">' + IC.LIBRARY + '</span><span><b>Bibliothèque</b></span></button>' : ''}${isAdmin() ? '<button class="mod" data-m="ADMIN"><span class="mi">' + IC.admin + '</span><span><b>Administration</b></span></button>' : ''}</div>`;
+  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${gh}${rest}${mods.includes('LIBRARY') ? '<button class="mod" data-m="LIBRARY"><span class="mi">' + IC.LIBRARY + '</span><span><b>Bibliothèque</b></span></button>' : ''}${isAdmin() ? '<button class="mod" data-m="ADMIN"><span class="mi">' + IC.admin + '</span><span><b>Administration</b></span></button>' : ''}${window.rmOk && window.rmOk() ? '<button class="mod" data-m="ROADMAP"><span class="mi">' + ic('<path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>') + '</span><span><b>RoadMap</b></span></button>' : ''}</div>`;
   $('#bAdm').classList.toggle('hide', !isAdmin()); $('#bLib').innerHTML = IC.LIBRARY; $('#bLib').classList.add('hide');
   $('#seg').onclick = e => {
     const gb = e.target.closest('.gb');
@@ -2258,6 +2260,44 @@ function navBadges(){
   } catch (e) {} };
   const go = () => { new MutationObserver(() => { if (!q) q = requestAnimationFrame(run); }).observe(document.getElementById('main') || document.body, {childList: true, subtree: true}); q = requestAnimationFrame(run); };
   if (document.body) go(); else document.addEventListener('DOMContentLoaded', go);
+})();
+(function(){
+  const OK = () => String((ME && ME.email) || '').toLowerCase() === 'mickael.mrqr@gmail.com';
+  window.rmOk = OK;
+  const ST = [['todo', 'À faire'], ['doing', 'En cours'], ['done', 'Terminé']];
+  const get = () => (ME.prefs && Array.isArray(ME.prefs.roadmap)) ? ME.prefs.roadmap.slice() : [];
+  const save = a => setDisplay({roadmap: a});
+  let ed = null, ask = null;
+  function form(host){
+    const isNew = !get().some(x => x.id === ed.id);
+    host.innerHTML = '<div class="rmf"><label>Titre<input id="rmT" value="' + esc(ed.t || '') + '" autocomplete="off"></label><label>Détails<textarea id="rmD" rows="6">' + esc(ed.d || '') + '</textarea></label><div class="rml">Étape</div><div class="erow" id="rmS">' + ST.map(s => '<button class="s' + (ed.st === s[0] ? ' on' : '') + '" data-s="' + s[0] + '">' + s[1] + '</button>').join('') + '</div>' + (ask ? '<p class="rma">' + (ask === 'del' ? 'Supprimer cette tâche ?' : 'Terminé : la tâche sera supprimée. Confirmer ?') + '</p>' : '') + '<div class="rmb">' + (isNew ? '' : '<button class="s warn" id="rmDel">Supprimer</button>') + '<span></span><button class="s" id="rmCx">Annuler</button><button class="s" id="rmOk">' + (ask ? 'Oui, supprimer' : 'Enregistrer') + '</button></div></div>';
+    const sync = () => { ed.t = $('#rmT').value; ed.d = $('#rmD').value; };
+    $('#rmS').onclick = e => { const b = e.target.closest('button[data-s]'); if (!b) return; sync(); ed.st = b.dataset.s; ask = null; draw(); };
+    $('#rmCx').onclick = () => { ed = null; ask = null; draw(); };
+    if ($('#rmDel')) $('#rmDel').onclick = () => { sync(); ask = 'del'; draw(); };
+    $('#rmOk').onclick = () => {
+      sync(); ed.t = ed.t.trim(); ed.d = ed.d.trim();
+      if (!ed.t) { toast('Titre requis'); return; }
+      const a = get(), i = a.findIndex(x => x.id === ed.id);
+      if (ask || ed.st === 'done') {
+        if (!ask) { ask = 'done'; draw(); return; }
+        if (i >= 0) a.splice(i, 1);
+      } else { if (i >= 0) a[i] = ed; else a.push(ed); }
+      save(a); ed = null; ask = null; draw();
+    };
+  }
+  function draw(){
+    const host = $('#rmBody'); if (!host || cur !== 'ROADMAP') return;
+    if (ed) return form(host);
+    const a = get();
+    host.innerHTML = '<div class="rmtop"><button class="s" id="rmNew">+ Nouvelle tâche</button></div><div class="rmg">' + ST.slice(0, 2).map(s => { const L = a.filter(x => x.st === s[0]); return '<section class="rmc"><div class="rmh">' + s[1] + ' <small>' + L.length + '</small></div>' + (L.map(x => '<button class="rmi" data-id="' + esc(x.id) + '"><b>' + esc(x.t) + '</b>' + (x.d ? '<span>' + esc(x.d) + '</span>' : '') + '</button>').join('') || '<div class="rme">Rien ici</div>') + '</section>'; }).join('') + '</div>';
+    $('#rmNew').onclick = () => { ed = {id: Date.now().toString(36), t: '', d: '', st: 'todo'}; ask = null; draw(); };
+    host.querySelectorAll('.rmi').forEach(b => b.onclick = () => { ed = Object.assign({}, a.find(x => x.id === b.dataset.id)); ask = null; draw(); });
+  }
+  window.renderRoadmap = function(){
+    $('#main').innerHTML = '<div class="pg absb" data-m="ROADMAP"><div class="abh"><h3>RoadMap</h3></div><div id="rmBody"></div></div>';
+    ed = null; ask = null; draw();
+  };
 })();
 async function warm(now){
   // Rien d'urgent : on laisse d'abord s'afficher les listes (profil, identifiants et todo chargés un peu plus tard ; l'admin à l'ouverture)
@@ -2514,6 +2554,7 @@ async function openMod(m){ if ($('#mBib') && $('#mBib').classList.contains('on')
   moveInd();
   if (m === '_home') return renderHome();
   if (m === 'ADMIN') { if (!isAdmin()) return openMod('_home'); $('#main').innerHTML = '<div class="pg absb" data-m="ADMIN"><div id="admPg"></div></div>'; return renderAdminPage(); }
+   if (m === 'ROADMAP') { if (!(window.rmOk && window.rmOk())) return openMod('_home'); return window.renderRoadmap(); }
   if (m === 'LIBRARY') return renderLib();
   if (m === 'ENTREPRISES') return renderEnt();
   if (PGS[m]) return renderPg(m);
