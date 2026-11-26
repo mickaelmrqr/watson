@@ -467,7 +467,7 @@ html[data-menu] #nav .mod[data-n]::after{display:inline-flex!important;align-ite
 :root:root:root:root:root:root:root:root:root #nav .mods{gap:2px!important}:root:root:root:root:root:root:root:root:root #nav .mods>.mod{padding:3px 10px!important}:root:root:root:root:root:root:root:root:root #nav .mods>.mod[data-m="ADMIN"]{margin-top:8px}
 :root:root:root #bAdm{display:none!important}
 #admPg{position:static!important;width:auto!important;max-width:none!important;max-height:none!important;height:auto!important;box-shadow:none!important;transform:none!important;opacity:1!important;margin:0;background:transparent!important;border:0!important;padding:0!important;overflow:visible!important}#admPg #admX{display:none!important}
-.rmg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.rmc{border:1px solid rgba(128,138,158,.3);border-radius:12px;padding:10px}.rmh{font-weight:600;margin-bottom:8px}.rmh small{opacity:.6}.rme{opacity:.5;font-size:.9em}.rmtop{margin-bottom:12px}.rmf{display:flex;flex-direction:column;gap:10px;max-width:640px}.rmf label{display:flex;flex-direction:column;gap:4px}.rmf textarea{resize:vertical;font:inherit}.rml{font-size:.85em;opacity:.7}.rmb{display:flex;gap:10px;align-items:center}.rmb span{flex:1}.rma{color:#E5543A;font-weight:600;margin:0}
+.rmg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.rmc{border:1px solid rgba(128,138,158,.3);border-radius:12px;padding:10px}.rmh{font-weight:600;margin-bottom:8px}.rmh small{opacity:.6}.rmc{min-height:120px}.rmc.ov{outline:2px dashed #2F6FDE;outline-offset:-2px}.rmi{cursor:grab}.rmi.drg{opacity:.4}.rmc[data-st=done] .rmi b{text-decoration:line-through;opacity:.7}.rme{opacity:.5;font-size:.9em}.rmtop{margin-bottom:12px}.rmf{display:flex;flex-direction:column;gap:10px;max-width:640px}.rmf label{display:flex;flex-direction:column;gap:4px}.rmf textarea{resize:vertical;font:inherit}.rml{font-size:.85em;opacity:.7}.rmb{display:flex;gap:10px;align-items:center}.rmb span{flex:1}.rma{color:#E5543A;font-weight:600;margin:0}
 :root:root:root:root:root:root:root:root:root .rmi{display:block;width:100%;text-align:left;margin:0 0 8px;padding:9px 11px;border-radius:10px;border:1px solid rgba(128,138,158,.3)!important;background:rgba(128,138,158,.08)!important;box-shadow:none!important}:root:root:root:root:root:root:root:root:root .rmi span{display:block;opacity:.7;font-weight:400;white-space:pre-wrap;margin-top:3px;max-height:3.6em;overflow:hidden}:root:root:root:root:root:root:root:root:root .rmi:hover{border-color:#2F6FDE!important}:root:root:root:root:root:root:root:root:root .rmi,:root:root:root:root:root:root:root:root:root .rmi b,:root:root:root:root:root:root:root:root:root .rmi span{color:inherit!important}:root:root:root:root:root:root:root:root:root #rmOk{background:#2fb36b!important;border-color:#2fb36b!important;color:#fff!important}:root:root:root:root:root:root:root:root:root #rmS .s.on{background:#2F6FDE!important;border-color:#2F6FDE!important;color:#fff!important}:root:root:root:root:root:root:root:root:root #abCodes button.on[data-c]{background:var(--c)!important;border-color:var(--c)!important;color:#fff!important}
 #busy .lg{-webkit-mask-image:none!important;mask-image:none!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cstyle%3E@keyframes sp{to{transform:rotate(360deg)}}@keyframes br{0%25{stroke-dasharray:6 94;stroke-dashoffset:0}50%25{stroke-dasharray:70 30;stroke-dashoffset:-12}100%25{stroke-dasharray:6 94;stroke-dashoffset:-100}}.r{transform-origin:60px 60px;animation:sp 1.6s linear infinite}.r circle{fill:none;stroke:%23ff5a2b;stroke-width:6;stroke-linecap:round;stroke-dasharray:6 94;animation:br 1.6s ease-in-out infinite}.l{fill:none;stroke:%23ff5a2b;stroke-width:13;stroke-linejoin:miter}%3C/style%3E%3Cg class='r'%3E%3Ccircle cx='60' cy='60' r='54' pathLength='100'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat!important;animation:none!important;filter:none!important}
 .srl{display:inline-block!important;width:40px!important;height:40px!important;gap:0!important;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cstyle%3E@keyframes sp{to{transform:rotate(360deg)}}@keyframes br{0%25{stroke-dasharray:6 94;stroke-dashoffset:0}50%25{stroke-dasharray:70 30;stroke-dashoffset:-12}100%25{stroke-dasharray:6 94;stroke-dashoffset:-100}}.r{transform-origin:60px 60px;animation:sp 1.6s linear infinite}.r circle{fill:none;stroke:%23ff5a2b;stroke-width:6;stroke-linecap:round;stroke-dasharray:6 94;animation:br 1.6s ease-in-out infinite}.l{fill:none;stroke:%23ff5a2b;stroke-width:13;stroke-linejoin:miter}%3C/style%3E%3Cg class='r'%3E%3Ccircle cx='60' cy='60' r='54' pathLength='100'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}.srl i{display:none!important}
@@ -1810,10 +1810,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.185</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.186</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.185</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.186</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2264,6 +2264,8 @@ function navBadges(){
 (function(){
   const OK = () => String((ME && ME.email) || '').toLowerCase() === 'mickael.mrqr@gmail.com';
   window.rmOk = OK;
+  window.rmDoneN = () => get().filter(x => x.st === 'done').length;
+  window.rmArchive = () => { save(get().filter(x => x.st !== 'done')); };
   const ST = [['todo', 'À faire'], ['doing', 'En cours'], ['done', 'Terminé']];
   const get = () => (ME.prefs && Array.isArray(ME.prefs.roadmap)) ? ME.prefs.roadmap.slice() : [];
   const save = a => setDisplay({roadmap: a});
@@ -2279,8 +2281,7 @@ function navBadges(){
       sync(); ed.t = ed.t.trim(); ed.d = ed.d.trim();
       if (!ed.t) { toast('Titre requis'); return; }
       const a = get(), i = a.findIndex(x => x.id === ed.id);
-      if (ask || ed.st === 'done') {
-        if (!ask) { ask = 'done'; draw(); return; }
+      if (ask) {
         if (i >= 0) a.splice(i, 1);
       } else { if (i >= 0) a[i] = ed; else a.push(ed); }
       save(a); ed = null; ask = null; draw();
@@ -2290,9 +2291,11 @@ function navBadges(){
     const host = $('#rmBody'); if (!host || cur !== 'ROADMAP') return;
     if (ed) return form(host);
     const a = get();
-    host.innerHTML = '<div class="rmtop"><button class="s" id="rmNew">+ Nouvelle tâche</button></div><div class="rmg">' + ST.slice(0, 2).map(s => { const L = a.filter(x => x.st === s[0]); return '<section class="rmc"><div class="rmh">' + s[1] + ' <small>' + L.length + '</small></div>' + (L.map(x => '<button class="rmi" data-id="' + esc(x.id) + '"><b>' + esc(x.t) + '</b>' + (x.d ? '<span>' + esc(x.d) + '</span>' : '') + '</button>').join('') || '<div class="rme">Rien ici</div>') + '</section>'; }).join('') + '</div>';
+    host.innerHTML = '<div class="rmtop"><button class="s" id="rmNew">+ Nouvelle tâche</button></div><div class="rmg">' + ST.map(s => { const L = a.filter(x => x.st === s[0]); return '<section class="rmc" data-st="' + s[0] + '"><div class="rmh">' + s[1] + ' <small>' + L.length + '</small></div>' + (L.map(x => '<div class="rmi" tabindex="0" role="button" draggable="true" data-id="' + esc(x.id) + '"><b>' + esc(x.t) + '</b>' + (x.d ? '<span>' + esc(x.d) + '</span>' : '') + '</div>').join('') || '<div class="rme">Rien ici</div>') + '</section>'; }).join('') + '</div>';
     $('#rmNew').onclick = () => { ed = {id: Date.now().toString(36), t: '', d: '', st: 'todo'}; ask = null; draw(); };
     host.querySelectorAll('.rmi').forEach(b => b.onclick = () => { ed = Object.assign({}, a.find(x => x.id === b.dataset.id)); ask = null; draw(); });
+    host.querySelectorAll('.rmi').forEach(b => { b.ondragstart = e => { e.dataTransfer.setData('text/plain', b.dataset.id); e.dataTransfer.effectAllowed = 'move'; b.classList.add('drg'); }; b.ondragend = () => b.classList.remove('drg'); });
+    host.querySelectorAll('.rmc').forEach(c => { c.ondragover = e => { e.preventDefault(); c.classList.add('ov'); }; c.ondragleave = e => { if (!c.contains(e.relatedTarget)) c.classList.remove('ov'); }; c.ondrop = e => { e.preventDefault(); const id = e.dataTransfer.getData('text/plain'), arr = get(), x = arr.find(y => y.id === id); if (x && x.st !== c.dataset.st) { x.st = c.dataset.st; save(arr); } draw(); }; });
   }
   window.renderRoadmap = function(){
     $('#main').innerHTML = '<div class="pg absb" data-m="ROADMAP"><div class="abh"><h3>RoadMap</h3></div><div id="rmBody"></div></div>';
@@ -3769,6 +3772,7 @@ async function renderAdminPage(){
   try { ADM = await wait(() => api('admin_summary')); } catch (e) { closeAdm(); return toast(e.message); }
   if (!admOpen()) return;
   const n = m => ADM[m] || {a_archiver: 0, a_supprimer: 0};
+  const rmN = window.rmDoneN ? window.rmDoneN() : 0;
   const totA = ADM_MODS.reduce((t, [m]) => t + n(m).a_archiver, 0), totS = ADM_MODS.reduce((t, [m]) => t + n(m).a_supprimer, 0);
   const days = [...new Set(ADM_MODS.map(([m]) => n(m).jours_suppression).filter(Boolean))], dj = days.length === 1 ? days[0] : 30;
   const c = v => v ? `<b>${v}</b>` : `<span class="z">0</span>`;
@@ -3777,7 +3781,7 @@ async function renderAdminPage(){
       <table><thead><tr><th>Page</th><th>À archiver</th><th>Archivés depuis plus de ${dj} j</th></tr></thead>
       <tbody>${ADM_MODS.map(([m, l]) => `<tr><td>${l}</td><td>${c(n(m).a_archiver)}</td><td>${c(n(m).a_supprimer)}</td></tr>`).join('')}</tbody>
       <tfoot><tr><td>Total</td><td>${totA}</td><td>${totS}</td></tr></tfoot></table>
-      <div class="acts"><button class="s" id="admArch" ${totA ? '' : 'disabled'}>${IC.archive}Archiver ce qui doit l'être</button>
+      <div class="acts"><button class="s" id="admArch" ${(totA + rmN) ? '' : 'disabled'}>${IC.archive}Archiver ce qui doit l'être</button>
       <button class="s warn" id="admPurge" ${totS ? '' : 'disabled'}>${IC.trash}Supprimer les archives de plus de ${dj} jours</button></div></section>
     <section class="at" id="atB"><h3><span class="mi">${IC.users}</span>Gestion</h3><div class="acts"><button class="s" id="admUsr">${IC.users}Gestion des utilisateurs</button><button class="s" id="admGrp">${IC.users}Gestion des groupes</button><button class="s" id="admCat">${IC.pencil}Gestion des catégories</button></div></section></div></div>`;
   $('#admX').onclick = closeAdm;
@@ -3790,8 +3794,8 @@ async function renderAdminPage(){
   };
   const sum = r => ADM_MODS.map(([m, l]) => r[m] ? `${l} : ${r[m]}` : '').filter(Boolean).join(' · ') || 'rien à faire';
   $('#admArch').onclick = async () => {
-    if (!(await ask('Archiver ce qui doit l\'être ?', `${totA} élément${totA > 1 ? 's' : ''} à l\'étape « Va être archivé » ${totA > 1 ? 'seront archivés' : 'sera archivé'}.`, 'Archiver'))) return;
-    try { const r = await wait(() => api('admin_archive')); await after('Archivé · ' + sum(r)); } catch (e) { toast(e.message); }
+    if (!(await ask('Archiver ce qui doit l\'être ?', `${totA + rmN} élément${totA + rmN > 1 ? 's' : ''} ${totA + rmN > 1 ? 'seront archivés' : 'sera archivé'}${rmN ? ' (dont ' + rmN + ' de la RoadMap, retiré' + (rmN > 1 ? 's' : '') + ')' : ''}.`, 'Archiver'))) return;
+    try { let r = {}; if (totA) r = await wait(() => api('admin_archive')); if (rmN && window.rmArchive) window.rmArchive(); await after('Archivé · ' + [totA ? sum(r) : '', rmN ? 'RoadMap : ' + rmN : ''].filter(Boolean).join(' · ')); } catch (e) { toast(e.message); }
   };
   $('#admPurge').onclick = async () => {
     if (!(await ask('Supprimer définitivement ?', `${totS} élément${totS > 1 ? 's archivés' : ' archivé'} depuis plus de ${dj} jours, avec leurs commentaires, tâches et fichiers, seront supprimés. Cette action est irréversible.`, 'Supprimer'))) return;
