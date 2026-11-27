@@ -476,6 +476,7 @@ html[data-menu] #nav .mod[data-n]::after{display:inline-flex!important;align-ite
 .svc{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:10px;padding:8px 10px 8px 36px;margin-bottom:8px;background:var(--panel);cursor:pointer;min-height:44px}.svc:hover{border-color:#2F6FDE}.svc.drg{opacity:.4}.svc b{display:block;margin-bottom:4px;word-break:break-word}
 .svr{position:absolute;left:0;top:0;bottom:0;width:26px;background:var(--sc);display:flex;align-items:center;justify-content:center;overflow:hidden}.svr span{writing-mode:vertical-rl;transform:rotate(180deg);font:700 13px/1 var(--disp);letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;color:#fff}
 .svch{display:inline-flex;gap:4px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:1px 8px;margin:2px 4px 2px 0;font-size:.85em}.svch a{color:#2F6FDE;text-decoration:none}.svch i{font-style:normal;cursor:pointer;opacity:.7;display:inline-flex}.svch i svg{width:12px;height:12px}.svch.m{background:rgba(47,111,222,.14)}.svch.r{background:rgba(128,138,158,.18)}
+.alz .alb .g{color:#6B7A99}html:not([data-theme~="light"]) .alz .alb .g{color:#A9B4CC}.svalz{margin-top:0}
 .svd{font-size:.82em;opacity:.8;margin-top:4px}.svd.on{color:#FF8A1F;opacity:1}.svn{font-size:.82em;opacity:.7;margin-top:4px}
 .svsel .vb:disabled:not(.on){opacity:.4;cursor:not-allowed}
 .svlb{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}.svlb img{max-width:92vw;max-height:84vh}.svlb a{color:#fff}
@@ -1828,10 +1829,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.191</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.192</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.191</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.192</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2345,7 +2346,7 @@ function navBadges(){
   const pd=i.d_prise_fin?fm(i.d_prise):'en attente '+fm(i.d_prise);
   const rd=i.d_res==null?'—':(i.d_res_fin?fm(i.d_res):'en cours '+fm(i.d_res));
   const dest=(i.destinataires||[]).map(pname).join(', ');
-  return `<div class="svc" draggable="${S.arch?'false':'true'}" data-id="${e(i.id)}" style="--sc:${c}"><div class="svr" ${urg(i)?'title="Urgent"':''}>${urg(i)?'<span>Urgent</span>':''}</div><b>${e(i.titre)}</b><div>${chips(i)}</div><div class="svd${i.d_prise_fin?'':' on'}">Prise en charge : ${pd}</div><div class="svd${i.d_res_fin?'':(i.d_res==null?'':' on')}">Résolution : ${rd}</div><div class="svn">${i.nf?i.nf+' pj · ':''}${i.nc?i.nc+' com. · ':''}${dest?'→ '+e(dest):''}</div></div>`}
+  return `<div class="svc${red(i)?' alh':''}" draggable="${S.arch?'false':'true'}" data-id="${e(i.id)}" style="--sc:${c}"><div class="svr" ${urg(i)?'title="Urgent"':''}>${urg(i)?'<span>Urgent</span>':''}</div><b>${e(i.titre)}</b><div>${chips(i)}</div><div class="svd${i.d_prise_fin?'':' on'}">Prise en charge : ${pd}</div><div class="svd${i.d_res_fin?'':(i.d_res==null?'':' on')}">Résolution : ${rd}</div><div class="svn">${i.nf?i.nf+' pj · ':''}${i.nc?i.nc+' com. · ':''}${dest?'→ '+e(dest):''}</div></div>`}
  function bar(){
   const h=S.host;if(!h)return;let ab=q('#svAbr');
   if(!ab){const pg=h.closest('.pg'),tabs=pg&&pg.querySelector('.pgtabs');if(tabs){tabs.classList.add('svtabs');ab=document.createElement('div');ab.className='abr';ab.id='svAbr';tabs.appendChild(ab)}}
@@ -2353,6 +2354,12 @@ function navBadges(){
   ab.innerHTML=(adm()?`<button class="s" data-a="motifs">${IC.tag}Motifs</button><button class="s" data-a="arch">${S.arch?IC.unarchive+'Voir les actifs':IC.archive+'Voir les archives'}</button>`:'')+(canW()&&!S.arch?`<button class="s" data-a="new">${IC.plus}Nouveau</button>`:'');
   ab.onclick=ev=>{const a=ev.target.closest('[data-a]');if(!a)return;const k=a.dataset.a;if(k==='new')openForm();else if(k==='arch'){S.arch=!S.arch;reload()}else if(k==='motifs')openMotifs()};
  }
+ function late(i){return !i.prise_le&&i.etat==='A_FAIRE'}
+ function red(i){if(!late(i))return false;const c=new Date(i.cree_le),n=new Date();return c<new Date(n.getFullYear(),n.getMonth(),n.getDate())}
+ function alz(){
+  if(S.arch)return '';const L=S.items.filter(late),O=L.filter(i=>(i.d_prise||0)>=180),R=L.filter(red);
+  if(!L.length)return '';
+  return '<details class="alz svalz"'+(S.alzOpen?' open':'')+'><summary>Alertes <small>'+L.length+'</small></summary><div class="alb"><div class="g">Non prises en charge · '+L.length+'</div>'+(O.length?'<div class="w">Plus de 3 h ouvrées sans prise en charge · '+O.length+'</div>':'')+(R.length?'<div class="u">Demandes de la veille (ou avant) · '+R.length+'</div>':'')+'</div></details>'}
  function draw(){
   const h=S.host;if(!h||!h.isConnected)return;
   bar();
@@ -2360,7 +2367,8 @@ function navBadges(){
   let body;
   if(S.arch)body=`<div class="svl">${S.items.map(card).join('')||'<div class="empty">Aucune archive</div>'}</div>`;
   else body=`<div class="svg">${ST.map(([k,l,c])=>{const L=S.items.filter(i=>i.etat===k);return `<div class="svcol" data-st="${k}"><div class="svh" style="--c:${c}">${l} <small>${L.length}</small></div>${L.map(card).join('')}</div>`}).join('')}</div>`;
-  h.innerHTML=note+body;
+  h.innerHTML=alz()+note+body;
+  const az=h.querySelector('.svalz');if(az)az.addEventListener('toggle',()=>{S.alzOpen=az.open});
   if(!h._sv){h._sv=1;
    h.addEventListener('click',ev=>{const c=ev.target.closest('[data-cp]');if(c){ev.stopPropagation();cp(c.dataset.cp);return}if(ev.target.closest('a'))return;const cd=ev.target.closest('.svc');if(cd)openDetail(cd.dataset.id)});
    h.addEventListener('dragstart',ev=>{const c=ev.target.closest('.svc');if(!c||S.arch)return;ev.dataTransfer.setData('text/plain',c.dataset.id);ev.dataTransfer.effectAllowed='move';c.classList.add('drg')});
@@ -4051,7 +4059,7 @@ async function renderUsers(el){
   let us = US; if (us) api('users_list').then(x => US = x).catch(() => {}); else { try { us = US = await wait(() => api('users_list')); } catch (e) { return toast(e.message); } }
   const MU = [['AWB', 'AWB'], ['UNDELS', 'Undels (SPARK + DOM)'], ['SECURITY', 'LSR'], ['ENTREPRISES', 'Entreprises + Carte'], ['DEBRIEF', 'Debrief'], ['ABSENCES', 'Absences'], ['PARTENAIRE', 'Partenaire (Suivi + lecture)'], ['PR', 'PR'], ['DOCUMENTS', 'Bibliothèque'], ['PARAMETRES', 'Paramètres']];
   const CC = {CLASSIQUES: '#3a8cff', CCTV: '#ee4650', PPWK: '#a66a3e', UNDELS: '#22b070'};
-  const seg = (u, m) => { const cur = u.rights[m] || '', opts = m === 'PARTENAIRE' ? [['', 'Non'], ['lecture', 'Oui']] : m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : m === 'DOCUMENTS' ? [['', 'Standard'], ['admin', 'Admin']] : (m === 'ABSENCES' || m === 'PR') ? [['', 'Aucun'], ['lecture', 'Lecture'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
+  const seg = (u, m) => { const cur = u.rights[m] || ''; if (m === 'PARTENAIRE') return `<label class="chk"><input type="checkbox" data-pt="${esc(u.email)}"${cur ? ' checked' : ''}>Partenaire</label>`; const  opts = m === 'PARTENAIRE' ? [['', 'Non'], ['lecture', 'Oui']] : m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : m === 'DOCUMENTS' ? [['', 'Standard'], ['admin', 'Admin']] : (m === 'ABSENCES' || m === 'PR') ? [['', 'Aucun'], ['lecture', 'Lecture'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<div class="useg" data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<button type="button" data-lv="${v}" class="${v === cur ? 'on ' + (v || 'none') : ''}">${l}</button>`).join('')}</div>`; };
   const ini = u => (((u.prenom || '')[0] || '') + ((u.nom || '')[0] || '')).toUpperCase() || (u.email || '?')[0].toUpperCase();
   el.innerHTML = `<h3>Gestion des utilisateurs</h3><p class="lead">Accès aux pages, catégories et historique. Chaque changement est enregistré tout de suite.</p>
@@ -4071,6 +4079,7 @@ async function renderUsers(el){
     if (t.dataset.hm) saveUs({email:t.dataset.hu, rights:{['HIST_' + t.dataset.hm]: t.checked ? 'lecture' : ''}});
     else if (t.dataset.cm) saveUs({email:t.dataset.cu, rights:{[t.dataset.cm]: t.checked ? 'lecture' : ''}});
     else if (t.dataset.act) { const cd = t.closest('.ucard'); if (cd) cd.classList.toggle('off', !t.checked); saveUs({email:t.dataset.act, actif:t.checked}); }
+    else if (t.dataset.pt) saveUs({email:t.dataset.pt, rights:{PARTENAIRE: t.checked ? 'lecture' : ''}});
     else if (t.dataset.u) saveUs({email:t.dataset.u, rights:{[t.dataset.m]: t.value}});
   };
   el.onclick = async e => {
