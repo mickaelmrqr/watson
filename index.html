@@ -1844,6 +1844,11 @@ html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn,html:not([data-navpos=
 .tdg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}.tdcol{border:1px solid var(--line);border-radius:12px;padding:8px;min-height:220px;align-self:stretch}.tdcol.ov{border-color:#2F6FDE;background:var(--raised)}.tdh{display:flex;align-items:center;gap:7px;font-weight:600;margin-bottom:8px}.tdh:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c)}.tdh small{color:var(--mut);font-weight:400}
 #tdBox .trow{cursor:grab}#tdBox .trow.drg{opacity:.4}.tdup{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:0 10px}#tdBox .st3 button{white-space:nowrap}@media(max-width:1250px){#tdBox .trow .tl3{flex-wrap:wrap}}@media(max-width:420px){.tdup{grid-template-columns:1fr}}#tdBox .subh{margin:16px 0 8px}
 @media(max-width:820px){.tdg{grid-template-columns:1fr}.tdcol{min-height:0}}
+#tdPage[data-board=PPWK] .tdp{grid-template-columns:repeat(var(--tdn,6),minmax(150px,1fr))}
+#nav #seg .mod.addb{background:var(--orange)!important;border-color:var(--orange)!important;color:#fff!important;border-radius:12px;font-weight:700;margin-bottom:8px}#nav #seg .mod.addb .mi,#nav #seg .mod.addb b{color:#fff!important}
+.addg{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.addc{display:flex;align-items:center;gap:12px;padding:16px;border-radius:14px;border:1px solid var(--line);border-left:5px solid var(--c);background:var(--bg);color:var(--ink);font:inherit;cursor:pointer;text-align:left}.addc span{color:var(--c);display:flex}.addc span svg{width:24px;height:24px}.addc:hover,.addc:focus-visible{border-color:var(--c)}
+#sDet.sheet.wbx,#svS.sheet.wbx{max-width:980px;width:96vw}.wbg{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:18px;align-items:start}.wbf{min-width:0}.wbl{border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px;background:var(--bg)}.wbl.hit{border-color:#ff8a1f}.wbl h5{margin:0 0 8px;font-size:var(--fs);display:flex;gap:8px;align-items:center}.wbl.hit h5{color:#ff8a1f}.wbl h5 small{background:#ff8a1f;color:#fff;border-radius:999px;padding:0 8px}.wbl p{margin:0;color:var(--mut);font-size:var(--fs)}.wbl ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;max-height:52vh;overflow:auto}.wbl li{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:10px;padding:8px 10px;background:var(--panel);font-size:var(--fs)}.wbt{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.wbt b{color:var(--c)}.wbt span{color:var(--mut)}.wbt em{font-style:normal;margin-left:auto;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--mut)}.wbn{font-weight:700}.wbs{color:var(--mut)}input.wbauto{border-color:#ff8a1f!important;background:rgba(255,138,31,.10)!important}
+@media(max-width:800px){.wbg{grid-template-columns:1fr}.wbl ul{max-height:none}}
 </style>
 </head>
 <body>
@@ -1858,10 +1863,10 @@ html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn,html:not([data-navpos=
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.202</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.203</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.202</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.203</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1990,11 +1995,10 @@ const MODS = {
   AWB: { label: 'AWB', name: r => r.nom_client, fields: [
     {k:'waybill',l:'Waybill',t:'scan',req:1},
     {k:'nom_client',l:'Nom du client',t:'text',up:1}, {k:'adresse',l:'Adresse',t:'addr'},
-    {k:'categorie_id',l:'Catégorie',t:'cat',req:true},
     {k:'remarque',l:'Remarque',t:'area'},
     {k:'location',l:'Location (étagère)',t:'scan'},
     {k:'visibilite',l:'Visibilité',t:'vis'}],
-    show:['categorie_id','remarque'] },
+    show:['remarque'] },
   SPARK: { label: 'Retours AA1', nv: 'Retour AA1', name: r => r.nom_client, fields: [
     {k:'waybill',l:'Waybill',t:'scan'},
     {k:'nom_client',l:'Nom du client',t:'text',up:1}, {k:'adresse',l:'Adresse',t:'addr'},
@@ -2226,12 +2230,13 @@ function buildNav(){
   const gtile = g => { const its = g.items.filter(m => m === 'CCTV+' ? (order.includes('CCTV') && ME.rights.CCTV === 'admin') : order.includes(m)); if (!its.length || (g.id === 'lsr' && !its.includes('SECURITY'))) return ''; its.forEach(m => inGrp.add(m)); return `<div class="gw" data-g="${g.id}"><button class="mod gb" data-g="${g.id}" aria-haspopup="true" aria-expanded="false"><span class="mi">${g.icon}</span><span><b>${g.label}</b><em class="gs"></em></span><i class="chv" aria-hidden="true"></i></button><div class="gm">${its.map(m => m === 'CCTV+' ? `<button class="mod gi" data-m="CCTV" data-new="1"><span class="mi">${IC.plus}</span><b>+ CCTV</b></button>` : `<button class="mod gi" data-m="${m}"><span class="mi">${IC[m]}</span><b>${esc(lbl(m))}</b>${PGS[m] ? '' : `<small id="cnt_${m}"></small>`}</button>`).join('')}</div></div>`; };
   const gh = '';
   const rest = (() => { const out = []; let done = false; const plus = `<button class="mod" data-m="CCTV" data-new="1" title="Faire une demande de CCTV" aria-label="Faire une demande de CCTV"><span class="mi">${IC.CCTVplus}</span><span><b>CCTV</b></span></button>`; order.forEach(m => { if (m === 'SECURITY' || m === 'CCTV') { if (done) return; done = true; if (lsrOk()) out.push(`<button class="mod" data-m="LSR"><span class="mi">${IC.CCTV}</span><span><b>LSR</b></span></button>`); if (!lsrOk()) out.push(plus); return; } out.push(tile(m)); }); if (!done && !lsrOk()) out.push(plus); return out.join(''); })();
-  $('#nav').innerHTML = `<div class="mods" id="seg">${io('_home', 'Accueil', IC.home)}${gh}${rest}${mods.includes('LIBRARY') ? '<button class="mod" data-m="LIBRARY"><span class="mi">' + IC.LIBRARY + '</span><span><b>Bibliothèque</b></span></button>' : ''}${isAdmin() ? '<button class="mod" data-m="ADMIN"><span class="mi">' + IC.admin + '</span><span><b>Administration</b></span></button>' : ''}${window.rmOk && window.rmOk() ? '<button class="mod" data-m="ROADMAP"><span class="mi">' + ic('<path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>') + '</span><span><b>RoadMap</b></span></button>' : ''}</div>`;
+  $('#nav').innerHTML = `<div class="mods" id="seg">${addChoices().length ? '<button class="mod addb" id="bAdd" title="Ajouter" aria-label="Ajouter"><span class="mi">' + IC.plus + '</span><span><b>Ajouter</b></span></button>' : ''}${io('_home', 'Accueil', IC.home)}${gh}${rest}${mods.includes('LIBRARY') ? '<button class="mod" data-m="LIBRARY"><span class="mi">' + IC.LIBRARY + '</span><span><b>Bibliothèque</b></span></button>' : ''}${isAdmin() ? '<button class="mod" data-m="ADMIN"><span class="mi">' + IC.admin + '</span><span><b>Administration</b></span></button>' : ''}${window.rmOk && window.rmOk() ? '<button class="mod" data-m="ROADMAP"><span class="mi">' + ic('<path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>') + '</span><span><b>RoadMap</b></span></button>' : ''}</div>`;
   $('#bAdm').classList.toggle('hide', !isAdmin()); $('#bLib').innerHTML = IC.LIBRARY; $('#bLib').classList.add('hide');
   $('#seg').onclick = e => {
     const gb = e.target.closest('.gb');
     if (gb) { const w = gb.parentElement, was = w.classList.contains('open'); closeGm(); if (!was) { w.classList.add('open'); gb.setAttribute('aria-expanded', 'true'); } return; }
-    const b = e.target.closest('button'); if (b && b.dataset.m) { closeGm(); showArch = false; const nw = b.dataset.new || (b.dataset.m === 'CCTV' && ME.rights.CCTV !== 'admin'); Promise.resolve(openMod(b.dataset.m)).then(() => { if (nw) openDetail(null, true); }); }
+    const b = e.target.closest('button'); if (b && b.id === 'bAdd') return openAdd();
+    if (b && b.dataset.m) { closeGm(); showArch = false; const nw = b.dataset.new || (b.dataset.m === 'CCTV' && ME.rights.CCTV !== 'admin'); Promise.resolve(openMod(b.dataset.m)).then(() => { if (nw) openDetail(null, true); }); }
   };
   if (window.__navMO) window.__navMO.disconnect();
   window.__navMO = new MutationObserver(navSync); window.__navMO.observe($('#seg'), {subtree:true, attributes:true, attributeFilter:['class']});
@@ -2433,7 +2438,7 @@ function navBadges(){
  async function fetchD(id,paint){if(S.inf[id]&&!paint)return;S.inf[id]=1;try{const [fl,cm]=await Promise.all([api('suivi_files',{id}),api('suivi_comments',{id})]);S.pre[id]={fl:fl||[],cm:cm||[]};if(paint&&S.cur===id&&!S.F){S.fl=fl||[];S.cm=cm||[];const x=q('#svCt');if(x)S.cmD=x.value;drawD()}}catch(x){if(paint&&S.cur===id)toast(x.message)}finally{delete S.inf[id]}}
  async function refD(){if(!S.cur)return;try{const [fl,cm]=await Promise.all([api('suivi_files',{id:S.cur}),api('suivi_comments',{id:S.cur})]);S.fl=fl||[];S.cm=cm||[];S.pre[S.cur]={fl:S.fl,cm:S.cm}}catch(x){}drawD()}
  function drawD(){
-  const i=S.items.find(x=>x.id===S.cur);const o=q('#svS');if(!o)return;if(!i){closeM();return}
+  const i=S.items.find(x=>x.id===S.cur);const o=q('#svS');if(o)o.classList.remove('wbx');if(!o)return;if(!i){closeM();return}
   const w=!i.archive;
   const acts=(w&&(adm()||own(i))?`<button class="ico sm" data-a="edit" title="Modifier" aria-label="Modifier">${IC.pencil}</button>`:'')+(w&&(adm()||(own(i)&&!isP()))?`<button class="ico sm warn dng" data-a="del" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>`:'')+(adm()&&i.etat==='VALIDE'&&w?`<button class="ico sm" data-a="archive" title="Archiver" aria-label="Archiver">${IC.archive}</button>`:'');
   const sb=`<div class="vsel svsel">${ST.map(([k,l])=>`<button type="button" class="s vb${i.etat===k?' on':''}" data-a="st" data-s="${k}" ${(i.etat===k||!canMove(i,k))?'disabled':''}>${l}</button>`).join('')}</div>`;
@@ -2485,6 +2490,7 @@ function navBadges(){
   if(F.type==='demande'){const b=q('#svBi'),r=q('#svRi'),m=q('#svMs'),mc=q('#svMc');if(b){b.value.split(/[\s,;]+/).map(x=>x.trim()).filter(Boolean).forEach(x=>{if(!F.bordereaux.includes(x))F.bordereaux.push(x)});b.value=''}if(r){const v=r.value.trim();if(v&&!F.routes.includes(v))F.routes.push(v);r.value=''}if(m)F.motifSel=m.value;if(mc)F.motifC=mc.value}}
  function routesList(){const s=new Set();try{(cache.ENTREPRISES||[]).forEach(r=>entR(r).forEach(x=>{const n=String(x.nom||'').trim();if(n)s.add(n)}))}catch(x){}S.items.forEach(i=>(i.routes||[]).forEach(r=>s.add(r)));return [...s].sort()}
  function draw2(){const F=S.F,o=q('#svS');if(!F||!o)return;
+  o.classList.remove('wbx');
   const d=F.type==='demande';
   const vs=(a,list,cur)=>`<div class="vsel">${list.map(([v,l])=>`<button type="button" class="s vb${cur===v?' on':''}" data-a="${a}" data-v="${v}">${l}</button>`).join('')}</div>`;
   o.innerHTML=hd((F.id?'Modifier':'Nouveau')+(d?' demande':' information'),`<button class="ico sm ok ic0" data-a="f_save" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button>`,'f_cancel')+
@@ -2496,7 +2502,9 @@ function navBadges(){
   <dt>Détails</dt><dd class="ed"><textarea id="svDt" rows="4">${e(F.details)}</textarea></dd>
   <dt>Priorité</dt><dd class="ed">${vs('f_prio',[['1','Normal'],['3','Urgent']],String(F.prio))}</dd>
   <dt>Destinataires</dt><dd class="ed">${S.partners.map(p=>`<label class="chk"><input type="checkbox" data-dest="${e(p.email)}"${F.dest.includes(p.email)?' checked':''}>${e(p.prenom||p.email)}</label>`).join('')||'<span class="m">Aucun utilisateur partenaire</span>'}</dd></dl>
-  ${F.id?'':`<div id="xBlocks"><div class="xh">Pièces jointes</div><div class="pgrid">${F.files.map((f,n)=>`<div class="ph" title="${e(f.name)}"><span class="m" style="margin:auto;padding:4px;text-align:center;word-break:break-all">${e(f.name)}</span><button class="x" data-a="f_fdel" data-i="${n}" aria-label="Retirer" title="Retirer">${IC.close}</button></div>`).join('')}<label class="ph add" title="Ajouter des pièces jointes">${IC.camera}Ajouter<input type="file" id="svFq" multiple hidden></label></div></div>`}`}
+  ${F.id?'':`<div id="xBlocks"><div class="xh">Pièces jointes</div><div class="pgrid">${F.files.map((f,n)=>`<div class="ph" title="${e(f.name)}"><span class="m" style="margin:auto;padding:4px;text-align:center;word-break:break-all">${e(f.name)}</span><button class="x" data-a="f_fdel" data-i="${n}" aria-label="Retirer" title="Retirer">${IC.close}</button></div>`).join('')}<label class="ph add" title="Ajouter des pièces jointes">${IC.camera}Ajouter<input type="file" id="svFq" multiple hidden></label></div></div>`}`;wbSv()}
+ function wbSv(){const F=S.F,o=q('#svS');if(!F||!o||F.type!=='demande')return;const run=window.wbMulti(o,()=>{const b=q('#svBi');return F.bordereaux.concat(b?b.value.split(/[\s,;]+/):[])});const b=q('#svBi');if(b&&run)b.addEventListener('input',run)}
+ window.svNew=async function(){if(!S.loaded)await(S.pending||load());if(!S.loaded)await load();openForm(null)};
  async function formAct(a,t){const F=S.F;if(!F)return;syncF();const v=t.dataset.v,n=+t.dataset.i;
   if(a==='f_type'){F.type=v;draw2()}
   else if(a==='f_prio'){F.prio=+v;draw2()}
@@ -2557,9 +2565,8 @@ function tdList(col){
   const date = (r, k) => String(r[k] || '');
   if (tdView === 'arch') return {act: l.sort((a, b) => date(b, 'archive_le').localeCompare(date(a, 'archive_le'))), done: []};
   const ord = {}; stepsOf(m).forEach((x, i) => ord[x.code] = x.code === 'EN_ATTENTE' ? 50 : i);
-  const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
   return {
-    act: l.filter(r => kindOfM(m, r) !== 'ok').sort((a, b) => tdRank(m, a) - tdRank(m, b) || (m === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || date(b, 'cree_le').localeCompare(date(a, 'cree_le'))),
+    act: l.filter(r => kindOfM(m, r) !== 'ok').sort((a, b) => tdRank(m, a) - tdRank(m, b) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || date(b, 'cree_le').localeCompare(date(a, 'cree_le'))),
     done: l.filter(r => kindOfM(m, r) === 'ok').sort((a, b) => date(b, 'etape_le').localeCompare(date(a, 'etape_le')))
   };
 }
@@ -2643,6 +2650,137 @@ async function hpRetour(r){
     const n = (cache.SPARK || []).find(x => x.id === id); if (n) openDetail(n, true);
   } catch (e) { toast(e.message); }
 }
+
+// ------------------------------------------------------------ Bouton « Ajouter » : on choisit ensuite où créer
+function addChoices(){
+  const w = m => ['ecriture', 'admin'].includes(ME.rights[m]);
+  const ppwk = () => w('PPWK') ? catsFor('PPWK').filter(c => c.actif !== false).map(c => ({m: 'PPWK', cat: c.id, label: c.libelle, color: '#a66a3e', icon: IC.PPWK})) : [];
+  if (todoOn() && tdBoard === 'PPWK' && ppwk().length) return ppwk();
+  const l = [['AWB', 'AWB', '#2F6FDE'], ['SPARK', 'Retour AA1', '#2fb36b'], ['DOM', 'DOM', '#9668f0'], ['HP', 'HP', '#ff8a1f'], ['RTO', 'RTO', '#00aabe'], ['CCTV', 'CCTV', '#7d8696'], ['SUIVI', 'Suivi Spark', '#22b070']]
+    .filter(([m]) => m === 'CCTV' ? !!ME.rights.CCTV : w(m)).map(([m, label, color]) => ({m, label, color, icon: IC[m]}));
+  return l.length ? l : ppwk();
+}
+function openAdd(){
+  const l = addChoices(); if (!l.length) return;
+  closeGm();
+  $('#sAbs').className = 'sheet';
+  $('#sAbs').onchange = null; $('#sAbs').onkeydown = null;
+  $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Ajouter</h3><div class="sub">${l[0].m === 'PPWK' ? 'Dans quelle catégorie PPWK ?' : 'Quoi ?'}</div></div><button class="ico sm" id="addX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+    <div class="addg">${l.map((x, i) => `<button type="button" class="addc" data-i="${i}" style="--c:${x.color}"><span>${x.icon}</span><b>${esc(x.label)}</b></button>`).join('')}</div>`;
+  $('#sAbs').onclick = e => {
+    if (e.target.closest('#addX')) return closeAbs();
+    const b = e.target.closest('.addc'); if (!b) return;
+    const x = l[+b.dataset.i]; closeAbs(); addGo(x.m, x.cat).catch(err => toast(err.message));
+  };
+  $('#mAbs').classList.add('on');
+}
+async function addGo(m, cat){
+  showArch = false;
+  if (m === 'SUIVI') { await openMod('SUIVI'); return window.svNew(); }
+  if (m === 'PPWK') {
+    if (!(todoOn() && tdBoard === 'PPWK')) await openMod('PPWK');
+    focusMod('PPWK'); tdNewCat = cat; openDetail(null, true); tdNewCat = ''; return;
+  }
+  await openMod(m); focusMod(m); openDetail(null, true);
+}
+
+// ------------------------------------------------------------ Formulaires : colonne « Même bordereau » et champs préremplis
+const WB_MODS = ['AWB', 'PPWK', 'SPARK', 'DOM', 'HP', 'RTO', 'SECURITY', 'CCTV'];
+const WB_COL = {AWB: '#2F6FDE', PPWK: '#a66a3e', SPARK: '#2fb36b', DOM: '#9668f0', HP: '#ff8a1f', RTO: '#00aabe', SECURITY: '#ee4650', CCTV: '#7d8696', SUIVI: '#22b070'};
+const wbNorm = v => String(v || '').replace(/\s+/g, '').toLowerCase();
+const wbMemo = new Map();
+function wbFetch(w){
+  const hit = wbMemo.get(w); if (hit && Date.now() - hit.at < 20000) return hit.p;
+  const p = api('wb_lookup', {waybill: w}); wbMemo.set(w, {at: Date.now(), p});
+  p.catch(() => wbMemo.delete(w));
+  return p;
+}
+// Ce qui est déjà chargé sur ce poste (affiché tout de suite, avant la réponse complète)
+function wbLocal(w){
+  const seen = new Set(), out = [];
+  WB_MODS.forEach(m => [].concat(cache[m] || [], cache[m + '_a'] || []).forEach(r => {
+    if (wbNorm(r.waybill) !== w || seen.has(m + r.id) || String(r.id).startsWith('tmp_')) return; seen.add(m + r.id);
+    out.push({module: m, id: r.id, nom: r.nom_client || r.nom_dest || '', adresse: r.adresse || '', geo: r.geo || '', pid: r.pid || '', etape: r.etape, archive: r.archive === true, cree_le: r.cree_le, maj: r.modifie_le || r.cree_le, categorie_id: r.categorie_id});
+  }));
+  return out.sort((a, b) => String(b.maj).localeCompare(String(a.maj)));
+}
+function wbItem(x){
+  const lab = x.module === 'SECURITY' ? 'SCMS' : x.module === 'SUIVI' ? 'Suivi Spark' : x.module === 'SPARK' ? 'Retour AA1' : (MODS[x.module] || {}).label || x.module;
+  const cat = x.module === 'PPWK' && x.categorie_id ? ((ME.categories_awb || []).find(c => c.id === x.categorie_id) || {}).libelle : '';
+  const st = x.module === 'SUIVI' ? x.etat : x.etape ? stLabel(x.etape, x.module) : '';
+  return `<li style="--c:${WB_COL[x.module] || '#7d8696'}"><div class="wbt"><b>${esc(lab)}</b>${cat ? `<span>${esc(cat)}</span>` : ''}${x.archive ? '<em>Archivé</em>' : ''}</div>${x.nom ? `<div class="wbn">${esc(x.nom)}</div>` : ''}<div class="wbs">${[st ? esc(st) : '', x.cree_le ? fdate(x.cree_le) : ''].filter(Boolean).join(' · ')}</div></li>`;
+}
+function wbShow(box, items, state){
+  if (!box) return;
+  const n = items.length;
+  box.classList.toggle('hit', n > 0);
+  box.innerHTML = `<h5>Même bordereau${n ? `<small>${n}</small>` : ''}</h5>`
+    + (n ? `<ul>${items.map(wbItem).join('')}</ul>` : state === 'wait' ? '' : `<p>${state === 'idle' ? 'Saisis le bordereau pour voir les dossiers liés.' : 'Aucun autre dossier avec ce bordereau.'}</p>`)
+    + (state === 'wait' ? '<div class="m ld"><span class="srl" role="status" aria-label="Recherche"><i></i><i></i><i></i></span></div>' : '')
+    + (state === 'err' ? '<p>Recherche complète indisponible pour le moment.</p>' : '');
+}
+// Place le formulaire à gauche et la colonne à droite ; renvoie la colonne
+function wbSplit(sheet, first){
+  const grid = document.createElement('div'), left = document.createElement('div'), side = document.createElement('aside');
+  grid.className = 'wbg'; left.className = 'wbf'; side.className = 'wbl'; side.setAttribute('aria-live', 'polite');
+  first.before(grid);
+  while (grid.nextSibling && !(grid.nextSibling.classList && grid.nextSibling.classList.contains('dots'))) left.appendChild(grid.nextSibling);
+  grid.append(left, side); sheet.classList.add('wbx');
+  return side;
+}
+// Fiches (AWB, PPWK, Retour AA1, DOM, HP, RTO, SCMS, CCTV)
+function wbWatch(r, sheet){
+  const inp = sheet.querySelector('#f_waybill'), dl = sheet.querySelector('dl.det'); if (!inp || !dl) return;
+  const box = wbSplit(sheet, dl), m = cur, auto = {};
+  let last = null, timer = 0;
+  const self = items => items.filter(x => !(r && x.module === m && String(x.id) === String(r.id)));
+  const field = id => sheet.querySelector('#' + id);
+  // On ne remplace jamais ce que l'utilisateur a saisi lui-même : seulement un champ vide ou prérempli
+  const free = id => { const f = field(id); return f && (!f.value.trim() || f.value === auto[id]) ? f : null; };
+  const put = (f, v) => { f.value = v; if (v) auto[f.id] = v; else delete auto[f.id]; f.classList.toggle('wbauto', !!v); };
+  const fill = items => {
+    if (r) return;                                   // préremplissage à la création seulement
+    const src = items.filter(x => !x.ro && x.module !== 'SUIVI'), pick = k => (src.find(x => x[k]) || {});
+    const n = free(m === 'DOM' ? 'f_nom_dest' : 'f_nom_client'); if (n) put(n, String(pick('nom').nom || '').toUpperCase());
+    const p = free('f_pid'); if (p) put(p, String(pick('pid').pid || ''));
+    const a = free('f_adresse'); if (a) { const s = pick('adresse'); put(a, s.adresse || ''); const g = field('f_geo'); if (g) g.value = s.geo || ''; }
+  };
+  sheet.querySelectorAll('input.wbauto').forEach(i => i.classList.remove('wbauto'));
+  ['f_nom_client', 'f_nom_dest', 'f_pid', 'f_adresse'].forEach(id => { const f = field(id); if (f) f.addEventListener('input', () => { delete auto[id]; f.classList.remove('wbauto'); }); });
+  const run = () => {
+    const w = wbNorm(inp.value); if (w === last) return; last = w; clearTimeout(timer);
+    if (w.length < 8) { fill([]); return wbShow(box, [], 'idle'); }
+    const loc = self(wbLocal(w)); wbShow(box, loc, 'wait'); fill(loc);
+    timer = setTimeout(async () => {
+      const live = () => inp.isConnected && wbNorm(inp.value) === w;
+      try { const res = self(await wbFetch(w)); if (!live()) return; wbShow(box, res, 'ok'); fill(res); }
+      catch (e) { if (live()) wbShow(box, loc, 'err'); }
+    }, 350);
+  };
+  inp.addEventListener('input', run); inp.addEventListener('change', run);
+  run();
+}
+// Suivi Spark : plusieurs bordereaux, pas de champ à préremplir
+window.wbMulti = function(sheet, getList){
+  const dl = sheet.querySelector('dl.det'); if (!dl) return;
+  const box = wbSplit(sheet, dl);
+  let last = null, timer = 0;
+  const run = () => {
+    const ws = [...new Set(getList().map(wbNorm).filter(w => w.length >= 8))], sig = ws.join(','); if (sig === last) return; last = sig; clearTimeout(timer);
+    if (!ws.length) return wbShow(box, [], 'idle');
+    wbShow(box, [], 'wait');
+    timer = setTimeout(async () => {
+      try {
+        const res = await Promise.all(ws.map(wbFetch)); if (!box.isConnected || last !== sig) return;
+        const seen = new Set(), all = [];
+        res.forEach(l => l.forEach(x => { if (!seen.has(x.module + x.id)) { seen.add(x.module + x.id); all.push(x); } }));
+        wbShow(box, all, 'ok');
+      } catch (e) { if (box.isConnected) wbShow(box, [], 'err'); }
+    }, 350);
+  };
+  run();
+  return run;
+};
 
 // ------------------------------------------------------------ Accueil
 function kindOfM(m, r){
@@ -2846,11 +2984,10 @@ function renderHome(){
   $('#bSet').classList.remove('on');
   if (ME.rights.PARTENAIRE && window.svHome) { window.svHome(); return; }
   const mods = Object.keys(MODS).filter(m => ME.rights[m] && m !== 'DOCUMENTS' && m !== 'LIBRARY');
-  const cc = ME.rights.CCTV ? '<div class="ht" id="hCctvNew" tabindex="0" role="button" style="--mc:120,130,150"><div class="hth"><span class="mi">' + IC.CCTV + '</span><b>+ CCTV</b></div></div>' : '';
   const cal = ME.rights.ABSENCES ? '<div class="ht nc hcal" data-go="abs">' + absBox(14) + '</div>' : '';
-  $('#main').innerHTML = `<div class="home"><h2>Bonjour ${esc(ME.prenom || '')}</h2><div class="hgx4"><div class="hbtns"><div class="ht" id="dsBtn" tabindex="0" role="button" style="--mc:230,90,50"><div class="hth"><span class="mi">${IC.print}</span><b>Faire ma daysheet</b></div></div><div class="ht" id="abBtn" tabindex="0" role="button" style="--mc:47,179,107"><div class="hth"><span class="mi">${IC.absreq}</span><b>Demande d’absence</b></div></div>${cc}</div>${cal}<div class="hr"><div class="ht nc" data-go="abs" style="--mc:90,140,220"><div class="hth"><span class="mi">${IC.ENTREPRISES || ''}</span><b>Suivi partenaires et DL</b></div></div></div>
+  $('#main').innerHTML = `<div class="home"><h2>Bonjour ${esc(ME.prenom || '')}</h2><div class="hgx4"><div class="hbtns"><div class="ht" id="dsBtn" tabindex="0" role="button" style="--mc:230,90,50"><div class="hth"><span class="mi">${IC.print}</span><b>Faire ma daysheet</b></div></div><div class="ht" id="abBtn" tabindex="0" role="button" style="--mc:47,179,107"><div class="hth"><span class="mi">${IC.absreq}</span><b>Demande d’absence</b></div></div></div>${cal}<div class="hr"><div class="ht nc" data-go="abs" style="--mc:90,140,220"><div class="hth"><span class="mi">${IC.ENTREPRISES || ''}</span><b>Suivi partenaires et DL</b></div></div></div>
   </div></div>`;
-  absInit(); navBadges(); if ($('#hCctvNew')) $('#hCctvNew').onclick = e => { e.stopPropagation(); focusMod('CCTV'); openDetail(null, true); }; $('#abBtn').onclick = e => { e.stopPropagation(); openAbsReq(); }; $('#abBtn').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); openAbsReq(); } };
+  absInit(); navBadges(); $('#abBtn').onclick = e => { e.stopPropagation(); openAbsReq(); }; $('#abBtn').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); openAbsReq(); } };
   $('#dsBtn').onclick = e => { e.stopPropagation(); openDaysheet(); }; $('#dsBtn').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); e.stopPropagation(); openDaysheet(); } };
   const hm = $('#main').querySelector('.home');
   const go = e => {
@@ -2945,7 +3082,7 @@ function drawCards0(){
   const ord = {}; stepsOf(cur).forEach((x, i) => ord[x.code] = x.code === 'EN_ATTENTE' ? 50 : i);
   const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
   const out = rows.slice()
-    .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (isAwb(cur) ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || String(b.cree_le).localeCompare(String(a.cree_le)));
+    .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (cur === 'PPWK' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || String(b.cree_le).localeCompare(String(a.cree_le)));
   list.className = 'grid';
   list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>';
   drawTiles();
@@ -3004,7 +3141,7 @@ function card(r){
   const al = cur === 'DOM' ? domAlert(r) : null, rk = cur === 'HP' ? tdRank('HP', r) : 2;
   const alc = al ? (['J1', 'J4', 'J10'].some(k => al[k] === 'late') ? ' al-late' : ['J1', 'J4', 'J10'].some(k => al[k] === 'warn') ? ' al-warn' : '') : rk === 0 ? ' al-late' : rk === 1 ? ' al-warn' : '';
   const hpl = cur === 'HP' ? `<div class="m">J0 ${r.j0 ? fdateD(r.j0) : '…'} · J+3 ${r.j3 ? fdateD(r.j3) : '…'}${r.paye === true ? ' · <b>Payé' + (r.paye_le ? ' le ' + fdateD(r.paye_le) : '') + '</b>' : ''}</div>` : '';
-  const cl = cur === 'AWB' ? val(r, 'categorie_id') : '';
+  const cl = '';
   return `<div class="card st-${kind}${cl ? ' hascat' : ''} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${alc}${ecCls(r)}${gcl(r)}" ${gst(r)} data-id="${r.id}">${cl ? `<div class="rcat" title="${esc(cl)}"><span>${esc(cl)}</span></div>` : ''}${head}${wk}${hpl}${lines}${r.suppr_par ? `<div class="rowb">${waitB(r)}</div>` : ''}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 
@@ -3281,7 +3418,7 @@ async function loadHist(r, band, force){
 const who = e => { e = String(e || '').toLowerCase(); return (ME.annuaire && ME.annuaire[e]) || (e === ME.email ? ME.prenom : e.split('@')[0]); };
 const SYS = e => String(e).toLowerCase() === 'auto' ? 'Automatique' : who(e);
 function histHtml(h, m){
-  const M = MODS[m], lab = k => ({contacter_client:'Client', photos:'Photos', fichier:'Fichier', contact:'Contact client', motif_cb:'CB active', motif_cash:'Argent liquide', motif_libre:'Autre motif', paye:'Payé', paye_le:'Date de paiement'})[k] || (M.fields.find(f => f.k === k) || {}).l || k;
+  const M = MODS[m], lab = k => ({categorie_id:'Catégorie', contacter_client:'Client', photos:'Photos', fichier:'Fichier', contact:'Contact client', motif_cb:'CB active', motif_cash:'Argent liquide', motif_libre:'Autre motif', paye:'Payé', paye_le:'Date de paiement'})[k] || (M.fields.find(f => f.k === k) || {}).l || k;
   const fv = (k, v) => { if (k === 'contacter_client') return (v === true || v === 'TRUE') ? 'Contacter le client' : 'Ne pas contacter le client'; if (v === '' || v == null) return '—'; if (v === true || v === 'TRUE') return 'Oui'; if (v === false || v === 'FALSE') return 'Non';
     if (k === 'categorie_id') { const c = ME.categories_awb.find(c => c.id === v); return c ? c.libelle : v; }
     if (k === 'visibilite') return v === 'prive' ? 'Privé' : 'Partagé'; const t = String(v); return t.length > 80 ? t.slice(0, 77) + '…' : t; };
@@ -3347,21 +3484,12 @@ function editCell(x, v){
   return `<input id="${id}" class="${x.up ? 'up' : ''}" value="${esc(val)}" autocomplete="off">`;
 }
 
-// Catégorie du dernier AWB créé par l'utilisateur (reprise par défaut à la création d'un nouvel AWB)
 document.addEventListener('click', e => { const b = e.target.closest('.cch'); if (!b) return; const p = b.closest('.catp'), h = $('#f_categorie_id'); if (!h) return; h.value = b.dataset.cv; p.classList.remove('err'); p.querySelectorAll('.cch').forEach(x => x.classList.toggle('on', x === b)); });
-function lastAwbCat(){
-  try { const k = localStorage.getItem('wlc_' + String(ME.email).toLowerCase()); if (k && catsFor('AWB').some(c => c.id === k && c.actif !== false)) return k; } catch (e) {}
-  const ok = id => id && catsFor('AWB').some(c => c.id === id && c.actif !== false);
-  const me = String(ME.email).toLowerCase();
-  const all = [].concat(cache.AWB || [], cache.AWB_a || []).filter(x => x.categorie_id && String(x.cree_par || '').toLowerCase() === me && ok(x.categorie_id));
-  all.sort((a, b) => String(b.cree_le).localeCompare(String(a.cree_le)));
-  return all.length ? all[0].categorie_id : '';
-}
 function renderDet(){
   if (!det) return;
   const M = MODS[cur], r = det.r, ed = det.editing, el = $('#sDet'), w = canWrite(); el.classList.toggle('syncing', !!(r && r._sync));
+  el.classList.remove('wbx');
   const v = r || {visibilite: cur === 'AWB' || cur === 'RTO' ? 'prive' : 'agence', date_decouverte: todayISO(), contacter_client: true};
-  if (!r && cur === 'AWB') v.categorie_id = lastAwbCat();
   if (!r && cur === 'PPWK') v.categorie_id = tdNewCat || det.cat || '';
   if (!r && cur === 'PPWK') det.cat = v.categorie_id;
   const kind = r && !M.noSteps ? kindOf(r) : '';
@@ -3444,11 +3572,11 @@ function renderDet(){
         if (x.req && !data[x.k]) { if (x.t === 'cat' && $('#catp')) $('#catp').classList.add('err'); return toast(x.l + (x.t === 'cat' ? ' obligatoire : choisis-en une' : ' obligatoire')); }
       }
       if (cur === 'DOCUMENTS' && !r && !(det.staged && det.staged.files && det.staged.files.length)) return toast('Ajoute au moins un fichier');
-      if (cur === 'AWB' && data.categorie_id) { try { localStorage.setItem('wlc_' + String(ME.email).toLowerCase(), data.categorie_id); } catch (e) {} }
       const extra = det.staged; det.staged = null;
       saveLocal(r, data, extra);
       if (r) { det.editing = false; renderDet(); } else closeDet();
     };
+    wbWatch(r, el);
     const f0 = el.querySelector('dd input:not([type=checkbox]),dd textarea'); if (f0 && !r) setTimeout(() => f0.focus(), 80);
   }
   el.onclick = e => {
@@ -3719,7 +3847,7 @@ async function scanInto(inputId){
   try {
     reader = new ZXing.BrowserMultiFormatReader();
     await reader.decodeFromConstraints({video:{facingMode:'environment'}}, 'vid', res => {
-      if (res) { $('#' + inputId).value = res.getText(); stopScan(); toast('Scanné : ' + res.getText()); }
+      if (res) { $('#' + inputId).value = res.getText(); $('#' + inputId).dispatchEvent(new Event('input', {bubbles: true})); stopScan(); toast('Scanné : ' + res.getText()); }
     });
   } catch (e) { $('#scanMsg').textContent = 'Caméra indisponible : ' + e.message; }
 }
@@ -4038,11 +4166,10 @@ async function renderAdminPage(){
       <tfoot><tr><td>Total</td><td>${totA}</td><td>${totS}</td></tr></tfoot></table>
       <div class="acts"><button class="s" id="admArch" ${(totA + rmN) ? '' : 'disabled'}>${IC.archive}Archiver ce qui doit l'être</button>
       <button class="s warn" id="admPurge" ${totS ? '' : 'disabled'}>${IC.trash}Supprimer les archives de plus de ${dj} jours</button></div></section>
-    <section class="at" id="atB"><h3><span class="mi">${IC.users}</span>Gestion</h3><div class="acts"><button class="s" id="admUsr">${IC.users}Gestion des utilisateurs</button><button class="s" id="admGrp">${IC.users}Gestion des groupes</button><button class="s" id="admCat">${IC.pencil}Gestion des catégories</button>${prAdm() ? `<button class="s" id="admPr">${IC.PR}Mise à jour des points relais</button>` : ''}</div></section></div></div>`;
+    <section class="at" id="atB"><h3><span class="mi">${IC.users}</span>Gestion</h3><div class="acts"><button class="s" id="admUsr">${IC.users}Gestion des utilisateurs</button><button class="s" id="admGrp">${IC.users}Gestion des groupes</button>${prAdm() ? `<button class="s" id="admPr">${IC.PR}Mise à jour des points relais</button>` : ''}</div></section></div></div>`;
   $('#admX').onclick = closeAdm;
   $('#admGrp').onclick = () => openGrp();
   if ($('#admPr')) $('#admPr').onclick = () => openPrImport();
-  $('#admCat').onclick = () => openCat();
   $('#admUsr').onclick = () => { setSec = 'users'; $('#mSet').classList.add('on'); renderAdmin(); };
   const after = async msg => {
     Object.keys(cache).forEach(k => delete cache[k]);
@@ -4168,7 +4295,7 @@ async function renderUsers(el){
   const seg = (u, m) => { const cur = u.rights[m] || ''; if (m === 'PARTENAIRE') return `<label class="chk"><input type="checkbox" data-pt="${esc(u.email)}"${cur ? ' checked' : ''}>Partenaire</label>`; const  opts = m === 'PARTENAIRE' ? [['', 'Non'], ['lecture', 'Oui']] : m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : m === 'DOCUMENTS' ? [['', 'Standard'], ['admin', 'Admin']] : (m === 'ABSENCES' || m === 'PR') ? [['', 'Aucun'], ['lecture', 'Lecture'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<div class="useg" data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<button type="button" data-lv="${v}" class="${v === cur ? 'on ' + (v || 'none') : ''}">${l}</button>`).join('')}</div>`; };
   const ini = u => (((u.prenom || '')[0] || '') + ((u.nom || '')[0] || '')).toUpperCase() || (u.email || '?')[0].toUpperCase();
-  el.innerHTML = `<h3>Gestion des utilisateurs</h3><p class="lead">Accès aux pages, catégories et historique. Chaque changement est enregistré tout de suite.</p>
+  el.innerHTML = `<h3>Gestion des utilisateurs</h3><p class="lead">Accès aux pages et historique. Chaque changement est enregistré tout de suite.</p>
     ${us.map(u => `<section class="ucard ${u.actif ? '' : 'off'}">
       <div class="uhd"><div class="uid"><span class="av">${esc(ini(u))}</span><div class="un"><b>${esc(u.prenom)} ${esc(u.nom)}</b><small>${esc(u.email)}</small></div></div>
         <div class="ulast">${u.last ? 'Dernière connexion : ' + fdate(u.last.date, true) + ' · ' + esc(u.last.appareil) : 'Jamais connecté'}</div>
@@ -4176,7 +4303,6 @@ async function renderUsers(el){
       <div class="ubd">
         <div class="usec"><h5>Accès aux pages</h5><div class="ugrid">${MU.map(([m, l]) => `<div class="umod"><b>${l}</b>${seg(u, m)}</div>`).join('')}</div></div>
         <div class="urow">
-          <div class="usec"><h5>Catégories AWB visibles</h5><div class="chips">${catGr().filter(([k]) => k === 'CLASSIQUES').map(([k, l, col]) => `<label class="tchip cc" style="--gc:${esc(col)}"><input type="checkbox" data-cm="CAT_${k}" data-cu="${esc(u.email)}" ${u.rights['CAT_' + k] ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div></div>
           <div class="usec"><h5>Peut voir l’historique</h5><div class="chips">${[['AWB', 'AWB'], ['SPARK', 'Retours AA1'], ['DOM', 'DOM'], ['SECURITY', 'LSR']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label class="tchip" title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}><span>${l}</span></label>`; }).join('')}</div></div>
         </div></div></section>`).join('')}`;
   const saveUs = p => { US = null; toast('Enregistré'); enqueue(() => api('users_set', p), () => { US = null; renderUsers(el); }).then(() => { if (!pending) api('users_list').then(x => US = x).catch(() => {}); }); };
@@ -4222,7 +4348,7 @@ IC.TODO = ic('<path d="m3 6 2 2 3-3"/><path d="m3 14 2 2 3-3"/><path d="M11 7h10
 IC.CARTE = ic('<path d="M9 4 3 6.5v13L9 17l6 3 6-2.5v-13L15 7 9 4Z"/><path d="M9 4v13M15 7v13"/>');
 IC.DEBRIEF = ic('<path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/>');
 IC.PR = ic('<path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10Z"/><circle cx="12" cy="11" r="2.2"/>');
-MODS.PPWK = Object.assign({}, MODS.AWB, {label: 'PPWK', nv: 'dossier PPWK'});
+MODS.PPWK = Object.assign({}, MODS.AWB, {label: 'PPWK', nv: 'dossier PPWK', show: ['categorie_id', 'remarque'], fields: MODS.AWB.fields.flatMap(f => f.k === 'adresse' ? [f, {k: 'categorie_id', l: 'Catégorie', t: 'cat', req: true}] : [f])});
 IC.PPWK = ic('<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>');
 function navOrder(list) {
   const base = list.filter(m => !PGS[m]), pg = Object.keys(PGS).filter(p => p !== 'SUIVI' && p !== 'TODO' && ME.rights[p]);
@@ -5174,29 +5300,6 @@ function openAbsEdit(id, d){
 }
 const CAT_DEF = [['CLASSIQUES', 'Classiques', '#3a8cff'], ['CCTV', 'CCTV', '#ee4650'], ['PPWK', 'PPWK', '#a66a3e'], ['UNDELS', 'Undels', '#22b070']];
 const catGr = () => ME && ME.cat_groups && ME.cat_groups.length ? ME.cat_groups.map(g => [g.code, g.libelle, g.couleur || '#7d8696']) : CAT_DEF;
-async function openCat(){
-  let D;
-  const load = async () => { D = (await api('cat_all')).filter(x => x.groupe === 'CLASSIQUES'); };
-  try { await wait(load); } catch (e) { return toast(e.message); }
-  const refreshMe = async () => { try { const m = await api('me', {refresh: true}); ME.categories_awb = m.categories_awb; ME.cat_groups = m.cat_groups; ME.rights = m.rights; US = null; } catch (e) {} };
-  const run = async fn => { try { await wait(fn, true); await load(); draw(); refreshMe(); } catch (e) { toast(e.message); draw(); } };
-  const draw = () => {
-    $('#sAbs').className = 'sheet wide2';
-    $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Gestion des catégories</h3><div class="sub">Catégories classiques des AWB</div></div><button class="ico sm" id="cX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
-      <div class="cgs"><section class="cg" style="--gc:#3a8cff"><h4>Classiques<small>${D.filter(x => x.actif).length}</small></h4><div class="cps">${D.map(x => `<span class="cp2 ${x.actif ? '' : 'off'}"><input data-ci="${esc(x.id)}" value="${esc(x.libelle)}" size="${Math.max(7, String(x.libelle).length)}" maxlength="40" aria-label="Nom">${x.n ? `<b title="${x.n} AWB">${x.n}</b>` : ''}${x.actif ? '' : `<button class="ico sm" data-cr="${esc(x.id)}" data-cl="${esc(x.libelle)}" title="Réactiver" aria-label="Réactiver">${IC.check}</button>`}<button class="ico sm warn" data-cd="${esc(x.id)}" title="${x.n ? 'Désactiver' : 'Supprimer'}" aria-label="Supprimer">${IC.close}</button></span>`).join('') || '<div class="m" style="margin:0">Aucune catégorie</div>'}</div>
-        <div class="erow" style="margin:0"><input id="cNew" placeholder="Nouvelle catégorie" maxlength="40" autocomplete="off"><button class="p" id="cAdd" aria-label="Ajouter">${IC.plus}</button></div></section></div>`;
-    $('#cX').onclick = closeAbs;
-    $('#sAbs').onchange = e => { const t = e.target; if (t.dataset.ci) { const n = t.value.trim(); if (!n) return draw(); run(() => api('cat_save', {id: t.dataset.ci, libelle: n, actif: true})); } };
-    $('#sAbs').onkeydown = e => { if (e.key === 'Enter' && e.target.id === 'cNew') $('#cAdd').click(); };
-    $('#sAbs').onclick = async e => {
-      const b = e.target.closest('button'); if (!b) return;
-      if (b.id === 'cAdd') { const n = $('#cNew').value.trim(); if (n) run(() => api('cat_save', {libelle: n})); }
-      else if (b.dataset.cr) run(() => api('cat_save', {id: b.dataset.cr, libelle: b.dataset.cl, actif: true}));
-      else if (b.dataset.cd) { const x = D.find(y => y.id === b.dataset.cd); if (x && await ask(x.n ? 'Désactiver cette catégorie ?' : 'Supprimer cette catégorie ?', x.n ? `« ${x.libelle} » est utilisée par ${x.n} AWB : elle sera masquée mais les AWB la gardent.` : `« ${x.libelle} »`, x.n ? 'Désactiver' : 'Supprimer')) run(() => api('cat_delete', {id: b.dataset.cd})); }
-    };
-  };
-  draw(); $('#mAbs').classList.add('on');
-}
 async function openGrp(){
   let D;
   try { D = await wait(() => api('grp_all')); } catch (e) { return toast(e.message); }
