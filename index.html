@@ -1821,6 +1821,17 @@ html[data-navpos="l"][data-menu] #nav .gm .gi.mod{background:var(--panel);border
 html[data-navpos="l"][data-menu] #nav .gm .gi.mod.on{background:linear-gradient(135deg,rgba(var(--mc),.18),rgba(var(--mc),.05));border-color:rgba(var(--mc),.6)}
 html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
 }
+
+#seg .mod .mi{flex:none}
+.svc.al1{border-color:#E9C21A;background:rgba(233,194,26,.10);box-shadow:0 0 0 1px #E9C21A,0 0 12px rgba(233,194,26,.35)!important}
+.svc.al2{border-color:#FF8C1A;background:rgba(255,140,26,.12);box-shadow:0 0 0 1px #FF8C1A,0 0 12px rgba(255,140,26,.4)!important}
+.svc.al3{border-color:#E5484D;background:rgba(229,72,77,.13);box-shadow:0 0 0 1px #E5484D,0 0 14px rgba(229,72,77,.45)!important}
+.svc.alv{border-color:#ff3b3b!important;animation:svblink 1.1s ease-in-out infinite}
+@keyframes svblink{0%,100%{background-color:var(--panel);box-shadow:0 0 0 1px rgba(229,72,77,.55)}50%{background-color:rgba(255,60,60,.30);box-shadow:0 0 0 2px #ff3b3b,0 0 18px 2px rgba(255,60,60,.65)}}
+@media(prefers-reduced-motion:reduce){.svc.alv{animation:none;background:rgba(255,60,60,.25)}}
+.alz .alb .y{color:#8A6A00}html:not([data-theme="light"]) .alz .alb .y{color:#FFD84D}
+.alz .alb .v{color:#C7332F;font-weight:700}html:not([data-theme="light"]) .alz .alb .v{color:#FF8A85}
+.rlh{font:700 15px var(--disp);letter-spacing:.5px;color:var(--mut);margin:18px 0 6px}.rlr{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 0;border-bottom:1px solid var(--line)}.rlr>b{min-width:130px}.rld{display:flex;align-items:center;gap:6px}.rld input{width:76px}.rlt{flex-basis:100%;display:flex;flex-wrap:wrap;gap:6px 14px}.rlw{display:flex;align-items:center;gap:6px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -1835,10 +1846,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.196</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.197</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.196</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.197</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2328,7 +2339,7 @@ function navBadges(){
   };
 })();
 (function(){
- const S={items:[],motifs:[],partners:[],heures:[8,19],arch:false,host:null,cur:null,fl:[],cm:[],F:null,cmOpen:false,cmD:'',pre:{},inf:{}};
+ const S={items:[],motifs:[],partners:[],heures:[8,19],rel:null,arch:false,host:null,cur:null,fl:[],cm:[],F:null,cmOpen:false,cmD:'',pre:{},inf:{}};
  const ST=[['A_FAIRE','À faire','#6B7A99'],['EN_COURS','En cours','#2F6FDE'],['BLOQUE','Bloqué','#E5484D'],['TERMINE','Terminé','#2fb36b'],['VALIDE','Validé','#7a4fd6']];
  const q=s=>document.querySelector(s);
  const e=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2344,7 +2355,7 @@ function navBadges(){
  const sh=n=>'https://sherloc.dhl.com/#/hwb/'+encodeURIComponent(n);
  const cp=async t=>{try{await navigator.clipboard.writeText(t);toast('Copié : '+t)}catch(x){toast('Copie impossible')}};
  const stl=k=>(ST.find(x=>x[0]===k)||ST[0]);
- async function load(){const ar=S.arch,r=await api('suivi_list',{archives:ar});S.loaded=true;S.loadedArch=ar;S.items=(r.items||[]).slice().sort((a,b)=>urg(b)-urg(a)||String(a.cree_le).localeCompare(String(b.cree_le)));S.motifs=r.motifs||[];S.partners=(r.partners||[]).map(p=>typeof p==='string'?{email:p,prenom:p.split('@')[0]}:p);S.heures=r.heures||[8,19];S.items.forEach(i=>{const c=S.pre[i.id];if((i.nf||i.nc)&&(!c||c.fl.length!==(i.nf||0)||c.cm.length!==(i.nc||0)))fetchD(i.id,false)})}
+ async function load(){const ar=S.arch,r=await api('suivi_list',{archives:ar});S.loaded=true;S.loadedArch=ar;S.items=(r.items||[]).slice().sort((a,b)=>urg(b)-urg(a)||String(a.cree_le).localeCompare(String(b.cree_le)));S.motifs=r.motifs||[];S.partners=(r.partners||[]).map(p=>typeof p==='string'?{email:p,prenom:p.split('@')[0]}:p);S.heures=r.heures||[8,19];S.rel=r.relances||null;S.items.forEach(i=>{const c=S.pre[i.id];if((i.nf||i.nc)&&(!c||c.fl.length!==(i.nf||0)||c.cm.length!==(i.nc||0)))fetchD(i.id,false)})}
  function canMove(i,to){if(i.archive||i.etat===to)return false;if(to==='VALIDE')return (adm()||own(i))&&i.etat==='TERMINE';if(i.etat==='VALIDE')return adm()||own(i);return true}
  function chips(i){let h='';(i.bordereaux||[]).forEach(b=>{h+=`<span class="svch"><a href="${sh(b)}" target="_blank" rel="noopener">${e(b)}</a><i data-cp="${e(b)}" title="Copier" aria-label="Copier">${IC.copy}</i></span>`});if(i.motif)h+=`<span class="svch m">${e(i.motif)}</span>`;(i.routes||[]).forEach(r=>{h+=`<span class="svch r">${e(r)}</span>`});return h}
  function card(i){
@@ -2352,7 +2363,7 @@ function navBadges(){
   const pd=i.d_prise_fin?fm(i.d_prise):'en attente '+fm(i.d_prise);
   const rd=i.d_res==null?'—':(i.d_res_fin?fm(i.d_res):'en cours '+fm(i.d_res));
   const dest=(i.destinataires||[]).map(pname).join(', ');
-  return `<div class="svc${red(i)?' alh':''}" draggable="${S.arch?'false':'true'}" data-id="${e(i.id)}" style="--sc:${c}"><div class="svr" ${urg(i)?'title="Urgent"':''}>${urg(i)?'<span>Urgent</span>':''}</div><b>${e(i.titre)}</b><div>${chips(i)}</div><div class="svd${i.d_prise_fin?'':' on'}">Prise en charge : ${pd}</div><div class="svd${i.d_res_fin?'':(i.d_res==null?'':' on')}">Résolution : ${rd}</div><div class="svn">${i.nf?i.nf+' pj · ':''}${i.nc?i.nc+' com. · ':''}${dest?'→ '+e(dest):''}</div></div>`}
+  return `<div class="svc ${alc(i)}" draggable="${S.arch?'false':'true'}" data-id="${e(i.id)}" style="--sc:${c}"><div class="svr" ${urg(i)?'title="Urgent"':''}>${urg(i)?'<span>Urgent</span>':''}</div><b>${e(i.titre)}</b><div>${chips(i)}</div><div class="svd${i.d_prise_fin?'':' on'}">Prise en charge : ${pd}</div><div class="svd${i.d_res_fin?'':(i.d_res==null?'':' on')}">Résolution : ${rd}</div><div class="svn">${i.nf?i.nf+' pj · ':''}${i.nc?i.nc+' com. · ':''}${dest?'→ '+e(dest):''}</div></div>`}
  function bar(){
   const h=S.host;if(!h)return;let ab=q('#svAbr');
   if(!ab){const pg=h.closest('.pg'),tabs=pg&&pg.querySelector('.pgtabs');if(tabs){tabs.classList.add('svtabs');ab=document.createElement('div');ab.className='abr';ab.id='svAbr';tabs.appendChild(ab)}}
@@ -2361,15 +2372,19 @@ function navBadges(){
   ab.onclick=ev=>{const a=ev.target.closest('[data-a]');if(!a)return;const k=a.dataset.a;if(k==='new')openForm();else if(k==='arch'){S.arch=!S.arch;reload()}else if(k==='motifs')openMotifs()};
  }
  function late(i){return !i.prise_le&&i.etat==='A_FAIRE'}
- function red(i){if(!late(i))return false;const c=new Date(i.cree_le),n=new Date();return c<new Date(n.getFullYear(),n.getMonth(),n.getDate())}
+ const done=i=>i.etat==='TERMINE'||i.etat==='VALIDE';
+ function lvl(i){const set=(S.rel&&S.rel[urg(i)?'urgent':'normal'])||[];let l=0;set.forEach((x,k)=>{if(x.h>0&&(i.d_age||0)>=x.h*60)l=k+1});return l}
+ function old(i){const c=new Date(i.cree_le),n=new Date();return c<new Date(n.getFullYear(),n.getMonth(),n.getDate())}
+ function alc(i){if(S.arch||done(i))return '';if(old(i))return 'alv';const l=lvl(i);return l?'al'+l:''}
  function alz(){
-  if(S.arch)return '';const L=S.items.filter(late),O=L.filter(i=>(i.d_prise||0)>=180),R=L.filter(red);
-  if(!L.length)return '';
-  return '<details class="alz svalz"'+(S.alzOpen?' open':'')+'><summary>Alertes <small>'+L.length+'</small></summary><div class="alb"><div class="g">Non prises en charge · '+L.length+'</div>'+(O.length?'<div class="w">Plus de 3 h ouvrées sans prise en charge · '+O.length+'</div>':'')+(R.length?'<div class="u">Demandes de la veille (ou avant) · '+R.length+'</div>':'')+'</div></details>'}
+  if(S.arch)return '';const n=k=>S.items.filter(i=>alc(i)===k).length,G=S.items.filter(late).length,Y=n('al1'),O=n('al2'),R=n('al3'),V=n('alv'),T=Y+O+R+V;
+  if(!T&&!G)return '';
+  const li=(c,l,v)=>v?'<div class="'+c+'">'+l+' · '+v+'</div>':'';
+  return '<details class="alz svalz"'+(S.alzOpen?' open':'')+'><summary>Alertes <small>'+(T||G)+'</small></summary><div class="alb">'+li('v','De la veille (ou avant), non terminées',V)+li('u','3ème délai dépassé',R)+li('w','2ème délai dépassé',O)+li('y','1er délai dépassé',Y)+li('g','Non prises en charge',G)+'</div></div>'}
  function draw(){
   const h=S.host;if(!h||!h.isConnected)return;
   bar();
-  const note=`<p class="m svnote">Délais comptés de ${S.heures[0]} h à ${S.heures[1]} h, du lundi au vendredi (hors jours fériés).${S.arch?' · Archives':''}</p>`;
+  const note=`<p class="m svnote">Délais comptés de ${S.heures[0]} h à ${S.heures[1]} h, du lundi au vendredi (hors jours fériés).${S.arch?' · Archives':' Jaune, orange, rouge : 1er, 2ème, 3ème délai dépassé. Rouge clignotant : demande de la veille ou avant.'}</p>`;
   let body;
   if(S.arch)body=`<div class="svl">${S.items.map(card).join('')||'<div class="empty">Aucune archive</div>'}</div>`;
   else{const cols=S.showV?[ST[4]]:ST.slice(0,4),nV=S.items.filter(i=>i.etat==='VALIDE').length,tt=S.showV?'Cacher les demandes validées':'Voir les demandes validées';body=`<div class="svg${S.showV?' v':''}">${cols.map(([k,l,c])=>{const L=S.items.filter(i=>i.etat===k);return `<div class="svcol" data-st="${k}"><div class="svh" style="--c:${c}">${l} <small>${L.length}</small></div>${L.map(card).join('')}</div>`}).join('')}<div class="svside" data-st="VALIDE" role="button" tabindex="0" title="${tt}" aria-label="${tt}"><span class="svsc">${IC.chev}</span><span class="svst2">${tt} · ${nV}</span></div></div>`}
@@ -2384,6 +2399,8 @@ function navBadges(){
   }
  }
  async function reload(){try{await load();draw()}catch(x){toast(x.message)}}
+ setInterval(()=>{const h=S.host;if(h&&h.isConnected&&!S.arch&&!S.F&&!document.hidden&&!h.querySelector('.drg'))load().then(draw).catch(()=>{})},300000);
+ window.svRefresh=()=>{S.loaded=false;if(S.host&&S.host.isConnected)reload()};
  async function move(id,to){const i=S.items.find(x=>x.id===id);if(!i||i.etat===to)return;if(!canMove(i,to)){toast(to==='VALIDE'?'Validation : propriétaire ou admin, depuis Terminé':'Déplacement impossible');return}const old=i.etat;i.etat=to;draw();try{await api('suivi_state',{id,etat:to});}catch(x){i.etat=old;toast(x.message)}await reload();if(S.cur===id)refD()}
  // ---- fenêtre (mêmes composants que les autres pages)
  function mod(){let o=q('#svM');if(!o){o=document.createElement('div');o.className='modal';o.id='svM';o.innerHTML='<div class="sheet wide" id="svS"></div>';document.body.appendChild(o);o.addEventListener('mousedown',ev=>{if(ev.target===o&&!S.F)closeM()});o.addEventListener('click',onM);o.addEventListener('keydown',onK);o.addEventListener('change',onCh);document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&o.classList.contains('on')&&!q('#mAsk.on')){if(S.F)return;closeM()}})}o.classList.add('on');return q('#svS')}
@@ -3728,7 +3745,7 @@ function checkPC(){
     if (n.lu === 'oui') return;
     let d = {}; try { d = JSON.parse(n.detail || '{}'); } catch (e) {}
     const mine = String(d.creator || '').toLowerCase() === ME.email;
-    if ((p.scms && n.module === 'SECURITY' && n.type === 'nouveau') || (p.mine && mine && n.type !== 'nouveau' && n.categorie !== 'todo')) pcNotify(n.titre, n.texte, () => openNotif(n));
+    if ((p.scms && n.module === 'SECURITY' && n.type === 'nouveau') || (p.mine && mine && n.type !== 'nouveau' && n.categorie !== 'todo') || (n.module === 'SUIVI' && (n.type === 'rappel' || n.type === 'bloque'))) pcNotify(n.titre, n.texte, () => openNotif(n));
   });
   if (msgsUp && p.msg) pcNotify('Nouveau message', 'Tu as reçu un message sur Watson.', () => openMsg());
 }
@@ -3923,7 +3940,7 @@ $('#tAdd').onclick = () => {
 const isAdmin = () => ME.rights.PARAMETRES === 'admin';
 const SECTIONS = [
   {id:'aff', l:'Affichage', ic:'gear'}, {id:'profil', l:'Mon profil', ic:'users'}, {id:'notif', l:'Notifications', ic:'bell'}, {id:'region', l:'Région', ic:'globe'}, {id:'rapports', l:'Rapports automatiques', ic:'chart'},
-  {id:'archi', l:'Archivage et suppression', ic:'archive', adm:1}, {id:'sec', l:'SCMS', ic:'SECURITY', adm:1}, {id:'dom', l:'Délais DOM', ic:'DOM', adm:1}, {id:'trait', l:'Traitement quotidien', ic:'clock', adm:1},
+  {id:'archi', l:'Archivage et suppression', ic:'archive', adm:1}, {id:'sec', l:'SCMS', ic:'SECURITY', adm:1}, {id:'dom', l:'Délais DOM', ic:'DOM', adm:1}, {id:'suivi', l:'Relances Suivi Spark', ic:'bell', adm:1}, {id:'trait', l:'Traitement quotidien', ic:'clock', adm:1},
   {id:'histo', l:'Historique', ic:'clock', adm:1}];
 const PLAB = {archivage_auto_dom_jours:'DOM — archivage automatique', archivage_auto_awb_jours:'AWB — archivage automatique', archivage_auto_spark_jours:'SPARK — archivage automatique',
   suppression_apres_archive_awb_jours:'AWB — suppression après archivage', suppression_apres_archive_spark_jours:'SPARK — suppression après archivage', suppression_apres_archive_dom_jours:'DOM — suppression après archivage',
@@ -4054,6 +4071,8 @@ async function renderSec(){
     $('#rTz').onchange = async e => { ME.prefs = Object.assign({}, ME.prefs, {tz: e.target.value}); try { await api('profile_set', {data:{prefs: ME.prefs}}); toast('Enregistré'); } catch (err) { toast(err.message); } };
   } else if (setSec === 'rapports') {
     el.innerHTML = `<h3>Rapports automatiques</h3><p class="lead">Envoi régulier d'un récapitulatif.</p><div class="soon">Bientôt disponible.</div>`;
+  } else if (setSec === 'suivi') {
+    await renderRelances(el);
   } else if (setSec === 'users') {
     await renderUsers(el);
   } else {
@@ -4066,6 +4085,23 @@ async function renderSec(){
       enqueue(() => api('params_set', {cle:t.dataset.k, valeur:v}), () => { PARAMS = null; renderAdmin(); });
     };
   }
+}
+async function renderRelances(el){
+  let r; try { r = await wait(() => api('suivi_relances_get')); } catch (e) { return toast(e.message); }
+  if (!el.isConnected || setSec !== 'suivi') return;
+  const TO = [['createur','Créateur'],['partenaires','Partenaire(s) sélectionné(s)'],['admin_undel','Admin Undel'],['undel','Tout le personnel Undel']];
+  const hsel = (id, v, a, b) => `<select id="${id}">${Array.from({length: b - a + 1}, (_, i) => a + i).map(h => `<option value="${h}" ${h === v ? 'selected' : ''}>${h} h</option>`).join('')}</select>`;
+  const bloc = (k, titre) => `<h4 class="rlh">${titre}</h4>${r.config[k].map((x, i) => `<div class="rlr" data-k="${k}" data-i="${i}"><b>${i ? (i + 1) + 'ème' : '1ère'} notification</b><label class="rld">après <input type="number" min="0" max="500" step="0.5" value="${x.h}" aria-label="Délai en heures"> h</label><div class="rlt">${TO.map(([v, l]) => `<label class="chk"><input type="checkbox" value="${v}" ${x.to.includes(v) ? 'checked' : ''}>${l}</label>`).join('')}</div></div>`).join('')}`;
+  el.innerHTML = `<h3>Relances Suivi Spark</h3><p class="lead">Réservé à l'administrateur. Demandes et informations non terminées ; délais comptés depuis la création, en heures ouvrées (lundi au vendredi, hors jours fériés). Un délai à 0 est désactivé ; sans destinataire coché, rien n'est envoyé. Les couleurs du Suivi suivent ces délais.</p>
+    <div class="prow"><div><b>Heures ouvrées</b><div class="m">Seules ces heures sont décomptées.</div></div><div class="rlw">de ${hsel('rlA', r.heures[0], 0, 23)} à ${hsel('rlB', r.heures[1], 1, 24)}</div></div>
+    ${bloc('normal', 'PRIORITÉ NORMALE')}${bloc('urgent', 'PRIORITÉ URGENTE')}
+    <p class="m" style="margin-top:12px">Une demande passée en « Bloqué » prévient aussitôt son créateur et les admins Undel.</p>
+    <div class="foot"><button class="p" id="rlOk">Enregistrer</button></div>`;
+  el.querySelector('#rlOk').onclick = async () => {
+    const config = {normal: [], urgent: []};
+    el.querySelectorAll('.rlr').forEach(x => { config[x.dataset.k][Number(x.dataset.i)] = {h: Number(x.querySelector('input[type=number]').value) || 0, to: [...x.querySelectorAll('input[type=checkbox]:checked')].map(c => c.value)}; });
+    try { await wait(() => api('suivi_relances_set', {config, debut: Number(el.querySelector('#rlA').value), fin: Number(el.querySelector('#rlB').value)})); toast('Enregistré'); if (window.svRefresh) window.svRefresh(); } catch (e) { toast(e.message); }
+  };
 }
 async function renderUsers(el){
   let us = US; if (us) api('users_list').then(x => US = x).catch(() => {}); else { try { us = US = await wait(() => api('users_list')); } catch (e) { return toast(e.message); } }
