@@ -1833,15 +1833,14 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
 .alz .alb .v{color:#C7332F;font-weight:700}html:not([data-theme="light"]) .alz .alb .v{color:#FF8A85}
 .rlh{font:700 15px var(--disp);letter-spacing:.5px;color:var(--mut);margin:18px 0 6px}.rlr{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 0;border-bottom:1px solid var(--line)}.rlr>b{min-width:130px}.rld{display:flex;align-items:center;gap:6px}.rld input{width:76px}.rlt{flex-basis:100%;display:flex;flex-wrap:wrap;gap:6px 14px}.rlw{display:flex;align-items:center;gap:6px;white-space:nowrap}
 
-.mod[data-m=HP],.ht[data-m=HP],.pg[data-m=HP]{--mc:255,138,31}.mod[data-m=RTO],.ht[data-m=RTO],.pg[data-m=RTO]{--mc:0,170,190}.mod[data-m=TODO],.pg[data-m=TODO]{--mc:255,138,31}
-.tdp{display:grid;grid-template-columns:repeat(var(--tdn,5),minmax(180px,1fr)) 46px 46px;gap:10px;overflow-x:auto;padding-bottom:8px;align-items:stretch;min-height:calc(100vh - 230px)}
-.tdc{border:1px solid var(--line);border-top:3px solid var(--c);border-radius:12px;padding:8px;min-width:0}
+.mod[data-m=PPWK],.ht[data-m=PPWK],.pg[data-m=PPWK]{--mc:166,106,62}.mod[data-m=HP],.ht[data-m=HP],.pg[data-m=HP]{--mc:255,138,31}.mod[data-m=RTO],.ht[data-m=RTO],.pg[data-m=RTO]{--mc:0,170,190}.mod[data-m=TODO],.pg[data-m=TODO]{--mc:255,138,31}
+.tdp{display:grid;grid-template-columns:repeat(var(--tdn,5),minmax(175px,1fr));gap:10px;overflow-x:auto;padding-bottom:8px;align-items:stretch;min-height:calc(100vh - 230px)}
+.tdc{display:flex;flex-direction:column;border:1px solid var(--line);border-top:3px solid var(--c);border-radius:12px;padding:8px;min-width:0}
 .tdch{display:flex;align-items:center;gap:7px;margin-bottom:8px;min-height:32px}.tdch b{font:700 15px var(--disp)}.tdch small{color:var(--mut);font-weight:700}
-.tdl{display:flex;flex-direction:column;gap:9px}.tdl .card{padding-right:10px}.tdl .card:not(.hascat){padding-left:17px}.tdl .card .r1,.tdl .card .r2{flex-wrap:wrap;row-gap:3px}.tdl .card .refs{flex:1 0 auto}.tdl .card .ref{white-space:nowrap;word-break:normal}.tdl .card .act{flex-wrap:wrap;gap:6px}.tdl .card .act button{white-space:nowrap}.tdl .card>.cvis{position:static!important;margin-top:6px;align-self:flex-start}.tdadv{margin:0 0 9px}.tdadv.hide{display:none}
-.tds-arch{background:rgba(128,138,158,.12);color:var(--mut)}.tds-done{background:rgba(47,179,107,.12);color:#2fb36b}.tdp .svside.on{outline:2px solid currentColor;outline-offset:-2px}
+.tdl{flex:1;display:flex;flex-direction:column;gap:9px}.tddn{margin-top:auto;display:flex;flex-direction:column;gap:9px;padding-top:8px}.tddh{color:var(--mut);font-weight:700;font-size:calc(var(--fs) * .85);border-top:1px dashed var(--line);padding-top:8px;text-align:center}.tdl .card{padding-right:10px}.tdl .card:not(.hascat){padding-left:17px}.tdl .card .r1,.tdl .card .r2{flex-wrap:wrap;row-gap:3px}.tdl .card .refs{flex:1 0 auto}.tdl .card .ref{white-space:nowrap;word-break:normal}.tdl .card .act{flex-wrap:wrap;gap:6px}.tdl .card .act button{white-space:nowrap}.tdl .card>.cvis{position:static!important;margin-top:6px;align-self:flex-start}.tdadv{margin:0 0 9px}.tdadv.hide{display:none}
 .hpd{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
-#seg .mod[data-m="TODO"]{position:relative}.tdn{margin-left:auto;display:inline-flex;gap:4px;align-items:center}.tdn i{font-style:normal;min-width:18px;height:18px;padding:0 5px;border-radius:999px;display:grid;place-items:center;color:#fff;font:700 11px/1 var(--body)}.tdn i.r{background:#E5484D}.tdn i.b{background:#2F6FDE}
-html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn{position:absolute;top:0;right:0}
+#seg .mod[data-m="TODO"],#seg .mod[data-m="PPWK"]{position:relative}.tdn{margin-left:auto;display:inline-flex;gap:4px;align-items:center}.tdn i{font-style:normal;min-width:18px;height:18px;padding:0 5px;border-radius:999px;display:grid;place-items:center;color:#fff;font:700 11px/1 var(--body)}.tdn i.r{background:#E5484D}.tdn i.b{background:#2F6FDE}
+html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn,html:not([data-navpos="l"]) #seg .mod[data-m="PPWK"] .tdn{position:absolute;top:0;right:0}
 .tdg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}.tdcol{border:1px solid var(--line);border-radius:12px;padding:8px;min-height:220px;align-self:stretch}.tdcol.ov{border-color:#2F6FDE;background:var(--raised)}.tdh{display:flex;align-items:center;gap:7px;font-weight:600;margin-bottom:8px}.tdh:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c)}.tdh small{color:var(--mut);font-weight:400}
 #tdBox .trow{cursor:grab}#tdBox .trow.drg{opacity:.4}.tdup{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:0 10px}#tdBox .st3 button{white-space:nowrap}@media(max-width:1250px){#tdBox .trow .tl3{flex-wrap:wrap}}@media(max-width:420px){.tdup{grid-template-columns:1fr}}#tdBox .subh{margin:16px 0 8px}
 @media(max-width:820px){.tdg{grid-template-columns:1fr}.tdcol{min-height:0}}
@@ -1859,10 +1858,10 @@ html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn{position:absolute;top:
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.201</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.202</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.201</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.202</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2237,7 +2236,7 @@ function buildNav(){
   if (window.__navMO) window.__navMO.disconnect();
   window.__navMO = new MutationObserver(navSync); window.__navMO.observe($('#seg'), {subtree:true, attributes:true, attributeFilter:['class']});
   navSync(); todoBadges();
-  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === (todoOn() ? 'TODO' : cur) && !b.dataset.new));
+  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === (todoOn() ? tdBoard : cur) && !b.dataset.new));
 }
 const moveInd = () => {};
 const entRts = r => { const rs = entR(r).filter(x => String(x.nom || '').trim()), pr = rs.filter(x => x.pu); return (pr.length ? pr : rs).map(x => String(x.nom).trim()); };
@@ -2249,7 +2248,7 @@ function alN(m, r){
   if (!r || m === 'DOCUMENTS') return 0;
   if (m === 'CCTV') return ME.rights.CCTV === 'admin' ? r.filter(x => x.etape === 'A_FAIRE').length : 0;
   if (m === 'DOM') return r.map(domAlert).filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late' || a[k] === 'warn')).length;
-  return r.filter(x => kindOfM(m, x) !== 'ok' && (m === 'AWB' ? x.etape === 'A_FAIRE' : ((m === 'SPARK' || m === 'RTO') && x.etape === 'A_FAIRE') || (m === 'HP' && x.etape === 'OUVRIR_SPARK'))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
+  return r.filter(x => kindOfM(m, x) !== 'ok' && (isAwb(m) ? x.etape === 'A_FAIRE' : ((m === 'SPARK' || m === 'RTO') && x.etape === 'A_FAIRE') || (m === 'HP' && x.etape === 'OUVRIR_SPARK'))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
 }
 function drawTiles(){
   document.querySelectorAll('.mod').forEach(b => {
@@ -2264,7 +2263,7 @@ function drawTiles(){
       setN(lt + wn); t.innerHTML = [lt ? `<i>${lt} en retard</i>` : '', wn ? `<i class="o">${wn} à faire aujourd'hui</i>` : ''].filter(Boolean).join(' · '); return;
     }
     const act = r.filter(x => kindOfM(m, x) !== 'ok'), u = 0;
-    const af = (m === 'SPARK' || m === 'AWB' || m === 'RTO') ? act.filter(x => x.etape === 'A_FAIRE').length : 0;
+    const af = (m === 'SPARK' || isAwb(m) || m === 'RTO') ? act.filter(x => x.etape === 'A_FAIRE').length : 0;
     const nc = m === 'SECURITY' ? r.filter(scmsMissing).length : 0; setN(alN(m, r)); t.innerHTML = [u ? `<i>${u} urgent${u > 1 ? 's' : ''}</i>` : '', af ? `<i class="o">${af} à faire</i>` : '', nc ? `<i>${nc} SCMS à créer</i>` : ''].filter(Boolean).join(' · ');
   });
   navBadges();
@@ -2273,7 +2272,7 @@ function navBadges(){
   todoBadges();
   const cnt = m => {
     const af = k => (cache[k] || []).filter(x => x.etape === 'A_FAIRE').length;
-    if (m === 'AWB' || m === 'SPARK' || m === 'DOM') return af(m);
+    if (isAwb(m) || m === 'SPARK' || m === 'DOM') return af(m);
     if (m === 'LSR') { let n = 0; try { const ids = new Set(); const w = document.createElement('div'); w.innerHTML = lsrTile(); w.querySelectorAll('.hls .hli[data-id]').forEach(b => ids.add(String(b.dataset.id))); n = ids.size; if (ME.rights.CCTV === 'admin') n += af('CCTV'); if (ME.rights.SECURITY) n += (cache.SECURITY || []).filter(x => x.etape === 'A_FAIRE' && !ids.has(String(x.id))).length; } catch (e) {} return n; }
     if (m === 'ENTREPRISES') { try { return entNR(cache.ENTREPRISES || []); } catch (e) { return 0; } }
     return 0;
@@ -2293,7 +2292,7 @@ function navBadges(){
       } else {
         const w = document.createElement('div'); w.innerHTML = (m === 'SECURITY' ? lsrTile() : homeTile(m)) || '';
         w.querySelectorAll('.hls').forEach(s => { const t = s.querySelector('.hlt'), its = s.querySelectorAll('.hli[data-id]'); its.forEach(b => ids.add(String(b.dataset.id))); if (t) lines.push([s.classList.contains('u') ? 'u' : 'w', t.childNodes[0].textContent.trim() + ' · ' + its.length]); });
-        if ((m === 'AWB' || m === 'SPARK' || (m === 'CCTV' && ME.rights.CCTV === 'admin')) && !lines.some(l => /faire/i.test(l[1]))) { const a = (cache[m] || []).filter(x => x.etape === 'A_FAIRE'); if (a.length) { a.forEach(x => ids.add(String(x.id))); lines.push(['w', 'À faire · ' + a.length]); } }
+        if ((isAwb(m) || m === 'SPARK' || (m === 'CCTV' && ME.rights.CCTV === 'admin')) && !lines.some(l => /faire/i.test(l[1]))) { const a = (cache[m] || []).filter(x => x.etape === 'A_FAIRE'); if (a.length) { a.forEach(x => ids.add(String(x.id))); lines.push(['w', 'À faire · ' + a.length]); } }
       }
     } catch (e) {}
     return {lines: lines, ids: ids, cnt: m === 'ENTREPRISES' ? entNR(cache.ENTREPRISES || []) : 0};
@@ -2530,12 +2529,19 @@ async function preload(mods){
   await Promise.all(mods.filter(m => !cache[m]).map(async m => { try { cache[m] = await fetchList(m, false); } catch (e) {} drawTiles(); }));
 }
 
-// ------------------------------------------------------------ Page « Todo » : AWB, DOM, HP, RTO, Retours AA1 en colonnes
+// ------------------------------------------------------------ Pages en colonnes : « Todo » (AWB, DOM, HP, RTO, Retours AA1) et « PPWK » (une colonne par catégorie)
 const TD_MODS = ['AWB', 'DOM', 'HP', 'RTO', 'SPARK'];
 const TD_COL = {AWB: '#2F6FDE', DOM: '#9668f0', HP: '#ff8a1f', RTO: '#00aabe', SPARK: '#2fb36b'};
-let tdView = 'act', tdAdvice = false, tdAt = 0;            // vue : act (en cours), done (terminés), arch (archives)
+const isAwb = m => m === 'AWB' || m === 'PPWK';                 // un dossier PPWK a les mêmes champs et étapes qu'un AWB
+const isPpwkCat = c => String(c.groupe || '').toUpperCase() === 'PPWK';
+const catsFor = m => (ME.categories_awb || []).filter(c => isPpwkCat(c) === (m === 'PPWK'));
+const boardOf = m => m === 'PPWK' ? 'PPWK' : (m === 'TODO' || TD_MODS.includes(m)) ? 'TODO' : '';
+let tdBoard = 'TODO', tdView = 'act', tdAdvice = false, tdAt = 0, tdNewCat = '';   // vue : act (en cours et terminés), arch (archives)
 const todoOn = () => !!document.getElementById('tdPage');
-const tdCols = () => TD_MODS.filter(m => ME.rights[m]);
+const tdCols = (b = tdBoard) => b === 'PPWK'
+  ? (ME.rights.PPWK ? catsFor('PPWK').map(c => ({id: 'PPWK_' + c.id, m: 'PPWK', cat: c.id, label: c.libelle, color: '#a66a3e'})) : [])
+  : TD_MODS.filter(m => ME.rights[m]).map(m => ({id: m, m: m, label: MODS[m].label, color: TD_COL[m]}));
+const tdMods = () => [...new Set(tdCols().map(c => c.m))];
 const tdKey = m => m + (tdView === 'arch' ? '_a' : '');
 // Urgence d'une carte : 0 = en retard, 1 = à faire aujourd'hui, 2 = le reste
 function tdRank(m, r){
@@ -2544,38 +2550,34 @@ function tdRank(m, r){
   if (m === 'HP' && r.etape === 'OUVRIR_SPARK') { const d = dayDiff(r.j3); return d !== null && d < 0 ? 0 : 1; }
   return 2;
 }
-function tdList(m){
-  const all = cache[tdKey(m)]; if (!all) return null;
-  const l = tdView === 'arch' ? all.slice() : all.filter(r => (kindOfM(m, r) === 'ok') === (tdView === 'done'));
+// Dossiers d'une colonne : {act: en cours (ou archives), done: terminés, affichés en bas}
+function tdList(col){
+  const all = cache[tdKey(col.m)]; if (!all) return null;
+  const m = col.m, l = col.cat ? all.filter(r => r.categorie_id === col.cat) : all.slice();
   const date = (r, k) => String(r[k] || '');
-  if (tdView === 'arch') return l.sort((a, b) => date(b, 'archive_le').localeCompare(date(a, 'archive_le')));
-  if (tdView === 'done') return l.sort((a, b) => date(b, 'etape_le').localeCompare(date(a, 'etape_le')));
+  if (tdView === 'arch') return {act: l.sort((a, b) => date(b, 'archive_le').localeCompare(date(a, 'archive_le'))), done: []};
   const ord = {}; stepsOf(m).forEach((x, i) => ord[x.code] = x.code === 'EN_ATTENTE' ? 50 : i);
   const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
-  return l.sort((a, b) => tdRank(m, a) - tdRank(m, b) || (m === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || date(b, 'cree_le').localeCompare(date(a, 'cree_le')));
+  return {
+    act: l.filter(r => kindOfM(m, r) !== 'ok').sort((a, b) => tdRank(m, a) - tdRank(m, b) || (m === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || date(b, 'cree_le').localeCompare(date(a, 'cree_le'))),
+    done: l.filter(r => kindOfM(m, r) === 'ok').sort((a, b) => date(b, 'etape_le').localeCompare(date(a, 'etape_le')))
+  };
 }
-function tdCol(m){
-  const list = $('#list_' + m); if (!list) return;
+function tdCol(col){
+  const list = document.getElementById('list_' + col.id); if (!list) return;
   const keep = [cur, rows];
-  cur = m; rows = cache[key()] || [];
-  const l = tdList(m);
+  cur = col.m; rows = cache[key()] || [];
+  const l = tdList(col);
   list.innerHTML = l === null ? '<div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div>'
-    : l.map(card).join('') || '<div class="empty">Rien ici.</div>';
-  const n = $('#tdn_' + m); if (n) n.textContent = l === null ? '' : l.length;
+    : (l.act.length || l.done.length ? l.act.map(card).join('') : '<div class="empty">Rien ici.</div>')
+      + (l.done.length ? `<div class="tddn"><div class="tddh">Terminés · ${l.done.length}</div>${l.done.map(card).join('')}</div>` : '');
+  const n = document.getElementById('tdn_' + col.id); if (n) n.textContent = l === null ? '' : l.act.length;
   visTag();
   cur = keep[0]; rows = keep[1];
 }
 function tdDraw(){
   if (!todoOn()) return;
   tdCols().forEach(tdCol);
-  ['done', 'arch'].forEach(v => {
-    const el = $('#tds_' + v); if (!el) return;
-    const loaded = tdCols().every(m => cache[v === 'arch' ? m + '_a' : m]);
-    const n = !loaded ? null : tdCols().reduce((t, m) => t + (v === 'arch' ? cache[m + '_a'].length : cache[m].filter(r => kindOfM(m, r) === 'ok').length), 0);
-    const lab = v === 'arch' ? 'Archives' : 'Terminés';
-    el.querySelector('.svst2').textContent = (tdView === v ? 'Revenir aux dossiers en cours · ' : '') + lab + (n === null ? '' : ' · ' + n);
-    el.classList.toggle('on', tdView === v);
-  });
   todoBadges();
 }
 async function tdFetch(m, view){
@@ -2587,29 +2589,27 @@ async function tdFetch(m, view){
 }
 async function todoRefresh(){
   const v = tdView; tdAt = Date.now();
-  await Promise.all(tdCols().map(m => tdFetch(m, v).then(() => { tdDraw(); drawTiles(); }).catch(() => {})));
+  await Promise.all(tdMods().map(m => tdFetch(m, v).then(() => { tdDraw(); drawTiles(); }).catch(() => {})));
 }
-// Affiche la page ; `want` = le type sur lequel on travaille (notification, recherche…)
+// Affiche la page ; `want` = le type sur lequel on travaille (menu, notification, recherche…), 'VIEW' = la page en cours
 async function renderTodo(want){
+  if (want !== 'VIEW') tdBoard = boardOf(want) || 'TODO';
   if (!tdCols().length) return openMod('_home');
-  if (showArch) tdView = 'arch'; else if (tdView === 'arch' || !want || want === 'TODO') tdView = 'act';
-  showArch = tdView === 'arch';
-  const f = tdCols().includes(want) ? want : '';
+  tdView = showArch ? 'arch' : 'act';
+  const f = tdBoard === 'PPWK' ? 'PPWK' : tdMods().includes(want) ? want : '';
   cur = f || 'TODO'; rows = f ? cache[key()] || [] : [];
   const canNew = m => ['ecriture', 'admin'].includes(ME.rights[m]) && tdView !== 'arch';
-  const sub = tdView === 'done' ? ' · Terminés' : tdView === 'arch' ? ' · Archives' : '';
-  const side = (v, label) => `<div class="svside tds-${v}" id="tds_${v}" role="button" tabindex="0" title="${label}" aria-label="${label}"><span class="svsc">${IC.chev}</span><span class="svst2">${label}</span></div>`;
-  $('#main').innerHTML = `<div class="pg absb" data-m="TODO" id="tdPage"><div class="abh"><h3>Todo${sub}</h3><div class="abr"></div></div><div class="tdp" style="--tdn:${tdCols().length}">${tdCols().map(m =>
-    `<section class="tdc" data-m="${m}" style="--c:${TD_COL[m]}"><div class="tdch"><b>${MODS[m].label}</b><small id="tdn_${m}"></small><span style="flex:1"></span>${m === 'DOM' ? `<button class="ico sm" data-advice="1" title="Conseil" aria-label="Conseil">${IC.bulb}</button>` : ''}${canNew(m) ? `<button class="ico sm" data-new="${m}" title="Nouveau ${MODS[m].nv || MODS[m].label}" aria-label="Nouveau ${MODS[m].nv || MODS[m].label}">${IC.plus}</button>` : ''}</div>${m === 'DOM' ? `<div class="advice tdadv${tdAdvice ? '' : ' hide'}"><div class="acx"><ol><li>Contacter l’expéditeur pour savoir quoi faire du colis.</li><li>Sans réponse à J+4, ou s’il est injoignable : demander au commercial qui gère le compte.</li><li>Sans instruction à J+10 : faire un RTO avec le compte de l’expéditeur.</li></ol><div class="no">On n’ouvre plus de dossier Spark.</div></div></div>` : ''}<div class="tdl" id="list_${m}"></div></section>`).join('')}${side('done', 'Terminés')}${side('arch', 'Archives')}</div></div>`;
+  const title = (tdBoard === 'PPWK' ? 'PPWK' : 'Todo') + (tdView === 'arch' ? ' · Archives' : '');
+  $('#main').innerHTML = `<div class="pg absb" data-m="${tdBoard}" id="tdPage" data-board="${tdBoard}"><div class="abh"><h3>${title}</h3><div class="abr"><button class="s" id="tdArch">${showArch ? IC.unarchive + 'Voir les actifs' : IC.archive + 'Voir les archives'}</button></div></div><div class="tdp" style="--tdn:${tdCols().length}">${tdCols().map(c => {
+    const nv = c.cat ? 'dossier « ' + c.label + ' »' : (MODS[c.m].nv || MODS[c.m].label);
+    return `<section class="tdc" data-m="${c.m}" style="--c:${c.color}"><div class="tdch"><b>${esc(c.label)}</b><small id="tdn_${c.id}"></small><span style="flex:1"></span>${c.id === 'DOM' ? `<button class="ico sm" data-advice="1" title="Conseil" aria-label="Conseil">${IC.bulb}</button>` : ''}${canNew(c.m) ? `<button class="ico sm" data-new="${c.m}" data-cat="${esc(c.cat || '')}" title="Nouveau ${esc(nv)}" aria-label="Nouveau ${esc(nv)}">${IC.plus}</button>` : ''}</div>${c.id === 'DOM' ? `<div class="advice tdadv${tdAdvice ? '' : ' hide'}"><div class="acx"><ol><li>Contacter l’expéditeur pour savoir quoi faire du colis.</li><li>Sans réponse à J+4, ou s’il est injoignable : demander au commercial qui gère le compte.</li><li>Sans instruction à J+10 : faire un RTO avec le compte de l’expéditeur.</li></ol><div class="no">On n’ouvre plus de dossier Spark.</div></div></div>` : ''}<div class="tdl" id="list_${c.id}"></div></section>`; }).join('')}</div></div>`;
   const box = $('#main .tdp');
   box.querySelectorAll('.tdc').forEach(c => c.addEventListener('click', () => focusMod(c.dataset.m), true));
   box.querySelectorAll('.tdl').forEach(l => l.onclick = onListClick);
-  box.querySelectorAll('[data-new]').forEach(b => b.onclick = () => { focusMod(b.dataset.new); openDetail(null, true); });
+  box.querySelectorAll('[data-new]').forEach(b => b.onclick = () => { focusMod(b.dataset.new); tdNewCat = b.dataset.cat; openDetail(null, true); tdNewCat = ''; });
   box.querySelectorAll('[data-advice]').forEach(b => b.onclick = () => { tdAdvice = !tdAdvice; box.querySelector('.tdadv').classList.toggle('hide', !tdAdvice); });
-  ['done', 'arch'].forEach(v => {
-    const el = $('#tds_' + v), go = () => { tdView = tdView === v ? 'act' : v; showArch = tdView === 'arch'; renderTodo(tdView === 'arch' ? tdCols()[0] : 'VIEW'); };
-    el.onclick = go; el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } };
-  });
+  $('#tdArch').onclick = () => { showArch = !showArch; renderTodo('VIEW'); };
+  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === tdBoard && !b.dataset.new));
   tdDraw();
   const need = f && !cache[tdKey(f)];
   const all = todoRefresh();
@@ -2617,15 +2617,18 @@ async function renderTodo(want){
   else if (f) rows = cache[key()] || [];
   return need ? undefined : void all;
 }
-// Compteurs du menu : rouge = à faire, bleu = en cours
+// Compteurs du menu « Todo » : rouge = à faire, bleu = en cours
 function todoBadges(){
-  const b = document.querySelector('#seg .mod[data-m="TODO"]'); if (!b || !ME) return;
-  let w = b.querySelector('.tdn'); if (!w) { w = document.createElement('span'); w.className = 'tdn'; b.appendChild(w); }
-  let a = 0, c = 0;
-  tdCols().forEach(m => (cache[m] || []).forEach(r => { if (r.etape === 'A_FAIRE' || r.etape === 'OUVRIR_SPARK') a++; else if (r.etape === 'EN_COURS') c++; }));
-  const n = v => v > 99 ? '99+' : v;
-  const h = (a ? `<i class="r" title="À faire : ${a}">${n(a)}</i>` : '') + (c ? `<i class="b" title="En cours : ${c}">${n(c)}</i>` : '');
-  if (w.innerHTML !== h) w.innerHTML = h;
+  if (!ME) return;
+  [['TODO', TD_MODS], ['PPWK', ['PPWK']]].forEach(([id, ms]) => {
+    const b = document.querySelector(`#seg .mod[data-m="${id}"]`); if (!b) return;
+    let w = b.querySelector('.tdn'); if (!w) { w = document.createElement('span'); w.className = 'tdn'; b.appendChild(w); }
+    let a = 0, c = 0;
+    ms.filter(m => ME.rights[m]).forEach(m => (cache[m] || []).forEach(r => { if (r.etape === 'A_FAIRE' || r.etape === 'OUVRIR_SPARK') a++; else if (r.etape === 'EN_COURS') c++; }));
+    const n = v => v > 99 ? '99+' : v;
+    const h = (a ? `<i class="r" title="À faire : ${a}">${n(a)}</i>` : '') + (c ? `<i class="b" title="En cours : ${c}">${n(c)}</i>` : '');
+    if (w.innerHTML !== h) w.innerHTML = h;
+  });
 }
 // HP « Ouvrir Spark » : crée le Retour AA1 pré-rempli puis l'ouvre pour le compléter
 async function hpRetour(r){
@@ -2636,7 +2639,7 @@ async function hpRetour(r){
       const [hp, sp] = await Promise.all([api('list', {module: 'HP', archives: false}), api('list', {module: 'SPARK', archives: false})]);
       cache.HP = hp; cache.SPARK = sp; return nid;
     }, true);
-    closeDet(); showArch = false; tdView = 'act'; await openMod('SPARK');
+    closeDet(); showArch = false; await openMod('SPARK');
     const n = (cache.SPARK || []).find(x => x.id === id); if (n) openDetail(n, true);
   } catch (e) { toast(e.message); }
 }
@@ -2666,7 +2669,7 @@ function homeTile(m){
   const ref = x => m === 'SECURITY' ? (x.waybill || '') : (x.waybill || x.pid || '');
   const big = r.filter(x => kindOfM(m, x) !== 'ok').length, sub = 'en cours';
   const k = {'': 0, go: 0, ok: 0}; r.forEach(x => k[kindOfM(m, x)]++);
-  stepsOf(m).forEach(st => { const n = r.filter(x => x.etape === st.code).length; add(n, kindOfM(m, {etape: st.code}) === 'ok' ? 'à archiver' : esc(st.libelle_etat), kindOfM(m, {etape: st.code}) === 'ok' ? 'ok' : (st.code === 'EN_ATTENTE' ? 'wt' : (((m === 'SPARK' || m === 'AWB' || m === 'RTO') && st.code === 'A_FAIRE') || st.code === 'OUVRIR_SPARK' ? 'w' : ''))); });
+  stepsOf(m).forEach(st => { const n = r.filter(x => x.etape === st.code).length; add(n, kindOfM(m, {etape: st.code}) === 'ok' ? 'à archiver' : esc(st.libelle_etat), kindOfM(m, {etape: st.code}) === 'ok' ? 'ok' : (st.code === 'EN_ATTENTE' ? 'wt' : (((m === 'SPARK' || isAwb(m) || m === 'RTO') && st.code === 'A_FAIRE') || st.code === 'OUVRIR_SPARK' ? 'w' : ''))); });
   
   if (m === 'HP') list('Ouvrir Spark', 'w', r.filter(x => x.etape === 'OUVRIR_SPARK'), x => 'J+3 : ' + fdateD(x.j3));
   if (m === 'DOM') {
@@ -2873,7 +2876,7 @@ async function reloadAll(){
     const keys = Object.keys(cache); keys.forEach(k => delete cache[k]);
     await Promise.all([...mods.map(async m => { try { cache[m] = await fetchList(m, false); } catch (e) {} }), pollNotifs(), warm(true)]);
     if (cur === '_home') renderHome();
-    else if (todoOn()) renderTodo('TODO');
+    else if (todoOn()) renderTodo('VIEW');
     else if (cur === 'LIBRARY') renderLib();
     else if (cur === 'ENTREPRISES') renderEnt();
     else if (cur && MODS[cur]) { if (showArch) { try { cache[key()] = await api('list', {module:cur, archives:true}); } catch (e) {} } rows = cache[key()] || rows; relinkDet(); renderList(); }
@@ -2886,7 +2889,7 @@ $('#bRef').onclick = () => { try { sessionStorage.setItem('wback', JSON.stringif
 // ------------------------------------------------------------ Liste
 async function openMod(m){ if ($('#mBib') && $('#mBib').classList.contains('on')) bibClose(); if (m === 'LSR') m = ME.rights.SECURITY ? 'SECURITY' : 'CCTV'; lsrPage = false; if ($('#bLib')) $('#bLib').classList.toggle('on', m === 'LIBRARY');
   cur = m; closePop();
-  const isTd = m === 'TODO' || TD_MODS.includes(m);
+  const isTd = !!boardOf(m);
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === (isTd ? 'TODO' : (m === 'SECURITY' || m === 'CCTV') && lsrOk() ? 'LSR' : m) && !b.dataset.new));
   moveInd();
   if (isTd) { $('#bSet').classList.remove('on'); return renderTodo(m); }
@@ -2916,7 +2919,7 @@ async function refresh(){
 const stepsOf = m => ME.etapes.filter(e => e.module === m).sort((a,b) => a.ordre - b.ordre);
 const canWrite = () => ['ecriture','admin'].includes(ME.rights[cur]);
 
-function renderList(){ if (todoOn() && TD_MODS.includes(cur)) return renderTodo(cur); if (lsrPage && (cur === 'SECURITY' || cur === 'CCTV') && lsrOk()) return renderLsrPage(cur);
+function renderList(){ if (todoOn() && boardOf(cur)) return renderTodo(cur); if (lsrPage && (cur === 'SECURITY' || cur === 'CCTV') && lsrOk()) return renderLsrPage(cur);
   const steps = stepsOf(cur);
   $('#main').innerHTML = `<div class="pg absb" data-m="${cur}"><div class="abh"><h3>${(MODS[cur] && MODS[cur].label) || cur}</h3><div class="abr"></div></div>${cur === 'DOM' ? '<div class="advice"><span class="ai" title="Conseil">' + IC.bulb + '</span><div class="acx"><ol><li>Contacter l’expéditeur pour savoir quoi faire du colis.</li><li>Sans réponse à J+4, ou s’il est injoignable : demander au commercial qui gère le compte.</li><li>Sans instruction à J+10 : faire un RTO avec le compte de l’expéditeur.</li></ol><div class="no">On n’ouvre plus de dossier Spark.</div></div></div>' : ''}<div class="bar">
     <span style="flex:1"></span>
@@ -2942,7 +2945,7 @@ function drawCards0(){
   const ord = {}; stepsOf(cur).forEach((x, i) => ord[x.code] = x.code === 'EN_ATTENTE' ? 50 : i);
   const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
   const out = rows.slice()
-    .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (cur === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || String(b.cree_le).localeCompare(String(a.cree_le)));
+    .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (isAwb(cur) ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || String(b.cree_le).localeCompare(String(a.cree_le)));
   list.className = 'grid';
   list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>';
   drawTiles();
@@ -2971,8 +2974,8 @@ function cardSec(r){
     <div class="r2"><div class="refs">${lnkc(r.waybill)}</div><span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div><div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="rowb">${cbub}${waitB(r)}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 const lnkc = (v, label) => v ? `<span class="rc">${link(v, label)}<button class="cp sm" data-copy="${esc(v)}" title="Copier" aria-label="Copier">${IC.copy}</button></span>` : '';
-const stLabR = r => (cur === 'AWB' || cur === 'SPARK' || cur === 'RTO') && r.etape === 'EN_COURS' && r.etape_par ? 'En cours par ' + who(r.etape_par) : (cur === 'AWB' && r.etape === 'EN_ATTENTE' && r.etape_par ? 'Mis en attente par ' + who(r.etape_par) : stLabel(r.etape));
-const ecCls = r => (cur === 'AWB' || cur === 'SPARK' || cur === 'RTO') && r.etape === 'EN_COURS' && r.etape_par ? (String(r.etape_par).toLowerCase() === ME.email ? ' ec-me' : ' ec-ot') : '';
+const stLabR = r => (isAwb(cur) || cur === 'SPARK' || cur === 'RTO') && r.etape === 'EN_COURS' && r.etape_par ? 'En cours par ' + who(r.etape_par) : (isAwb(cur) && r.etape === 'EN_ATTENTE' && r.etape_par ? 'Mis en attente par ' + who(r.etape_par) : stLabel(r.etape));
+const ecCls = r => (isAwb(cur) || cur === 'SPARK' || cur === 'RTO') && r.etape === 'EN_COURS' && r.etape_par ? (String(r.etape_par).toLowerCase() === ME.email ? ' ec-me' : ' ec-ot') : '';
 const waitB = r => r.suppr_par ? `<span class="bb wait" title="Le créateur doit valider la suppression">${IC.trash}En attente de suppression</span>` : '';
 function cardDoc(r){
   const tmp = r._tmp === true;
@@ -2995,7 +2998,7 @@ function card(r){
     ? `<div class="r1">${urg}<div class="name" title="${esc(name)}">${esc(name)}</div>${bub}</div><div class="r2">${refs || '<div class="refs"></div>'}${tag}</div>`
     : `<div class="r1">${urg}${refs || '<div class="name">—</div>'}${tag}</div>`;
   const wk = cur === 'SPARK' && r.wrong_ok === true ? `<div class="rowb"><span class="bb wk">${IC.check}Wrong OK</span></div>` : '';
-  const lines = M.show.filter(k => !(cur === 'AWB' && k === 'categorie_id')).map(k => { const v = val(r, k); return v ? `<div class="m ${k === 'categorie_id' ? 'cat' : ''}${k === 'demande' ? ' ml' : ''}">${esc(v)}</div>` : ''; }).join('');
+  const lines = M.show.filter(k => !(isAwb(cur) && k === 'categorie_id')).map(k => { const v = val(r, k); return v ? `<div class="m ${k === 'categorie_id' ? 'cat' : ''}${k === 'demande' ? ' ml' : ''}">${esc(v)}</div>` : ''; }).join('');
   const rb = cur === 'HP' && r.etape === 'OUVRIR_SPARK' && ['ecriture', 'admin'].includes(ME.rights.SPARK) ? `<button class="s" ${tmp ? 'disabled' : ''} data-a="retour" title="Créer le Retour AA1 pré-rempli">${IC.SPARK}Retour AA1</button>` : '';
   const acts = w && !showArch ? `<div class="act">${rb}<button class="s go stp" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}Étape</button></div>` : '<div class="act" style="padding:0"></div>';
   const al = cur === 'DOM' ? domAlert(r) : null, rk = cur === 'HP' ? tdRank('HP', r) : 2;
@@ -3334,7 +3337,7 @@ function editCell(x, v){
   if (x.t === 'motif') return `<div style="flex:1"><label class="chk" style="margin:2px 0"><input type="checkbox" id="f_motif_cb" ${v.motif_cb === true ? 'checked' : ''}> CB active</label><label class="chk" style="margin:2px 0"><input type="checkbox" id="f_motif_cash" ${v.motif_cash === true ? 'checked' : ''}> Argent liquide</label><textarea id="f_motif_libre" rows="1" placeholder="Autre motif (facultatif)" style="margin-top:6px">${esc(v.motif_libre || '')}</textarea></div>`;
   if (x.t === 'vis') return `<input type="hidden" id="${id}" value="${val === 'prive' ? 'prive' : 'agence'}"><div class="vsel" data-for="${id}"><button type="button" class="s vb${val === 'prive' ? '' : ' on'}" data-v="agence" onclick="vsel(this)">${IC.users}Partagé dans l'agence</button><button type="button" class="s vb${val === 'prive' ? ' on' : ''}" data-v="prive" onclick="vsel(this)">${IC.lock}Privé (moi seul)</button></div>`;
   if (x.t === 'cat') {
-    const cs = ME.categories_awb || [], gs = catGr().filter(([k]) => cs.some(c => String(c.groupe || 'CLASSIQUES').toUpperCase() === k));
+    const cs = catsFor(cur), gs = catGr().filter(([k]) => cs.some(c => String(c.groupe || 'CLASSIQUES').toUpperCase() === k));
     return `<div style="flex:1"><input type="hidden" id="${id}" value="${esc(val)}"><div class="catp" id="catp">${gs.map(([k, l]) => `${gs.length > 1 ? `<div class="cgh">${l}</div>` : ''}<div class="ccw">${cs.filter(c => String(c.groupe || 'CLASSIQUES').toUpperCase() === k).map(c => `<button type="button" class="cch ${val === c.id ? 'on' : ''}" data-cv="${esc(c.id)}">${esc(c.libelle)}</button>`).join('')}</div>`).join('')}</div></div>`;
   }
   if (x.t === 'multi') { const sel = String(val).split(';').map(s => s.trim()).filter(Boolean);
@@ -3347,8 +3350,8 @@ function editCell(x, v){
 // Catégorie du dernier AWB créé par l'utilisateur (reprise par défaut à la création d'un nouvel AWB)
 document.addEventListener('click', e => { const b = e.target.closest('.cch'); if (!b) return; const p = b.closest('.catp'), h = $('#f_categorie_id'); if (!h) return; h.value = b.dataset.cv; p.classList.remove('err'); p.querySelectorAll('.cch').forEach(x => x.classList.toggle('on', x === b)); });
 function lastAwbCat(){
-  try { const k = localStorage.getItem('wlc_' + String(ME.email).toLowerCase()); if (k && (ME.categories_awb || []).some(c => c.id === k && c.actif !== false)) return k; } catch (e) {}
-  const ok = id => id && (ME.categories_awb || []).some(c => c.id === id && c.actif !== false);
+  try { const k = localStorage.getItem('wlc_' + String(ME.email).toLowerCase()); if (k && catsFor('AWB').some(c => c.id === k && c.actif !== false)) return k; } catch (e) {}
+  const ok = id => id && catsFor('AWB').some(c => c.id === id && c.actif !== false);
   const me = String(ME.email).toLowerCase();
   const all = [].concat(cache.AWB || [], cache.AWB_a || []).filter(x => x.categorie_id && String(x.cree_par || '').toLowerCase() === me && ok(x.categorie_id));
   all.sort((a, b) => String(b.cree_le).localeCompare(String(a.cree_le)));
@@ -3359,6 +3362,8 @@ function renderDet(){
   const M = MODS[cur], r = det.r, ed = det.editing, el = $('#sDet'), w = canWrite(); el.classList.toggle('syncing', !!(r && r._sync));
   const v = r || {visibilite: cur === 'AWB' || cur === 'RTO' ? 'prive' : 'agence', date_decouverte: todayISO(), contacter_client: true};
   if (!r && cur === 'AWB') v.categorie_id = lastAwbCat();
+  if (!r && cur === 'PPWK') v.categorie_id = tdNewCat || det.cat || '';
+  if (!r && cur === 'PPWK') det.cat = v.categorie_id;
   const kind = r && !M.noSteps ? kindOf(r) : '';
   const canDelDoc = cur === 'DOCUMENTS' && r && !showArch && (String(r.cree_par).toLowerCase() === ME.email || ME.rights.DOCUMENTS === 'admin');
   const name = r ? (M.noSteps ? String(M.name(r) || '') : String(M.name(r) || '').toUpperCase()) : '';
@@ -3541,7 +3546,7 @@ function fileBox(r){
     : staged.map((f, i) => `<div class="frow"><span class="fic" style="width:38px;height:38px;font-size:17px">${IC.DOCUMENTS}</span><div class="fi">${esc(f.name)}<small>${fsize(f.size)}</small></div><button class="ico sm warn" data-sdel="${i}" title="Retirer" aria-label="Retirer">${IC.close}</button></div>`).join('');
   return `<div class="xh">Fichiers${rows ? ` <small>${r ? (r.fichiers || []).length : staged.length}</small>` : ''}</div><div class="fbox" style="display:block;padding:4px 14px 12px">${rows || '<div class="m" style="margin:10px 0 0">Aucun fichier (8 Mo maximum par fichier).</div>'}${add}</div>`;
 }
-const CMMODS = ['AWB', 'SPARK', 'DOM', 'HP', 'RTO', 'SECURITY', 'CCTV'];
+const CMMODS = ['AWB', 'PPWK', 'SPARK', 'DOM', 'HP', 'RTO', 'SECURITY', 'CCTV'];
 function cmtBlock(r){
   const l = CMT[r.id], w = canWrite() && !showArch, op = !!(det && det.cmOpen);
   return `<div class="cmb"><div class="cmbh"><span>Commentaires${l && l.length ? ' · ' + l.length : ''}</span>${w && !op ? `<button class="ico sm" id="cmNew" title="Ajouter un commentaire" aria-label="Ajouter un commentaire">${IC.cmplus}</button>` : ''}</div>
@@ -4009,7 +4014,7 @@ let setSec = 'aff', PARAMS = null;
 const sw = (id, on, extra = '') => `<label class="sw"><input type="checkbox" id="${id}" ${on ? 'checked' : ''} ${extra}><i></i></label>`;
 
 // ------------------------------------------------------------ Page « Administration » (réservée aux admins)
-const ADM_MODS = [['AWB', 'AWB'], ['SPARK', 'Retours AA1'], ['DOM', 'DOM'], ['HP', 'HP'], ['RTO', 'RTO'], ['SECURITY', 'LSR'], ['CCTV', 'CCTV']];
+const ADM_MODS = [['AWB', 'AWB'], ['PPWK', 'PPWK'], ['SPARK', 'Retours AA1'], ['DOM', 'DOM'], ['HP', 'HP'], ['RTO', 'RTO'], ['SECURITY', 'LSR'], ['CCTV', 'CCTV']];
 let ADM = null;
 const admOpen = () => cur === 'ADMIN' ? !!$('#admPg') : $('#mAdm').classList.contains('on');
 function closeAdm(){ if (cur === 'ADMIN') return openMod('_home'); $('#mAdm').classList.remove('on'); $('#bAdm').classList.remove('on'); }
@@ -4158,7 +4163,7 @@ async function renderRelances(el){
 }
 async function renderUsers(el){
   let us = US; if (us) api('users_list').then(x => US = x).catch(() => {}); else { try { us = US = await wait(() => api('users_list')); } catch (e) { return toast(e.message); } }
-  const MU = [['AWB', 'AWB'], ['UNDELS', 'Undels (Retours AA1 + DOM)'], ['SECURITY', 'LSR'], ['ENTREPRISES', 'Entreprises + Carte'], ['DEBRIEF', 'Debrief'], ['ABSENCES', 'Absences'], ['PARTENAIRE', 'Partenaire (Suivi + lecture)'], ['PR', 'PR'], ['DOCUMENTS', 'Bibliothèque'], ['PARAMETRES', 'Paramètres']];
+  const MU = [['AWB', 'AWB'], ['PPWK', 'PPWK'], ['HP', 'HP'], ['UNDELS', 'Undels (Retours AA1 + DOM)'], ['SECURITY', 'LSR'], ['ENTREPRISES', 'Entreprises + Carte'], ['DEBRIEF', 'Debrief'], ['ABSENCES', 'Absences'], ['PARTENAIRE', 'Partenaire (Suivi + lecture)'], ['PR', 'PR'], ['DOCUMENTS', 'Bibliothèque'], ['PARAMETRES', 'Paramètres']];
   const CC = {CLASSIQUES: '#3a8cff', CCTV: '#ee4650', PPWK: '#a66a3e', UNDELS: '#22b070'};
   const seg = (u, m) => { const cur = u.rights[m] || ''; if (m === 'PARTENAIRE') return `<label class="chk"><input type="checkbox" data-pt="${esc(u.email)}"${cur ? ' checked' : ''}>Partenaire</label>`; const  opts = m === 'PARTENAIRE' ? [['', 'Non'], ['lecture', 'Oui']] : m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : m === 'DOCUMENTS' ? [['', 'Standard'], ['admin', 'Admin']] : (m === 'ABSENCES' || m === 'PR') ? [['', 'Aucun'], ['lecture', 'Lecture'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<div class="useg" data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<button type="button" data-lv="${v}" class="${v === cur ? 'on ' + (v || 'none') : ''}">${l}</button>`).join('')}</div>`; };
@@ -4171,7 +4176,7 @@ async function renderUsers(el){
       <div class="ubd">
         <div class="usec"><h5>Accès aux pages</h5><div class="ugrid">${MU.map(([m, l]) => `<div class="umod"><b>${l}</b>${seg(u, m)}</div>`).join('')}</div></div>
         <div class="urow">
-          <div class="usec"><h5>Catégories AWB visibles</h5><div class="chips">${catGr().map(([k, l, col]) => `<label class="tchip cc" style="--gc:${esc(col)}"><input type="checkbox" data-cm="CAT_${k}" data-cu="${esc(u.email)}" ${u.rights['CAT_' + k] ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div></div>
+          <div class="usec"><h5>Catégories AWB visibles</h5><div class="chips">${catGr().filter(([k]) => k === 'CLASSIQUES').map(([k, l, col]) => `<label class="tchip cc" style="--gc:${esc(col)}"><input type="checkbox" data-cm="CAT_${k}" data-cu="${esc(u.email)}" ${u.rights['CAT_' + k] ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div></div>
           <div class="usec"><h5>Peut voir l’historique</h5><div class="chips">${[['AWB', 'AWB'], ['SPARK', 'Retours AA1'], ['DOM', 'DOM'], ['SECURITY', 'LSR']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label class="tchip" title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}><span>${l}</span></label>`; }).join('')}</div></div>
         </div></div></section>`).join('')}`;
   const saveUs = p => { US = null; toast('Enregistré'); enqueue(() => api('users_set', p), () => { US = null; renderUsers(el); }).then(() => { if (!pending) api('users_list').then(x => US = x).catch(() => {}); }); };
@@ -4217,6 +4222,8 @@ IC.TODO = ic('<path d="m3 6 2 2 3-3"/><path d="m3 14 2 2 3-3"/><path d="M11 7h10
 IC.CARTE = ic('<path d="M9 4 3 6.5v13L9 17l6 3 6-2.5v-13L15 7 9 4Z"/><path d="M9 4v13M15 7v13"/>');
 IC.DEBRIEF = ic('<path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/>');
 IC.PR = ic('<path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10Z"/><circle cx="12" cy="11" r="2.2"/>');
+MODS.PPWK = Object.assign({}, MODS.AWB, {label: 'PPWK', nv: 'dossier PPWK'});
+IC.PPWK = ic('<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>');
 function navOrder(list) {
   const base = list.filter(m => !PGS[m]), pg = Object.keys(PGS).filter(p => p !== 'SUIVI' && p !== 'TODO' && ME.rights[p]);
   let at = -1; base.forEach((m, i) => { if (['AWB', 'SPARK', 'DOM', 'SECURITY'].includes(m)) at = i; });
@@ -4225,6 +4232,8 @@ function navOrder(list) {
   if (ME.rights.SUIVI && !ME.rights.PARTENAIRE) { const sp = base.indexOf('SPARK'); base.splice(sp >= 0 ? sp + 1 : at + 1, 0, 'SUIVI'); }
   // « Todo » juste sous « Accueil » (pas pour les partenaires)
   if (!ME.rights.PARTENAIRE && TD_MODS.some(m => ME.rights[m])) base.unshift('TODO');
+  // « PPWK » juste après « Todo »
+  const pw = base.indexOf('PPWK'); if (pw >= 0) { base.splice(pw, 1); base.splice(base.indexOf('TODO') + 1, 0, 'PPWK'); }
   return base;
 }
 IC.PIN = ic('<path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/>');
@@ -5166,27 +5175,23 @@ function openAbsEdit(id, d){
 const CAT_DEF = [['CLASSIQUES', 'Classiques', '#3a8cff'], ['CCTV', 'CCTV', '#ee4650'], ['PPWK', 'PPWK', '#a66a3e'], ['UNDELS', 'Undels', '#22b070']];
 const catGr = () => ME && ME.cat_groups && ME.cat_groups.length ? ME.cat_groups.map(g => [g.code, g.libelle, g.couleur || '#7d8696']) : CAT_DEF;
 async function openCat(){
-  let D, G;
-  const load = async () => { const r = await Promise.all([api('cat_all'), api('catgr_list')]); D = r[0]; G = r[1]; };
+  let D;
+  const load = async () => { D = (await api('cat_all')).filter(x => x.groupe === 'CLASSIQUES'); };
   try { await wait(load); } catch (e) { return toast(e.message); }
-  const refreshMe = async () => { try { const m = await api('me', {refresh: true}); ME.categories_awb = m.categories_awb; ME.cat_groups = m.cat_groups; ME.rights = m.rights; US = null; if (cur === 'AWB') drawCards(); } catch (e) {} };
+  const refreshMe = async () => { try { const m = await api('me', {refresh: true}); ME.categories_awb = m.categories_awb; ME.cat_groups = m.cat_groups; ME.rights = m.rights; US = null; } catch (e) {} };
   const run = async fn => { try { await wait(fn, true); await load(); draw(); refreshMe(); } catch (e) { toast(e.message); draw(); } };
   const draw = () => {
     $('#sAbs').className = 'sheet wide2';
-    $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Gestion des catégories</h3><div class="sub">Chaque groupe correspond à un droit : seules les personnes qui l’ont voient ses catégories</div></div><button class="ico sm" id="cX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
-      <div class="cgs">${G.map(g => { const k = g.code, it = D.filter(x => x.groupe === k);
-        return `<section class="cg" style="--gc:${esc(g.couleur)}"><h4><input class="cgn" data-gc="${esc(k)}" value="${esc(g.libelle)}" maxlength="30" aria-label="Nom du groupe"><small>${it.filter(x => x.actif).length}</small><button class="ico sm warn" data-gd="${esc(k)}" title="Supprimer le groupe" aria-label="Supprimer le groupe">${IC.trash}</button></h4><div class="cps">${it.map(x => `<span class="cp2 ${x.actif ? '' : 'off'}"><input data-ci="${esc(x.id)}" data-cg="${esc(k)}" value="${esc(x.libelle)}" size="${Math.max(7, String(x.libelle).length)}" maxlength="40" aria-label="Nom">${x.n ? `<b title="${x.n} AWB">${x.n}</b>` : ''}${x.actif ? '' : `<button class="ico sm" data-cr="${esc(x.id)}" data-cg="${esc(k)}" data-cl="${esc(x.libelle)}" title="Réactiver" aria-label="Réactiver">${IC.check}</button>`}<button class="ico sm warn" data-cd="${esc(x.id)}" title="${x.n ? 'Désactiver' : 'Supprimer'}" aria-label="Supprimer">${IC.close}</button></span>`).join('') || '<div class="m" style="margin:0">Aucune catégorie</div>'}</div>
-          <div class="erow" style="margin:0"><input data-cn="${esc(k)}" placeholder="Nouvelle catégorie" maxlength="40" autocomplete="off"><button class="p" data-ca="${esc(k)}" aria-label="Ajouter">${IC.plus}</button></div></section>`; }).join('')}</div>
-      <div class="erow" style="margin-top:16px"><input id="cgNew" placeholder="Nouveau groupe de catégories" maxlength="30" autocomplete="off"><button class="p" id="cgAdd">${IC.plus}Créer le groupe</button></div>`;
+    $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Gestion des catégories</h3><div class="sub">Catégories classiques des AWB</div></div><button class="ico sm" id="cX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+      <div class="cgs"><section class="cg" style="--gc:#3a8cff"><h4>Classiques<small>${D.filter(x => x.actif).length}</small></h4><div class="cps">${D.map(x => `<span class="cp2 ${x.actif ? '' : 'off'}"><input data-ci="${esc(x.id)}" value="${esc(x.libelle)}" size="${Math.max(7, String(x.libelle).length)}" maxlength="40" aria-label="Nom">${x.n ? `<b title="${x.n} AWB">${x.n}</b>` : ''}${x.actif ? '' : `<button class="ico sm" data-cr="${esc(x.id)}" data-cl="${esc(x.libelle)}" title="Réactiver" aria-label="Réactiver">${IC.check}</button>`}<button class="ico sm warn" data-cd="${esc(x.id)}" title="${x.n ? 'Désactiver' : 'Supprimer'}" aria-label="Supprimer">${IC.close}</button></span>`).join('') || '<div class="m" style="margin:0">Aucune catégorie</div>'}</div>
+        <div class="erow" style="margin:0"><input id="cNew" placeholder="Nouvelle catégorie" maxlength="40" autocomplete="off"><button class="p" id="cAdd" aria-label="Ajouter">${IC.plus}</button></div></section></div>`;
     $('#cX').onclick = closeAbs;
-    $('#sAbs').onchange = e => { const t = e.target; if (t.dataset.ci) { const n = t.value.trim(); if (!n) return draw(); run(() => api('cat_save', {id: t.dataset.ci, libelle: n, groupe: t.dataset.cg, actif: true})); } else if (t.dataset.gc) { const n = t.value.trim(); if (!n) return draw(); run(() => api('catgr_save', {code: t.dataset.gc, libelle: n})); } };
-    $('#sAbs').onkeydown = e => { if (e.key === 'Enter' && e.target.dataset.cn) { const b = $('#sAbs').querySelector(`[data-ca="${e.target.dataset.cn}"]`); if (b) b.click(); } else if (e.key === 'Enter' && e.target.id === 'cgNew') $('#cgAdd').click(); };
+    $('#sAbs').onchange = e => { const t = e.target; if (t.dataset.ci) { const n = t.value.trim(); if (!n) return draw(); run(() => api('cat_save', {id: t.dataset.ci, libelle: n, actif: true})); } };
+    $('#sAbs').onkeydown = e => { if (e.key === 'Enter' && e.target.id === 'cNew') $('#cAdd').click(); };
     $('#sAbs').onclick = async e => {
       const b = e.target.closest('button'); if (!b) return;
-      if (b.id === 'cgAdd') { const n = $('#cgNew').value.trim(); if (n) run(() => api('catgr_save', {libelle: n})); }
-      else if (b.dataset.gd) { const g = G.find(y => y.code === b.dataset.gd); if (!g) return; if (g.n) return toast('« ' + g.libelle + ' » contient encore ' + g.n + ' catégorie' + (g.n > 1 ? 's' : '') + ' : supprime-les d’abord'); if (await ask('Supprimer ce groupe ?', '« ' + g.libelle + ' » et le droit associé seront supprimés.', 'Supprimer')) run(() => api('catgr_delete', {code: g.code})); }
-      else if (b.dataset.ca) { const i = $('#sAbs').querySelector(`[data-cn="${b.dataset.ca}"]`), n = i.value.trim(); if (n) run(() => api('cat_save', {libelle: n, groupe: b.dataset.ca})); }
-      else if (b.dataset.cr) run(() => api('cat_save', {id: b.dataset.cr, libelle: b.dataset.cl, groupe: b.dataset.cg, actif: true}));
+      if (b.id === 'cAdd') { const n = $('#cNew').value.trim(); if (n) run(() => api('cat_save', {libelle: n})); }
+      else if (b.dataset.cr) run(() => api('cat_save', {id: b.dataset.cr, libelle: b.dataset.cl, actif: true}));
       else if (b.dataset.cd) { const x = D.find(y => y.id === b.dataset.cd); if (x && await ask(x.n ? 'Désactiver cette catégorie ?' : 'Supprimer cette catégorie ?', x.n ? `« ${x.libelle} » est utilisée par ${x.n} AWB : elle sera masquée mais les AWB la gardent.` : `« ${x.libelle} »`, x.n ? 'Désactiver' : 'Supprimer')) run(() => api('cat_delete', {id: b.dataset.cd})); }
     };
   };
