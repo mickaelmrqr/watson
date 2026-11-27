@@ -1833,6 +1833,13 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
 .alz .alb .v{color:#C7332F;font-weight:700}html:not([data-theme="light"]) .alz .alb .v{color:#FF8A85}
 .rlh{font:700 15px var(--disp);letter-spacing:.5px;color:var(--mut);margin:18px 0 6px}.rlr{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 0;border-bottom:1px solid var(--line)}.rlr>b{min-width:130px}.rld{display:flex;align-items:center;gap:6px}.rld input{width:76px}.rlt{flex-basis:100%;display:flex;flex-wrap:wrap;gap:6px 14px}.rlw{display:flex;align-items:center;gap:6px;white-space:nowrap}
 
+.mod[data-m=HP],.ht[data-m=HP],.pg[data-m=HP]{--mc:255,138,31}.mod[data-m=RTO],.ht[data-m=RTO],.pg[data-m=RTO]{--mc:0,170,190}.mod[data-m=TODO],.pg[data-m=TODO]{--mc:255,138,31}
+.tdp{display:grid;grid-template-columns:repeat(var(--tdn,5),minmax(180px,1fr)) 46px 46px;gap:10px;overflow-x:auto;padding-bottom:8px;align-items:stretch;min-height:calc(100vh - 230px)}
+.tdc{border:1px solid var(--line);border-top:3px solid var(--c);border-radius:12px;padding:8px;min-width:0}
+.tdch{display:flex;align-items:center;gap:7px;margin-bottom:8px;min-height:32px}.tdch b{font:700 15px var(--disp)}.tdch small{color:var(--mut);font-weight:700}
+.tdl{display:flex;flex-direction:column;gap:9px}.tdl .card{padding-right:10px}.tdl .card:not(.hascat){padding-left:17px}.tdl .card .r1,.tdl .card .r2{flex-wrap:wrap;row-gap:3px}.tdl .card .refs{flex:1 0 auto}.tdl .card .ref{white-space:nowrap;word-break:normal}.tdl .card .act{flex-wrap:wrap;gap:6px}.tdl .card .act button{white-space:nowrap}.tdl .card>.cvis{position:static!important;margin-top:6px;align-self:flex-start}.tdadv{margin:0 0 9px}.tdadv.hide{display:none}
+.tds-arch{background:rgba(128,138,158,.12);color:var(--mut)}.tds-done{background:rgba(47,179,107,.12);color:#2fb36b}.tdp .svside.on{outline:2px solid currentColor;outline-offset:-2px}
+.hpd{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
 #seg .mod[data-m="TODO"]{position:relative}.tdn{margin-left:auto;display:inline-flex;gap:4px;align-items:center}.tdn i{font-style:normal;min-width:18px;height:18px;padding:0 5px;border-radius:999px;display:grid;place-items:center;color:#fff;font:700 11px/1 var(--body)}.tdn i.r{background:#E5484D}.tdn i.b{background:#2F6FDE}
 html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn{position:absolute;top:0;right:0}
 .tdg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}.tdcol{border:1px solid var(--line);border-radius:12px;padding:8px;min-height:220px;align-self:stretch}.tdcol.ov{border-color:#2F6FDE;background:var(--raised)}.tdh{display:flex;align-items:center;gap:7px;font-weight:600;margin-bottom:8px}.tdh:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c)}.tdh small{color:var(--mut);font-weight:400}
@@ -1848,14 +1855,14 @@ html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn{position:absolute;top:
   <button id="bLib" class="ico hide" title="Bibliothèque" aria-label="Bibliothèque"></button>
 <button id="bSearch" class="ico hide" title="Rechercher (Ctrl+K)" aria-label="Rechercher"></button></div>
   <div class="hrt"><button id="bMsg" class="ico hide" title="Messagerie (conversations non lues)" aria-label="Messagerie"></button>
-  <button id="bBell" class="ico hide" title="Notifications (orange : non lues · bleu : todo du jour)" aria-label="Notifications"></button><span class="hsep hide" id="hs2"></span>
+  <button id="bBell" class="ico hide" title="Notifications" aria-label="Notifications"></button><span class="hsep hide" id="hs2"></span>
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.200</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.201</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.200</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.201</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1876,11 +1883,6 @@ html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn{position:absolute;top:
 <div class="modal right" id="mMsg"><aside class="drawer" id="msgp"></aside></div>
 <div class="modal right" id="mDrawer"><aside class="drawer" id="drawer"></aside></div>
 <div class="modal" id="mMap"><div class="sheet" id="sMap"><div class="sh"><div class="tt"><h3>Carte</h3></div><button class="ico sm" id="mpX" aria-label="Fermer" title="Fermer"></button></div><div id="mpBody"></div></div></div>
-<div class="modal" id="mRec"><div class="sheet" id="sRec"></div></div> <div class="modal" id="mTask"><div class="sheet"><div class="sh"><div class="tt"><h3>Nouvelle tâche</h3></div><button class="ico sm" id="tkX" aria-label="Fermer" title="Fermer"></button></div>
-  <label for="tTitre">Titre</label><input id="tTitre" maxlength="200" autocomplete="off">
-  <div class="r2c" id="tWhen"><div><label for="tDate">Date prévue</label><input id="tDate" type="date"></div><div><label for="tHeure">Heure du rappel (facultatif)</label><input id="tHeure" type="time"></div></div>
-  <label class="chk"><input type="checkbox" id="tRec"> Chaque jour travaillé (ajoutée automatiquement)</label>
-  <div class="foot"><button class="p" id="tAdd" style="flex:1">Ajouter</button><button class="s" id="tkNo">Annuler</button></div></div></div>
 <div class="modal" id="mRem"><div class="sheet"><div class="sh"><div class="tt"><h3>Rappels</h3></div><button class="ico sm" id="rX" aria-label="Fermer" title="Fermer"></button></div>
   <div class="rtabs"><button class="s on" id="rtNew">Créer un rappel</button><button class="s" id="rtList">En attente</button></div>
   <div id="rvNew"><label for="rTitre">Titre</label><input id="rTitre" maxlength="200" autocomplete="off">
@@ -1953,7 +1955,9 @@ const IC = {
   plus: ic('<path d="M12 5v14"/><path d="M5 12h14"/>'),
   AWB: ic('<path d="M4 5v14"/><path d="M8 5v14"/><path d="M12 5v14"/><path d="M16 5v10"/><path d="M20 5v14"/>'),
   SPARK: ic('<path d="M13 2 3 14h9l-1 8 10-12h-9Z"/>'),
-  DOM: ic('<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 21v-7h6v7"/>')
+  DOM: ic('<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 21v-7h6v7"/>'),
+  HP: ic('<circle cx="12" cy="12" r="9"/><path d="M15 9.5a4 4 0 1 0 0 5"/><path d="M7 11h6"/><path d="M7 13.5h5"/>'),
+  RTO: ic('<path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>')
 };
 const SHERLOC = 'https://sherloc.dhl.com/#/hwb/';
 const isoD = v => { if (!v) return ''; const t = String(v); if (/^\d{4}-\d\d-\d\d$/.test(t.slice(0, 10)) && t.length <= 10) return t; const d = new Date(v); return isNaN(d) ? t.slice(0, 10) : d.toLocaleDateString('sv-SE', {timeZone:'Europe/Paris'}); };
@@ -1992,7 +1996,7 @@ const MODS = {
     {k:'location',l:'Location (étagère)',t:'scan'},
     {k:'visibilite',l:'Visibilité',t:'vis'}],
     show:['categorie_id','remarque'] },
-  SPARK: { label: 'Nouveaux Spark', nv: 'SPARK', name: r => r.nom_client, fields: [
+  SPARK: { label: 'Retours AA1', nv: 'Retour AA1', name: r => r.nom_client, fields: [
     {k:'waybill',l:'Waybill',t:'scan'},
     {k:'nom_client',l:'Nom du client',t:'text',up:1}, {k:'adresse',l:'Adresse',t:'addr'},
     {k:'pid',l:'PID',t:'scan'},
@@ -2009,7 +2013,19 @@ const MODS = {
     {k:'ctc_details',l:'Contact (détails)',t:'area'},
     {k:'ctc_commercial',l:'Contact commercial',t:'area'},
     {k:'visibilite',l:'Visibilité',t:'vis'}],
-    show:['remarque'] }
+    show:['remarque'] },
+  HP: { label: 'HP', name: r => r.nom_client, fields: [
+    {k:'waybill',l:'Waybill',t:'scan',req:1},
+    {k:'nom_client',l:'Nom du client',t:'text',up:1},
+    {k:'paye',l:'Payé',t:'bool'},
+    {k:'paye_le',l:'Payé le',t:'date'},
+    {k:'visibilite',l:'Visibilité',t:'vis'}],
+    show:[] },
+  RTO: { label: 'RTO', name: r => r.nom_client, fields: [
+    {k:'waybill',l:'Waybill',t:'scan',req:1},
+    {k:'nom_client',l:'Nom du client',t:'text',up:1},
+    {k:'visibilite',l:'Visibilité',t:'vis'}],
+    show:[] }
 };
 MODS.SECURITY = { label: 'SCMS', name: r => '', show: [], title: r => motifTxt(r) || r.waybill || ('SCMS du ' + fdateD(r.date_decouverte)), fields: [
     {k:'waybill',l:'Waybill',t:'scan'},
@@ -2028,7 +2044,7 @@ MODS.DOCUMENTS = { label: 'Documents', noSteps: true, name: r => r.titre, show: 
     {k:'titre',l:'Titre',t:'text',req:1},
     {k:'visibilite',l:'Visibilité',t:'vis'},
     {k:'_file',l:'Fichier',t:'file'}] };
-const STEP_KIND = {EN_ATTENTE:'wait',EN_COURS:'go',ATTENTE_CLIENT:'go',ATTENTE_COMMERCIAL:'go',SCMS_CREE:'go',TERMINE:'ok',A_ARCHIVER:'ok',RTO_FAIT:'ok',INSTRUCTION_APPLIQUEE:'ok',RESOLU:'ok'};
+const STEP_KIND = {EN_ATTENTE:'wait',OUVRIR_SPARK:'go',EN_COURS:'go',ATTENTE_CLIENT:'go',ATTENTE_COMMERCIAL:'go',SCMS_CREE:'go',TERMINE:'ok',A_ARCHIVER:'ok',RTO_FAIT:'ok',INSTRUCTION_APPLIQUEE:'ok',RESOLU:'ok'};
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let token = (() => { try { return localStorage.getItem('wst'); } catch (e) { return null; } })() || sessionStorage.getItem('wtk'), cur = null, rows = [], showArch = false, det = null;
@@ -2205,7 +2221,7 @@ function buildNav(){
   const mods = Object.keys(MODS).filter(m => ME.rights[m]);
   const io = (m, label, icon) => `<button class="mod io" data-m="${m}" title="${label}" aria-label="${label}"><span class="mi">${icon}</span><b class="il">${label}</b></button>`;
   const tile = m => `<button class="mod" data-m="${m}"><span class="mi">${IC[m]}</span><span><b>${MODS[m] ? MODS[m].label : PGS[m].label}</b>${PGS[m] ? '' : '<small id="cnt_' + m + '"><span class="d3s"><i></i><i></i><i></i></span></small>'}</span></button>`;
-  const order = navOrder(mods).filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY');
+  const order = navOrder(mods).filter(m => m !== 'DOCUMENTS' && m !== 'LIBRARY' && !TD_MODS.includes(m));
   const lbl = m => MODS[m] ? MODS[m].label : PGS[m].label;
   const inGrp = new Set();
   const gtile = g => { const its = g.items.filter(m => m === 'CCTV+' ? (order.includes('CCTV') && ME.rights.CCTV === 'admin') : order.includes(m)); if (!its.length || (g.id === 'lsr' && !its.includes('SECURITY'))) return ''; its.forEach(m => inGrp.add(m)); return `<div class="gw" data-g="${g.id}"><button class="mod gb" data-g="${g.id}" aria-haspopup="true" aria-expanded="false"><span class="mi">${g.icon}</span><span><b>${g.label}</b><em class="gs"></em></span><i class="chv" aria-hidden="true"></i></button><div class="gm">${its.map(m => m === 'CCTV+' ? `<button class="mod gi" data-m="CCTV" data-new="1"><span class="mi">${IC.plus}</span><b>+ CCTV</b></button>` : `<button class="mod gi" data-m="${m}"><span class="mi">${IC[m]}</span><b>${esc(lbl(m))}</b>${PGS[m] ? '' : `<small id="cnt_${m}"></small>`}</button>`).join('')}</div></div>`; };
@@ -2221,7 +2237,7 @@ function buildNav(){
   if (window.__navMO) window.__navMO.disconnect();
   window.__navMO = new MutationObserver(navSync); window.__navMO.observe($('#seg'), {subtree:true, attributes:true, attributeFilter:['class']});
   navSync(); todoBadges();
-  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === cur && !b.dataset.new));
+  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === (todoOn() ? 'TODO' : cur) && !b.dataset.new));
 }
 const moveInd = () => {};
 const entRts = r => { const rs = entR(r).filter(x => String(x.nom || '').trim()), pr = rs.filter(x => x.pu); return (pr.length ? pr : rs).map(x => String(x.nom).trim()); };
@@ -2233,7 +2249,7 @@ function alN(m, r){
   if (!r || m === 'DOCUMENTS') return 0;
   if (m === 'CCTV') return ME.rights.CCTV === 'admin' ? r.filter(x => x.etape === 'A_FAIRE').length : 0;
   if (m === 'DOM') return r.map(domAlert).filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late' || a[k] === 'warn')).length;
-  return r.filter(x => kindOfM(m, x) !== 'ok' && (m === 'AWB' ? x.etape === 'A_FAIRE' : (m === 'SPARK' && x.etape === 'A_FAIRE'))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
+  return r.filter(x => kindOfM(m, x) !== 'ok' && (m === 'AWB' ? x.etape === 'A_FAIRE' : ((m === 'SPARK' || m === 'RTO') && x.etape === 'A_FAIRE') || (m === 'HP' && x.etape === 'OUVRIR_SPARK'))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
 }
 function drawTiles(){
   document.querySelectorAll('.mod').forEach(b => {
@@ -2248,12 +2264,13 @@ function drawTiles(){
       setN(lt + wn); t.innerHTML = [lt ? `<i>${lt} en retard</i>` : '', wn ? `<i class="o">${wn} à faire aujourd'hui</i>` : ''].filter(Boolean).join(' · '); return;
     }
     const act = r.filter(x => kindOfM(m, x) !== 'ok'), u = 0;
-    const af = (m === 'SPARK' || m === 'AWB') ? act.filter(x => x.etape === 'A_FAIRE').length : 0;
+    const af = (m === 'SPARK' || m === 'AWB' || m === 'RTO') ? act.filter(x => x.etape === 'A_FAIRE').length : 0;
     const nc = m === 'SECURITY' ? r.filter(scmsMissing).length : 0; setN(alN(m, r)); t.innerHTML = [u ? `<i>${u} urgent${u > 1 ? 's' : ''}</i>` : '', af ? `<i class="o">${af} à faire</i>` : '', nc ? `<i>${nc} SCMS à créer</i>` : ''].filter(Boolean).join(' · ');
   });
   navBadges();
 }
 function navBadges(){
+  todoBadges();
   const cnt = m => {
     const af = k => (cache[k] || []).filter(x => x.etape === 'A_FAIRE').length;
     if (m === 'AWB' || m === 'SPARK' || m === 'DOM') return af(m);
@@ -2505,12 +2522,123 @@ function navBadges(){
  window.svGo=async function(id){if(isP())renderHome();else openMod('SUIVI');for(let k=0;k<30;k++){await new Promise(r=>setTimeout(r,200));if(S.items.some(x=>x.id===id)){openDetail(id);return}}toast('Élément introuvable (archivé ?)')};
 })();
 async function warm(now){
-  // Rien d'urgent : on laisse d'abord s'afficher les listes (profil, identifiants et todo chargés un peu plus tard ; l'admin à l'ouverture)
-  if (!now) { await new Promise(r => setTimeout(r, 2500)); loadTodo(true); }
+  // Rien d'urgent : on laisse d'abord s'afficher les listes (profil et identifiants chargés un peu plus tard ; l'admin à l'ouverture)
+  if (!now) { await new Promise(r => setTimeout(r, 2500)); }
   try { const r = await Promise.all([api('profile_get'), api('my_creds')]); PRO = r[0]; CREDS = r[1]; prepQR(); } catch (e) {}
 }
 async function preload(mods){
   await Promise.all(mods.filter(m => !cache[m]).map(async m => { try { cache[m] = await fetchList(m, false); } catch (e) {} drawTiles(); }));
+}
+
+// ------------------------------------------------------------ Page « Todo » : AWB, DOM, HP, RTO, Retours AA1 en colonnes
+const TD_MODS = ['AWB', 'DOM', 'HP', 'RTO', 'SPARK'];
+const TD_COL = {AWB: '#2F6FDE', DOM: '#9668f0', HP: '#ff8a1f', RTO: '#00aabe', SPARK: '#2fb36b'};
+let tdView = 'act', tdAdvice = false, tdAt = 0;            // vue : act (en cours), done (terminés), arch (archives)
+const todoOn = () => !!document.getElementById('tdPage');
+const tdCols = () => TD_MODS.filter(m => ME.rights[m]);
+const tdKey = m => m + (tdView === 'arch' ? '_a' : '');
+// Urgence d'une carte : 0 = en retard, 1 = à faire aujourd'hui, 2 = le reste
+function tdRank(m, r){
+  if (r.archive === true) return 2;
+  if (m === 'DOM') { const a = domAlert(r); return ['J1', 'J4', 'J10'].some(k => a[k] === 'late') ? 0 : ['J1', 'J4', 'J10'].some(k => a[k] === 'warn') ? 1 : 2; }
+  if (m === 'HP' && r.etape === 'OUVRIR_SPARK') { const d = dayDiff(r.j3); return d !== null && d < 0 ? 0 : 1; }
+  return 2;
+}
+function tdList(m){
+  const all = cache[tdKey(m)]; if (!all) return null;
+  const l = tdView === 'arch' ? all.slice() : all.filter(r => (kindOfM(m, r) === 'ok') === (tdView === 'done'));
+  const date = (r, k) => String(r[k] || '');
+  if (tdView === 'arch') return l.sort((a, b) => date(b, 'archive_le').localeCompare(date(a, 'archive_le')));
+  if (tdView === 'done') return l.sort((a, b) => date(b, 'etape_le').localeCompare(date(a, 'etape_le')));
+  const ord = {}; stepsOf(m).forEach((x, i) => ord[x.code] = x.code === 'EN_ATTENTE' ? 50 : i);
+  const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
+  return l.sort((a, b) => tdRank(m, a) - tdRank(m, b) || (m === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || date(b, 'cree_le').localeCompare(date(a, 'cree_le')));
+}
+function tdCol(m){
+  const list = $('#list_' + m); if (!list) return;
+  const keep = [cur, rows];
+  cur = m; rows = cache[key()] || [];
+  const l = tdList(m);
+  list.innerHTML = l === null ? '<div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div>'
+    : l.map(card).join('') || '<div class="empty">Rien ici.</div>';
+  const n = $('#tdn_' + m); if (n) n.textContent = l === null ? '' : l.length;
+  visTag();
+  cur = keep[0]; rows = keep[1];
+}
+function tdDraw(){
+  if (!todoOn()) return;
+  tdCols().forEach(tdCol);
+  ['done', 'arch'].forEach(v => {
+    const el = $('#tds_' + v); if (!el) return;
+    const loaded = tdCols().every(m => cache[v === 'arch' ? m + '_a' : m]);
+    const n = !loaded ? null : tdCols().reduce((t, m) => t + (v === 'arch' ? cache[m + '_a'].length : cache[m].filter(r => kindOfM(m, r) === 'ok').length), 0);
+    const lab = v === 'arch' ? 'Archives' : 'Terminés';
+    el.querySelector('.svst2').textContent = (tdView === v ? 'Revenir aux dossiers en cours · ' : '') + lab + (n === null ? '' : ' · ' + n);
+    el.classList.toggle('on', tdView === v);
+  });
+  todoBadges();
+}
+async function tdFetch(m, view){
+  const arch = view === 'arch', k = m + (arch ? '_a' : '');
+  const fresh = await api('list', {module: m, archives: arch});
+  if (pending > 0) { if (!cache[k]) cache[k] = fresh; return; }
+  cache[k] = fresh;
+  if (cur === m && key() === k) { rows = fresh; relinkDet(); }
+}
+async function todoRefresh(){
+  const v = tdView; tdAt = Date.now();
+  await Promise.all(tdCols().map(m => tdFetch(m, v).then(() => { tdDraw(); drawTiles(); }).catch(() => {})));
+}
+// Affiche la page ; `want` = le type sur lequel on travaille (notification, recherche…)
+async function renderTodo(want){
+  if (!tdCols().length) return openMod('_home');
+  if (showArch) tdView = 'arch'; else if (tdView === 'arch' || !want || want === 'TODO') tdView = 'act';
+  showArch = tdView === 'arch';
+  const f = tdCols().includes(want) ? want : '';
+  cur = f || 'TODO'; rows = f ? cache[key()] || [] : [];
+  const canNew = m => ['ecriture', 'admin'].includes(ME.rights[m]) && tdView !== 'arch';
+  const sub = tdView === 'done' ? ' · Terminés' : tdView === 'arch' ? ' · Archives' : '';
+  const side = (v, label) => `<div class="svside tds-${v}" id="tds_${v}" role="button" tabindex="0" title="${label}" aria-label="${label}"><span class="svsc">${IC.chev}</span><span class="svst2">${label}</span></div>`;
+  $('#main').innerHTML = `<div class="pg absb" data-m="TODO" id="tdPage"><div class="abh"><h3>Todo${sub}</h3><div class="abr"></div></div><div class="tdp" style="--tdn:${tdCols().length}">${tdCols().map(m =>
+    `<section class="tdc" data-m="${m}" style="--c:${TD_COL[m]}"><div class="tdch"><b>${MODS[m].label}</b><small id="tdn_${m}"></small><span style="flex:1"></span>${m === 'DOM' ? `<button class="ico sm" data-advice="1" title="Conseil" aria-label="Conseil">${IC.bulb}</button>` : ''}${canNew(m) ? `<button class="ico sm" data-new="${m}" title="Nouveau ${MODS[m].nv || MODS[m].label}" aria-label="Nouveau ${MODS[m].nv || MODS[m].label}">${IC.plus}</button>` : ''}</div>${m === 'DOM' ? `<div class="advice tdadv${tdAdvice ? '' : ' hide'}"><div class="acx"><ol><li>Contacter l’expéditeur pour savoir quoi faire du colis.</li><li>Sans réponse à J+4, ou s’il est injoignable : demander au commercial qui gère le compte.</li><li>Sans instruction à J+10 : faire un RTO avec le compte de l’expéditeur.</li></ol><div class="no">On n’ouvre plus de dossier Spark.</div></div></div>` : ''}<div class="tdl" id="list_${m}"></div></section>`).join('')}${side('done', 'Terminés')}${side('arch', 'Archives')}</div></div>`;
+  const box = $('#main .tdp');
+  box.querySelectorAll('.tdc').forEach(c => c.addEventListener('click', () => focusMod(c.dataset.m), true));
+  box.querySelectorAll('.tdl').forEach(l => l.onclick = onListClick);
+  box.querySelectorAll('[data-new]').forEach(b => b.onclick = () => { focusMod(b.dataset.new); openDetail(null, true); });
+  box.querySelectorAll('[data-advice]').forEach(b => b.onclick = () => { tdAdvice = !tdAdvice; box.querySelector('.tdadv').classList.toggle('hide', !tdAdvice); });
+  ['done', 'arch'].forEach(v => {
+    const el = $('#tds_' + v), go = () => { tdView = tdView === v ? 'act' : v; showArch = tdView === 'arch'; renderTodo(tdView === 'arch' ? tdCols()[0] : 'VIEW'); };
+    el.onclick = go; el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } };
+  });
+  tdDraw();
+  const need = f && !cache[tdKey(f)];
+  const all = todoRefresh();
+  if (need) { try { await wait(() => tdFetch(f, tdView)); } catch (e) { toast(e.message); } rows = cache[key()] || []; tdDraw(); }
+  else if (f) rows = cache[key()] || [];
+  return need ? undefined : void all;
+}
+// Compteurs du menu : rouge = à faire, bleu = en cours
+function todoBadges(){
+  const b = document.querySelector('#seg .mod[data-m="TODO"]'); if (!b || !ME) return;
+  let w = b.querySelector('.tdn'); if (!w) { w = document.createElement('span'); w.className = 'tdn'; b.appendChild(w); }
+  let a = 0, c = 0;
+  tdCols().forEach(m => (cache[m] || []).forEach(r => { if (r.etape === 'A_FAIRE' || r.etape === 'OUVRIR_SPARK') a++; else if (r.etape === 'EN_COURS') c++; }));
+  const n = v => v > 99 ? '99+' : v;
+  const h = (a ? `<i class="r" title="À faire : ${a}">${n(a)}</i>` : '') + (c ? `<i class="b" title="En cours : ${c}">${n(c)}</i>` : '');
+  if (w.innerHTML !== h) w.innerHTML = h;
+}
+// HP « Ouvrir Spark » : crée le Retour AA1 pré-rempli puis l'ouvre pour le compléter
+async function hpRetour(r){
+  if (!(await ask('Créer le « Retour AA1 » ?', 'Il sera pré-rempli avec le bordereau et le nom. Le dossier HP passera à « Terminé ».', 'Créer'))) return;
+  try {
+    const id = await wait(async () => {
+      const nid = await api('hp_spark', {id: r.id});
+      const [hp, sp] = await Promise.all([api('list', {module: 'HP', archives: false}), api('list', {module: 'SPARK', archives: false})]);
+      cache.HP = hp; cache.SPARK = sp; return nid;
+    }, true);
+    closeDet(); showArch = false; tdView = 'act'; await openMod('SPARK');
+    const n = (cache.SPARK || []).find(x => x.id === id); if (n) openDetail(n, true);
+  } catch (e) { toast(e.message); }
 }
 
 // ------------------------------------------------------------ Accueil
@@ -2538,8 +2666,9 @@ function homeTile(m){
   const ref = x => m === 'SECURITY' ? (x.waybill || '') : (x.waybill || x.pid || '');
   const big = r.filter(x => kindOfM(m, x) !== 'ok').length, sub = 'en cours';
   const k = {'': 0, go: 0, ok: 0}; r.forEach(x => k[kindOfM(m, x)]++);
-  stepsOf(m).forEach(st => { const n = r.filter(x => x.etape === st.code).length; add(n, kindOfM(m, {etape: st.code}) === 'ok' ? 'à archiver' : esc(st.libelle_etat), kindOfM(m, {etape: st.code}) === 'ok' ? 'ok' : (st.code === 'EN_ATTENTE' ? 'wt' : ((m === 'SPARK' || m === 'AWB') && st.code === 'A_FAIRE' ? 'w' : ''))); });
+  stepsOf(m).forEach(st => { const n = r.filter(x => x.etape === st.code).length; add(n, kindOfM(m, {etape: st.code}) === 'ok' ? 'à archiver' : esc(st.libelle_etat), kindOfM(m, {etape: st.code}) === 'ok' ? 'ok' : (st.code === 'EN_ATTENTE' ? 'wt' : (((m === 'SPARK' || m === 'AWB' || m === 'RTO') && st.code === 'A_FAIRE') || st.code === 'OUVRIR_SPARK' ? 'w' : ''))); });
   
+  if (m === 'HP') list('Ouvrir Spark', 'w', r.filter(x => x.etape === 'OUVRIR_SPARK'), x => 'J+3 : ' + fdateD(x.j3));
   if (m === 'DOM') {
     const late = k => r.filter(x => domAlert(x)[k] === 'late'), since = k => x => 'dépassé de ' + (-domAlert(x).d[k]) + ' j';
     list('Contact client en retard', 'u', late('J1'), since('J1'));
@@ -2742,8 +2871,9 @@ async function reloadAll(){
     const mods = Object.keys(MODS).filter(m => ME.rights[m]);
     if (JSON.stringify(ME.rights) !== old) buildNav();
     const keys = Object.keys(cache); keys.forEach(k => delete cache[k]);
-    await Promise.all([...mods.map(async m => { try { cache[m] = await fetchList(m, false); } catch (e) {} }), pollNotifs(), loadTodo(true), warm(true)]);
+    await Promise.all([...mods.map(async m => { try { cache[m] = await fetchList(m, false); } catch (e) {} }), pollNotifs(), warm(true)]);
     if (cur === '_home') renderHome();
+    else if (todoOn()) renderTodo('TODO');
     else if (cur === 'LIBRARY') renderLib();
     else if (cur === 'ENTREPRISES') renderEnt();
     else if (cur && MODS[cur]) { if (showArch) { try { cache[key()] = await api('list', {module:cur, archives:true}); } catch (e) {} } rows = cache[key()] || rows; relinkDet(); renderList(); }
@@ -2756,8 +2886,10 @@ $('#bRef').onclick = () => { try { sessionStorage.setItem('wback', JSON.stringif
 // ------------------------------------------------------------ Liste
 async function openMod(m){ if ($('#mBib') && $('#mBib').classList.contains('on')) bibClose(); if (m === 'LSR') m = ME.rights.SECURITY ? 'SECURITY' : 'CCTV'; lsrPage = false; if ($('#bLib')) $('#bLib').classList.toggle('on', m === 'LIBRARY');
   cur = m; closePop();
-  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === ((m === 'SECURITY' || m === 'CCTV') && lsrOk() ? 'LSR' : m) && !b.dataset.new));
+  const isTd = m === 'TODO' || TD_MODS.includes(m);
+  document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === (isTd ? 'TODO' : (m === 'SECURITY' || m === 'CCTV') && lsrOk() ? 'LSR' : m) && !b.dataset.new));
   moveInd();
+  if (isTd) { $('#bSet').classList.remove('on'); return renderTodo(m); }
   if (m === '_home') return renderHome();
   if (m === 'ADMIN') { if (!isAdmin()) return openMod('_home'); $('#main').innerHTML = '<div class="pg absb" data-m="ADMIN"><div id="admPg"></div></div>'; return renderAdminPage(); }
    if (m === 'ROADMAP') { if (!(window.rmOk && window.rmOk())) return openMod('_home'); return window.renderRoadmap(); }
@@ -2771,6 +2903,7 @@ async function openMod(m){ if ($('#mBib') && $('#mBib').classList.contains('on')
   renderList();
 }
 async function refresh(){
+  if (todoOn()) return todoRefresh();
   if (PGS[cur]) return;
   const m = cur, k = key();
   try {
@@ -2783,7 +2916,7 @@ async function refresh(){
 const stepsOf = m => ME.etapes.filter(e => e.module === m).sort((a,b) => a.ordre - b.ordre);
 const canWrite = () => ['ecriture','admin'].includes(ME.rights[cur]);
 
-function renderList(){ if (lsrPage && (cur === 'SECURITY' || cur === 'CCTV') && lsrOk()) return renderLsrPage(cur);
+function renderList(){ if (todoOn() && TD_MODS.includes(cur)) return renderTodo(cur); if (lsrPage && (cur === 'SECURITY' || cur === 'CCTV') && lsrOk()) return renderLsrPage(cur);
   const steps = stepsOf(cur);
   $('#main').innerHTML = `<div class="pg absb" data-m="${cur}"><div class="abh"><h3>${(MODS[cur] && MODS[cur].label) || cur}</h3><div class="abr"></div></div>${cur === 'DOM' ? '<div class="advice"><span class="ai" title="Conseil">' + IC.bulb + '</span><div class="acx"><ol><li>Contacter l’expéditeur pour savoir quoi faire du colis.</li><li>Sans réponse à J+4, ou s’il est injoignable : demander au commercial qui gère le compte.</li><li>Sans instruction à J+10 : faire un RTO avec le compte de l’expéditeur.</li></ol><div class="no">On n’ouvre plus de dossier Spark.</div></div></div>' : ''}<div class="bar">
     <span style="flex:1"></span>
@@ -2804,20 +2937,14 @@ function frameBar(){
 function visTag(){ try { document.querySelectorAll('.card[data-id]').forEach(c => { if (c.querySelector('.cvis') || c.querySelector('.dvis')) return; const r = (rows || []).find(x => x.id === c.dataset.id); if (!r || !r.visibilite) return; const p = r.visibilite === 'prive'; const s = document.createElement('span'); s.className = 'cvis ' + (p ? 'pv' : 'sh'); s.innerHTML = (p ? IC.lock + 'Privé' : IC.users + 'Partagé'); c.appendChild(s); const n = c.querySelector('.r1, .r2'); if (n) { const d = n.getBoundingClientRect().left - c.getBoundingClientRect().left; if (d > 0) s.style.left = d + 'px'; } }); } catch (e) {} }
 function drawCards(...a){ const x = drawCards0(...a); visTag(); return x; }
 function drawCards0(){
+  if (todoOn()) { tdDraw(); drawTiles(); return; }
   const list = $('#list') || $('#list_' + cur); if (!list) return;
   const ord = {}; stepsOf(cur).forEach((x, i) => ord[x.code] = x.code === 'EN_ATTENTE' ? 50 : i);
   const co = {}; (ME.categories_awb || []).forEach((c, i) => co[c.id] = i);
   const out = rows.slice()
     .sort(cur === 'DOCUMENTS' ? (a, b) => String(a.titre).localeCompare(String(b.titre), 'fr', {sensitivity:'base'}) : (a,b) => (cur === 'AWB' ? (co[a.categorie_id] ?? 999) - (co[b.categorie_id] ?? 999) : 0) || (ord[a.etape] ?? 99) - (ord[b.etape] ?? 99) || String(b.cree_le).localeCompare(String(a.cree_le)));
-  const isHp = r => cur === 'AWB' && String(val(r, 'categorie_id')).trim().toUpperCase() === 'HP';
-  const hp = out.filter(isHp), rest = hp.length ? out.filter(r => !isHp(r)) : out;
-  if (hp.length) {
-    list.className = '';
-    list.innerHTML = `<section class="hpb"><div class="grid">${hp.map(card).join('')}</div></section>${rest.length ? `<div class="grid">${rest.map(card).join('')}</div>` : ''}`;
-  } else {
-    list.className = 'grid';
-    list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>';
-  }
+  list.className = 'grid';
+  list.innerHTML = out.map(card).join('') || '<div class="empty">Rien ici pour le moment.</div>';
   drawTiles();
 }
 function val(r, k){
@@ -2844,8 +2971,8 @@ function cardSec(r){
     <div class="r2"><div class="refs">${lnkc(r.waybill)}</div><span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div><div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="rowb">${cbub}${waitB(r)}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 const lnkc = (v, label) => v ? `<span class="rc">${link(v, label)}<button class="cp sm" data-copy="${esc(v)}" title="Copier" aria-label="Copier">${IC.copy}</button></span>` : '';
-const stLabR = r => (cur === 'AWB' || cur === 'SPARK') && r.etape === 'EN_COURS' && r.etape_par ? 'En cours par ' + who(r.etape_par) : (cur === 'AWB' && r.etape === 'EN_ATTENTE' && r.etape_par ? 'Mis en attente par ' + who(r.etape_par) : stLabel(r.etape));
-const ecCls = r => (cur === 'AWB' || cur === 'SPARK') && r.etape === 'EN_COURS' && r.etape_par ? (String(r.etape_par).toLowerCase() === ME.email ? ' ec-me' : ' ec-ot') : '';
+const stLabR = r => (cur === 'AWB' || cur === 'SPARK' || cur === 'RTO') && r.etape === 'EN_COURS' && r.etape_par ? 'En cours par ' + who(r.etape_par) : (cur === 'AWB' && r.etape === 'EN_ATTENTE' && r.etape_par ? 'Mis en attente par ' + who(r.etape_par) : stLabel(r.etape));
+const ecCls = r => (cur === 'AWB' || cur === 'SPARK' || cur === 'RTO') && r.etape === 'EN_COURS' && r.etape_par ? (String(r.etape_par).toLowerCase() === ME.email ? ' ec-me' : ' ec-ot') : '';
 const waitB = r => r.suppr_par ? `<span class="bb wait" title="Le créateur doit valider la suppression">${IC.trash}En attente de suppression</span>` : '';
 function cardDoc(r){
   const tmp = r._tmp === true;
@@ -2869,10 +2996,13 @@ function card(r){
     : `<div class="r1">${urg}${refs || '<div class="name">—</div>'}${tag}</div>`;
   const wk = cur === 'SPARK' && r.wrong_ok === true ? `<div class="rowb"><span class="bb wk">${IC.check}Wrong OK</span></div>` : '';
   const lines = M.show.filter(k => !(cur === 'AWB' && k === 'categorie_id')).map(k => { const v = val(r, k); return v ? `<div class="m ${k === 'categorie_id' ? 'cat' : ''}${k === 'demande' ? ' ml' : ''}">${esc(v)}</div>` : ''; }).join('');
-  const acts = w && !showArch ? `<div class="act"><button class="s go stp" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}Étape</button></div>` : '<div class="act" style="padding:0"></div>';
-  const al = cur === 'DOM' ? domAlert(r) : null, alc = al ? (['J1', 'J4', 'J10'].some(k => al[k] === 'late') ? ' al-late' : ['J1', 'J4', 'J10'].some(k => al[k] === 'warn') ? ' al-warn' : '') : '';
+  const rb = cur === 'HP' && r.etape === 'OUVRIR_SPARK' && ['ecriture', 'admin'].includes(ME.rights.SPARK) ? `<button class="s" ${tmp ? 'disabled' : ''} data-a="retour" title="Créer le Retour AA1 pré-rempli">${IC.SPARK}Retour AA1</button>` : '';
+  const acts = w && !showArch ? `<div class="act">${rb}<button class="s go stp" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}Étape</button></div>` : '<div class="act" style="padding:0"></div>';
+  const al = cur === 'DOM' ? domAlert(r) : null, rk = cur === 'HP' ? tdRank('HP', r) : 2;
+  const alc = al ? (['J1', 'J4', 'J10'].some(k => al[k] === 'late') ? ' al-late' : ['J1', 'J4', 'J10'].some(k => al[k] === 'warn') ? ' al-warn' : '') : rk === 0 ? ' al-late' : rk === 1 ? ' al-warn' : '';
+  const hpl = cur === 'HP' ? `<div class="m">J0 ${r.j0 ? fdateD(r.j0) : '…'} · J+3 ${r.j3 ? fdateD(r.j3) : '…'}${r.paye === true ? ' · <b>Payé' + (r.paye_le ? ' le ' + fdateD(r.paye_le) : '') + '</b>' : ''}</div>` : '';
   const cl = cur === 'AWB' ? val(r, 'categorie_id') : '';
-  return `<div class="card st-${kind}${cl ? ' hascat' : ''} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${alc}${ecCls(r)}${gcl(r)}" ${gst(r)} data-id="${r.id}">${cl ? `<div class="rcat" title="${esc(cl)}"><span>${esc(cl)}</span></div>` : ''}${head}${wk}${lines}${r.suppr_par ? `<div class="rowb">${waitB(r)}</div>` : ''}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+  return `<div class="card st-${kind}${cl ? ' hascat' : ''} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${alc}${ecCls(r)}${gcl(r)}" ${gst(r)} data-id="${r.id}">${cl ? `<div class="rcat" title="${esc(cl)}"><span>${esc(cl)}</span></div>` : ''}${head}${wk}${hpl}${lines}${r.suppr_par ? `<div class="rowb">${waitB(r)}</div>` : ''}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
 }
 
 // ------------------------------------------------------------ Recherche globale (suggestions)
@@ -3048,6 +3178,7 @@ function onListClick(e){
   if (!b) { if (!r._tmp) openDetail(r, false); return; }
   if (b.disabled) return;
   if (b.dataset.a === 'stepmenu') showStepMenu(b, r);
+  else if (b.dataset.a === 'retour') hpRetour(r);
   else if (b.dataset.a === 'dl') downloadFile(b.dataset.fid);
 }
 const H = {};                                              // historique par élément
@@ -3060,15 +3191,15 @@ function doStep(r, code){
   if (H[r.id]) H[r.id].unshift(ev);
   syncOn(r);
   drawCards(); if (det && det.r === r) { renderDet(); } if (bandR === r) drawBand();
-  enqueue(async () => { await api('step', {module:m, id:r.id, etape:code}); syncOff(r); if (key() === k) { drawCards(); waveCard(r.id); } if (det && det.r === r) renderDet(); },
-    () => { syncOff(r); Object.assign(r, old); if (H[r.id]) H[r.id] = H[r.id].filter(x => x !== ev); if (key() === k) drawCards(); if (det && det.r === r) renderDet(); });
+  enqueue(async () => { await api('step', {module:m, id:r.id, etape:code}); syncOff(r); if (key() === k || todoOn()) { drawCards(); waveCard(r.id); } if (det && det.r === r) renderDet(); },
+    () => { syncOff(r); Object.assign(r, old); if (H[r.id]) H[r.id] = H[r.id].filter(x => x !== ev); if (key() === k || todoOn()) drawCards(); if (det && det.r === r) renderDet(); });
 }
 async function doArchive(r, archive){
   if (archive && !(await ask('Archiver cet élément ?', 'Il quittera la liste active. Tu pourras le retrouver dans « Voir les archives ».', 'Archiver'))) return;
   const m = cur, k = key(), before = rows;
   rows = rows.filter(x => x.id !== r.id); cache[k] = rows; drawCards();
   if (det && det.r === r) closeDet();
-  enqueue(() => api(archive ? 'archive' : 'unarchive', {module:m, id:r.id}), () => { cache[k] = before; if (key() === k) { rows = before; drawCards(); } });
+  enqueue(() => api(archive ? 'archive' : 'unarchive', {module:m, id:r.id}), () => { cache[k] = before; if (key() === k) { rows = before; drawCards(); } else tdDraw(); });
 }
 // Fenêtre de confirmation
 function ask(title, text, okLabel){
@@ -3096,7 +3227,7 @@ function lastBy(r, code){
 const STEP_IC = (() => {
   const dchk = ic('<path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/>'), hg = ic('<path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.2a2 2 0 0 0-.6-1.4L12 12l-4.4 4.4A2 2 0 0 0 7 17.8V22"/><path d="M7 2v4.2a2 2 0 0 0 .6 1.4L12 12l4.4-4.4A2 2 0 0 0 17 6.2V2"/>');
   return {A_FAIRE: ic('<rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>'),
-    EN_COURS: ic('<circle cx="9" cy="8" r="3.2"/><path d="M3 21v-2.5A4.5 4.5 0 0 1 7.5 14H10"/><path d="M13.6 15.2 17 7.4"/><circle cx="17.6" cy="5.2" r="1.7"/>'),
+    OUVRIR_SPARK: IC.SPARK, EN_COURS: ic('<circle cx="9" cy="8" r="3.2"/><path d="M3 21v-2.5A4.5 4.5 0 0 1 7.5 14H10"/><path d="M13.6 15.2 17 7.4"/><circle cx="17.6" cy="5.2" r="1.7"/>'),
     TERMINE: IC.check, A_ARCHIVER: dchk, EN_ATTENTE: ic('<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>'),
     ATTENTE_CLIENT: hg, ATTENTE_COMMERCIAL: hg, RTO_FAIT: dchk, INSTRUCTION_APPLIQUEE: dchk, RESOLU: dchk,
     DECOUVERT: ic('<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'),
@@ -3128,7 +3259,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') {
   if ($('#mPhoto').classList.contains('on')) return $('#mPhoto').classList.remove('on');
   if ($('#mContact').classList.contains('on')) return $('#mContact').classList.remove('on');
   if ($('#mRem').classList.contains('on')) return closeRem();
-  if ($('#mTask').classList.contains('on')) return closeTask();
   if (bandR) return closePop();
   if ($('#mSearch').classList.contains('on')) return closeSearch();
   if ($('#mDrawer').classList.contains('on')) return closeDrawer();
@@ -3148,7 +3278,7 @@ async function loadHist(r, band, force){
 const who = e => { e = String(e || '').toLowerCase(); return (ME.annuaire && ME.annuaire[e]) || (e === ME.email ? ME.prenom : e.split('@')[0]); };
 const SYS = e => String(e).toLowerCase() === 'auto' ? 'Automatique' : who(e);
 function histHtml(h, m){
-  const M = MODS[m], lab = k => ({contacter_client:'Client', photos:'Photos', fichier:'Fichier', contact:'Contact client', motif_cb:'CB active', motif_cash:'Argent liquide', motif_libre:'Autre motif'})[k] || (M.fields.find(f => f.k === k) || {}).l || k;
+  const M = MODS[m], lab = k => ({contacter_client:'Client', photos:'Photos', fichier:'Fichier', contact:'Contact client', motif_cb:'CB active', motif_cash:'Argent liquide', motif_libre:'Autre motif', paye:'Payé', paye_le:'Date de paiement'})[k] || (M.fields.find(f => f.k === k) || {}).l || k;
   const fv = (k, v) => { if (k === 'contacter_client') return (v === true || v === 'TRUE') ? 'Contacter le client' : 'Ne pas contacter le client'; if (v === '' || v == null) return '—'; if (v === true || v === 'TRUE') return 'Oui'; if (v === false || v === 'FALSE') return 'Non';
     if (k === 'categorie_id') { const c = ME.categories_awb.find(c => c.id === v); return c ? c.libelle : v; }
     if (k === 'visibilite') return v === 'prive' ? 'Privé' : 'Partagé'; const t = String(v); return t.length > 80 ? t.slice(0, 77) + '…' : t; };
@@ -3227,7 +3357,7 @@ function lastAwbCat(){
 function renderDet(){
   if (!det) return;
   const M = MODS[cur], r = det.r, ed = det.editing, el = $('#sDet'), w = canWrite(); el.classList.toggle('syncing', !!(r && r._sync));
-  const v = r || {visibilite: cur === 'AWB' ? 'prive' : 'agence', date_decouverte: todayISO(), contacter_client: true};
+  const v = r || {visibilite: cur === 'AWB' || cur === 'RTO' ? 'prive' : 'agence', date_decouverte: todayISO(), contacter_client: true};
   if (!r && cur === 'AWB') v.categorie_id = lastAwbCat();
   const kind = r && !M.noSteps ? kindOf(r) : '';
   const canDelDoc = cur === 'DOCUMENTS' && r && !showArch && (String(r.cree_par).toLowerCase() === ME.email || ME.rights.DOCUMENTS === 'admin');
@@ -3241,10 +3371,10 @@ function renderDet(){
   const btns = ed
     ? `<button class="ico sm ok" id="dSave" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button><button class="ico sm" id="dX" title="${r ? 'Annuler la modification' : 'Fermer'}" aria-label="Annuler">${IC.close}</button>`
     : [gH, gD, gM, gP].filter(Boolean).join('<span class="vsep"></span>') + '<span class="gsp"></span><button class="ico sm" id="dX" title="Fermer" aria-label="Fermer">' + IC.close + '</button>';
-  const hlc = det && det.hl && det.hl.champs || [], canTg = r && w && !showArch && !ed, hasU = r && M.fields.some(f => f.k === 'urgent'), hasW = r && M.fields.some(f => f.k === 'wrong_ok');
-  const bubs = r && !ed ? `<div class="bbs">${hasU ? `<button class="bb tg ${r.urgent === true ? 'u' : 'off'} ${hlc.includes('urgent') ? 'hl' : ''}" data-tg="urgent" ${canTg ? '' : 'disabled'} title="${r.urgent === true ? 'Urgent' : 'Pas urgent'}${canTg ? ' · cliquer pour changer' : ''}" aria-label="${r.urgent === true ? 'Urgent' : 'Pas urgent'}">${r.urgent === true ? IC.alert : ic('<path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M3 3l18 18"/>')}</button>` : ''}${hasW ? `<button class="bb tg ${r.wrong_ok === true ? 'wk' : 'off'} ${hlc.includes('wrong_ok') ? 'hl' : ''}" data-tg="wrong_ok" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.check}${r.wrong_ok === true ? 'Wrong OK' : 'Pas wrong OK'}</button>` : ''}<button class="bb tg ${r.visibilite === 'prive' ? '' : 'sh'} ${hlc.includes('visibilite') ? 'hl' : ''}" data-tg="visibilite" ${canTg ? '' : 'disabled'} title="${r.visibilite === 'prive' ? 'Privé' : 'Partagé'}${canTg ? ' · cliquer pour changer' : ''}" aria-label="${r.visibilite === 'prive' ? 'Privé' : 'Partagé'}">${r.visibilite === 'prive' ? IC.lock : IC.users}</button>${waitB(r)}</div>` : '';
+  const hlc = det && det.hl && det.hl.champs || [], canTg = r && w && !showArch && !ed, hasU = r && M.fields.some(f => f.k === 'urgent'), hasW = r && M.fields.some(f => f.k === 'wrong_ok'), hasP = r && M.fields.some(f => f.k === 'paye');
+  const bubs = r && !ed ? `<div class="bbs">${hasP ? `<button class="bb tg ${r.paye === true ? 'wk' : 'off'}" data-tg="paye" ${canTg ? '' : 'disabled'} title="${r.paye === true ? 'Payé' : 'Non payé'}${canTg ? ' · cliquer pour changer' : ''}">${r.paye === true ? IC.check + 'Payé' : 'Non payé'}</button>` : ''}${hasU ? `<button class="bb tg ${r.urgent === true ? 'u' : 'off'} ${hlc.includes('urgent') ? 'hl' : ''}" data-tg="urgent" ${canTg ? '' : 'disabled'} title="${r.urgent === true ? 'Urgent' : 'Pas urgent'}${canTg ? ' · cliquer pour changer' : ''}" aria-label="${r.urgent === true ? 'Urgent' : 'Pas urgent'}">${r.urgent === true ? IC.alert : ic('<path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3Z"/><path d="M3 3l18 18"/>')}</button>` : ''}${hasW ? `<button class="bb tg ${r.wrong_ok === true ? 'wk' : 'off'} ${hlc.includes('wrong_ok') ? 'hl' : ''}" data-tg="wrong_ok" ${canTg ? '' : 'disabled'} title="${canTg ? 'Cliquer pour changer' : ''}">${IC.check}${r.wrong_ok === true ? 'Wrong OK' : 'Pas wrong OK'}</button>` : ''}<button class="bb tg ${r.visibilite === 'prive' ? '' : 'sh'} ${hlc.includes('visibilite') ? 'hl' : ''}" data-tg="visibilite" ${canTg ? '' : 'disabled'} title="${r.visibilite === 'prive' ? 'Privé' : 'Partagé'}${canTg ? ' · cliquer pour changer' : ''}" aria-label="${r.visibilite === 'prive' ? 'Privé' : 'Partagé'}">${r.visibilite === 'prive' ? IC.lock : IC.users}</button>${waitB(r)}</div>` : '';
   const stat = r && !M.noSteps ? `<div class="dstat ${ed ? 'lock' : ''}"><div class="dl">${bubs}</div><div class="dr"><span class="tag ${kind} ${det && det.hl && det.hl.etape ? 'hl' : ''}">${esc(stLabR(r))}</span>${w && !showArch ? `<button class="s go stp" data-a="stepmenu" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}</button>` : ''}</div></div>` : '';
-  const hideView = k => k === 'urgent' || k === 'visibilite' || k === 'wrong_ok';
+  const hideView = k => k === 'urgent' || k === 'visibilite' || k === 'wrong_ok' || k === 'paye';
   const fields = M.fields.map(x => {
     if (x.t === 'photos' || x.t === 'file') return '';
     if (ed) return `<dt>${x.l}</dt><dd class="ed">${editCell(x, v)}</dd>`;
@@ -3268,7 +3398,8 @@ function renderDet(){
     const dd = new Date(d), df = al.d[l], cls = al[l] || (l !== 'J1' && df > 0 ? 'now' : '');
     const sub = l === 'J1' && al.J1 ? '<em class="cc">Contacter le client</em>' + (al.J1 === 'late' ? `dépassé de ${-df} j` : '') : (al[l] === 'late' ? `dépassé de ${-df} j` : '');
     return `<div class="dt3 ${cls}"><small>${l}</small><b>${dd.toLocaleDateString('fr-FR', {weekday:'short', day:'numeric', month:'short'})}</b><span>${sub || '&nbsp;'}</span></div>`; }).join('')}</div>` : '';
-  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3>${stat ? '' : bubs}</div>${btns}</div>${stat}${sp ? '<div class="dsp' + (cur === 'CCTV' ? ' cct' : '') + '"><div class="dspl">' : ''}${dates}
+  const hpx = r && !ed && cur === 'HP' ? `<div class="dates">${[['J0', r.j0], ['J+3', r.j3]].map(([l, d]) => `<div class="dt3 ${l === 'J+3' && tdRank('HP', r) === 0 ? 'late' : l === 'J+3' && tdRank('HP', r) === 1 ? 'warn' : ''}"><small>${l}</small><b>${d ? new Date(d).toLocaleDateString('fr-FR', {weekday:'short', day:'numeric', month:'short'}) : '…'}</b><span>&nbsp;</span></div>`).join('')}</div><div class="hpd">${r.retour_id ? '<button class="s" id="dRetV">' + IC.open + 'Voir le Retour AA1</button>' : r.etape === 'OUVRIR_SPARK' && w && !showArch && ['ecriture', 'admin'].includes(ME.rights.SPARK) ? '<button class="p" id="dRet">' + IC.SPARK + 'Créer le Retour AA1</button>' : ''}</div>` : '';
+  el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3>${stat ? '' : bubs}</div>${btns}</div>${stat}${sp ? '<div class="dsp' + (cur === 'CCTV' ? ' cct' : '') + '"><div class="dspl">' : ''}${dates}${hpx}
     ${cur === 'SECURITY' && r && !ed ? '' : `<dl class="det">${fields}${meta.filter(m => m[1]).map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>`}
     ${sp ? '' : xb}
     ${sp ? (cur === 'CCTV' ? `</div>${xb}</div>` : `</div><div class="dspr">${xb}</div></div>`) : ''}`;
@@ -3283,6 +3414,9 @@ function renderDet(){
   if ($('#dDel')) $('#dDel').onclick = () => delRec(r);
   if ($('#dMsg')) $('#dMsg').onclick = () => openMsg({ref:{module:cur, id:r.id}});
   if ($('#dRem')) $('#dRem').onclick = () => openRem({module:cur, id:r.id});
+  if ($('#dRet')) $('#dRet').onclick = () => hpRetour(r);
+  if ($('#dRetV')) $('#dRetV').onclick = () => { const id = r.retour_id; closeDet(); openNotif({module:'SPARK', ref_id:id, id:'', detail:'{}', lu:'oui'}); };
+  if (ed && cur === 'HP') { const cb = $('#f_paye'), dp = $('#f_paye_le'); cb.onchange = () => { dp.value = cb.checked ? (dp.value || todayISO()) : ''; }; }
   if (ed) {
     el.querySelectorAll('input.up').forEach(i => i.addEventListener('input', () => { const p = i.selectionStart; i.value = i.value.toUpperCase(); i.setSelectionRange(p, p); }));
     const grow = t => { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; };
@@ -3318,8 +3452,9 @@ function renderDet(){
     const tg = e.target.closest('[data-tg]'); if (tg && !tg.disabled) { const k = tg.dataset.tg; const nv = k === 'visibilite' ? (r.visibilite === 'prive' ? 'agence' : 'prive') : !(r[k] === true);
       const Q = k === 'urgent' ? (nv ? ['Marquer comme urgent ?', 'Les autres utilisateurs seront prévenus.', 'Marquer urgent'] : ["Retirer l'urgence ?", "Cet élément ne sera plus marqué comme urgent.", "Retirer l'urgence"])
         : k === 'wrong_ok' ? (nv ? ['Passer en Wrong OK ?', 'Cet élément sera marqué Wrong OK.', 'Confirmer'] : ['Retirer le Wrong OK ?', 'Cet élément ne sera plus marqué Wrong OK.', 'Confirmer'])
+        : k === 'paye' ? (nv ? ['Marquer comme payé ?', 'La date du jour est enregistrée et le dossier passe à « Terminé ».', 'Payé'] : ['Retirer le paiement ?', 'La date de paiement sera effacée.', 'Retirer'])
         : (nv === 'prive' ? ['Passer en privé ?', 'Seul toi pourras voir cet élément.', 'Passer en privé'] : ["Partager avec l'agence ?", "Tous les utilisateurs de l'agence verront cet élément.", 'Partager']);
-      ask(Q[0], Q[1], Q[2]).then(ok => { if (!ok) return; saveLocal(r, {[k]: nv}); det.hl = null; renderDet(); }); return; }
+      ask(Q[0], Q[1], Q[2]).then(ok => { if (!ok) return; saveLocal(r, k === 'paye' ? {paye: nv, paye_le: nv ? todayISO() : ''} : {[k]: nv}); det.hl = null; renderDet(); }); return; }
     const sm = e.target.closest('[data-a="stepmenu"]'); if (sm) return showStepMenu(sm, r);
     if (e.target.closest('#dArch')) return doArchive(r, true);
     if (e.target.closest('#dUn')) return doArchive(r, false);
@@ -3343,13 +3478,14 @@ async function delRec(r){
 }
 function saveLocal(r, data, extra){
   const m = cur, k = key(), now = new Date().toISOString();
-  if (r) { if (H[r.id]) Object.keys(data).forEach(f => { if (String(r[f] ?? '') !== String(data[f] ?? '')) H[r.id].unshift({date_heure:now, utilisateur:ME.email, action:'modification', champ:f, ancienne_valeur:r[f] ?? '', nouvelle_valeur:data[f]}); }); Object.assign(r, data, {modifie_le: now}); syncOn(r); }
+  if (r) { if (H[r.id]) Object.keys(data).forEach(f => { if (String(r[f] ?? '') !== String(data[f] ?? '')) H[r.id].unshift({date_heure:now, utilisateur:ME.email, action:'modification', champ:f, ancienne_valeur:r[f] ?? '', nouvelle_valeur:data[f]}); }); const paid = m === 'HP' && data.paye === true && r.paye !== true; Object.assign(r, data, {modifie_le: now}); if (paid) Object.assign(r, {etape:'TERMINE', etape_par:ME.email, etape_le:now, paye_le: data.paye_le || todayISO()}); syncOn(r); }
   else {
     const row = Object.assign({id:'tmp_' + Date.now(), cree_par:ME.email, cree_le:now, etape:(stepsOf(m).find(x => x.code === 'A_FAIRE') || stepsOf(m)[0] || {}).code || '', etape_par:ME.email, etape_le:now, archive:false, _tmp:true}, data, extra && extra.files ? {fichiers: extra.files.map(f => ({id:'tmp', nom:f.name, taille:f.size}))} : {}, extra && extra.photos && extra.photos[0] ? {thumb: extra.photos[0].thumb} : {});
+    if (m === 'HP' && row.paye === true) row.etape = 'TERMINE';
     rows.unshift(row); cache[k] = rows;
   }
   drawCards();
-  const refresh = async () => { const fresh = await api('list', {module:m, archives:false}); cache[m] = fresh; if (key() === m) { rows = fresh; relinkDet(); drawCards(); } };
+  const refresh = async () => { const fresh = await api('list', {module:m, archives:false}); cache[m] = fresh; if (key() === m) { rows = fresh; relinkDet(); drawCards(); } else tdDraw(); };
   enqueue(async () => {
     const newId = await api('save', {module:m, id: r ? r.id : null, data});
     if (!r && extra && newId) {
@@ -3405,7 +3541,7 @@ function fileBox(r){
     : staged.map((f, i) => `<div class="frow"><span class="fic" style="width:38px;height:38px;font-size:17px">${IC.DOCUMENTS}</span><div class="fi">${esc(f.name)}<small>${fsize(f.size)}</small></div><button class="ico sm warn" data-sdel="${i}" title="Retirer" aria-label="Retirer">${IC.close}</button></div>`).join('');
   return `<div class="xh">Fichiers${rows ? ` <small>${r ? (r.fichiers || []).length : staged.length}</small>` : ''}</div><div class="fbox" style="display:block;padding:4px 14px 12px">${rows || '<div class="m" style="margin:10px 0 0">Aucun fichier (8 Mo maximum par fichier).</div>'}${add}</div>`;
 }
-const CMMODS = ['AWB', 'SPARK', 'DOM', 'SECURITY', 'CCTV'];
+const CMMODS = ['AWB', 'SPARK', 'DOM', 'HP', 'RTO', 'SECURITY', 'CCTV'];
 function cmtBlock(r){
   const l = CMT[r.id], w = canWrite() && !showArch, op = !!(det && det.cmOpen);
   return `<div class="cmb"><div class="cmbh"><span>Commentaires${l && l.length ? ' · ' + l.length : ''}</span>${w && !op ? `<button class="ico sm" id="cmNew" title="Ajouter un commentaire" aria-label="Ajouter un commentaire">${IC.cmplus}</button>` : ''}</div>
@@ -3601,14 +3737,14 @@ $('#qrX').onclick = closeQR;
 $('#mQR').addEventListener('mousedown', e => { if (e.target.id === 'mQR') closeQR(); });
 
 // ------------------------------------------------------------ Notifications + Todo (volet latéral)
-let NOT = {items:[], unread:0}, TD = null, drawerOpen = false, pollT = 0, remIds = new Set();
+let NOT = {items:[], unread:0}, drawerOpen = false, pollT = 0;
 const dismissed = new Set(JSON.parse(sessionStorage.getItem('wdis') || '[]'));
 const saveDis = () => sessionStorage.setItem('wdis', JSON.stringify([...dismissed]));
 const ftime = v => new Date(v).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit', ...((ME.prefs && ME.prefs.tz) ? {timeZone: ME.prefs.tz} : {})});
 const todayIso = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
 function startPoll(){ pollNotifs(); clearInterval(pollT); pollT = setInterval(pollNotifs, 45000); }
 async function pollNotifs(){
-  try { const r = await api('notifs_list'); r.todoRem = r.items.filter(n => n.categorie === 'todo' && n.lu !== 'oui'); r.items = r.items.filter(n => n.categorie !== 'todo'); r.unread = r.items.filter(n => n.lu !== 'oui').length; NOT = r; if (cur === 'TODO') { todoSeen(); if (!pending && !document.querySelector('#tdBox .drg')) loadTodo(true); } drawBadges(); showToasts(); if (drawerOpen) renderDrawer(); checkPC(); if ($('#mMsg').classList.contains('on')) { loadThreads(); if (MSG.view === 'thread') loadThread(); } if (cur === '_home') renderHome(); } catch (e) {}
+  try { const r = await api('notifs_list'); r.items = r.items.filter(n => n.categorie !== 'todo'); r.unread = r.items.filter(n => n.lu !== 'oui').length; NOT = r; if (todoOn() && !pending && !document.querySelector('.modal.on') && Date.now() - tdAt > 240000) todoRefresh(); drawBadges(); showToasts(); if (drawerOpen) renderDrawer(); checkPC(); if ($('#mMsg').classList.contains('on')) { loadThreads(); if (MSG.view === 'thread') loadThread(); } if (cur === '_home') renderHome(); } catch (e) {}
 }
 function setBadge(btn, n, cls){ const sel = '.badge' + (cls ? '.' + cls : ':not(.tdb)'); let b = btn.querySelector(sel); if (!n) { if (b) b.remove(); return; } if (!b) { b = document.createElement('span'); b.className = 'badge' + (cls ? ' ' + cls : ''); btn.appendChild(b); } b.textContent = n > 99 ? '99+' : n; }
 function drawBadges(){ setBadge($('#bBell'), NOT.unread); setBadge($('#bMsg'), NOT.msgs || 0); todoBadges(); }
@@ -3649,95 +3785,15 @@ function openDrawer(){
 function closeDrawer(){ drawerOpen = false; $('#mDrawer').classList.remove('on'); }
 $('#mDrawer').addEventListener('mousedown', e => { if (e.target.id === 'mDrawer') closeDrawer(); });
 $('#bBell').onclick = () => openDrawer();
-async function loadTodo(silent){ try { TD = await api('todo_list'); todoCount(); renderDrawer(); if (cur === '_home') renderHome(); } catch (e) { if (!silent) toast(e.message); } }
 function ntItem(n){
   if (n.type === 'suppression' && n.fait !== 'oui') return `<div class="nit unread${gcl(n)}" ${gst(n)} data-id="${n.id}"><b>${esc(n.titre)}</b><div class="tx">${esc(n.texte)}</div><div class="tm">${ftime(n.cree_le)}</div>
     <div class="na"><button data-a="dv" class="dng">${IC.trash}Valider la suppression</button><button data-a="dn">${IC.close}Ne pas supprimer</button></div></div>`;
   return `<div class="nit nn${n.type === 'rappel' ? ' rap' : ''} ${n.lu !== 'oui' ? 'unread' : ''}${gcl(n)}" ${gst(n)} data-id="${n.id}"><b>${esc(n.titre)}</b>${n.type === 'rappel' ? '' : '<div class="tx">' + esc(n.texte) + '</div>'}<div class="tm">${n.type === 'rappel' ? esc(n.texte) + ' · ' : ''}${ftime(n.cree_le)}</div>
     <div class="na"><button data-a="lu" ${n.lu === 'oui' ? 'disabled' : ''} title="Marquer comme lu" aria-label="Marquer comme lu">${IC.check}</button><button data-a="rm" class="rm dng" title="Supprimer la notification" aria-label="Supprimer la notification">${IC.trash}</button></div></div>`;
 }
-const ST_LAB = {a_faire:'À faire', en_cours:'En cours', termine:'Terminé'};
-const cleanT = x => String(x || '').replace(/\s*\.?\s*Date d'échéance à J\+?\d+\s*$/i, '');
-function todoRow(t){
-  const today = todayIso(), st = t.statut || 'a_faire', late = !t.date_prog || t.date_prog <= today;
-  const tpl = t.recurrence === 'jours_ouvres' && !t.modele_id, recur = tpl || !!t.modele_id;
-  const rail = st === 'termine' ? 'var(--green)' : st === 'en_cours' ? 'var(--blue)' : late ? 'var(--red)' : '#6b7488';
-  const when = tpl ? 'Chaque jour travaillé' + (t.heure ? ' · ' + t.heure : '') : t.rappel_le ? 'Rappel ' + fdate(t.rappel_le, true) : t.date_prog ? (t.date_prog < today && st !== 'termine' ? 'En retard · ' : '') + fdate(t.date_prog + 'T12:00:00') : '';
-  const tmp = t._tmp === true;
-  return `<div class="trow nit ${st === 'termine' ? 'done' : ''} ${tmp || t._sync ? 'sync' : ''}${tmp ? ' tmpc' : ''}${gcl(t)}" data-id="${t.id}" style="--rail:${rail};cursor:default;${gd(t)}">
-    <div class="tl1"><b title="${esc(cleanT(t.titre))}">${esc(cleanT(t.titre))}</b></div>
-    <div class="tr"><div class="tg">${recur ? `<span class="rc" title="Récurrente">${IC.repeat}</span>` : ''}${t.auto === 'oui' ? '<span class="tag au">Auto</span>' : ''}${remIds.has(t.id) ? '<span class="tag au">Rappel</span>' : ''}</div>${when ? `<div class="tw">${esc(when)}</div>` : ''}</div>
-    <div class="tl3">${tpl ? '' : `<div class="st3">${['a_faire', 'en_cours', 'termine'].map(k => `<button data-s="${k}" class="${st === k ? 'on' : ''}">${ST_LAB[k]}</button>`).join('')}</div>`}
-      <span class="sp"></span>${t.ref_module && t.ref_id ? `<button class="ico sm" data-a="open" title="Ouvrir le dossier" aria-label="Ouvrir le dossier">${IC.open}</button>` : ''}<button class="ico sm" data-a="edit" title="Modifier" aria-label="Modifier">${IC.pencil}</button><button class="ico sm" data-a="del" title="Supprimer" aria-label="Supprimer">${IC.trash}</button></div>
-    ${tmp || t._sync ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
-}
 const IC_DBL = ic('<path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/>');
-let TREC = false;
-const IC_REC = ic('<path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>');
 const IC_BELLP = ic('<g transform="translate(0 2.6) scale(.82)"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></g><path d="M19.2 1.5v7"/><path d="M15.7 5h7"/>');
-function drawRec(){ const T = TD || {templates: []}; $('#sRec').innerHTML = '<div class="sh"><div class="tt"><h3>Tâches récurrentes</h3><div class="sub">Une ligne est créée chaque jour travaillé. La modifier ou la supprimer arrête ou change la répétition.</div></div><button class="ico sm" id="rcX" title="Fermer" aria-label="Fermer">' + IC.close + '</button></div><div class="subh">RÉCURRENTES · ' + T.templates.length + '</div>' + (T.templates.map(todoRow).join('') || '<div class="m">Aucune tâche récurrente.</div>'); $('#rcX').onclick = closeRec; }
-function openRec(){ drawRec(); $('#mRec').classList.add('on'); }
-function closeRec(){ $('#mRec').classList.remove('on'); }
-$('#mRec').addEventListener('mousedown', e => { if (e.target.id === 'mRec') closeRec(); });
-$('#sRec').addEventListener('click', e => { const tr = e.target.closest('.trow'), a = e.target.closest('[data-a]'); if (!tr || !a || !TD) return; const t = TD.templates.find(x => x.id === tr.dataset.id); if (!t) return; if (a.dataset.a === 'edit') openTask(t); else if (a.dataset.a === 'del') { ['items', 'upcoming', 'templates'].forEach(k => { TD[k] = TD[k].filter(x => x.id !== t.id); }); drawRec(); renderDrawer(); enqueue(() => api('todo_delete', {id: t.id})); } });
-// ------------------------------------------------------------ Page « TODO List »
-function todoCount(){
-  if (!TD) return;
-  NOT.todo_a = TD.items.filter(t => (t.statut || 'a_faire') === 'a_faire').length;
-  NOT.todo_c = TD.items.filter(t => t.statut === 'en_cours').length;
-  todoBadges();
-}
-function todoBadges(){
-  const b = document.querySelector('#seg .mod[data-m="TODO"]'); if (!b) return;
-  let w = b.querySelector('.tdn'); if (!w) { w = document.createElement('span'); w.className = 'tdn'; b.appendChild(w); }
-  const a = NOT.todo_a || 0, c = NOT.todo_c || 0, n = v => v > 99 ? '99+' : v;
-  const h = (a ? `<i class="r" title="À faire : ${a}">${n(a)}</i>` : '') + (c ? `<i class="b" title="En cours : ${c}">${n(c)}</i>` : '');
-  if (w.innerHTML !== h) w.innerHTML = h;
-}
-// Un rappel de tâche arrivé à l'heure : marqué « Rappel » sur la page, puis considéré comme vu
-function todoSeen(){
-  const rem = NOT.todoRem || []; if (!rem.length) return;
-  rem.forEach(n => remIds.add(n.todo_id)); NOT.todoRem = []; todoDraw(); enqueue(() => api('notif_set', {all:true, categorie:'todo'}));
-}
-function todoInit(){
-  remIds = new Set();
-  const ab = document.querySelector('#main .abh');
-  if (ab) { const w = document.createElement('div'); w.className = 'abr'; w.innerHTML = '<button class="s" id="tRecBtn">' + IC_REC + 'Tâches récurrentes</button><button class="s" id="tNew">' + IC.plus + 'Nouvelle tâche</button>'; ab.appendChild(w); $('#tNew').onclick = openTask; $('#tRecBtn').onclick = () => openRec(); }
-  const box = $('#tdBox');
-  box.onclick = e => todoClick(e);
-  box.ondragstart = e => { const c = e.target.closest('.trow'); if (!c) return; e.dataTransfer.setData('text/plain', c.dataset.id); e.dataTransfer.effectAllowed = 'move'; c.classList.add('drg'); };
-  box.ondragend = () => box.querySelectorAll('.drg,.ov').forEach(x => x.classList.remove('drg', 'ov'));
-  box.ondragover = e => { const c = e.target.closest('.tdcol'); if (!c) return; e.preventDefault(); box.querySelectorAll('.ov').forEach(x => { if (x !== c) x.classList.remove('ov'); }); c.classList.add('ov'); };
-  box.ondrop = e => { const c = e.target.closest('.tdcol'); if (!c || !TD) return; e.preventDefault(); const id = e.dataTransfer.getData('text/plain'); box.querySelectorAll('.drg,.ov').forEach(x => x.classList.remove('drg', 'ov')); const t = TD.items.concat(TD.upcoming).find(x => x.id === id); if (t) todoMove(t, c.dataset.s); };
-  todoDraw(); todoSeen(); loadTodo();
-}
-function todoMove(t, ns){
-  if ((t.statut || 'a_faire') === ns || t._tmp) return;
-  t.statut = ns; t.fait_le = new Date().toISOString();
-  // une tâche à venir commencée ou terminée rejoint les colonnes
-  if (ns !== 'a_faire' && TD.upcoming.includes(t)) { TD.upcoming = TD.upcoming.filter(x => x !== t); TD.items.push(t); }
-  else if (ns === 'a_faire' && t.date_prog > todayIso() && TD.items.includes(t)) { TD.items = TD.items.filter(x => x !== t); TD.upcoming.push(t); }
-  todoCount(); renderDrawer(); enqueue(() => api('todo_set', {id:t.id, statut:ns}), () => loadTodo(true));
-}
-function todoDraw(){
-  const box = $('#tdBox'); if (!box) return;
-  if (!TD) { box.innerHTML = '<div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div>'; return; }
-  const row = t => todoRow(t).replace('<div class="trow ', '<div draggable="' + (t._tmp ? 'false' : 'true') + '" class="trow ');
-  box.innerHTML = '<div class="tdg">' + [['a_faire', '#E5484D'], ['en_cours', '#2F6FDE'], ['termine', '#2fb36b']].map(([k, c]) => { const L = TD.items.filter(t => (t.statut || 'a_faire') === k); return `<div class="tdcol" data-s="${k}"><div class="tdh" style="--c:${c}">${ST_LAB[k]} <small>${L.length}</small></div>${L.map(row).join('')}</div>`; }).join('') + '</div>'
-    + (TD.upcoming.length ? `<div class="subh">À VENIR · ${TD.upcoming.length}</div><div class="tdup">${TD.upcoming.map(row).join('')}</div>` : '')
-    + '<p class="m">Les tâches terminées restent visibles jusqu’à la fin de la journée.</p>';
-}
-function todoClick(e){
-  const tr = e.target.closest('.trow'); if (!tr || !TD) return;
-  const t = TD.items.concat(TD.upcoming).find(x => x.id === tr.dataset.id); if (!t) return;
-  const sb = e.target.closest('button[data-s]'), a = e.target.closest('[data-a]');
-  if (sb) todoMove(t, sb.dataset.s);
-  else if (a && a.dataset.a === 'edit') openTask(t);
-  else if (a && a.dataset.a === 'del') { fadeOut(t, () => { ['items', 'upcoming', 'templates'].forEach(k => TD[k] = TD[k].filter(x => x.id !== t.id)); todoCount(); renderDrawer(); }); renderDrawer(); enqueue(() => api('todo_delete', {id:t.id})); }
-  else if (a && a.dataset.a === 'open') openNotif({module:t.ref_module, ref_id:t.ref_id, id:'', detail:'{}', lu:'oui'});
-}
 function renderDrawer(){
-  todoDraw(); if ($('#mRec') && $('#mRec').classList.contains('on')) drawRec();
   const el = $('#drawer'); if (!drawerOpen) return;
   const sc = [...el.querySelectorAll('.dpart')].map(x => x.scrollTop);
   const ev = NOT.items.filter(n => n.categorie !== 'todo');
@@ -3765,7 +3821,6 @@ function renderDrawer(){
       renderDrawer(); return enqueue(() => api('notif_delete', {id:n.id}), () => pollNotifs());
     }
     if (a.dataset.a === 'lu') { setRead(n); renderDrawer(); }
-    else if (a.dataset.a === 'todo') { n.todo_ajoute = 'oui'; setRead(n); renderDrawer(); enqueue(async () => { await api('notif_todo', {id:n.id}); await loadTodo(true); }); }
   };
 }
 // ------------------------------------------------------------ Notifications sur le PC (navigateur)
@@ -3874,24 +3929,6 @@ function sendMsg(){
 $('#bMsg').onclick = () => openMsg();
 $('#mMsg').addEventListener('mousedown', e => { if (e.target.id === 'mMsg') closeMsg(); });
 
-// Création d'une tâche (fenêtre)
-let editT = null;
-function hhmm(iso){ if (!iso) return ''; const d = new Date(iso); return isNaN(d) ? '' : String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
-function openTask(t){
-  editT = t && t.id ? t : null;
-  const rec = !!(editT && editT.recurrence === 'jours_ouvres' && !editT.modele_id);
-  $('#mTask h3').textContent = editT ? 'Modifier la tâche' : 'Nouvelle tâche';
-  $('#tAdd').innerHTML = (editT ? IC.pencil + 'Enregistrer' : IC.plus + 'Ajouter');
-  $('#tTitre').value = editT ? editT.titre : ''; $('#tDate').value = editT ? (editT.date_prog || todayIso()) : todayIso();
-  $('#tHeure').value = editT ? (rec ? (editT.heure || '') : hhmm(editT.rappel_le)) : '';
-  $('#tRec').checked = rec; $('#tRec').closest('label').style.display = editT ? 'none' : '';
-  $('#tWhen').style.opacity = rec ? .35 : 1; $('#tDate').disabled = rec;
-  $('#mTask').classList.add('on'); setTimeout(() => $('#tTitre').focus(), 60);
-}
-function closeTask(){ $('#mTask').classList.remove('on'); }
-$('#tkX').innerHTML = IC.close; $('#tkX').onclick = closeTask; $('#tkNo').onclick = closeTask;
-$('#mTask').addEventListener('mousedown', e => { if (e.target.id === 'mTask') closeTask(); });
-$('#tRec').onchange = e => { $('#tWhen').style.opacity = e.target.checked ? .35 : 1; $('#tDate').disabled = e.target.checked; };
 // ------------------------------------------------------------ Rappels (notification qui arrive plus tard)
 let REM = {ref:null, list:null};
 const p2 = n => String(n).padStart(2, '0');
@@ -3952,52 +3989,27 @@ $('#rvList').onclick = e => {
   REM.list = (REM.list || []).filter(x => x.id !== id); drawRem();
   api('rappel_delete', {id}).then(() => toast('Rappel supprimé')).catch(err => { toast(err.message || 'Erreur'); loadRem(); });
 };
-$('#tTitre').onkeydown = e => { if (e.key === 'Enter') $('#tAdd').click(); };
-$('#tAdd').onclick = () => {
-  const titre = $('#tTitre').value.trim(); if (!titre) return toast('Donne un titre à la tâche');
-  const rec = $('#tRec').checked, today = todayIso(), date = $('#tDate').value || today, heure = $('#tHeure').value;
-  const p = rec ? {titre, recurrence:'jours_ouvres', heure} : {titre, date_prog:date, rappel_le: heure ? new Date(date + 'T' + heure).toISOString() : ''};
-  const t0 = editT; closeTask();
-  if (!TD) TD = {items:[], upcoming:[], templates:[]};
-  const strip = x => ['items', 'upcoming', 'templates'].forEach(k => TD[k] = TD[k].filter(y => y !== x));
-  if (t0) {
-    const old = {titre:t0.titre, date_prog:t0.date_prog, rappel_le:t0.rappel_le, heure:t0.heure};
-    const isTpl = t0.recurrence === 'jours_ouvres' && !t0.modele_id;
-    const q = isTpl ? {id:t0.id, titre, heure} : {id:t0.id, titre, date_prog:date, rappel_le:p.rappel_le};
-    Object.assign(t0, isTpl ? {titre, heure} : {titre, date_prog:date, rappel_le:p.rappel_le}); syncOn(t0);
-    if (!isTpl) { strip(t0); (date > today ? TD.upcoming : TD.items).unshift(t0); }
-    renderDrawer();
-    enqueue(async () => { await api('todo_set', q); syncOff(t0); if (pending === 1) await loadTodo(true); else renderDrawer(); },
-      () => { syncOff(t0); Object.assign(t0, old); renderDrawer(); });
-    return;
-  }
-  const tmp = {id:'tmp_' + Date.now(), titre, statut:'a_faire', date_prog: rec ? '' : date, rappel_le: p.rappel_le || '', recurrence: p.recurrence || '', heure: p.heure || '', _tmp:true};
-  (rec ? TD.templates : date > today ? TD.upcoming : TD.items).unshift(tmp); renderDrawer();
-  if (rec) toast('Tâche récurrente créée : une ligne apparaîtra chaque jour travaillé (gestion avec le bouton ⟳ de la liste TODO)');
-  enqueue(async () => { const nid = await api('todo_add', p); if (nid) { tmp.id = nid; delete tmp._tmp; } if (pending === 1) await loadTodo(true); else renderDrawer(); }, () => { strip(tmp); renderDrawer(); });
-};
-
 // ------------------------------------------------------------ Paramètres
 const isAdmin = () => ME.rights.PARAMETRES === 'admin';
 const SECTIONS = [
   {id:'aff', l:'Affichage', ic:'gear'}, {id:'profil', l:'Mon profil', ic:'users'}, {id:'notif', l:'Notifications', ic:'bell'}, {id:'region', l:'Région', ic:'globe'}, {id:'rapports', l:'Rapports automatiques', ic:'chart'},
   {id:'archi', l:'Archivage et suppression', ic:'archive', adm:1}, {id:'sec', l:'SCMS', ic:'SECURITY', adm:1}, {id:'dom', l:'Délais DOM', ic:'DOM', adm:1}, {id:'suivi', l:'Relances Suivi Spark', ic:'bell', adm:1}, {id:'trait', l:'Traitement quotidien', ic:'clock', adm:1},
   {id:'histo', l:'Historique', ic:'clock', adm:1}];
-const PLAB = {archivage_auto_dom_jours:'DOM — archivage automatique', archivage_auto_awb_jours:'AWB — archivage automatique', archivage_auto_spark_jours:'SPARK — archivage automatique',
-  suppression_apres_archive_awb_jours:'AWB — suppression après archivage', suppression_apres_archive_spark_jours:'SPARK — suppression après archivage', suppression_apres_archive_dom_jours:'DOM — suppression après archivage',
+const PLAB = {archivage_auto_dom_jours:'DOM — archivage automatique', archivage_auto_awb_jours:'AWB — archivage automatique', archivage_auto_spark_jours:'Retours AA1 — archivage automatique',
+  suppression_apres_archive_awb_jours:'AWB — suppression après archivage', suppression_apres_archive_spark_jours:'Retours AA1 — suppression après archivage', suppression_apres_archive_dom_jours:'DOM — suppression après archivage',
   dom_delai_j4_jours:'Délai J4', dom_delai_j10_jours:'Délai J10', dom_jours_ouvres:'Compter en jours ouvrés', heure_traitement_quotidien:'Heure du traitement', historique_retention_mois:"Conservation de l'historique",
   archivage_auto_security_jours:'SCMS — archivage automatique', suppression_apres_archive_security_jours:'SCMS — suppression après archivage',
   security_rappel_contact_jours:'Rappel après contact du client', security_rappel_scms_jours:'Rappel après création du SCMS'};
 const PGROUP = {archi:['archivage_auto_dom_jours','archivage_auto_awb_jours','archivage_auto_spark_jours','suppression_apres_archive_dom_jours','suppression_apres_archive_awb_jours','suppression_apres_archive_spark_jours','archivage_auto_security_jours','suppression_apres_archive_security_jours'],
   sec:['security_rappel_contact_jours','security_rappel_scms_jours'],
   dom:['dom_delai_j4_jours','dom_delai_j10_jours','dom_jours_ouvres'], trait:['heure_traitement_quotidien'], histo:['historique_retention_mois']};
-const NOTIFS = [['nouveau','Nouvel élément partagé'], ['modification',"Modification d'un élément"], ['etape',"Changement d'étape"], ['urgent','Élément urgent'], ['archive','Archivage'], ['echeance','Échéance DOM (J4 / J10)']];
+const NOTIFS = [['nouveau','Nouvel élément partagé'], ['modification',"Modification d'un élément"], ['etape',"Changement d'étape"], ['urgent','Élément urgent'], ['archive','Archivage'], ['echeance','Échéance (DOM, HP)']];
 const TZS = ['Europe/Paris','Europe/London','Europe/Berlin','Europe/Brussels','Europe/Zurich','Indian/Reunion','America/Martinique','America/New_York','Asia/Dubai'];
 let setSec = 'aff', PARAMS = null;
 const sw = (id, on, extra = '') => `<label class="sw"><input type="checkbox" id="${id}" ${on ? 'checked' : ''} ${extra}><i></i></label>`;
 
 // ------------------------------------------------------------ Page « Administration » (réservée aux admins)
-const ADM_MODS = [['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'LSR'], ['CCTV', 'CCTV']];
+const ADM_MODS = [['AWB', 'AWB'], ['SPARK', 'Retours AA1'], ['DOM', 'DOM'], ['HP', 'HP'], ['RTO', 'RTO'], ['SECURITY', 'LSR'], ['CCTV', 'CCTV']];
 let ADM = null;
 const admOpen = () => cur === 'ADMIN' ? !!$('#admPg') : $('#mAdm').classList.contains('on');
 function closeAdm(){ if (cur === 'ADMIN') return openMod('_home'); $('#mAdm').classList.remove('on'); $('#bAdm').classList.remove('on'); }
@@ -4037,7 +4049,7 @@ async function renderAdminPage(){
     try { let r = {}; if (totA) r = await wait(() => api('admin_archive')); if (rmN && window.rmArchive) window.rmArchive(); await after('Archivé · ' + [totA ? sum(r) : '', rmN ? 'RoadMap : ' + rmN : ''].filter(Boolean).join(' · ')); } catch (e) { toast(e.message); }
   };
   $('#admPurge').onclick = async () => {
-    if (!(await ask('Supprimer définitivement ?', `${totS} élément${totS > 1 ? 's archivés' : ' archivé'} depuis plus de ${dj} jours, avec leurs commentaires, tâches et fichiers, seront supprimés. Cette action est irréversible.`, 'Supprimer'))) return;
+    if (!(await ask('Supprimer définitivement ?', `${totS} élément${totS > 1 ? 's archivés' : ' archivé'} depuis plus de ${dj} jours, avec leurs commentaires et fichiers, seront supprimés. Cette action est irréversible.`, 'Supprimer'))) return;
     try { const r = await wait(() => api('admin_purge')); await after('Supprimé · ' + sum(r)); } catch (e) { toast(e.message); }
   };
 }
@@ -4146,7 +4158,7 @@ async function renderRelances(el){
 }
 async function renderUsers(el){
   let us = US; if (us) api('users_list').then(x => US = x).catch(() => {}); else { try { us = US = await wait(() => api('users_list')); } catch (e) { return toast(e.message); } }
-  const MU = [['AWB', 'AWB'], ['UNDELS', 'Undels (SPARK + DOM)'], ['SECURITY', 'LSR'], ['ENTREPRISES', 'Entreprises + Carte'], ['DEBRIEF', 'Debrief'], ['ABSENCES', 'Absences'], ['PARTENAIRE', 'Partenaire (Suivi + lecture)'], ['PR', 'PR'], ['DOCUMENTS', 'Bibliothèque'], ['PARAMETRES', 'Paramètres']];
+  const MU = [['AWB', 'AWB'], ['UNDELS', 'Undels (Retours AA1 + DOM)'], ['SECURITY', 'LSR'], ['ENTREPRISES', 'Entreprises + Carte'], ['DEBRIEF', 'Debrief'], ['ABSENCES', 'Absences'], ['PARTENAIRE', 'Partenaire (Suivi + lecture)'], ['PR', 'PR'], ['DOCUMENTS', 'Bibliothèque'], ['PARAMETRES', 'Paramètres']];
   const CC = {CLASSIQUES: '#3a8cff', CCTV: '#ee4650', PPWK: '#a66a3e', UNDELS: '#22b070'};
   const seg = (u, m) => { const cur = u.rights[m] || ''; if (m === 'PARTENAIRE') return `<label class="chk"><input type="checkbox" data-pt="${esc(u.email)}"${cur ? ' checked' : ''}>Partenaire</label>`; const  opts = m === 'PARTENAIRE' ? [['', 'Non'], ['lecture', 'Oui']] : m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : m === 'DOCUMENTS' ? [['', 'Standard'], ['admin', 'Admin']] : (m === 'ABSENCES' || m === 'PR') ? [['', 'Aucun'], ['lecture', 'Lecture'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<div class="useg" data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<button type="button" data-lv="${v}" class="${v === cur ? 'on ' + (v || 'none') : ''}">${l}</button>`).join('')}</div>`; };
@@ -4160,7 +4172,7 @@ async function renderUsers(el){
         <div class="usec"><h5>Accès aux pages</h5><div class="ugrid">${MU.map(([m, l]) => `<div class="umod"><b>${l}</b>${seg(u, m)}</div>`).join('')}</div></div>
         <div class="urow">
           <div class="usec"><h5>Catégories AWB visibles</h5><div class="chips">${catGr().map(([k, l, col]) => `<label class="tchip cc" style="--gc:${esc(col)}"><input type="checkbox" data-cm="CAT_${k}" data-cu="${esc(u.email)}" ${u.rights['CAT_' + k] ? 'checked' : ''}><span>${l}</span></label>`).join('')}</div></div>
-          <div class="usec"><h5>Peut voir l’historique</h5><div class="chips">${[['AWB', 'AWB'], ['SPARK', 'SPARK'], ['DOM', 'DOM'], ['SECURITY', 'LSR']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label class="tchip" title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}><span>${l}</span></label>`; }).join('')}</div></div>
+          <div class="usec"><h5>Peut voir l’historique</h5><div class="chips">${[['AWB', 'AWB'], ['SPARK', 'Retours AA1'], ['DOM', 'DOM'], ['SECURITY', 'LSR']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label class="tchip" title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}><span>${l}</span></label>`; }).join('')}</div></div>
         </div></div></section>`).join('')}`;
   const saveUs = p => { US = null; toast('Enregistré'); enqueue(() => api('users_set', p), () => { US = null; renderUsers(el); }).then(() => { if (!pending) api('users_list').then(x => US = x).catch(() => {}); }); };
   el.onchange = e => {
@@ -4193,7 +4205,7 @@ MODS.LIBRARY = {label: 'Biblio', noSteps: true, name: r => r.titre, show: [], fi
 IC.LIBRARY = ic('<rect x="3" y="4" width="4" height="16" rx="1"/><path d="M3 8h4"/><rect x="9" y="3" width="4" height="17" rx="1"/><path d="M9 7h4"/><path d="m15.3 5.6 3.1-.8 3.4 13.1-3.1.8z"/>');
 IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
 const PGS = {
-  TODO: {label: 'TODO List', tabs: null},
+  TODO: {label: 'Todo', tabs: null},
   CARTE: {label: 'Carte', tabs: null},
   PR: {label: 'Points relais', tabs: null},
   SUIVI: {label: 'Suivi Spark', tabs: null},
@@ -4209,10 +4221,10 @@ function navOrder(list) {
   const base = list.filter(m => !PGS[m]), pg = Object.keys(PGS).filter(p => p !== 'SUIVI' && p !== 'TODO' && ME.rights[p]);
   let at = -1; base.forEach((m, i) => { if (['AWB', 'SPARK', 'DOM', 'SECURITY'].includes(m)) at = i; });
   base.splice(at + 1, 0, ...pg); const dbi = base.indexOf('DEBRIEF'); if (dbi >= 0) base.push(base.splice(dbi, 1)[0]); { const ei = base.indexOf('ENTREPRISES'), pi = base.indexOf('PR'); if (ei > pi && pi >= 0) base.splice(pi, 0, base.splice(ei, 1)[0]); }
-  // « Suivi Spark » juste sous « Nouveaux Spark »
+  // « Suivi Spark » à la place qui suivait les anciennes pages de suivi
   if (ME.rights.SUIVI && !ME.rights.PARTENAIRE) { const sp = base.indexOf('SPARK'); base.splice(sp >= 0 ? sp + 1 : at + 1, 0, 'SUIVI'); }
-  // « TODO List » juste sous « Accueil » (pas pour les partenaires)
-  if (!ME.rights.PARTENAIRE) base.unshift('TODO');
+  // « Todo » juste sous « Accueil » (pas pour les partenaires)
+  if (!ME.rights.PARTENAIRE && TD_MODS.some(m => ME.rights[m])) base.unshift('TODO');
   return base;
 }
 IC.PIN = ic('<path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/>');
@@ -4435,11 +4447,10 @@ function renderPg(m) {
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === m));
   $('#bSet').classList.remove('on');
   const p = PGS[m], t = PGT[m] || 0;
-  $('#main').innerHTML = '<div class="pg absb" data-m="' + m + '"><div class="abh"><h3>' + p.label + '</h3>' + (m === 'SUIVI' ? '<div class="abr" id="svAbr"></div>' : '') + '</div>' + (p.tabs ? '<div class="pgtabs" role="tablist">' + p.tabs.map((x, i) => '<button class="pgtab' + (i === t ? ' on' : '') + '" role="tab" data-i="' + i + '">' + x + '</button>').join('') + '</div>' : '') + '<div class="pgbody" data-t="' + t + '">' + (m === 'TODO' ? '<div id="tdBox"></div>' : m === 'CARTE' ? '<div class="cbox" id="cBox"></div>' : m === 'PR' ? '<div id="prBox"></div>' : '') + '</div></div>';
+  $('#main').innerHTML = '<div class="pg absb" data-m="' + m + '"><div class="abh"><h3>' + p.label + '</h3>' + (m === 'SUIVI' ? '<div class="abr" id="svAbr"></div>' : '') + '</div>' + (p.tabs ? '<div class="pgtabs" role="tablist">' + p.tabs.map((x, i) => '<button class="pgtab' + (i === t ? ' on' : '') + '" role="tab" data-i="' + i + '">' + x + '</button>').join('') + '</div>' : '') + '<div class="pgbody" data-t="' + t + '">' + (m === 'CARTE' ? '<div class="cbox" id="cBox"></div>' : m === 'PR' ? '<div id="prBox"></div>' : '') + '</div></div>';
   document.querySelectorAll('#main .pgtab').forEach(b => b.onclick = () => { PGT[m] = +b.dataset.i; renderPg(m); });
   if (m === 'CARTE') carteInit();
   if (m === 'PR') prInit();
-  if (m === 'TODO') todoInit();
   if (m === 'SUIVI' && window.svInit) window.svInit(document.querySelector('#main .pgbody'));
 }
 // ===== PR (points relais) =====
