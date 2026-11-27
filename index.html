@@ -1832,6 +1832,12 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
 .alz .alb .y{color:#8A6A00}html:not([data-theme="light"]) .alz .alb .y{color:#FFD84D}
 .alz .alb .v{color:#C7332F;font-weight:700}html:not([data-theme="light"]) .alz .alb .v{color:#FF8A85}
 .rlh{font:700 15px var(--disp);letter-spacing:.5px;color:var(--mut);margin:18px 0 6px}.rlr{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:10px 0;border-bottom:1px solid var(--line)}.rlr>b{min-width:130px}.rld{display:flex;align-items:center;gap:6px}.rld input{width:76px}.rlt{flex-basis:100%;display:flex;flex-wrap:wrap;gap:6px 14px}.rlw{display:flex;align-items:center;gap:6px;white-space:nowrap}
+
+#seg .mod[data-m="TODO"]{position:relative}.tdn{margin-left:auto;display:inline-flex;gap:4px;align-items:center}.tdn i{font-style:normal;min-width:18px;height:18px;padding:0 5px;border-radius:999px;display:grid;place-items:center;color:#fff;font:700 11px/1 var(--body)}.tdn i.r{background:#E5484D}.tdn i.b{background:#2F6FDE}
+html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn{position:absolute;top:0;right:0}
+.tdg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:start}.tdcol{border:1px solid var(--line);border-radius:12px;padding:8px;min-height:220px;align-self:stretch}.tdcol.ov{border-color:#2F6FDE;background:var(--raised)}.tdh{display:flex;align-items:center;gap:7px;font-weight:600;margin-bottom:8px}.tdh:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c)}.tdh small{color:var(--mut);font-weight:400}
+#tdBox .trow{cursor:grab}#tdBox .trow.drg{opacity:.4}.tdup{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0 10px}#tdBox .subh{margin:16px 0 8px}
+@media(max-width:820px){.tdg{grid-template-columns:1fr}.tdcol{min-height:0}}
 </style>
 </head>
 <body>
@@ -1846,10 +1852,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.197</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.198</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.197</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.198</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2214,7 +2220,7 @@ function buildNav(){
   };
   if (window.__navMO) window.__navMO.disconnect();
   window.__navMO = new MutationObserver(navSync); window.__navMO.observe($('#seg'), {subtree:true, attributes:true, attributeFilter:['class']});
-  navSync();
+  navSync(); todoBadges();
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === cur && !b.dataset.new));
 }
 const moveInd = () => {};
@@ -2719,7 +2725,7 @@ function renderHome(){
     const l = e.target.closest('.hli');
     if (l && l.dataset.id) return openNotif({module:l.dataset.m, ref_id:l.dataset.id, id:'', detail:'{}', lu:'oui'});
     const ab = e.target.closest('[data-abm]'); if (ab) { openAbsPlan(); return; } const b = e.target.closest('.ht'); if (!b || b.dataset.go === 'abs') return;
-    if (b.dataset.go === 'todo') openDrawer(); else if (b.dataset.go === 'msg') openMsg(); else { showArch = false; openMod(b.dataset.m); }
+    if (b.dataset.go === 'todo') openMod('TODO'); else if (b.dataset.go === 'msg') openMsg(); else { showArch = false; openMod(b.dataset.m); }
   };
   hm.onclick = go; hm.onkeydown = e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('ht')) { e.preventDefault(); go(e); } };
 }
@@ -3602,10 +3608,10 @@ const ftime = v => new Date(v).toLocaleTimeString('fr-FR', {hour:'2-digit', minu
 const todayIso = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
 function startPoll(){ pollNotifs(); clearInterval(pollT); pollT = setInterval(pollNotifs, 45000); }
 async function pollNotifs(){
-  try { NOT = await api('notifs_list'); drawBadges(); showToasts(); if (drawerOpen) renderDrawer(); checkPC(); if ($('#mMsg').classList.contains('on')) { loadThreads(); if (MSG.view === 'thread') loadThread(); } if (cur === '_home') renderHome(); } catch (e) {}
+  try { const r = await api('notifs_list'); r.todoRem = r.items.filter(n => n.categorie === 'todo' && n.lu !== 'oui'); r.items = r.items.filter(n => n.categorie !== 'todo'); r.unread = r.items.filter(n => n.lu !== 'oui').length; NOT = r; if (cur === 'TODO') { todoSeen(); if (!pending && !document.querySelector('#tdBox .drg')) loadTodo(true); } drawBadges(); showToasts(); if (drawerOpen) renderDrawer(); checkPC(); if ($('#mMsg').classList.contains('on')) { loadThreads(); if (MSG.view === 'thread') loadThread(); } if (cur === '_home') renderHome(); } catch (e) {}
 }
 function setBadge(btn, n, cls){ const sel = '.badge' + (cls ? '.' + cls : ':not(.tdb)'); let b = btn.querySelector(sel); if (!n) { if (b) b.remove(); return; } if (!b) { b = document.createElement('span'); b.className = 'badge' + (cls ? ' ' + cls : ''); btn.appendChild(b); } b.textContent = n > 99 ? '99+' : n; }
-function drawBadges(){ setBadge($('#bBell'), NOT.unread); setBadge($('#bBell'), NOT.todo || 0, 'tdb'); setBadge($('#bMsg'), NOT.msgs || 0); }
+function drawBadges(){ setBadge($('#bBell'), NOT.unread); setBadge($('#bMsg'), NOT.msgs || 0); todoBadges(); }
 function showToasts(){
   const box = $('#ntoasts'), want = NOT.items.filter(n => n.lu !== 'oui' && !dismissed.has(n.id)).slice(0, 5);
   [...box.children].forEach(el => { if (!want.some(n => n.id === el.dataset.id)) el.remove(); });
@@ -3639,15 +3645,11 @@ async function openNotif(n){
 function openDrawer(){
   drawerOpen = true; renderDrawer(); $('#mDrawer').classList.add('on');
   pollNotifs();
-  loadTodo().then(() => {
-    const rem = NOT.items.filter(n => n.categorie === 'todo' && n.lu !== 'oui');
-    if (rem.length) { remIds = new Set(rem.map(n => n.todo_id)); rem.forEach(n => n.lu = 'oui'); NOT.unread = NOT.items.filter(x => x.lu !== 'oui').length; drawBadges(); showToasts(); renderDrawer(); enqueue(() => api('notif_set', {all:true, categorie:'todo'})); }
-  });
 }
-function closeDrawer(){ drawerOpen = false; remIds = new Set(); $('#mDrawer').classList.remove('on'); }
+function closeDrawer(){ drawerOpen = false; $('#mDrawer').classList.remove('on'); }
 $('#mDrawer').addEventListener('mousedown', e => { if (e.target.id === 'mDrawer') closeDrawer(); });
 $('#bBell').onclick = () => openDrawer();
-async function loadTodo(silent){ try { TD = await api('todo_list'); if (drawerOpen) renderDrawer(); if (cur === '_home') renderHome(); } catch (e) { if (!silent) toast(e.message); } }
+async function loadTodo(silent){ try { TD = await api('todo_list'); todoCount(); renderDrawer(); if (cur === '_home') renderHome(); } catch (e) { if (!silent) toast(e.message); } }
 function ntItem(n){
   if (n.type === 'suppression' && n.fait !== 'oui') return `<div class="nit unread${gcl(n)}" ${gst(n)} data-id="${n.id}"><b>${esc(n.titre)}</b><div class="tx">${esc(n.texte)}</div><div class="tm">${ftime(n.cree_le)}</div>
     <div class="na"><button data-a="dv" class="dng">${IC.trash}Valider la suppression</button><button data-a="dn">${IC.close}Ne pas supprimer</button></div></div>`;
@@ -3678,34 +3680,73 @@ function openRec(){ drawRec(); $('#mRec').classList.add('on'); }
 function closeRec(){ $('#mRec').classList.remove('on'); }
 $('#mRec').addEventListener('mousedown', e => { if (e.target.id === 'mRec') closeRec(); });
 $('#sRec').addEventListener('click', e => { const tr = e.target.closest('.trow'), a = e.target.closest('[data-a]'); if (!tr || !a || !TD) return; const t = TD.templates.find(x => x.id === tr.dataset.id); if (!t) return; if (a.dataset.a === 'edit') openTask(t); else if (a.dataset.a === 'del') { ['items', 'upcoming', 'templates'].forEach(k => { TD[k] = TD[k].filter(x => x.id !== t.id); }); drawRec(); renderDrawer(); enqueue(() => api('todo_delete', {id: t.id})); } });
+// ------------------------------------------------------------ Page « TODO List »
+function todoCount(){
+  if (!TD) return;
+  NOT.todo_a = TD.items.filter(t => (t.statut || 'a_faire') === 'a_faire').length;
+  NOT.todo_c = TD.items.filter(t => t.statut === 'en_cours').length;
+  todoBadges();
+}
+function todoBadges(){
+  const b = document.querySelector('#seg .mod[data-m="TODO"]'); if (!b) return;
+  let w = b.querySelector('.tdn'); if (!w) { w = document.createElement('span'); w.className = 'tdn'; b.appendChild(w); }
+  const a = NOT.todo_a || 0, c = NOT.todo_c || 0, n = v => v > 99 ? '99+' : v;
+  const h = (a ? `<i class="r" title="À faire : ${a}">${n(a)}</i>` : '') + (c ? `<i class="b" title="En cours : ${c}">${n(c)}</i>` : '');
+  if (w.innerHTML !== h) w.innerHTML = h;
+}
+// Un rappel de tâche arrivé à l'heure : marqué « Rappel » sur la page, puis considéré comme vu
+function todoSeen(){
+  const rem = NOT.todoRem || []; if (!rem.length) return;
+  rem.forEach(n => remIds.add(n.todo_id)); NOT.todoRem = []; todoDraw(); enqueue(() => api('notif_set', {all:true, categorie:'todo'}));
+}
+function todoInit(){
+  remIds = new Set();
+  const ab = document.querySelector('#main .abh');
+  if (ab) { const w = document.createElement('div'); w.className = 'abr'; w.innerHTML = '<button class="s" id="tRecBtn">' + IC_REC + 'Tâches récurrentes</button><button class="s" id="tNew">' + IC.plus + 'Nouvelle tâche</button>'; ab.appendChild(w); $('#tNew').onclick = openTask; $('#tRecBtn').onclick = () => openRec(); }
+  const box = $('#tdBox');
+  box.onclick = e => todoClick(e);
+  box.ondragstart = e => { const c = e.target.closest('.trow'); if (!c) return; e.dataTransfer.setData('text/plain', c.dataset.id); e.dataTransfer.effectAllowed = 'move'; c.classList.add('drg'); };
+  box.ondragend = () => box.querySelectorAll('.drg,.ov').forEach(x => x.classList.remove('drg', 'ov'));
+  box.ondragover = e => { const c = e.target.closest('.tdcol'); if (!c) return; e.preventDefault(); box.querySelectorAll('.ov').forEach(x => { if (x !== c) x.classList.remove('ov'); }); c.classList.add('ov'); };
+  box.ondrop = e => { const c = e.target.closest('.tdcol'); if (!c || !TD) return; e.preventDefault(); const id = e.dataTransfer.getData('text/plain'); box.querySelectorAll('.drg,.ov').forEach(x => x.classList.remove('drg', 'ov')); const t = TD.items.concat(TD.upcoming).find(x => x.id === id); if (t) todoMove(t, c.dataset.s); };
+  todoDraw(); todoSeen(); loadTodo();
+}
+function todoMove(t, ns){
+  if ((t.statut || 'a_faire') === ns || t._tmp) return;
+  t.statut = ns; t.fait_le = new Date().toISOString();
+  // une tâche à venir commencée ou terminée rejoint les colonnes
+  if (ns !== 'a_faire' && TD.upcoming.includes(t)) { TD.upcoming = TD.upcoming.filter(x => x !== t); TD.items.push(t); }
+  else if (ns === 'a_faire' && t.date_prog > todayIso() && TD.items.includes(t)) { TD.items = TD.items.filter(x => x !== t); TD.upcoming.push(t); }
+  todoCount(); renderDrawer(); enqueue(() => api('todo_set', {id:t.id, statut:ns}), () => loadTodo(true));
+}
+function todoDraw(){
+  const box = $('#tdBox'); if (!box) return;
+  if (!TD) { box.innerHTML = '<div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div>'; return; }
+  const row = t => todoRow(t).replace('<div class="trow ', '<div draggable="' + (t._tmp ? 'false' : 'true') + '" class="trow ');
+  box.innerHTML = '<div class="tdg">' + [['a_faire', '#E5484D'], ['en_cours', '#2F6FDE'], ['termine', '#2fb36b']].map(([k, c]) => { const L = TD.items.filter(t => (t.statut || 'a_faire') === k); return `<div class="tdcol" data-s="${k}"><div class="tdh" style="--c:${c}">${ST_LAB[k]} <small>${L.length}</small></div>${L.map(row).join('')}</div>`; }).join('') + '</div>'
+    + (TD.upcoming.length ? `<div class="subh">À VENIR · ${TD.upcoming.length}</div><div class="tdup">${TD.upcoming.map(row).join('')}</div>` : '')
+    + '<p class="m">Les tâches terminées restent visibles jusqu’à la fin de la journée.</p>';
+}
+function todoClick(e){
+  const tr = e.target.closest('.trow'); if (!tr || !TD) return;
+  const t = TD.items.concat(TD.upcoming).find(x => x.id === tr.dataset.id); if (!t) return;
+  const sb = e.target.closest('button[data-s]'), a = e.target.closest('[data-a]');
+  if (sb) todoMove(t, sb.dataset.s);
+  else if (a && a.dataset.a === 'edit') openTask(t);
+  else if (a && a.dataset.a === 'del') { fadeOut(t, () => { ['items', 'upcoming', 'templates'].forEach(k => TD[k] = TD[k].filter(x => x.id !== t.id)); todoCount(); renderDrawer(); }); renderDrawer(); enqueue(() => api('todo_delete', {id:t.id})); }
+  else if (a && a.dataset.a === 'open') openNotif({module:t.ref_module, ref_id:t.ref_id, id:'', detail:'{}', lu:'oui'});
+}
 function renderDrawer(){
+  todoDraw(); if ($('#mRec') && $('#mRec').classList.contains('on')) drawRec();
   const el = $('#drawer'); if (!drawerOpen) return;
   const sc = [...el.querySelectorAll('.dpart')].map(x => x.scrollTop);
   const ev = NOT.items.filter(n => n.categorie !== 'todo');
-  const T = TD || {items:[], upcoming:[], templates:[]};
-  const open = T.items.filter(t => t.statut !== 'termine').length;
-  const recHtml = `<div class="subh">RÉCURRENTES · ${T.templates.length}</div>` + (T.templates.map(todoRow).join('') || '<div class="m">Aucune tâche récurrente.</div>') + '<div class="m">Chaque tâche récurrente crée sa propre ligne à chaque jour travaillé. La modifier ou la supprimer ici arrête ou change la répétition.</div>';
   el.innerHTML = `<div class="dh"><h3>Notifications</h3>${NOT.unread ? '<button class="ico sm" id="nAll" title="Tout marquer comme lu" aria-label="Tout marquer comme lu">' + IC_DBL + '</button>' : ''}<button class="ico sm" id="dwX" aria-label="Fermer">${IC.close}</button></div>
-    <div class="dpart"><h4>ÉVÈNEMENTS <span>${ev.length}</span><button class="s" id="rList" title="Voir les rappels en attente" aria-label="Voir les rappels en attente">${IC.clock}</button><button class="s" id="rNew" title="Créer un rappel" aria-label="Créer un rappel">${IC_BELLP}</button></h4>${ev.map(ntItem).join('') || '<div class="m">Rien pour le moment.</div>'}</div>
-    <hr class="dsep">
-    <div class="dpart"><h4>TODO <span>${open}</span><button class="s${TREC ? ' on' : ''}" id="tRecBtn" title="Gérer les tâches récurrentes" aria-label="Gérer les tâches récurrentes">${IC_REC}</button><button class="s" id="tNew" title="Nouvelle tâche" aria-label="Nouvelle tâche">${IC.plus}</button></h4>
-      ${!TD ? '<div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div>' : (TREC ? recHtml : (T.items.map(todoRow).join('') || '<div class="m">Rien à faire aujourd\'hui.</div>'))}
-      ${!TREC && T.upcoming.length ? `<div class="subh">À VENIR · ${T.upcoming.length}</div>${T.upcoming.map(todoRow).join('')}` : ''}
-</div>`;
-  [...el.querySelectorAll('.dpart')].forEach((x, i) => x.scrollTop = sc[i] || 0); if ($('#mRec') && $('#mRec').classList.contains('on')) drawRec();
-  $('#dwX').onclick = closeDrawer; $('#tNew').onclick = openTask; $('#tRecBtn').onclick = () => openRec(); $('#rNew').onclick = () => openRem(); $('#rList').onclick = () => openRem(null, true);
-  if ($('#nAll')) $('#nAll').onclick = () => { NOT.items.forEach(n => n.lu = 'oui'); NOT.unread = 0; drawBadges(); showToasts(); renderDrawer(); enqueue(() => api('notif_set', {all:true})); };
+    <div class="dpart"><h4>ÉVÈNEMENTS <span>${ev.length}</span><button class="s" id="rList" title="Voir les rappels en attente" aria-label="Voir les rappels en attente">${IC.clock}</button><button class="s" id="rNew" title="Créer un rappel" aria-label="Créer un rappel">${IC_BELLP}</button></h4>${ev.map(ntItem).join('') || '<div class="m">Rien pour le moment.</div>'}</div>`;
+  [...el.querySelectorAll('.dpart')].forEach((x, i) => x.scrollTop = sc[i] || 0);
+  $('#dwX').onclick = closeDrawer; $('#rNew').onclick = () => openRem(); $('#rList').onclick = () => openRem(null, true);
+  if ($('#nAll')) $('#nAll').onclick = () => { NOT.items.forEach(n => n.lu = 'oui'); NOT.unread = 0; drawBadges(); showToasts(); renderDrawer(); enqueue(() => api('notif_set', {all:true, categorie:'evenement'})); };
   el.onclick = e => {
-    const tr = e.target.closest('.trow');
-    if (tr) {
-      const t = (T.items.concat(T.upcoming, T.templates)).find(x => x.id === tr.dataset.id); if (!t) return;
-      const sb = e.target.closest('[data-s]'), a = e.target.closest('[data-a]');
-      if (sb) { const ns = sb.dataset.s; if (t.statut === ns) return; t.statut = ns; t.fait_le = new Date().toISOString(); renderDrawer(); enqueue(() => api('todo_set', {id:t.id, statut:ns})); }
-      else if (a && a.dataset.a === 'edit') openTask(t);
-      else if (a && a.dataset.a === 'del') { fadeOut(t, () => { ['items', 'upcoming', 'templates'].forEach(k => T[k] = T[k].filter(x => x.id !== t.id)); renderDrawer(); }); renderDrawer(); enqueue(() => api('todo_delete', {id:t.id})); }
-      else if (a && a.dataset.a === 'open') { closeDrawer(); openNotif({module:t.ref_module, ref_id:t.ref_id, id:'', detail:'{}', lu:'oui'}); }
-      return;
-    }
     const c = e.target.closest('.nit'); if (!c) return; const n = NOT.items.find(x => x.id === c.dataset.id); if (!n) return;
     const a = e.target.closest('[data-a]');
     if (!a) return openNotif(n);
@@ -4095,7 +4136,7 @@ async function renderRelances(el){
   el.innerHTML = `<h3>Relances Suivi Spark</h3><p class="lead">Réservé à l'administrateur. Demandes et informations non terminées ; délais comptés depuis la création, en heures ouvrées (lundi au vendredi, hors jours fériés). Un délai à 0 est désactivé ; sans destinataire coché, rien n'est envoyé. Les couleurs du Suivi suivent ces délais.</p>
     <div class="prow"><div><b>Heures ouvrées</b><div class="m">Seules ces heures sont décomptées.</div></div><div class="rlw">de ${hsel('rlA', r.heures[0], 0, 23)} à ${hsel('rlB', r.heures[1], 1, 24)}</div></div>
     ${bloc('normal', 'PRIORITÉ NORMALE')}${bloc('urgent', 'PRIORITÉ URGENTE')}
-    <p class="m" style="margin-top:12px">Une demande passée en « Bloqué » prévient aussitôt son créateur et les admins Undel.</p>
+    <p class="m" style="margin-top:12px">Une demande passée en « Bloqué » prévient aussitôt la personne qui fait le changement, le créateur et les admins Undel.</p>
     <div class="foot"><button class="p" id="rlOk">Enregistrer</button></div>`;
   el.querySelector('#rlOk').onclick = async () => {
     const config = {normal: [], urgent: []};
@@ -4152,6 +4193,7 @@ MODS.LIBRARY = {label: 'Biblio', noSteps: true, name: r => r.titre, show: [], fi
 IC.LIBRARY = ic('<rect x="3" y="4" width="4" height="16" rx="1"/><path d="M3 8h4"/><rect x="9" y="3" width="4" height="17" rx="1"/><path d="M9 7h4"/><path d="m15.3 5.6 3.1-.8 3.4 13.1-3.1.8z"/>');
 IC.link = ic('<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>');
 const PGS = {
+  TODO: {label: 'TODO List', tabs: null},
   CARTE: {label: 'Carte', tabs: null},
   PR: {label: 'Points relais', tabs: null},
   SUIVI: {label: 'Suivi Spark', tabs: null},
@@ -4159,15 +4201,18 @@ const PGS = {
 };
 IC.SUIVI = ic('<rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="11" rx="1"/><rect x="17" y="4" width="4" height="7" rx="1"/>');
 const PGT = {};
+IC.TODO = ic('<path d="m3 6 2 2 3-3"/><path d="m3 14 2 2 3-3"/><path d="M11 7h10M11 15h10M11 20h7"/>');
 IC.CARTE = ic('<path d="M9 4 3 6.5v13L9 17l6 3 6-2.5v-13L15 7 9 4Z"/><path d="M9 4v13M15 7v13"/>');
 IC.DEBRIEF = ic('<path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/>');
 IC.PR = ic('<path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10Z"/><circle cx="12" cy="11" r="2.2"/>');
 function navOrder(list) {
-  const base = list.filter(m => !PGS[m]), pg = Object.keys(PGS).filter(p => p !== 'SUIVI' && ME.rights[p]);
+  const base = list.filter(m => !PGS[m]), pg = Object.keys(PGS).filter(p => p !== 'SUIVI' && p !== 'TODO' && ME.rights[p]);
   let at = -1; base.forEach((m, i) => { if (['AWB', 'SPARK', 'DOM', 'SECURITY'].includes(m)) at = i; });
   base.splice(at + 1, 0, ...pg); const dbi = base.indexOf('DEBRIEF'); if (dbi >= 0) base.push(base.splice(dbi, 1)[0]); { const ei = base.indexOf('ENTREPRISES'), pi = base.indexOf('PR'); if (ei > pi && pi >= 0) base.splice(pi, 0, base.splice(ei, 1)[0]); }
   // « Suivi Spark » juste sous « Nouveaux Spark »
   if (ME.rights.SUIVI && !ME.rights.PARTENAIRE) { const sp = base.indexOf('SPARK'); base.splice(sp >= 0 ? sp + 1 : at + 1, 0, 'SUIVI'); }
+  // « TODO List » juste sous « Accueil » (pas pour les partenaires)
+  if (!ME.rights.PARTENAIRE) base.unshift('TODO');
   return base;
 }
 IC.PIN = ic('<path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/>');
@@ -4390,10 +4435,11 @@ function renderPg(m) {
   document.querySelectorAll('#seg .mod').forEach(b => b.classList.toggle('on', b.dataset.m === m));
   $('#bSet').classList.remove('on');
   const p = PGS[m], t = PGT[m] || 0;
-  $('#main').innerHTML = '<div class="pg absb" data-m="' + m + '"><div class="abh"><h3>' + p.label + '</h3>' + (m === 'SUIVI' ? '<div class="abr" id="svAbr"></div>' : '') + '</div>' + (p.tabs ? '<div class="pgtabs" role="tablist">' + p.tabs.map((x, i) => '<button class="pgtab' + (i === t ? ' on' : '') + '" role="tab" data-i="' + i + '">' + x + '</button>').join('') + '</div>' : '') + '<div class="pgbody" data-t="' + t + '">' + (m === 'CARTE' ? '<div class="cbox" id="cBox"></div>' : m === 'PR' ? '<div id="prBox"></div>' : '') + '</div></div>';
+  $('#main').innerHTML = '<div class="pg absb" data-m="' + m + '"><div class="abh"><h3>' + p.label + '</h3>' + (m === 'SUIVI' ? '<div class="abr" id="svAbr"></div>' : '') + '</div>' + (p.tabs ? '<div class="pgtabs" role="tablist">' + p.tabs.map((x, i) => '<button class="pgtab' + (i === t ? ' on' : '') + '" role="tab" data-i="' + i + '">' + x + '</button>').join('') + '</div>' : '') + '<div class="pgbody" data-t="' + t + '">' + (m === 'TODO' ? '<div id="tdBox"></div>' : m === 'CARTE' ? '<div class="cbox" id="cBox"></div>' : m === 'PR' ? '<div id="prBox"></div>' : '') + '</div></div>';
   document.querySelectorAll('#main .pgtab').forEach(b => b.onclick = () => { PGT[m] = +b.dataset.i; renderPg(m); });
   if (m === 'CARTE') carteInit();
   if (m === 'PR') prInit();
+  if (m === 'TODO') todoInit();
   if (m === 'SUIVI' && window.svInit) window.svInit(document.querySelector('#main .pgbody'));
 }
 // ===== PR (points relais) =====
