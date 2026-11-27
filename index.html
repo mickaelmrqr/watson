@@ -381,9 +381,9 @@ tr:hover td{background:var(--hov)}
 .sxsep{display:flex;align-items:center;gap:10px;margin:10px 6px 4px;color:var(--mut);font:700 11px var(--body);text-transform:uppercase;letter-spacing:.08em}.sxsep:before,.sxsep:after{content:"";flex:1;height:1px;background:var(--line)}.sxsep:before{flex:0 0 18px}
 .dsp.cct{grid-template-rows:auto 1fr}.dsp.cct>.dspl{grid-column:1;grid-row:1}.dsp.cct>#xBlocks{display:contents}.cctp{grid-column:1;grid-row:2;min-width:0}.cctc{grid-column:2;grid-row:1/span 2;min-width:0}.cctc .cmb{margin:14px 0 0}.cctc .cml{max-height:60vh}@media(max-width:760px){.cctp,.cctc{grid-column:1;grid-row:auto}}
 #nav .mod[data-m="_home"],.mod[data-m="_home"],.ht[data-m="_home"]{--mc:128,138,158!important}
-.mod[data-m="SPARK"],.ht[data-m="SPARK"],.pg[data-m="SPARK"]{--mc:150,104,240!important}
-.mod[data-m="DOM"],.ht[data-m="DOM"],.pg[data-m="DOM"]{--mc:34,176,112!important}
-.mod[data-m="SUIVI"],.pg[data-m="SUIVI"]{--mc:150,104,240!important}
+.mod[data-m="SPARK"],.ht[data-m="SPARK"],.pg[data-m="SPARK"]{--mc:34,176,112!important}
+.mod[data-m="DOM"],.ht[data-m="DOM"],.pg[data-m="DOM"]{--mc:150,104,240!important}
+.mod[data-m="SUIVI"],.pg[data-m="SUIVI"]{--mc:34,176,112!important}
 .mod[data-m="CARTE"],.pg[data-m="CARTE"],.ht[data-m="CARTE"]{--mc:30,200,190!important}
 .mod[data-m="PR"],.pg[data-m="PR"],.ht[data-m="PR"]{--mc:22,110,64!important}
 .mod[data-m="DEBRIEF"],.pg[data-m="DEBRIEF"],.ht[data-m="DEBRIEF"]{--mc:255,138,31!important}
@@ -1835,10 +1835,10 @@ html[data-navpos="l"] #nav .gm .gi .mi{zoom:1}
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.195</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.196</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.195</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.196</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -2160,7 +2160,7 @@ async function start(){
     ['#bOut', '#bQR', '#bSearch', '#bBell', '#bMsg', '#bRef', '#hs2'].forEach(s => $(s).classList.remove('hide'));
     $('#bSet').classList.remove('hide');
     const mods = Object.keys(MODS).filter(m => ME.rights[m]); buildNav();
-    applyDisplay(); setSync(); (() => { let b = null; try { b = JSON.parse(sessionStorage.getItem('wback') || 'null'); sessionStorage.removeItem('wback'); } catch (e) {} if (b && b.m && (b.m === '_home' || ME.rights[b.m] || PGS[b.m])) { showArch = !!b.a; openMod(b.m); } else openMod('_home'); })(); preload(mods); startPoll(); warm();
+    applyDisplay(); setSync(); (() => { let b = null; try { b = JSON.parse(sessionStorage.getItem('wback') || 'null'); sessionStorage.removeItem('wback'); } catch (e) {} if (b && b.m && (b.m === '_home' || ME.rights[b.m] || PGS[b.m])) { showArch = !!b.a; openMod(b.m); } else openMod('_home'); })(); preload(mods); if (window.svPreload) window.svPreload(); startPoll(); warm();
   } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; try { if (/AUTH|expir|refus/i.test(e.message)) localStorage.removeItem('wst'); } catch (_) {} if (window.google && google.accounts) google.accounts.id.renderButton($('#gbtn'), {theme:'filled_black', size:'large', text:'signin_with', locale:'fr'}); }
 }
 document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur === 'LIBRARY') { if (pending === 0) reloadLib(); } else if (cur === 'ENTREPRISES') { if (pending === 0 && !ENT.edit) reloadEnt(); } else if (cur && cur !== '_admin' && pending === 0) refresh(); } });
@@ -2344,7 +2344,7 @@ function navBadges(){
  const sh=n=>'https://sherloc.dhl.com/#/hwb/'+encodeURIComponent(n);
  const cp=async t=>{try{await navigator.clipboard.writeText(t);toast('Copié : '+t)}catch(x){toast('Copie impossible')}};
  const stl=k=>(ST.find(x=>x[0]===k)||ST[0]);
- async function load(){const r=await api('suivi_list',{archives:S.arch});S.items=(r.items||[]).slice().sort((a,b)=>urg(b)-urg(a)||String(a.cree_le).localeCompare(String(b.cree_le)));S.motifs=r.motifs||[];S.partners=(r.partners||[]).map(p=>typeof p==='string'?{email:p,prenom:p.split('@')[0]}:p);S.heures=r.heures||[8,19];S.items.forEach(i=>{const c=S.pre[i.id];if((i.nf||i.nc)&&(!c||c.fl.length!==(i.nf||0)||c.cm.length!==(i.nc||0)))fetchD(i.id,false)})}
+ async function load(){const ar=S.arch,r=await api('suivi_list',{archives:ar});S.loaded=true;S.loadedArch=ar;S.items=(r.items||[]).slice().sort((a,b)=>urg(b)-urg(a)||String(a.cree_le).localeCompare(String(b.cree_le)));S.motifs=r.motifs||[];S.partners=(r.partners||[]).map(p=>typeof p==='string'?{email:p,prenom:p.split('@')[0]}:p);S.heures=r.heures||[8,19];S.items.forEach(i=>{const c=S.pre[i.id];if((i.nf||i.nc)&&(!c||c.fl.length!==(i.nf||0)||c.cm.length!==(i.nc||0)))fetchD(i.id,false)})}
  function canMove(i,to){if(i.archive||i.etat===to)return false;if(to==='VALIDE')return (adm()||own(i))&&i.etat==='TERMINE';if(i.etat==='VALIDE')return adm()||own(i);return true}
  function chips(i){let h='';(i.bordereaux||[]).forEach(b=>{h+=`<span class="svch"><a href="${sh(b)}" target="_blank" rel="noopener">${e(b)}</a><i data-cp="${e(b)}" title="Copier" aria-label="Copier">${IC.copy}</i></span>`});if(i.motif)h+=`<span class="svch m">${e(i.motif)}</span>`;(i.routes||[]).forEach(r=>{h+=`<span class="svch r">${e(r)}</span>`});return h}
  function card(i){
@@ -2473,7 +2473,11 @@ function navBadges(){
    const data={type:F.type,titre,bordereaux:d?F.bordereaux:[],motif,routes:d?F.routes:[],details:F.details,priorite:F.prio,destinataires:F.dest};
    try{let id=F.id;await wait(async()=>{const r=await api('suivi_save',F.id?{id:F.id,data}:{data});if(!id)id=r&&r.id?r.id:r;for(const f of F.files){try{await upl(id,f)}catch(x){toast(x.message)}}},true);S.F=null;await reload();openDetail(id)}catch(x){toast(x.message||'Erreur')}}}
  function openMotifs(){S.F=null;const o=mod();o.innerHTML=hd('Motifs proposés',`<button class="ico sm ok ic0" data-a="mo_save" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button>`)+`<dl class="det"><dt>Motifs</dt><dd class="ed"><textarea id="svMo" rows="8" placeholder="Un motif par ligne">${e(S.motifs.join('\n'))}</textarea></dd></dl>`}
- window.svInit=function(host){S.host=host;S.arch=false;host.innerHTML='<p class="m">Chargement…</p>';return load().then(draw).catch(x=>{host.innerHTML='<p class="m">'+e(x.message||'Erreur')+'</p>'})};
+ window.svPreload=function(){if(!(ME.rights&&ME.rights.SUIVI)||S.loaded||S.pending)return;S.pending=load().catch(()=>{}).then(()=>{S.pending=null})};
+ window.svInit=function(host){S.host=host;S.arch=false;const ok=()=>S.loaded&&!S.loadedArch;const fail=x=>{if(ok())toast(x.message||'Erreur');else host.innerHTML='<p class="m">'+e(x.message||'Erreur')+'</p>'};
+  if(ok())draw();else host.innerHTML='<p class="m">Chargement…</p>';
+  if(S.pending)return S.pending.then(()=>ok()?draw():load().then(draw)).catch(fail);
+  return load().then(draw).catch(fail)};
  window.svHome=function(){$('#main').innerHTML='<div class="pg absb" data-m="SUIVI"><div class="abh"><h3>Suivi Spark</h3><div class="abr" id="svAbr"></div></div><div class="pgbody" id="svHost"></div></div>';window.svInit(q('#svHost'))};
  window.svGo=async function(id){if(isP())renderHome();else openMod('SUIVI');for(let k=0;k<30;k++){await new Promise(r=>setTimeout(r,200));if(S.items.some(x=>x.id===id)){openDetail(id);return}}toast('Élément introuvable (archivé ?)')};
 })();
