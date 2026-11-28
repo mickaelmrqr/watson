@@ -1851,6 +1851,34 @@ html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn,html:not([data-navpos=
 .wbo{margin-left:auto;width:28px!important;height:28px!important;flex:none}.wbo .i{width:15px;height:15px}.wbd,.wbc p,.wbd+.wbc{overflow-wrap:anywhere}.wbd{margin-top:3px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.wbd b{color:var(--mut);font-weight:600;margin-right:3px}.wbc{margin-top:5px;padding:4px 8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}.wbc b{font-weight:600}.wbc small{color:var(--mut);margin-left:6px}.wbc p{margin:1px 0 0;line-height:1.35;color:inherit;white-space:pre-line}.wbl .wbc p{color:inherit;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.wbm{margin-top:4px;color:var(--mut);font-size:.92em}#mPeek{z-index:65}#mPeek .sheet{max-width:620px;border-top:3px solid var(--c)}#sPeek .xh{margin:14px 0 4px;font-weight:600}.pkf{display:flex;justify-content:flex-end;margin-top:14px}.pkf .s{display:inline-flex;gap:6px;align-items:center}.pkf .i{width:16px;height:16px}
 @media(max-width:800px){.wbg{grid-template-columns:1fr}.wbl ul{max-height:none}}
 
+#mAbs .sheet.abmgr{max-width:640px;width:96vw}
+.abm-l{display:flex;flex-direction:column;gap:8px;max-height:min(52vh,520px);overflow-y:auto;margin:8px 0 12px;padding:1px}
+.abm-p{display:flex;align-items:center;gap:10px;flex:none;background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:8px 10px 8px 6px;transition:border-color .15s}
+.abm-p:hover,.abm-p:focus-within{border-color:var(--bd2)}
+#sAbs .abm-o{display:flex;flex-direction:column;gap:2px;flex:none}
+#sAbs .abm-o button,#sAbs .abm-d{display:grid;place-items:center;width:28px;height:24px;min-height:0;padding:0;margin:0;background:transparent;border:0;border-radius:8px;box-shadow:none;color:var(--mut);cursor:pointer}
+#sAbs .abm-o button:hover:not(:disabled){background:var(--panel);color:var(--ink)}
+#sAbs .abm-o button:disabled{opacity:.2;cursor:default}
+#sAbs .abm-o svg,#sAbs .abm-d svg{width:16px;height:16px;margin:0}
+#sAbs .abm-d{width:34px;height:34px;flex:none}
+#sAbs .abm-d:hover{background:rgba(229,72,77,.14);color:#E5484D}
+.abm-a{position:relative;flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:hsl(var(--h) 55% 45%);color:#fff;font:700 16px/1 var(--body)}
+.abm-a.on::after{content:"";position:absolute;right:-1px;bottom:-1px;width:9px;height:9px;border-radius:50%;background:#2BB66E;border:2px solid var(--raised)}
+.abm-f{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+#sAbs input.abm-n{width:100%;margin:0;min-height:0;padding:3px 8px;background:transparent;border:1px solid transparent;border-radius:8px;box-shadow:none;font-weight:700;color:var(--ink)}
+#sAbs input.abm-n:hover{border-color:var(--line)}
+#sAbs input.abm-n:focus{background:var(--panel);border-color:var(--bd2)}
+.abm-s{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#sAbs .abm-s label{display:flex;align-items:center;gap:6px;margin:0;min-width:0}
+#sAbs .abm-s label>span{flex:none;font-size:12px;font-weight:600;color:var(--mut);padding-left:8px}
+#sAbs .abm-s select{flex:1;width:100%;min-width:0;margin:0;min-height:0;height:32px;padding:2px 8px;font-size:13px;background:var(--panel);border-radius:9px}
+.abm-new{border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:8px}
+.abm-new h4{margin:0;font-size:14px}
+.abm-new .abm-s label>span{padding-left:0}
+.abm-add{display:flex;gap:8px;align-items:center}
+#sAbs .abm-add input{flex:1;min-width:0;width:auto;margin:0}
+#sAbs .abm-add button{flex:none;margin:0}
+@media (max-width:520px){.abm-p{gap:6px;padding-right:6px}.abm-a{display:none}.abm-s{grid-template-columns:minmax(0,1fr)}}
 /* lot du 28/11 */
 .fx{position:fixed;overflow:hidden;pointer-events:none;box-sizing:border-box;color:var(--fxc)}
 .fx>.fxv,.fx>.fxi{position:absolute;inset:0}
@@ -1899,10 +1927,10 @@ html[data-navpos="l"] #app #nav .mod[data-n]::after,html[data-menu][data-navpos=
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.207</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.208</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.207</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.208</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -5575,19 +5603,38 @@ async function openGrp(){
 function openAbsMgr(){
   ABS.mgr = true; ABS.ed = null;
   const draw = () => {
-    $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Personnes</h3><div class="sub">Qui apparaît dans le calendrier</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
-      ${(ABS.rows || []).filter(p => p._adm).map(p => `<div class="erow"><input data-pn="${esc(p.id)}" value="${esc(p.nom)}" maxlength="80"><select data-pl="${esc(p.id)}" title="Utilisateur de l'application" style="max-width:170px"><option value="">Sans accès</option>${(ABS.users || []).map(u => `<option value="${esc(u.email)}"${u.email === p.email ? ' selected' : ''}>${esc(u.nom || u.email)}</option>`).join('')}</select>${(ABS.g || []).some(g => g.admin) ? `<select data-pg="${esc(p.id)}" title="Changer de groupe" aria-label="Changer de groupe" style="max-width:150px">${(ABS.g || []).filter(g => g.admin || String(g.id) === String(p.groupe_id)).map(g => `<option value="${esc(g.id)}"${String(g.id) === String(p.groupe_id) ? " selected" : ""}${g.admin ? "" : " disabled"}>${esc(g.nom)}</option>`).join("")}</select>` : `<span class="m" style="margin:0;white-space:nowrap">${esc(((ABS.g || []).find(g => g.id === String(p.groupe_id)) || {}).nom || "")}</span>`}<button class="ico sm warn" data-pd="${esc(p.id)}" title="Supprimer" aria-label="Supprimer">${IC.trash}</button></div>`).join('')}
-      <div class="erow"><select id="abU" title="Utilisateur de l'application"><option value="">Personne sans accès</option>${(ABS.users || []).filter(u => !(ABS.rows || []).some(p => p.email === u.email)).map(u => `<option value="${esc(u.email)}">${esc(u.nom || u.email)}</option>`).join('')}</select><select id="abG">${(ABS.g || []).filter(g => g.admin).map(g => `<option value="${esc(g.id)}">${esc(g.nom)}</option>`).join('')}</select><input id="abNew" placeholder="Nouvelle personne" maxlength="80" autocomplete="off"><button class="p" id="abAdd">${IC.plus}Ajouter</button></div>`;
+    const mine = (ABS.rows || []).filter(p => p._adm), gs = ABS.g || [], users = ABS.users || [];
+    const ini = n => (String(n || '').trim()[0] || '?').toUpperCase(), hue = id => [...String(id)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 360, 7) * 137 % 360;
+    const row = (p, i) => `<div class="abm-p">
+        <div class="abm-o"><button data-po="${esc(p.id)}" data-dir="-1" title="Monter" aria-label="Monter ${esc(p.nom)}"${i ? '' : ' disabled'}>${ic('<path d="m6 15 6-6 6 6"/>')}</button><button data-po="${esc(p.id)}" data-dir="1" title="Descendre" aria-label="Descendre ${esc(p.nom)}"${i < mine.length - 1 ? '' : ' disabled'}>${ic('<path d="m6 9 6 6 6-6"/>')}</button></div>
+        <span class="abm-a${p.email ? ' on' : ''}" style="--h:${hue(p.id)}" title="${p.email ? 'Relié à un compte' : 'Sans accès'}">${esc(ini(p.nom))}</span>
+        <div class="abm-f"><input class="abm-n" data-pn="${esc(p.id)}" value="${esc(p.nom)}" maxlength="80" aria-label="Nom">
+          <div class="abm-s"><label><span>Compte</span><select data-pl="${esc(p.id)}"><option value="">Sans accès</option>${users.map(u => `<option value="${esc(u.email)}"${u.email === p.email ? ' selected' : ''}>${esc(u.nom || u.email)}</option>`).join('')}</select></label>
+          <label><span>Groupe</span><select data-pg="${esc(p.id)}">${gs.filter(g => g.admin || String(g.id) === String(p.groupe_id)).map(g => `<option value="${esc(g.id)}"${String(g.id) === String(p.groupe_id) ? ' selected' : ''}${g.admin ? '' : ' disabled'}>${esc(g.nom)}</option>`).join('')}</select></label></div></div>
+        <button class="abm-d" data-pd="${esc(p.id)}" title="Supprimer" aria-label="Supprimer ${esc(p.nom)}">${IC.trash}</button></div>`;
+    $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Personnes</h3><div class="sub">${mine.length} dans le calendrier · les flèches changent l’ordre d’affichage</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+      <div class="abm-l">${mine.map(row).join('') || '<div class="m">Personne pour le moment.</div>'}</div>
+      <div class="abm-new"><h4>Ajouter une personne</h4>
+        <div class="abm-s"><label><span>Compte</span><select id="abU"><option value="">Personne sans accès</option>${users.filter(u => !(ABS.rows || []).some(p => p.email === u.email)).map(u => `<option value="${esc(u.email)}">${esc(u.nom || u.email)}</option>`).join('')}</select></label>
+        <label><span>Groupe</span><select id="abG">${gs.filter(g => g.admin).map(g => `<option value="${esc(g.id)}">${esc(g.nom)}</option>`).join('')}</select></label></div>
+        <div class="abm-add"><input id="abNew" placeholder="Nom de la personne" maxlength="80" autocomplete="off" aria-label="Nom de la nouvelle personne"><button class="p" id="abAdd">${IC.plus}Ajouter</button></div></div>`;
     $('#abX').onclick = closeAbs;
     const reload = async () => { ABS.rows = await absLoad(); ABS.t = Date.now(); absDraw(); };
+    $('#sAbs').querySelectorAll('[data-po]').forEach(b => { b.onclick = () => { // ordre d'affichage : échange avec la ligne voisine, les autres groupes gardent leur place
+      const ids = mine.map(p => String(p.id)), i = ids.indexOf(b.dataset.po), j = i + Number(b.dataset.dir); if (i < 0 || j < 0 || j >= ids.length) return;
+      [ids[i], ids[j]] = [ids[j], ids[i]];
+      const by = new Map(ABS.rows.map(p => [String(p.id), p])); let k = 0;
+      const top = $('#sAbs .abm-l').scrollTop; ABS.rows = ABS.rows.map(p => p._adm ? by.get(ids[k++]) : p); ABS.t = Date.now(); absDraw(); draw(); $('#sAbs .abm-l').scrollTop = top;
+      const again = $('#sAbs').querySelector(`[data-po="${CSS.escape(b.dataset.po)}"][data-dir="${b.dataset.dir}"]`); if (again && !again.disabled) again.focus();
+      enqueue(() => api('abs_order', {ids}), () => reload().then(draw).catch(() => {}), 'absorder'); }; });
     $('#abAdd').onclick = async () => { const n = $('#abNew').value.trim(); if (!n) return; try { await wait(() => api('abs_person_save', {nom: n, groupe_id: $('#abG').value, email: $('#abU').value}), true); await reload(); draw(); $('#abNew').focus(); } catch (e) { toast(e.message); } };
     $('#abNew').onkeydown = e => { if (e.key === 'Enter') $('#abAdd').click(); };
     $('#abU').onchange = () => { const u = (ABS.users || []).find(x => x.email === $('#abU').value); if (u) $('#abNew').value = u.nom || u.email; };
     $('#sAbs').querySelectorAll('[data-pl]').forEach(s => { s.onchange = () => { const pid = s.dataset.pl, pp = ABS.rows.find(x => String(x.id) === pid); if (!pp) return; pp.email = s.value; toast('Enregistré'); enqueue(() => api('abs_person_save', {id: pid, nom: pp.nom, email: s.value}), () => reload().then(draw).catch(() => {})); }; });
-    $('#sAbs').querySelectorAll('[data-pn]').forEach(i => { i.onchange = async () => { const n = i.value.trim(); if (!n) return draw(); const pp = ABS.rows.find(x => String(x.id) === i.dataset.pn); if (pp) pp.nom = n; absDraw(); toast('Enregistré'); enqueue(() => api('abs_person_save', {id: i.dataset.pn, nom: n}), () => reload().then(draw).catch(() => {})); }; });
+    $('#sAbs').querySelectorAll('[data-pn]').forEach(i => { i.onchange = async () => { const n = i.value.trim(); if (!n) return draw(); const pp = ABS.rows.find(x => String(x.id) === i.dataset.pn); if (pp) pp.nom = n; i.closest('.abm-p').querySelector('.abm-a').textContent = n[0].toUpperCase(); absDraw(); toast('Enregistré'); enqueue(() => api('abs_person_save', {id: i.dataset.pn, nom: n}), () => reload().then(draw).catch(() => {})); }; });
     $('#sAbs').querySelectorAll('[data-pg]').forEach(s => { s.onchange = () => { const pid = s.dataset.pg, g = s.value, pp = ABS.rows.find(x => String(x.id) === pid); if (!pp || String(pp.groupe_id) === g) return; pp.groupe_id = g; absDraw(); toast('Enregistré'); enqueue(() => api('abs_person_save', {id: pid, nom: pp.nom, groupe_id: g}), () => reload().then(draw).catch(() => {})); }; }); $('#sAbs').querySelectorAll('[data-pd]').forEach(b => { b.onclick = async () => { const p = ABS.rows.find(x => String(x.id) === b.dataset.pd); if (!await ask('Supprimer cette personne ?', (p ? p.nom : '') + ' et toutes ses absences seront supprimées.', 'Supprimer')) return; const pid = b.dataset.pd; ABS.rows = ABS.rows.filter(x => String(x.id) !== pid); absDraw(); draw(); enqueue(() => api('abs_person_delete', {id: pid}), () => reload().then(draw).catch(() => {})); }; });
   };
-  draw(); $('#mAbs').classList.add('on');
+  $('#sAbs').className = 'sheet abmgr'; draw(); $('#mAbs').classList.add('on');
   api('abs_users').then(u => { ABS.users = u; if (ABS.mgr) draw(); }).catch(e => toast(e.message));
 }
 const IC_CAL = ic('<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18"/><path d="M8 2v4"/><path d="M16 2v4"/>');
