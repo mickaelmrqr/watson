@@ -1850,6 +1850,39 @@ html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn,html:not([data-navpos=
 #sDet.sheet.wbx,#svS.sheet.wbx{max-width:980px;width:96vw}.wbg{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}.wbf{min-width:0}.wbl{border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px;background:var(--bg)}.wbl.hit{border-color:#ff8a1f}.wbl h5{margin:0 0 8px;font-size:var(--fs);display:flex;gap:8px;align-items:center}.wbl.hit h5{color:#ff8a1f}.wbl h5 small{background:#ff8a1f;color:#fff;border-radius:999px;padding:0 8px}.wbl p{margin:0;color:var(--mut);font-size:var(--fs)}.wbl ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;max-height:52vh;overflow:auto}.wbl li{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:10px;padding:8px 10px;background:var(--panel);font-size:var(--fs)}.wbt{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.wbt b{color:var(--c)}.wbt span{color:var(--mut)}.wbt em{font-style:normal;margin-left:auto;border:1px solid var(--line);border-radius:999px;padding:0 8px;color:var(--mut)}.wbn{font-weight:700}.wbs{color:var(--mut)}input.wbauto{border-color:#ff8a1f!important;background:rgba(255,138,31,.10)!important}
 .wbo{margin-left:auto;width:28px!important;height:28px!important;flex:none}.wbo .i{width:15px;height:15px}.wbd,.wbc p,.wbd+.wbc{overflow-wrap:anywhere}.wbd{margin-top:3px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.wbd b{color:var(--mut);font-weight:600;margin-right:3px}.wbc{margin-top:5px;padding:4px 8px;border-radius:8px;background:var(--bg);border:1px solid var(--line)}.wbc b{font-weight:600}.wbc small{color:var(--mut);margin-left:6px}.wbc p{margin:1px 0 0;line-height:1.35;color:inherit;white-space:pre-line}.wbl .wbc p{color:inherit;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.wbm{margin-top:4px;color:var(--mut);font-size:.92em}#mPeek{z-index:65}#mPeek .sheet{max-width:620px;border-top:3px solid var(--c)}#sPeek .xh{margin:14px 0 4px;font-weight:600}.pkf{display:flex;justify-content:flex-end;margin-top:14px}.pkf .s{display:inline-flex;gap:6px;align-items:center}.pkf .i{width:16px;height:16px}
 @media(max-width:800px){.wbg{grid-template-columns:1fr}.wbl ul{max-height:none}}
+
+/* lot du 28/11 */
+.fx{position:fixed;overflow:hidden;pointer-events:none;box-sizing:border-box;color:var(--fxc)}
+.fx>.fxv,.fx>.fxi{position:absolute;inset:0}
+.fx>.fxv{-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);background:color-mix(in srgb,var(--fxc) 14%,transparent);border-radius:inherit}
+.fx>.fxi{display:grid;place-items:center;filter:blur(1px)}.fx>.fxi svg{width:var(--fxs);height:var(--fxs)}
+.fx>.fxv{z-index:2}.fx>.fxi{z-index:3}.fx .fxg{position:relative;z-index:0;isolation:isolate}
+.fx .fxg{width:100%!important;height:100%!important;margin:0!important;box-sizing:border-box;list-style:none}.fx .fxg,.fx .fxg *{animation:none!important;transition:none!important}
+.dal{animation:alsoft 1.8s ease-in-out infinite;outline:1px solid #E5484D}.dal.w{animation-name:alsofto;outline-color:#E8830C}
+@media(prefers-reduced-motion:reduce){.dal{animation:none}}
+.svg{grid-template-columns:repeat(4,minmax(200px,1fr))}
+.svt{display:flex;justify-content:space-between;gap:6px;align-items:flex-start;margin-bottom:2px}.svt b{margin:0;text-transform:uppercase}.svt span{display:flex;flex-wrap:wrap;gap:3px;justify-content:flex-end;margin-left:auto}
+.svtit{word-break:break-word;margin-bottom:2px}
+.svc .svd{opacity:1;font-weight:700}.svd.c-g{color:#1f9d57}.svd.c-o{color:#E8830C}.svd.c-r{color:#E5484D}.svd.c-n{opacity:.7}
+.svc.svok{border-color:rgba(47,179,107,.65);background:rgba(47,179,107,.13)}
+.svc.al-late{border-color:#E5484D;animation:alsoft 1.8s ease-in-out infinite}.svc.al-warn{border-color:#E8830C;animation:alsofto 1.8s ease-in-out infinite}
+.svrp{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:.85em;margin-top:4px;color:var(--mut)}.svrp .s{padding:2px 10px}
+.svrpt{color:var(--mut)}
+.prow .rlw{display:flex;flex-wrap:wrap;align-items:center;gap:6px;justify-content:flex-end}
+dl.det .svpb{animation:svpb 1.8s ease-in-out infinite;color:#E5484D;font-weight:700}dl.det .svpb.al-warn{color:#E8830C}
+@keyframes svpb{50%{background:rgba(255,120,40,.18)}}
+@media(prefers-reduced-motion:reduce){.svc.al-late,.svc.al-warn,dl.det .svpb{animation:none}}
+.abgr{display:flex;align-items:center;gap:12px;margin:0 0 8px}.abgr .abg{margin:0}.abgr .abq{margin:0 0 0 auto}
+.card.st-ok{background-image:linear-gradient(rgba(47,179,107,.18),rgba(47,179,107,.18))}
+@keyframes alsoft{50%{box-shadow:0 0 0 3px rgba(229,72,77,.28)}}
+@keyframes alsofto{50%{box-shadow:0 0 0 3px rgba(255,159,26,.28)}}
+.card.al-late,.card.alh{animation:alsoft 1.8s ease-in-out infinite!important}
+.card.al-warn,.card.alh.al-warn{animation:alsofto 1.8s ease-in-out infinite!important}
+.card.al-late:before,.card.al-warn:before{animation:none!important}
+html #app #nav .mod[data-n]::after,html[data-menu] #app #nav .mod[data-n]::after{content:""!important;display:block!important;position:absolute;top:6px;right:8px;width:10px;height:10px;min-width:0;padding:0!important;border-radius:50%;background:#E5484D}
+.tdn i{min-width:10px!important;width:10px;height:10px!important;padding:0!important;font-size:0!important;background:#E5484D}
+.rmc[data-st="todo"]{background:rgba(128,138,158,.16)}.rmc[data-st="doing"]{background:rgba(47,111,222,.16)}.rmc[data-st="done"]{background:rgba(47,179,107,.16)}
+@media(prefers-reduced-motion:reduce){.card.al-late,.card.al-warn,.card.alh{animation:none!important}}
 </style>
 </head>
 <body>
@@ -1864,10 +1897,10 @@ html:not([data-navpos="l"]) #seg .mod[data-m="TODO"] .tdn,html:not([data-navpos=
   <button id="bSet" class="ico hide" title="Paramètres" aria-label="Paramètres"></button>
   <button id="bOut" class="ico warn hide" title="Quitter" aria-label="Quitter"></button></div>
 </header>
-<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.205</span></div>
+<footer id="foot" class="hide"><div class="fl"><span class="wlg" style="--lw:18px" role="img" aria-label="Watson"></span><span class="ver" id="verBtn" role="button" tabindex="0" title="À propos de Watson">v4.11.206</span></div>
   <div class="fm"><span id="sync" class="hide"><span class="d3"><i></i><i></i><i></i></span><span id="syncT">Synchronisé</span></span>
   <button id="bRef" class="ico hide" title="Recharger les données" aria-label="Recharger les données"></button></div><div class="fr"><button id="bAdm" class="ico hide" title="Administration" aria-label="Administration"></button></div></footer>
-<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.205</span></div>
+<div id="login"><div class="logo" style="justify-content:center;flex:none;font-size:36px"><span class="lgw" style="--lw:65px"><span class="wlg" style="--lw:65px" role="img" aria-label="Watson"></span><span class="lgb"></span></span>Watson<span class="ver" style="font-size:15px">v4.11.206</span></div>
   <h2>Connexion</h2><p>Connecte-toi avec ton compte Google.</p><div id="gbtn" style="display:inline-block;margin-top:8px"></div><p id="lerr"></p></div>
 <div id="app" class="hide"><nav id="nav"></nav><main id="main"></main></div>
 
@@ -1970,6 +2003,60 @@ const canHist = m => !!ME && (ME.rights[m] === 'admin' || ME.rights['HIST_' + m]
 const fdateD = v => isoD(v).split('-').reverse().join('/');
 const todayISO = () => new Date().toLocaleDateString('sv-SE', {timeZone:'Europe/Paris'});
 // Suppression : fondu + flou sur 3 s (l'animation reprend au bon moment si l'écran est redessiné)
+// ------------------------------------------------------------ Animations (2 s) : ajout, modification, suppression, archivage, « vu », notification
+const FX = (() => {
+  const D = 2000, live = new Map();
+  const P = {add: '<path d="M12 5v14M5 12h14"/>', mod: '<circle cx="12" cy="12" r="9.5"/><path d="m7.5 12.5 3 3 6-6.5"/>', del: '<path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15M10 11v6M14 11v6"/>', arch: '<path d="M3 4h18v5H3zM5 9v11h14V9M10 13h4"/>', vu: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>', notif: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>'};
+  const C = {add: '#2fb36b', mod: '#2fb36b', del: '#E5484D', arch: '#2F6FDE', vu: '#2fb36b', notif: '#FF8A1F'};
+  const still = () => window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const find = sel => [...document.querySelectorAll(sel)].find(e => !e.closest('.fx') && e.getBoundingClientRect().width > 0);
+  const place = (box, el) => { const r = el.getBoundingClientRect(); Object.assign(box.style, {left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px', borderRadius: getComputedStyle(el).borderRadius}); box.style.setProperty('--fxs', Math.round(Math.max(26, Math.min(64, Math.min(r.width, r.height) * .75))) + 'px'); };
+  const make = (kind, el, key) => {
+    const old = live.get(key); if (old) old.remove();
+    const box = document.createElement('div'); box.className = 'fx fx-' + kind; box.style.setProperty('--fxc', C[kind]);
+    box.style.zIndex = el.closest('#ntoasts') ? 110 : el.closest('.modal, #mDrawer') ? 90 : 15;
+    place(box, el); live.set(key, box);
+    setTimeout(() => { box.remove(); if (live.get(key) === box) live.delete(key); }, D + 40);
+    return box;
+  };
+  const veil = () => { const v = document.createElement('div'); v.className = 'fxv'; return v; };
+  const icon = kind => { const i = document.createElement('div'); i.className = 'fxi'; i.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + P[kind] + '</svg>'; return i; };
+  const grow = (el, from, to) => el.animate([{transform: 'scale(.4)', opacity: 0, offset: 0}, {transform: 'scale(.4)', opacity: 0, offset: from}, {transform: 'scale(1.1)', opacity: 1, offset: from + (to - from) * .35}, {transform: 'scale(2.3)', opacity: 0, offset: to}, {transform: 'scale(2.3)', opacity: 0, offset: 1}], {duration: D, easing: 'linear', fill: 'both'});
+  const spread = v => v.animate([{clipPath: 'circle(0% at 50% 50%)', offset: 0}, {clipPath: 'circle(76% at 50% 50%)', offset: .26}, {clipPath: 'circle(76% at 50% 50%)', offset: 1}], {duration: D, easing: 'ease-out', fill: 'both'});
+  // La case reste en place : ajout, modification, notification. On la suit si la liste est redessinée.
+  function on(kind, sel) {
+    if (still()) return;
+    const el = find(sel); if (!el) return;
+    const box = make(kind, el, sel), v = veil(), i = icon(kind);
+    if (kind === 'notif') {
+      box.append(i); el.animate([{opacity: 0}, {opacity: 0, offset: .25}, {opacity: 1}], {duration: 1700, easing: 'ease-in', fill: 'backwards'});
+      i.animate([{transform: 'rotate(0)', opacity: 0, offset: 0}, {transform: 'rotate(-25deg)', opacity: 1, offset: .1}, {transform: 'rotate(22deg)', offset: .18}, {transform: 'rotate(-20deg)', offset: .26}, {transform: 'rotate(17deg)', offset: .34}, {transform: 'rotate(-12deg)', offset: .42}, {transform: 'rotate(8deg)', offset: .5}, {transform: 'rotate(0) scale(1)', opacity: 1, offset: .6}, {transform: 'scale(1.8)', opacity: 0, offset: 1}], {duration: D, fill: 'both'});
+    } else {
+      box.append(v, i);
+      if (kind === 'mod') { spread(v); grow(i, .18, .85); v.animate([{opacity: 1, offset: 0}, {opacity: 1, offset: .6}, {opacity: 0, offset: .92}, {opacity: 0, offset: 1}], {duration: D, fill: 'both'}); }
+      else { grow(i, 0, .72); v.animate([{opacity: 1, offset: 0}, {opacity: 1, offset: .55}, {opacity: 0, offset: 1}], {duration: D, fill: 'both'}); }
+    }
+    document.body.appendChild(box);
+    const t0 = performance.now(), follow = () => { if (!box.isConnected || performance.now() - t0 > D) return; const e = find(sel); if (e) place(box, e); requestAnimationFrame(follow); };
+    requestAnimationFrame(follow);
+  }
+  // La case s'en va : suppression, archivage, « vu ». À appeler AVANT de la retirer (on en garde une copie).
+  function out(kind, sel) {
+    if (still()) return;
+    const el = typeof sel === 'string' ? find(sel) : sel; if (!el || !el.getBoundingClientRect().width) return;
+    const box = make(kind, el, 'out:' + (typeof sel === 'string' ? sel : Math.random()));
+    let ghost = el.cloneNode(true);
+    [ghost, ...ghost.querySelectorAll('*')].forEach(n => { n.removeAttribute('id'); if (n.dataset && n.dataset.id) { n.dataset.gid = n.dataset.id; delete n.dataset.id; } });
+    ghost.classList.add('fxg');
+    // mêmes classes autour de la copie pour qu'elle garde son apparence
+    for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) { const w = document.createElement('div'); w.className = String(a.className || '').replace(/\bmodal\b|\bsheet\b/g, ''); if (a.dataset.m) w.dataset.m = a.dataset.m; w.style.cssText = 'display:contents'; w.appendChild(ghost); ghost = w; }
+    const v = veil(), i = icon(kind); box.append(ghost, v, i); document.body.appendChild(box);
+    spread(v); grow(i, .18, .75);
+    box.animate([{opacity: 1, offset: 0}, {opacity: 1, offset: .62}, {opacity: 0, offset: 1}], {duration: D, fill: 'both'});
+  }
+  const card = id => '#main [data-id="' + String(id).replace(/["\\]/g, '') + '"]';
+  return {on, out, card};
+})();
 const GONE_MS = 1600;
 function fadeOut(o, done){ o._gone = Date.now(); setTimeout(() => { if (o._gone) done(); }, GONE_MS + 60); }
 const gcl = o => o && o._gone ? ' gone' : '';
@@ -2000,7 +2087,7 @@ const MODS = {
     {k:'location',l:'Location (étagère)',t:'scan'},
     {k:'visibilite',l:'Visibilité',t:'vis'}],
     show:['remarque'] },
-  SPARK: { label: 'Retours AA1', nv: 'Retour AA1', name: r => r.nom_client, fields: [
+  SPARK: { label: 'Spark à ouvrir', nv: 'Spark à ouvrir', name: r => r.nom_client, fields: [
     {k:'waybill',l:'Waybill',t:'scan'},
     {k:'nom_client',l:'Nom du client',t:'text',up:1}, {k:'adresse',l:'Adresse',t:'addr'},
     {k:'pid',l:'PID',t:'scan'},
@@ -2048,7 +2135,7 @@ MODS.DOCUMENTS = { label: 'Documents', noSteps: true, name: r => r.titre, show: 
     {k:'titre',l:'Titre',t:'text',req:1},
     {k:'visibilite',l:'Visibilité',t:'vis'},
     {k:'_file',l:'Fichier',t:'file'}] };
-const STEP_KIND = {EN_ATTENTE:'wait',OUVRIR_SPARK:'go',EN_COURS:'go',ATTENTE_CLIENT:'go',ATTENTE_COMMERCIAL:'go',SCMS_CREE:'go',TERMINE:'ok',A_ARCHIVER:'ok',RTO_FAIT:'ok',INSTRUCTION_APPLIQUEE:'ok',RESOLU:'ok'};
+const STEP_KIND = {PAYE:'go',EN_ATTENTE:'wait',OUVRIR_SPARK:'go',EN_COURS:'go',ATTENTE_CLIENT:'go',ATTENTE_COMMERCIAL:'go',SCMS_CREE:'go',TERMINE:'ok',A_ARCHIVER:'ok',RTO_FAIT:'ok',INSTRUCTION_APPLIQUEE:'ok',RESOLU:'ok'};
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let token = (() => { try { return localStorage.getItem('wst'); } catch (e) { return null; } })() || sessionStorage.getItem('wtk'), cur = null, rows = [], showArch = false, det = null;
@@ -2086,7 +2173,7 @@ function setSync(){
   const s = $('#sync'); s.classList.remove('hide'); s.classList.toggle('work', pending > 0); s.classList.toggle('err', failed && pending === 0);
   $('#syncT').textContent = pending > 0 ? 'Synchronisation' : failed ? 'Erreur de synchro' : 'Synchronisé';
 }
-function syncUi(r){ try { if (det && det.r === r) $('#sDet').classList.toggle('syncing', !!r._sync); } catch (e) {} }
+function syncUi(){}
 function syncOn(r){ r._n = (r._n || 0) + 1; r._sync = true; hintRec = r.id; queueMicrotask(() => { hintRec = null; }); syncUi(r); }
 function syncOff(r){ r._n = Math.max(0, (r._n || 1) - 1); r._sync = r._n > 0; syncUi(r); }
 function relinkDet(){ if (det && det.r) det.r = rows.find(x => x.id === det.r.id) || det.r; }
@@ -2197,7 +2284,7 @@ async function start(){
     ['#bOut', '#bQR', '#bSearch', '#bBell', '#bMsg', '#bRef', '#hs2'].forEach(s => $(s).classList.remove('hide'));
     $('#bSet').classList.remove('hide');
     const mods = Object.keys(MODS).filter(m => ME.rights[m]); buildNav();
-    applyDisplay(); setSync(); (() => { let b = null; try { b = JSON.parse(sessionStorage.getItem('wback') || 'null'); sessionStorage.removeItem('wback'); } catch (e) {} if (b && b.m && (b.m === '_home' || ME.rights[b.m] || PGS[b.m])) { showArch = !!b.a; openMod(b.m); } else openMod('_home'); })(); preload(mods); if (window.svPreload) window.svPreload(); startPoll(); warm();
+    applyDisplay(); setSync(); (() => { let b = null; try { b = JSON.parse(sessionStorage.getItem('wback') || 'null'); sessionStorage.removeItem('wback'); } catch (e) {} if (b && b.m && (b.m === '_home' || ME.rights[b.m] || PGS[b.m])) { showArch = !!b.a; openMod(b.m); } else openMod('_home'); })(); preload(mods); if (window.svPreload) window.svPreload(); startPoll(); warm(); preloadPages();
   } catch (e) { $('#lerr').textContent = e.message; sessionStorage.removeItem('wtk'); token = null; try { if (/AUTH|expir|refus/i.test(e.message)) localStorage.removeItem('wst'); } catch (_) {} if (window.google && google.accounts) google.accounts.id.renderButton($('#gbtn'), {theme:'filled_black', size:'large', text:'signin_with', locale:'fr'}); }
 }
 document.addEventListener('visibilitychange', () => { if (!document.hidden && ME) { pollNotifs(); if (cur === '_home') renderHome(); else if (cur === 'LIBRARY') { if (pending === 0) reloadLib(); } else if (cur === 'ENTREPRISES') { if (pending === 0 && !ENT.edit) reloadEnt(); } else if (cur && cur !== '_admin' && pending === 0) refresh(); } });
@@ -2254,7 +2341,7 @@ function alN(m, r){
   if (!r || m === 'DOCUMENTS') return 0;
   if (m === 'CCTV') return ME.rights.CCTV === 'admin' ? r.filter(x => x.etape === 'A_FAIRE').length : 0;
   if (m === 'DOM') return r.map(domAlert).filter(a => ['J1', 'J4', 'J10'].some(k => a[k] === 'late' || a[k] === 'warn')).length;
-  return r.filter(x => kindOfM(m, x) !== 'ok' && (isAwb(m) ? x.etape === 'A_FAIRE' : ((m === 'SPARK' || m === 'RTO') && x.etape === 'A_FAIRE') || (m === 'HP' && x.etape === 'OUVRIR_SPARK'))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
+  return r.filter(x => kindOfM(m, x) !== 'ok' && (isAwb(m) ? x.etape === 'A_FAIRE' : ((m === 'SPARK' || m === 'RTO') && x.etape === 'A_FAIRE') || (m === 'HP' && hpDu(x)))).length + (m === 'SECURITY' ? r.filter(scmsMissing).length : 0);
 }
 function drawTiles(){
   document.querySelectorAll('.mod').forEach(b => {
@@ -2310,16 +2397,6 @@ function navBadges(){
       const m = host.dataset.m || host.id.replace('col_', ''); if (KEYS.indexOf(m) < 0) return;
       const r = info(m);
       host.querySelectorAll('.card[data-id], button[data-id]').forEach(e => e.classList.toggle('alh', r.ids.has(String(e.dataset.id))));
-      const h = host.querySelector('.abh'); if (!h) return;
-      const ex = h.nextElementSibling && h.nextElementSibling.classList.contains('alz') ? h.nextElementSibling : null;
-      if (!r.lines.length) { if (ex) ex.remove(); return; }
-      const sig = m + '|' + r.lines.map(l => l.join(':')).join('|');
-      if (ex && ex.dataset.sig === sig) return;
-      if (ex) ex.remove();
-      const z = document.createElement('details'); z.className = 'alz'; z.dataset.sig = sig; if (OPEN[m]) z.open = true;
-      z.innerHTML = '<summary>Alertes <small>' + (r.cnt || r.ids.size || r.lines.length) + '</small></summary><div class="alb">' + r.lines.map(l => '<div class="' + l[0] + '">' + esc(l[1]) + '</div>').join('') + '</div>';
-      z.addEventListener('toggle', () => { OPEN[m] = z.open; });
-      h.after(z);
     });
   } catch (e) {} };
   const go = () => { new MutationObserver(() => { if (!q) q = requestAnimationFrame(run); }).observe(document.getElementById('main') || document.body, {childList: true, subtree: true}); q = requestAnimationFrame(run); };
@@ -2368,7 +2445,7 @@ function navBadges(){
 })();
 (function(){
  const S={items:[],motifs:[],partners:[],heures:[8,19],rel:null,arch:false,host:null,cur:null,fl:[],cm:[],F:null,cmOpen:false,cmD:'',pre:{},inf:{}};
- const ST=[['A_FAIRE','À faire','#6B7A99'],['EN_COURS','En cours','#2F6FDE'],['BLOQUE','Bloqué','#E5484D'],['TERMINE','Terminé','#2fb36b'],['VALIDE','Validé','#7a4fd6']];
+ const ST=[['A_FAIRE','À faire','#6B7A99'],['EN_COURS','En cours','#2F6FDE'],['BLOQUE','Bloqué','#E5484D'],['TERMINE','Terminé','#2fb36b']];
  const q=s=>document.querySelector(s);
  const e=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const adm=()=>{try{return !!isAdmin()}catch(x){return false}};
@@ -2383,15 +2460,24 @@ function navBadges(){
  const sh=n=>'https://sherloc.dhl.com/#/hwb/'+encodeURIComponent(n);
  const cp=async t=>{try{await navigator.clipboard.writeText(t);toast('Copié : '+t)}catch(x){toast('Copie impossible')}};
  const stl=k=>(ST.find(x=>x[0]===k)||ST[0]);
- async function load(){const ar=S.arch,r=await api('suivi_list',{archives:ar});S.loaded=true;S.loadedArch=ar;S.items=(r.items||[]).slice().sort((a,b)=>urg(b)-urg(a)||String(a.cree_le).localeCompare(String(b.cree_le)));S.motifs=r.motifs||[];S.partners=(r.partners||[]).map(p=>typeof p==='string'?{email:p,prenom:p.split('@')[0]}:p);S.heures=r.heures||[8,19];S.rel=r.relances||null;S.items.forEach(i=>{const c=S.pre[i.id];if((i.nf||i.nc)&&(!c||c.fl.length!==(i.nf||0)||c.cm.length!==(i.nc||0)))fetchD(i.id,false)})}
- function canMove(i,to){if(i.archive||i.etat===to)return false;if(to==='VALIDE')return (adm()||own(i))&&i.etat==='TERMINE';if(i.etat==='VALIDE')return adm()||own(i);return true}
+ async function load(){const ar=S.arch,r=await api('suivi_list',{archives:ar});S.loaded=true;S.loadedArch=ar;S.items=(r.items||[]).slice().sort((a,b)=>urg(b)-urg(a)||String(a.cree_le).localeCompare(String(b.cree_le)));S.motifs=r.motifs||[];S.partners=(r.partners||[]).map(p=>typeof p==='string'?{email:p,prenom:p.split('@')[0]}:p);S.heures=r.heures||[8,19];S.rel=r.relances||null;S.at=Date.now();S.ouvre=r.ouvre!==false;S.items.forEach(i=>{const c=S.pre[i.id];if((i.nf||i.nc)&&(!c||c.fl.length!==(i.nf||0)||c.cm.length!==(i.nc||0)))fetchD(i.id,false)})}
+ const canStep=i=>!i.archive&&(canW()||own(i)||isP());
+ const done=i=>i.etat==='TERMINE';
+ const nom=i=>i.titre||(i.bordereaux||[])[0]||i.nom_client||'Suivi';
  function chips(i){let h='';(i.bordereaux||[]).forEach(b=>{h+=`<span class="svch"><a href="${sh(b)}" target="_blank" rel="noopener">${e(b)}</a><i data-cp="${e(b)}" title="Copier" aria-label="Copier">${IC.copy}</i></span>`});if(i.motif)h+=`<span class="svch m">${e(i.motif)}</span>`;(i.routes||[]).forEach(r=>{h+=`<span class="svch r">${e(r)}</span>`});return h}
+ // minutes ouvrées écoulées, prolongées depuis le dernier chargement
+ function live(i,v){if(v==null||i.reporte||done(i)||!S.ouvre)return v;const n=new Date(),h=n.getHours();if(h<S.heures[0]||h>=S.heures[1])return v;return v+Math.max(0,Math.floor((Date.now()-(S.at||Date.now()))/60000))}
+ // état du délai qui court : '', g (vert), o (orange), r (rouge)
+ function run(i){
+  if(done(i))return {t:'Terminé'+(i.d_res!=null?' · réponse en '+fm(i.d_res):''),c:'g'};
+  const p=!i.d_prise_fin,v=live(i,p?i.d_prise:i.d_res),th=((S.rel&&S.rel.couleurs)||{prise:[15,30],rep:[60,240]})[p?'prise':'rep'];
+  const c=i.reporte?'':i.veille?'r':v==null?'':v<th[0]?'g':v<th[1]?'o':'r';
+  return {t:(p?'Prise en charge':'Réponse')+' · '+fm(v),c:c,v:v,p:p}}
+ const alc=i=>{if(S.arch||done(i)||i.reporte)return '';const c=run(i).c;return c==='r'?'al-late':c==='o'?'al-warn':''};
+ const repTxt=i=>'Remis à demain par '+e(i.reporte_prenom||pname(i.reporte_par));
  function card(i){
-  const c=stl(i.etat)[2];
-  const pd=i.d_prise_fin?fm(i.d_prise):'en attente '+fm(i.d_prise);
-  const rd=i.d_res==null?'—':(i.d_res_fin?fm(i.d_res):'en cours '+fm(i.d_res));
-  const dest=(i.destinataires||[]).map(pname).join(', ');
-  return `<div class="svc ${alc(i)}" draggable="${S.arch?'false':'true'}" data-id="${e(i.id)}" style="--sc:${c}"><div class="svr" ${urg(i)?'title="Urgent"':''}>${urg(i)?'<span>Urgent</span>':''}</div><b>${e(i.titre)}</b><div>${chips(i)}</div><div class="svd${i.d_prise_fin?'':' on'}">Prise en charge : ${pd}</div><div class="svd${i.d_res_fin?'':(i.d_res==null?'':' on')}">Résolution : ${rd}</div><div class="svn">${i.nf?i.nf+' pj · ':''}${i.nc?i.nc+' com. · ':''}${dest?'→ '+e(dest):''}</div></div>`}
+  const k=stl(i.etat)[2],x=run(i),rt=(i.routes||[]).map(r=>`<span class="svch r">${e(r)}</span>`).join('');
+  return `<div class="svc ${alc(i)}${done(i)?' svok':''}" draggable="${S.arch?'false':'true'}" data-id="${e(i.id)}" style="--sc:${k}"><div class="svr" ${urg(i)?'title="Urgent"':''}>${urg(i)?'<span>Urgent</span>':''}</div>${i.nom_client||rt?`<div class="svt"><b>${e(i.nom_client||'')}</b><span>${rt}</span></div>`:''}<div class="svtit">${e(nom(i))}</div><div class="svd c-${x.c||'n'}">${x.t}</div>${i.reporte&&!done(i)?`<div class="svrp"><span>${repTxt(i)}</span>${canStep(i)?'<button type="button" class="s" data-rep="1">Reprendre</button>':''}</div>`:''}<div class="svn">Commentaires : ${i.nc||0}</div></div>`}
  function bar(){
   const h=S.host;if(!h)return;let ab=q('#svAbr');
   if(!ab){const pg=h.closest('.pg'),tabs=pg&&pg.querySelector('.pgtabs');if(tabs){tabs.classList.add('svtabs');ab=document.createElement('div');ab.className='abr';ab.id='svAbr';tabs.appendChild(ab)}}
@@ -2399,40 +2485,42 @@ function navBadges(){
   ab.innerHTML=(adm()?`<button class="s" data-a="motifs">${IC.tag}Motifs</button><button class="s" data-a="arch">${S.arch?IC.unarchive+'Voir les actifs':IC.archive+'Voir les archives'}</button>`:'')+(canW()&&!S.arch?`<button class="s" data-a="new">${IC.plus}Nouveau</button>`:'');
   ab.onclick=ev=>{const a=ev.target.closest('[data-a]');if(!a)return;const k=a.dataset.a;if(k==='new')openForm();else if(k==='arch'){S.arch=!S.arch;reload()}else if(k==='motifs')openMotifs()};
  }
- function late(i){return !i.prise_le&&i.etat==='A_FAIRE'}
- const done=i=>i.etat==='TERMINE'||i.etat==='VALIDE';
- function lvl(i){const set=(S.rel&&S.rel[urg(i)?'urgent':'normal'])||[];let l=0;set.forEach((x,k)=>{if(x.h>0&&(i.d_age||0)>=x.h*60)l=k+1});return l}
- function old(i){const c=new Date(i.cree_le),n=new Date();return c<new Date(n.getFullYear(),n.getMonth(),n.getDate())}
- function alc(i){if(S.arch||done(i))return '';if(old(i))return 'alv';const l=lvl(i);return l?'al'+l:''}
- function alz(){
-  if(S.arch)return '';const n=k=>S.items.filter(i=>alc(i)===k).length,G=S.items.filter(late).length,Y=n('al1'),O=n('al2'),R=n('al3'),V=n('alv'),T=Y+O+R+V;
-  if(!T&&!G)return '';
-  const li=(c,l,v)=>v?'<div class="'+c+'">'+l+' · '+v+'</div>':'';
-  return '<details class="alz svalz"'+(S.alzOpen?' open':'')+'><summary>Alertes <small>'+(T||G)+'</small></summary><div class="alb">'+li('v','De la veille (ou avant), non terminées',V)+li('u','3ème délai dépassé',R)+li('w','2ème délai dépassé',O)+li('y','1er délai dépassé',Y)+li('g','Non prises en charge',G)+'</div></div>'}
  function draw(){
   const h=S.host;if(!h||!h.isConnected)return;
   bar();
-  const note=`<p class="m svnote">Délais comptés de ${S.heures[0]} h à ${S.heures[1]} h, du lundi au vendredi (hors jours fériés).${S.arch?' · Archives':' Jaune, orange, rouge : 1er, 2ème, 3ème délai dépassé. Rouge clignotant : demande de la veille ou avant.'}</p>`;
-  let body;
-  if(S.arch)body=`<div class="svl">${S.items.map(card).join('')||'<div class="empty">Aucune archive</div>'}</div>`;
-  else{const cols=S.showV?[ST[4]]:ST.slice(0,4),nV=S.items.filter(i=>i.etat==='VALIDE').length,tt=S.showV?'Cacher les demandes validées':'Voir les demandes validées';body=`<div class="svg${S.showV?' v':''}">${cols.map(([k,l,c])=>{const L=S.items.filter(i=>i.etat===k);return `<div class="svcol" data-st="${k}"><div class="svh" style="--c:${c}">${l} <small>${L.length}</small></div>${L.map(card).join('')}</div>`}).join('')}<div class="svside" data-st="VALIDE" role="button" tabindex="0" title="${tt}" aria-label="${tt}"><span class="svsc">${IC.chev}</span><span class="svst2">${tt} · ${nV}</span></div></div>`}
-  h.innerHTML=alz()+note+body;
-  const az=h.querySelector('.svalz');if(az)az.addEventListener('toggle',()=>{S.alzOpen=az.open});
+  const note=`<p class="m svnote">Délais comptés de ${S.heures[0]} h à ${S.heures[1]} h, du lundi au vendredi (hors jours fériés).${S.arch?' · Archives':''}</p>`;
+  const body=S.arch?`<div class="svl">${S.items.map(card).join('')||'<div class="empty">Aucune archive</div>'}</div>`
+   :`<div class="svg">${ST.map(([k,l,c])=>{const L=S.items.filter(i=>i.etat===k);return `<div class="svcol" data-st="${k}"><div class="svh" style="--c:${c}">${l} <small>${L.length}</small></div>${L.map(card).join('')}</div>`}).join('')}</div>`;
+  h.innerHTML=note+body;
   if(!h._sv){h._sv=1;
-   h.addEventListener('click',ev=>{const c=ev.target.closest('[data-cp]');if(c){ev.stopPropagation();cp(c.dataset.cp);return}if(ev.target.closest('a'))return;const sd=ev.target.closest('.svside');if(sd){S.showV=!S.showV;draw();return}const cd=ev.target.closest('.svc');if(cd)openDetail(cd.dataset.id)});
+   h.addEventListener('click',ev=>{const c=ev.target.closest('[data-cp]');if(c){ev.stopPropagation();cp(c.dataset.cp);return}if(ev.target.closest('a'))return;const rp=ev.target.closest('[data-rep]');if(rp){ev.stopPropagation();report(rp.closest('.svc').dataset.id,true);return}const cd=ev.target.closest('.svc');if(cd)openDetail(cd.dataset.id)});
    h.addEventListener('dragstart',ev=>{const c=ev.target.closest('.svc');if(!c||S.arch)return;ev.dataTransfer.setData('text/plain',c.dataset.id);ev.dataTransfer.effectAllowed='move';c.classList.add('drg')});
    h.addEventListener('dragend',()=>{h.querySelectorAll('.drg,.ov').forEach(x=>x.classList.remove('drg','ov'))});
-   h.addEventListener('dragover',ev=>{const c=ev.target.closest('.svcol,.svside');if(!c)return;ev.preventDefault();h.querySelectorAll('.ov').forEach(x=>{if(x!==c)x.classList.remove('ov')});c.classList.add('ov')});
-   h.addEventListener('drop',ev=>{const c=ev.target.closest('.svcol,.svside');if(!c)return;ev.preventDefault();c.classList.remove('ov');const id=ev.dataTransfer.getData('text/plain');if(id)move(id,c.dataset.st)});
+   h.addEventListener('dragover',ev=>{const c=ev.target.closest('.svcol');if(!c)return;ev.preventDefault();h.querySelectorAll('.ov').forEach(x=>{if(x!==c)x.classList.remove('ov')});c.classList.add('ov')});
+   h.addEventListener('drop',ev=>{const c=ev.target.closest('.svcol');if(!c)return;ev.preventDefault();c.classList.remove('ov');const id=ev.dataTransfer.getData('text/plain');if(id)move(id,c.dataset.st)});
   }
  }
+ setInterval(()=>{const h=S.host;if(h&&h.isConnected&&!S.arch&&!S.F&&!document.hidden&&!h.querySelector('.drg'))draw()},60000);
  async function reload(){try{await load();draw()}catch(x){toast(x.message)}}
  setInterval(()=>{const h=S.host;if(h&&h.isConnected&&!S.arch&&!S.F&&!document.hidden&&!h.querySelector('.drg'))load().then(draw).catch(()=>{})},300000);
  window.svRefresh=()=>{S.loaded=false;if(S.host&&S.host.isConnected)reload()};
- async function move(id,to){const i=S.items.find(x=>x.id===id);if(!i||i.etat===to)return;if(!canMove(i,to)){toast(to==='VALIDE'?'Validation : propriétaire ou admin, depuis Terminé':'Déplacement impossible');return}const old=i.etat;i.etat=to;draw();try{await api('suivi_state',{id,etat:to});}catch(x){i.etat=old;toast(x.message)}await reload();if(S.cur===id)refD()}
+ async function move(id,to){const i=S.items.find(x=>x.id===id);if(!i||i.etat===to)return;if(!canStep(i)){toast('Déplacement impossible');return}
+  const old=Object.assign({},i);i.etat=to;if(to!=='A_FAIRE'&&!i.d_prise_fin){i.d_prise_fin=true;i.prise_le=new Date().toISOString();i.d_res=0}i.d_res_fin=to==='TERMINE';i.resolu_le=to==='TERMINE'?new Date().toISOString():'';i.reporte=false;i.veille=to==='TERMINE'?false:i.veille;draw();if(S.cur===id&&!S.F)drawD();FX.on('mod',FX.card(id));
+  try{await api('suivi_state',{id,etat:to})}catch(x){Object.assign(i,old);toast(x.message)}await reload();if(S.cur===id)refD()}
+ async function report(id,annuler){const i=S.items.find(x=>x.id===id);if(!i)return;const old=Object.assign({},i);i.reporte=!annuler;if(!annuler){i.reporte_prenom=ME.prenom||'';i.reporte_par=me();i.veille=false}draw();if(S.cur===id&&!S.F)drawD();FX.on('mod',FX.card(id));
+  try{await api('suivi_report',{id,annuler:!!annuler})}catch(x){Object.assign(i,old);toast(x.message)}await reload();if(S.cur===id&&!S.F)drawD()}
+ async function retirer(i,kind,action){closeM();FX.out(kind,FX.card(i.id));const av=S.items;S.items=S.items.filter(x=>x.id!==i.id);draw();try{await api(action,{id:i.id})}catch(x){S.items=av;draw();toast(x.message)}await reload()}
+ function closeSteps(){const m=q('#mBand');if(m)m.classList.remove('on')}
+ function steps(i){const m=q('#mBand'),b=q('#band'),ci=ST.findIndex(s=>s[0]===i.etat);
+  const wh=(k,n)=>{if(n===ci)return i.etat_le?`<b>${e(pname(i.etat_par))}</b>${fd(i.etat_le)}`:'—';if(k==='A_FAIRE')return `<b>${e(pname(i.cree_par))}</b>${fd(i.cree_le)}`;return '—'};
+  b.innerHTML=`<div class="bt"><b>${e(nom(i))}</b><span>Choisis l'étape</span><button class="ico sm" id="bandX" aria-label="Fermer" title="Fermer">${IC.close}</button></div><div class="flow">${ST.map(([k,l],n)=>`<button class="stp ${n<ci?'done':''} ${n===ci?'cur':''}" data-sv="${k}"><span class="dot">${n<ci?IC.check:n+1}</span>${l}<span class="wh">${wh(k,n)}</span></button>`).join('')}</div>`;
+  q('#bandX').onclick=closeSteps;
+  b.onclick=ev=>{const o=ev.target.closest('.stp');if(!o||o.classList.contains('cur'))return;closeSteps();move(i.id,o.dataset.sv)};
+  m.classList.add('on')}
+ document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&q('#band .stp[data-sv]'))setTimeout(closeSteps,0)});
  // ---- fenêtre (mêmes composants que les autres pages)
- function mod(){let o=q('#svM');if(!o){o=document.createElement('div');o.className='modal';o.id='svM';o.innerHTML='<div class="sheet wide" id="svS"></div>';document.body.appendChild(o);o.addEventListener('mousedown',ev=>{if(ev.target===o&&!S.F)closeM()});o.addEventListener('click',onM);o.addEventListener('keydown',onK);o.addEventListener('change',onCh);document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&o.classList.contains('on')&&!q('#mAsk.on')){if(S.F)return;closeM()}})}o.classList.add('on');return q('#svS')}
- function closeM(){const o=q('#svM');if(o)o.classList.remove('on');S.cur=null;S.F=null;S.cmOpen=false;S.cmD=''}
+ function mod(){let o=q('#svM');if(!o){o=document.createElement('div');o.className='modal';o.id='svM';o.innerHTML='<div class="sheet wide" id="svS"></div>';document.body.appendChild(o);o.addEventListener('mousedown',ev=>{if(ev.target===o&&!S.F)closeM()});o.addEventListener('click',onM);o.addEventListener('keydown',onK);o.addEventListener('change',onCh);document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&o.classList.contains('on')&&!q('#mAsk.on')&&!q('#mBand.on')){if(S.F)return;closeM()}})}o.classList.add('on');return q('#svS')}
+ function closeM(){const o=q('#svM');if(o)o.classList.remove('on');if(q('#band .stp[data-sv]'))closeSteps();S.cur=null;S.F=null;S.cmOpen=false;S.cmD=''}
  const hd=(t,x,close)=>`<div class="sh"><div class="tt"><h3>${e(t)}</h3></div>${x||''}<button class="ico sm" data-a="${close||'close'}" title="Fermer" aria-label="Fermer">${IC.close}</button></div>`;
  const row=(l,v)=>`<dt>${l}</dt><dd>${v}</dd>`;
  async function openDetail(id){S.cur=id;S.F=null;S.cmOpen=false;S.cmD='';const c=S.pre[id];S.fl=c?c.fl:[];S.cm=c?c.cm:[];mod();drawD();fetchD(id,true)}
@@ -2440,14 +2528,22 @@ function navBadges(){
  async function refD(){if(!S.cur)return;try{const [fl,cm]=await Promise.all([api('suivi_files',{id:S.cur}),api('suivi_comments',{id:S.cur})]);S.fl=fl||[];S.cm=cm||[];S.pre[S.cur]={fl:S.fl,cm:S.cm}}catch(x){}drawD()}
  function drawD(){
   const i=S.items.find(x=>x.id===S.cur);const o=q('#svS');if(o)o.classList.remove('wbx');if(!o)return;if(!i){closeM();return}
-  const w=!i.archive;
-  const acts=(w&&(adm()||own(i))?`<button class="ico sm" data-a="edit" title="Modifier" aria-label="Modifier">${IC.pencil}</button>`:'')+(w&&(adm()||(own(i)&&!isP()))?`<button class="ico sm warn dng" data-a="del" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>`:'')+(adm()&&i.etat==='VALIDE'&&w?`<button class="ico sm" data-a="archive" title="Archiver" aria-label="Archiver">${IC.archive}</button>`:'');
-  const sb=`<div class="vsel svsel">${ST.map(([k,l])=>`<button type="button" class="s vb${i.etat===k?' on':''}" data-a="st" data-s="${k}" ${(i.etat===k||!canMove(i,k))?'disabled':''}>${l}</button>`).join('')}</div>`;
+  const w=!i.archive,x=run(i);
+  const acts=(w&&(adm()||own(i))?`<button class="ico sm" data-a="edit" title="Modifier" aria-label="Modifier">${IC.pencil}</button>`:'')+(w&&(adm()||(own(i)&&!isP()))?`<button class="ico sm warn dng" data-a="del" title="Supprimer" aria-label="Supprimer">${IC.trash}</button>`:'')+(w&&done(i)&&(adm()||own(i))?`<button class="ico sm" data-a="archive" title="Archiver" aria-label="Archiver">${IC.archive}</button>`:'');
+  const stat=`<div class="dstat"><div class="dl">${w&&!done(i)&&!i.reporte&&canStep(i)?'<button type="button" class="s" data-a="report">Remettre à demain</button>':''}${i.reporte&&!done(i)?`<span class="svrpt">${repTxt(i)}</span>${canStep(i)?'<button type="button" class="s" data-a="reprendre">Reprendre</button>':''}`:''}</div><div class="dr"><span class="tag ${done(i)?'ok':i.etat==='A_FAIRE'?'':'go'}">${stl(i.etat)[1]}</span>${canStep(i)?`<button class="s go stp" data-a="steps" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}</button>`:''}</div></div>`;
+  const al=alc(i),pb=al?'svpb '+al:'';
+  const rowp=(l,v,on)=>on?`<dt class="${pb}">${l}</dt><dd class="${pb}">${v}</dd>`:row(l,v);
+  const chip=b=>`<span class="svch"><a href="${sh(b)}" target="_blank" rel="noopener">${e(b)}</a><i data-cp="${e(b)}" title="Copier" aria-label="Copier">${IC.copy}</i></span>`;
+  const dest=(i.destinataires||[]).map(pname).join(', ');
+  const dl=(i.nom_client?row('Nom du client',e(i.nom_client)):'')+row('Priorité',urg(i)?'<b style="color:#E5484D">Urgent</b>':'Normal')+((i.bordereaux||[]).length?row('Bordereau(x)',(i.bordereaux||[]).map(chip).join('')):'')+(i.motif?row('Motif',e(i.motif)):'')+((i.routes||[]).length?row('Route(s)',i.routes.map(r=>`<span class="svch r">${e(r)}</span>`).join('')):'')+(i.details?row('Détails','<span style="white-space:pre-wrap">'+e(i.details)+'</span>'):'')+row('Demande',fd(i.cree_le)+' · '+e(pname(i.cree_par)))
+   +(i.prise_le?row('Prise en charge',fd(i.prise_le)+' · '+fm(i.d_prise)):done(i)?'':rowp('Prise en charge','en attente depuis '+fm(live(i,i.d_prise)),true))
+   +(done(i)&&i.resolu_le?row('Réponse',fd(i.resolu_le)+' · '+fm(i.d_res)):i.prise_le&&!done(i)?rowp('Réponse','en cours depuis '+fm(live(i,i.d_res)),true):'')
+   +(dest?row('Destinataires',e(dest)):'');
   const ph=S.fl.map((f,n)=>{const isI=/^image\//.test(f.mime||'');const th=f.thumb?(String(f.thumb).startsWith('data:')?f.thumb:'data:image/jpeg;base64,'+f.thumb):'';return `<div class="ph" data-a="fopen" data-i="${n}" title="${e(f.nom)}">${isI&&th?`<img alt="${e(f.nom)}" src="${th}">`:`<span class="m" style="margin:auto;padding:4px;text-align:center;word-break:break-all">${e(f.nom)}</span>`}${w?`<button class="x" data-a="fdel" data-i="${n}" aria-label="Supprimer" title="Supprimer">${IC.close}</button>`:''}</div>`}).join('');
   const add=w?`<label class="ph add" title="Ajouter des pièces jointes">${IC.camera}Ajouter<input type="file" id="svFu" multiple hidden></label>`:'';
   const cml=S.cm.length?S.cm.map((c,n)=>`<div class="cmr"><div class="cmw"><b>${e(pname(c.par))}</b><small>${fd(c.le)}</small></div><i class="cmv"></i><div class="cmx">${e(c.texte)}</div>${(adm()||String(c.par).toLowerCase()===me())?`<button class="ico sm warn" data-a="cmdel" data-i="${n}" title="Supprimer le commentaire" aria-label="Supprimer le commentaire">${IC.trash}</button>`:''}</div>`).join(''):'<div class="m">Aucun commentaire.</div>';
-  o.innerHTML=hd(i.titre,acts)+`<div class="scg"><div class="scl"><div>${sb}</div><dl class="det">${row('Priorité',urg(i)?'<b style="color:#E5484D">Urgent</b>':'Normal')}${(i.bordereaux||[]).length?row('Bordereau(x)',(i.bordereaux||[]).map(b=>`<span class="svch"><a href="${sh(b)}" target="_blank" rel="noopener">${e(b)}</a><i data-cp="${e(b)}" title="Copier" aria-label="Copier">${IC.copy}</i></span>`).join('')):''}${i.motif?row('Motif',e(i.motif)):''}${(i.routes||[]).length?row('Route(s)',i.routes.map(r=>`<span class="svch r">${e(r)}</span>`).join('')):''}${i.details?row('Détails','<span style="white-space:pre-wrap">'+e(i.details)+'</span>'):''}${row('Demande',fd(i.cree_le)+' · '+e(pname(i.cree_par)))}${row('Prise en charge',i.prise_le?fd(i.prise_le)+' · '+fm(i.d_prise):'— (en attente '+fm(i.d_prise)+')')}${row('Résolution',i.resolu_le?fd(i.resolu_le)+' · '+fm(i.d_res):'—')}${row('Validation',i.valide_le?fd(i.valide_le)+(i.valide_par?' · '+e(pname(i.valide_par)):''):'—')}${row('Destinataires',(i.destinataires||[]).map(x=>e(pname(x))).join(', ')||'—')}</dl>
-  <div id="xBlocks"><div class="xh">Pièces jointes${S.fl.length?' · '+S.fl.length:''}</div><div class="pgrid">${ph}${add}</div></div></div><div class="scr">
+  o.innerHTML=hd(nom(i),acts)+`<div class="scg"><div class="scl"><div>${stat}</div><dl class="det">${dl}</dl>
+   <div id="xBlocks"><div class="xh">Pièces jointes${S.fl.length?' · '+S.fl.length:''}</div><div class="pgrid">${ph}${add}</div></div></div><div class="scr">
   <div class="cmb"><div class="cmbh"><span>Commentaires${S.cm.length?' · '+S.cm.length:''}</span>${w&&!S.cmOpen?`<button class="ico sm" data-a="cmnew" title="Ajouter un commentaire" aria-label="Ajouter un commentaire">${IC.cmplus}</button>`:''}</div>${w&&S.cmOpen?`<div class="cmi cmn"><textarea id="svCt" rows="4" maxlength="1000" placeholder="Écris ton commentaire…">${e(S.cmD)}</textarea><div class="cma"><button class="s" data-a="cmcancel">Annuler</button><button class="p" data-a="cmadd">Enregistrer</button></div></div>`:''}<div class="cml">${cml}</div></div></div></div>`}
  async function fget(f){return api('suivi_file_get',{id:f.id})}
  async function onM(ev){
@@ -2457,7 +2553,9 @@ function navBadges(){
   if(a==='fdel'||a==='cmdel'||a==='f_fdel')ev.stopPropagation();
   try{
   if(a==='close')closeM();
-  else if(a==='st'&&i){await move(i.id,t.dataset.s)}
+  else if(a==='steps'&&i)steps(i);
+  else if(a==='report'&&i){await report(i.id,false)}
+  else if(a==='reprendre'&&i){await report(i.id,true)}
   else if(a==='cmnew'){S.cmOpen=true;drawD();const x=q('#svCt');if(x)x.focus()}
   else if(a==='cmcancel'){S.cmOpen=false;S.cmD='';drawD()}
   else if(a==='cmadd'){const v=q('#svCt').value.trim();if(!v)return;await wait(()=>api('suivi_comment_add',{id:S.cur,texte:v}),true);S.cmOpen=false;S.cmD='';await reload();await refD()}
@@ -2465,8 +2563,8 @@ function navBadges(){
   else if(a==='fdel'){if(await ask('Supprimer la pièce jointe ?','« '+S.fl[n].nom+' » sera définitivement supprimée.','Supprimer')){await api('suivi_file_del',{id:S.fl[n].id,ref_id:S.cur});await reload();await refD()}}
   else if(a==='fopen'){const f=S.fl[n];const r=await wait(()=>fget(f),true);if(/^image\//.test(r.mime||'')){const l=document.createElement('div');l.className='svlb';l.innerHTML=`<img src="data:${r.mime};base64,${r.b64}"><a download="${e(r.nom)}" href="data:${r.mime};base64,${r.b64}">Télécharger</a>`;l.onclick=ev2=>{if(!ev2.target.closest('a'))l.remove()};document.body.appendChild(l)}else{const bin=atob(r.b64),u=new Uint8Array(bin.length);for(let k=0;k<bin.length;k++)u[k]=bin.charCodeAt(k);const url=URL.createObjectURL(new Blob([u],{type:r.mime}));const x=document.createElement('a');x.href=url;x.download=r.nom;document.body.appendChild(x);x.click();x.remove();setTimeout(()=>URL.revokeObjectURL(url),4000)}}
   else if(a==='edit'&&i)openForm(i);
-  else if(a==='del'&&i){if(await ask('Supprimer ?','« '+i.titre+' » sera définitivement supprimé.','Supprimer')){await api('suivi_delete',{id:i.id});closeM();await reload()}}
-  else if(a==='archive'&&i){if(await ask('Archiver ?','« '+i.titre+' » sera archivé.','Archiver')){await api('suivi_archive',{id:i.id});closeM();await reload()}}
+  else if(a==='del'&&i){if(await ask('Supprimer ?','« '+nom(i)+' » sera définitivement supprimé.','Supprimer')){await retirer(i,'del','suivi_delete')}}
+  else if(a==='archive'&&i){if(await ask('Archiver ?','« '+nom(i)+' » sera archivé.','Archiver')){await retirer(i,'arch','suivi_archive')}}
   else if(a&&a[0]==='f'&&a[1]==='_')formAct(a,t);
   else if(a==='mo_save'){const m=q('#svMo').value.split('\n').map(x=>x.trim()).filter(Boolean);await api('suivi_motifs_set',{motifs:m});S.motifs=m;toast('Motifs enregistrés');closeM()}
   }catch(x){toast(x.message||'Erreur')}
@@ -2485,9 +2583,9 @@ function navBadges(){
   if(b64.length>11e6)throw new Error('Fichier trop volumineux (8 Mo max)');
   await api('suivi_file_add',{id,name:f.name,mime,b64,thumb})}
  function openForm(i){
-  S.F=i?{id:i.id,type:i.type,titre:i.titre,details:i.details||'',bordereaux:(i.bordereaux||[]).slice(),routes:(i.routes||[]).slice(),dest:(i.destinataires||[]).slice(),prio:urg(i)?3:1,motifSel:S.motifs.includes(i.motif)||!i.motif?(i.motif||S.motifs[0]||''):'__o',motifC:S.motifs.includes(i.motif)?'':(i.motif||''),files:[]}:{id:null,type:'demande',titre:'',details:'',bordereaux:[],routes:[],dest:[],prio:1,motifSel:S.motifs[0]||'__o',motifC:'',files:[]};
+  S.F=i?{id:i.id,type:i.type,titre:i.titre,nc:i.nom_client||'',details:i.details||'',bordereaux:(i.bordereaux||[]).slice(),routes:(i.routes||[]).slice(),dest:(i.destinataires||[]).slice(),prio:urg(i)?3:1,motifSel:S.motifs.includes(i.motif)||!i.motif?(i.motif||S.motifs[0]||''):'__o',motifC:S.motifs.includes(i.motif)?'':(i.motif||''),files:[]}:{id:null,type:'demande',titre:'',nc:'',details:'',bordereaux:[],routes:[],dest:[],prio:1,motifSel:S.motifs[0]||'__o',motifC:'',files:[]};
   mod();draw2()}
- function syncF(){const F=S.F;if(!F||!q('#svT'))return;F.titre=q('#svT').value;F.details=q('#svDt').value;
+ function syncF(){const F=S.F;if(!F||!q('#svT'))return;F.titre=q('#svT').value;F.details=q('#svDt').value;if(q('#svNc'))F.nc=q('#svNc').value;
   if(F.type==='demande'){const b=q('#svBi'),r=q('#svRi'),m=q('#svMs'),mc=q('#svMc');if(b){b.value.split(/[\s,;]+/).map(x=>x.trim()).filter(Boolean).forEach(x=>{if(!F.bordereaux.includes(x))F.bordereaux.push(x)});b.value=''}if(r){const v=r.value.trim();if(v&&!F.routes.includes(v))F.routes.push(v);r.value=''}if(m)F.motifSel=m.value;if(mc)F.motifC=mc.value}}
  function routesList(){const s=new Set();try{(cache.ENTREPRISES||[]).forEach(r=>entR(r).forEach(x=>{const n=String(x.nom||'').trim();if(n)s.add(n)}))}catch(x){}S.items.forEach(i=>(i.routes||[]).forEach(r=>s.add(r)));return [...s].sort()}
  function draw2(){const F=S.F,o=q('#svS');if(!F||!o)return;
@@ -2497,6 +2595,7 @@ function navBadges(){
   o.innerHTML=hd((F.id?'Modifier':'Nouveau')+(d?' demande':' information'),`<button class="ico sm ok ic0" data-a="f_save" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button>`,'f_cancel')+
   `<dl class="det"><dt>Type</dt><dd class="ed">${vs('f_type',[['info','Information'],['demande','Demande']],F.type)}</dd>
   <dt>Titre${d?' <small>(facultatif)</small>':''}</dt><dd class="ed"><input id="svT" value="${e(F.titre)}" autocomplete="off"></dd>
+  <dt>Nom du client</dt><dd class="ed"><input id="svNc" class="up${F.ncAuto&&F.nc===F.ncAuto?' wbauto':''}" value="${e(F.nc)}" autocomplete="off" style="text-transform:uppercase"></dd>
   ${d?`<dt>Bordereau(x)</dt><dd class="ed"><div>${F.bordereaux.map((b,n)=>`<span class="svch">${e(b)}<i data-a="f_bdel" data-i="${n}" aria-label="Retirer">${IC.close}</i></span>`).join('')}</div><input id="svBi" placeholder="Numéro, puis Entrée (plusieurs possibles)" autocomplete="off"></dd>
   <dt>Motif</dt><dd class="ed"><select id="svMs">${S.motifs.map(m=>`<option${F.motifSel===m?' selected':''}>${e(m)}</option>`).join('')}<option value="__o"${F.motifSel==='__o'?' selected':''}>Autre…</option></select>${F.motifSel==='__o'?`<input id="svMc" placeholder="Motif personnalisé" value="${e(F.motifC)}" style="margin-top:6px">`:''}</dd>
   <dt>Route(s)</dt><dd class="ed"><div>${F.routes.map((b,n)=>`<span class="svch r">${e(b)}<i data-a="f_rdel" data-i="${n}" aria-label="Retirer">${IC.close}</i></span>`).join('')}</div><input id="svRi" list="svRl" placeholder="Route, puis Entrée" autocomplete="off"><datalist id="svRl">${routesList().map(r=>`<option value="${e(r)}">`).join('')}</datalist></dd>`:''}
@@ -2504,7 +2603,9 @@ function navBadges(){
   <dt>Priorité</dt><dd class="ed">${vs('f_prio',[['1','Normal'],['3','Urgent']],String(F.prio))}</dd>
   <dt>Destinataires</dt><dd class="ed">${S.partners.map(p=>`<label class="chk"><input type="checkbox" data-dest="${e(p.email)}"${F.dest.includes(p.email)?' checked':''}>${e(p.prenom||p.email)}</label>`).join('')||'<span class="m">Aucun utilisateur partenaire</span>'}</dd></dl>
   ${F.id?'':`<div id="xBlocks"><div class="xh">Pièces jointes</div><div class="pgrid">${F.files.map((f,n)=>`<div class="ph" title="${e(f.name)}"><span class="m" style="margin:auto;padding:4px;text-align:center;word-break:break-all">${e(f.name)}</span><button class="x" data-a="f_fdel" data-i="${n}" aria-label="Retirer" title="Retirer">${IC.close}</button></div>`).join('')}<label class="ph add" title="Ajouter des pièces jointes">${IC.camera}Ajouter<input type="file" id="svFq" multiple hidden></label></div></div>`}`;wbSv()}
- function wbSv(){const F=S.F,o=q('#svS');if(!F||!o||F.type!=='demande')return;const run=window.wbMulti(o,()=>{const b=q('#svBi');return F.bordereaux.concat(b?b.value.split(/[\s,;]+/):[])});const b=q('#svBi');if(b&&run)b.addEventListener('input',run)}
+ function wbSv(){const F=S.F,o=q('#svS');if(!F||!o||F.type!=='demande')return;const nc=q('#svNc');if(nc)nc.addEventListener('input',()=>{F.ncAuto='';nc.classList.remove('wbauto')});
+  const fill=items=>{const f=q('#svNc');if(!f||S.F!==F)return;const a=items.find(x=>x.module!=='SUIVI'&&x.nom),b=items.find(x=>x.module==='SUIVI'&&x.nom_client),v=String(a?a.nom:b?b.nom_client:'').toUpperCase();if(f.value.trim()&&f.value!==F.ncAuto)return;if(!v&&!F.ncAuto)return;f.value=v;F.nc=v;F.ncAuto=v;f.classList.toggle('wbauto',!!v)};
+  const run=window.wbMulti(o,()=>{const b=q('#svBi');return F.bordereaux.concat(b?b.value.split(/[\s,;]+/):[])},fill);const b=q('#svBi');if(b&&run)b.addEventListener('input',run)}
  window.svClose=()=>closeM();
  window.svNew=async function(){if(!S.loaded)await(S.pending||load());if(!S.loaded)await load();openForm(null)};
  async function formAct(a,t){const F=S.F;if(!F)return;syncF();const v=t.dataset.v,n=+t.dataset.i;
@@ -2518,9 +2619,15 @@ function navBadges(){
    const d=F.type==='demande';const motif=d?(F.motifSel==='__o'?F.motifC.trim():F.motifSel):'';
    if(d&&!F.bordereaux.length){toast('Ajoutez au moins un bordereau');return}
    if(d&&!motif){toast('Choisissez un motif');return}
-   let titre=F.titre.trim();if(!titre){if(!d){toast('Titre obligatoire');return}titre=motif+' · '+F.bordereaux[0]+(F.bordereaux.length>1?' (+'+(F.bordereaux.length-1)+')':'')}
-   const data={type:F.type,titre,bordereaux:d?F.bordereaux:[],motif,routes:d?F.routes:[],details:F.details,priorite:F.prio,destinataires:F.dest};
-   try{let id=F.id;await wait(async()=>{const r=await api('suivi_save',F.id?{id:F.id,data}:{data});if(!id)id=r&&r.id?r.id:r;for(const f of F.files){try{await upl(id,f)}catch(x){toast(x.message)}}},true);S.F=null;await reload();openDetail(id)}catch(x){toast(x.message||'Erreur')}}}
+   const titre=F.titre.trim();if(!titre&&!d){toast('Titre obligatoire');return}
+   const data={type:F.type,titre,nom_client:F.nc.trim().toUpperCase(),bordereaux:d?F.bordereaux:[],motif,routes:d?F.routes:[],details:F.details,priorite:F.prio,destinataires:F.dest};
+   // la case et la fenêtre changent tout de suite, l'enregistrement suit
+   const now=new Date().toISOString(),av=S.items.slice(),files=F.files.slice(),edit=!!F.id,tid=F.id||'tmp_'+Date.now();
+   if(edit){const it=S.items.find(x=>x.id===tid);if(it){const copy=Object.assign({},it,data,{destinataires:data.destinataires,modifie_le:now});S.items=S.items.map(x=>x.id===tid?copy:x)}}
+   else S.items=[Object.assign({id:tid,etat:'A_FAIRE',cree_par:me(),cree_le:now,d_prise:0,d_prise_fin:false,d_res:null,nc:0,nf:files.length},data)].concat(S.items);
+   S.F=null;if(edit){draw();openDetail(tid);FX.on('mod',FX.card(tid))}else{closeM();draw();FX.on('add',FX.card(tid))}
+   try{const r=await api('suivi_save',edit?{id:tid,data}:{data}),id=edit?tid:(r&&r.id?r.id:r);for(const f of files){try{await upl(id,f)}catch(x){toast(x.message)}}await reload()}
+   catch(x){S.items=av;draw();toast(x.message||'Erreur');S.F=F;mod();draw2()}}}
  function openMotifs(){S.F=null;const o=mod();o.innerHTML=hd('Motifs proposés',`<button class="ico sm ok ic0" data-a="mo_save" title="Enregistrer" aria-label="Enregistrer">${IC.check}</button>`)+`<dl class="det"><dt>Motifs</dt><dd class="ed"><textarea id="svMo" rows="8" placeholder="Un motif par ligne">${e(S.motifs.join('\n'))}</textarea></dd></dl>`}
  window.svPreload=function(){if(!(ME.rights&&ME.rights.SUIVI)||S.loaded||S.pending)return;S.pending=load().catch(()=>{}).then(()=>{S.pending=null})};
  window.svInit=function(host){S.host=host;S.arch=false;const ok=()=>S.loaded&&!S.loadedArch;const fail=x=>{if(ok())toast(x.message||'Erreur');else host.innerHTML='<p class="m">'+e(x.message||'Erreur')+'</p>'};
@@ -2535,12 +2642,24 @@ async function warm(now){
   if (!now) { await new Promise(r => setTimeout(r, 2500)); }
   try { const r = await Promise.all([api('profile_get'), api('my_creds')]); PRO = r[0]; CREDS = r[1]; prepQR(); } catch (e) {}
 }
+// Toutes les pages sont préparées en arrière-plan juste après l'ouverture, pour qu'elles s'affichent sans attente
+function preloadPages(){
+  const r = ME.rights, run = f => { try { return Promise.resolve(f()).catch(() => {}); } catch (e) { return Promise.resolve(); } };
+  setTimeout(async () => {
+    const t = [];
+    if (r.PR) t.push(run(() => prLoad()));
+    if (r.ABSENCES) t.push(run(async () => { if (!ABS.rows) { const l = await absLoad(); ABS.rows = l; ABS.t = Date.now(); } }));
+    ['LIBRARY', 'ENTREPRISES', 'DOCUMENTS'].forEach(m => { if (r[m] && !cache[m]) t.push(run(async () => { const l = await fetchList(m, false); if (!cache[m]) cache[m] = l; })); });
+    await Promise.all(t);
+    if (r.CARTE) { run(loadLeaflet); run(dep67); run(zonesData); }
+  }, 1200);
+}
 async function preload(mods){
   await Promise.all(mods.filter(m => !cache[m]).map(async m => { try { cache[m] = await fetchList(m, false); } catch (e) {} drawTiles(); }));
 }
 
-// ------------------------------------------------------------ Pages en colonnes : « Todo » (AWB, DOM, HP, RTO, Retours AA1) et « PPWK » (une colonne par catégorie)
-const TD_MODS = ['AWB', 'DOM', 'HP', 'RTO', 'SPARK'];
+// ------------------------------------------------------------ Pages en colonnes : « Todo » (AWB, DOM, HP, RTO, Spark à ouvrir) et « PPWK » (une colonne par catégorie)
+const TD_MODS = ['AWB', 'RTO', 'DOM', 'HP', 'SPARK'];
 const TD_COL = {AWB: '#2F6FDE', DOM: '#9668f0', HP: '#ff8a1f', RTO: '#00aabe', SPARK: '#2fb36b'};
 const isAwb = m => m === 'AWB' || m === 'PPWK';                 // un dossier PPWK a les mêmes champs et étapes qu'un AWB
 const isPpwkCat = c => String(c.groupe || '').toUpperCase() === 'PPWK';
@@ -2553,11 +2672,13 @@ const tdCols = (b = tdBoard) => b === 'PPWK'
   : TD_MODS.filter(m => ME.rights[m]).map(m => ({id: m, m: m, label: MODS[m].label, color: TD_COL[m]}));
 const tdMods = () => [...new Set(tdCols().map(c => c.m))];
 const tdKey = m => m + (tdView === 'arch' ? '_a' : '');
+// HP encore en attente alors que J+3 est atteint
+function hpDu(r){ if (r.etape !== 'EN_ATTENTE' || r.paye === true) return false; const d = dayDiff(r.j3); return d !== null && d <= 0; }
 // Urgence d'une carte : 0 = en retard, 1 = à faire aujourd'hui, 2 = le reste
 function tdRank(m, r){
   if (r.archive === true) return 2;
   if (m === 'DOM') { const a = domAlert(r); return ['J1', 'J4', 'J10'].some(k => a[k] === 'late') ? 0 : ['J1', 'J4', 'J10'].some(k => a[k] === 'warn') ? 1 : 2; }
-  if (m === 'HP' && r.etape === 'OUVRIR_SPARK') { const d = dayDiff(r.j3); return d !== null && d < 0 ? 0 : 1; }
+  if (m === 'HP' && hpDu(r)) return dayDiff(r.j3) < 0 ? 0 : 1;
   return 2;
 }
 // Dossiers d'une colonne : {act: en cours (ou archives), done: terminés, affichés en bas}
@@ -2634,32 +2755,19 @@ function todoBadges(){
     const b = document.querySelector(`#seg .mod[data-m="${id}"]`); if (!b) return;
     let w = b.querySelector('.tdn'); if (!w) { w = document.createElement('span'); w.className = 'tdn'; b.appendChild(w); }
     let a = 0, c = 0;
-    ms.filter(m => ME.rights[m]).forEach(m => (cache[m] || []).forEach(r => { if (r.etape === 'A_FAIRE' || r.etape === 'OUVRIR_SPARK') a++; else if (r.etape === 'EN_COURS') c++; }));
+    ms.filter(m => ME.rights[m]).forEach(m => (cache[m] || []).forEach(r => { if (r.etape === 'A_FAIRE' || hpDu(r)) a++; else if (r.etape === 'EN_COURS') c++; }));
     const n = v => v > 99 ? '99+' : v;
-    const h = (a ? `<i class="r" title="À faire : ${a}">${n(a)}</i>` : '') + (c ? `<i class="b" title="En cours : ${c}">${n(c)}</i>` : '');
+    const h = ms.some(m => (cache[m] || []).some(r => tdRank(m, r) < 2)) ? '<i class="r" title="Alerte"></i>' : '';
     if (w.innerHTML !== h) w.innerHTML = h;
   });
 }
-// HP « Ouvrir Spark » : crée le Retour AA1 pré-rempli puis l'ouvre pour le compléter
-async function hpRetour(r){
-  if (!(await ask('Créer le « Retour AA1 » ?', 'Il sera pré-rempli avec le bordereau et le nom. Le dossier HP passera à « Terminé ».', 'Créer'))) return;
-  try {
-    const id = await wait(async () => {
-      const nid = await api('hp_spark', {id: r.id});
-      const [hp, sp] = await Promise.all([api('list', {module: 'HP', archives: false}), api('list', {module: 'SPARK', archives: false})]);
-      cache.HP = hp; cache.SPARK = sp; return nid;
-    }, true);
-    closeDet(); showArch = false; await openMod('SPARK');
-    const n = (cache.SPARK || []).find(x => x.id === id); if (n) openDetail(n, true);
-  } catch (e) { toast(e.message); }
-}
-
+// HP « Ouvrir Spark » : crée le Spark à ouvrir pré-rempli puis l'ouvre pour le compléter
 // ------------------------------------------------------------ Bouton « Ajouter » : on choisit ensuite où créer
 function addChoices(){
   const w = m => ['ecriture', 'admin'].includes(ME.rights[m]);
   const ppwk = () => w('PPWK') ? catsFor('PPWK').filter(c => c.actif !== false).map(c => ({m: 'PPWK', cat: c.id, label: c.libelle, color: '#a66a3e', icon: IC.PPWK})) : [];
   if (todoOn() && tdBoard === 'PPWK' && ppwk().length) return ppwk();
-  const l = [['AWB', 'AWB', '#2F6FDE'], ['SPARK', 'Retour AA1', '#2fb36b'], ['DOM', 'DOM', '#9668f0'], ['HP', 'HP', '#ff8a1f'], ['RTO', 'RTO', '#00aabe'], ['CCTV', 'CCTV', '#7d8696'], ['SUIVI', 'Suivi Spark', '#22b070']]
+  const l = [['AWB', 'AWB', '#2F6FDE'], ['SPARK', 'Spark à ouvrir', '#2fb36b'], ['DOM', 'DOM', '#9668f0'], ['HP', 'HP', '#ff8a1f'], ['RTO', 'RTO', '#00aabe'], ['CCTV', 'CCTV', '#7d8696'], ['SUIVI', 'Suivi Spark', '#22b070']]
     .filter(([m]) => m === 'CCTV' ? !!ME.rights.CCTV : w(m)).map(([m, label, color]) => ({m, label, color, icon: IC[m]}));
   return l.length ? l : ppwk();
 }
@@ -2707,7 +2815,7 @@ function wbLocal(w){
   }));
   return out.sort((a, b) => String(b.maj).localeCompare(String(a.maj)));
 }
-const wbLabel = x => x.module === 'SECURITY' ? 'SCMS' : x.module === 'SUIVI' ? 'Suivi Spark' : x.module === 'SPARK' ? 'Retour AA1' : (MODS[x.module] || {}).label || x.module;
+const wbLabel = x => x.module === 'SECURITY' ? 'SCMS' : x.module === 'SUIVI' ? 'Suivi Spark' : x.module === 'SPARK' ? 'Spark à ouvrir' : (MODS[x.module] || {}).label || x.module;
 const wbWho = c => `<b>${esc(c.par)}</b><small>${fdate(c.le, true)}</small>`;
 function wbItem(x, i){
   const cat = x.categorie_id ? ((ME.categories_awb || []).find(c => c.id === x.categorie_id) || {}).libelle : '';
@@ -2791,7 +2899,7 @@ function wbSplit(sheet, first){
   grid.append(left, side); sheet.classList.add('wbx');
   return side;
 }
-// Fiches (AWB, PPWK, Retour AA1, DOM, HP, RTO, SCMS, CCTV)
+// Fiches (AWB, PPWK, Spark à ouvrir, DOM, HP, RTO, SCMS, CCTV)
 function wbWatch(r, sheet){
   const inp = sheet.querySelector('#f_waybill'), dl = sheet.querySelector('dl.det'); if (!inp || !dl) return;
   const box = wbSplit(sheet, dl), m = cur, auto = {};
@@ -2824,20 +2932,20 @@ function wbWatch(r, sheet){
   run();
 }
 // Suivi Spark : plusieurs bordereaux, pas de champ à préremplir
-window.wbMulti = function(sheet, getList){
+window.wbMulti = function(sheet, getList, onItems){
   const dl = sheet.querySelector('dl.det'); if (!dl) return;
   const box = wbSplit(sheet, dl);
   let last = null, timer = 0;
   const run = () => {
     const ws = [...new Set(getList().map(wbNorm).filter(w => w.length >= 8))], sig = ws.join(','); if (sig === last) return; last = sig; clearTimeout(timer);
-    if (!ws.length) return wbShow(box, [], 'idle');
+    if (!ws.length) { if (onItems) onItems([]); return wbShow(box, [], 'idle'); }
     wbShow(box, [], 'wait');
     timer = setTimeout(async () => {
       try {
         const res = await Promise.all(ws.map(wbFetch)); if (!box.isConnected || last !== sig) return;
         const seen = new Set(), all = [];
         res.forEach(l => l.forEach(x => { if (!seen.has(x.module + x.id)) { seen.add(x.module + x.id); all.push(x); } }));
-        wbShow(box, all, 'ok');
+        wbShow(box, all, 'ok'); if (onItems) onItems(all);
       } catch (e) { if (box.isConnected) wbShow(box, [], 'err'); }
     }, 350);
   };
@@ -2870,9 +2978,9 @@ function homeTile(m){
   const ref = x => m === 'SECURITY' ? (x.waybill || '') : (x.waybill || x.pid || '');
   const big = r.filter(x => kindOfM(m, x) !== 'ok').length, sub = 'en cours';
   const k = {'': 0, go: 0, ok: 0}; r.forEach(x => k[kindOfM(m, x)]++);
-  stepsOf(m).forEach(st => { const n = r.filter(x => x.etape === st.code).length; add(n, kindOfM(m, {etape: st.code}) === 'ok' ? 'à archiver' : esc(st.libelle_etat), kindOfM(m, {etape: st.code}) === 'ok' ? 'ok' : (st.code === 'EN_ATTENTE' ? 'wt' : (((m === 'SPARK' || isAwb(m) || m === 'RTO') && st.code === 'A_FAIRE') || st.code === 'OUVRIR_SPARK' ? 'w' : ''))); });
+  stepsOf(m).forEach(st => { const n = r.filter(x => x.etape === st.code).length; add(n, kindOfM(m, {etape: st.code}) === 'ok' ? 'terminés' : esc(st.libelle_etat), kindOfM(m, {etape: st.code}) === 'ok' ? 'ok' : (st.code === 'EN_ATTENTE' ? 'wt' : (((m === 'SPARK' || isAwb(m) || m === 'RTO') && st.code === 'A_FAIRE') || st.code === 'OUVRIR_SPARK' ? 'w' : ''))); });
   
-  if (m === 'HP') list('Ouvrir Spark', 'w', r.filter(x => x.etape === 'OUVRIR_SPARK'), x => 'J+3 : ' + fdateD(x.j3));
+  if (m === 'HP') list('J+3 atteint', 'w', r.filter(hpDu), x => 'J+3 : ' + fdateD(x.j3));
   if (m === 'DOM') {
     const late = k => r.filter(x => domAlert(x)[k] === 'late'), since = k => x => 'dépassé de ' + (-domAlert(x).d[k]) + ' j';
     list('Contact client en retard', 'u', late('J1'), since('J1'));
@@ -3170,8 +3278,8 @@ function cardSec(r){
   const cbub = r.contacter_client !== true ? `<span class="cb stop no" title="Ne surtout pas contacter le client">${IC.stop}Ne pas contacter le client</span>`
     : r.contact_fait_le ? `<span class="cb done" title="Client contacté">${IC.phone}Client contacté</span>` : `<span class="cb todo" title="Client à contacter">${IC.phone}Client à contacter</span>`;
   const acts = w && !showArch ? `<div class="act"><button class="s go stp" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}Étape</button></div>` : '<div class="act" style="padding:0"></div>';
-  return `<div class="card st-${kind} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${gcl(r)}" ${gst(r)} data-id="${r.id}">${r.thumb ? `<div class="bgph"><img alt="" src="data:image/jpeg;base64,${r.thumb}"></div>` : ''}<div class="r1"><div class="name" title="${esc(mt)}">${esc(mt) || 'SCMS'}</div></div>
-    <div class="r2"><div class="refs">${lnkc(r.waybill)}</div><span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div><div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="rowb">${cbub}${waitB(r)}</div>${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+  return `<div class="card st-${kind} ${tmp ? ' tmpc' : ''}${gcl(r)}" ${gst(r)} data-id="${r.id}">${r.thumb ? `<div class="bgph"><img alt="" src="data:image/jpeg;base64,${r.thumb}"></div>` : ''}<div class="r1"><div class="name" title="${esc(mt)}">${esc(mt) || 'SCMS'}</div></div>
+    <div class="r2"><div class="refs">${lnkc(r.waybill)}</div><span class="tag ${kind}">${esc(stLabel(r.etape))}</span></div><div class="m" style="margin-top:2px">Découvert le ${fdateD(r.date_decouverte)}</div><div class="rowb">${cbub}${waitB(r)}</div>${acts}</div>`;
 }
 const lnkc = (v, label) => v ? `<span class="rc">${link(v, label)}<button class="cp sm" data-copy="${esc(v)}" title="Copier" aria-label="Copier">${IC.copy}</button></span>` : '';
 const stLabR = r => (isAwb(cur) || cur === 'SPARK' || cur === 'RTO') && r.etape === 'EN_COURS' && r.etape_par ? 'En cours par ' + who(r.etape_par) : (isAwb(cur) && r.etape === 'EN_ATTENTE' && r.etape_par ? 'Mis en attente par ' + who(r.etape_par) : stLabel(r.etape));
@@ -3181,8 +3289,8 @@ function cardDoc(r){
   const tmp = r._tmp === true;
   const fl = r.fichiers || [];
   const files = fl.length ? fl.map(f => `<div class="dfl"><span class="dn" title="${esc(f.nom)}">${esc(f.nom)}</span>${f.id !== 'tmp' && !f._sync && !String(f.id).startsWith('tmp_') ? `<button class="ico sm" data-a="dl" data-fid="${f.id}" title="Télécharger ${esc(f.nom)}" aria-label="Télécharger ${esc(f.nom)}">${IC.download}</button>` : '<span class="d3s"><i></i><i></i><i></i></span>'}</div>`).join('') : '<div class="fn">Aucun fichier</div>';
-  return `<div class="card dcc ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${gcl(r)}" ${gst(r)} data-id="${r.id}"><span class="bb dvis ${r.visibilite === 'prive' ? '' : 'sh'}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</span><div class="dtl" title="${esc(r.titre)}">${esc(r.titre)}</div>
-    <div class="dfls">${files}</div>${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+  return `<div class="card dcc ${tmp ? ' tmpc' : ''}${gcl(r)}" ${gst(r)} data-id="${r.id}"><span class="bb dvis ${r.visibilite === 'prive' ? '' : 'sh'}">${r.visibilite === 'prive' ? IC.lock + 'Privé' : IC.users + 'Partagé'}</span><div class="dtl" title="${esc(r.titre)}">${esc(r.titre)}</div>
+    <div class="dfls">${files}</div></div>`;
 }
 function card(r){
   if (cur === 'SECURITY') return cardSec(r);
@@ -3199,13 +3307,13 @@ function card(r){
     : `<div class="r1">${urg}${refs || '<div class="name">—</div>'}${tag}</div>`;
   const wk = cur === 'SPARK' && r.wrong_ok === true ? `<div class="rowb"><span class="bb wk">${IC.check}Wrong OK</span></div>` : '';
   const lines = M.show.filter(k => !(isAwb(cur) && k === 'categorie_id')).map(k => { const v = val(r, k); return v ? `<div class="m ${k === 'categorie_id' ? 'cat' : ''}${k === 'demande' ? ' ml' : ''}">${esc(v)}</div>` : ''; }).join('');
-  const rb = cur === 'HP' && r.etape === 'OUVRIR_SPARK' && ['ecriture', 'admin'].includes(ME.rights.SPARK) ? `<button class="s" ${tmp ? 'disabled' : ''} data-a="retour" title="Créer le Retour AA1 pré-rempli">${IC.SPARK}Retour AA1</button>` : '';
+  const rb = '';
   const acts = w && !showArch ? `<div class="act">${rb}<button class="s go stp" ${tmp ? 'disabled' : ''} data-a="stepmenu" data-id="${r.id}" title="Changer d'étape" aria-label="Changer d'étape">${IC.step}Étape</button></div>` : '<div class="act" style="padding:0"></div>';
   const al = cur === 'DOM' ? domAlert(r) : null, rk = cur === 'HP' ? tdRank('HP', r) : 2;
   const alc = al ? (['J1', 'J4', 'J10'].some(k => al[k] === 'late') ? ' al-late' : ['J1', 'J4', 'J10'].some(k => al[k] === 'warn') ? ' al-warn' : '') : rk === 0 ? ' al-late' : rk === 1 ? ' al-warn' : '';
   const hpl = cur === 'HP' ? `<div class="m">J0 ${r.j0 ? fdateD(r.j0) : '…'} · J+3 ${r.j3 ? fdateD(r.j3) : '…'}${r.paye === true ? ' · <b>Payé' + (r.paye_le ? ' le ' + fdateD(r.paye_le) : '') + '</b>' : ''}</div>` : '';
-  const cl = '';
-  return `<div class="card st-${kind}${cl ? ' hascat' : ''} ${r._sync || tmp ? 'sync' : ''}${tmp ? ' tmpc' : ''}${alc}${ecCls(r)}${gcl(r)}" ${gst(r)} data-id="${r.id}">${cl ? `<div class="rcat" title="${esc(cl)}"><span>${esc(cl)}</span></div>` : ''}${head}${wk}${hpl}${lines}${r.suppr_par ? `<div class="rowb">${waitB(r)}</div>` : ''}${acts}${r._sync || tmp ? '<div class="dots"><i></i><i></i><i></i></div>' : ''}</div>`;
+  const cl = todoOn() ? stLabel(r.etape) : '';   // l'étape est écrite dans la bande de gauche
+  return `<div class="card st-${kind}${cl ? ' hascat' : ''} ${tmp ? ' tmpc' : ''}${alc}${ecCls(r)}${gcl(r)}" ${gst(r)} data-id="${r.id}">${cl ? `<div class="rcat" title="${esc(cl)}"><span>${esc(cl)}</span></div>` : ''}${head}${wk}${hpl}${lines}${r.suppr_par ? `<div class="rowb">${waitB(r)}</div>` : ''}${acts}</div>`;
 }
 
 // ------------------------------------------------------------ Recherche globale (suggestions)
@@ -3381,27 +3489,40 @@ function onListClick(e){
   if (!b) { if (!r._tmp) openDetail(r, false); return; }
   if (b.disabled) return;
   if (b.dataset.a === 'stepmenu') showStepMenu(b, r);
-  else if (b.dataset.a === 'retour') hpRetour(r);
   else if (b.dataset.a === 'dl') downloadFile(b.dataset.fid);
 }
 const H = {};                                              // historique par élément
-function waveCard(id){ const el = document.querySelector('.card[data-id="' + id + '"]'); if (el) { el.classList.add('wave'); setTimeout(() => el.classList.remove('wave'), 1200); } }
+function waveCard(){}   // remplacé par FX
 function doStep(r, code){
   const m = cur, k = key();
-  const old = {etape:r.etape, etape_par:r.etape_par, etape_le:r.etape_le};
+  if (m === 'HP' && code === 'OUVRIR_SPARK') return hpVersSpark(r);
+  const old = {etape:r.etape, etape_par:r.etape_par, etape_le:r.etape_le, paye:r.paye, paye_le:r.paye_le};
+  if (m === 'HP' && code === 'PAYE') { r.paye = true; r.paye_le = r.paye_le || todayISO(); }
   const ev = {date_heure:new Date().toISOString(), utilisateur:ME.email, action:'etape', ancienne_valeur:old.etape, nouvelle_valeur:code};
   Object.assign(r, {etape:code, etape_par:ME.email, etape_le:ev.date_heure});
   if (H[r.id]) H[r.id].unshift(ev);
   syncOn(r);
   drawCards(); if (det && det.r === r) { renderDet(); } if (bandR === r) drawBand();
+  FX.on('mod', FX.card(r.id));
   enqueue(async () => { await api('step', {module:m, id:r.id, etape:code}); syncOff(r); if (key() === k || todoOn()) { drawCards(); waveCard(r.id); } if (det && det.r === r) renderDet(); },
     () => { syncOff(r); Object.assign(r, old); if (H[r.id]) H[r.id] = H[r.id].filter(x => x !== ev); if (key() === k || todoOn()) drawCards(); if (det && det.r === r) renderDet(); });
+}
+// HP « J+3 - Ouvrir Spark » : le dossier quitte la liste et apparaît dans « Spark à ouvrir »
+function hpVersSpark(r){
+  if (!['ecriture', 'admin'].includes(ME.rights.SPARK)) return toast('Il faut le droit d’écriture sur « Spark à ouvrir »');
+  const k = key(), before = (cache[k] || []).slice();
+  FX.out('arch', FX.card(r.id));
+  cache[k] = before.filter(x => x.id !== r.id); if (cur === 'HP') rows = cache[k];
+  closePop(); if (det && det.r === r) closeDet(); drawCards();
+  enqueue(async () => { await api('step', {module: 'HP', id: r.id, etape: 'OUVRIR_SPARK'}); cache.SPARK = await api('list', {module: 'SPARK', archives: false}); delete cache.HP_a; toast('Copié dans « Spark à ouvrir » et archivé'); drawCards(); },
+    () => { cache[k] = before; if (cur === 'HP') rows = before; drawCards(); });
 }
 async function doArchive(r, archive){
   if (archive && !(await ask('Archiver cet élément ?', 'Il quittera la liste active. Tu pourras le retrouver dans « Voir les archives ».', 'Archiver'))) return;
   const m = cur, k = key(), before = rows;
-  rows = rows.filter(x => x.id !== r.id); cache[k] = rows; drawCards();
   if (det && det.r === r) closeDet();
+  FX.out('arch', FX.card(r.id));
+  rows = rows.filter(x => x.id !== r.id); cache[k] = rows; drawCards();
   enqueue(() => api(archive ? 'archive' : 'unarchive', {module:m, id:r.id}), () => { cache[k] = before; if (key() === k) { rows = before; drawCards(); } else tdDraw(); });
 }
 // Fenêtre de confirmation
@@ -3550,7 +3671,7 @@ function editCell(x, v){
 document.addEventListener('click', e => { const b = e.target.closest('.cch'); if (!b) return; const p = b.closest('.catp'), h = $('#f_categorie_id'); if (!h) return; h.value = b.dataset.cv; p.classList.remove('err'); p.querySelectorAll('.cch').forEach(x => x.classList.toggle('on', x === b)); });
 function renderDet(){
   if (!det) return;
-  const M = MODS[cur], r = det.r, ed = det.editing, el = $('#sDet'), w = canWrite(); el.classList.toggle('syncing', !!(r && r._sync));
+  const M = MODS[cur], r = det.r, ed = det.editing, el = $('#sDet'), w = canWrite(); 
   el.classList.remove('wbx');
   const v = r || {visibilite: cur === 'AWB' || cur === 'RTO' ? 'prive' : 'agence', date_decouverte: todayISO(), contacter_client: true};
   if (!r && cur === 'PPWK') v.categorie_id = tdNewCat || det.cat || '';
@@ -3594,15 +3715,17 @@ function renderDet(){
     const dd = new Date(d), df = al.d[l], cls = al[l] || (l !== 'J1' && df > 0 ? 'now' : '');
     const sub = l === 'J1' && al.J1 ? '<em class="cc">Contacter le client</em>' + (al.J1 === 'late' ? `dépassé de ${-df} j` : '') : (al[l] === 'late' ? `dépassé de ${-df} j` : '');
     return `<div class="dt3 ${cls}"><small>${l}</small><b>${dd.toLocaleDateString('fr-FR', {weekday:'short', day:'numeric', month:'short'})}</b><span>${sub || '&nbsp;'}</span></div>`; }).join('')}</div>` : '';
-  const hpx = r && !ed && cur === 'HP' ? `<div class="dates">${[['J0', r.j0], ['J+3', r.j3]].map(([l, d]) => `<div class="dt3 ${l === 'J+3' && tdRank('HP', r) === 0 ? 'late' : l === 'J+3' && tdRank('HP', r) === 1 ? 'warn' : ''}"><small>${l}</small><b>${d ? new Date(d).toLocaleDateString('fr-FR', {weekday:'short', day:'numeric', month:'short'}) : '…'}</b><span>&nbsp;</span></div>`).join('')}</div><div class="hpd">${r.retour_id ? '<button class="s" id="dRetV">' + IC.open + 'Voir le Retour AA1</button>' : r.etape === 'OUVRIR_SPARK' && w && !showArch && ['ecriture', 'admin'].includes(ME.rights.SPARK) ? '<button class="p" id="dRet">' + IC.SPARK + 'Créer le Retour AA1</button>' : ''}</div>` : '';
+  const hpx = r && !ed && cur === 'HP' ? `<div class="dates">${[['J0', r.j0], ['J+3', r.j3]].map(([l, d]) => `<div class="dt3 ${l === 'J+3' && tdRank('HP', r) === 0 ? 'late' : l === 'J+3' && tdRank('HP', r) === 1 ? 'warn' : ''}"><small>${l}</small><b>${d ? new Date(d).toLocaleDateString('fr-FR', {weekday:'short', day:'numeric', month:'short'}) : '…'}</b><span>&nbsp;</span></div>`).join('')}</div><div class="hpd">${r.retour_id ? '<button class="s" id="dRetV">' + IC.open + 'Voir le Spark à ouvrir</button>' : ''}</div>` : '';
   el.innerHTML = `<div class="sh"><div class="tt"><h3>${esc(title)}</h3>${stat ? '' : bubs}</div>${btns}</div>${stat}${sp ? '<div class="dsp' + (cur === 'CCTV' ? ' cct' : '') + '"><div class="dspl">' : ''}${dates}${hpx}
     ${cur === 'SECURITY' && r && !ed ? '' : `<dl class="det">${fields}${meta.filter(m => m[1]).map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>`}
     ${sp ? '' : xb}
     ${sp ? (cur === 'CCTV' ? `</div>${xb}</div>` : `</div><div class="dspr">${xb}</div></div>`) : ''}`;
   el.classList.toggle('xw', cur !== 'DOCUMENTS' && !!r && !ed);
-  el.classList.toggle('syncing', !!(r && r._sync));
-  if (r && r._sync) el.insertAdjacentHTML('beforeend', '<div class="dots"><i></i><i></i><i></i></div>');
+  
   afterExtra(r, ed);
+  // le dossier est en alerte dans la liste : le problème clignote dans la fenêtre
+  const src = r && !ed && document.querySelector('#main [data-id="' + (window.CSS && CSS.escape ? CSS.escape(String(r.id)) : r.id) + '"]');
+  if (src && (src.classList.contains('al-late') || src.classList.contains('al-warn') || src.classList.contains('alh'))) el.querySelectorAll('.dstat .tag, .bbs .bb.u').forEach(x => x.classList.add('dal', src.classList.contains('al-warn') ? 'w' : 'l'));
   if ($('#dHist')) $('#dHist').onclick = () => openHist(r);
   $('#dX').onclick = () => (ed && r) ? (det.editing = false, renderDet()) : closeDet();
   if ($('#dPen')) $('#dPen').onclick = () => { det.editing = true; renderDet(); };
@@ -3610,7 +3733,6 @@ function renderDet(){
   if ($('#dDel')) $('#dDel').onclick = () => delRec(r);
   if ($('#dMsg')) $('#dMsg').onclick = () => openMsg({ref:{module:cur, id:r.id}});
   if ($('#dRem')) $('#dRem').onclick = () => openRem({module:cur, id:r.id});
-  if ($('#dRet')) $('#dRet').onclick = () => hpRetour(r);
   if ($('#dRetV')) $('#dRetV').onclick = () => { const id = r.retour_id; closeDet(); openNotif({module:'SPARK', ref_id:id, id:'', detail:'{}', lu:'oui'}); };
   if (ed && cur === 'HP') { const cb = $('#f_paye'), dp = $('#f_paye_le'); cb.onchange = () => { dp.value = cb.checked ? (dp.value || todayISO()) : ''; }; }
   if (ed) {
@@ -3664,10 +3786,12 @@ async function delRec(r){
   if (!ok) return;
   if (direct) {
     const k = key(), before = (cache[k] || rows).slice(); closeDet();
-    syncOn(r); drawCards();
-    enqueue(async () => { await api('delete_request', {module:m, id:r.id}); syncOff(r); fadeOut(r, () => { cache[k] = (cache[k] || []).filter(x => x.id !== r.id); if (key() === k) { rows = cache[k]; drawCards(); } }); drawCards(); }, () => { syncOff(r); r._gone = 0; cache[k] = before; if (key() === k) { rows = before; drawCards(); } });
+    FX.out('del', FX.card(r.id));
+    cache[k] = before.filter(x => x.id !== r.id); if (key() === k) rows = cache[k]; drawCards();
+    hintRec = r.id;
+    enqueue(() => api('delete_request', {module:m, id:r.id}), () => { cache[k] = before; if (key() === k) { rows = before; drawCards(); } else tdDraw(); });
   } else {
-    r.suppr_par = ME.email; syncOn(r); drawCards(); if (det && det.r === r) renderDet();
+    r.suppr_par = ME.email; syncOn(r); drawCards(); if (det && det.r === r) renderDet(); FX.on('mod', FX.card(r.id));
     enqueue(async () => { await api('delete_request', {module:m, id:r.id}); syncOff(r); if (key() === m || key() === m + '_a') drawCards(); if (det && det.r === r) renderDet(); },
       () => { syncOff(r); r.suppr_par = ''; if (cur === m) drawCards(); if (det && det.r === r) renderDet(); });
   }
@@ -3681,6 +3805,7 @@ function saveLocal(r, data, extra){
     rows.unshift(row); cache[k] = rows;
   }
   drawCards();
+  if (r) FX.on('mod', FX.card(r.id)); else FX.on('add', FX.card(rows[0] && rows[0].id));
   const refresh = async () => { const fresh = await api('list', {module:m, archives:false}); cache[m] = fresh; if (key() === m) { rows = fresh; relinkDet(); drawCards(); } else tdDraw(); };
   enqueue(async () => {
     const newId = await api('save', {module:m, id: r ? r.id : null, data});
@@ -3753,6 +3878,7 @@ async function delComment(r, cid){
 function addComment(r){
   const ta = $('#cmIn'); const texte = ta ? ta.value.trim() : ''; if (!texte) return;
   const m = cur; det.cmtDraft = ''; det.cmOpen = false;
+  FX.on('mod', FX.card(r.id));
   const tmp = {id:'tmp_' + Date.now(), par:ME.email, le:new Date().toISOString(), texte, _sync:true};
   (CMT[r.id] = CMT[r.id] || []).unshift(tmp); drawX();
   enqueue(async () => { const id = await api('comment_add', {module:m, ref_id:r.id, texte}); tmp.id = id; tmp._sync = false; if (det && det.r === r) drawX(); },
@@ -3829,6 +3955,7 @@ async function addPhotos(files){
   if (!det) return;
   if (!r) { det.staged = det.staged || {}; det.staged.photos = (det.staged.photos || []).concat(ph); return drawX(); }
   FILES[r.id] = FILES[r.id] || [];
+  FX.on('mod', FX.card(r.id));
   ph.forEach(p => { const tmp = {id:'tmp_' + Math.random().toString(36).slice(2), nom:p.name, mime:p.mime, b64:p.b64, kind:'photo', _sync:true}; FILES[r.id].push(tmp);
     enqueue(async () => { const o = await api('file_add', {module:m, ref_id:r.id, name:p.name, mime:p.mime, b64:p.b64, thumb_b64:p.thumb}); tmp.id = o.id; tmp._sync = false; delete H[r.id];
         if (!r.photo_id) { r.photo_id = o.id; r.thumb = p.thumb; if (key() === m) drawCards(); }
@@ -3881,8 +4008,8 @@ async function downloadFile(fid, nom){
 async function delDoc(r){
   if (!(await ask('Supprimer ce document ?', 'Le document et ses fichiers seront définitivement supprimés.', 'Supprimer'))) return;
   const k = key(), before = (cache[k] || rows).slice(); closeDet();
-  fadeOut(r, () => { cache[k] = (cache[k] || []).filter(x => x.id !== r.id); if (key() === k) { rows = cache[k]; drawCards(); } });
-  drawCards();
+  FX.out('del', FX.card(r.id));
+  cache[k] = before.filter(x => x.id !== r.id); if (key() === k) rows = cache[k]; drawCards();
   enqueue(() => api('doc_delete', {id:r.id}), () => { r._gone = 0; cache[k] = before; if (key() === k) { rows = before; drawCards(); } });
 }
 function openContact(r){
@@ -3951,8 +4078,9 @@ function showToasts(){
     if (box.querySelector('[data-id="' + n.id + '"]')) return;
     const el = document.createElement('div'); el.className = 'nt ' + (n.categorie === 'todo' ? 'todo' : ''); el.dataset.id = n.id;
     el.innerHTML = `<b>${esc(n.titre)}</b><span>${esc(n.texte)}</span><button class="ico sm" aria-label="Fermer" title="Fermer">${IC.close}</button>`;
-    el.onclick = e => { if (e.target.closest('button')) { dismissed.add(n.id); saveDis(); el.remove(); } else openNotif(n); };
+    el.onclick = e => { if (e.target.closest('button')) { FX.out('vu', el); dismissed.add(n.id); saveDis(); el.remove(); } else openNotif(n); };
     box.prepend(el);
+    FX.on('notif', '#ntoasts [data-id="' + n.id + '"]');
   });
 }
 function setRead(n){ if (n.lu === 'oui') return; n.lu = 'oui'; NOT.unread = NOT.items.filter(x => x.lu !== 'oui').length; drawBadges(); showToasts(); enqueue(() => api('notif_set', {id:n.id})); }
@@ -3985,7 +4113,7 @@ function ntItem(n){
   if (n.type === 'suppression' && n.fait !== 'oui') return `<div class="nit unread${gcl(n)}" ${gst(n)} data-id="${n.id}"><b>${esc(n.titre)}</b><div class="tx">${esc(n.texte)}</div><div class="tm">${ftime(n.cree_le)}</div>
     <div class="na"><button data-a="dv" class="dng">${IC.trash}Valider la suppression</button><button data-a="dn">${IC.close}Ne pas supprimer</button></div></div>`;
   return `<div class="nit nn${n.type === 'rappel' ? ' rap' : ''} ${n.lu !== 'oui' ? 'unread' : ''}${gcl(n)}" ${gst(n)} data-id="${n.id}"><b>${esc(n.titre)}</b>${n.type === 'rappel' ? '' : '<div class="tx">' + esc(n.texte) + '</div>'}<div class="tm">${n.type === 'rappel' ? esc(n.texte) + ' · ' : ''}${ftime(n.cree_le)}</div>
-    <div class="na"><button data-a="lu" ${n.lu === 'oui' ? 'disabled' : ''} title="Marquer comme lu" aria-label="Marquer comme lu">${IC.check}</button><button data-a="rm" class="rm dng" title="Supprimer la notification" aria-label="Supprimer la notification">${IC.trash}</button></div></div>`;
+    <div class="na"><button data-a="rm" class="nvu" title="Vu : retirer la notification" aria-label="Vu : retirer la notification">${IC.check}</button></div></div>`;
 }
 const IC_DBL = ic('<path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/>');
 const IC_BELLP = ic('<g transform="translate(0 2.6) scale(.82)"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></g><path d="M19.2 1.5v7"/><path d="M15.7 5h7"/>');
@@ -4004,19 +4132,20 @@ function renderDrawer(){
     if (!a) return openNotif(n);
     if (a.dataset.a === 'dv' || a.dataset.a === 'dn') {
       const val = a.dataset.a === 'dv';
-      fadeOut(n, () => { NOT.items = NOT.items.filter(x => x.id !== n.id); NOT.unread = NOT.items.filter(x => x.lu !== 'oui').length; drawBadges(); showToasts(); renderDrawer(); });
+      FX.out(val ? 'del' : 'vu', c);
+      NOT.items = NOT.items.filter(x => x.id !== n.id); NOT.unread = NOT.items.filter(x => x.lu !== 'oui').length; drawBadges(); showToasts();
       renderDrawer();
       Object.keys(cache).filter(k => k === n.module || k === n.module + '_a').forEach(k => {
-        if (val) { (cache[k] || []).filter(x => x.id === n.ref_id).forEach(x => fadeOut(x, () => { cache[k] = cache[k].filter(y => y.id !== x.id); if (cur + (showArch ? '_a' : '') === k) { rows = cache[k]; drawCards(); } })); }
+        if (val) { if (cur + (showArch ? '_a' : '') === k) FX.out('del', FX.card(n.ref_id)); cache[k] = (cache[k] || []).filter(x => x.id !== n.ref_id); }
         else cache[k] = cache[k].map(x => x.id === n.ref_id ? Object.assign(x, {suppr_par:''}) : x);
         if (cur + (showArch ? '_a' : '') === k) { rows = cache[k]; drawCards(); } });
       return enqueue(() => api('delete_resolve', {id:n.id, decision: val ? 'valider' : 'refuser'}).then(() => pollNotifs()), () => pollNotifs());
     }
     if (a.dataset.a === 'rm') {
-      fadeOut(n, () => { NOT.items = NOT.items.filter(x => x.id !== n.id); NOT.unread = NOT.items.filter(x => x.lu !== 'oui').length; drawBadges(); showToasts(); renderDrawer(); });
+      FX.out('vu', c);
+      NOT.items = NOT.items.filter(x => x.id !== n.id); NOT.unread = NOT.items.filter(x => x.lu !== 'oui').length; drawBadges(); showToasts();
       renderDrawer(); return enqueue(() => api('notif_delete', {id:n.id}), () => pollNotifs());
     }
-    if (a.dataset.a === 'lu') { setRead(n); renderDrawer(); }
   };
 }
 // ------------------------------------------------------------ Notifications sur le PC (navigateur)
@@ -4189,14 +4318,14 @@ $('#rvList').onclick = e => {
 const isAdmin = () => ME.rights.PARAMETRES === 'admin';
 const SECTIONS = [
   {id:'aff', l:'Affichage', ic:'gear'}, {id:'profil', l:'Mon profil', ic:'users'}, {id:'notif', l:'Notifications', ic:'bell'}, {id:'region', l:'Région', ic:'globe'}, {id:'rapports', l:'Rapports automatiques', ic:'chart'},
-  {id:'archi', l:'Archivage et suppression', ic:'archive', adm:1}, {id:'sec', l:'SCMS', ic:'SECURITY', adm:1}, {id:'dom', l:'Délais DOM', ic:'DOM', adm:1}, {id:'suivi', l:'Relances Suivi Spark', ic:'bell', adm:1}, {id:'trait', l:'Traitement quotidien', ic:'clock', adm:1},
+  {id:'archi', l:'Archivage et suppression', ic:'archive', adm:1}, {id:'sec', l:'SCMS', ic:'SECURITY', adm:1}, {id:'dom', l:'Délais DOM', ic:'DOM', adm:1}, {id:'suivi', l:'Délais Suivi Spark', ic:'bell', adm:1}, {id:'trait', l:'Traitement quotidien', ic:'clock', adm:1},
   {id:'histo', l:'Historique', ic:'clock', adm:1}];
-const PLAB = {archivage_auto_dom_jours:'DOM — archivage automatique', archivage_auto_awb_jours:'AWB — archivage automatique', archivage_auto_spark_jours:'Retours AA1 — archivage automatique',
-  suppression_apres_archive_awb_jours:'AWB — suppression après archivage', suppression_apres_archive_spark_jours:'Retours AA1 — suppression après archivage', suppression_apres_archive_dom_jours:'DOM — suppression après archivage',
+const PLAB = {archivage_auto_dom_jours:'DOM — archivage automatique', archivage_auto_awb_jours:'AWB — archivage automatique', archivage_auto_spark_jours:'Spark à ouvrir — archivage automatique',
+  suppression_apres_archive_awb_jours:'AWB — suppression après archivage', suppression_apres_archive_spark_jours:'Spark à ouvrir — suppression après archivage', suppression_apres_archive_dom_jours:'DOM — suppression après archivage',
   dom_delai_j4_jours:'Délai J4', dom_delai_j10_jours:'Délai J10', dom_jours_ouvres:'Compter en jours ouvrés', heure_traitement_quotidien:'Heure du traitement', historique_retention_mois:"Conservation de l'historique",
   archivage_auto_security_jours:'SCMS — archivage automatique', suppression_apres_archive_security_jours:'SCMS — suppression après archivage',
   security_rappel_contact_jours:'Rappel après contact du client', security_rappel_scms_jours:'Rappel après création du SCMS'};
-const PGROUP = {archi:['archivage_auto_dom_jours','archivage_auto_awb_jours','archivage_auto_spark_jours','suppression_apres_archive_dom_jours','suppression_apres_archive_awb_jours','suppression_apres_archive_spark_jours','archivage_auto_security_jours','suppression_apres_archive_security_jours'],
+const PGROUP = {archi:['suppression_apres_archive_dom_jours','suppression_apres_archive_awb_jours','suppression_apres_archive_spark_jours','suppression_apres_archive_security_jours'],
   sec:['security_rappel_contact_jours','security_rappel_scms_jours'],
   dom:['dom_delai_j4_jours','dom_delai_j10_jours','dom_jours_ouvres'], trait:['heure_traitement_quotidien'], histo:['historique_retention_mois']};
 const NOTIFS = [['nouveau','Nouvel élément partagé'], ['modification',"Modification d'un élément"], ['etape',"Changement d'étape"], ['urgent','Élément urgent'], ['archive','Archivage'], ['echeance','Échéance (DOM, HP)']];
@@ -4205,7 +4334,7 @@ let setSec = 'aff', PARAMS = null;
 const sw = (id, on, extra = '') => `<label class="sw"><input type="checkbox" id="${id}" ${on ? 'checked' : ''} ${extra}><i></i></label>`;
 
 // ------------------------------------------------------------ Page « Administration » (réservée aux admins)
-const ADM_MODS = [['AWB', 'AWB'], ['PPWK', 'PPWK'], ['SPARK', 'Retours AA1'], ['DOM', 'DOM'], ['HP', 'HP'], ['RTO', 'RTO'], ['SECURITY', 'LSR'], ['CCTV', 'CCTV']];
+const ADM_MODS = [['AWB', 'AWB'], ['PPWK', 'PPWK'], ['SPARK', 'Spark à ouvrir'], ['DOM', 'DOM'], ['HP', 'HP'], ['RTO', 'RTO'], ['SECURITY', 'LSR'], ['CCTV', 'CCTV']];
 let ADM = null;
 const admOpen = () => cur === 'ADMIN' ? !!$('#admPg') : $('#mAdm').classList.contains('on');
 function closeAdm(){ if (cur === 'ADMIN') return openMod('_home'); $('#mAdm').classList.remove('on'); $('#bAdm').classList.remove('on'); }
@@ -4337,23 +4466,28 @@ async function renderSec(){
 async function renderRelances(el){
   let r; try { r = await wait(() => api('suivi_relances_get')); } catch (e) { return toast(e.message); }
   if (!el.isConnected || setSec !== 'suivi') return;
+  const c = r.config;
   const TO = [['createur','Créateur'],['partenaires','Partenaire(s) sélectionné(s)'],['admin_undel','Admin Undel'],['undel','Tout le personnel Undel']];
   const hsel = (id, v, a, b) => `<select id="${id}">${Array.from({length: b - a + 1}, (_, i) => a + i).map(h => `<option value="${h}" ${h === v ? 'selected' : ''}>${h} h</option>`).join('')}</select>`;
-  const bloc = (k, titre) => `<h4 class="rlh">${titre}</h4>${r.config[k].map((x, i) => `<div class="rlr" data-k="${k}" data-i="${i}"><b>${i ? (i + 1) + 'ème' : '1ère'} notification</b><label class="rld">après <input type="number" min="0" max="500" step="0.5" value="${x.h}" aria-label="Délai en heures"> h</label><div class="rlt">${TO.map(([v, l]) => `<label class="chk"><input type="checkbox" value="${v}" ${x.to.includes(v) ? 'checked' : ''}>${l}</label>`).join('')}</div></div>`).join('')}`;
-  el.innerHTML = `<h3>Relances Suivi Spark</h3><p class="lead">Réservé à l'administrateur. Demandes et informations non terminées ; délais comptés depuis la création, en heures ouvrées (lundi au vendredi, hors jours fériés). Un délai à 0 est désactivé ; sans destinataire coché, rien n'est envoyé. Les couleurs du Suivi suivent ces délais.</p>
+  const dest = (k, to) => `<div class="rlt" data-to="${k}">${TO.map(([v, l]) => `<label class="chk"><input type="checkbox" value="${v}" ${to.includes(v) ? 'checked' : ''}>${l}</label>`).join('')}</div>`;
+  const num = (id, v, u, step) => `<input type="number" id="${id}" min="0" step="${step || 1}" value="${v}" style="width:76px"> ${u}`;
+  const coul = (titre, k, u, f) => `<div class="prow"><div><b>${titre}</b><div class="m">Vert avant le premier seuil, orange jusqu'au second, rouge ensuite.</div></div><div class="rlw">orange à ${num('c' + k + 'a', c.couleurs[k][0] / f, u, f > 1 ? 0.5 : 1)} · rouge à ${num('c' + k + 'b', c.couleurs[k][1] / f, u, f > 1 ? 0.5 : 1)}</div></div>`;
+  el.innerHTML = `<h3>Délais Suivi Spark</h3><p class="lead">Réservé à l'administrateur. Délais comptés en heures ouvrées (lundi au vendredi, hors jours fériés). Un délai à 0 est désactivé ; sans destinataire coché, rien n'est envoyé.</p>
     <div class="prow"><div><b>Heures ouvrées</b><div class="m">Seules ces heures sont décomptées.</div></div><div class="rlw">de ${hsel('rlA', r.heures[0], 0, 23)} à ${hsel('rlB', r.heures[1], 1, 24)}</div></div>
-    ${bloc('normal', 'PRIORITÉ NORMALE')}${bloc('urgent', 'PRIORITÉ URGENTE')}
-    <p class="m" style="margin-top:12px">Une demande passée en « Bloqué » prévient aussitôt la personne qui fait le changement, le créateur et les admins Undel.</p>
+    <h4 class="rlh">COULEURS DES CASES</h4>${coul('Avant la prise en charge', 'prise', 'min', 1)}${coul('Après la prise en charge (réponse)', 'rep', 'h', 60)}
+    <h4 class="rlh">NOTIFICATIONS · PRISE EN CHARGE</h4><div class="rlr"><b>Non pris en charge</b><label class="rld">après ${num('rlP', c.prise.min, 'min')}</label>${dest('prise', c.prise.to)}</div>
+    <h4 class="rlh">NOTIFICATIONS · RÉPONSE (après la prise en charge)</h4>${c.rep.map((x, i) => `<div class="rlr"><b>${i ? (i + 1) + 'ème' : '1ère'} notification</b><label class="rld">après ${num('rlR' + i, x.h, 'h', 0.5)}</label>${dest('rep' + i, x.to)}</div>`).join('')}
+    <h4 class="rlh">URGENCE DU LENDEMAIN MATIN</h4><div class="rlr"><b>Toujours pas terminé le jour ouvré suivant</b>${dest('matin', c.matin.to)}</div>
     <div class="foot"><button class="p" id="rlOk">Enregistrer</button></div>`;
   el.querySelector('#rlOk').onclick = async () => {
-    const config = {normal: [], urgent: []};
-    el.querySelectorAll('.rlr').forEach(x => { config[x.dataset.k][Number(x.dataset.i)] = {h: Number(x.querySelector('input[type=number]').value) || 0, to: [...x.querySelectorAll('input[type=checkbox]:checked')].map(c => c.value)}; });
-    try { await wait(() => api('suivi_relances_set', {config, debut: Number(el.querySelector('#rlA').value), fin: Number(el.querySelector('#rlB').value)})); toast('Enregistré'); if (window.svRefresh) window.svRefresh(); } catch (e) { toast(e.message); }
+    const v = id => Number(el.querySelector('#' + id).value) || 0, to = k => [...el.querySelectorAll('[data-to="' + k + '"] input:checked')].map(x => x.value);
+    const config = {prise: {min: v('rlP'), to: to('prise')}, rep: [0, 1, 2].map(i => ({h: v('rlR' + i), to: to('rep' + i)})), matin: {to: to('matin')}, couleurs: {prise: [v('cprisea'), v('cpriseb')], rep: [v('crepa') * 60, v('crepb') * 60]}};
+    try { await wait(() => api('suivi_relances_set', {config, debut: v('rlA'), fin: v('rlB')})); toast('Enregistré'); if (window.svRefresh) window.svRefresh(); } catch (e) { toast(e.message); }
   };
 }
 async function renderUsers(el){
   let us = US; if (us) api('users_list').then(x => US = x).catch(() => {}); else { try { us = US = await wait(() => api('users_list')); } catch (e) { return toast(e.message); } }
-  const MU = [['AWB', 'AWB'], ['PPWK', 'PPWK'], ['HP', 'HP'], ['UNDELS', 'Undels (Retours AA1 + DOM)'], ['SECURITY', 'LSR'], ['ENTREPRISES', 'Entreprises + Carte'], ['DEBRIEF', 'Debrief'], ['ABSENCES', 'Absences'], ['PARTENAIRE', 'Partenaire (Suivi + lecture)'], ['PR', 'PR'], ['DOCUMENTS', 'Bibliothèque'], ['PARAMETRES', 'Paramètres']];
+  const MU = [['AWB', 'AWB'], ['PPWK', 'PPWK'], ['HP', 'HP'], ['UNDELS', 'Undels (Spark à ouvrir + DOM)'], ['SECURITY', 'LSR'], ['ENTREPRISES', 'Entreprises + Carte'], ['DEBRIEF', 'Debrief'], ['ABSENCES', 'Absences'], ['PARTENAIRE', 'Partenaire (Suivi + lecture)'], ['PR', 'PR'], ['DOCUMENTS', 'Bibliothèque'], ['PARAMETRES', 'Paramètres']];
   const CC = {CLASSIQUES: '#3a8cff', CCTV: '#ee4650', PPWK: '#a66a3e', UNDELS: '#22b070'};
   const seg = (u, m) => { const cur = u.rights[m] || ''; if (m === 'PARTENAIRE') return `<label class="chk"><input type="checkbox" data-pt="${esc(u.email)}"${cur ? ' checked' : ''}>Partenaire</label>`; const  opts = m === 'PARTENAIRE' ? [['', 'Non'], ['lecture', 'Oui']] : m === 'PARAMETRES' ? [['', 'Aucun'], ['admin', 'Admin']] : m === 'DOCUMENTS' ? [['', 'Standard'], ['admin', 'Admin']] : (m === 'ABSENCES' || m === 'PR') ? [['', 'Aucun'], ['lecture', 'Lecture'], ['admin', 'Admin']] : [['', 'Aucun'], ['lecture', 'Lecture'], ['ecriture', 'Écriture'], ['admin', 'Admin']];
     return `<div class="useg" data-u="${esc(u.email)}" data-m="${m}">${opts.map(([v, l]) => `<button type="button" data-lv="${v}" class="${v === cur ? 'on ' + (v || 'none') : ''}">${l}</button>`).join('')}</div>`; };
@@ -4366,7 +4500,7 @@ async function renderUsers(el){
       <div class="ubd">
         <div class="usec"><h5>Accès aux pages</h5><div class="ugrid">${MU.map(([m, l]) => `<div class="umod"><b>${l}</b>${seg(u, m)}</div>`).join('')}</div></div>
         <div class="urow">
-          <div class="usec"><h5>Peut voir l’historique</h5><div class="chips">${[['AWB', 'AWB'], ['SPARK', 'Retours AA1'], ['DOM', 'DOM'], ['SECURITY', 'LSR']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label class="tchip" title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}><span>${l}</span></label>`; }).join('')}</div></div>
+          <div class="usec"><h5>Peut voir l’historique</h5><div class="chips">${[['AWB', 'AWB'], ['SPARK', 'Spark à ouvrir'], ['DOM', 'DOM'], ['SECURITY', 'LSR']].map(([m, l]) => { const adm = u.rights[m] === 'admin'; return `<label class="tchip" title="${adm ? 'Administrateur : accès toujours autorisé' : ''}"><input type="checkbox" data-hu="${esc(u.email)}" data-hm="${m}" ${adm || u.rights['HIST_' + m] === 'lecture' ? 'checked' : ''} ${adm ? 'disabled' : ''}><span>${l}</span></label>`; }).join('')}</div></div>
         </div></div></section>`).join('')}`;
   const saveUs = p => { US = null; toast('Enregistré'); enqueue(() => api('users_set', p), () => { US = null; renderUsers(el); }).then(() => { if (!pending) api('users_list').then(x => US = x).catch(() => {}); }); };
   el.onchange = e => {
@@ -4411,7 +4545,7 @@ IC.TODO = ic('<path d="m3 6 2 2 3-3"/><path d="m3 14 2 2 3-3"/><path d="M11 7h10
 IC.CARTE = ic('<path d="M9 4 3 6.5v13L9 17l6 3 6-2.5v-13L15 7 9 4Z"/><path d="M9 4v13M15 7v13"/>');
 IC.DEBRIEF = ic('<path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/>');
 IC.PR = ic('<path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10Z"/><circle cx="12" cy="11" r="2.2"/>');
-MODS.PPWK = Object.assign({}, MODS.AWB, {label: 'PPWK', nv: 'dossier PPWK', show: ['categorie_id', 'remarque'], fields: MODS.AWB.fields.flatMap(f => f.k === 'adresse' ? [f, {k: 'categorie_id', l: 'Catégorie', t: 'cat', req: true}] : [f])});
+MODS.PPWK = Object.assign({}, MODS.AWB, {label: 'PPWK', nv: 'dossier PPWK', show: ['categorie_id', 'remarque'], fields: MODS.AWB.fields.filter(f => f.k !== 'adresse' && f.k !== 'visibilite').flatMap(f => f.k === 'nom_client' ? [f, {k: 'categorie_id', l: 'Catégorie', t: 'cat', req: true}] : [f])});
 IC.PPWK = ic('<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>');
 function navOrder(list) {
   const base = list.filter(m => !PGS[m]), pg = Object.keys(PGS).filter(p => p !== 'SUIVI' && p !== 'TODO' && ME.rights[p]);
@@ -4694,7 +4828,7 @@ function prRows() {
   });
 }
 function prCard(r) {
-  return '<div class="prc"><div class="prh"><b class="prn">' + esc(r.nom || '—') + '</b>' + (prRoute(r) ? '<span class="prt">' + esc(prRoute(r)) + '</span>' : '') + '</div>'
+  return '<div class="prc" data-id="' + esc(r.id) + '"><div class="prh"><b class="prn">' + esc(r.nom || '—') + '</b>' + (prRoute(r) ? '<span class="prt">' + esc(prRoute(r)) + '</span>' : '') + '</div>'
     + '<div class="pra adrow"><span>' + esc(r.adresse) + '</span>' + (r.adresse ? mapBtn(r.adresse, '', '', r.nom) : '') + '</div>'
     + (r.absent_le ? '<div class="pia">Absent de l’export du ' + esc(fdate(r.absent_le)) + '</div>' : '')
     + (r.instructions ? '<div class="pri">' + esc(r.instructions) + '</div>' : '')
@@ -4717,6 +4851,7 @@ function prDrawList() {
 function prInit() {
   const b = $('#prBox'); if (!b) return;
   b.innerHTML = '<div class="prtb"><input id="prQ" type="search" placeholder="Rechercher (code, nom, adresse, route…)" autocomplete="off" value="' + esc(PRS.q) + '"><span class="prn2" id="prN"></span><button class="s" id="prPr">Imprimer</button>' + (prAdm() ? '<button class="s" id="prAdd">Ajouter</button>' : '') + '</div><div class="prchs" id="prChips"></div><div class="prl" id="prList"><div class="none">Chargement…</div></div>';
+  if (cache.PR) { prDrawChips(); prDrawList(); }
   prLoad(true).then(function () { prDrawChips(); prDrawList(); });
   $('#prQ').oninput = function () { PRS.q = this.value; prDrawList(); };
   b.onclick = function (e) {
@@ -4747,11 +4882,11 @@ function prEdit(id) {
     const data = {};
     ['code_pr', 'code_relais', 'nom', 'adresse', 'instructions', 'route'].forEach(function (k) { data[k] = $('#pf_' + k).value; });
     if (!data.code_pr.trim()) { toast('Le code point relais est obligatoire'); return $('#pf_code_pr').focus(); }
-    try { await api('pr_save', {id: r ? r.id : undefined, data: data}); await prLoad(true); close(); prDrawChips(); prDrawList(); toast('Enregistré'); } catch (e) { toast(e.message || 'Erreur'); }
+    try { const nid = await api('pr_save', {id: r ? r.id : undefined, data: data}); await prLoad(true); close(); prDrawChips(); prDrawList(); toast('Enregistré'); FX.on(r ? 'mod' : 'add', FX.card(r ? r.id : nid)); } catch (e) { toast(e.message || 'Erreur'); }
   };
   if (r) $('#pfDel').onclick = async function () {
     if (!confirm('Supprimer ce point relais ?')) return;
-    try { await api('pr_delete', {id: r.id}); await prLoad(true); close(); prDrawChips(); prDrawList(); toast('Supprimé'); } catch (e) { toast(e.message || 'Erreur'); }
+    try { await api('pr_delete', {id: r.id}); close(); FX.out('del', FX.card(r.id)); await prLoad(true); prDrawChips(); prDrawList(); toast('Supprimé'); } catch (e) { toast(e.message || 'Erreur'); }
   };
 }
 // ------------------------------------------------------------ Mise à jour des points relais (Administration)
@@ -5062,6 +5197,7 @@ function entPatch(r, fn){
   r.modifie_le = new Date().toISOString(); r.modifie_par = ME.email;
   const data = {nom: r.nom, adresse: r.adresse || '', commentaire: r.commentaire || '', comptes: o.comptes, routes: o.routes, pu: o.pu};
   entDraw(); drawTiles(); if (String(ENT.view) === String(r.id) && !ENT.edit) drawEntView(r);
+  FX.on('mod', FX.card(r.id));
   enqueue(() => api('ent_save', {id: r.id, data}), () => reloadEnt()).then(() => { if (!pending) reloadEnt(); });
 }
 function drawEntView(r){
@@ -5085,7 +5221,7 @@ function drawEntView(r){
   if ($('#enE')) $('#enE').onclick = () => openEntEdit(entRows().find(x => String(x.id) === String(r.id)) || r);
   if ($('#enD')) $('#enD').onclick = async () => {
     if (!await ask('Supprimer l’entreprise ?', r.nom + ' sera définitivement supprimée.', 'Supprimer')) return;
-    cache.ENTREPRISES = entRows().filter(x => x.id !== r.id); closeEnt(); entDraw(); drawTiles(); toast('Entreprise supprimée');
+    closeEnt(); FX.out('del', FX.card(r.id)); cache.ENTREPRISES = entRows().filter(x => x.id !== r.id); entDraw(); drawTiles(); toast('Entreprise supprimée');
     enqueue(() => api('ent_delete', {id: r.id}), () => reloadEnt());
   };
   const el = $('#sEnt'), add = k => {
@@ -5205,6 +5341,7 @@ function drawEntEdit(){
       ENT.view = null; closeEnt();
     }
     entDraw(); drawTiles(); toast('Enregistré');
+    FX.on(d.id ? 'mod' : 'add', FX.card(d.id || (cache.ENTREPRISES[0] || {}).id));
     enqueue(() => api('ent_save', {id: d.id || undefined, data}), () => reloadEnt()).then(() => { if (!pending) reloadEnt(); });
   };
   $('#enS').onclick = save; $('#enS2').onclick = save;
@@ -5269,18 +5406,18 @@ function absDraw(){
   const fm = d => d.toLocaleDateString('fr-FR', {day: 'numeric', month: 'short'});
   const dn = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
   const pend = [];
-  rows.forEach(p => { const j = absJ(p); Object.keys(j).sort().forEach(k => { const c = j[k] || []; if (c[0] === '??' || c[1] === '??') pend.push({n: p.nom, k}); }); });
-  const qb = pend.length ? `<div class="abq"><b>À confirmer !</b><span>${pend.slice(0, 6).map(x => esc(x.n) + ' (' + fm(new Date(x.k + 'T12:00:00')) + ')').join(' · ')}${pend.length > 6 ? ' …' : ''}</span></div>` : '';
+  rows.forEach(p => { const j = absJ(p); Object.keys(j).sort().forEach(k => { const c = j[k] || []; if (c[0] === '??' || c[1] === '??' || (c[5] === 's' && absPAdm(p.id))) pend.push({n: p.nom, k}); }); });
+  const qb = pend.length ? '<div class="abq"><b>À confirmer !</b></div>' : '';
   el.innerHTML = `<div class="abh"><h3>Planning des absences</h3><button class="s" data-an="0">Aujourd’hui</button><button class="s" data-an="-1" title="Semaine précédente" aria-label="Semaine précédente">‹</button><b>${fm(days[0])} – ${fm(days[SPAN - 3])}</b><button class="s" data-an="1" title="Semaine suivante" aria-label="Semaine suivante">›</button>${adm ? `<button class="ico sm" data-am="1" title="Gérer les personnes" aria-label="Gérer les personnes">${IC.users}</button>` : ''}${ABS.g.some(g => g.admin) ? `<button class="ico sm" data-ag="1" title="Gérer les groupes" aria-label="Gérer les groupes">${IC.gear}</button>` : ''}</div>
-    ${ABS.g.length ? `<div class="abg"><span>Groupes :</span>${ABS.g.map(g => `<label class="chk"><input type="checkbox" data-agk="${esc(g.id)}" ${hid[String(g.id)] ? '' : 'checked'}>${esc(g.nom)}</label>`).join('')}</div>` : ''}
-    ${qb}${rows.length ? `<table class="abt"><thead><tr><th></th>${Array.from({length: SPAN / 7}, (_, w) => w).map(w => `<th colspan="7" class="wkh">${fm(days[w * 7])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td tdy ' : ''}${i % 7 === 0 ? 'wk' : ''}${i % 7 > 4 || absHol(d) ? ' we' : ''}"${absHol(d) ? ` title="${esc(absHol(d))}"` : ''}>${dn[i % 7]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
+    <div class="abgr">${ABS.g.length ? `<div class="abg"><span>Groupes :</span>${ABS.g.map(g => `<label class="chk"><input type="checkbox" data-agk="${esc(g.id)}" ${hid[String(g.id)] ? '' : 'checked'}>${esc(g.nom)}</label>`).join('')}</div>` : ''}${qb}</div>
+    ${rows.length ? `<table class="abt"><thead><tr><th></th>${Array.from({length: SPAN / 7}, (_, w) => w).map(w => `<th colspan="7" class="wkh">${fm(days[w * 7])}</th>`).join('')}</tr><tr><th></th>${days.map((d, i) => `<th class="${absIso(d) === today ? 'td tdy ' : ''}${i % 7 === 0 ? 'wk' : ''}${i % 7 > 4 || absHol(d) ? ' we' : ''}"${absHol(d) ? ` title="${esc(absHol(d))}"` : ''}>${dn[i % 7]}<br>${d.getDate()}</th>`).join('')}</tr></thead><tbody>${rows.map(p => { const j = absJ(p); return `<tr><td class="nm">${esc(p.nom)}</td>${days.map((d, di) => {
       const fer = absHol(d), we = di % 7 > 4 || !!fer, k = absIso(d), c = we ? [] : (j[k] || []), a = c[0] || '', b = c[1] || '', note = c[2] || '', nf = Number(c[3]) || 0, has = a || b || note || nf;
       const tip = has ? [p.nom + ' · ' + d.toLocaleDateString('fr-FR', {weekday: 'long', day: 'numeric', month: 'long'}), a && a === b ? (ABS_L[a] || a) : [a ? 'Matin : ' + (ABS_L[a] || a) : '', b ? 'Après-midi : ' + (ABS_L[b] || b) : ''].filter(Boolean).join(' · '), note, nf ? nf + ' fichier' + (nf > 1 ? 's' : '') : ''].filter(Boolean).join('\n') : '';
       const cell = a && a === b ? `<i style="background:${ABS_C[a]}">${esc(a)}</i>` : [a, b].map(x => x ? `<i style="background:${ABS_C[x]}">${esc(x)}</i>` : '<i></i>').join('');
-      const clk = !we && (absPAdm(p.id) || has);
+      const clk = !we && (absPAdm(p.id) || has || p._me);
       return `<td class="${di % 7 === 0 ? 'wk' : ''}${absIso(d) === today ? ' tdy' : ''}"><div class="abc${we ? ' wend' : clk ? ' adm' : ''}" ${tip || fer ? `title="${esc(tip || fer)}"` : ''} ${clk ? `data-ac="${esc(p.id)}|${k}"` : ''}>${cell}${note || nf ? '<u class="abn"></u>' : ''}</div></td>`; }).join('')}</tr>`; }).join('')}</tbody></table>`
       : `<p class="m">${adm ? 'Aucune personne pour le moment : ajoute-en avec le bouton ci-dessus.' : 'Aucune personne pour le moment.'}</p>`}
-    <div class="abl">${(() => { const full = rows.some(p => absPAdm(p.id)), part = rows.some(p => !absPAdm(p.id)); return (full ? Object.keys(ABS_C).filter(c => c !== '??') : []).concat(part ? ['ABS'] : [], ['??']); })().map(c => `<span><i style="background:${ABS_C[c]}"></i>${esc(c)} : ${ABS_L[c]}</span>`).join('')}</div>`;
+    ${el.dataset.span ? '' : `<div class="abl">${(() => { const full = rows.some(p => absPAdm(p.id)), part = rows.some(p => !absPAdm(p.id)); return (full ? Object.keys(ABS_C).filter(c => c !== '??') : []).concat(part ? ['ABS'] : [], ['??']); })().map(c => `<span><i style="background:${ABS_C[c]}"></i>${esc(c)} : ${ABS_L[c]}</span>`).join('')}</div>`}`;
 }
 document.addEventListener('change', e => { const t = e.target.closest('#absBox [data-agk]'); if (!t) return; let h = {}; try { h = JSON.parse(localStorage.getItem('wabsh') || '{}') || {}; } catch (x) {} if (t.checked) delete h[t.dataset.agk]; else h[t.dataset.agk] = 1; try { localStorage.setItem('wabsh', JSON.stringify(h)); } catch (x) {} absDraw(); });
 document.addEventListener('click', e => {
@@ -5288,7 +5425,7 @@ document.addEventListener('click', e => {
   if (b.dataset.an !== undefined) { ABS.off = b.dataset.an === '0' ? 0 : ABS.off + Number(b.dataset.an); absDraw(); }
   else if (b.dataset.am) openAbsMgr();
   else if (b.dataset.ag) openGrp();
-  else if (b.dataset.ac) { const [id, d] = b.dataset.ac.split('|'); (absPAdm(id) ? openAbsEdit : openAbsView)(id, d); }
+  else if (b.dataset.ac) { const [id, d] = b.dataset.ac.split('|'); (absPAdm(id) ? openAbsEdit : absMine(id) ? openAbsMine : openAbsView)(id, d); }
 });
 function closeAbs(){ $('#mAbs').classList.remove('on'); $('#sAbs').className = 'sheet'; $('#sAbs').onclick = null; $('#sAbs').onchange = null; ABS.ed = null; ABS.mgr = false; }
 $('#mAbs').addEventListener('mousedown', e => { if (e.target.id === 'mAbs') closeAbs(); });
@@ -5321,6 +5458,44 @@ async function absFiles(id, d, adm){
     await absReload(); absFiles(id, d, adm);
   };
 }
+const absMine = id => !!((ABS.rows || []).find(x => String(x.id) === String(id)) || {})._me;
+// Jours qui se suivent avec le même motif (week-ends et fériés ne coupent pas la période)
+function absBlock(p, d){
+  const j = absJ(p), sig = k => { const c = j[k] || []; return (c[0] || '') + '|' + (c[1] || '') + (c[5] === 's' ? '|s' : ''); }, s = sig(d);
+  if (s === '|') return [d];
+  const walk = dir => { const out = [], x = new Date(d + 'T12:00:00'); for (let i = 0; i < 400; i++) { x.setDate(x.getDate() + dir); if (x.getDay() % 6 === 0 || absHol(x)) continue; const k = absIso(x); if (sig(k) !== s) break; out.push(k); } return out; };
+  return walk(-1).reverse().concat(d, walk(1));
+}
+const absRange = (a, b) => { const out = []; for (let x = new Date(a + 'T12:00:00'); absIso(x) <= b && out.length < 400; x.setDate(x.getDate() + 1)) if (x.getDay() % 6 && !absHol(x)) out.push(absIso(x)); return out; };
+const absPdfBtn = (p, d) => { const c = absJ(p)[d] || [], k = c[0] || c[1]; return k && (absPAdm(p.id) || p._me) ? `<button class="s" id="abPdf">${IC.absreq}Préremplir la demande</button>` : ''; };
+function absPdfBind(p, d){
+  const b = $('#abPdf'); if (!b) return;
+  b.onclick = () => {
+    const bl = absBlock(p, d), c = absJ(p)[d] || [], a = c[0] || '', z = c[1] || '', k = a || z;
+    openAbsReq({du: bl[0], au: bl[bl.length - 1], code: k === 'TRA' ? 'FOR' : (k === 'HOL' || k === '??') ? 'CP' : '', me: !!p._me, prenom: p.prenom || p.nom, nom: p.nom_famille || ''});
+  };
+}
+function openAbsMine(id, d){
+  const p = (ABS.rows || []).find(x => String(x.id) === String(id)); if (!p) return;
+  const c = absJ(p)[d] || [], a = c[0] || '', b = c[1] || '', pend = a === '??' || b === '??';
+  if (((a || b) && !pend) || c[5] === 's') return openAbsView(id, d);
+  const bl = absBlock(p, d);
+  ABS.ed = null; ABS.mgr = false; $('#sAbs').className = 'sheet';
+  $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>${pend ? 'Ma demande de congés' : 'Demander des congés'}</h3><div class="sub">${pend ? 'À confirmer' : 'Elle sera à confirmer par un admin'}</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
+    <div class="erow"><label class="etm">Du<input type="date" id="abD1" value="${bl[0]}"></label><label class="etm">Au<input type="date" id="abD2" value="${bl[bl.length - 1]}"></label></div>
+    <div class="erow"><label class="etm">Période<select id="abP"><option value="j">Journée</option><option value="am"${a && !b ? ' selected' : ''}>Matin</option><option value="pm"${b && !a ? ' selected' : ''}>Après-midi</option></select></label></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:12px">${pend ? absPdfBtn(p, d) + '<button class="s dng warn" id="abDel">Supprimer</button>' : ''}<button class="p" id="abS">${pend ? 'Modifier' : 'Envoyer la demande'}</button></div>`;
+  $('#abX').onclick = closeAbs; absPdfBind(p, d);
+  const send = async pl => { try { await wait(() => api('abs_request', pl), true); closeAbs(); await absReload(); toast('Enregistré'); } catch (e) { toast(e.message); } };
+  if ($('#abDel')) $('#abDel').onclick = () => send({id, annuler: bl});
+  $('#abS').onclick = () => {
+    const d1 = $('#abD1').value, d2 = $('#abD2').value || d1; if (!d1) return toast('Choisis une date');
+    if (d2 < d1) return toast('La date de fin est avant le début');
+    const dates = absRange(d1, d2); if (!dates.length) return toast('Aucun jour ouvré dans cette période');
+    send({id, dates, per: $('#abP').value, annuler: pend ? bl : []});
+  };
+  $('#mAbs').classList.add('on');
+}
 function openAbsView(id, d){
   const p = (ABS.rows || []).find(x => String(x.id) === String(id)); if (!p) return;
   const c = absJ(p)[d] || [], a = c[0] || '', b = c[1] || '';
@@ -5329,22 +5504,27 @@ function openAbsView(id, d){
   const per = !(a || b) ? '' : a === b ? `<div class="erow">${tag(a)}</div>` : `${a ? `<div class="erow">Matin : ${tag(a)}</div>` : ''}${b ? `<div class="erow">Après-midi : ${tag(b)}</div>` : ''}`;
   $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(p.nom)}</h3><div class="sub">${esc(absDate(d))}</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
     ${per}${c[2] ? `<div class="esec"><h4>Commentaire</h4><div class="epr" style="white-space:pre-wrap">${esc(c[2])}</div></div>` : ''}
-    <div class="esec"><h4>Fichiers</h4><div id="abF"><div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div></div></div>`;
-  $('#abX').onclick = closeAbs; $('#mAbs').classList.add('on'); if (absPAdm(id)) absFiles(id, d, false);
+    ${absPAdm(id) ? '<div class="esec"><h4>Fichiers</h4><div id="abF"><div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div></div></div>' : ''}
+    ${c[5] === 's' ? '<p class="m">Suppression demandée, en attente de validation par un admin.</p>' : ''}<div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:12px">${absPdfBtn(p, d)}${p._me && (a || b) && c[5] !== 's' ? '<button class="s dng warn" id="abDel">Supprimer</button>' : ''}</div>`;
+  $('#abX').onclick = closeAbs; absPdfBind(p, d);
+  if ($('#abDel')) $('#abDel').onclick = async () => { try { await wait(() => api('abs_request', {id, annuler: absBlock(p, d)}), true); closeAbs(); await absReload(); toast('Demande de suppression envoyée'); } catch (e) { toast(e.message); } }; $('#mAbs').classList.add('on'); if (absPAdm(id)) absFiles(id, d, false);
 }
 function openAbsEdit(id, d){
   const p = (ABS.rows || []).find(x => String(x.id) === String(id)); if (!p) return;
   const c0 = absJ(p)[d] || [];
-  ABS.ed = {id, code: 'HOL', per: 'j', com0: String(c0[2] || '')}; ABS.mgr = false;
+  const bl = absBlock(p, d), k0 = c0[0] || c0[1] || '', per0 = c0[0] && !c0[1] ? 'am' : c0[1] && !c0[0] ? 'pm' : 'j';
+  ABS.ed = {id, code: k0 || 'HOL', per: per0, com0: String(c0[2] || '')}; ABS.mgr = false;
   $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>${esc(p.nom)}</h3><div class="sub">Poser une absence</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
-    <div class="erow"><label class="etm">Du<input type="date" id="abD1" value="${d}"></label><label class="etm">Au<input type="date" id="abD2" value="${d}"></label></div>
-    <div class="erow"><label class="etm">Période<select id="abP"><option value="j">Journée</option><option value="am">Matin</option><option value="pm">Après-midi</option></select></label></div>
-    <div class="erow" id="abCodes">${Object.keys(ABS_C).map(c => `<button class="s${c === 'HOL' ? ' on' : ''}" data-c="${c}" title="${esc(ABS_L[c])}" style="--c:${ABS_C[c]};border-color:${ABS_C[c]}">${esc(c)}</button>`).join('')}<button class="s" data-c="">Effacer</button></div>
+    ${c0[5] === 's' ? '<div class="erow"><b>Suppression demandée</b><button class="s dng" id="abOui">Valider la suppression</button><button class="s" id="abNon">Refuser</button></div>' : ''}
+    <div class="erow"><label class="etm">Du<input type="date" id="abD1" value="${bl[0]}"></label><label class="etm">Au<input type="date" id="abD2" value="${bl[bl.length - 1]}"></label></div>
+    <div class="erow"><label class="etm">Période<select id="abP"><option value="j">Journée</option><option value="am"${per0 === 'am' ? ' selected' : ''}>Matin</option><option value="pm"${per0 === 'pm' ? ' selected' : ''}>Après-midi</option></select></label></div>
+    <div class="erow" id="abCodes">${Object.keys(ABS_C).map(c => `<button class="s${c === ABS.ed.code ? ' on' : ''}" data-c="${c}" title="${esc(ABS_L[c])}" style="--c:${ABS_C[c]};border-color:${ABS_C[c]}">${esc(c)}</button>`).join('')}<button class="s" data-c="">Effacer</button></div>
     <p class="m">${Object.keys(ABS_C).map(c => esc(c) + ' : ' + ABS_L[c].toLowerCase()).join(' · ')}. Les week-ends sont ignorés.</p>
     <label>Commentaire <small class="m" style="margin:0">(visible au clic et en infobulle)</small><textarea id="abCom" rows="3" maxlength="500">${esc(ABS.ed.com0)}</textarea></label>
     <div class="esec"><h4>Fichiers · ${esc(absDate(d))}</h4><div id="abF"><div class="m ld"><span class="srl" role="status" aria-label="Chargement"><i></i><i></i><i></i></span></div></div></div>
-    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="s" id="abCl">Fermer</button><button class="p" id="abS">Enregistrer</button></div>`;
-  $('#abX').onclick = closeAbs; $('#abCl').onclick = closeAbs;
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px">${absPdfBtn(p, d)}<button class="s" id="abCl">Fermer</button><button class="p" id="abS">Enregistrer</button></div>`;
+  $('#abX').onclick = closeAbs; $('#abCl').onclick = closeAbs; absPdfBind(p, d);
+  [['#abOui', true], ['#abNon', false]].forEach(([sel, ok]) => { if ($(sel)) $(sel).onclick = async () => { try { await wait(() => api('abs_delete_resolve', {id, dates: bl, ok}), true); closeAbs(); await absReload(); toast('Enregistré'); } catch (e) { toast(e.message); } }; });
   $('#abCodes').onclick = e => { const b = e.target.closest('[data-c]'); if (!b) return; ABS.ed.code = b.dataset.c; $('#abCodes').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };
   $('#abS').onclick = async () => {
     const d1 = $('#abD1').value, d2 = $('#abD2').value || d1; if (!d1) return toast('Choisis une date');
@@ -5357,6 +5537,7 @@ function openAbsEdit(id, d){
     const pp = (ABS.rows || []).find(x => String(x.id) === String(id));
     if (pp) { const j = absJ(pp); dates.forEach(k => { const c = j[k] ? j[k].slice() : ['', '', '', 0]; if (pl.am !== null) c[0] = pl.am || ''; if (pl.pm !== null) c[1] = pl.pm || ''; if ('com' in pl) c[2] = pl.com; if (!c[0] && !c[1] && !c[2] && !Number(c[3])) delete j[k]; else j[k] = c; }); pp.jours = JSON.stringify(j); }
     closeAbs(); absDraw(); toast('Enregistré');
+    dates.slice(0, 15).forEach(k => FX.on(c === '' ? 'del' : 'mod', '[data-ac="' + id + '|' + k + '"]'));
     enqueue(() => api('abs_set', pl), () => absReload().catch(() => {})).then(() => { if (!pending) absReload().catch(() => {}); });
   };
   $('#mAbs').classList.add('on'); absFiles(id, d, true);
@@ -5393,16 +5574,19 @@ function openAbsMgr(){
   ABS.mgr = true; ABS.ed = null;
   const draw = () => {
     $('#sAbs').innerHTML = `<div class="sh"><div class="tt"><h3>Personnes</h3><div class="sub">Qui apparaît dans le calendrier</div></div><button class="ico sm" id="abX" title="Fermer" aria-label="Fermer">${IC.close}</button></div>
-      ${(ABS.rows || []).filter(p => p._adm).map(p => `<div class="erow"><input data-pn="${esc(p.id)}" value="${esc(p.nom)}" maxlength="80">${(ABS.g || []).some(g => g.admin) ? `<select data-pg="${esc(p.id)}" title="Changer de groupe" aria-label="Changer de groupe" style="max-width:150px">${(ABS.g || []).filter(g => g.admin || String(g.id) === String(p.groupe_id)).map(g => `<option value="${esc(g.id)}"${String(g.id) === String(p.groupe_id) ? " selected" : ""}${g.admin ? "" : " disabled"}>${esc(g.nom)}</option>`).join("")}</select>` : `<span class="m" style="margin:0;white-space:nowrap">${esc(((ABS.g || []).find(g => g.id === String(p.groupe_id)) || {}).nom || "")}</span>`}<button class="ico sm warn" data-pd="${esc(p.id)}" title="Supprimer" aria-label="Supprimer">${IC.trash}</button></div>`).join('')}
-      <div class="erow"><select id="abG">${(ABS.g || []).filter(g => g.admin).map(g => `<option value="${esc(g.id)}">${esc(g.nom)}</option>`).join('')}</select><input id="abNew" placeholder="Nouvelle personne" maxlength="80" autocomplete="off"><button class="p" id="abAdd">${IC.plus}Ajouter</button></div>`;
+      ${(ABS.rows || []).filter(p => p._adm).map(p => `<div class="erow"><input data-pn="${esc(p.id)}" value="${esc(p.nom)}" maxlength="80"><select data-pl="${esc(p.id)}" title="Utilisateur de l'application" style="max-width:170px"><option value="">Sans accès</option>${(ABS.users || []).map(u => `<option value="${esc(u.email)}"${u.email === p.email ? ' selected' : ''}>${esc(u.nom || u.email)}</option>`).join('')}</select>${(ABS.g || []).some(g => g.admin) ? `<select data-pg="${esc(p.id)}" title="Changer de groupe" aria-label="Changer de groupe" style="max-width:150px">${(ABS.g || []).filter(g => g.admin || String(g.id) === String(p.groupe_id)).map(g => `<option value="${esc(g.id)}"${String(g.id) === String(p.groupe_id) ? " selected" : ""}${g.admin ? "" : " disabled"}>${esc(g.nom)}</option>`).join("")}</select>` : `<span class="m" style="margin:0;white-space:nowrap">${esc(((ABS.g || []).find(g => g.id === String(p.groupe_id)) || {}).nom || "")}</span>`}<button class="ico sm warn" data-pd="${esc(p.id)}" title="Supprimer" aria-label="Supprimer">${IC.trash}</button></div>`).join('')}
+      <div class="erow"><select id="abU" title="Utilisateur de l'application"><option value="">Personne sans accès</option>${(ABS.users || []).filter(u => !(ABS.rows || []).some(p => p.email === u.email)).map(u => `<option value="${esc(u.email)}">${esc(u.nom || u.email)}</option>`).join('')}</select><select id="abG">${(ABS.g || []).filter(g => g.admin).map(g => `<option value="${esc(g.id)}">${esc(g.nom)}</option>`).join('')}</select><input id="abNew" placeholder="Nouvelle personne" maxlength="80" autocomplete="off"><button class="p" id="abAdd">${IC.plus}Ajouter</button></div>`;
     $('#abX').onclick = closeAbs;
     const reload = async () => { ABS.rows = await absLoad(); ABS.t = Date.now(); absDraw(); };
-    $('#abAdd').onclick = async () => { const n = $('#abNew').value.trim(); if (!n) return; try { await wait(() => api('abs_person_save', {nom: n, groupe_id: $('#abG').value}), true); await reload(); draw(); $('#abNew').focus(); } catch (e) { toast(e.message); } };
+    $('#abAdd').onclick = async () => { const n = $('#abNew').value.trim(); if (!n) return; try { await wait(() => api('abs_person_save', {nom: n, groupe_id: $('#abG').value, email: $('#abU').value}), true); await reload(); draw(); $('#abNew').focus(); } catch (e) { toast(e.message); } };
     $('#abNew').onkeydown = e => { if (e.key === 'Enter') $('#abAdd').click(); };
+    $('#abU').onchange = () => { const u = (ABS.users || []).find(x => x.email === $('#abU').value); if (u) $('#abNew').value = u.nom || u.email; };
+    $('#sAbs').querySelectorAll('[data-pl]').forEach(s => { s.onchange = () => { const pid = s.dataset.pl, pp = ABS.rows.find(x => String(x.id) === pid); if (!pp) return; pp.email = s.value; toast('Enregistré'); enqueue(() => api('abs_person_save', {id: pid, nom: pp.nom, email: s.value}), () => reload().then(draw).catch(() => {})); }; });
     $('#sAbs').querySelectorAll('[data-pn]').forEach(i => { i.onchange = async () => { const n = i.value.trim(); if (!n) return draw(); const pp = ABS.rows.find(x => String(x.id) === i.dataset.pn); if (pp) pp.nom = n; absDraw(); toast('Enregistré'); enqueue(() => api('abs_person_save', {id: i.dataset.pn, nom: n}), () => reload().then(draw).catch(() => {})); }; });
     $('#sAbs').querySelectorAll('[data-pg]').forEach(s => { s.onchange = () => { const pid = s.dataset.pg, g = s.value, pp = ABS.rows.find(x => String(x.id) === pid); if (!pp || String(pp.groupe_id) === g) return; pp.groupe_id = g; absDraw(); toast('Enregistré'); enqueue(() => api('abs_person_save', {id: pid, nom: pp.nom, groupe_id: g}), () => reload().then(draw).catch(() => {})); }; }); $('#sAbs').querySelectorAll('[data-pd]').forEach(b => { b.onclick = async () => { const p = ABS.rows.find(x => String(x.id) === b.dataset.pd); if (!await ask('Supprimer cette personne ?', (p ? p.nom : '') + ' et toutes ses absences seront supprimées.', 'Supprimer')) return; const pid = b.dataset.pd; ABS.rows = ABS.rows.filter(x => String(x.id) !== pid); absDraw(); draw(); enqueue(() => api('abs_person_delete', {id: pid}), () => reload().then(draw).catch(() => {})); }; });
   };
   draw(); $('#mAbs').classList.add('on');
+  api('abs_users').then(u => { ABS.users = u; if (ABS.mgr) draw(); }).catch(e => toast(e.message));
 }
 const IC_CAL = ic('<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18"/><path d="M8 2v4"/><path d="M16 2v4"/>');
 const DP = {inp: null, y: 0, m: 0, time: ''};
@@ -5555,7 +5739,7 @@ function drawLibView(it){
   if ($('#lVis')) $('#lVis').onclick = async () => {
     const p = it.visibilite === 'prive';
     if (!(await ask(p ? 'Partager dans l’agence ?' : 'Passer en privé ?', p ? '« ' + it.titre + ' » sera visible par toute l’agence.' : '« ' + it.titre + ' » ne sera plus visible que par toi.', p ? 'Partager' : 'Passer en privé'))) return;
-    const nv = p ? 'agence' : 'prive'; it.visibilite = nv; drawLibView(it); libDraw();
+    const nv = p ? 'agence' : 'prive'; it.visibilite = nv; drawLibView(it); libDraw(); FX.on('mod', FX.card(it.id));
     enqueue(() => api('lib_save', {id: it.id, data: {visibilite: nv}}), () => reloadLib());
   };
   el.onclick = e => {
@@ -5566,7 +5750,7 @@ function drawLibView(it){
 }
 async function delLib(it){
   if (!(await ask('Supprimer cet élément ?', '« ' + it.titre + ' » et ses fichiers seront définitivement supprimés.', 'Supprimer'))) return;
-  closeLib(); cache.LIBRARY = libItems().filter(x => x.id !== it.id); libDraw();
+  closeLib(); FX.out('del', FX.card(it.id)); cache.LIBRARY = libItems().filter(x => x.id !== it.id); libDraw();
   enqueue(() => api('lib_delete', {id: it.id}), () => reloadLib());
 }
 // ---- édition
@@ -5659,6 +5843,7 @@ function libSave(){
   if (first && first.thumb) it.thumb = first.thumb; else if (!L.photos.length) delete it.thumb;
   const realId = L.id; delete LIBF[realId];
   LIB.edit = null; closeLib(); libDraw();
+  FX.on(realId ? 'mod' : 'add', FX.card(it.id));
   enqueue(async () => {
     const id = await api('lib_save', {id: realId || undefined, data});
     for (const f of rm) await api('file_delete', {id: f});
@@ -5781,7 +5966,8 @@ async function abBuild(v){
   put(abFr(v.date), 170, 354, 118.7, true);
   return await doc.save();
 }
-async function openAbsReq(){
+async function openAbsReq(pre){
+  pre = pre && pre.du ? pre : null;
   let pr = PRO; if (!pr) { try { pr = PRO = await wait(() => api('profile_get'), true); } catch (e) { return toast(e.message); } }
   const d = (ME.prefs && ME.prefs.ds) || {}, today = absIso(new Date());
   ABS.ed = null; ABS.mgr = false; $('#sAbs').className = 'sheet';
@@ -5794,6 +5980,10 @@ async function openAbsReq(){
     <p class="m" id="abM">Vérifie les informations avant de valider : tu peux tout modifier ici (par exemple pour la demande d’un collègue) sans changer ton profil.</p>
     <div id="abB" style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px"><button class="s" id="abCn">Annuler</button><button class="p" id="abOk">Valider</button></div>`;
   $('#abX').onclick = closeAbs; $('#abCn').onclick = closeAbs;
+  if (pre) {
+    if (!pre.me) { $('#abN').value = pre.nom; $('#abP').value = pre.prenom; $('#abMt').value = ''; $('#sAbs .sub').textContent = (pre.prenom + ' ' + pre.nom).trim(); }
+    $('#abC').value = pre.code; $('#abDu').value = pre.du; $('#abAu').value = pre.au;
+  }
   $('#abC').onchange = () => { const c = $('#abC').value; $('#abLd').classList.toggle('hide', c !== 'RTT'); $('#abLh').classList.toggle('hide', !AB_H.includes(c)); };
   $('#abDu').onchange = () => { if ($('#abAu').value < $('#abDu').value) $('#abAu').value = $('#abDu').value; };
   $('#abOk').onclick = async () => {
